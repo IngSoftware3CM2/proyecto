@@ -1,0 +1,94 @@
+%========================================================
+%Eliminar Personal
+%========================================================
+
+%========================================================
+% Descripción general del proceso
+%-----------------------------------------------
+\begin{Proceso}{P1.1}{Eliminar Personal} {
+  
+    %-------------------------------------------
+    %Resumen
+    \bigskip El proceso inicia cuando el \cdtRef{Actor:Departamento de Capital Humano}{Departamento de Capital Humano} solicita la eliminación de un elemento, después dicha solicitud debe ser enviada y procesada por la biblioteca central del politécnico. Habiendo sido aceptada la solicitud, la biblioteca central genera un reporte que se regresa a la biblioteca local, con el cual elimina al personal por medio de una petición al sistema en la cual se envía el usuario y contraseña del elemento a eliminar.
+  
+    
+    %-------------------------------------------
+    %Diagrama del proceso
+
+    \noindent La Figura \cdtRefImg{P1.1}{Eliminar Personal} muestra las actividades que se realizan para llevar a cabo el proceso descrito anteriormente.
+
+    \Pfig[0.95]{./process/images/Proceso-Dias-Economicos.png}{P1.1}{Eliminar Personal}}{P1.1:Eliminar Personal}
+
+    %-------------------------------------------
+    %Elementos del proceso
+
+    \UCitem{Usuario} { %Actores
+        \cdtRef{Actor:Jefe de Biblioteca}{Jefe de Biblioteca}.
+        \cdtRef{Actor:Sistema}{Sistema}.
+    }
+
+    \UCitem{Objetivo} { %Objetivo
+        Eliminar personal del sistema.
+    }
+
+    \UCitem{Insumos de entrada}{ %Insumos de entrada
+  	    \begin{UClist}
+  		    \UCli Contraseña del \cdtRef{Actor:Departamento de Capital Humano}{Jefe de Biblioteca}.
+  		    \UCli Contraseña del \cdtRef{Actor:Jefe de Biblioteca}{Jefe de Biblioteca}.
+        \end{UClist}
+    }
+  
+    \UCitem{Proveedores}{ %Proveedores
+        Biblioteca central.
+    }
+
+    \UCitem{Productos de salida}{ %Productos de salida
+        \begin{UClist}
+            \UCli Notificación \cdtIdRef{MSJ1.5}{Eliminacion exitosa}.
+        \end{UClist}
+    }
+
+    \UCitem{Cliente}{ %Cliente
+        \cdtRef{Actor:Jefe de Biblioteca}{Jefe de Biblioteca}
+    }
+
+    \UCitem{Mecanismo de medición}{ %Mecanismo de mediciÃ³n
+        \begin{UClist}
+            \UCli Respuesta inmediata
+        \end{UClist}
+    }
+    
+    \UCitem{Interrelación con otros procesos} { %InterrelaciÃ³n con otros procesos
+        \cdtIdRef{P1.2}{Modificar Personal}
+    }
+
+\end{Proceso}
+
+%========================================================
+%DescripciÃ³n de tareas
+%-----------------------------------------------
+\begin{PDescripcion}
+  %Actor: Jefe de Bibliotecca
+    \Ppaso Jefe de Biblioteca
+        \begin{enumerate}
+        %Tarea a
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.3:Jefe de Biblioteca}{Solicitar eliminar empleado.}El \cdtRef{Actor:Departamento de Capital Humano}{Jefe de Biblioteca} solicita a biblioteca central por medio de un documento escrito, la aprobación para la eliminación de un elemento del personal de biblioteca. 
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.3:Jefe de Biblioteca}{Recibe reporte de eliminacion.}El jefe de la biblioteca recibe un reporte con los datos del empleado y la autorización o rechazo de la eliminación del elemento.
+            \Ppaso[\itarea] \cdtLabelTask{T3-P1.3:Jefe de Biblioteca}{Recibe reporte de eliminacion.}Ingresa el usuario y contraseña del empleado a eliminar dentro del sistema y acepta la eliminación.
+        \end{enumerate}
+    
+    %Actor: biblioteca central
+    \Ppaso Biblioteca Central
+        \begin{enumerate}
+            %Tarea a
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.3:Biblioteca Central}{Recibe Solicitud de eliminacion.}Recibe la petición para la eliminación del empleado y determina si es aprobada o rechazada según las políticas internas de dicha biblioteca.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.3:Biblioteca Central}{Genera reporte de eliminacion.}Se genera un reporte completo con los datos del empleado y los motivos de eliminación, así como las fechas exactas en las que termina su participación en su labor. El reporte se envía de vuelta al jefe.
+        \end{enumerate}    
+    
+    %Actor: Sistema
+    \Ppaso Sistema
+        \begin{enumerate}
+         %Tarea a
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.3:Sistema}{Elimina empleado.}Elimina al empleado del sistema y envía los datos de la eliminación al jefe de biblioteca.  
+        \end{enumerate} 
+\end{PDescripcion}

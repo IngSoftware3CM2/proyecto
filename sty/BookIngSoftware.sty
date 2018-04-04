@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BookIngSoft.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{BookIngSoft}[2018/03/11, v1.0 ESCOM - IPN. - Plantilla de entregables para el grupo 3CM2, IA: Ingenieria de Software. Curso 18.2]
+
+%=======================================
+% Packages generales
+
+\usepackage[utf8]{inputenc}     % Codificar caracteres en UTF-8
+\usepackage[spanish]{babel}     % Cambiar las variables del documento a español para compilacion PDFLATEX
+%\usepackage{polyglossia}       % Cambiar las variables del documento a español para compilacion en XELATEX o LUALATEX    
+%\setmainlanguage{spanish}      % Cambiar las variables del documento a español para compilacion en XELATEX o LUALATEX    
+\usepackage{cmbright}           % Usar fuente de letras
+\usepackage{graphicx}           % Manejo de imágenes
+\usepackage[usernames,dvipsnames,svgnames,table]{xcolor} % Usar y definir colores [16, 64, 150 y tabla]
+\usepackage{wallpaper}          % Colocar imagenes de fondo
+\usepackage{fancyhdr}           % Manejar encabezados
+\usepackage[left=2cm,right=2cm,top=3.5cm,bottom=3.5cm, head=2cm]{geometry}         % Manejar margenes del documento
+\usepackage{sectsty}
+\usepackage[Glenn]{fncychap}    % Manejo de capitulos Ref: http://sistemas.fciencias.unam.mx/~misraim/fancy.pdf
+\usepackage{marvosym}           % Utilizar caracteres Ref: http://texdoc.net/texmf-dist/doc/fonts/marvosym/marvodoc.pdf
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{kpfonts}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{emptypage}          % Quitar encabezado de las págians en blanco
+\let\cleardoublepage\clearpage  % Quitar páginas en blanco
+\usepackage{hyperref}
+\usepackage{longtable}
+
+%=======================================
+% Definicion de colores
+\definecolor{TituloColor}{rgb}{0.3, 0.3, 0.3}
+\definecolor{SubtituloColor}{rgb}{0.45, 0.45, 0.45}
+\definecolor{AutorColor}{rgb}{0.1, 0.3, 0.7}
+\definecolor{SecccionColor}{rgb}{0.1, 0.3, 0.7}
+\definecolor{SubseccionColor}{rgb}{0.1, 0.3, 0.7}
+\definecolor{InstruccionesColor}{rgb}{0.5, 0.5, 0.5}
+\definecolor{PrincipalColor}{rgb}{0.3, 0.3, 0.3}
+\definecolor{SecundarioColor}{rgb}{0.45, 0.45, 0.45}
+\definecolor{AguaColor}{rgb}{0.91, 0.96, 0.99}
+
+
+%=======================================
+% Estilo de pagina
+\pagestyle{fancy}
+\fancyhead[LE]{\includegraphics[height=35pt]{images/CabeceraPar}} 
+\fancyhead[RO]{\includegraphics[height=35pt]{images/CabeceraImp}} 
+\fancyhead[RE]{} 
+\fancyhead[LO]{} 
+
+%=======================================
+% Estilo para Ingresar un Subtitulo del Documento, Organizacion y Autor
+    % Titulo y Subtitulo
+\newcommand{\varSubtitulo}{}                                    % Se crea la variable auxiliar del subtitulo
+\newcommand{\subtitulo}[1]{\renewcommand{\varSubtitulo}{#1}}    % Se crea la variable subtitulo
+\newcommand{\varTitulo}[1]{}                                     % Se crea la variable auxiliar del titulo
+\let\varTitulo=\title                                            % Se asigna la etiqueta \title a la variable
+\renewcommand{\title}[1]{\varTitulo{{\Huge\color{TituloColor}#1}\\{\huge\color{SubtituloColor}\varSubtitulo}{}\\\color{AutorColor}\rule{\textwidth}{1mm}}} % Se recrea el comando titulo
+
+    % Organizacion y Autor
+\newcommand{\varOrganizacion}{}                                 % Se crea la variable auxiliar del organizacion
+\newcommand{\organizacion}[1]{\renewcommand{\varOrganizacion}{#1}} % Se crea la variable organizacion
+\newcommand{\varAutor}[1]{}                                     % Se crea la variable auxiliar del autor
+\let\varAutor=\author                                          % Se asigna la etiqueta \title a la autor
+\renewcommand{\author}[1]{\varAutor{{\LARGE\color{AutorColor}#1}\\{\Large\color{SubtituloColor}\varOrganizacion}}} % Se recrea el comando autor
+
+\renewcommand{\labelitemi}{\color{SecccionColor}\textbullet}
+
+%=======================================
+% Estilo para los capítulos y secciones
+\ChTitleVar{\Large\sf\color{SecccionColor}}
+\ChNameVar{\Large\sf\color{SecccionColor}}
+\ChNumVar{\Huge\color{SecccionColor}}
+
+\let\LaTeX@startsection\@startsection
+\renewcommand{\@startsection}[6]{\LaTeX@startsection{#1}{#2}{#3}{#4}{#5}{\color{SecccionColor}\raggedright #6}} 
+
+%=======================================
+% Estilo para parte
+\newcommand{\varPart}[1]{}
+\let\varPart=\part
+\renewcommand{\part}[1]{{\color{SecccionColor}\varPart{#1}}}
+
+\newcommand{\varSeccion}[1]{}
+\let\varSeccion=\section
+\renewcommand{\section}[1]{{\color{SecccionColor}\varSeccion{#1}}}
+
+\newcommand{\varSubSeccion}[1]{}
+\let\varSubSeccion=\subsection
+\renewcommand{\subsection}[1]{{\color{SubseccionColor}\varSubSeccion{#1}}}
+
+%=======================================
+% Estilo de vinetas
+
+\newenvironment{Titemize}{\vspace{-.8em}}{\vspace{0em}}
+\newcommand{\Titem}[1][\textbullet]{\par{\color{PrincipalColor}{#1}}}
+\newcommand{\Espacio}{\hspace{10pt}}
+
+%=======================================
+% Enter
+\newcommand{\ISenter}{\hspace{10pt}}
+
+

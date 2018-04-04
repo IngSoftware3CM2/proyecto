@@ -1,0 +1,85 @@
+\begin{Proceso}{P1.6}{Licencia Médica} {
+  
+    %-------------------------------------------
+    %Resumen
+    
+    \smallskip
+    \bigskip 
+    El proceso inicia cuando el \cdtRef{Actor: Personal Docente}{Personal Académico} no asiste a la escuela por cuestiones de salud. El \cdtRef{Actor: Personal Docente}{Personal Académico} notifica la razón de su ausencia a su \cdtRef{Actor: Jefe Superior}{Jefe Superior}, posteriormente una vez que el \cdtRef{Actor: Personal Docente}{Personal Académico} reanuda sus labores, debe llevar su licencia médica al  \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}, ellos al revisarlo lo sellan, firman, sacan una copia de él y le entregan la copia al \cdtRef{Actor: Personal Docente}{Personal Académico}.
+Al momento de registrar las incidencias en el sistema, el \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} Humano debe ingresar el nombre completo del Personal Académico, número de empleado, la fecha de inicio en la cual se ausentó, así como la fecha final de su licencia médica, además, debe anexar una imagen de la licencia médica. El sistema generará un número de folio del registro. 
+	  
+
+    %-------------------------------------------
+    %Diagrama del proceso
+    
+    \smallskip
+    \noindent La Figura \cdtRefImg{P1.6}{Licencia Médica} muestra las actividades que se realizan para llevar a cabo el proceso descrito anteriormente.
+
+    \Pfig[0.9]{./process/images/Proceso-Licencia-Medica.png}{P1.6}{Licencia Medica}}{P1.6:Licencia Medica}
+
+    %-------------------------------------------
+    %Elementos del proceso
+
+    \UCitem{Usuario} { %Actores
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano},
+        \cdtRef{Actor: Personal Docente}{Personal Académico},
+        \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+    }
+
+    \UCitem{Objetivo} { %Objetivo
+        Justificar incidencia por licencia médica.
+    }
+
+    \UCitem{Insumos de entrada}{ %Insumos de entrada
+  	    \begin{UClist}
+  		    \UCli Nombre del \cdtRef{Actor: Personal Docente}{Personal Académico}.
+  		    \UCli Número de empleado del \cdtRef{Actor: Personal Docente}{Personal Académico}.
+  		    \UCli Licencia Médica del \cdtRef{Actor: Personal Docente}{Personal Académico}.
+  		    \UCli Fecha en la que inicio la licencia médica.
+  		    \UCli Fecha de término de la licencia médica.
+        \end{UClist}
+    }
+  
+    \UCitem{Proveedores}{ %Proveedores
+        \cdtRef{Actor: Personal Docente}{Personal Académico}.
+    }
+
+    \UCitem{Productos de salida}{ %Productos de salida
+        \begin{UClist}
+
+        \end{UClist}
+    }
+
+    \UCitem{Cliente}{ %Cliente
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+    }
+    
+    \UCitem{Interrelación con otros procesos} { %Interrelación con otros procesos
+        \cdtIdRef{P1.1}{Macroproceso de incidencias}
+    }
+
+\end{Proceso}
+
+%-----------------------------------------------
+%Descripcion de tareas
+
+\begin{PDescripcion}
+  %Actor: Personal Docente
+    \Ppaso Personal Docente
+        \begin{enumerate}
+        %Tarea a
+            
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.6:Personal Docente}El \cdtRef{Actor: Personal Docente}{Personal Docente} notifica a su \cdtRef{Actor: Jefe Superior}{Jefe Superior} la razón de su ausencia.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.6:Personal Docente}Entrega al \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} su licencia médica en forma física.
+	    \Ppaso[\itarea] \cdtLabelTask{T3-P1.6:Personal Docente}Recibe copia de su licencia médica sellada y firmada por el \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+        \end{enumerate}
+    
+        %Actor: Departamento de Capital Humano 
+    \Ppaso Departamento de Capital Humano
+        \begin{enumerate}
+            %Tarea 
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.6: Departamento de Capital Humano}{Recibe licencia médica.}Recibe licencia médica por parte del \cdtRef{Actor: Personal Docente}{Personal Docente}, a su vez, sella, firma y devuelve una copia al\cdtRef{Actor: Personal Docente}{Personal Docente}.
+	    \Ppaso[\itarea] \cdtLabelTask{T2-P1.6: Departamento de Capital Humano}Procesa la incidencia.
+        \end{enumerate} 
+    
+\end{PDescripcion}

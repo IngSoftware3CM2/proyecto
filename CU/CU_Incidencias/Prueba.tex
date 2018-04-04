@@ -1,0 +1,68 @@
+
+
+\begin{UseCase}{CU1.1}{Registro de personal}{
+	Se describe el comportamiento y funcionamiento del sistema para el registro de personal, en el cual el Jefe de Biblioteca será capaz de registrar los datos del personal como su nombre y apellidos, su numero de empleado, teléfono, Email, contraseña y el rol que desempeñará en la biblioteca.
+}
+		\UCitem{Versión}{1.2}
+		\UCitem{Actor}{Jefe de biblioteca.}
+		\UCitem{Propósito}{El Jefe de Biblioteca será capaz de registrar en la base los datos básicos del nuevo personal.}
+		\UCitem{Entradas}{Se ingresa la información del personal:
+			\begin{itemize}	
+				\item Nombre.
+				\item Primer apellido.
+				\item Segundo apellido.
+				\item Telefono.
+				\item No Empleado IPN.
+				\item Seleccion de rol a desempeñar.
+				\item Email
+				\item Contraseña  y repetir contraseña.
+			\end{itemize} }
+		\UCitem{Salidas}{\MSGref{MSG1.1}{Se registró exitosamente}, \MSGref{MSG1.2}{ERROR. Completa todos los campos de entrada}, \MSGref{MSG1.3}{ERROR. Valor no valido}, \MSGref{MSG1.4}{ERROR. Solo se aceptan letras}, \MSGref{MSG1.5}{ERROR. Solo se aceptan numeros}, \MSGref{MSG1.6}{ERROR. Deben ser 10 digitos}, \MSGref{MSG1.7}{ERROR. Selecciona un rol}, \MSGref{MSG1.8}{ERROR. La contraseña debe ser mayor a 8 caracteres y menor a 16 caracteres}, \MSGref{MSG1.9}{ADVERTENCIA. No coincide la contraseña}, \MSGref{MSG1.10}{ERROR. Registro ya existente}.}
+		\UCitem{Precondiciones}{ 
+			N/A
+		}
+		\UCitem{Postcondiciones}{El nuevo personal podrá integrarse a las actividades de la biblioteca segun sea su rol.}
+		\UCitem{Autor}{\begin{itemize}
+		\item Guarneros Santana Víctor Hugo.
+		\item Salas Hernandez Abiran Natanael.
+		\end{itemize}}
+	\end{UseCase}
+	%-------------------------------------- COMIENZA descripción Trayectoria Crear
+	\begin{UCtrayectoria}{Registrar personal}
+		\UCpaso[\UCactor] Selecciona el boton \IUbutton{Agregar Empleado} en el menu lateral izquierdo de la pantalla \IUref{IU1.0}{Pantalla inicial}.
+		\UCpaso[\UCsist] Despliega la pantalla \IUref{IU1.1}{Pantalla registrar}.
+		\UCpaso[\UCactor] Proporciona la información requerida en la pantalla \IUref{IU1.1}{Pantalla registrar}.
+		\UCpaso[\UCactor] Selecciona el botón \IUbutton{Guardar} de la pantalla principal \IUref{IU1.1}{Pantalla registrar}.
+		\UCpaso[\UCsist] Verifica la regla de negocio \BRref{R1.1}{Campos no nulos.} \Trayref{A} 
+		\UCpaso[\UCsist] Verifica la regla de negocio \BRref{R1.2}{Formato general para el registro de un empleado.} \Trayref{B}
+		\UCpaso[\UCsist] Verifica la regla de negocio \BRref{R1.3}{Duplicidad del personal.} \Trayref{C}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.1}{Se registró exitosamente}.
+		\UCpaso[\UCsist] Regresa a la pantalla \IUref{IU1.1}{Pantalla registrar}.
+	\end{UCtrayectoria}
+	%-------------------------------------Trayectoras alternativas
+	\begin{UCtrayectoriaA}{A}{Campos nulos.}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.2}{ERROR. Completa todos los campos de entrada}.
+			\UCpaso[\UCactor] Ingresa nuevamente los datos.
+			\UCpaso[\UCsist] Verifica regla de negocio \BRref{R1.1}{Campos no nulos.} y registra el nuevo personal. \Trayref{A}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.1}{Se registró exitosamente}.
+		\UCpaso[\UCsist] Regresa a la pantalla \IUref{IU1.1}{Pantalla registrar}.
+	\end{UCtrayectoriaA}
+	
+	%-------------------------------------Trayectoras alternativas
+	\begin{UCtrayectoriaA}{B}{Error al no ingresar datos validos.}
+		\UCpaso[\UCsist] Muestra mensaje segun sea el campo con el error.\MSGref{MSG1.3}{ERROR. Valor no valido}, \MSGref{MSG1.4}{ERROR. Solo se aceptan letras}, \MSGref{MSG1.5}{ERROR. Solo se aceptan numeros}, \MSGref{MSG1.6}{ERROR. Deben ser 10 digitos}, \MSGref{MSG1.7}{ERROR. Selecciona un rol}, \MSGref{MSG1.8}{ERROR. La contraseña debe ser mayor a 8 caracteres y menor a 16 caracteres}, \MSGref{MSG1.9}{ADVERTENCIA. No coincide la contraseña}.
+			\UCpaso[\UCactor] Ingresa nuevamente los datos.
+			\UCpaso[\UCsist] Verifica regla de negocio \BRref{R1.2}{Formato general para el registro de un empleado} y registra el nuevo personal. 
+			\Trayref{B}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.1}{Se registró exitosamente}
+		\UCpaso[\UCsist] Regresa a la pantalla \IUref{IU1.1}{Pantalla registrar}
+	\end{UCtrayectoriaA}
+
+	%-------------------------------------Trayectoras alternativas
+	\begin{UCtrayectoriaA}{C}{Datos duplicados}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.10}{ERROR. Registro ya existente}.
+			\UCpaso[\UCactor] Ingresa nuevamente los datos.
+			\UCpaso[\UCsist] Verifica regla de negocio \BRref{R1.3}{Duplicidad de personal} y registra el nuevo personal. \Trayref{C}
+		\UCpaso[\UCsist] Muestra mensaje \MSGref{MSG1.1}{Se registró exitosamente}.
+		\UCpaso[\UCsist] Regresa a la pantalla \IUref{IU1.1}{Pantalla registrar}.
+	\end{UCtrayectoriaA}
