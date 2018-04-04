@@ -1,0 +1,37 @@
+%=========================================================
+\label{cap:reglasNegocio}
+
+
+%========================================================
+% Regla del Negocio #1 - Fecha de Nacimiento
+%-----------------------------------------------
+\begin{BussinesRule}{RN1}{Fecha de Nacimiento correcta}
+\label{BR:RN1}
+	\BRitem[Tipo:] Regla de integridad referencial o estructural. 
+				% Otras opciones para tipo: 
+				% - Regla de integridad referencial o estructural. 
+				% - Regla de operación, (calcular o determinar un valor.).
+				% - Regla de inferencia de un hecho.
+	\BRitem[Clase:] Habilitadora. 
+				% Otras opciones para clase: Habilitadora, Cronometrada, Ejecutive.
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]	Las Fechas de Nacimiento que se registran en el SINACEM para cualquier Persona debe ser mayores al día Primero de Enero del año 1900 y menor a la Fecha Actual.
+	\BRitem[Motivación:] Evitar fraudes al PRONIM por el registro de personas que no han nacido al momento de su registro.
+	\BRitem[Sentencia:] $\forall p \in Persona \Rightarrow 01-Enero-1900 ~<~ p.fechaDeNacimiento ~<~ fechaActual$.
+	\BRitem[Ejemplo positivo:] Para el día 12 de Octubre del 2013, cumplen la regla:		
+        \begin{itemize}
+        	\item 11 de Octubre del 2013
+			\item 20 de Diciembre del 2010
+			\item 2 de Enero del 1900
+        \end{itemize}
+	
+	\BRitem[Ejemplo negativo:] Para el día 12 de Octubre del 2013, no cumplen la 
+		\begin{itemize}
+        	\item 12 de Octubre del 2013
+			\item 20 de Diciembre del 2014
+			\item 1 de Enero del 1900
+			\item 31 de Diciembre del 1899
+        \end{itemize}
+	
+	\BRitem[Referenciado por:] \hyperlink{CUCE3.2}{CUCE3.2}, \hyperlink{CUCE3.3}{CUCE3.3}.
+\end{BussinesRule}

@@ -1,0 +1,86 @@
+% Proceso: Licencia por cuidados familiares
+%========================================================
+% Descripción general: proceso para justificar incidencia por motivo de cuidados familiares
+%========================================================
+
+
+\begin{Proceso}{P1.3}{Cuidados familiares} {
+  
+    %-------------------------------------------
+    %Resumen
+    
+    \smallskip
+    \bigskip El proceso inicia cuando el \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} requiere justificar una incidencia por el motivo de cuidados familiares por algun accidente que amerite hospitalizacion o enfermedad del cónyuge, hijos, padres y dependientes económicos. Para esto debe solicitar a \cdtRef{Actor: ISSSTE}{Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado} una constancia médica, recomendando cuidados especiales y además acreditar la dependencia económica del familiar ante el  \cdtRef{Actor: ISSSTE}{ISSSTE} y enseguida entregarla en el área de \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} para que pueda ser firmada de recibido, para esperar la respuesta de aceptacion por parte de  \cdtRef{Actor: Departamento de Capital Humano} o en su defecto ser rechasada.
+    
+
+    %-------------------------------------------
+    %Diagrama del proceso
+    
+    \smallskip
+    \noindent La Figura \cdtRefImg{P1.3}{Cuidados familiares} señala las actividades que se realizaran para realizar la justificacion de la incidencia por motivo de cuidados familiares.
+    \\\\\\\\\\\\\\\\\\\
+    \Pfig[0.90]{./process/images/procesoCuidadosFamiliares.png}{P1.3}{Cuidados familiares}}{P1.3:Cuidados familiares}
+    
+
+    %-------------------------------------------
+    %Elementos del proceso
+
+    \UCitem{Usuario} { %Actores
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+        \cdtRef{Actor: Personal Docente}{Personal Docente}.
+        \cdtRef{Actor: ISSSTE}{Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado}.
+    }
+
+    \UCitem{Objetivo} { %Objetivo
+        Justificar licencia por cuidados familiares.
+    }
+
+    \UCitem{Insumos de entrada}{ %Insumos de entrada
+  	    \begin{UClist}
+  		    \UCli Constancia medica emitida por \cdtRef{Actor: ISSSTE}{Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado}.
+  		    \UCli Acreditar la dependencia médica de los familiares ante el \cdtRef{Actor: ISSSTE}{Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado}.
+  		\end{UClist}
+    }
+  
+    \UCitem{Proveedores}{ %Proveedores
+        \cdtRef{Actor: ISSSTE}{Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado}.
+    }
+
+    \UCitem{Productos de salida}{ %Productos de salida
+        \begin{UClist}
+            \UCli Confirmacion de registro de incidencia exitoso.
+        \end{UClist}
+    }
+
+    \UCitem{Cliente}{ %Cliente
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+    }
+    
+    \UCitem{Interrelación con otros procesos} { %InterrelaciÃ³n con otros procesos
+        \cdtIdRef{P1.1}{Macroproceso de incidencias}
+    }
+
+\end{Proceso}
+
+%-----------------------------------------------
+%Descripcion de tareas
+
+\begin{PDescripcion}
+  %Actor: Personal Docente
+    \Ppaso Personal Docente
+        \begin{enumerate}
+        %Tarea a
+            
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.3:Personal Docente}{Solicita su constancia médica al \cdtRef{Actor: ISSSTE}{ISSSTE}.} El \cdtRef{Actor: Personal Docente}{Personal Docente} debe entregar la constancia al cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} ya que si no esta no procedera y se tomara en cuenta como falta sin goce de sueldo.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.3:Personal Docente}{Esperara a que reciba la confirmacion de registro exitoso de la incidencia.}
+        \end{enumerate}
+    
+   %Actor: Departamento de Capital Humano 
+    \Ppaso Departamento de Capital Humano
+        \begin{enumerate}
+            %Tarea 
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.3: Departamento de Capital Humano}{Recibe constancia médica.} Se recibe la constancia médica por parte del  \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} y esta se registrara en el sistema de un tercero para que se contemple la justificacion.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.3: Departamento de Capital Humano}{Verifica registro exitoso y envia mensaje de confirmacion.} Al registrar la constancia y al ser todo exitoso se le notificara a para que contemple el que se a realizado la justificacion por su inasistencia.
+        \end{enumerate} 
+    
+\end{PDescripcion}

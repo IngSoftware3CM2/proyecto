@@ -1,0 +1,111 @@
+%========================================================
+% Autores: Hernandez Oseguera Mayra, Nolasco Cid Victor Ivan
+% Fecha: 27 de Marzo de 2018
+% Version: 1
+%========================================================
+% Proceso: Cambio de horario
+%========================================================
+% Descripción general: proceso que lleva el Personal Docente para justificar un Cambio de Horario
+%========================================================
+
+
+\begin{Proceso}{P1.2}{Cambio de Horario} {
+  
+    %-------------------------------------------
+    %Resumen
+    
+    \smallskip
+    \bigskip El proceso inicia cuando el \cdtRef{Actor: Personal Docente}{Personal Docente} desea hacer un cambio de horario. Primeramente labora las horas necesarias para cubrir con el cambio de horario y luego le indica a su \cdtRef{Actor: Jefe Superior}{Jefe Superior} que desea realizar dicho trámite, especificando una serie de datos necesarios para este. El \cdtRef{Actor: Jefe Superior}{Jefe Superior} redacta el \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario} con los datos indicados justificando el cambio de horario. 
+    Posteriormente se envía el \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario} emitido por el Departamento a cargo del Jefe Superior al \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} donde será procesado con las demás incidencias.
+  
+    %-------------------------------------------
+    %Diagrama del proceso
+    
+    \smallskip
+    \noindent La Figura \cdtRefImg{P1.2}{Cambio de Horario} muestra las actividades que se realizan para llevar a cabo el proceso descrito anteriormente.
+
+    \Pfig[0.95]{./process/images/Proceso-Cambio-Horario.png}{P1.2}{Cambio de Horario}}{P1.2:Cambio de Horario}
+
+    %-------------------------------------------
+    %Elementos del proceso
+
+    \UCitem{Usuario} { %Actores
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+        \cdtRef{Actor: Personal Docente}{Personal Docente}.
+        \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+    }
+
+    \UCitem{Objetivo} { %Objetivo
+        Justificar un cambio de horario.
+    }
+
+    \UCitem{Insumos de entrada}{ %Insumos de entrada
+  	    \begin{UClist}
+  		    \UCli Nombre del \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+  		    \UCli Puesto del \cdtRef{Actor: JefeSuperior}{Jefe Superior}.
+  		    \UCli Departamento al que pertenece \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+  		    \UCli Subdirección a la que pertenece el \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+  		    \UCli Nombre del \cdtRef{Actor: Personal Docente}{Personal Docente}.
+  		    \UCli Número de tarjeta del \cdtRef{Actor: Personal Docente}{Personal Docente}.
+  		    \UCli Fecha en la que se realizara el cambio de horario.
+  		    \UCli Horario actual del \cdtRef{Actor Personal Docente}{Personal Docente} para la fecha indicada (Hora de entrada y hora de salida).
+  		    \UCli Horario cubierto por el \cdtRef{Actor: Personal Docente}{Personal Docente} para la fecha indicada (Hora de entrada y hora de salida).
+  		    \UCli Justificación por la cual se tramita el cambio de horario.
+        \end{UClist}
+    }
+  
+    \UCitem{Proveedores}{ %Proveedores
+        \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+    }
+
+    \UCitem{Productos de salida}{ %Productos de salida
+        \begin{UClist}
+            \UCli \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario}.
+        \end{UClist}
+    }
+
+    \UCitem{Cliente}{ %Cliente
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+    }
+    
+    \UCitem{Interrelación con otros procesos} { %InterrelaciÃ³n con otros procesos
+        \cdtIdRef{P1.1}{Macroproceso de incidencias}
+    }
+
+\end{Proceso}
+
+%-----------------------------------------------
+%Descripcion de tareas
+
+\begin{PDescripcion}
+  %Actor: Personal Docente
+    \Ppaso Personal Docente
+        \begin{enumerate}
+        %Tarea a
+            
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.2:Personal Docente}{Cubre el cambio de horario.} El \cdtRef{Actor: Personal Docente}{Personal Docente} que desea reaizar este proceso, debe cubrir con las horas correspondientes al cambio de horario, es decir, segun el numero de horas que llegó tarde, debe laborar el mismo número de horas fuera de su horario convencional el mismo día que llegó tarde.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.2:Personal Docente}{Solicita el cambio de horario a su \cdtRef{Actor: Jefe Superior}{Jefe Superior}.} Se le solicita de manera verbal al Jefe Superior que se desea justificar un cambio de horario, especificando los datos mencionados en la figura \cdtRefImg{P1.2}{Cambio de Horario}.
+        \end{enumerate}
+    
+    %Actor: Jefe Superior
+    \Ppaso Jefe Superior
+        \begin{enumerate}
+            %Tarea 
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.2:Jefe Superior}{Recibe Solicitud de cambio de horario.} Recibe de un \cdtRef{Actor: Personal Docente}{Personal Docente} una solicitud de cambio de horario. Y se revisa para su aprobación. 
+        \bigskip
+        \begin{UClist}
+  		    \UCli Si no se aprueba la solicitud se continua con el proceso A.
+  		    \UCli Si se aprueba continua con la siguiente tarea.
+        \end{UClist}
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.2:Jefe Superior}{Elabora memorándum.} Con la información especficada por el \cdtRef{Actor: Personal Docente}{Personal Docente} se elabora un \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario} que justifica el cambio de horario a nombre del Departamento al que pertenece el \cdtRef{Actor: Jefe Superior}{Jefe Superior}. 
+            \Ppaso[\itarea] \cdtLabelTask{T3-P1.2:Jefe Superior}{Envía memorándum a Capital Humano.} Una vez que se ha elaborado el \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario}, lo firma y se envía al \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+        \end{enumerate}    
+    
+        %Actor: Departamento de Capital Humano 
+    \Ppaso Departamento de Capital Humano
+        \begin{enumerate}
+            %Tarea 
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.2: Departamento de Capital Humano}{Recibe Memorandum de Cambio de Horario.} Se recibe \cdtRef{Documento: Memorandum Cambio de Horario}{Memorandum de cambio de horario} con la justificación de un cambio de horario proveniente de un Departamento, y se procesa con el resto de incidencias.
+        \end{enumerate} 
+    
+\end{PDescripcion}
