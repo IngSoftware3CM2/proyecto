@@ -1,0 +1,107 @@
+* {
+    font-size: 100%;
+    font-family: Roboto;
+}
+
+body {
+    background: Lavender;
+}
+
+img {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+    width: 450px;
+}
+
+form {
+    display: inline-block;
+    padding: 1em;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin: 2rem auto 0 auto;
+    max-width: 1200px;
+    padding: 1em;
+
+}
+
+
+form input {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #9c9c9c;
+    width: 150px;
+}
+form button {
+    display: inline-block;
+    background: lightgrey;
+    padding: 0.7em;
+    width: 150px;
+    border: 0;
+}
+
+form button:hover {
+    background: greenyellow;
+}
+
+
+label {
+    padding: 0.5em 0.5em 0.5em 0;
+}
+
+input {
+    display: inline-block;
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+input:focus {
+    outline: 3px solid gold;
+}
+
+#lugarFinal {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#lugarFinal td, #lugarFinal th {
+    border: 0px solid green;
+    padding: 8px;
+}
+
+#lugarFinal tr:nth-child(even){background-color: lightgrey;}
+
+#lugarFinal tr:hover {background-color: tomato;}
+
+#lugarFinal th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: bisque;
+    color: black;
+}
+
+
+#busquedaLugares {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#busquedaLugares td, #busquedaLugares th {
+    border: 0px solid green;
+    padding: 8px;
+}
+
+#busquedaLugares tr:nth-child(even){background-color: lightgrey;}
+
+#busquedaLugares tr:hover {background-color: greenyellow;}
+
+#busquedaLugares th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: bisque;
+    color: black;
+}
+
+
+
