@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="database">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="user" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="username" type="xs:string"/>
+							<xs:element name="password" type="xs:string"/>
+							<xs:element name="firstname" type="xs:string"/>
+							<xs:element name="lastname" type="xs:string"/>
+							<xs:element name="email" type="xs:string"/>
+							<xs:element name="occupation">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="student|teacher|administrator"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="classroom" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="groups">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="class" type="xs:string" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+                                <xs:element name="file" maxOccurs="unbounded" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="filename" type="xs:string" />
+                                            <xs:element name="group" type="xs:string" />
+                                            <xs:element name="comments">
+                                                <xs:complexType>
+                                                <xs:sequence>
+                                                <xs:element name="bodycom" type="xs:string" />
+                                                <xs:element name="grade" default="-" />
+                                                </xs:sequence>
+                                                <xs:attribute name="username" type="xs:string" use="required"></xs:attribute>     
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
