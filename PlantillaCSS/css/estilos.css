@@ -65,10 +65,10 @@ body {
 		}
         .bg-3 {
 			background:#a23a3a;
-			color:#3c9ade;
+			color:#bdbdbd;
 		}
 		.bg-3 h3 {
-			color:#3c9ade;
+			color:#bdbdbd;
 		}
         .list-group-item:first-child {
             border-top-right-radius: 0;
