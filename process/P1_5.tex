@@ -1,0 +1,108 @@
+%% It is just an empty TeX file.
+%% Write your code here. \begin{Proceso}{P1.5}{Cuidados Maternos}
+%% \end{Proceso}
+
+
+\begin{Proceso}{P1.5}{Cuidados Maternos} {
+  
+    %-------------------------------------------
+    %Resumen
+    \smallskip
+    \bigskip 
+    El proceso inicia cuando el hijo del \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} enferma y en consecuencia éste último no asiste a la Unidad Académica y quiere Justificar una incidencia por Cuidados Maternos. El \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} deberá solicitar al ISSTE una licencia médica que acreedite la enfermedad de su hijo, el cual no deberá tener una edad mayor a 12 años, los criterios de la gravedad de la enfermedad del menor serán determinados por el médico asignado por el ISSTE, una vez recibida la licencia se notificará la razón de la incidencia a justificar directamente a \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} y se realizará la entrega de la licencia, posteriormente se realizará la validación de numero de licencias de este tipo expedidas en el semestre en curso, el cual no debe ser mayor a tres.Una vez que el \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} haya realizado lo anterior podrá continuar con sus actividades de manera normal.
+   Al momento de registrar las incidencias en el sistema (SDCH), el \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} debe ingresar el nombre completo del Personal Académico, número de empleado, la fecha de inicio en la cual se ausentó, así como la fecha de su incidencia de cuidados maternos. El sistema generará un número de folio del registro. 
+   El \cdtRef{Actor: Personal Docente}{Personal Docente} o \cdtRef{Actor: Personal PAAE}{Personal de Apoyo y Asistencia a la Educacion} tiene un plazo de 72 horas para justificar la incidencia, en los días acordados con \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} según el calendario preestablecido de incidencias. \newline
+   \newline CONSIDERACIONES:\\
+    \begin{itemize} 
+    	\item \textbf Los 15 días deben de ser consecutivos y disfrutarse al día siguiente de la fecha de expedición de la constancia de alumbramiento o acta de adopción del(as) hijo(as) menores de 12 años. 
+       	\item \textbf El personal tiene un periodo de 2 meses (antes o después) para tomar el curso de preparación  para padres.
+        \item \textbf Si el personal no toma el curso, no puede justificar las incidencias por permisos por paternidad. Si no se justifican, las incidencias quedan como faltas.
+        \item \textbf En caso de que queden como faltas pueden ser justificadas si el personal cuenta con días vacacionales. 
+	    \item \textbf En caso de tener una constancia de permiso por asistencia sindical se tomará como día a cuenta de vacaciones. 
+    	\item \textbf Entrega de Oficio 3 días hábiles posteriores en caso de que la fecha de alumbramiento y/o adopción coincida en fin de semana o días festivos. 
+	    \item \textbf La justificación procede una vez entregado el oficio 
+   	    \item \textbf Si el oficio se entrega en días posteriores se justifican las faltas con la fecha del acta de nacimiento, ya que el oficio comienza a tener validez con la fecha correspondiente al día del alumbramiento  y/o  acta de adopción de ser el caso.  Debe de incluir folio y sello
+
+     
+    \end{itemize}
+   
+
+    %-------------------------------------------
+    %Diagrama del proceso
+    
+    \smallskip
+    \noindent La Figura \cdtRefImg{P1.4}{Permisos Paternos} muestra las actividades que se realizan para llevar a cabo el proceso descrito anteriormente.
+
+    \Pfig[0.9]{./process/images/PermisoPaternidad.png}{P1.4}{Permisos Paternos}}{P1.4:Permisos Paternos}
+
+    %-------------------------------------------
+    %Elementos del proceso
+
+    \UCitem{Usuario} { %Actores
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano},
+        \cdtRef{Actor: Personal Docente}{Personal Académico},
+        \cdtRef{Actor: Jefe Superior}{Jefe Superior}.
+    }
+
+    \UCitem{Objetivo} { %Objetivo
+        Justificar incidencia del tipo:Permisos Paternos.
+    }
+
+    \UCitem{Insumos de entrada}{ %Insumos de entrada
+  	    \begin{UClist}
+  		    \UCli Nombre del \cdtRef{Actor: Personal Docente}{Personal Académico}.
+  		    \UCli Número de empleado del \cdtRef{Actor: Personal Docente}{Personal Académico}.
+            \UCli Formato de registro para obtención de la licencia por paternidad por nacimiento o adopción (menores de 12 años)
+            \UCli Constancia de alumbramiento por nacimiento o acta de adopción, según sea el caso.
+            \UCli Acta de matrimonio (original y copia, en un plazo no mayor a 40 días naturales posteriores a la fecha de nacimiento) o constancia de dependencia económica de la madre expedida en términos de la ley del ISSSTE (con excepción del cónyuge que sea o no trabajadora). En caso de adopción, se puede entregar el acta de matrimonio o constancia de dependencia económica de la pareja expedida en términos de la ley del ISSSTE, (con excepción de que la pareja sea o no trabajadora); en caso de adopción monoparental el documento citado no será necesario.
+           \UCli Constancia de acreditación del curso-taller “Paternidad-es” o bien Formato de inscripción al curso-taller.
+           \UCli Identificación del IPN
+           \UCli Comprobante de ingresos del docente
+
+        \end{UClist}
+    }
+  
+    \UCitem{Proveedores}{ %Proveedores
+        \cdtRef{Actor: Personal Docente}{Personal Académico}.
+    }
+
+    \UCitem{Productos de salida}{ %Productos de salida
+        \begin{UClist}
+
+        \end{UClist}
+    }
+
+    \UCitem{Cliente}{ %Cliente
+        \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+    }
+    
+    \UCitem{Interrelación con otros procesos} { %Interrelación con otros procesos
+        \cdtIdRef{P1.1}{Macroproceso de incidencias}
+    }
+
+\end{Proceso}
+
+%-----------------------------------------------
+%Descripcion de tareas
+
+\begin{PDescripcion}
+  %Actor: Personal Docente
+    \Ppaso Personal Docente
+        \begin{enumerate}
+        %Tarea a
+            
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.6:Personal Docente}El \cdtRef{Actor: Personal Docente}{Personal Docente} notifica a su \cdtRef{Actor: Jefe Superior}{Jefe Superior} la razón de su ausencia.
+            \Ppaso[\itarea] \cdtLabelTask{T2-P1.6:Personal Docente}Entrega al \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano} su formato de Permiso por Paternidad.
+	    \Ppaso[\itarea] \cdtLabelTask{T3-P1.6:Personal Docente}Recibe copia de su Permiso por Paternidad sellada y firmada por el \cdtRef{Actor: Departamento de Capital Humano}{Departamento de Capital Humano}.
+        \end{enumerate}
+    
+        %Actor: Departamento de Capital Humano 
+    \Ppaso Departamento de Capital Humano
+        \begin{enumerate}
+            %Tarea 
+            \Ppaso[\itarea] \cdtLabelTask{T1-P1.4: Departamento de Capital Humano}{Departamento de Capital Humano.}Recibe Permiso por Paternidad por parte del \cdtRef{Actor: Personal Docente}{Personal Docente}, a su vez, sella, firma y devuelve una copia al\cdtRef{Actor: Personal Docente}{Personal Docente}.
+	    \Ppaso[\itarea] \cdtLabelTask{T2-P1.4: Departamento de Capital Humano}Procesa la incidencia.
+        \end{enumerate} 
+    
+\end{PDescripcion}
+
