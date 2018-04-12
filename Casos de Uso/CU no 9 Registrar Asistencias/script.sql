@@ -1,6 +1,6 @@
 -- Database: proyecto_CI
 
--- DROP DATABASE "proyecto_CI";
+DROP DATABASE IF EXISTS "proyecto_CI";
 
 CREATE DATABASE "proyecto_CI"
     WITH
@@ -27,7 +27,7 @@ CREATE DATABASE "proyecto_CI"
 
     --TIME INPUT FORMAT ACORDING TO ISO 8601:
     --hh:mm for 24 hour format
-    --OR hh:mm AM/PM form 12 hour format, input hour must
+    --OR hh:mm AM/PM form 12 hour format, input hour must be <=12
 
     CREATE TABLE public.asistencia (
     	idAsistencia serial	NOT NULL,
