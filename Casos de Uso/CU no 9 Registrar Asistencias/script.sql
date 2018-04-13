@@ -15,10 +15,10 @@ CREATE DATABASE "proyecto_CI"
     DROP TABLE IF EXISTS public.personal;
 
     CREATE TABLE public.personal (
-    	noEmpleado varchar NOT NULL,
-    	noTarjeta varchar NOT NULL,
-    	nombre varchar NOT NULL,
-    	apellido varchar NOT NULL,
+    	noEmpleado varchar(60) NOT NULL,
+    	noTarjeta varchar (60) NOT NULL,
+    	nombre varchar (60) NOT NULL,
+    	apellido varchar (80) NOT NULL,
     	CONSTRAINT personal_pk PRIMARY KEY (noEmpleado)
     );
 
@@ -34,7 +34,7 @@ CREATE DATABASE "proyecto_CI"
     	fechaRegistro date NOT NULL,
     	horaEntrada time without time zone NOT NULL,
     	horaSalida time without time zone NOT NULL,
-    	noEmpleado varchar NOT NULL,
+    	noEmpleado varchar(60) NOT NULL,
         CONSTRAINT asistencia_pk PRIMARY KEY (idAsistencia),
         CONSTRAINT personal_pk FOREIGN KEY (noEmpleado)
             REFERENCES public.personal (noEmpleado)
