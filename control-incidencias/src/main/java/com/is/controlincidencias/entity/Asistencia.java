@@ -24,8 +24,10 @@ public class Asistencia {
     @Column(nullable = false, columnDefinition = "time without time zone")
     private LocalTime horaSalida;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "no_empleado")
+    private static final String definition = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "personal_pk", foreignKeyDefinition = definition))
     private Personal personal;
 
     public Personal getPersonal() {

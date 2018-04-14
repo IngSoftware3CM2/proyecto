@@ -8,15 +8,16 @@ import java.util.List;
 @Table
 public class Personal {
     @Id
-    private String noEmpleado;
+    @Column(length = 8)
+    private Integer noEmpleado;
 
-    @Column(nullable = false)
-    private String noTarjeta;
+    @Column(nullable = false, length = 6, unique = true)
+    private Integer noTarjeta;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 60)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 80)
     private String apellidos;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
