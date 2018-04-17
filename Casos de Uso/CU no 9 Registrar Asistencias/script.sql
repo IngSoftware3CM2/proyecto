@@ -15,8 +15,8 @@ CREATE DATABASE "proyecto_CI"
     DROP TABLE IF EXISTS public.personal;
 
     CREATE TABLE public.personal (
-    	noEmpleado varchar(60) NOT NULL,
-    	noTarjeta varchar (60) NOT NULL,
+    	noEmpleado integer(8) NOT NULL,
+    	noTarjeta integer (8) UNIQUE NOT NULL,
     	nombre varchar (60) NOT NULL,
     	apellido varchar (80) NOT NULL,
     	CONSTRAINT personal_pk PRIMARY KEY (noEmpleado)
