@@ -1,3 +1,4 @@
+
 INSERT INTO public.personal (noempleado, notarjeta, nombre, apellido)
 VALUES ('LRA1ISC',1,'Ariel', 'López Rojas');
 INSERT INTO public.personal (noempleado, notarjeta, nombre, apellido)
