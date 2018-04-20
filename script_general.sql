@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS public.asistencia;
 DROP TABLE IF EXISTS public.jefesuperior;
 DROP TABLE IF EXISTS public.departamento;
 DROP TABLE IF EXISTS public.personal;
@@ -82,4 +83,17 @@ CREATE TABLE public.incidencia (
         REFERENCES public.justificante (idJustificante)
         ON UPDATE CASCADE
         ON DELETE CASCADE
+);
+
+CREATE TABLE public.asistencia (
+    	idAsistencia serial	NOT NULL,
+    	fechaRegistro date NOT NULL,
+    	horaEntrada time without time zone NOT NULL,
+    	horaSalida time without time zone NOT NULL,
+    	noEmpleado integer NOT NULL,
+        CONSTRAINT asistencia_pk PRIMARY KEY (idAsistencia),
+        CONSTRAINT personal_fk FOREIGN KEY (noEmpleado)
+            REFERENCES public.personal (noEmpleado)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
 );
