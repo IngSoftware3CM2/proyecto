@@ -17,8 +17,11 @@ public class Personal {
     @Column(nullable = false, length = 60)
     private String nombre;
 
-    @Column(nullable = false, length = 80)
-    private String apellidos;
+    @Column(nullable = false, length = 30)
+    private String apellidoPaterno;
+
+    @Column(nullable = false, length = 30)
+    private String apellidoMaterno;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Asistencia> asistencias = new ArrayList<>();
