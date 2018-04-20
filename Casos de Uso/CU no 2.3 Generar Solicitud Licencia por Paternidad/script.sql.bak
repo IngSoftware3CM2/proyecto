@@ -1,10 +1,9 @@
-DROP TABLE IF EXISTS public.asistencia CASCADE;
-DROP TABLE IF EXISTS public.jefesuperior CASCADE;
-DROP TABLE IF EXISTS public.departamento CASCADE;
-DROP TABLE IF EXISTS public.personal CASCADE;
-DROP TABLE IF EXISTS public.justificante CASCADE;
-DROP TABLE IF EXISTS public.licpaternidad CASCADE;
-DROP TABLE IF EXISTS public.incidencia CASCADE;
+DROP TABLE IF EXISTS public.jefesuperior;
+DROP TABLE IF EXISTS public.departamento;
+DROP TABLE IF EXISTS public.personal;
+DROP TABLE IF EXISTS public.justificante;
+DROP TABLE IF EXISTS public.licpaternidad;
+DROP TABLE IF EXISTS public.incidencia;
 
 CREATE TABLE public.jefesuperior (
     idSuperior integer  NOT NULL,
@@ -33,7 +32,7 @@ CREATE TABLE public.departamento (
 );
 
 CREATE TABLE public.personal (
-    noEmpleado integer NOT NULL,
+    noEmpleado varchar(12) NOT NULL,
     noTarjeta integer UNIQUE NOT NULL,
     nombre varchar (60) NOT NULL,
     tipo character (2) NOT NULL,
@@ -83,17 +82,4 @@ CREATE TABLE public.incidencia (
         REFERENCES public.justificante (idJustificante)
         ON UPDATE CASCADE
         ON DELETE CASCADE
-);
-
-CREATE TABLE public.asistencia (
-    	idAsistencia serial	 NOT NULL,
-    	fechaRegistro date NOT NULL,
-    	horaEntrada time without time zone NOT NULL,
-    	horaSalida time without time zone NOT NULL,
-    	noEmpleado integer NOT NULL,
-        CONSTRAINT asistencia_pk PRIMARY KEY (idAsistencia),
-        CONSTRAINT personal_fk FOREIGN KEY (noEmpleado)
-            REFERENCES public.personal (noEmpleado)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
 );

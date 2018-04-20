@@ -33,7 +33,7 @@ CREATE TABLE public.departamento (
 );
 
 CREATE TABLE public.personal (
-    noEmpleado integer NOT NULL,
+    noEmpleado varchar (12) NOT NULL,
     noTarjeta integer UNIQUE NOT NULL,
     nombre varchar (60) NOT NULL,
     tipo character (2) NOT NULL,

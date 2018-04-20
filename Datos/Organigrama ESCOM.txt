@@ -3,68 +3,68 @@ Departamentos de la Escuela Superior de Cómputo
 Direccion
     Responsable : Lic. Andrés Ortigoza Campos
 
-Subdirección Académica
-    Responsable : M. en C. Iván Giovanny Mosso García
+	Subdirección Académica
+		Responsable : M. en C. Iván Giovanny Mosso García
 
-        Formación Básica
-    	   Responsable : Dra. Claudia Celia Díaz Huerta 
+			Formación Básica
+			   Responsable : Dra. Claudia Celia Díaz Huerta 
 
-        Ciencias e Ingeniería de la Computación
-        	Responsable : M. en C. Raúl Santillán Luna
+			Ciencias e Ingeniería de la Computación
+				Responsable : M. en C. Raúl Santillán Luna
 
-        Ingeniería en Sistemas Computacionales
-        	Responsable : M. en C. César Mújica Ascencio
+			Ingeniería en Sistemas Computacionales
+				Responsable : M. en C. César Mújica Ascencio
 
-        Formación Integral e Institucional
-        	Responsable : Formación Integral e Institucional
+			Formación Integral e Institucional
+				Responsable : M. en C. Marisol Rodríguez Ordaz
 
-        Evaluación y Seguimiento Académico
-        	Responsable : Lic. Pablo Álvarez Velázquez
+			Evaluación y Seguimiento Académico
+				Responsable : Lic. Pablo Álvarez Velázquez
 
-        Innovación Educativa
-        	Responsable : M. en C. Ricardo Felipe Díaz Santiago
+			Innovación Educativa
+				Responsable : M. en C. Ricardo Felipe Díaz Santiago
 
-        Tecnología Educativa y Campus Virtual
-        	Responsable : Ing. José Antonio Ortiz Ramírez
+			Tecnología Educativa y Campus Virtual
+				Responsable : Ing. José Antonio Ortiz Ramírez
 
-Sección de Estudios de Posgrado e Investigación
-    Responsable: Dra. Blanca Esther Carvajal Gámez
+	Sección de Estudios de Posgrado e Investigación
+		Responsable: Dra. Blanca Esther Carvajal Gámez
 
-        Departamento de Posgrado
-            Responsable : M. en C. Jesús Alfredo Martínez Nuño
+			Departamento de Posgrado
+				Responsable : M. en C. Jesús Alfredo Martínez Nuño
 
-        Departamento de Investigación
-            Responsable : Dr. Manuel Salazar Ramírez
+			Departamento de Investigación
+				Responsable : Dr. Manuel Salazar Ramírez
 
-Subdirección de Servicios Educativos e Integración Social
-    Responsable : Lic. Andrés Ortigoza Campos
+	Subdirección de Servicios Educativos e Integración Social
+		Responsable : Lic. Andrés Ortigoza Campos
 
-        Departamento de Gestión Escolar
-            Responsable : C. María Guadalupe Caro García
+			Departamento de Gestión Escolar
+				Responsable : C. María Guadalupe Caro García
 
-        Departamento de Servicios Estudiantiles
-            Responsable : C. P. Fanny Sosa Adán
+			Departamento de Servicios Estudiantiles
+				Responsable : C. P. Fanny Sosa Adán
 
-        Departamento de Extensión y Apoyos Educativos
-            Responsable : Lic. José Francisco Serrano García
+			Departamento de Extensión y Apoyos Educativos
+				Responsable : Lic. José Francisco Serrano García
 
-        Unidad Politécnica de Integración Social
-            Responsable : Ing. Patricia Escamilla Miranda
+			Unidad Politécnica de Integración Social
+				Responsable : Ing. Patricia Escamilla Miranda
 
-Subdirección Administrativa
-    Responsable : Ing. Felipe de Jesús Figueroa Del Prado
+	Subdirección Administrativa
+		Responsable : Ing. Felipe de Jesús Figueroa Del Prado
 
-        Departamento de Capital Humano
-            Responsable : Ing. Tania Rodríguez Sarabia
+			Departamento de Capital Humano
+				Responsable : Ing. Tania Rodríguez Sarabia
 
-        Departamento de Recursos Financieros
-            Responsable : C. P. Patricia Mata Gil
+			Departamento de Recursos Financieros
+				Responsable : C. P. Patricia Mata Gil
 
-        Departamento de Recursos Materiales y Servicios
-            Responsable : M. en C. Ricardo Ángel Aguilar Pérez
+			Departamento de Recursos Materiales y Servicios
+				Responsable : M. en C. Ricardo Ángel Aguilar Pérez
 
-Coordinación de Enlace y Gestión Técnica
-    Responsable : M. en P. Laura Lazcano Xoxotla
+	Coordinación de Enlace y Gestión Técnica
+		Responsable : M. en P. Laura Lazcano Xoxotla
 
-Unidad de Informática
-    Responsable : M. en D. Juan Jesús Alcaraz Torres
+	Unidad de Informática
+		Responsable : M. en D. Juan Jesús Alcaraz Torres
