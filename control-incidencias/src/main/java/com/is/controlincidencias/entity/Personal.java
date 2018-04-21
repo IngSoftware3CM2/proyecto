@@ -3,6 +3,7 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoublePredicate;
 
 @Entity
 @Table
@@ -52,5 +53,32 @@ public class Personal {
         incidencia.setPersonal(null);
     }
 
+
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Justificante> justificantes = new ArrayList<>();
+
+    public void addJustificante(Justificante justificante) {
+        justificantes.add(justificante);
+        justificante.setPersonal(this);
+    }
+
+    public void removeJustificante(Justificante justificante) {
+        justificantes.remove(justificante);
+        justificante.setPersonal(null);
+    }
+
+    private static final String definition = "FOREIGN KEY(id_departamento) REFERENCES departamento (id_departamento) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_departamento", foreignKey = @ForeignKey(name = "departamento_pk", foreignKeyDefinition = definition))
+    private Departamento departamento;
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
 
 }
