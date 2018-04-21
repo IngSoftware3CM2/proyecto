@@ -81,4 +81,8 @@ public class Personal {
         this.departamento = departamento;
     }
 
+
+    @Column(nullable = false, length = 4)
+    private String tipo;
+
 }
