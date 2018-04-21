@@ -22,6 +22,7 @@ function limpiar_campos() {
 
 function agregar_asistencia(e) {
     e.preventDefault();
+    console.log("agregar_asistencia");
 
     var $fila = $(document.createElement("tr"));
     var $tdTarjeta = $(document.createElement("td"));
@@ -32,7 +33,7 @@ function agregar_asistencia(e) {
 
     var data = {
         estado: 0,
-        noTarjeta: parseInt($inputEntrada.val(), 10),
+        noTarjeta: parseInt($inputTarjeta.val(), 10),
         fechaRegistro: $inputFecha.val()
     };
 
@@ -50,11 +51,11 @@ function agregar_asistencia(e) {
         dataType: "json",
         success: function(resultado) {
             if (resultado.estado === 2) { // Trayectoria A
-                console.log("Mostar error");
+                console.log("Mostar error de trayectoria A");
                 $inputTarjeta.val();
                 return;
             } else if (resultado.estado === 3 ){ // Trayectoria B
-                console.log("Mostrar error");
+                console.log("Mostrar error de trayectoria B");
                 return;
             } else if (resultado.estado === 4) { // Trayectoria C
                 console.log("Mostrar otro error");
@@ -66,21 +67,24 @@ function agregar_asistencia(e) {
             var hora_entrada = $inputEntrada.val();
             var hora_salida = $inputSalida.val();
 
-            if (re_hora.test(hora_entrada)) {
+            if (!re_hora.test(hora_entrada)) {
                 console.log("LA hora de entrada esta mal");
                 return;
             }
-            if (re_hora.test(hora_salida)) {
+            if (!re_hora.test(hora_salida)) {
                 console.log("LA hora de salida esta mal");
                 return;
             }
-            if (Date.parse("01/01/2011 " + hora_entrada + ":00") < Date.parse("01/01/2011 6:00:00")) {
+            var condicion = Date.parse("01/01/2011 " + hora_entrada + ":00") < Date.parse("01/01/2011 6:00:00");
+            condicion = condicion || Date.parse("01/01/2011 " + hora_entrada + ":00") > Date.parse("01/01/2011 24:59:59");
+            if (condicion) {
                 console.log("LA hora de entrada esta mal");
                 return;
             }
-
-            if (Date.parse("01/01/2011 " + hora_salida + ":00") < Date.parse("01/01/2011 22:00:00")) {
-                console.log("LA hora de entrada esta mal");
+            condicion = Date.parse("01/01/2011 " + hora_salida + ":00") < Date.parse("01/01/2011 22:00:00");
+            condicion = condicion || Date.parse("01/01/2011 " + hora_entrada + ":00") > Date.parse("01/01/2011 24:59:59");
+            if (condicion) {
+                console.log("LA hora de salida esta mal");
                 return;
             }
 
@@ -105,9 +109,15 @@ function agregar_asistencia(e) {
 }
 
 function registrar_asistencias(e) {
+    e.preventDefault();
     // Trayectoria F
     // For para obtener toda la data
     limpiar_campos();
 }
+
+function eliminar_registro_tabla(e) {
+    e.preventDefault();
+}
+
 $('#btnRegistrarAsistencias').on("click", registrar_asistencias);
 $('#btnAgregar').on("click", agregar_asistencia);

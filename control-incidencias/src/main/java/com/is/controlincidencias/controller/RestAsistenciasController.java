@@ -1,15 +1,15 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.models.Consulta;
 import com.is.controlincidencias.service.AsistenciaService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/asistencias")
@@ -30,7 +30,7 @@ public class RestAsistenciasController {
 
     @PostMapping("/consultar")
     public Consulta consultar(@RequestBody Consulta consulta) {
-        LOG.info("consultar() -> consulta=" + consulta.toString());
+        LOG.info("consultar() -> consulta.noTarjeta=" + consulta.getNoTarjeta());
 
         boolean valor = asistenciaService.buscarTarjeta(consulta.getNoTarjeta());
         if (!valor) {
