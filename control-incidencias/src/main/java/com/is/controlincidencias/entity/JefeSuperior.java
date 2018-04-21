@@ -9,7 +9,7 @@ import java.util.List;
 public class JefeSuperior {
     @Id
     @Column(length = 2)
-    private Integer idSuperior;
+    private Integer id_superior;
 
     @Column(nullable = false, length = 60)
     private String nombre;
@@ -33,10 +33,38 @@ public class JefeSuperior {
         departamento.setJefeSuperior(null);
     }
 
+    private static final String definition = "FOREIGN KEY (id_superior) REFERENCES  jefe_superior (id_superior) ON UPDATE CASCADE ON DELETE CASCADE";
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefe_superior_pk", foreignKeyDefinition = definition))
+    private JefeSuperior jefe;
+
+    public JefeSuperior getJefeSuperior() {
+        return jefe;
+    }
+
+    public void setJefeSuperior(JefeSuperior jefeSuperior) {
+        this.jefe = jefeSuperior;
+    }
+
+
+    @OneToMany(mappedBy="jefe", cascade = CascadeType.ALL, orphanRemoval = true) /*Personales, o subordinados de este jefe*/
+    private List<JefeSuperior> subordinado = new ArrayList<>();
+
+    public void addSubordinado(JefeSuperior jefesuperior) {
+        subordinado.add(jefesuperior);
+        jefesuperior.setJefeSuperior(this);
+    }
+
+    public void removeSubordinado(JefeSuperior jefesuperior) {
+        subordinado.remove(jefesuperior);
+        jefesuperior.setJefeSuperior(null);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof JefeSuperior)) return false;
-        return idSuperior != null && idSuperior.equals(((JefeSuperior) obj).idSuperior);
+        return id_superior != null && id_superior.equals(((JefeSuperior) obj).id_superior);
     }
 }
