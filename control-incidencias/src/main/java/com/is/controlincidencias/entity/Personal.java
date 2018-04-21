@@ -83,6 +83,6 @@ public class Personal {
 
 
     @Column(nullable = false, length = 4)
-    private Integer tipo;
+    private String tipo;
 
 }
