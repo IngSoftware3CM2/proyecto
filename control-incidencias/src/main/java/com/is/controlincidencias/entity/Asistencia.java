@@ -38,6 +38,48 @@ public class Asistencia {
         this.personal = personal;
     }
 
+    public Asistencia() {}
+
+    public Asistencia(Integer id, LocalDate fechaRegistro, LocalTime horaEntrada, LocalTime horaSalida, Personal personal) {
+        this.id = id;
+        this.fechaRegistro = fechaRegistro;
+        this.horaEntrada = horaEntrada;
+        this.horaSalida = horaSalida;
+        this.personal = personal;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public LocalTime getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(LocalTime horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public LocalTime getHoraSalida() {
+        return horaSalida;
+    }
+
+    public void setHoraSalida(LocalTime horaSalida) {
+        this.horaSalida = horaSalida;
+    }
+
     @Override
     public int hashCode() {
         return 31;

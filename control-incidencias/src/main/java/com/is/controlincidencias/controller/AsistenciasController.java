@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/asistencias")
-public class AsistenciaController {
+public class AsistenciasController {
+    private static final String REGISTRAR_ASISTENCIA = "registrar-asistencia";
 
     @GetMapping("")
     public String asistencia() {
@@ -15,6 +16,6 @@ public class AsistenciaController {
 
     @GetMapping("/registrar")
     public String registrar() {
-        return "registro-asistencia";
+        return REGISTRAR_ASISTENCIA;
     }
 }

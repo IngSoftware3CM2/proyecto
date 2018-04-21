@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Registro de Asistencia')">
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container-fluid">
+    <div class="row">
+        <!--Este es el menu vertical -->
+        <nav th:replace="fragments/verticalnavbar :: navbar"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Registro de Asistencia</h1>
+            <p>Fecha Asistencia: <input type="text" id="inputFecha" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$"/></p>
+            <p>Número tarjeta: <input type="text" id="inputTarjeta" pattern="^\d{6,8}$"></p>
+            <p>Hora entrada: <input type="text" id="inputEntrada" pattern="^\d{1,2}:\d\d$"></p>
+            <p>Hora salida: <input type="text" id="inputSalida" pattern="^\d{1,2}:\d\d$"></p>
+            <a class="nav-link " href="#" id="btnAgregar">
+                <span data-feather="plus-circle"></span>
+            </a>
+            <table>
+                <thead>
+                <tr>
+                    <th>Número de Tarjeta</th>
+                    <th>Hora de Entrada</th>
+                    <th>Hora de Salida</th>
+                    <th>Fecha de Registro</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
+                <tbody id="bodyRegistros">
+
+                </tbody>
+            </table>
+            <button id="btnRegistrarAsistencias">
+                Registrar Asistencias
+            </button>
+        </main>
+    </div>
+</div>
+<!--Archivos javascript, luego los pongo en su propio archivo como el header-->
+<script src="#" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script src="#" th:src="@{/js/registrar-asistencia.js}" type="text/javascript"></script>
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>
