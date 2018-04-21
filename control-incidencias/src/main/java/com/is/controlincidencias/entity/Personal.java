@@ -37,4 +37,20 @@ public class Personal {
     }
 
 
+
+
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Incidencia> incidencias = new ArrayList<>();
+
+    public void addIncidencia(Incidencia incidencia) {
+        incidencias.add(incidencia);
+        incidencia.setPersonal(this);
+    }
+
+    public void removeIncidencia(Incidencia incidencia) {
+        incidencias.remove(incidencia);
+        incidencia.setPersonal(null);
+    }
+
+
 }
