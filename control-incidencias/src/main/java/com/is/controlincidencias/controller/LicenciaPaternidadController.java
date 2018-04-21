@@ -13,7 +13,8 @@ public class LicenciaPaternidadController {
 
     @GetMapping("/form")
     private String RedirectSolicitudLicenciaPaternidadForm(){
-        return "solicitud-licencia-paternidad";
+
+        return "solicitud-licencia-paternidad-chafa";
     }
 
 }
