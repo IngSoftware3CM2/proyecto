@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Incidencia {
     @Id
     @Column(length = 4)
-    private Integer idIncidencia;
+        private Integer idIncidencia;
 
     @Column(nullable = false)
     private LocalDate fechaRegistro;

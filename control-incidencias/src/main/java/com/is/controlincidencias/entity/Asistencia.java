@@ -1,8 +1,5 @@
 package com.is.controlincidencias.entity;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,9 +7,10 @@ import java.time.LocalTime;
 @Entity
 @Table
 public class Asistencia {
+    // Tuve que modificar esto porque en el insert no me generaba el id
     @Id
     @Column(columnDefinition = "serial")
-    @Generated(GenerationTime.INSERT)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false)
