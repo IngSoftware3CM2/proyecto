@@ -111,7 +111,7 @@ public class Justificante {
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
 
-    /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante*/
+    /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante y getter para fecha y estado*/
     public String getJustificanteTipo (){
         String tipo = "";
         if (!(getPermisoEconomico().equals(null))){
@@ -123,4 +123,14 @@ public class Justificante {
 
         return tipo;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getFecha() {
+        return fecha.toString();
+    }
+
+    /*------------------------------------------------------------------------------------------------------------*/
 }
