@@ -14,11 +14,10 @@ public class Justificante {
     private Integer idJustificante;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PermisoEconomico permisosEconomico;
+    private PermisoEconomico permisoEconomico;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private LicPaternidad licPaternidad;
-
 
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
@@ -52,9 +51,6 @@ public class Justificante {
     @Column(nullable = false, length = 20)
     private LocalTime estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
-
-
-
     public Integer getIdJustificante() {
         return idJustificante;
     }
@@ -65,6 +61,22 @@ public class Justificante {
     public void setIdJustificante(Integer idJustificante) {
         this.idJustificante = idJustificante;
 
+    }
+
+    public PermisoEconomico getPermisoEconomico() {
+        return this.permisoEconomico;
+    }
+
+    public void setPermisoEconomico(PermisoEconomico permisoEconomico) {
+        this.permisoEconomico = permisoEconomico;
+    }
+
+    public LicPaternidad getLicenciaPaternidad() {
+        return licPaternidad;
+    }
+
+    public void setLicenciaPaternidad(LicPaternidad licPaternidad) {
+        this.licPaternidad = licPaternidad;
     }
 
     public List<Incidencia> getIncidencias() {
@@ -97,4 +109,16 @@ public class Justificante {
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
 
+    /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante*/
+    public String getJustificanteTipo (){
+        String tipo = "";
+        if (!(getPermisoEconomico().equals(null))){
+            tipo = "Permisos Economicos";
+        } else if (!(getLicenciaPaternidad().equals(null)))
+        {
+            tipo = "Licencias paternidad";
+        }
+
+        return tipo;
+    }
 }

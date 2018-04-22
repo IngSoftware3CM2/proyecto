@@ -1,10 +1,6 @@
 package com.is.controlincidencias.entity;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table

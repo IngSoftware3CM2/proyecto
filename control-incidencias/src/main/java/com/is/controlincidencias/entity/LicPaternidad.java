@@ -1,7 +1,6 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table
@@ -104,20 +103,6 @@ public class LicPaternidad {
     public void setCopiaidentificacion(String copiaidentificacion) {
         this.copiaidentificacion = copiaidentificacion;
     }
-
-    public LicPaternidad(Justificante justificante, String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion) {
-        this.justificante = justificante;
-        this.justificacion = justificacion;
-        this.registrolicencia = registrolicencia;
-        this.actanacimiento = actanacimiento;
-        this.actamatrimonio = actamatrimonio;
-        this.constanciacurso = constanciacurso;
-        this.comprobanteingresos = comprobanteingresos;
-        this.copiaidentificacion = copiaidentificacion;
-    }
-
-
-
 
     @Override
     public int hashCode() {
