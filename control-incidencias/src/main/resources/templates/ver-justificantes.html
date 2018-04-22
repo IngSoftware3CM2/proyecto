@@ -27,13 +27,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1/ Abril /2018 </td>
-                        <td>Licencia por Paternidad</td>
+                    <tr th:each="justificante : ${justificantes}">
+                        <td th:text="${justificante.getFecha()}"></td>
+                        <td th:text="${justificante.getJustificanteTipo()}""></td>
                         <td> <span data-feather="eye"></span> </td>
                         <td><span data-feather="edit"></span></td>
                         <td><a onclick="deleteRow(this)"><span data-feather="trash-2"></span></a></td>
-                        <td><span data-feather="check-circle"></span> <span data-feather="clock"></span> <span data-feather="x-circle"></span></td>
+                        <td th:text="${justificante.getEstado()}"></td>
                     </tr>
                     </tbody>
                 </table>

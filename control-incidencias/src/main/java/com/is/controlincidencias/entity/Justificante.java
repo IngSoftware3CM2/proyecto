@@ -13,6 +13,14 @@ public class Justificante {
     @Column(length = 4)
     private Integer idJustificante;
 
+    @Column(nullable = false, columnDefinition = "time without time zone")
+    private LocalTime fecha;
+
+
+    @Column(nullable = false, length = 20)
+    private LocalTime estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
+
+
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PermisoEconomico> permisosEconomicos = new ArrayList<>();
 
@@ -67,12 +75,7 @@ public class Justificante {
     }
 
 
-    @Column(nullable = false, columnDefinition = "time without time zone")
-    private LocalTime fecha;
 
-
-    @Column(nullable = false, length = 20)
-    private LocalTime estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
 
 
