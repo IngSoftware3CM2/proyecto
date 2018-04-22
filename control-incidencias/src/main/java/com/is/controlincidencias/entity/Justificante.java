@@ -13,33 +13,11 @@ public class Justificante {
     @Column(length = 4)
     private Integer idJustificante;
 
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PermisoEconomico> permisosEconomicos = new ArrayList<>();
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PermisoEconomico permisosEconomico;
 
-    public void addPermisoEconomico(PermisoEconomico permisoeconomico) {
-        permisosEconomicos.add(permisoeconomico);
-        permisoeconomico.setJustificante(this);
-    }
-
-    public void removePermisoEconomico(PermisoEconomico permisoeconomico) {
-        permisosEconomicos.remove(permisoeconomico);
-        permisoeconomico.setJustificante(null);
-    }
-
-
-
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LicPaternidad> licenciasPaternidad = new ArrayList<>();
-
-    public void addLicPaternidad(LicPaternidad licpaternidad) {
-        licenciasPaternidad.add(licpaternidad);
-        licpaternidad.setJustificante(this);
-    }
-
-    public void removeLicPaternidad(LicPaternidad licpaternidad) {
-        licenciasPaternidad.remove(licpaternidad);
-        licpaternidad.setJustificante(null);
-    }
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private LicPaternidad licPaternidad;
 
 
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -89,22 +67,6 @@ public class Justificante {
 
     }
 
-    public List<PermisoEconomico> getPermisosEconomicos() {
-        return permisosEconomicos;
-    }
-
-    public void setPermisosEconomicos(List<PermisoEconomico> permisosEconomicos) {
-        this.permisosEconomicos = permisosEconomicos;
-    }
-
-    public List<LicPaternidad> getLicenciasPaternidad() {
-        return licenciasPaternidad;
-    }
-
-    public void setLicenciasPaternidad(List<LicPaternidad> licenciasPaternidad) {
-        this.licenciasPaternidad = licenciasPaternidad;
-    }
-
     public List<Incidencia> getIncidencias() {
         return incidencias;
     }
@@ -135,17 +97,4 @@ public class Justificante {
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
 
-    /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante*/
-    public String getJustificanteTipo (){
-        String tipo = "";
-        if (!(permisosEconomicos.isEmpty())){
-            tipo = "Permisos Economicos";
-        }
-        else if (!(licenciasPaternidad.isEmpty()))
-        {
-            tipo = "Licencias paternidad";
-        }
-
-        return tipo;
-    }
 }

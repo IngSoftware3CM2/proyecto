@@ -12,4 +12,10 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-      ddl-auto: update # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
+      ddl-auto: create-drop # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
+logging:
+  level:
+    org:
+      hibernate:
+        sql: DEBUG
+        type: TRACE

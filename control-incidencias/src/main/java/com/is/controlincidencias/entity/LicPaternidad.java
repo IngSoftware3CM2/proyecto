@@ -5,13 +5,16 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@IdClass(Justificante.class)
-public class LicPaternidad implements Serializable{
+public class LicPaternidad {
 
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
+
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private int id;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @MapsId
     private Justificante justificante;
 
     public void setJustificante(Justificante justificante) {
