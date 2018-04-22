@@ -1,17 +1,19 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table
-@IdClass(Justificante.class)
-public class LicPaternidad implements Serializable{
+public class LicPaternidad {
 
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
+
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private int id;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @MapsId
     private Justificante justificante;
 
     public void setJustificante(Justificante justificante) {
@@ -101,20 +103,6 @@ public class LicPaternidad implements Serializable{
     public void setCopiaidentificacion(String copiaidentificacion) {
         this.copiaidentificacion = copiaidentificacion;
     }
-
-    public LicPaternidad(Justificante justificante, String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion) {
-        this.justificante = justificante;
-        this.justificacion = justificacion;
-        this.registrolicencia = registrolicencia;
-        this.actanacimiento = actanacimiento;
-        this.actamatrimonio = actamatrimonio;
-        this.constanciacurso = constanciacurso;
-        this.comprobanteingresos = comprobanteingresos;
-        this.copiaidentificacion = copiaidentificacion;
-    }
-
-
-
 
     @Override
     public int hashCode() {

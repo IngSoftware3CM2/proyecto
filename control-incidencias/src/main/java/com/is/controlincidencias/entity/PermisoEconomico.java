@@ -1,19 +1,19 @@
 package com.is.controlincidencias.entity;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table
-public class PermisoEconomico implements Serializable {
+public class PermisoEconomico {
+
+    @Id
+    private int id;
 
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @MapsId
     private Justificante justificante;
 
     public PermisoEconomico(){}
