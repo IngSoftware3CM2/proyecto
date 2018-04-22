@@ -43,7 +43,7 @@ function agregar_asistencia(e) {
         limpiar_campos();
         return;
     }
-    
+
     /*
     if (!re_tarjeta.test($inputTarjeta.val())) {
         $("#errorB").css("display", "block");
