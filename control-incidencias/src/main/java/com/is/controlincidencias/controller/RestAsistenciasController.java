@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.models.Consulta;
+import com.is.controlincidencias.model.AsistenciaJSON;
+import com.is.controlincidencias.model.Consulta;
 import com.is.controlincidencias.service.AsistenciaService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/asistencias")
@@ -45,4 +48,11 @@ public class RestAsistenciasController {
         return consulta;
     }
 
+    @PostMapping("/agregar")
+    public Consulta agregar(@RequestBody List<AsistenciaJSON> asistencias) {
+        LOG.info("agregar() asistencias.size=" + asistencias.size());
+        for (AsistenciaJSON asistenciaJSON : asistencias)
+            asistenciaService.agregarAsistencia(asistenciaJSON);
+        return new Consulta();
+    }
 }
