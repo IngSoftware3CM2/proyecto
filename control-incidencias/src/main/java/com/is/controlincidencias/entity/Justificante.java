@@ -20,35 +20,6 @@ public class Justificante {
     @Column(nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
-
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PermisoEconomico> permisosEconomicos = new ArrayList<>();
-
-    public void addPermisoEconomico(PermisoEconomico permisoeconomico) {
-        permisosEconomicos.add(permisoeconomico);
-        permisoeconomico.setJustificante(this);
-    }
-
-    public void removePermisoEconomico(PermisoEconomico permisoeconomico) {
-        permisosEconomicos.remove(permisoeconomico);
-        permisoeconomico.setJustificante(null);
-    }
-
-
-
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LicPaternidad> licenciasPaternidad = new ArrayList<>();
-
-    public void addLicPaternidad(LicPaternidad licpaternidad) {
-        licenciasPaternidad.add(licpaternidad);
-        licpaternidad.setJustificante(this);
-    }
-
-    public void removeLicPaternidad(LicPaternidad licpaternidad) {
-        licenciasPaternidad.remove(licpaternidad);
-        licpaternidad.setJustificante(null);
-    }
-
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
 
