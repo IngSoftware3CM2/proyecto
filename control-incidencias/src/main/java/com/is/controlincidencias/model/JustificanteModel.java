@@ -1,6 +1,5 @@
 package com.is.controlincidencias.model;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class JustificanteModel {
 
 
 
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LicPaternidadModel> licenciasPaternidad = new ArrayList<>();
 
     public void addLicPaternidad(LicPaternidadModel licpaternidad) {
@@ -37,7 +35,6 @@ public class JustificanteModel {
     }
 
 
-    @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IncidenciaModel> incidencias = new ArrayList<>();
 
     public void addAsistencia(IncidenciaModel incidencia) {
@@ -53,8 +50,6 @@ public class JustificanteModel {
 
     private static final String definition = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
     private PersonalModel personal;
 
     public void setPersonal(PersonalModel personal) {

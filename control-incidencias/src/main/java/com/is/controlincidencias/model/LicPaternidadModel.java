@@ -1,6 +1,6 @@
 package com.is.controlincidencias.model;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
 
