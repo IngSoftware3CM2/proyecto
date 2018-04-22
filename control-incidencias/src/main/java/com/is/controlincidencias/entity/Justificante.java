@@ -117,7 +117,7 @@ public class Justificante {
         return personal;
     }
 
-       @Override
+    @Override
     public int hashCode() {
         return 32;
     }
@@ -133,5 +133,19 @@ public class Justificante {
 
         if (!(obj instanceof Justificante)) return false;
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
+    }
+
+    /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante*/
+    public String getJustificanteTipo (){
+        String tipo = "";
+        if (getPermisosEconomicos() != null){
+            tipo = "Permisos Economicos";
+        }
+        else if (getLicenciasPaternidad() != null)
+        {
+            tipo = "Licencias paternidad";
+        }
+
+        return tipo;
     }
 }
