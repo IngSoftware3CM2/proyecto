@@ -36,6 +36,49 @@ public class Incidencia {
     @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "empleado_pk", foreignKeyDefinition = definition2))
     private Personal personal;
 
+    public Incidencia(){}
+
+    public Integer getIdIncidencia() {
+        return idIncidencia;
+    }
+
+    public void setIdIncidencia(Integer idIncidencia) {
+        this.idIncidencia = idIncidencia;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public Justificante getJustificante() {
+        return justificante;
+    }
+
+    public Incidencia(Integer idIncidencia, LocalDate fechaRegistro, String tipo, Quincena quincena, Personal personal, Justificante justificante) {
+        this.idIncidencia = idIncidencia;
+        this.fechaRegistro = fechaRegistro;
+        this.tipo = tipo;
+        this.quincena = quincena;
+        this.personal = personal;
+        this.justificante = justificante;
+    }
+
     public void setPersonal(Personal personal) {
         this.personal = personal;
     }

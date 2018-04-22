@@ -12,6 +12,38 @@ public class Quincena {
     @Column(length = 4)
     private Integer idQuincena;
 
+    public Quincena(){}
+
+    public Integer getIdQuincena() {
+        return idQuincena;
+    }
+
+    public void setIdQuincena(Integer idQuincena) {
+        this.idQuincena = idQuincena;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
+    public LocalDate getFin() {
+        return fin;
+    }
+
+    public void setFin(LocalDate fin) {
+        this.fin = fin;
+    }
+
+    public Quincena(Integer idQuincena, LocalDate inicio, LocalDate fin) {
+        this.idQuincena = idQuincena;
+        this.inicio = inicio;
+        this.fin = fin;
+    }
+
     @Column(nullable = false)
     private LocalDate inicio;
 

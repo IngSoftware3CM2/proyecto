@@ -6,6 +6,78 @@ import java.io.Serializable;
 @Entity
 @Table
 public class LicPaternidad implements Serializable{
+    public LicPaternidad(){}
+
+    public Justificante getJustificante() {
+        return justificante;
+    }
+
+    public String getJustificacion() {
+        return justificacion;
+    }
+
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
+    }
+
+    public String getRegistrolicencia() {
+        return registrolicencia;
+    }
+
+    public void setRegistrolicencia(String registrolicencia) {
+        this.registrolicencia = registrolicencia;
+    }
+
+    public String getActanacimiento() {
+        return actanacimiento;
+    }
+
+    public void setActanacimiento(String actanacimiento) {
+        this.actanacimiento = actanacimiento;
+    }
+
+    public String getActamatrimonio() {
+        return actamatrimonio;
+    }
+
+    public void setActamatrimonio(String actamatrimonio) {
+        this.actamatrimonio = actamatrimonio;
+    }
+
+    public String getConstanciacurso() {
+        return constanciacurso;
+    }
+
+    public void setConstanciacurso(String constanciacurso) {
+        this.constanciacurso = constanciacurso;
+    }
+
+    public String getComprobanteingresos() {
+        return comprobanteingresos;
+    }
+
+    public void setComprobanteingresos(String comprobanteingresos) {
+        this.comprobanteingresos = comprobanteingresos;
+    }
+
+    public String getCopiaidentificacion() {
+        return copiaidentificacion;
+    }
+
+    public void setCopiaidentificacion(String copiaidentificacion) {
+        this.copiaidentificacion = copiaidentificacion;
+    }
+
+    public LicPaternidad(Justificante justificante, String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion) {
+        this.justificante = justificante;
+        this.justificacion = justificacion;
+        this.registrolicencia = registrolicencia;
+        this.actanacimiento = actanacimiento;
+        this.actamatrimonio = actamatrimonio;
+        this.constanciacurso = constanciacurso;
+        this.comprobanteingresos = comprobanteingresos;
+        this.copiaidentificacion = copiaidentificacion;
+    }
 
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
     @Id

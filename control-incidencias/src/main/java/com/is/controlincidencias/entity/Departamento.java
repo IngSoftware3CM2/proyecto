@@ -7,7 +7,17 @@ import java.util.List;
 @Entity
 @Table
 public class Departamento {
+
+    public Departamento(){}
+
+    public Departamento(Integer idDepartamento, String nombre, JefeSuperior jefesuperior) {
+        this.idDepartamento = idDepartamento;
+        this.nombre = nombre;
+        this.jefesuperior = jefesuperior;
+    }
+
     @Id
+
     @Column(length = 2)
     private Integer idDepartamento;
 

@@ -5,6 +5,50 @@ import java.time.LocalDate;
 
 
 public class IncidenciaModel {
+    public IncidenciaModel() {
+    }
+
+    public Integer getIdIncidencia() {
+        return idIncidencia;
+    }
+
+    public void setIdIncidencia(Integer idIncidencia) {
+        this.idIncidencia = idIncidencia;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public PersonalModel getPersonal() {
+        return personal;
+    }
+
+    public JustificanteModel getJustificante() {
+        return justificante;
+    }
+
+    public IncidenciaModel(Integer idIncidencia, LocalDate fechaRegistro, String tipo, QuincenaModel quincena, PersonalModel personal, JustificanteModel justificante) {
+        this.idIncidencia = idIncidencia;
+        this.fechaRegistro = fechaRegistro;
+        this.tipo = tipo;
+        this.quincena = quincena;
+        this.personal = personal;
+        this.justificante = justificante;
+    }
+
     private Integer idIncidencia;
 
     private LocalDate fechaRegistro;

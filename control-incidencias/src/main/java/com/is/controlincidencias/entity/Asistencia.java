@@ -10,6 +10,7 @@ import java.time.LocalTime;
 @Entity
 @Table
 public class Asistencia {
+
     @Id
     @Column(columnDefinition = "serial")
     @Generated(GenerationTime.INSERT)
@@ -46,6 +47,10 @@ public class Asistencia {
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.personal = personal;
+    }
+
+    public static String getDefinition() {
+        return definition;
     }
 
     public Integer getId() {

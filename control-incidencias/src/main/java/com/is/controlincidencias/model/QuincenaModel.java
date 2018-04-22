@@ -13,6 +13,39 @@ public class QuincenaModel {
 
     private LocalDate fin;
 
+    public Integer getIdQuincena() {
+        return idQuincena;
+    }
+
+    public QuincenaModel() {
+    }
+
+    public void setIdQuincena(Integer idQuincena) {
+        this.idQuincena = idQuincena;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
+    public LocalDate getFin() {
+        return fin;
+    }
+
+    public void setFin(LocalDate fin) {
+        this.fin = fin;
+    }
+
+    public QuincenaModel(Integer idQuincena, LocalDate inicio, LocalDate fin) {
+        this.idQuincena = idQuincena;
+        this.inicio = inicio;
+        this.fin = fin;
+    }
+
     private List<IncidenciaModel> incidencias = new ArrayList<>();   /*supongo que este arrayList es util para
                                                                 desarrollo como lo definieron en Personal.java, en el sentido que decimos "Personal tiene n Asistencias",
                                                                 pero no sucede asi con Quincena e Incidencia

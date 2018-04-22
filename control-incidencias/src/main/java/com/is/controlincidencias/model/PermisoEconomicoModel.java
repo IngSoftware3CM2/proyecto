@@ -17,6 +17,17 @@ public class PermisoEconomicoModel implements Serializable {
         return 33;
     }
 
+    public PermisoEconomicoModel(){
+    }
+
+    public JustificanteModel getJustificante() {
+        return justificante;
+    }
+
+    public PermisoEconomicoModel(JustificanteModel justificante) {
+        this.justificante = justificante;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

@@ -5,6 +5,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonalModel {
+    public PersonalModel(){}
+
+    public Integer getNoEmpleado() {
+        return noEmpleado;
+    }
+
+    public void setNoEmpleado(Integer noEmpleado) {
+        this.noEmpleado = noEmpleado;
+    }
+
+    public Integer getNoTarjeta() {
+        return noTarjeta;
+    }
+
+    public void setNoTarjeta(Integer noTarjeta) {
+        this.noTarjeta = noTarjeta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public static String getDefinition() {
+        return definition;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public PersonalModel(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, DepartamentoModel departamento, String tipo) {
+        this.noEmpleado = noEmpleado;
+        this.noTarjeta = noTarjeta;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.departamento = departamento;
+        this.tipo = tipo;
+    }
 
     private Integer noEmpleado;
 

@@ -10,6 +10,13 @@ public class JustificanteModel {
 
     private List<PermisoEconomicoModel> permisosEconomicos = new ArrayList<>();
 
+    public JustificanteModel(){}
+
+    public JustificanteModel(Integer idJustificante, PersonalModel personal) {
+        this.idJustificante = idJustificante;
+        this.personal = personal;
+    }
+
     public void addPermisoEconomico(PermisoEconomicoModel permisoeconomico) {
         permisosEconomicos.add(permisoeconomico);
         permisoeconomico.setJustificante(this);
