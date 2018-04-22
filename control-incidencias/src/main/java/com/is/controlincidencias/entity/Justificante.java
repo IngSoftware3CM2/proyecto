@@ -18,7 +18,7 @@ public class Justificante {
 
 
     @Column(nullable = false, length = 20)
-    private LocalTime estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
+    private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
 
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
