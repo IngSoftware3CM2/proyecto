@@ -13,7 +13,6 @@ public class Justificante {
     @Column(length = 4)
     private Integer idJustificante;
 
-<<<<<<< HEAD
     @Column(nullable = false, columnDefinition = "time without time zone")
     private LocalTime fecha;
 
@@ -49,10 +48,9 @@ public class Justificante {
         licenciasPaternidad.remove(licpaternidad);
         licpaternidad.setJustificante(null);
     }
-=======
+
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
->>>>>>> 89378ba8710734c6413898cfce4d17b85b6a1524
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private LicPaternidad licPaternidad;
