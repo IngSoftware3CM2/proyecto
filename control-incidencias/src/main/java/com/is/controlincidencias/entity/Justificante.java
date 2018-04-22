@@ -138,10 +138,10 @@ public class Justificante {
     /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante*/
     public String getJustificanteTipo (){
         String tipo = "";
-        if (getPermisosEconomicos() != null){
+        if (!(permisosEconomicos.isEmpty())){
             tipo = "Permisos Economicos";
         }
-        else if (getLicenciasPaternidad() != null)
+        else if (!(licenciasPaternidad.isEmpty()))
         {
             tipo = "Licencias paternidad";
         }
