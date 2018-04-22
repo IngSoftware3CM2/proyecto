@@ -37,9 +37,6 @@ public class Personal {
         asistencia.setPersonal(null);
     }
 
-
-
-
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
 
@@ -81,8 +78,80 @@ public class Personal {
         this.departamento = departamento;
     }
 
-
     @Column(nullable = false, length = 4)
     private String tipo;
 
+    public Personal() {}
+
+    public Integer getNoEmpleado() {
+        return noEmpleado;
+    }
+
+    public void setNoEmpleado(Integer noEmpleado) {
+        this.noEmpleado = noEmpleado;
+    }
+
+    public Integer getNoTarjeta() {
+        return noTarjeta;
+    }
+
+    public void setNoTarjeta(Integer noTarjeta) {
+        this.noTarjeta = noTarjeta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public List<Asistencia> getAsistencias() {
+        return asistencias;
+    }
+
+    public void setAsistencias(List<Asistencia> asistencias) {
+        this.asistencias = asistencias;
+    }
+
+    public List<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+
+    public void setIncidencias(List<Incidencia> incidencias) {
+        this.incidencias = incidencias;
+    }
+
+    public List<Justificante> getJustificantes() {
+        return justificantes;
+    }
+
+    public void setJustificantes(List<Justificante> justificantes) {
+        this.justificantes = justificantes;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }
