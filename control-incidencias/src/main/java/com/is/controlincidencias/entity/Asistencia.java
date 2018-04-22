@@ -46,6 +46,10 @@ public class Asistencia {
         this.personal = personal;
     }
 
+    public static String getDefinition() {
+        return definition;
+    }
+
     public Integer getId() {
         return id;
     }

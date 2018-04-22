@@ -83,6 +83,16 @@ public class Personal {
 
     public Personal() {}
 
+    public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
+        this.noEmpleado = noEmpleado;
+        this.noTarjeta = noTarjeta;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.departamento = departamento;
+        this.tipo = tipo;
+    }
+
     public Integer getNoEmpleado() {
         return noEmpleado;
     }

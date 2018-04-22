@@ -2,7 +2,7 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.models.AsistenciaJSON;
+import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.repository.AsistenciaRepository;
 import com.is.controlincidencias.repository.PersonalRepository;
 import com.is.controlincidencias.service.AsistenciaService;

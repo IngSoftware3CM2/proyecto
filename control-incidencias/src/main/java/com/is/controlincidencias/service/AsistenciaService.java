@@ -1,6 +1,6 @@
 package com.is.controlincidencias.service;
 
-import com.is.controlincidencias.models.AsistenciaJSON;
+import com.is.controlincidencias.model.AsistenciaJSON;
 
 import java.time.LocalDate;
 

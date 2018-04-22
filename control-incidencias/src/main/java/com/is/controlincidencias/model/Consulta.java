@@ -1,4 +1,4 @@
-package com.is.controlincidencias.models;
+package com.is.controlincidencias.model;
 
 import java.time.LocalDate;
 

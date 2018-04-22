@@ -1,14 +1,14 @@
-package com.is.controlincidencias.entity;
+package com.is.controlincidencias.model;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
-@Entity
-@Table
-public class LicPaternidad implements Serializable{
-    public LicPaternidad(){}
 
-    public Justificante getJustificante() {
+public class LicPaternidadModel implements Serializable{
+
+    public LicPaternidadModel(){}
+
+    public JustificanteModel getJustificante() {
         return justificante;
     }
 
@@ -68,7 +68,7 @@ public class LicPaternidad implements Serializable{
         this.copiaidentificacion = copiaidentificacion;
     }
 
-    public LicPaternidad(Justificante justificante, String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion) {
+    public LicPaternidadModel(JustificanteModel justificante, String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion) {
         this.justificante = justificante;
         this.justificacion = justificacion;
         this.registrolicencia = registrolicencia;
@@ -80,34 +80,24 @@ public class LicPaternidad implements Serializable{
     }
 
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
-    private Justificante justificante;
+    private JustificanteModel justificante;
 
-    public void setJustificante(Justificante justificante) {
+    public void setJustificante(JustificanteModel justificante) {
         this.justificante = justificante;
     }
 
-    @Column(nullable = false)
     private String justificacion;
 
-    @Column(nullable = false)
     private String registrolicencia;
 
-    @Column(nullable = false)
     private String actanacimiento;
 
-    @Column(nullable = false)
     private String actamatrimonio;
 
-    @Column(nullable = false)
     private String constanciacurso;
 
-    @Column(nullable = false)
     private String comprobanteingresos;
 
-    @Column(nullable = false)
     private String copiaidentificacion;
 
 
@@ -119,7 +109,7 @@ public class LicPaternidad implements Serializable{
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof PermisoEconomico)) return false;
-        return justificante != null && justificante.equals(((LicPaternidad) obj).justificante);
+        if (!(obj instanceof PermisoEconomicoModel)) return false;
+        return justificante != null && justificante.equals(((LicPaternidadModel) obj).justificante);
     }
 }

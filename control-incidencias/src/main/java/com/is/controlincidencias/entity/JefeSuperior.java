@@ -20,6 +20,16 @@ public class JefeSuperior {
     @Column(nullable = false, length = 30)
     private String apellidoMaterno;
 
+    public JefeSuperior(){}
+
+    public JefeSuperior(Integer id_superior, String nombre, String apellidoPaterno, String apellidoMaterno, JefeSuperior jefe) {
+        this.id_superior = id_superior;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.jefe = jefe;
+    }
+
     @OneToMany(mappedBy = "jefesuperior", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Departamento> departamentos = new ArrayList<>();
 

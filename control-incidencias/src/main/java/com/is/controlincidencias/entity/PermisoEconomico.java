@@ -16,6 +16,16 @@ public class PermisoEconomico implements Serializable {
     @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
     private Justificante justificante;
 
+    public PermisoEconomico(){}
+
+    public Justificante getJustificante() {
+        return justificante;
+    }
+
+    public PermisoEconomico(Justificante justificante) {
+        this.justificante = justificante;
+    }
+
     public void setJustificante(Justificante justificante) {
         this.justificante = justificante;
     }

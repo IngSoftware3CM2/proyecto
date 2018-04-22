@@ -1,7 +1,7 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.models.AsistenciaJSON;
-import com.is.controlincidencias.models.Consulta;
+import com.is.controlincidencias.model.AsistenciaJSON;
+import com.is.controlincidencias.model.Consulta;
 import com.is.controlincidencias.service.AsistenciaService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;

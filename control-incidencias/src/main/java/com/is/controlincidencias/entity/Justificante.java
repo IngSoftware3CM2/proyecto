@@ -7,7 +7,48 @@ import java.util.List;
 @Entity
 @Table
 public class Justificante {
+    public Integer getIdJustificante() {
+        return idJustificante;
+    }
+
+    public Justificante() {
+    }
+
+    public void setIdJustificante(Integer idJustificante) {
+        this.idJustificante = idJustificante;
+
+    }
+
+    public List<PermisoEconomico> getPermisosEconomicos() {
+        return permisosEconomicos;
+    }
+
+    public void setPermisosEconomicos(List<PermisoEconomico> permisosEconomicos) {
+        this.permisosEconomicos = permisosEconomicos;
+    }
+
+    public List<LicPaternidad> getLicenciasPaternidad() {
+        return licenciasPaternidad;
+    }
+
+    public void setLicenciasPaternidad(List<LicPaternidad> licenciasPaternidad) {
+        this.licenciasPaternidad = licenciasPaternidad;
+    }
+
+    public List<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+
+    public void setIncidencias(List<Incidencia> incidencias) {
+        this.incidencias = incidencias;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
     @Id
+
     @Column(length = 4)
     private Integer idJustificante;
 
@@ -70,9 +111,15 @@ public class Justificante {
         return 32;
     }
 
+    public Justificante(Integer idJustificante, Personal personal) {
+        this.idJustificante = idJustificante;
+        this.personal = personal;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
+
         if (!(obj instanceof Justificante)) return false;
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
