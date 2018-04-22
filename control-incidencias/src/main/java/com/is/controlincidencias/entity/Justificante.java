@@ -1,54 +1,15 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table
 public class Justificante {
-    public Integer getIdJustificante() {
-        return idJustificante;
-    }
-
-    public Justificante() {
-    }
-
-    public void setIdJustificante(Integer idJustificante) {
-        this.idJustificante = idJustificante;
-
-    }
-
-    public List<PermisoEconomico> getPermisosEconomicos() {
-        return permisosEconomicos;
-    }
-
-    public void setPermisosEconomicos(List<PermisoEconomico> permisosEconomicos) {
-        this.permisosEconomicos = permisosEconomicos;
-    }
-
-    public List<LicPaternidad> getLicenciasPaternidad() {
-        return licenciasPaternidad;
-    }
-
-    public void setLicenciasPaternidad(List<LicPaternidad> licenciasPaternidad) {
-        this.licenciasPaternidad = licenciasPaternidad;
-    }
-
-    public List<Incidencia> getIncidencias() {
-        return incidencias;
-    }
-
-    public void setIncidencias(List<Incidencia> incidencias) {
-        this.incidencias = incidencias;
-    }
-
-    public Personal getPersonal() {
-        return personal;
-    }
 
     @Id
-
     @Column(length = 4)
     private Integer idJustificante;
 
@@ -106,7 +67,57 @@ public class Justificante {
     }
 
 
-    @Override
+    @Column(nullable = false, columnDefinition = "time without time zone")
+    private LocalTime fecha;
+
+
+    @Column(nullable = false, length = 20)
+    private LocalTime estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
+
+
+
+
+    public Integer getIdJustificante() {
+        return idJustificante;
+    }
+
+    public Justificante() {
+    }
+
+    public void setIdJustificante(Integer idJustificante) {
+        this.idJustificante = idJustificante;
+
+    }
+
+    public List<PermisoEconomico> getPermisosEconomicos() {
+        return permisosEconomicos;
+    }
+
+    public void setPermisosEconomicos(List<PermisoEconomico> permisosEconomicos) {
+        this.permisosEconomicos = permisosEconomicos;
+    }
+
+    public List<LicPaternidad> getLicenciasPaternidad() {
+        return licenciasPaternidad;
+    }
+
+    public void setLicenciasPaternidad(List<LicPaternidad> licenciasPaternidad) {
+        this.licenciasPaternidad = licenciasPaternidad;
+    }
+
+    public List<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+
+    public void setIncidencias(List<Incidencia> incidencias) {
+        this.incidencias = incidencias;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+       @Override
     public int hashCode() {
         return 32;
     }
