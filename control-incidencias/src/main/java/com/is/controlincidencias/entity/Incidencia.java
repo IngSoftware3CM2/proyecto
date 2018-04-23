@@ -50,6 +50,11 @@ public class Incidencia {
         return fechaRegistro;
     }
 
+    /*Cambios Absalom | agregar metodo para obtener fecha en String*/
+    public String getFecha() {
+        return fechaRegistro.toString();
+    }
+
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
