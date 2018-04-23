@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "departamento")
 public class Departamento {
 
     public Departamento(){}
@@ -17,12 +17,11 @@ public class Departamento {
     }
 
     @Id
-
-    @Column(length = 2)
+    @Column(name = "idDepartamento", length = 2)
     private Integer idDepartamento;
 
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -39,10 +38,10 @@ public class Departamento {
     }
 
 
-    private static final String definition2 = "FOREIGN KEY(id_superior) REFERENCES jefe_superior (id_superior) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition2 = "FOREIGN KEY(idSuperior) REFERENCES jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_superior", foreignKey = @ForeignKey(name = "jefesuperior_pk", foreignKeyDefinition = definition2))
+    @JoinColumn(name = "idSuperior", foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = definition2))
     private JefeSuperior jefesuperior;
 
     public void setJefeSuperior(JefeSuperior jefesuperior) {

@@ -3,16 +3,16 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "licpaternidad")
 public class LicPaternidad {
 
-    private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @Id
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = definition))
     @MapsId
     private Justificante justificante;
 
@@ -20,25 +20,25 @@ public class LicPaternidad {
         this.justificante = justificante;
     }
 
-    @Column(nullable = false)
+    @Column(name = "justificacion", nullable = false)
     private String justificacion;
 
-    @Column(nullable = false)
+    @Column(name = "registrolicencia", nullable = false)
     private String registrolicencia;
 
-    @Column(nullable = false)
+    @Column(name = "actanacimiento", nullable = false)
     private String actanacimiento;
 
-    @Column(nullable = false)
+    @Column(name = "actamatrimonio", nullable = false)
     private String actamatrimonio;
 
-    @Column(nullable = false)
+    @Column(name = "constanciacurso", nullable = false)
     private String constanciacurso;
 
-    @Column(nullable = false)
+    @Column(name = "comprobanteingresos", nullable = false)
     private String comprobanteingresos;
 
-    @Column(nullable = false)
+    @Column(name = "copiaidentificacion", nullable = false)
     private String copiaidentificacion;
 
 

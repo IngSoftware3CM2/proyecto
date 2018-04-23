@@ -3,25 +3,24 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoublePredicate;
 
 @Entity
-@Table
+@Table(name = "personal")
 public class Personal {
     @Id
-    @Column(length = 8)
+    @Column(name = "noEmpleado", length = 8)
     private Integer noEmpleado;
 
-    @Column(nullable = false, length = 6, unique = true)
+    @Column(name = "noTarjeta", nullable = false, length = 6, unique = true)
     private Integer noTarjeta;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "apellidoPaterno", nullable = false, length = 30)
     private String apellidoPaterno;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -64,10 +63,10 @@ public class Personal {
         justificante.setPersonal(null);
     }
 
-    private static final String definition = "FOREIGN KEY(id_departamento) REFERENCES departamento (id_departamento) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_departamento", foreignKey = @ForeignKey(name = "departamento_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "idDepartamento", foreignKey = @ForeignKey(name = "departamento_fk", foreignKeyDefinition = definition))
     private Departamento departamento;
 
     public Departamento getDepartamento() {

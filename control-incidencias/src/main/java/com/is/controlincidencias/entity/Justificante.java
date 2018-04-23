@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "justificante")
 public class Justificante {
 
     @Id
-    @Column(length = 4)
+    @Column(name = "idJustificante", length = 4)
     private Integer idJustificante;
 
-    @Column(nullable = false, columnDefinition = "time without time zone")
+    @Column(name = "fecha", nullable = false, columnDefinition = "time without time zone")
     private LocalTime fecha;
 
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "estado", nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -40,10 +40,10 @@ public class Justificante {
     }
 
 
-    private static final String definition = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = definition))
     private Personal personal;
 
     public void setPersonal(Personal personal) {

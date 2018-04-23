@@ -4,22 +4,22 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "incidencia")
 public class Incidencia {
     @Id
-    @Column(length = 4)
+    @Column(name = "idIncidencia", length = 4)
         private Integer idIncidencia;
 
-    @Column(nullable = false)
+    @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
-    @Column(nullable = false, length = 2)
+    @Column(name = "tipo", nullable = false, length = 2)
     private String tipo;
 
-    private static final String definition = "FOREIGN KEY(id_quincena) REFERENCES quincena (id_quincena) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(idQuincena) REFERENCES quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_quincena", foreignKey = @ForeignKey(name = "quincena_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "idQuincena", foreignKey = @ForeignKey(name = "quincena_fk", foreignKeyDefinition = definition))
     private Quincena quincena;
 
     public Quincena getQuincena(){ return quincena;}
@@ -30,10 +30,10 @@ public class Incidencia {
 
 
 
-    private static final String definition2 = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition2 = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "empleado_pk", foreignKeyDefinition = definition2))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleado_fk", foreignKeyDefinition = definition2))
     private Personal personal;
 
     public Incidencia(){}
@@ -85,10 +85,10 @@ public class Incidencia {
 
 
 
-    private static final String definition3 = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition3))
+    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = definition3))
     private Justificante justificante;
 
     public void setJustificante(Justificante justificante) {

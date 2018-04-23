@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "jefesuperior")
 public class JefeSuperior {
     @Id
-    @Column(length = 2)
-    private Integer id_superior;
+    @Column(name = "idSuperior", length = 2)
+    private Integer idSuperior;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "apellidoPaterno", nullable = false, length = 30)
     private String apellidoPaterno;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
     public JefeSuperior(){}
 
-    public JefeSuperior(Integer id_superior, String nombre, String apellidoPaterno, String apellidoMaterno, JefeSuperior jefe) {
-        this.id_superior = id_superior;
+    public JefeSuperior(Integer idSuperior, String nombre, String apellidoPaterno, String apellidoMaterno, JefeSuperior jefe) {
+        this.idSuperior = idSuperior;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -43,9 +43,9 @@ public class JefeSuperior {
         departamento.setJefeSuperior(null);
     }
 
-    private static final String definition = "FOREIGN KEY (id_superior) REFERENCES  jefe_superior (id_superior) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY (idSuperior) REFERENCES  jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefe_superior_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = definition))
     private JefeSuperior jefe;
 
     public JefeSuperior getJefeSuperior() {
@@ -75,6 +75,6 @@ public class JefeSuperior {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof JefeSuperior)) return false;
-        return id_superior != null && id_superior.equals(((JefeSuperior) obj).id_superior);
+        return idSuperior != null && idSuperior.equals(((JefeSuperior) obj).idSuperior);
     }
 }

@@ -3,16 +3,16 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "permisoeconomico")
 public class PermisoEconomico {
 
     @Id
     private int id;
 
-    private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_justificante", foreignKey = @ForeignKey(name = "justificante_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = definition))
     @MapsId
     private Justificante justificante;
 

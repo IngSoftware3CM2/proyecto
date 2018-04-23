@@ -5,27 +5,26 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table
+@Table(name = "asistencia")
 public class Asistencia {
-    // Tuve que modificar esto porque en el insert no me generaba el id
     @Id
-    @Column(columnDefinition = "serial")
+    @Column(name = "idAsistencia", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Integer idAsistencia;
 
-    @Column(nullable = false)
+    @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
-    @Column(nullable = false, columnDefinition = "time without time zone")
+    @Column(name = "horaEntrada", nullable = false, columnDefinition = "time without time zone")
     private LocalTime horaEntrada;
 
-    @Column(nullable = false, columnDefinition = "time without time zone")
+    @Column(name = "horaSalida", nullable = false, columnDefinition = "time without time zone")
     private LocalTime horaSalida;
 
-    private static final String definition = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "no_empleado", foreignKey = @ForeignKey(name = "personal_pk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = definition))
     private Personal personal;
 
     public Personal getPersonal() {
@@ -38,8 +37,8 @@ public class Asistencia {
 
     public Asistencia() {}
 
-    public Asistencia(Integer id, LocalDate fechaRegistro, LocalTime horaEntrada, LocalTime horaSalida, Personal personal) {
-        this.id = id;
+    public Asistencia(Integer idAsistencia, LocalDate fechaRegistro, LocalTime horaEntrada, LocalTime horaSalida, Personal personal) {
+        this.idAsistencia = idAsistencia;
         this.fechaRegistro = fechaRegistro;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
@@ -51,11 +50,11 @@ public class Asistencia {
     }
 
     public Integer getId() {
-        return id;
+        return idAsistencia;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idAsistencia) {
+        this.idAsistencia = idAsistencia;
     }
 
     public LocalDate getFechaRegistro() {
@@ -91,6 +90,6 @@ public class Asistencia {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof Asistencia)) return false;
-        return id != null && id.equals(((Asistencia) obj).id);
+        return idAsistencia != null && idAsistencia.equals(((Asistencia) obj).idAsistencia);
     }
 }

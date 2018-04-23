@@ -9,7 +9,7 @@ import java.util.List;
 @Table
 public class Quincena {
     @Id
-    @Column(length = 4)
+    @Column(name = "idQuincena", length = 4)
     private Integer idQuincena;
 
     public Quincena(){}
@@ -44,10 +44,10 @@ public class Quincena {
         this.fin = fin;
     }
 
-    @Column(nullable = false)
+    @Column(name = "inicio", nullable = false)
     private LocalDate inicio;
 
-    @Column(nullable = false)
+    @Column(name = "fin", nullable = false)
     private LocalDate fin;
 
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
