@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping("/docente")
@@ -34,5 +36,11 @@ public class DocenteController {
         ModelAndView mav = new ModelAndView("ver-incidencias");
         mav.addObject("incidencias", incidenciaService.listAllIncidencia());
         return mav;
+    }
+
+    @GetMapping("/removejustificante")
+    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int id){
+        justificanteService.removeJustificante(id);
+        return showIncidencias();
     }
 }

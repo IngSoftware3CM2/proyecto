@@ -32,7 +32,7 @@
                         <td th:text="${justificante.getJustificanteTipo()}"></td>
                         <td> <span data-feather="eye"></span> </td>
                         <td><span data-feather="edit"></span></td>
-                        <td><a onclick="deleteRow(this)"><span data-feather="trash-2"></span></a></td>
+                        <td><a href="#" th:href="/docente/removejustificante?id=__${justificante.idJustificante}__"><span data-feather="trash-2"></span></a></td>
                         <td th:text="${justificante.getEstado()}"></td>
                     </tr>
                     </tbody>
@@ -81,12 +81,6 @@
             }
         }
     });
-</script>
-<script>
-    function deleteRow(btn) {
-        var row = btn.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-    }
 </script>
 </body>
 </html>
