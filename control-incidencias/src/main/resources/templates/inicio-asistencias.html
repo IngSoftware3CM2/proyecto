@@ -3,11 +3,11 @@
 <head th:replace="fragments/head :: head('Sistema de Control de Asistencias')">
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<nav th:replace="fragments/navbar-asistencias :: navbar"></nav>
 <div class="container-fluid">
     <div class="row">
         <!--Este es el menu vertical -->
-        <nav th:replace="fragments/verticalnavbar-asistencias :: navbar"></nav>
+        <nav th:replace="fragments/verticalbar-asistencias :: navbar(0)"></nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1 class="display-3">Sistema de Control de Asistencias</h1>
         </main>
