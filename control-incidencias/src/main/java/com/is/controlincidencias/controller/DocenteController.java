@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,10 +18,21 @@ public class DocenteController {
     @Qualifier("justificanteServiceImpl")
     private JustificanteServiceImpl justificanteService;
 
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaServiceImpl incidenciaService;
+
     @GetMapping("/verjustificantes")
     public ModelAndView showJustificantes() {
         ModelAndView mav = new ModelAndView("ver-justificantes");
         mav.addObject("justificantes", justificanteService.listAllJustificante() );
+        return mav;
+    }
+
+    @GetMapping("/verincidencias")
+    public ModelAndView showIncidencias(){
+        ModelAndView mav = new ModelAndView("ver-incidencias");
+        mav.addObject("incidencias", incidenciaService.listAllIncidencia());
         return mav;
     }
 }
