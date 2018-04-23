@@ -20,4 +20,18 @@ public class JustificanteServiceImpl implements JustificanteService {
     public List<Justificante> listAllJustificante() {
         return justificanteRepository.findAll();
     }
+
+    @Override
+    public Justificante findJustificanteById(int id) {
+        return justificanteRepository.findByIdJustificante(id);
+    }
+
+    @Override
+    public void removeJustificante(int id) {
+        Justificante justificante = findJustificanteById(id);
+        if (justificante != null){
+            justificanteRepository.delete(justificante);
+        }
+
+    }
 }

@@ -7,4 +7,8 @@ import java.util.List;
 public interface JustificanteService {
 
     List <Justificante> listAllJustificante ();
+
+    Justificante findJustificanteById (int id);
+
+    void removeJustificante (int id);
 }
