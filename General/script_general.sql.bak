@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS public.licpaternidad CASCADE;
 DROP TABLE IF EXISTS public.incidencia CASCADE;
 DROP TABLE IF EXISTS public.permisoeconomico CASCADE;
 DROP TABLE IF EXISTS public.quincena CASCADE;
-DROP TABLE IF EXISTS "login" CASCADE;
 
 CREATE TABLE public.quincena (
     idQuincena serial NOT NULL,
@@ -50,7 +49,6 @@ CREATE TABLE public.personal (
     apellidoMaterno varchar (30) NOT NULL,
     tipo character (2) NOT NULL,
     diaseconomicos smallint NOT NULL,
-	idusuario integer NOT NULL,
     idDepartamento smallint NOT NULL,
     CONSTRAINT personal_pk PRIMARY KEY (noEmpleado),
     CONSTRAINT departamento_fk FOREIGN KEY (idDepartamento)
@@ -127,20 +125,4 @@ CREATE TABLE public.asistencia (
             REFERENCES public.personal (noEmpleado)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-);
-
-
-
----
-
-CREATE TABLE public.login (
-	correo varchar(70) NOT NULL,
-	passwordsalt varchar(255) NOT NULL,
-	passwordhash varchar(255) NOT NULL,
-	noEmpleado integer NOT NULL,
-	CONSTRAINT login_pk PRIMARY KEY (correo),
-	CONSTRAINT personal_fk FOREIGN KEY(noEmpleado)
-		REFERENCES public.personal (noEmpleado)
-		ON UPDATE CASCADE
-		ON DELETE CASCADE
 );
