@@ -43,5 +43,4 @@ public class PermisoEconomico {
         return justificante != null && justificante.equals(((PermisoEconomico) obj).justificante);
     }
 
-
 }
