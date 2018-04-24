@@ -24,14 +24,14 @@ public class DocenteController {
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaServiceImpl incidenciaService;
 
-    @GetMapping("/verjustificantes")
+    @GetMapping("/justificantes")
     public ModelAndView showJustificantes() {
         ModelAndView mav = new ModelAndView("ver-justificantes");
         mav.addObject("justificantes", justificanteService.listAllJustificante() );
         return mav;
     }
 
-    @GetMapping("/verincidencias")
+    @GetMapping("/incidencias")
     public ModelAndView showIncidencias(){
         ModelAndView mav = new ModelAndView("ver-incidencias");
         mav.addObject("incidencias", incidenciaService.listAllIncidencia());
