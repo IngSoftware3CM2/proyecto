@@ -1,8 +1,6 @@
 package com.is.controlincidencias.entity;
 
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -19,9 +17,9 @@ public class Login {
     private String passwordhash;
 
 
-    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleadoLogin_fk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleadoLogin_fk", foreignKeyDefinition = DEFINITION))
 
     private Personal personal;
 

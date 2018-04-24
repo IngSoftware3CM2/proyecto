@@ -3,6 +3,7 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "jefesuperior")
@@ -43,9 +44,9 @@ public class JefeSuperior {
         departamento.setJefeSuperior(null);
     }
 
-    private static final String definition = "FOREIGN KEY (idSuperior) REFERENCES  jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY (idSuperior) REFERENCES  jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = DEFINITION))
     private JefeSuperior jefe;
 
     public JefeSuperior getJefeSuperior() {
@@ -70,6 +71,12 @@ public class JefeSuperior {
         jefesuperior.setJefeSuperior(null);
     }
 
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(idSuperior, nombre, apellidoPaterno, apellidoMaterno, departamentos, jefe, subordinado);
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "quincena")
@@ -64,6 +65,12 @@ public class Quincena {
     public void removeIncidencia(Incidencia incidencia) {
         incidencias.remove(incidencia);
         incidencia.setQuincena(null);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getIdQuincena(), getInicio(), getFin(), incidencias);
     }
 
     @Override

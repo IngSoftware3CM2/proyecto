@@ -1,7 +1,7 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class Justificante {
     @Column(name = "idJustificante", length = 4)
     private Integer idJustificante;
 
-    @Column(name = "fecha", nullable = false, columnDefinition = "time without time zone")
-    private LocalTime fecha;
+    @Column(name = "fecha", nullable = false, columnDefinition = "date")
+    private LocalDate fecha;
 
 
     @Column(name = "estado", nullable = false, length = 20)
@@ -40,10 +40,10 @@ public class Justificante {
     }
 
 
-    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
     public void setPersonal(Personal personal) {
