@@ -32,6 +32,5 @@ public class JustificanteServiceImpl implements JustificanteService {
         if (justificante != null){
             justificanteRepository.delete(justificante);
         }
-
     }
 }

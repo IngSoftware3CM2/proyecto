@@ -17,7 +17,5 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     private IncidenciaRepository incidenciaRepository;
 
     @Override
-    public List<Incidencia> listAllIncidencia() {
-        return incidenciaRepository.findAll();
-    }
+    public List<Incidencia> listAllIncidencia() {return incidenciaRepository.findAll();}
 }
