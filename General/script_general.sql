@@ -21,7 +21,7 @@ CREATE TABLE public.quincena (
 
 CREATE TABLE public.zona(
     idZona integer NOT NULL,
-    nombre varchar(20) NOT NULL,
+    nombre varchar(35) NOT NULL,
     CONSTRAINT zona_pk PRIMARY KEY (idZona)
 );
 
@@ -123,6 +123,10 @@ CREATE TABLE public.tipoa(
     tipo varchar(2) NOT NULL,
     idUnidad varchar(10) NOT NULL,
     CONSTRAINT tipoa_pk PRIMARY KEY (idJustificante),
+	CONSTRAINT tipoa_idjustificante_fk FOREIGN KEY (idJustificante)
+        REFERENCES public.justificante (idJustificante)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     CONSTRAINT unidadmedica_fk FOREIGN KEY (idUnidad)
         REFERENCES public.unidadmedica (idUnidad)
         ON UPDATE CASCADE
