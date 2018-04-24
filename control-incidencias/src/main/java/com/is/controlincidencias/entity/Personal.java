@@ -80,6 +80,10 @@ public class Personal {
     @Column(nullable = false, length = 4)
     private String tipo;
 
+    @OneToOne(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Login login;
+
+
     public Personal() {}
 
     public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {

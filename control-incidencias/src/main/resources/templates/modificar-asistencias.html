@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Registro de Asistencia')">
+<head th:replace="fragments/head :: head('Modificar Asistencia')">
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<nav th:replace="fragments/navbar-asistencias :: navbar"></nav>
 <div class="container-fluid">
     <div class="row">
         <!--Este es el menu vertical -->
-        <nav th:replace="fragments/verticalnavbar :: navbar"></nav>
+        <nav th:replace="fragments/verticalbar-asistencias :: navbar(2)"></nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Registro de Asistencia</h1>
+            <h1>Modificar Asistencia</h1>
             <div class="form-row">
                 <div class="col-md-6 mb-3"></div>
                 <div class="col-md-2 mb-3">
@@ -26,51 +26,36 @@
                 </div>
                 <div class="col-md-2 mb-3">
                     <input type="text" class="form-control" id="inputTarjeta" pattern="^\d{6,8}$">
-                    <div class="invalid-feedback" id="error1">*Número de tarjeta no encontrado</div>
-                    <div class="invalid-feedback" id="errorB">*Ingresa un número de tarjeta que sea valido</div>
-                    <div class="invalid-feedback" id="errorC">*Registro repetido en el sistema en el dia ingresado.</div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="inputEntrada">Hora de Entrada:</label>
                 </div>
                 <div class="col-md-1 mb-3">
                     <input type="text" class="form-control" id="inputEntrada" pattern="^\d{1,2}:\d\d$">
-                    <div class="invalid-feedback" id="error3">*Hora erronea</div>
+                    <div class="invalid-feedback">*Hora erronea</div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="inputSalida">Hora de Salida:</label>
                 </div>
                 <div class="col-md-1 mb-3">
                     <input type="text" class="form-control" id="inputSalida" pattern="^\d{1,2}:\d\d$">
-                    <div class="invalid-feedback" id="error4">*Hora erronea</div>
-                </div>
-                <div class="col-md-1 mb-3">
-                    <span class="oi oi-plus custom-add-icon" id="btnAgregar"></span>
+                    <div class="invalid-feedback">*Hora erronea</div>
                 </div>
             </div>
-
-            <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th>Número de Tarjeta</th>
-                    <th>Hora de Entrada</th>
-                    <th>Hora de Salida</th>
-                    <th>Fecha de Registro</th>
-                    <th>Eliminar</th>
-                </tr>
-                </thead>
-                <tbody id="bodyRegistros"></tbody>
-            </table>
             <div class="form-row">
-                <div class="col-md-8 mb-3">
-                </div>
                 <div class="col-md-2 mb-3">
-                    <button id="btnRegistrarAsistencias" class="btn btn-outline-primary">Registrar Asistencias</button>
-                    <div class="invalid-feedback" id="errorF">*No se guardaron registros</div>
-                    <div class="valid-feedback" id="exito">Operación exitosa</div>
+                    <button id="btnBuscar" class="btn btn-outline-primary">Buscar</button>
+                    <div class="invalid-feedback">*Ingresa numero de tarjeta</div>
+                    <div class="invalid-feedback">*Numero de tarjeta no encontrado</div>
+                    <div class="invalid-feedback">*Numero de tarjeta sin registro</div>
+                </div>
+                <div class="col-md-6 mb-3"></div>
+                <div class="col-md-2 mb-3">
+                    <button id="btnModificar" class="btn btn-outline-primary">Modificar Asistencias</button>
+                    <div class="invalid-feedback" id="errorF">*No se guardado la modificación</div>
+                    <div class="valid-feedback" id="exito">Modificación exitosa</div>
                 </div>
             </div>
-
         </main>
     </div>
 </div>
@@ -78,13 +63,15 @@
 <script src="#" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
-<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-<link href="#" th:href="@{/css/open-iconic-bootstrap.min.css}" rel="stylesheet" type="text/css" />
-<script src="#" th:src="@{/js/registrar-asistencia.js}" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-    feather.replace()
+    feather.replace();
+    $("#inputFecha").datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'yyyy-mm-dd'
+    });
 </script>
 </body>
 </html>
