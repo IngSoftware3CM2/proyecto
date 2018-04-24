@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+<body>
+<nav>
+    <ul>
+        <li><a href="#" th:href="@{/asistencias/registrar}">Registrar asistencia</a></li>
+        <li><a href="#" th:href="@{/usuarios/registrar}">Registrar usuario</a></li>
+        <li><a href="#" th:href="@{/usuarios/modificar}">Modificar datos de usuarios</a></li>
+    </ul>
+</nav>
+<section>
+    <h1>Sistema de Control de Asistencia</h1>
+    <form action="#">
+        <div class="form-group">
+            <label for="departamento">Departamento</label>
+            <select name="departamento" id="departamento" class="form-control">
+                <option value="">Departamento</option>
+            </select>
+        </div>
+        <label for="">Departamento</label><input type="text" placeholder="Departamento">
+        <label for="">Número de empleado</label><input type="text" placeholder="Número de empleado">
+        <label for="">Nombre</label><input type="text" placeholder="Nombre">
+        <label for="">Apellido Paterno</label><input type="text" placeholder="Apellido Paterno">
+        <label for="">Apellido Materno</label><input type="text" placeholder="Apellido Materno">
+        <label for="">Correo</label><input type="text" placeholder="Correo">
+        <label for="">Hora de entrada</label>
+        <select name="" id="">
+            <option value="">7:00</option>
+        </select>
+        <select name="" id="">
+            <option value="">AM</option>
+            <option value="">PM</option>
+        </select>
+        <label for="">Hora de Salida</label>
+        <select name="" id="">
+            <option value="">7:00</option>
+        </select>
+        <select name="" id="">
+            <option value="">AM</option>
+            <option value="">PM</option>
+        </select>
+    </form>
+</section>
+</body>
+</html>
