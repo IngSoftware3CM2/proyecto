@@ -1,7 +1,9 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
+import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,17 +26,25 @@ public class DocenteController {
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaServiceImpl incidenciaService;
 
+    @Autowired
+    @Qualifier("personalServiceImpl")
+    private PersonalServiceImpl personalService;
+
     @GetMapping("/justificantes")
     public ModelAndView showJustificantes() {
+        int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
-        mav.addObject("justificantes", justificanteService.listAllJustificante() );
+        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("justificantes", justificanteService.getJustificantesByPersonal(personal));
         return mav;
     }
 
     @GetMapping("/incidencias")
     public ModelAndView showIncidencias(){
+        int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
-        mav.addObject("incidencias", incidenciaService.listAllIncidencia());
+        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         return mav;
     }
 
