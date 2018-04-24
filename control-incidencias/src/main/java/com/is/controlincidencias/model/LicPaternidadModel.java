@@ -79,6 +79,20 @@ public class LicPaternidadModel implements Serializable{
         this.copiaidentificacion = copiaidentificacion;
     }
 
+    @Override
+    public String toString() {
+        return "LicPaternidadModel{" +
+                "justificante=" + justificante +
+                ", justificacion='" + justificacion + '\'' +
+                ", registrolicencia='" + registrolicencia + '\'' +
+                ", actanacimiento='" + actanacimiento + '\'' +
+                ", actamatrimonio='" + actamatrimonio + '\'' +
+                ", constanciacurso='" + constanciacurso + '\'' +
+                ", comprobanteingresos='" + comprobanteingresos + '\'' +
+                ", copiaidentificacion='" + copiaidentificacion + '\'' +
+                '}';
+    }
+
     private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
     private JustificanteModel justificante;
 

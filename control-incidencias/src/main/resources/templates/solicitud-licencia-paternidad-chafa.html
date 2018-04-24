@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-2"></div>
     </div>
-    <form action="#" th:action="@{/add-lic-paternidad}" method="post">
+    <form action="#" enctype="multipart/form-data" th:action="@{/licenciapaternidad/add-lic-paternidad}" th:object="${licPaternidadModel}" method="post">
     <table>
         <tr>
             <td>
@@ -37,7 +37,7 @@
                 Justificacion:
             </td>
             <td>
-                <input type="text" placeholder="Debido a... ">
+                <input type="text" placeholder="Debido a... " th:field="*{justificacion}" th:value="*{justificacion}">
             </td>
         </tr>
     </table>
@@ -50,29 +50,53 @@
                 Documento 1:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile1">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
+
+                <input type="text" th:field="*{registrolicencia}" th:value="*{registrolicencia}">
+                <input type="text" th:field="*{actanacimiento}" th:value="*{actanacimiento}">
+                <input type="text" th:field="*{actamatrimonio}" th:value="*{actamatrimonio}">
+                <input type="text" th:field="*{constanciacurso}" th:value="*{constanciacurso}">
+                <input type="text" th:field="*{comprobanteingresos}" th:value="*{comprobanteingresos}">
+                <input type="text" th:field="*{copiaidentificacion}" th:value="*{copiaidentificacion}">
             </td>
             <td>
                 nombre doc
             </td>
         </tr>
+
         <tr>
             <td>
                 Documento 2:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile2">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
             </td>
             <td>
                 nombre doc
             </td>
         </tr>
+        <!--
         <tr>
             <td>
                 Documento 3:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile3">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
             </td>
             <td>
                 nombre doc
@@ -83,7 +107,12 @@
                 Documento 4:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile4">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
             </td>
             <td>
                 nombre doc
@@ -94,7 +123,12 @@
                 Documento 5:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile5">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
             </td>
             <td>
                 nombre doc
@@ -105,13 +139,18 @@
                 Documento 6:
             </td>
             <td>
-                <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>New Contact</button>
+                <div class="form-group">
+                    <label class="custom-file" id="customFile6">
+                        <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                        <span class="custom-file-control form-control-file"></span>
+                    </label>
+                </div>
             </td>
             <td>
                 nombre doc
             </td>
         </tr>
-
+-->
     </table>
         <input type="submit" value="Enviar">
     </form>
