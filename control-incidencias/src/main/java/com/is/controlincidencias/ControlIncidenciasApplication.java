@@ -9,7 +9,7 @@ public class ControlIncidenciasApplication {
     public static void main(String[] args) {
         SpringApplication.run(ControlIncidenciasApplication.class, args);
     }
-git
+
 }
 
 
