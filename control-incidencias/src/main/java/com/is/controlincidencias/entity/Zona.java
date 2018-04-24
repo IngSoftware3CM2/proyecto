@@ -12,7 +12,7 @@ public class Zona {
     @Column(name = "idZona")
     private String idZona;
 
-    @Column(name = "inicio", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
 

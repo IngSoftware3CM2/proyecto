@@ -3,6 +3,7 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "unidadmedica")
@@ -12,7 +13,7 @@ public class UnidadMedica {
     @Column(name = "idUnidad")
     private String idUnidad;
 
-    @Column(name = "inicio", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
     private static final String DEFINITION = "FOREIGN KEY(idZona) REFERENCES Zona (idZona) ON UPDATE CASCADE ON DELETE CASCADE";
@@ -58,5 +59,22 @@ public class UnidadMedica {
 
     public void setZona(Zona zona) {
         this.zona = zona;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UnidadMedica that = (UnidadMedica) o;
+        return Objects.equals(getIdUnidad(), that.getIdUnidad()) &&
+                Objects.equals(getNombre(), that.getNombre()) &&
+                Objects.equals(getZona(), that.getZona()) &&
+                Objects.equals(tiposa, that.tiposa);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getIdUnidad(), getNombre(), getZona(), tiposa);
     }
 }

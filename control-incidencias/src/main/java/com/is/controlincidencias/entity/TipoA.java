@@ -3,6 +3,7 @@ package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tipoa")
@@ -111,5 +112,26 @@ public class TipoA {
 
     public void setUnidadMedica(UnidadMedica unidadMedica) {
         this.unidadmedica = unidadMedica;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TipoA tipoA = (TipoA) o;
+        return getId() == tipoA.getId() &&
+                Objects.equals(getJustificante(), tipoA.getJustificante()) &&
+                Objects.equals(getFolio(), tipoA.getFolio()) &&
+                Objects.equals(getInicio(), tipoA.getInicio()) &&
+                Objects.equals(getFin(), tipoA.getFin()) &&
+                Objects.equals(getLicenciamedica(), tipoA.getLicenciamedica()) &&
+                Objects.equals(getTipo(), tipoA.getTipo()) &&
+                Objects.equals(unidadmedica, tipoA.unidadmedica);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getJustificante(), getFolio(), getInicio(), getFin(), getLicenciamedica(), getTipo(), unidadmedica);
     }
 }
