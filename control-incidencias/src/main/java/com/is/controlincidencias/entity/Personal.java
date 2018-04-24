@@ -3,6 +3,7 @@ package com.is.controlincidencias.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "personal")
@@ -63,10 +64,10 @@ public class Personal {
         justificante.setPersonal(null);
     }
 
-    private static final String definition = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idDepartamento", foreignKey = @ForeignKey(name = "departamento_fk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "idDepartamento", foreignKey = @ForeignKey(name = "departamento_fk", foreignKeyDefinition = DEFINITION))
     private Departamento departamento;
 
     public Departamento getDepartamento() {
@@ -94,6 +95,30 @@ public class Personal {
         this.apellidoMaterno = apellidoMaterno;
         this.departamento = departamento;
         this.tipo = tipo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Personal personal = (Personal) o;
+        return Objects.equals(getNoEmpleado(), personal.getNoEmpleado()) &&
+                Objects.equals(getNoTarjeta(), personal.getNoTarjeta()) &&
+                Objects.equals(getNombre(), personal.getNombre()) &&
+                Objects.equals(getApellidoPaterno(), personal.getApellidoPaterno()) &&
+                Objects.equals(getApellidoMaterno(), personal.getApellidoMaterno()) &&
+                Objects.equals(getAsistencias(), personal.getAsistencias()) &&
+                Objects.equals(getIncidencias(), personal.getIncidencias()) &&
+                Objects.equals(getJustificantes(), personal.getJustificantes()) &&
+                Objects.equals(getDepartamento(), personal.getDepartamento()) &&
+                Objects.equals(getTipo(), personal.getTipo()) &&
+                Objects.equals(login, personal.login);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getNoEmpleado(), getNoTarjeta(), getNombre(), getApellidoPaterno(), getApellidoMaterno(), getAsistencias(), getIncidencias(), getJustificantes(), getDepartamento(), getTipo(), login);
     }
 
     public Integer getNoEmpleado() {
