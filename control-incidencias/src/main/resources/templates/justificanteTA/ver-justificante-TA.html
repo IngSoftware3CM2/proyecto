@@ -1,0 +1,253 @@
+<HTML>
+<head>
+	<title>Justificante Tipo A</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}"/>
+	<link th:href="@{/css/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://www.escom.ipn.mx/">
+        <div class="card" style="width: 12rem;">
+          <img class="card-img-top" th:src="@{/img/header.png}" alt="Card image cap"/>
+        </div>
+      </a>
+      <ul class="navbar-nav px-10">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link h2" href="RegistrarAsistencia.html">SISTEMA DE CONTROL DE INCIDENCIAS</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Cerrar Sesion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link " href="IndexS1.html">
+                  <span data-feather="home"></span>
+                  Inicio
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="archive"></span>
+                  Ver Incidencias
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="folder"></span>
+                  Ver Justificantes <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="user"></span>
+                  Ver Perfil
+                </a>
+              </li>
+            </ul> 
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="container" style="margin-top: -8%">
+            <div class="row justify-content-end">
+              <div class="col-4">
+                Docente | Jaime López Rabadán
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <h2> Generar Solicitud</h2>
+              </div>
+              <div class="col-sm-2"></div>
+            </div>
+            <form>
+              <div class="row">
+                <div class="col-sm-8"> <!-- CONTENEDOR IZQUIERDO-->
+                  <div class="row">
+                    <div class="col-sm-8 font-error">
+                      Campos Obligatorios vacios.
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <label>Numero de Tarjeta : 02-002</label>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <label>Tipo de Incidencia: Licencia Medica</label>
+                    </div>
+                    
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col-sm-4">
+                      <label for="folio-issste">Folio ISSSTE </label>
+                      
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control is-invalid" id="validationServer01" placeholder="Folio ISSSTE" value="" required/>
+                    <div class="invalid-feedback">
+                      Folio ISSSTE vacio
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col-sm-4">
+                      <label for="folio-issste">Clinica ISSSTE </label>
+                      
+                    </div>
+                    <div class="col-sm-4">
+                      <select class="form-control">
+                        <option>No. clinica ISSSTE</option>
+                        <option>Clinica 1</option>
+                        <option>Clinica 2</option>
+                        <option>Clinica 3</option>
+                        <option>Clinica 4</option>
+                        <option>Clinica 5</option>
+                      </select>
+                    
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="font-error">
+                        Selecciona una clinica
+                      </div>
+                    </div>
+                  </div>
+                  <br> </br>
+                  <div class="form-row">
+                    <div class="col-sm-4">
+                      <label for="folio-issste">Fecha de Inicio </label>
+                      
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><span data-feather="calendar"></span></div>
+                        </div>
+                        <input type="text" class="form-control is-invalid" id="fecha" placeholder=" dd/mm /aaaa "/>
+                        <div class="invalid-feedback">
+                          Fecha no puede estar vacio
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col-sm-4">
+                      <label for="folio-issste">Fecha final </label>
+                      
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><span data-feather="calendar"></span></div>
+                        </div>
+                        <input type="text" class="form-control is-invalid" id="fecha" placeholder=" dd/mm /aaaa "/>
+                        <div class="invalid-feedback">
+                          Fecha no puede estar vacio
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col-sm-4">
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    <div class="col-sm-4">
+                      <button type="button" class="btn btn-primary">Cancelar</button>
+                    </div>
+                  </div>
+
+                </div> <!--- TERMINA CONTENEDOR IZQUIERDO -->
+
+
+                <div class="col-sm-4"> <!---- CONTENEDOR DERECHO -->
+                  <div class="row">
+                      <div class="font-error">
+                      No se ha adjuntado Imagen
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <label for="archivo">Seleccionar Archivo</label>
+                      <input type="file" class="form-control-file" id="imagen"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <img th:src="@{/img/prueba.svg}" class="img-fluid" alt="Responsive image"/>
+                  </div>
+                </div> <!---- TERMINA CONTENEDOR DERECHO-->
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+
+    <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                datasets: [{
+                    data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#007bff'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        });
+    </script>
+  </body>
+</HTML>
