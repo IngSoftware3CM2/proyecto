@@ -36,7 +36,7 @@ public class LicenciaPaternidadController {
     @PostMapping("/add-lic-paternidad")
     private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) throws IOException {
         LOG.info("Datos que me llegan "+licPaternidadModel.toString());
-        //licPaternidadService.consultarIncidencia(1).toString();
+        LOG.info("Justificante con id 1 ----- "+licPaternidadService.consultarJustificante(1).toString());
         for (MultipartFile file: files){
             LOG.info("Info de archivo "+file.getOriginalFilename());
         }

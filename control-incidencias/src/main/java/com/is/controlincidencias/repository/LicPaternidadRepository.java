@@ -11,6 +11,4 @@ import java.io.Serializable;
 @Repository("licPaternidadRepository")
 public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Serializable> {
 
-    public abstract Incidencia findById(int id);
-
 }

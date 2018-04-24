@@ -8,4 +8,7 @@ import java.io.Serializable;
 
 @Repository("incidenciaRepository")
 public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializable> {
+
+    public abstract Incidencia findByIdIncidencia(int id);
+
 }

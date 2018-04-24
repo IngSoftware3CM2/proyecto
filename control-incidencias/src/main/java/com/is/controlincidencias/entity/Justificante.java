@@ -98,6 +98,19 @@ public class Justificante {
         return 32;
     }
 
+    @Override
+    public String toString() {
+        return "Justificante{" +
+                "idJustificante=" + idJustificante +
+                ", fecha=" + fecha +
+                ", estado='" + estado + '\'' +
+                ", permisoEconomico=" + permisoEconomico +
+                ", licPaternidad=" + licPaternidad +
+                ", incidencias=" + incidencias +
+                ", personal=" + personal +
+                '}';
+    }
+
     public Justificante(Integer idJustificante, Personal personal) {
         this.idJustificante = idJustificante;
         this.personal = personal;

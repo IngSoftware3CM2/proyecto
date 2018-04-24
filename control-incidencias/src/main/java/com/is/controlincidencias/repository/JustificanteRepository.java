@@ -9,5 +9,5 @@ import java.io.Serializable;
 @Repository("justificanteRepository")
 public interface JustificanteRepository extends JpaRepository <Justificante, Serializable> {
 
-    Justificante findByIdJustificante (int id);
+   public abstract Justificante findByIdJustificante (int id);
 }
