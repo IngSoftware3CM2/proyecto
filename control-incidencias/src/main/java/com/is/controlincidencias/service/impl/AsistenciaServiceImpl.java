@@ -13,10 +13,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Service("asistenciaServiceImpl")
 public class AsistenciaServiceImpl implements AsistenciaService {
     private static final Log LOG = LogFactory.getLog(AsistenciaServiceImpl.class);
+    private LocalTime siete = LocalTime.of(7, 0, 0, 0);
+    private LocalTime veintidos = LocalTime.of(22,  0, 0, 0);
+
     @Autowired
     @Qualifier("asistenciaRepository")
     private AsistenciaRepository asistenciaRepository;
@@ -41,8 +45,14 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
         asistencia.setFechaRegistro(asistenciaJSON.getFechaRegistro());
-        asistencia.setHoraEntrada(asistenciaJSON.getHoraEntrada());
-        asistencia.setHoraSalida(asistenciaJSON.getHoraSalida());
+        if (asistenciaJSON.getHoraEntrada().compareTo(siete) > 0)
+            asistencia.setHoraEntrada(asistenciaJSON.getHoraEntrada());
+        else
+            asistencia.setHoraEntrada(siete);
+        if (asistenciaJSON.getHoraSalida().compareTo(veintidos) < 0)
+            asistencia.setHoraSalida(asistenciaJSON.getHoraSalida());
+        else
+            asistencia.setHoraSalida(veintidos);
         Asistencia a = asistenciaRepository.save(asistencia);
         LOG.info(a.getId());
     }
