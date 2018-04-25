@@ -24,6 +24,9 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
+    @Column(name = "tipo", nullable = false, length = 4)
+    private String tipo;
+
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Asistencia> asistencias = new ArrayList<>();
 
@@ -77,9 +80,6 @@ public class Personal {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
-
-    @Column(nullable = false, length = 4)
-    private String tipo;
 
     @OneToOne(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Login login;

@@ -19,8 +19,7 @@ public class Login {
 
     private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleadoLogin_fk", foreignKeyDefinition = DEFINITION))
-
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
 
@@ -43,10 +42,6 @@ public class Login {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(correo, passwordsalt, passwordhash, personal);
     }
-
-
-
 }

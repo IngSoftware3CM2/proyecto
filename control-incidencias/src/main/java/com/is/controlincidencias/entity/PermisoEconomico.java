@@ -1,16 +1,15 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "permisoeconomico")
-public class PermisoEconomico {
-
-    @Id
-    private int id;
+public class PermisoEconomico implements Serializable {
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
+    @Id
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
     @MapsId
