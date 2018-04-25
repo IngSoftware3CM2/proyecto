@@ -42,5 +42,4 @@ public class PermisoEconomico implements Serializable {
         return justificante != null && justificante.equals(((PermisoEconomico) obj).justificante);
     }
 
-
 }
