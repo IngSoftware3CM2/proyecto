@@ -16,12 +16,11 @@ public class Login {
     @Column(name = "passwordhash", nullable = false, length = 255)
     private String passwordhash;
 
-
     private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
-
 
     public Login(String passwordsalt, String passwordhash, Personal personal) {
         this.passwordsalt = passwordsalt;

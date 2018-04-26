@@ -54,6 +54,6 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         else
             asistencia.setHoraSalida(veintidos);
         Asistencia a = asistenciaRepository.save(asistencia);
-        LOG.info(a.getId());
+        LOG.info(a.getIdAsistencia());
     }
 }

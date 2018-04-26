@@ -16,7 +16,6 @@ public class Justificante {
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
     private LocalDate fecha;
 
-
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
@@ -29,6 +28,15 @@ public class Justificante {
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
 
+    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
+    private Personal personal;
+
+    public Justificante() {
+    }
+
     public void addAsistencia(Incidencia incidencia) {
         incidencias.add(incidencia);
         incidencia.setJustificante(this);
@@ -39,25 +47,32 @@ public class Justificante {
         incidencia.setPersonal(null);
     }
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
 
-    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
-    private Personal personal;
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
 
     public void setPersonal(Personal personal) {
         this.personal = personal;
     }
 
-
-
-
     public Integer getIdJustificante() {
         return idJustificante;
-    }
-
-    public Justificante() {
     }
 
     public void setIdJustificante(Integer idJustificante) {
@@ -89,10 +104,6 @@ public class Justificante {
         this.incidencias = incidencias;
     }
 
-    public Personal getPersonal() {
-        return personal;
-    }
-
     @Override
     public int hashCode() {
         return 32;
@@ -112,25 +123,14 @@ public class Justificante {
     }
 
     /*Cambios por Absalom | Agregando un método para obtener el tipo de justificante y getter para fecha y estado*/
-    public String getJustificanteTipo (){
+    public String getJustificanteTipo() {
         String tipo = "";
-        if (!(getPermisoEconomico().equals(null))){
+        if (!(getPermisoEconomico().equals(null))) {
             tipo = "Permisos Economicos";
-        } else if (!(getLicenciaPaternidad().equals(null)))
-        {
+        } else if (!(getLicenciaPaternidad().equals(null))) {
             tipo = "Licencias paternidad";
         }
 
         return tipo;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getFecha() {
-        return fecha.toString();
-    }
-
-    /*------------------------------------------------------------------------------------------------------------*/
 }

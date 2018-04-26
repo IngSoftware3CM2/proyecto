@@ -13,7 +13,7 @@ public class UnidadMedica {
     @Column(name = "idUnidad")
     private String idUnidad;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 180)
     private String nombre;
 
     private static final String DEFINITION = "FOREIGN KEY(idZona) REFERENCES Zona (idZona) ON UPDATE CASCADE ON DELETE CASCADE";
@@ -21,7 +21,6 @@ public class UnidadMedica {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idZona", foreignKey = @ForeignKey(name = "zona_fk", foreignKeyDefinition = DEFINITION))
     private Zona zona;
-
 
     @OneToMany(mappedBy = "unidadmedica", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TipoA> tiposa = new ArrayList<>();
@@ -35,7 +34,6 @@ public class UnidadMedica {
         tiposa.remove(tipoa);
         tipoa.setUnidadMedica(null);
     }
-
 
     public String getIdUnidad() {
         return idUnidad;

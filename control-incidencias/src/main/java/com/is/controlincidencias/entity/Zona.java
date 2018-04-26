@@ -9,12 +9,11 @@ import java.util.Objects;
 @Table(name = "zona")
 public class Zona {
     @Id
-    @Column(name = "idZona")
+    @Column(name = "idZona", length = 35)
     private String idZona;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 180)
     private String nombre;
-
 
     @OneToMany(mappedBy = "zona", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UnidadMedica> unidadesMedicas = new ArrayList<>();
@@ -28,7 +27,6 @@ public class Zona {
         unidadesMedicas.remove(unidadMedica);
         unidadMedica.setZona(null);
     }
-
 
     public Zona(String idZona, String nombre) {
         this.idZona = idZona;

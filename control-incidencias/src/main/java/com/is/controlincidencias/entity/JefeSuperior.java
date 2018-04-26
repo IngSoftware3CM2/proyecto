@@ -21,7 +21,20 @@ public class JefeSuperior {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
-    public JefeSuperior(){}
+    @OneToMany(mappedBy = "jefesuperior", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Departamento> departamentos = new ArrayList<>();
+
+    private static final String DEFINITION = "FOREIGN KEY (idSuperior) REFERENCES  jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "jefe", nullable = true, insertable = false, updatable = false, foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = DEFINITION))
+    private JefeSuperior jefe;
+
+    @OneToMany(mappedBy = "jefe", cascade = CascadeType.ALL, orphanRemoval = true) /*Personales, o subordinados de este jefe*/
+    private List<JefeSuperior> subordinado = new ArrayList<>();
+
+    public JefeSuperior() {
+    }
 
     public JefeSuperior(Integer idSuperior, String nombre, String apellidoPaterno, String apellidoMaterno, JefeSuperior jefe) {
         this.idSuperior = idSuperior;
@@ -30,9 +43,6 @@ public class JefeSuperior {
         this.apellidoMaterno = apellidoMaterno;
         this.jefe = jefe;
     }
-
-    @OneToMany(mappedBy = "jefesuperior", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Departamento> departamentos = new ArrayList<>();
 
     public void addDepartamento(Departamento departamento) {
         departamentos.add(departamento);
@@ -44,11 +54,6 @@ public class JefeSuperior {
         departamento.setJefeSuperior(null);
     }
 
-    private static final String DEFINITION = "FOREIGN KEY (idSuperior) REFERENCES  jefesuperior (idSuperior) ON UPDATE CASCADE ON DELETE CASCADE";
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jefe", nullable = true ,insertable=false, updatable=false,foreignKey = @ForeignKey(name = "jefesuperior_fk", foreignKeyDefinition = DEFINITION))
-    private JefeSuperior jefe;
-
     public JefeSuperior getJefeSuperior() {
         return jefe;
     }
@@ -56,10 +61,6 @@ public class JefeSuperior {
     public void setJefeSuperior(JefeSuperior jefeSuperior) {
         this.jefe = jefeSuperior;
     }
-
-
-    @OneToMany(mappedBy="jefe", cascade = CascadeType.ALL, orphanRemoval = true) /*Personales, o subordinados de este jefe*/
-    private List<JefeSuperior> subordinado = new ArrayList<>();
 
     public void addSubordinado(JefeSuperior jefesuperior) {
         subordinado.add(jefesuperior);
@@ -70,7 +71,6 @@ public class JefeSuperior {
         subordinado.remove(jefesuperior);
         jefesuperior.setJefeSuperior(null);
     }
-
 
     @Override
     public int hashCode() {
