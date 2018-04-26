@@ -106,4 +106,8 @@ public class Incidencia {
     public void setQuincena(Quincena quincena) {
         this.quincena = quincena;
     }
+
+    public int getJustificanteId (){
+        return this.justificante.getIdJustificante();
+    }
 }
