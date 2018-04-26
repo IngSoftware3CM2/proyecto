@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -49,8 +52,9 @@ public class DocenteController {
     }
 
     @GetMapping("/removejustificante")
-    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int id){
-        justificanteService.removeJustificante(id);
+    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
+        int noEmpleado = 22;
+        justificanteService.removeJustificante(idJustificante);
         return showIncidencias();
     }
 }

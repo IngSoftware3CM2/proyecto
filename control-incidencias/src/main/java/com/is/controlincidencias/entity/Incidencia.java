@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Incidencia {
     @Id
     @Column(name = "idIncidencia", length = 4)
-        private Integer idIncidencia;
+    private Integer idIncidencia;
 
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
@@ -101,7 +101,7 @@ public class Incidencia {
 
 
 
-    private static final String DEFINITION3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE SET NULL";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION3))
@@ -122,6 +122,10 @@ public class Incidencia {
         if (this == obj) return true;
         if (!(obj instanceof Incidencia)) return false;
         return idIncidencia != null && idIncidencia.equals(((Incidencia) obj).idIncidencia);
+    }
+
+    public int getJustificanteId (){
+        return this.justificante.getIdJustificante();
     }
 
 }

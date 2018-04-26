@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IncidenciaService {
     List<Incidencia> getIncidenciasByPersonal (Personal personal);
+    List<Incidencia> getIncidenciasByJustificanteId (int justificanteId, List<Incidencia> incidencias);
 }

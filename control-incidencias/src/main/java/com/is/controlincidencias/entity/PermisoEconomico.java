@@ -5,9 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "permisoeconomico")
 public class PermisoEconomico {
-
     @Id
-    private int id;
+    @Column(name = "idIncidencia", length = 4)
+    private Integer idPE;
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
@@ -18,18 +18,17 @@ public class PermisoEconomico {
 
     public PermisoEconomico(){}
 
-    public Justificante getJustificante() {
-        return justificante;
-    }
-
     public PermisoEconomico(Justificante justificante) {
         this.justificante = justificante;
+    }
+
+    public Justificante getJustificante() {
+        return justificante;
     }
 
     public void setJustificante(Justificante justificante) {
         this.justificante = justificante;
     }
-
 
     @Override
     public int hashCode() {
