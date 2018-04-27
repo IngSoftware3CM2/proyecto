@@ -10,11 +10,8 @@ import java.util.List;
 
 @Repository("incidenciaRepository")
 public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializable> {
-<<<<<<< HEAD
 
     public abstract Incidencia findByIdIncidencia(int id);
 
-=======
     List <Incidencia> findAllByPersonal (Personal personal);
->>>>>>> f6b5f8322aa0b43614846410c8d135a4ef08ce17
 }

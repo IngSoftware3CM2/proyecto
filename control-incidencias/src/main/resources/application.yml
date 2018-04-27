@@ -12,11 +12,7 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-<<<<<<< HEAD
-      ddl-auto: update # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
-=======
-      ddl-auto: create-drop #update # Se cambio a update para no borrar mis registros/  borra y crea tablas
->>>>>>> f6b5f8322aa0b43614846410c8d135a4ef08ce17
+      ddl-auto: create-drop # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 logging:

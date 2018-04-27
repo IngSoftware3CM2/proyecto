@@ -37,7 +37,8 @@ public class LicenciaPaternidadController {
     @GetMapping("/form")
     private String RedirectSolicitudLicenciaPaternidadForm(Model model) {
         model.addAttribute("licPaternidadModel", new LicPaternidadModel());
-        return Constants.JUSTIFICANTE_P;
+        //return Constants.JUSTIFICANTE_P;
+        return "solicitud-licencia-paternidad-chafa";
     }
 
     @PostMapping("/add-lic-paternidad")
@@ -50,6 +51,7 @@ public class LicenciaPaternidadController {
 
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
+        justificante.setIdJustificante(1);
 
 
         for (MultipartFile file: files){

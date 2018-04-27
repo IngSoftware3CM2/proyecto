@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("justificanteServiceImpl")
@@ -30,5 +31,10 @@ public class JustificanteServiceImpl implements JustificanteService {
     @Override
     public void removeJustificanteByIdJustificante(int id) {
         justificanteRepository.eliminar(id);
+    }
+
+    @Override
+    public void guardarJustificante(int noEmpleado) {
+
     }
 }

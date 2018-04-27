@@ -35,6 +35,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
 
     @Override
+    public List<Incidencia> listAllIncidencia() {
+        return null;
+    }
+
+    @Override
     public Incidencia consultarIncidencia(int id) {
         return incidenciaRepository.findByIdIncidencia(id);
     }

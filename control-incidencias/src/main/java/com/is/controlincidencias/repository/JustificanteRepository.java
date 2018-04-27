@@ -31,4 +31,10 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
     @Query (value="delete from justificante where idjustificante=:id", nativeQuery = true)
     void eliminar (@Param("id") int id);
 
+    @Modifying
+    @Query(value = "insert into justificante (idjustificante,estado,fecha,noempleado) VALUES (:idjustificante,:estado,:fecha,:noempleado)", nativeQuery = true)
+    @Transactional
+    public void altaLicPaternidad(@Param("idjustificante") int idjustificante, @Param("estado") String estado, @Param("fecha") String fecha, @Param("noempleado") int noempleado);
+
+
 }

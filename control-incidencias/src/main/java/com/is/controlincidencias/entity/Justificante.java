@@ -10,7 +10,8 @@ import java.util.List;
 public class Justificante {
 
     @Id
-    @Column(name = "idJustificante", length = 4)
+    @Column(name = "idJustificante", length = 4, columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idJustificante;
 
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
