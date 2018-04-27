@@ -14,8 +14,11 @@
                     <li>
                         <a href="index.html">Inicio</a>
                     </li>
+                    <li>
+                        <a href="#">Ver Incidencias</a>
+                    </li>
                     <li class="active">
-                        <strong>Ver Incidencias</strong>
+                        <strong>Ver justificante Tipo A</strong>
                     </li>
                 </ol>
             </div>
@@ -27,7 +30,7 @@
 
             <div class="ibox-content">
                 <h1 class="text-center">
-                    <span class="text-navy">Generar Justificante de Incidencia</span>
+                    <span class="text-navy">Generar Justificante de Incidencia Tipo A</span>
                 </h1>
                 <form class="form-horizontal">
 
@@ -97,12 +100,7 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div>
-                <strong>IS</strong> 2018
-            </div>
-        </div>
-
+        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 

@@ -18,9 +18,13 @@
                     <li>
                         <a href="index.html">Inicio</a>
                     </li>
-                    <li class="active">
-                        <strong>Ver Justificante</strong>
+                    <li>
+                        <a href="index.html">Ver Justificante</a>
                     </li>
+                    <li class="active">
+                       <strong>Ver Justificante de paternidad</strong>
+                    </li>
+
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
@@ -163,15 +167,7 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
-        </div>
-
+        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 
