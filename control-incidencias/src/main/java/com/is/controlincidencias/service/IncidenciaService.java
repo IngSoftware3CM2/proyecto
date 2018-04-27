@@ -1,9 +1,11 @@
 package com.is.controlincidencias.service;
 
 import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.Personal;
 
 import java.util.List;
 
 public interface IncidenciaService {
-    List<Incidencia> listAllIncidencia ();
+    List<Incidencia> getIncidenciasByPersonal (Personal personal);
+    List<Incidencia> getIncidenciasByJustificanteId (int justificanteId, List<Incidencia> incidencias);
 }

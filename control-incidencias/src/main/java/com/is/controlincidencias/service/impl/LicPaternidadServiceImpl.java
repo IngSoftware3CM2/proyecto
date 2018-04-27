@@ -28,7 +28,6 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Override
     public Incidencia consultarIncidencia(int idIncidencia) {
         return licPaternidadRepository.findById(idIncidencia);
-
     }
 
     @Override

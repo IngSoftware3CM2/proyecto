@@ -1,6 +1,7 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.service.JustificanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class JustificanteServiceImpl implements JustificanteService {
     private JustificanteRepository justificanteRepository;
 
     @Override
-    public List<Justificante> listAllJustificante() {
-        return justificanteRepository.findAll();
+    public List<Justificante> getJustificantesByPersonal(Personal personal) {
+        return justificanteRepository.findAllByPersonal(personal);
     }
 
     @Override
@@ -28,10 +29,11 @@ public class JustificanteServiceImpl implements JustificanteService {
 
     @Override
     public void removeJustificante(int id) {
-        Justificante justificante = findJustificanteById(id);
-        if (justificante != null){
-            justificanteRepository.delete(justificante);
+        Justificante justificante = justificanteRepository.findByIdJustificante(id);
+        try
+        {System.out.println("JUSTIFICANTE A ELIMINAR: "+justificante.toString());}
+        catch (Exception e){
+            e.printStackTrace();
         }
-
     }
 }
