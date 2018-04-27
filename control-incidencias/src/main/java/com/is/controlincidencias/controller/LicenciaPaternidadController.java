@@ -46,7 +46,11 @@ public class LicenciaPaternidadController {
         LOG.info("Justificante con id 1 ----- "+incidenciaService.consultarIncidencia(1).toString());
         Incidencia incidencia = incidenciaService.consultarIncidencia(1);
         //LOG.info("Justificante con id 1 ----- "+licPaternidadService.consultarJustificante(1).toString());
-        Justificante justificante = licPaternidadService.consultarJustificante(1);
+        //Justificante justificante = licPaternidadService.consultarJustificante(1);
+
+        //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
+        Justificante justificante = new Justificante();
+
 
         for (MultipartFile file: files){
             LOG.info("Info de archivo "+file.getOriginalFilename());

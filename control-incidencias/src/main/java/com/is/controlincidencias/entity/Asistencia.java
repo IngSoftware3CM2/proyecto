@@ -21,19 +21,11 @@ public class Asistencia {
     @Column(name = "horaSalida", nullable = false, columnDefinition = "time without time zone")
     private LocalTime horaSalida;
 
-    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = definition))
+    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
-
-    public Personal getPersonal() {
-        return personal;
-    }
-
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
-    }
 
     public Asistencia() {}
 
@@ -45,15 +37,11 @@ public class Asistencia {
         this.personal = personal;
     }
 
-    public static String getDefinition() {
-        return definition;
-    }
-
-    public Integer getId() {
+    public Integer getIdAsistencia() {
         return idAsistencia;
     }
 
-    public void setId(Integer idAsistencia) {
+    public void setIdAsistencia(Integer idAsistencia) {
         this.idAsistencia = idAsistencia;
     }
 
@@ -79,6 +67,18 @@ public class Asistencia {
 
     public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public static String getDefinition() {
+        return DEFINITION;
     }
 
     @Override

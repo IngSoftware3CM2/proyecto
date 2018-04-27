@@ -1,0 +1,604 @@
+﻿idUnidad,Nombre,idZona
+AS-001,"Hospital General ""Aguascalientes""",1
+AS-002,"Clínica de Medicina Familiar ""Aguascalientes""",1
+AS-003,"Clínica de Medicina Familiar ""Ojocaliente""",1
+AS-004,"Unidad de Medicina Familiar ""Calvillo""",1
+AS-005,"Unidad de Medicina Familiar ""Cosío""",1
+AS-006,"Unidad de Medicina Familiar ""El Llano""",1
+AS-007,"Unidad de Medicina Familiar ""Pabellón de Arteaga""",1
+AS-008,"Unidad de Medicina Familiar ""Rincón de Romos""",1
+AS-009,"Unidad de Medicina Familiar ""San José de Gracia""",1
+AS-010,"Unidad de Medicina Familiar ""Villa Juárez""",1
+AS-011,"Unidad de Medicina Familiar ""San Francisco de los Romo""",1
+BC-001,"Hospital General ""5 de Diciembre""",2
+BC-002,"Hospital General ""Fray Junípero Serra""",2
+BC-003,"Clínica Hospital ""Ensenada""",2
+BC-004,"Clínica de Medicina Familiar ""Mesa de Otay""",2
+BS-001,"Hospital General ""La Paz""",3
+BS-002,"Clínica Hospital ""Ciudad Constitución""",3
+BS-003,"Clínica Hospital ""Santa Rosalía""",3
+BS-004,"Clínica Hospital ""San José del Cabo""",3
+BS-005,"Unidad de Medicina Familiar ""Bahía Asunción""",3
+BS-006,"Unidad de Medicina Familiar ""Bahía Tortugas",3
+BS-007,"Unidad de Medicina Familiar ""Cabo San Lucas""",3
+BS-008,"Unidad de Medicina Familiar ""Comondú""",3
+BS-009,"Unidad de Medicina Familiar ""El Pescadero""",3
+BS-010,"Unidad de Medicina Familiar ""Guerrero Negro""",3
+BS-011,"Unidad de Medicina Familiar ""La Paz """,3
+BS-012,"Unidad de Medicina Familiar ""La Ribera""",3
+BS-013,"Unidad de Medicina Familiar ""Las Pocitas""",3
+BS-014,"Unidad de Medicina Familiar ""Loreto""",3
+BS-015,"Unidad de Medicina Familiar ""Los Barriles""",3
+BS-016,"Unidad de Medicina Familiar ""Miraflores""",3
+BS-017,"Unidad de Medicina Familiar ""Mulege""",3
+BS-018,"Unidad de Medicina Familiar ""Puerto Adolfo López Mateos""",3
+BS-019,"Unidad de Medicina Familiar ""Puerto San Carlos""",3
+BS-020,"Unidad de Medicina Familiar ""Punta Abreojos""",3
+BS-021,"Unidad de Medicina Familiar ""San Antonio""",3
+BS-022,"Unidad de Medicina Familiar ""San Ignacio""",3
+BS-023,"Unidad de Medicina Familiar ""San Isidro""",3
+BS-024,"Unidad de Medicina Familiar ""San José de Comondú""",3
+BS-025,"Unidad de Medicina Familiar ""San Juan de los Planes""",3
+BS-026,"Unidad de Medicina Familiar ""Santiago""",3
+BS-027,"Unidad de Medicina Familiar ""Sebastián Vizcaíno""",3
+BS-028,"Unidad de Medicina Familiar ""Todos Santos""",3
+BS-029,"Unidad de Medicina Familiar ""Villa Insurgentes""",3
+CC-001,"Clínica Hospital ""Ciudad del Carmen""",4
+CC-002,"Clínica Hospital ""Dr. Patricio Trueba Regil""",4
+CC-003,"Unidad de Medicina Familiar ""Calkiní""",4
+CC-004,"Unidad de Medicina Familiar ""Champotón""",4
+CC-005,"Unidad de Medicina Familiar ""Escárcega""",4
+CC-006,"Unidad de Medicina Familiar ""Hecelchakán""",4
+CC-007,"Unidad de Medicina Familiar ""Hopelchén""",4
+CS-001,"Hospital General ""Dr. Belisario Domínguez""",5
+CS-002,"Clínica Hospital ""Comitán de Domínguez""",5
+CS-003,"Clínica Hospital ""Dr. Roberto Nettel Flores""",5
+CS-004,"Clínica Hospital ""San Cristóbal de las Casas""",5
+CS-005,"Clínica de Medicina Familiar ""Tuxtla Gutiérrez""",5
+CH-001,"Hospital General ""Ciudad Juárez""",6
+CH-002,"Hospital General ""Presidente Lázaro Cárdenas""",6
+CH-003,"Clínica Hospital ""Ciudad Cuauhtémoc""",6
+CH-004,"Clínica Hospital ""Ciudad Delicias""",6
+CH-005,"Clínica Hospital ""Hidalgo del Parral""",6
+CH-006,"Clínica de Medicina Familiar ""Chihuahua""",6
+CH-007,"Clínica de Medicina Familiar ""Ciudad Delicias""",6
+CH-008,"Clínica de Medicina Familiar ""Ciudad Juárez""",6
+CH-009,"Unidad de Medicina Familiar ""Ascensión""",6
+CH-010,"Unidad de Medicina Familiar ""B. Domínguez""",6
+CH-011,"Unidad de Medicina Familiar ""B. Juárez Namiquipa""",6
+CH-012,"Unidad de Medicina Familiar ""Bahuichivo""",6
+CH-013,"Unidad de Medicina Familiar ""Balleza""",6
+CH-014,"Unidad de Medicina Familiar ""Benito Juárez Buenaventura""",6
+CH-015,"Unidad de Medicina Familiar ""Carichic""",6
+CH-016,"Unidad de Medicina Familiar ""Cd. Anáhuac""",6
+CH-017,"Unidad de Medicina Familiar ""Cd. Guerrero""",6
+CH-018,"Unidad de Medicina Familiar ""Cd. Madera""",6
+CH-019,"Unidad de Medicina Familiar ""Ciudad Camargo""",6
+CH-020,"Unidad de Medicina Familiar ""Ciudad Jiménez""",6
+CH-021,"Unidad de Medicina Familiar ""Creel""",6
+CH-022,"Unidad de Medicina Familiar ""Cuauhtémoc""",6
+CH-023,"Unidad de Medicina Familiar ""El Terrero""",6
+CH-024,"Unidad de Medicina Familiar ""Gómez Farías""",6
+CH-025,"Unidad de Medicina Familiar ""Guachochi""",6
+CH-026,"Unidad de Medicina Familiar ""Guadalupe y Calvo""",6
+CH-027,"Unidad de Medicina Familiar ""Ignacio Zaragoza""",6
+CH-028,"Unidad de Medicina Familiar ""La Junta""",6
+CH-029,"Unidad de Medicina Familiar ""Lago Maderal""",6
+CH-030,"Unidad de Medicina Familiar ""Matachic""",6
+CH-031,"Unidad de Medicina Familiar ""Nicolás Bravo""",6
+CH-032,"Unidad de Medicina Familiar ""Nvo. Casas Grandes""",6
+CH-033,"Unidad de Medicina Familiar ""Ojinaga""",6
+CH-034,"Unidad de Medicina Familiar ""Praxedis G. Guerrero""",6
+CH-035,"Unidad de Medicina Familiar ""Puerto Palomas""",6
+CH-036,"Unidad de Medicina Familiar ""R. Flores Magón""",6
+CH-037,"Unidad de Medicina Familiar ""San Francisco del Oro""",6
+CH-038,"Unidad de Medicina Familiar ""San Juanito""",6
+CH-039,"Unidad de Medicina Familiar ""San Rafael Urique""",6
+CH-040,"Unidad de Medicina Familiar ""Santa Bárbara""",6
+CH-041,"Unidad de Medicina Familiar ""Saucillo""",6
+CH-042,"Unidad de Medicina Familiar ""Soto Maynez""",6
+CH-043,"Unidad de Medicina Familiar ""Tomochic""",6
+CH-044,"Unidad de Medicina Familiar ""Valle de Allende""",6
+CH-045,"Unidad de Medicina Familiar ""Valle de Zaragoza""",6
+CH-046,"Unidad de Medicina Familiar ""Valle San Buenaventura""",6
+CH-047,"Unidad de Medicina Familiar ""Villa Ahumada""",6
+CH-048,"Unidad de Medicina Familiar ""Villa Aldama""",6
+CH-049,"Unidad de Medicina Familiar ""Villa Coronado""",6
+CH-050,"Unidad de Medicina Familiar ""Villa Matamoros""",6
+CL-001,"Hospital General ""Dr. Francisco Galindo Chávez""",7
+CL-002,"Hospital General ""Dr. José María Rodríguez""",7
+CL-003,"Clínica Hospital ""Ciudad Sabinas""",7
+CL-004,"Clínica Hospital ""Monclova""",7
+CL-005,"Clínica Hospital ""Nueva Rosita""",7
+CL-006,"Clínica Hospital ""Piedras Negras""",7
+CL-007,"Clínica Hospital ""San Pedro de las Colonias""",7
+CL-008,"Clínica de Medicina Familiar ""Ciudad Acuña""",7
+CL-009,"Clínica de Medicina Familiar ""Torreón""",7
+CL-010,"Unidad de Medicina Familiar ""Parras""",7
+CM-001,"Clínica Hospital ""Dr. Miguel Angel Trejo Ochoa""",8
+CM-002,"Clínica Hospital ""Manzanillo""",8
+DG-001,"Hospital General ""Dr. Santiago Ramón y Cajal""",9
+DG-002,"Clínica Hospital ""Gómez Palacio""",9
+DG-003,"Clínica de Medicina Familiar ""Ciudad Lerdo""",9
+DG-004,"Clínica de Medicina Familiar ""Durango""",9
+DG-005,"Unidad de Medicina Familiar ""Canatlan""",9
+DG-006,"Unidad de Medicina Familiar ""El Salto""",9
+DG-007,"Unidad de Medicina Familiar ""Guadalupe Victoria""",9
+DG-008,"Unidad de Medicina Familiar ""J. Guadalupe Aguilera""",9
+DG-009,"Unidad de Medicina Familiar ""Las Nieves""",9
+DG-010,"Unidad de Medicina Familiar ""Mapimi""",9
+DG-011,"Unidad de Medicina Familiar ""Nombre de Dios""",9
+DG-012,"Unidad de Medicina Familiar ""Nuevo Ideal""",9
+DG-013,"Unidad de Medicina Familiar ""Paso Nacional""",9
+DG-014,"Unidad de Medicina Familiar ""Rodeo""",9
+DG-015,"Unidad de Medicina Familiar ""San Juan del Rio""",9
+DG-016,"Unidad de Medicina Familiar ""Santa Maria del Oro""",9
+DG-017,"Unidad de Medicina Familiar ""Santiago Papasquiaro""",9
+DG-018,"Unidad de Medicina Familiar ""Tepehuanes""",9
+DG-019,"Unidad de Medicina Familiar ""Tlahualilo de Zaragoza""",9
+DG-020,"Unidad de Medicina Familiar ""Vicente Guerrero""",9
+DG-021,"Unidad de Medicina Familiar ""Villa Unión""",9
+GT-001,"Hospital Regional ""León""",10
+GT-002,"Clínica Hospital ""Celaya""",10
+GT-003,"Clínica Hospital ""Guanajuato""",10
+GT-004,"Clínica Hospital ""Irapuato""",10
+GT-005,"Clínica de Medicina Familiar ""León""",10
+GT-006,"Clínica de Medicina Familiar ""Salamanca""",10
+GR-001,"Hospital General ""Acapulco",11
+GR-002,"Clínica Hospital ""Chilpancingo de los Bravos""",11
+GR-003,"Clínica Hospital ""Iguala de la Independencia""",11
+GR-004,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Ciudad Altamirano""",11
+GR-005,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Ometepec""",11
+GR-006,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Tecpan de Galeana""",11
+GR-007,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Tlapa de Comonfort""",11
+GR-008,"Clínica de Medicina Familiar ""Acapulco""",11
+GR-009,"Unidad de Medicina Familiar ""Adolfo López Mateos""",11
+GR-010,"Unidad de Medicina Familiar ""Ajuchitlán del Progreso""",11
+GR-011,"Unidad de Medicina Familiar ""Apaxtla de Castrejón""",11
+GR-012,"Unidad de Medicina Familiar ""Atoyac de Álvarez""",11
+GR-013,"Unidad de Medicina Familiar ""Ayutla de los Libres""",11
+GR-014,"Unidad de Medicina Familiar ""Cd. Renacimiento""",11
+GR-015,"Unidad de Medicina Familiar ""Coyuca de Benítez""",11
+GR-016,"Unidad de Medicina Familiar ""Coyuca de Catalán""",11
+GR-017,"Unidad de Medicina Familiar ""Cuajinicuilapa""",11
+GR-018,"Unidad de Medicina Familiar ""Cutzamala de Pinzón""",11
+GR-019,"Unidad de Medicina Familiar ""De Arcelia""",11
+GR-020,"Unidad de Medicina Familiar ""De Buena Vista de Cuellar""",11
+GR-021,"Unidad de Medicina Familiar ""De Chilapa de Álvarez""",11
+GR-022,"Unidad de Medicina Familiar ""De Iliatenco""",11
+GR-023,"Unidad de Medicina Familiar ""De Olinala""",11
+GR-024,"Unidad de Medicina Familiar ""De Petatlán""",11
+GR-025,"Unidad de Medicina Familiar ""De Tierra Colorada""",11
+GR-026,"Unidad de Medicina Familiar ""De Tixtla de Guerrero""",11
+GR-027,"Unidad de Medicina Familiar ""De Xaltianguis""",11
+GR-028,"Unidad de Medicina Familiar ""El Ocotito""",11
+GR-029,"Unidad de Medicina Familiar ""Huamuxtitlán""",11
+GR-030,"Unidad de Medicina Familiar ""Huitzuco de los Figueroa""",11
+GR-031,"Unidad de Medicina Familiar ""La Unión""",11
+GR-032,"Unidad de Medicina Familiar ""Las Mesas""",11
+GR-033,"Unidad de Medicina Familiar ""Las Vigas""",11
+GR-034,"Unidad de Medicina Familiar ""Malinaltepec""",11
+GR-035,"Unidad de Medicina Familiar ""Marquelia""",11
+GR-036,"Unidad de Medicina Familiar ""Metlatonoc",11
+GR-037,"Unidad de Medicina Familiar ""Mochitlán""",11
+GR-038,"Unidad de Medicina Familiar ""San Jerónimo de Juárez""",11
+GR-039,"Unidad de Medicina Familiar ""San Luis Acatlán""",11
+GR-040,"Unidad de Medicina Familiar ""San Marcos""",11
+GR-041,"Unidad de Medicina Familiar ""Taxco de Alarcón""",11
+GR-042,"Unidad de Medicina Familiar ""Tecoanapa""",11
+GR-043,"Unidad de Medicina Familiar ""Teloloapan""",11
+GR-044,"Unidad de Medicina Familiar ""Tlacotepec""",11
+GR-045,"Unidad de Medicina Familiar ""Tlapehuala""",11
+GR-046,"Unidad de Medicina Familiar ""Unidad Habitacional Fovissste""",11
+GR-047,"Unidad de Medicina Familiar ""Unidad Habitacional Guerrero 2000""",11
+GR-048,"Unidad de Medicina Familiar ""Zihuatanejo""",11
+GR-049,"Unidad de Medicina Familiar ""Zirandaro del Río""",11
+HG-001,"Hospital General ""Pachuca""",12
+HG-002,"Clínica Hospital ""Huejutla de Reyes""",12
+HG-003,"Clínica Hospital ""Ixmiquilpan""",12
+HG-004,"Clínica de Medicina Familiar ""Mixquiahuala""",12
+HG-005,"Clínica de Medicina Familiar ""Tulancingo""",12
+HG-006,"Unidad de Medicina Familiar ""Actopán""",12
+HG-007,"Unidad de Medicina Familiar ""Apán""",12
+HG-008,"Unidad de Medicina Familiar ""Atotonilco El Grande""",12
+HG-009,"Unidad de Medicina Familiar ""Calnali""",12
+HG-010,"Unidad de Medicina Familiar ""Chapulhuacán""",12
+HG-011,"Unidad de Medicina Familiar ""Huautla""",12
+HG-012,"Unidad de Medicina Familiar ""Huichapan""",12
+HG-013,"Unidad de Medicina Familiar ""Jacala""",12
+HG-014,"Unidad de Medicina Familiar ""Meztitlán""",12
+HG-015,"Unidad de Medicina Familiar ""Mineral del Monte""",12
+HG-016,"Unidad de Medicina Familiar ""Molango""",12
+HG-017,"Unidad de Medicina Familiar ""Nicolas Flores""",12
+HG-018,"Unidad de Medicina Familiar ""Nopala""",12
+HG-019,"Unidad de Medicina Familiar ""San Felipe Orizatlán""",12
+HG-020,"Unidad de Medicina Familiar ""Tasquillo""",12
+HG-021,"Unidad de Medicina Familiar ""Tecozautla""",12
+HG-022,"Unidad de Medicina Familiar ""Tenango de Doria""",12
+HG-023,"Unidad de Medicina Familiar ""Tepatepec""",12
+HG-024,"Unidad de Medicina Familiar ""Tepeapulco""",12
+HG-025,"Unidad de Medicina Familiar ""Tepeji del Río""",12
+HG-026,"Unidad de Medicina Familiar ""Tezontepec de Aldama""",12
+HG-027,"Unidad de Medicina Familiar ""Tizayuca""",12
+HG-028,"Unidad de Medicina Familiar ""Tlanchinol""",12
+HG-029,"Unidad de Medicina Familiar ""Tlaxcoapán""",12
+HG-030,"Unidad de Medicina Familiar ""Tula de Allende""",12
+HG-031,"Unidad de Medicina Familiar ""Xochicoatlán""",12
+HG-032,"Unidad de Medicina Familiar ""Zacualtipán""",12
+HG-033,"Unidad de Medicina Familiar ""Zapotlán""",12
+HG-034,"Unidad de Medicina Familiar ""Zimapán""",12
+JC-001,"Hospital Regional ""Dr. Valentín Gómez Farías""",13
+JC-002,"Clínica Hospital ""Ciudad Guzmán""",13
+JC-003,"Clínica Hospital ""Puerto Vallarta""",13
+JC-004,Clínica de Medicina Familiar con Especialidades y Quirófano Clínica de Especialidades + Centro de Cirugía Simplificada,13
+JC-005,"Clínica de Medicina Familiar ""Autlán de Navarro""",13
+JC-006,"Clínica de Medicina Familiar ""N° 1 ""Dr. Arturo González Guzmán",13
+JC-007,"Clínica de Medicina Familiar ""N° 2 ""Guadalajara""""",13
+JC-008,"Clínica de Medicina Familiar ""N° 3 ""Guadalajara""""",13
+JC-009,"Clínica de Medicina Familiar ""Lagos de Moreno""",13
+MC-001,"Hospital Regional ""Bicentenario de la Independencia""",14
+MC-002,"Hospital General ""Toluca""",14
+MC-003,"Clínica de Especialidades con Centro de Cirugía Simplificada ""Xalostoc""",14
+MC-004,"Clínica de Medicina Familiar ""Cuautitlán Izcalli""",14
+MC-005,"Clínica de Medicina Familiar ""Ecatepec de Morelos""",14
+MC-006,"Clínica de Medicina Familiar ""Nueva Oxtotitlán""",14
+MC-007,"Clínica de Medicina Familiar ""Nuevo ISSSTE""",14
+MC-008,"Clínica de Medicina Familiar ""Satélite Naucalpan""",14
+MC-009,"Clínica de Medicina Familiar ""Texcoco de Mora""",14
+MC-010,"Clínica de Medicina Familiar ""Tlalnepantla""",14
+MC-011,"Clínica de Medicina Familiar ""Valle de Aragón""",14
+MN-001,"Hospital Regional ""Morelia""",15
+MN-002,"Clínica Hospital ""Apatzingán de la Constitución""",15
+MN-003,"Clínica Hospital ""Pátzcuaro""",15
+MN-004,"Clínica Hospital ""Roberto Flores Magón""",15
+MN-005,"Clínica Hospital ""Sahuayo""",15
+MN-006,"Clínica Hospital ""Uruapan del Progreso""",15
+MN-007,"Clínica Hospital ""Zacapu""",15
+MN-008,"Clínica Hospital ""Zamora""",15
+MN-009,"Clínica Hospital ""Zitácuaro""",15
+MN-010,"Clínica de Medicina Familiar ""La Piedad de Cabadas""",15
+MN-011,"Clínica de Medicina Familiar ""Morelia""",15
+MN-012,"Unidad de Medicina Familiar ""Ario de Rosales""",15
+MN-013,"Unidad de Medicina Familiar ""Vasco de Quiroga""",15
+MS-001,"Hospital Regional ""Centenario de la Revolución Mexicana""",16
+MS-002,"Clínica Hospital ""Dr. Rafael Barba Ocampo""",16
+MS-003,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Jojutla""",16
+MS-004,"Clínica de Medicina Familiar ""Cuernavaca""",16
+MS-005,"Unidad de Medicina Familiar ""Amacuzac""",16
+MS-006,"Unidad de Medicina Familiar ""Axochiapan""",16
+MS-007,"Unidad de Medicina Familiar ""Ciudad Ayala""",16
+MS-008,"Unidad de Medicina Familiar ""Emiliano Zapata""",16
+MS-009,"Unidad de Medicina Familiar ""Jiutepec""",16
+MS-010,"Unidad de Medicina Familiar ""Jonacatepec""",16
+MS-011,"Unidad de Medicina Familiar ""Puente de Ixtla""",16
+MS-012,"Unidad de Medicina Familiar ""Temixco""",16
+MS-013,"Unidad de Medicina Familiar ""Tepalcingo""",16
+MS-014,"Unidad de Medicina Familiar ""Tepoztlán""",16
+MS-015,"Unidad de Medicina Familiar ""Tetecala""",16
+MS-016,"Unidad de Medicina Familiar ""Tetela del Volcán""",16
+MS-017,"Unidad de Medicina Familiar ""Tlaltizapan""",16
+MS-018,"Unidad de Medicina Familiar ""Tlaquiltenango""",16
+MS-019,"Unidad de Medicina Familiar ""Tlayacapan""",16
+MS-020,"Unidad de Medicina Familiar ""Tres Marías""",16
+MS-021,"Unidad de Medicina Familiar ""Xochitepec""",16
+MS-022,"Unidad de Medicina Familiar ""Xoxocotla""",16
+MS-023,"Unidad de Medicina Familiar ""Yautepec""",16
+MS-024,"Unidad de Medicina Familiar ""Yecapixtla""",16
+MS-025,"Unidad de Medicina Familiar ""Zacatepec""",16
+MS-026,"Unidad de Medicina Familiar ""Zacualpan de Amilpas""",16
+NT-001,"Hospital General ""Dr. Aquiles Calles Ramírez""",17
+NT-002,"Clínica de Medicina Familiar ""Acaponeta""",17
+NT-003,"Clínica de Medicina Familiar ""Dr. Joaquín Canovas Puchades""",17
+NL-001,"Hospital Regional ""Monterrey""",18
+NL-002,"Clínica Hospital ""Constitución""",18
+NL-003,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Linares""",18
+NL-004,"Clínica de Medicina Familiar ""General Escobedo""",18
+NL-005,"Clínica de Medicina Familiar ""Guadalupe, Colonia de Maestros""",18
+OC-001,"Hospital Regional ""Presidente Juárez""",19
+OC-002,"Clínica Hospital ""Huajuapan de León""",19
+OC-003,"Clínica Hospital ""Santiago Pinotepa Nacional""",19
+OC-004,"Clínica Hospital ""Tehuantepec""",19
+OC-005,"Clínica Hospital ""Tuxtepec""",19
+OC-006,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Oaxaca""",19
+OC-007,"Clínica de Medicina Familiar ""Puerto Escondido""",19
+OC-008,"Clínica de Medicina Familiar ""Salina Cruz""",19
+PL-001,"Hospital Regional ""Puebla""",20
+PL-002,"Clínica Hospital ""Huauchinango""",20
+PL-003,"Clínica Hospital ""Tehuacán""",20
+PL-004,"Clínica Hospital ""Teziutlán""",20
+PL-005,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Puebla""",20
+PL-006,"Clínica de Medicina Familiar ""Acatlán de Osorio""",20
+PL-007,"Clínica de Medicina Familiar ""Atlixco""",20
+PL-008,"Clínica de Medicina Familiar ""San Martín Texmelucan""",20
+PL-009,"Unidad de Medicina Familiar ""Atencingo""",20
+PL-010,"Unidad de Medicina Familiar ""Cd. Serdán""",20
+PL-011,"Unidad de Medicina Familiar ""Chiautla de Tapia""",20
+PL-012,"Unidad de Medicina Familiar ""Chignahuapán""",20
+PL-013,"Unidad de Medicina Familiar ""Cholula""",20
+PL-014,"Unidad de Medicina Familiar ""Cuetzalan del Progreso""",20
+PL-015,"Unidad de Medicina Familiar ""Esperanza""",20
+PL-016,"Unidad de Medicina Familiar ""Guadalupe Victoria""",20
+PL-017,"Unidad de Medicina Familiar ""Huejotzingo""",20
+PL-018,"Unidad de Medicina Familiar ""Izucar de Matamoros""",20
+PL-019,"Unidad de Medicina Familiar ""Libres""",20
+PL-020,"Unidad de Medicina Familiar ""Magisterial México 68""",20
+PL-021,"Unidad de Medicina Familiar ""Metlaltoyuca""",20
+PL-022,"Unidad de Medicina Familiar ""Pahuatlán""",20
+PL-023,"Unidad de Medicina Familiar ""Reforma Sur""",20
+PL-024,"Unidad de Medicina Familiar ""San Juan Ixcaquixtla""",20
+PL-025,"Unidad de Medicina Familiar ""Tecamachalco""",20
+PL-026,"Unidad de Medicina Familiar ""Tepeaca""",20
+PL-027,"Unidad de Medicina Familiar ""Tetela de Ocampo""",20
+PL-028,"Unidad de Medicina Familiar ""Tlatlauquitepec""",20
+PL-029,"Unidad de Medicina Familiar ""Unidad Habitacional Fovissste San Roque""",20
+PL-030,"Unidad de Medicina Familiar ""Villa Rafael Lara Grajales""",20
+PL-031,"Unidad de Medicina Familiar ""Villa Verde""",20
+PL-032,"Unidad de Medicina Familiar ""Xicotepec de Juárez""",20
+PL-033,"Unidad de Medicina Familiar ""Xochiapulco""",20
+PL-034,"Unidad de Medicina Familiar ""Zacapoaxtla""",20
+PL-035,"Unidad de Medicina Familiar ""Zacatlán""",20
+PL-036,"Unidad de Medicina Familiar ""Zapotitlán de Méndez""",20
+PL-037,"Unidad de Medicina Familiar ""Zaragoza""",20
+QT-001,"Hospital General ""Querétaro""",21
+QT-002,"Clínica de Medicina Familiar ""Querétaro""",21
+QT-003,"Unidad de Medicina Familiar ""Ajuchitlán""",21
+QT-004,"Unidad de Medicina Familiar ""Amealco""",21
+QT-005,"Unidad de Medicina Familiar ""Arroyo Seco""",21
+QT-006,"Unidad de Medicina Familiar ""Azteca III""",21
+QT-007,"Unidad de Medicina Familiar ""Cadereyta""",21
+QT-008,"Unidad de Medicina Familiar ""Ezequiel Montes""",21
+QT-009,"Unidad de Medicina Familiar ""Jalpan de Serra""",21
+QT-010,"Unidad de Medicina Familiar ""Pedro Escobedo""",21
+QT-011,"Unidad de Medicina Familiar ""San Juan del Río""",21
+QT-012,"Unidad de Medicina Familiar ""Satélite""",21
+QT-013,"Unidad de Medicina Familiar ""Tequisquiapan""",21
+QT-014,"Unidad de Medicina Familiar ""Tolimán""",21
+QR-001,"Clínica Hospital ""Cancún""",22
+QR-002,"Clínica Hospital ""Chetumal""",22
+QR-003,"Clínica de Especialidades Clínica de Detección y Diagnóstico Automatizado ""Chetumal""",22
+QR-004,"Clínica de Medicina Familiar ""Cozumel""",22
+QR-005,"Unidad de Medicina Familiar ""Bacalar""",22
+QR-006,"Unidad de Medicina Familiar ""Felipe Carrillo Puerto""",22
+QR-007,"Unidad de Medicina Familiar ""Isla Mujeres""",22
+QR-008,"Unidad de Medicina Familiar ""José Ma. Morelos""",22
+QR-009,"Unidad de Medicina Familiar ""Kantunilkin""",22
+QR-010,"Unidad de Medicina Familiar ""Playa del Carmen""",22
+SP-001,"Hospital General ""San Luis Potosí""",23
+SP-002,"Clínica Hospital ""Ciudad Valles""",23
+SP-003,"Clínica Hospital ""Matehuala",23
+SP-004,"Clínica Hospital ""Río Verde""",23
+SP-005,"Clínica Hospital ""Tamazunchale""",23
+SP-006,"Clínica de Especialidades con Centro de Cirugía Simplificada ""Dr. Pedro Bárcenas Hiriart""",23
+SP-007,"Unidad de Medicina Familiar ""Arturo Aguillón Luna""",23
+SP-008,"Unidad de Medicina Familiar ""Axtla de Terrazas""",23
+SP-009,"Unidad de Medicina Familiar ""Cárdenas""",23
+SP-010,"Unidad de Medicina Familiar ""Cerritos""",23
+SP-011,"Unidad de Medicina Familiar ""Charcas""",23
+SP-012,"Unidad de Medicina Familiar ""Ciudad del Maíz""",23
+SP-013,"Unidad de Medicina Familiar ""Ébano""",23
+SP-014,"Unidad de Medicina Familiar ""El Naranjo""",23
+SP-015,"Unidad de Medicina Familiar ""Matlapa""",23
+SP-016,"Unidad de Medicina Familiar ""Salinas de Hidalgo""",23
+SP-017,"Unidad de Medicina Familiar ""San Ciro de Acosta""",23
+SP-018,"Unidad de Medicina Familiar ""San Martín Chalchicuautla""",23
+SP-019,"Unidad de Medicina Familiar ""San Vicente Tancuayalab""",23
+SP-020,"Unidad de Medicina Familiar ""Santa Ma. del Río""",23
+SP-021,"Unidad de Medicina Familiar ""Soledad de Graciano Sánchez""",23
+SP-022,"Unidad de Medicina Familiar ""Tamasopo""",23
+SP-023,"Unidad de Medicina Familiar ""Tanquian de Escobedo""",23
+SP-024,"Unidad de Medicina Familiar ""Villa de Hidalgo""",23
+SP-025,"Unidad de Medicina Familiar ""Xilitla""",23
+SL-001,"Hospital Regional ""Dr. Manuel Cárdenas de la Vega""",24
+SL-002,"Clínica Hospital ""Los Mochis""",24
+SL-003,"Clínica Hospital ""Mazatlán""",24
+SL-004,"Clínica de Medicina Familiar ""Culiacán""",24
+SR-001,"Hospital General ""Dr. Fernando Ocaranza""",25
+SR-002,"Clínica Hospital ""Ciudad Obregón""",25
+SR-003,"Clínica Hospital ""Guaymas""",25
+SR-004,"Clínica Hospital ""Navojoa""",25
+SR-005,"Clínica Hospital ""San Luis Río Colorado""",25
+SR-006,"Clínica de Medicina Familiar ""Hermosillo""",25
+SR-007,"Unidad de Medicina Familiar ""Agua Prieta""",25
+SR-008,"Unidad de Medicina Familiar ""Cananea""",25
+TC-001,"Hospital General ""Dr. Daniel Gurría Urgel""",26
+TC-002,"Clínica de Medicina Familiar ""Cárdenas""",26
+TC-003,"Unidad de Medicina Familiar ""Balancan""",26
+TC-004,"Unidad de Medicina Familiar ""Casa Blanca""",26
+TC-005,"Unidad de Medicina Familiar ""Comalcalco""",26
+TC-006,"Unidad de Medicina Familiar ""Cunduacan""",26
+TC-007,"Unidad de Medicina Familiar ""El Triunfo""",26
+TC-008,"Unidad de Medicina Familiar ""Emiliano Zapata""",26
+TC-009,"Unidad de Medicina Familiar ""Frontera""",26
+TC-010,"Unidad de Medicina Familiar ""Huimanguillo""",26
+TC-011,"Unidad de Medicina Familiar ""Jalapa""",26
+TC-012,"Unidad de Medicina Familiar ""Jalpa De Mendez""",26
+TC-013,"Unidad de Medicina Familiar ""Jonuta""",26
+TC-014,"Unidad de Medicina Familiar ""Jonuta""",26
+TC-015,"Unidad de Medicina Familiar ""Macuspana""",26
+TC-016,"Unidad de Medicina Familiar ""Nacajuca""",26
+TC-017,"Unidad de Medicina Familiar ""Paraíso""",26
+TC-018,"Unidad de Medicina Familiar ""San Pedrobalancan""",26
+TC-019,"Unidad de Medicina Familiar ""Sanchez Magallanes Cardenas""",26
+TC-020,"Unidad de Medicina Familiar ""Tacotalpa""",26
+TC-021,"Unidad de Medicina Familiar ""Tamulte De La Sabanas""",26
+TC-022,"Unidad de Medicina Familiar ""Teapa""",26
+TC-023,"Unidad de Medicina Familiar ""Tenosique""",26
+TC-024,"Unidad de Medicina Familiar ""Villa Benito Juárez Card""",26
+TC-025,"Unidad de Medicina Familiar ""Villa Benito Juárez Macuspana""",26
+TC-026,"Unidad de Medicina Familiar ""Villa Vicente Guerrero Centla""",26
+TS-001,"Hospital General ""Tampico""",27
+TS-002,"Clínica Hospital ""Agosto 12-Nuevo Laredo",27
+TS-003,"Clínica Hospital ""Ciudad Mante""",27
+TS-004,"Clínica Hospital ""Ciudad Victoria""",27
+TS-005,"Clínica Hospital ""Dr. Baudelio Villanueva-Reynosa""",27
+TS-006,"Clínica Hospital ""Dr. Manuel F. Rodríguez-Matamoros""",27
+TS-007,"Clínica Hospital ""Río Bravo""",27
+TS-008,"Clínica de Medicina Familiar ""Ciudad Victoria""",27
+TS-009,"Clínica de Medicina Familiar ""Tampico""",27
+TS-010,"Unidad de Medicina Familiar ""Abasolo""",27
+TS-011,"Unidad de Medicina Familiar ""Aldama""",27
+TS-012,"Unidad de Medicina Familiar ""Altamira""",27
+TS-013,"Unidad de Medicina Familiar ""Arboledas""",27
+TS-014,"Unidad de Medicina Familiar ""Barretal""",27
+TS-015,"Unidad de Medicina Familiar ""Bustamante""",27
+TS-016,"Unidad de Medicina Familiar ""Camargo""",27
+TS-017,"Unidad de Medicina Familiar ""Ciudad Guerrero""",27
+TS-018,"Unidad de Medicina Familiar ""Ciudad Mier""",27
+TS-019,"Unidad de Medicina Familiar ""Control""",27
+TS-020,"Unidad de Medicina Familiar ""Díaz Ordaz""",27
+TS-021,"Unidad de Medicina Familiar ""Gonzáles""",27
+TS-022,"Unidad de Medicina Familiar ""Hidalgo""",27
+TS-023,"Unidad de Medicina Familiar ""Jaumave""",27
+TS-024,"Tamaulipas Unidad de Medicina Familiar ""Jiménez""",27
+TS-025,"Unidad de Medicina Familiar ""Los Aztecas",27
+TS-026,"Unidad de Medicina Familiar ""Miguel Alemán""",27
+TS-027,"Unidad de Medicina Familiar ""Ocampo""",27
+TS-028,"Unidad de Medicina Familiar ""Padilla""",27
+TS-029,"Unidad de Medicina Familiar ""San Carlos""",27
+TS-030,"Unidad de Medicina Familiar ""San Fernando""",27
+TS-031,"Unidad de Medicina Familiar ""Soto la Marina""",27
+TS-032,"Unidad de Medicina Familiar ""Tula""",27
+TS-033,"Unidad de Medicina Familiar ""Valle Hermoso""",27
+TS-034,"Unidad de Medicina Familiar ""Villa de Llera""",27
+TS-035,"Unidad de Medicina Familiar ""Villagrán",27
+TS-036,"Tamaulipas Unidad de Medicina Familiar ""Xicotencatl""",27
+TL-001,"Hospital General ""Tlaxcala""",28
+TL-002,"Unidad de Medicina Familiar ""Apizaco""",28
+TL-003,"Unidad de Medicina Familiar ""Calpulalpan""",28
+TL-004,"Unidad de Medicina Familiar ""Huamantla""",28
+TL-005,"Unidad de Medicina Familiar ""Zacatelco""",28
+VZ-001,"Hospital Regional ""Veracruz""",29
+VZ-002,"Clínica Hospital ""Coatzacoalcos""",29
+VZ-003,"Clínica Hospital ""Orizaba""",29
+VZ-004,"Clínica Hospital ""Poza Rica""",29
+VZ-005,"Clínica Hospital ""Tuxpam de Rodríguez Cano""",29
+VZ-006,"Clínica Hospital ""Xalapa""",29
+VZ-007,"Clínica de Medicina Familiar ""Acayucán""",29
+VZ-008,"Clínica de Medicina Familiar ""Córdoba""",29
+VZ-009,"Clínica de Medicina Familiar ""Heroica de Veracruz""",29
+VZ-010,"Clínica de Medicina Familiar ""Martínez de la Torre""",29
+VZ-011,"Clínica de Medicina Familiar ""Minatitlán""",29
+VZ-012,"Clínica de Medicina Familiar ""San Andrés Tuxtla""",29
+VZ-013,"Unidad de Medicina Familiar ""Cerro Azul""",29
+VZ-014,"Unidad de Medicina Familiar ""Ciudad Alemán""",29
+VZ-015,"Unidad de Medicina Familiar ""Cosamaloapan de Carpio""",29
+VZ-016,"Unidad de Medicina Familiar ""Las Choapas""",29
+VZ-017,"Unidad de Medicina Familiar ""Naranjos""",29
+VZ-018,"Unidad de Medicina Familiar ""Pánuco""",29
+VZ-019,"Unidad de Medicina Familiar ""Tantoyuca""",29
+VZ-020,"Unidad de Medicina Familiar ""Tierra Blanca""",29
+YN-001,"Hospital Regional ""Mérida""",30
+YN-002,"Clínica de Medicina Familiar con Especialidades y Quirófano ""Mérida""",30
+YN-003,"Unidad de Medicina Familiar ""Dzidzantun""",30
+YN-004,"Unidad de Medicina Familiar ""Izamal""",30
+YN-005,"Unidad de Medicina Familiar ""Maxcanú""",30
+YN-006,"Unidad de Medicina Familiar ""Motul""",30
+YN-007,"Unidad de Medicina Familiar ""Muna""",30
+YN-008,"Unidad de Medicina Familiar ""Oxkutzcab""",30
+YN-009,"Unidad de Medicina Familiar ""Peto""",30
+YN-010,"Unidad de Medicina Familiar ""Progreso""",30
+YN-011,"Unidad de Medicina Familiar ""San Carlos""",30
+YN-012,"Unidad de Medicina Familiar ""Tekax""",30
+YN-013,"Unidad de Medicina Familiar ""Ticul""",30
+YN-014,"Unidad de Medicina Familiar ""Tixkokob""",30
+YN-015,"Unidad de Medicina Familiar ""Tizimín""",30
+YN-016,"Unidad de Medicina Familiar ""Valladolid""",30
+ZS-001,"Hospital General ""Zacatecas""",31
+ZS-002,"Clínica Hospital ""Fresnillo""",31
+ZS-003,"Clínica de Medicina Familiar ""Guadalupe""",31
+ZS-004,"Unidad de Medicina Familiar ""Calera""",31
+ZS-005,"Unidad de Medicina Familiar ""Concepción del Oro""",31
+ZS-006,"Unidad de Medicina Familiar ""Jalpa""",31
+ZS-007,"Unidad de Medicina Familiar ""Jerez""",31
+ZS-008,"Unidad de Medicina Familiar ""Juan Aldama""",31
+ZS-009,"Unidad de Medicina Familiar ""Juchipila""",31
+ZS-010,"Unidad de Medicina Familiar ""Loreto""",31
+ZS-011,"Unidad de Medicina Familiar ""Nochistlán""",31
+ZS-012,"Unidad de Medicina Familiar ""Ojocaliente""",31
+ZS-013,"Unidad de Medicina Familiar ""Pinos""",31
+ZS-014,"Unidad de Medicina Familiar ""Rio Grande""",31
+ZS-015,"Unidad de Medicina Familiar ""Sombrerete""",31
+ZS-016,"Unidad de Medicina Familiar ""Sain Alto""",31
+ZS-017,"Unidad de Medicina Familiar ""Tlaltenango""",31
+ZS-018,"Unidad de Medicina Familiar ""Trancoso""",31
+ZS-019,"Unidad de Medicina Familiar ""Valparaíso""",31
+MXN-001,"Hospital Regional ""1° de Octubre""",32
+MXN-002,"Clínica de Especialidades ""Indianilla""",32
+MXN-003,"Clínica de Especialidades ""Neuropsiquiatría""",32
+MXN-004,"Clínica de Especialidades ""Dentales Honorato Villa Acosta""",32
+MXN-005,"Clínica de Especialidades Centro de Cirugía Ambulatoria ""1° de Octubre""",32
+MXN-006,"Centro de Apoyo y Diagnóstico ""San Rafael"" Unidad Especial",32
+MXN-007,"Clínica de Medicina Familiar ""5 de Febrero""",32
+MXN-008,"Clínica de Medicina Familiar ""Aragón""",32
+MXN-009,"Clínica de Medicina Familiar ""Dr. Javier Domínguez Estrada""",32
+MXN-010,"Clínica de Medicina Familiar ""Guadalupe""",32
+MXN-011,"Clínica de Medicina Familiar ""Guerrero""",32
+MXN-012,"Clínica de Medicina Familiar ""Gustavo Madero""",32
+MXN-013,"Clínica de Medicina Familiar ""Juárez""",32
+MXN-014,"Clínica de Medicina Familiar ""Juárez""",32
+MXN-015,"Clínica de Medicina Familiar ""Peralvillo""",32
+MXN-016,"Clínica de Medicina Familiar ""Perú""",32
+MXN-017,"Clínica de Medicina Familiar ""San Antonio Abad""",32
+MXN-018,"Clínica de Medicina Familiar ""Santa María""",32
+MXN-019,"Consultorio Auxiliar ""Clínica 5 de Febrero""",32
+MXN-020,"Consultorio Auxiliar ""Clínica Aragón""",32
+MXN-021,"Consultorio Auxiliar ""Clínica Dr. Javier Domínguez Estrada""",32
+MXN-022,"Consultorio Auxiliar ""Clínica Guerrero""",32
+MXN-023,"Consultorio Auxiliar ""Clínica Gustavo A. Madero"" C.I. y E.A. DEL I.P.N.",32
+MXN-024,"Consultorio Auxiliar ""Clínica Juárez""",32
+MXN-025,"Consultorio Auxiliar ""Clínica Peralvillo""",32
+MXN-026,"Consultorio Auxiliar ""Clínica Perú"" ",32
+MXN-027,"Consultorio Auxiliar ""Clínica Santa María""",32
+MXN-028,"Estancia Temporal para Enfermos de los Estados ""E.T. para los Enfermos de los Estados""",32
+MXS-001,"Hospital Regional ""Lic. Adolfo López Mateos""",33
+MXS-002,"Hospital General ""Dr. Darío Fernández Fierro""",33
+MXS-003,"Clínica de Especialidades con Centro de Cirugía Simplificada ""Churubusco""",33
+MXS-004,Clínica de Especialidades Clínica de Detección y Diagnóstico Automatizado,33
+MXS-005,Clínica de Medicina Física y Rehabilitación,33
+MXS-006,"Clínica de Medicina Familiar ""Coyoacán""",33
+MXS-007,"Clínica de Medicina Familiar ""Del Valle""",33
+MXS-008,"Clínica de Medicina Familiar ""División del Norte""",33
+MXS-009,"Clínica de Medicina Familiar ""Dr. Ignacio Chávez""",33
+MXS-010,"Clínica de Medicina Familiar ""Dr. José Luis Gómez Pimienta y García (Ermita)""",33
+MXS-011,"Clínica de Medicina Familiar ""Fuentes Brotantes""",33
+MXS-012,"Clínica de Medicina Familiar ""Milpa Alta""",33
+MXS-013,"Clínica de Medicina Familiar ""Narvarte""",33
+MXS-014,"Clínica de Medicina Familiar ""Tlalpan""",33
+MXS-015,"Clínica de Medicina Familiar ""Villa Álvaro Obregón""",33
+MXS-016,"Clínica de Medicina Familiar ""Xochimilco""",33
+MXS-017,"Consultorio Auxiliar ""Clínica Coyoacán"" Unidad Integración Latinoamericana U.M.F.",33
+MXS-018,"Consultorio Auxiliar ""Clínica Coyoacán"" Desarrollo Integral de la Familia D.I.F.Unidad N° 27",33
+MXS-019,"Consultorio Auxiliar ""Clínica del Valle"" Centro Urbano Presidente Alemán (C.U.P.A.) U.M.F",33
+MXS-020,"Consultorio Auxiliar ""Clínica del Valle"" S.H.C.P. Insurgentes N° 795",33
+MXS-021,"Consultorio Auxiliar ""Clínica del Valle"" S.H.C.P. Pestalozzi N° 37",33
+MXS-022,"Consultorio Auxiliar ""Clínica del Valle"" S.H.C.P. Universidad N°1074",33
+MXS-023,"Consultorio Auxiliar ""Clínica Dr. Ignacio Chávez"" Secretaría de Hacienda y Crédito Públic",33
+MXS-024,"Consultorio Auxiliar ""Clínica Tlalpan"" Unidad N° 17",33
+MXS-025,"Consultorio Auxiliar ""Clínica Tlalpan"" Unidad N° 41 U.P.N. S.E.P.",33
+MXS-026,"Consultorio Auxiliar ""Clínica Villa Álvaro Obregón"" Secretaría de la Función Pública Unidad N° 1",33
+MXS-027,"Consultorio Auxiliar ""Clínica Xochimilco"" Unidad N° 68 S.H.C.P.",33
+MXS-028,Escuela de Dietética y Nutrición,33
+MXO-001,"Hospital Regional ""Gral. Ignacio Zaragoza""",34
+MXO-002,"Hospital General ""José María Morelos y Pavón""",34
+MXO-003,"Clínica de Especialidades con Centro de Cirugía Simplificada ""Leonardo Bravo""",34
+MXO-004,"Clínica de Medicina Familiar ""Balbuena""",34
+MXO-005,"Clínica de Medicina Familiar ""Ermita Zaragoza""",34
+MXO-006,"Clínica de Medicina Familiar ""Iztapalapa I""",34
+MXO-007,"Clínica de Medicina Familiar ""Iztapalapa II""",34
+MXO-008,"Clínica de Medicina Familiar ""Moctezuma""",34
+MXO-009,"Clínica de Medicina Familiar ""Morelos""",34
+MXO-010,"Clínica de Medicina Familiar ""Oriente""",34
+MXP-001,"Hospital General ""Dr. Fernando Quiroz Gutiérrez""",35
+MXP-002,"Hospital General ""Tacuba""",35
+MXP-003,"Clínica de Especialidades con Centro de Cirugía Simplificada ""Dr. Alberto Pisanty Ovadía""",35
+MXP-004,"Clínica de Medicina Familiar ""Azcapotzalco""",35
+MXP-005,"Clínica de Medicina Familiar ""Cuitláhuac""",35
+MXP-006,"Clínica de Medicina Familiar ""Legaria""",35
+MXP-007,"Clínica de Medicina Familiar ""Marina Nacional""",35
+MXP-008,"Clínica de Medicina Familiar ""Observatorio""",35
+MXP-009,"Clínica de Medicina Familiar ""Revolución""",35
+MXP-010,"Unidad de Medicina Familiar ""Cuajimalpa""",35
+MXP-011,"Consultorio Auxiliar ""Clínica Azcapotzalco"" U.H. San Isidro Unidad s/n",35
+MXP-012,"Consultorio Auxiliar ""Clínica Cuitláhuac"" Centro Postal Mecanizado Pantaco Unidad N° 32",35
+MXP-013,"Consultorio Auxiliar ""Clínica Marina Nacional"" Secretaría de Hacienda y Crédito Público Unidad N° 26",35
+MXP-014,"Centro Médico Nacional ""20 de Noviembre""",35

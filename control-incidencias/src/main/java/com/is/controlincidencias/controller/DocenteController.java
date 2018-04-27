@@ -1,7 +1,10 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
+import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -24,23 +29,33 @@ public class DocenteController {
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaServiceImpl incidenciaService;
 
+    @Autowired
+    @Qualifier("personalServiceImpl")
+    private PersonalServiceImpl personalService;
+
     @GetMapping("/justificantes")
     public ModelAndView showJustificantes() {
+        int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
-        mav.addObject("justificantes", justificanteService.listAllJustificante() );
+        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("justificantes", justificanteService.getJustificantesByPersonal(personal));
         return mav;
     }
 
     @GetMapping("/incidencias")
     public ModelAndView showIncidencias(){
+        int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
-        mav.addObject("incidencias", incidenciaService.listAllIncidencia());
+        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         return mav;
     }
 
     @GetMapping("/removejustificante")
-    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int id){
-        justificanteService.removeJustificante(id);
+    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
+        int noEmpleado = 22;
+        System.out.println("VALOR DEL ID JUSTIFICANTE ANTES DE ELIMINACION: " + idJustificante);
+        justificanteService.removeJustificante(idJustificante);
         return showIncidencias();
     }
 }

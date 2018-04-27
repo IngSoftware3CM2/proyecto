@@ -22,6 +22,8 @@ function limpiar_campos() {
 
 function agregar_asistencia(e) {
     e.preventDefault();
+    $(".invalid-feedback").css("display", "none");
+    $(".valid-feedback").css("display", "none");
     console.log("agregar_asistencia");
 
     var $fila = $(document.createElement("tr"));
@@ -38,6 +40,8 @@ function agregar_asistencia(e) {
         fechaRegistro: $inputFecha.val()
     };
 
+
+
     // Trayectoria D
     if (lista_registros.indexOf(data.noTarjeta) >= 0) {
         limpiar_campos();
@@ -51,7 +55,19 @@ function agregar_asistencia(e) {
     }
      */
 
-    if (!re_fecha.test($inputFecha.val())) {
+    if (!re_fecha.test(data.fechaRegistro)) {
+        $("#error6").css("display", "block");
+        return;
+    }
+    debugger;
+    var arreglo_fecha = data.fechaRegistro.split("-");
+    var fechaObj = new Date(parseInt(arreglo_fecha[0]), parseInt(arreglo_fecha[1])-1, parseInt(arreglo_fecha[2]));
+    if (fechaObj.getDay() === 0 || fechaObj.getDay() === 6) {
+        $("#error6").css("display", "block");
+        return;
+    }
+    var actual = new Date();
+    if (fechaObj > actual) {
         $("#error6").css("display", "block");
         return;
     }
@@ -89,21 +105,21 @@ function agregar_asistencia(e) {
                 return;
             }
             if (!re_hora.test(hora_salida)) {
-                console.log("LA hora de salida esta mal");
+                console.log("La hora de salida esta mal");
                 $("#error4").css("display", "block");
                 return;
             }
-            var condicion = Date.parse("01/01/2011 " + hora_entrada + ":00") < Date.parse("01/01/2011 6:00:00");
-            condicion = condicion || Date.parse("01/01/2011 " + hora_entrada + ":00") > Date.parse("01/01/2011 24:59:59");
+            var condicion = Date.parse("01/01/2011 " + hora_entrada + ":00") < Date.parse("01/01/2011 6:30:00");
+            condicion = condicion || Date.parse("01/01/2011 " + hora_entrada + ":00") > Date.parse("01/01/2011 22:00:00");
             if (condicion) {
-                console.log("LA hora de entrada esta mal");
+                console.log("La hora de entrada esta mal");
                 $("#error3").css("display", "block");
                 return;
             }
-            condicion = Date.parse("01/01/2011 " + hora_salida + ":00") < Date.parse("01/01/2011 22:00:00");
-            condicion = condicion || Date.parse("01/01/2011 " + hora_salida + ":00") > Date.parse("01/01/2011 24:59:59");
+            condicion = Date.parse("01/01/2011 " + hora_salida + ":00") < Date.parse("01/01/2011 7:00");
+            condicion = condicion || Date.parse("01/01/2011 " + hora_salida + ":00") > Date.parse("01/01/2011 23:00:00");
             if (condicion) {
-                console.log("LA hora de salida esta mal");
+                console.log("La hora de salida esta mal");
                 $("#error4").css("display", "block");
                 return;
             }

@@ -20,4 +20,6 @@ public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Se
     @Transactional
     public void altaLicPaternidad(@Param("idjustificante") int idjustificante, @Param("actamatrimonio") String actamatrimonio, @Param("actanacimiento") String actanacimiento, @Param("comprobanteingresos") String comprobanteingresos, @Param("constanciacurso") String constanciacurso, @Param("copiaidentificacion") String copiaidentificacion, @Param("justificacion") String justificacion, @Param("registrolicencia") String registrolicencia);
 
+
+    public Incidencia findById(int id);
 }
