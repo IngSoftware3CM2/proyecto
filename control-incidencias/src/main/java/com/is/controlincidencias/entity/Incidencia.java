@@ -66,6 +66,8 @@ public class Incidencia {
         return fechaRegistro;
     }
 
+    public String getFechaAsString () {return fechaRegistro.toString();}
+
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
