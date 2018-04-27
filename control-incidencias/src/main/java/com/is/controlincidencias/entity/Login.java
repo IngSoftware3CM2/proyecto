@@ -28,6 +28,8 @@ public class Login {
         this.personal = personal;
     }
 
+    public Login(){}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

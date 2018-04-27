@@ -28,6 +28,8 @@ public class Zona {
         unidadMedica.setZona(null);
     }
 
+    public Zona(){}
+
     public Zona(String idZona, String nombre) {
         this.idZona = idZona;
         this.nombre = nombre;

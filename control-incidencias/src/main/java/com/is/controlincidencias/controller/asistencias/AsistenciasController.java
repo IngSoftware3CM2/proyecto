@@ -1,8 +1,9 @@
-package com.is.controlincidencias.controller;
+package com.is.controlincidencias.controller.asistencias;
 
+import com.is.controlincidencias.model.AsistenciaJSON;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/asistencias")
@@ -24,8 +25,10 @@ public class AsistenciasController {
         return REGISTRAR_ASISTENCIA;
     }
 
-    @GetMapping("/modificar")
-    public String modificar() {
+    @RequestMapping("/modificar")
+    public String modificar(Model model) {
+        AsistenciaJSON asistencia = new AsistenciaJSON();
+        model.addAttribute("asistenciaModel", asistencia);
         return MODIFICAR_ASISTENCIA;
     }
 

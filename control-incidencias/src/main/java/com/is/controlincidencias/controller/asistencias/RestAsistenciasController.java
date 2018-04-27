@@ -1,4 +1,4 @@
-package com.is.controlincidencias.controller;
+package com.is.controlincidencias.controller.asistencias;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.Consulta;
