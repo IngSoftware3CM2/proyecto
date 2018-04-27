@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Sistema de Control de Asistencias')">
-</head>
+<html>
+<head th:replace="fragments/head :: head('Ver incidencia')"></head>
 <body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
-    <div class="container-fluid">
-        <div class="row">
-            <!--Este es el menu vertical -->
-            <nav th:replace="fragments/verticalnavbar :: navbar"></nav>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-            </main>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Bienvenido</h2>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <a href="index.html"><strong>Inicio</strong></a>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
         </div>
     </div>
-    <!--Archivos javascript, luego los pongo en su propio archivo como el header-->
-    <script src="#" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script src="#" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-        feather.replace()
-    </script>
+</div>
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
