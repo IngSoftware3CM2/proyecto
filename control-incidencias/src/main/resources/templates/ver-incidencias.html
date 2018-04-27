@@ -43,8 +43,8 @@
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}">
                                         <div class="row ">
-                                            <td th:text="${incidencia.getFecha()}"></td>
-                                            <td th:text="${incidencia.getTipo()}"></td>
+                                            <td th:text="${incidencia.getFecha()}">Fecha</td>
+                                            <td th:text="${incidencia.getTipo()}">Tipo</td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col-sm-8">
