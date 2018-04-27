@@ -23,11 +23,11 @@ public class TipoA implements Serializable {
     @Column(name = "fechafin", nullable = false)
     private LocalDate fin;
 
-    @Column(name = "licenciamedica", nullable = false)
-    private String licenciamedica;
+    @Column(name = "licenciaArchivo", nullable = false)
+    private String licenciaArchivo;
 
     @Column(name = "tipo", nullable = false)
-    private LocalDate tipo;
+    private String tipo;
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -43,11 +43,11 @@ public class TipoA implements Serializable {
     public TipoA() {
     }
 
-    public TipoA(String folio, LocalDate inicio, LocalDate fin, String licenciamedica, LocalDate tipo, Justificante justificante, UnidadMedica unidadmedica) {
+    public TipoA(String folio, LocalDate inicio, LocalDate fin, String licenciaArchivo, String tipo, Justificante justificante, UnidadMedica unidadmedica) {
         this.folio = folio;
         this.inicio = inicio;
         this.fin = fin;
-        this.licenciamedica = licenciamedica;
+        this.licenciaArchivo = licenciaArchivo;
         this.tipo = tipo;
         this.justificante = justificante;
         this.unidadmedica = unidadmedica;
@@ -85,19 +85,19 @@ public class TipoA implements Serializable {
         this.fin = fin;
     }
 
-    public String getLicenciamedica() {
-        return licenciamedica;
+    public String getlicenciaArchivo() {
+        return licenciaArchivo;
     }
 
-    public void setLicenciamedica(String licenciamedica) {
-        this.licenciamedica = licenciamedica;
+    public void setlicenciaArchivo(String licenciaArchivo) {
+        this.licenciaArchivo = licenciaArchivo;
     }
 
-    public LocalDate getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(LocalDate tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -118,7 +118,7 @@ public class TipoA implements Serializable {
                 Objects.equals(folio, tipoA.folio) &&
                 Objects.equals(inicio, tipoA.inicio) &&
                 Objects.equals(fin, tipoA.fin) &&
-                Objects.equals(licenciamedica, tipoA.licenciamedica) &&
+                Objects.equals(licenciaArchivo, tipoA.licenciaArchivo) &&
                 Objects.equals(tipo, tipoA.tipo) &&
                 Objects.equals(justificante, tipoA.justificante) &&
                 Objects.equals(unidadmedica, tipoA.unidadmedica);
@@ -126,7 +126,7 @@ public class TipoA implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, folio, inicio, fin, licenciamedica, tipo, justificante, unidadmedica);
+        return Objects.hash(id, folio, inicio, fin, licenciaArchivo, tipo, justificante, unidadmedica);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class TipoA implements Serializable {
                 ", folio='" + folio + '\'' +
                 ", inicio=" + inicio +
                 ", fin=" + fin +
-                ", licenciamedica='" + licenciamedica + '\'' +
+                ", licenciaArchivo='" + licenciaArchivo + '\'' +
                 ", tipo=" + tipo +
                 ", justificante=" + justificante +
                 ", unidadmedica=" + unidadmedica +

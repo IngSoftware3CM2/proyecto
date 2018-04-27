@@ -14,4 +14,9 @@ public class JustificacionTAController {
     public ModelAndView verJustificante(){
         return new ModelAndView(Constants.JUSTIFICANTE_A);
     }
+    @GetMapping("justificacionVerificar")
+    public ModelAndView confirmarJustificante(){
+        ModelAndView mav = new ModelAndView(Constants.VER_DATOS_JUSTIFICANTE);
+        return mav;
+    }
 }
