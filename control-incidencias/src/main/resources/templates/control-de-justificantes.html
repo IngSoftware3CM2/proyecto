@@ -9,3 +9,33 @@
     <p>Esta madafaka no se aun quien la vaya a hacer</p>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/head :: head('Control de justificantes')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Control de justificantes</h2>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <a href="index.html"><strong>Inicio</strong></a>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
