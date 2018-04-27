@@ -24,6 +24,19 @@ public class Justificante {
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
 
+    @Override
+    public String toString() {
+        return "Justificante{" +
+                "idJustificante=" + idJustificante +
+                ", fecha=" + fecha +
+                ", estado='" + estado + '\'' +
+                ", permisoEconomico=" + permisoEconomico +
+                ", licPaternidad=" + licPaternidad +
+                ", incidencias=" + incidencias +
+                ", personal=" + personal +
+                '}';
+    }
+
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private LicPaternidad licPaternidad;
 
