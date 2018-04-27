@@ -20,4 +20,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     public List<Incidencia> listAllIncidencia() {
         return incidenciaRepository.findAll();
     }
+
+    @Override
+    public Incidencia consultarIncidencia(int id) {
+        return incidenciaRepository.findByIdIncidencia(id);
+    }
+
+
 }

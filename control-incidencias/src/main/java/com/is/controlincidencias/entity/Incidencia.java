@@ -28,18 +28,6 @@ public class Incidencia {
         this.quincena = quincena;
     }
 
-    @Override
-    public String toString() {
-        return "Incidencia{" +
-                "idIncidencia=" + idIncidencia +
-                ", fechaRegistro=" + fechaRegistro +
-                ", tipo='" + tipo + '\'' +
-                ", quincena=" + quincena +
-                ", personal=" + personal +
-                ", justificante=" + justificante +
-                '}';
-    }
-
     private static final String definition2 = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -98,7 +86,14 @@ public class Incidencia {
         this.personal = personal;
     }
 
-
+    @Override
+    public String toString() {
+        return "Incidencia{" +
+                "idIncidencia=" + idIncidencia +
+                ", fechaRegistro=" + fechaRegistro +
+                ", tipo=" + tipo +
+                '}';
+    }
 
     private static final String definition3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 

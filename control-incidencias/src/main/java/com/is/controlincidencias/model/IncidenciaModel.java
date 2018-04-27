@@ -65,7 +65,16 @@ public class IncidenciaModel {
         this.quincena = quincena;
     }
 
-
+    @Override
+    public String toString() {
+        return "IncidenciaModel{" +
+                "idIncidencia=" + idIncidencia +
+                ", fechaRegistro=" + fechaRegistro +
+                ", tipo=" + tipo +
+                ", personal=" + personal +
+                ", justificante=" + justificante +
+                '}';
+    }
 
     private static final String definition2 = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
 

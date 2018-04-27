@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IncidenciaService {
     List<Incidencia> listAllIncidencia ();
+    Incidencia consultarIncidencia(int id);
 }
