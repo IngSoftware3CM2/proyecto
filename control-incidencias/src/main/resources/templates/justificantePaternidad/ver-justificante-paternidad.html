@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/head :: head('Ver Justificante')"></head>
+
+<body>
+
+<div id="wrapper">
+
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Ver Justificante</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Ver Justificante</a>
+                    </li>
+                    <li class="active">
+                       <strong>Ver Justificante de paternidad</strong>
+                    </li>
+
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Generar Solicitud de Licencia por Paternidad</span>
+                </h1>
+                <form class="form-horizontal">
+
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label>
+                    </div>
+                    <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-8 center">
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px"></textarea></div>
+
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-4 ">Selecciona los Archivos </label></div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Formato de Registro de la Licencia por Paternidad</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Acta de Nacimiento o Adopcion</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Acta de Matrimonio o Constancia de Dependencia economica de la
+                            Pareja</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Constancia curso "Paternidad-es"</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Copia de identificacion como trabajador del IPN</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label>Comprobante de ingresos del Docente</label></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Adjuntar</span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..."/></span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                       style="float: none">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-sm btn-white" type="submit">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+<script src="#" th:src="@{js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.footable').footable();
+        $('.footable2').footable();
+    });
+</script>
+
+
+
+
+</body>
+
+</html>

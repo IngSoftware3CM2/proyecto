@@ -1,59 +1,107 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<!--Esta linea manda a llamar el fragments/head para no repetir html-->
-<head th:replace="fragments/head :: head('Solicitud de licencia por paternidad')"> <!--Le pasamos el titulo de la pagina-->
-</head>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head('Ver incidencia')"></head>
 <body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <!--Este es el menu vertical -->
-        <nav th:replace="fragments/verticalnavbar :: navbar"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Ver Incidencias</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="active">
+                        <strong>Ver Incidencias</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Incidencias Generadas</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Buscar">
+                            <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                                <thead>
+                                <tr>
+                                    <th>Fecha de Generacion</th>
+                                    <th>Tipo de Incidencia</th>
+                                    <th>Justificacion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="gradeX" th:each="incidencia : ${incidencias}">
+                                        <div class="row ">
+                                            <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
+                                            <td th:text="${incidencia.getTipo()}">Tipo</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control m-b" name="tipoJustificante">
+                                                            <option th:value="1">Licencia Medica</option>
+                                                            <option th:value="2">Licencia por Paternidad</option>
+                                                            <option th:value="3">Cambio de Horario</option>
+                                                            <option th:value="4">Dias Economicos</option>
+                                                            <option th:value="5">Cuidados Familiares</option>
+                                                            <option th:value="6">Cuidados Maternos</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <div class="col">
+                                                                <button class="btn btn-sm btn-white" type="submit">Justificar
+                                                                </button>
+                                                            </div>
+                                                        </div>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Ver Incidencias </h1>
-          </div>
-          <div class="container">
-
-            <form th:each="incidencia : ${incidencias}" class="form-inline">
-              <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Fecha</label>
-                <input th:value="${incidencia.getFechaRegistroasString()}" type="text" readonly class="form-control-plaintext" id="staticEmail2" value="">
-              </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Tipo de Incidencia</label>
-                <input th:value="${incidencia.getTipo()}" type="text" readonly class="form-control-plaintext" id="staticEmail2" value="">
-              </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Tipo de Justificante</label>
-                <select class="form-control">
-                  <option>Licencia Medica</option>
-                  <option>Licencia por Paternidad</option>
-                  <option>Cambio de Horario</option>
-                  <option>Dias Economicos</option>
-                  <option>Cuidados Familiares</option>
-                  <option>Cuidados Maternos</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary mb-2">Justificar</button>
-            </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </div>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
 
 
-          </div>
-        </main>
-      </div>
     </div>
+</div>
 
-    <!--Archivos javascript, luego los pongo en su propio archivo como el header-->
-    <script src="#" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script src="#" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-        feather.replace()
-    </script>
-  </body>
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.footable').footable();
+        $('.footable2').footable();
+    });
+</script>
+</body>
 </html>

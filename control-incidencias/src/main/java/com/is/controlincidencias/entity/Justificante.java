@@ -65,6 +65,10 @@ public class Justificante {
         return fecha;
     }
 
+    public String getFechaAsString (){
+        return fecha.toString();
+    }
+
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }

@@ -28,12 +28,7 @@ public class JustificanteServiceImpl implements JustificanteService {
     }
 
     @Override
-    public void removeJustificante(int id) {
-        Justificante justificante = justificanteRepository.findByIdJustificante(id);
-        try
-        {System.out.println("JUSTIFICANTE A ELIMINAR: "+justificante.toString());}
-        catch (Exception e){
-            e.printStackTrace();
-        }
+    public void removeJustificanteByIdJustificante(int id) {
+        justificanteRepository.eliminar(id);
     }
 }

@@ -69,6 +69,8 @@ public class Incidencia {
         return fechaRegistro;
     }
 
+    public String getFechaAsString () {return fechaRegistro.toString();}
+
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
@@ -112,7 +114,6 @@ public class Incidencia {
                 '}';
     }
 
-    private static final String definition3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
     public void setJustificante(Justificante justificante) {
         this.justificante = justificante;

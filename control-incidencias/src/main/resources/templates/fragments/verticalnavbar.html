@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="navbar">
-    <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link " href="IndexS1.html">
-                    <span data-feather="home"></span>
-                    Inicio
-                </a>
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="verticalnavbar">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <a href="http://www.escom.ipn.mx/">
+                    <span>
+                        <img alt="image" class="img-square img-responsive" th:src="@{/img/escom.png}"/>
+                    </span>
+                    </a>
+                </div>
+                <div class="logo-element">
+                    Escom
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/docente/incidencias}">
-                    <span data-feather="archive"></span>
-                    Ver Incidencias
-                </a>
+            <li><a href="#"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a></li>
+            <li><a href="#"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Ver Perfil</span></a></li>
+            <li><a href="#" th:href="@{/docente/incidencias}"><i class="fa fa-files-o"></i> <span class="nav-label">Ver Incidencias</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#" th:href="@{/docente/justificantes}">
-                    <span data-feather="folder"></span>
-                    Ver Justificantes <span class="sr-only">(current)</span>
-                </a>
+            <li><a href="#" th:href="@{/docente/justificantes}"><i class="fa fa-folder-o"></i> <span class="nav-label">Ver Justificantes</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="user"></span>
-                    Ver Perfil
-                </a>
-            </li>
+            <li><a href="#" th:href="@{/login}"><i class="fa fa-sign-out"></i> <span
+                    class="nav-label">Cerrar Sesion</span></a></li>
         </ul>
+
     </div>
 </nav>
 </body>
+</html>

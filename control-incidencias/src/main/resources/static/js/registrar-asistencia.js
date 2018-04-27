@@ -71,11 +71,10 @@ function agregar_asistencia(e) {
         $("#error6").css("display", "block");
         return;
     }
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:8080/api/asistencias/consultar",
+        url: window.location.origin + "/api/asistencias/consultar",
         data: JSON.stringify(data),
         dataType: "json",
         success: function(resultado) {
@@ -177,7 +176,7 @@ function registrar_asistencias(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:8080/api/asistencias/agregar",
+        url: window.location.origin + "/api/asistencias/agregar",
         data: JSON.stringify(lista),
         dataType: "json",
         success: function(resultado) {

@@ -54,8 +54,7 @@ public class DocenteController {
     @GetMapping("/removejustificante")
     public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
         int noEmpleado = 22;
-        System.out.println("VALOR DEL ID JUSTIFICANTE ANTES DE ELIMINACION: " + idJustificante);
-        justificanteService.removeJustificante(idJustificante);
+        justificanteService.removeJustificanteByIdJustificante(idJustificante);
         return showIncidencias();
     }
 }
