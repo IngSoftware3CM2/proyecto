@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.List;
 
 @Repository("justificanteRepository")
@@ -29,12 +30,17 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
     @Modifying
     @Transactional
     @Query (value="delete from justificante where idjustificante=:id", nativeQuery = true)
-    void eliminar (@Param("id") int id);
+    void eliminar(@Param("id") int id);
 
     @Modifying
-    @Query(value = "insert into justificante (idjustificante,estado,fecha,noempleado) VALUES (:idjustificante,:estado,:fecha,:noempleado)", nativeQuery = true)
     @Transactional
-    public void altaLicPaternidad(@Param("idjustificante") int idjustificante, @Param("estado") String estado, @Param("fecha") String fecha, @Param("noempleado") int noempleado);
+    @Query(value="SELECT idjustificante FROM justificante", nativeQuery = true)
+    public List<Integer> ultimoJustificanteAnadido();
+
+    @Modifying
+    @Query(value = "insert into justificante (estado,fecha,noempleado) VALUES (:estado,:fecha,:noempleado)", nativeQuery = true)
+    @Transactional
+    public void altaJustificante(@Param("estado") String estado, @Param("fecha") Date fecha, @Param("noempleado") int noempleado);
 
 
 }
