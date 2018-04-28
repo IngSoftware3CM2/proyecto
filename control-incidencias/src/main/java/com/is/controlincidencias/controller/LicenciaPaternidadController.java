@@ -37,26 +37,19 @@ public class LicenciaPaternidadController {
     @GetMapping("/form")
     private String RedirectSolicitudLicenciaPaternidadForm(Model model) {
         model.addAttribute("licPaternidadModel", new LicPaternidadModel());
-        //return Constants.JUSTIFICANTE_P;
-        return "solicitud-licencia-paternidad-chafa";
+        return Constants.JUSTIFICANTE_P;
+        //return "solicitud-licencia-paternidad-chafa";
     }
 
     @PostMapping("/add-lic-paternidad")
     private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) throws IOException {
         LOG.info("Datos que me llegan "+licPaternidadModel.toString());
-        LOG.info("Justificante con id 1 ----- "+incidenciaService.consultarIncidencia(1).toString());
-        Incidencia incidencia = incidenciaService.consultarIncidencia(1);
         //LOG.info("Justificante con id 1 ----- "+licPaternidadService.consultarJustificante(1).toString());
         //Justificante justificante = licPaternidadService.consultarJustificante(1);
 
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
-        justificante.setIdJustificante(1);
 
-
-        for (MultipartFile file: files){
-            LOG.info("Info de archivo "+file.getOriginalFilename());
-        }
         licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
