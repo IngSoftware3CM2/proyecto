@@ -1,0 +1,214 @@
+--scripts 4
+set sqlprompt "'Sam>'"
+
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salidaV$TIMEZONE_NAMES.txt
+set linesize 150
+set pagesize 30
+column tzname format a45
+column tzabbrev format a45
+set timing on
+select TZNAME, TZABBREV
+	from V$TIMEZONE_NAMES;
+set timing off
+spool off
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salida-V$TABLESPACE.txt
+column TS# format 999;
+column NAME format a25;
+column INCLUDED_IN_DATABASE_BACKUP format a25
+select TS#,NAME,INCLUDED_IN_DATABASE_BACKUP
+	from V$TABLESPACE;
+spool off
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salida-V$PARAMETER.txt
+column name format a25;
+column value format a25;
+column description format a25;
+select NAME,VALUE,DESCRIPTION
+	from V$PARAMETER;
+spool off
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salida-ser_INDEXES.txt
+column INDEX_NAME format a25;
+column INDEX_TYPE format a25;
+column TABLE_OWNER format a25;
+column TABLE_NAME format a25;
+column BLEVEL format a25;
+column LEAF_BLOCKS format a25;
+select INDEX_NAME, INDEX_TYPE,TABLE_OWNER,TABLE_NAME,BLEVEL,LEAF_BLOCKS
+	FROM USER_INDEXES;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salidaROLE_SYS_PRIVS.txt
+column ROLE format a35;
+column PRIVILEGE format a35;
+column ADMIN_OPTION format a35;
+select ROLE,PRIVILEGE,ADMIN_OPTION
+	FROM ROLE_SYS_PRIVS;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salidaNLS_INSTANCE_PARAMETERS.txt
+column PARAMETER format a35;
+column VALUE format a35;
+select PARAMETER,VALUE
+	FROM NLS_INSTANCE_PARAMETERS;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\salida-USER_SEQUENCES.txt
+column SEQUENCE_NAME format a25;
+column MIN_VALUE format 9999;
+column MAX_VALUE format 9999;
+column LAST_NUMBER format 9999;
+select SEQUENCE_NAME, MIN_VALUE, MAX_VALUE, LAST_NUMBER
+	FROM USER_SEQUENCES;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\P252-2.txt
+column "Current Date" format a 18;
+column "Year 88" format a10;
+column "Year 18" format a18;
+SELECT TO_CHAR(SYSDATE,'MM/DD/YYYY') "Current Date",
+TO_CHAR(TO_DATE('10/14/88','MM/DD/RR'),'YYYY')"Year 88",
+TO_CHAR(TO_DATE('10/14/18','MM/DD/RR'),'YYYY')"Year 18"
+from dual;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\P252-1.txt
+column "Current Date" format a18;
+column "Year 88" format a10;
+column "Year 18" format a18;
+SELECT TO_CHAR(SYSDATE,'MM/DD/YYYY') "Current Date",
+TO_CHAR(TO_DATE('14-OCT-88','DD-MON-RR'),'YYYY')"Year 88",
+TO_CHAR(TO_DATE('14-OCT-18','DD-MON-RR'),'YYYY')"Year 18"
+from dual;
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\P248.txt
+set serveroutput on 
+DECLARE
+a TIMESTAMP WITH TIME ZONE;
+b TIMESTAMP WITH TIME ZONE;
+c TIMESTAMP WITH TIME ZONE;
+d TIMESTAMP WITH TIME ZONE;
+e DATE;
+BEGIN
+a := TIMESTAMP '2002-02-19 11:52:00.00 -05:00';
+b := TIMESTAMP '2002-02-19 14:00:00.000000000 -05:00';
+c := TIMESTAMP '2002-02-19 13:52:00 -05:00';
+d := TIMESTAMP '2002-02-19 11:52:00';
+e := DATE'2002-02-19';
+DBMS_OUTPUT.PUT_LINE(a);
+DBMS_OUTPUT.PUT_LINE(b);
+DBMS_OUTPUT.PUT_LINE(c);
+DBMS_OUTPUT.PUT_LINE(d);
+DBMS_OUTPUT.PUT_LINE(e);
+END;
+/
+spool off;
+--
+spool C:\Users\sam-y\OneDrive\Documentos\6to_Semestre\BDD\Hojas\Script4\P245.txt
+set serveroutput on 
+DECLARE
+a TIMESTAMP;
+b TIMESTAMP;
+BEGIN 
+a := TO_TIMESTAMP('24-Feb-2002 09.00.00.50');
+b := TO_TIMESTAMP('02/24/02 09:00:00.50 PM','mm/dd/yyyy hh:mi:ssxff AM');
+DBMS_OUTPUT.PUT_LINE(a);
+DBMS_OUTPUT.PUT_LINE(b);
+END;
+/
+spool off;
+--
+PROMPT CONSULTA LOS USUARIOS DESDE SYS 
+select username, account_status,lock_date, expiry_date 
+from dba_users;
+PROMPT CONSULTA AL USUARIO STUDENT
+select username, account_status,
+EXPIRY_DATE from dba_users
+where username='STUDENT';
+
+ALTER USER STUDENT ACCOUNT UNLOCK;
+--
+SET PAGESIZE 0
+SET FEEDBACK OFF
+SELECT 'DROP TABLE'||table_name||';'
+FROM user_tables
+WHERE table_name LIKE UPPER('HR')
+SPOOL drop.cmd
+/
+SPOOL OFF
+@drop.cmd 
+--
+SELECT owner||'.'||name refs_table,
+referenced_owner||'.'||
+referenced_name table_referenced
+FROM all_dependencies
+WHERE owner LIKE UPPER ('HR')
+AND TYPE IN ('PACKAGE',
+'PACKAGE BODY',
+'PROCEDURE',
+'FUNCTION')
+AND referenced_type IN ('TABLE','VIEW')
+ORDER BY owner,
+name, 
+referenced_owner,
+referenced_name;
+--
+
+CREATE TABLE temp (N NUMBER);
+CREATE OR REPLACE TRIGGER tmep_air
+AFTER INSERT ON TEMP
+FOR EACH ROW
+BEGIN
+dbms_output.put_line('executing temp_air');
+END;
+/
+INSERT INTO temp VALUES(10);
+INSERT INTO temp VALUES(20);
+INSERT INTO temp VALUES(30);
+INSERT INTO temp VALUES(40);
+INSERT INTO temp VALUES(50);
+INSERT INTO temp SELECT * FROM temp;
+
+INSERT INTO temp SELECT * FROM temp;
+
+PROMPT DESPLEGAR LOS TRIGGERS ACTIVOS
+PROMPT ACTIVAR LOS TRIGGERS
+PROMPT DESACTIVAR LOS TRIGGERS
+CREATE OR REPLACE TRIGGER temp_aur
+AFTER UPDATE ON TEMP
+FOR EACH ROW
+WHEN (NEW.N BETWEEN 1 AND 10)
+BEGIN
+ dbms_output.put_line('executing temp_aur');
+END;
+--
+CREATE TABLE TEMP(N NUMBER, M NUMBER 
+DEFAULT 5);
+CREATE OR REPLACE TRIGGER temp_bur
+BEFORE UPDATE ON TEMP
+FOR EACH ROW
+BEGIN
+dbms_output.put_line('BUR old N:'||:old.n||'M:'||:old.M);
+dbms_output.put_line('BUR new N:'||:new.n||'M:'||:new.M);
+END;
+
+CREATE OR REPLACE TRIGGER temp_aur
+AFTER UPDATE ON TEMP
+FOR EACH ROW
+BEGIN
+dbms_output.put_line('AUR old N:'||:old.n||'M:'||:old.M);
+dbms_output.put_line('AUR new N:'||:new.n||'M:'||:new.M);
+--
+SQL>INSERT INTO TEMP (n) VALUES (1);
+SQL>UPDATE TEMP SET n=n+1 WHERE n>=1;
+BUR old: N=1 M=5
+BUR new: N=2 M=5
+AUR old: N=1 M=5
+AUR new N=2 M=5
+SQL> UPDATE TEMP SET m=2 WHERE M=5;
+BUR old: N=2 M=5
+BUR new: N=2 M=2
+AUR old: N=2 M=5
+AUR new N=2 M=2

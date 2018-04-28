@@ -10,7 +10,8 @@ import java.util.List;
 public class Justificante {
 
     @Id
-    @Column(name = "idJustificante", length = 4)
+    @Column(name = "idJustificante", length = 4, columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idJustificante;
 
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
@@ -24,18 +25,6 @@ public class Justificante {
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
 
-    @Override
-    public String toString() {
-        return "Justificante{" +
-                "idJustificante=" + idJustificante +
-                ", fecha=" + fecha +
-                ", estado='" + estado + '\'' +
-                ", permisoEconomico=" + permisoEconomico +
-                ", licPaternidad=" + licPaternidad +
-                ", incidencias=" + incidencias +
-                ", personal=" + personal +
-                '}';
-    }
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private LicPaternidad licPaternidad;
@@ -57,7 +46,7 @@ public class Justificante {
 
     public void addAsistencia(Incidencia incidencia) {
         incidencias.add(incidencia);
-        incidencia.setJustificante(this);
+        //incidencia.setJustificante(this);
     }
 
     public void removeAsistencia(Incidencia incidencia) {
@@ -75,6 +64,10 @@ public class Justificante {
 
     public LocalDate getFecha() {
         return fecha;
+    }
+
+    public String getFechaAsString (){
+        return fecha.toString();
     }
 
     public void setFecha(LocalDate fecha) {
@@ -134,6 +127,19 @@ public class Justificante {
     @Override
     public int hashCode() {
         return 32;
+    }
+
+    @Override
+    public String toString() {
+        return "Justificante{" +
+                "idJustificante=" + idJustificante +
+                ", fecha=" + fecha +
+                ", estado='" + estado + '\'' +
+                ", permisoEconomico=" + permisoEconomico +
+                ", licPaternidad=" + licPaternidad +
+                ", incidencias=" + incidencias +
+                ", personal=" + personal +
+                '}';
     }
 
     public Justificante(Integer idJustificante, Personal personal) {
