@@ -8,9 +8,13 @@ var $inputFecha = $("#inputFecha");
 var $bodyRegistros = $("#bodyRegistros");
 var lista_registros = [];
 
-$inputFecha.datepicker({
-    uiLibrary: 'bootstrap4',
-    format: 'yyyy-mm-dd'
+$('#data_1 .input-group.date').datepicker({
+    todayBtn: true,
+    keyboardNavigation: false,
+    forceParse: false,
+    calendarWeeks: false,
+    autoclose: true,
+    format: "yyyy-mm-dd"
 });
 
 function limpiar_campos() {
@@ -22,8 +26,7 @@ function limpiar_campos() {
 
 function agregar_asistencia(e) {
     e.preventDefault();
-    $(".invalid-feedback").css("display", "none");
-    $(".valid-feedback").css("display", "none");
+    $(".help-block").addClass("hidden");
     console.log("agregar_asistencia");
 
     var $fila = $(document.createElement("tr"));
@@ -32,7 +35,8 @@ function agregar_asistencia(e) {
     var $tdSalida = $(document.createElement("td"));
     var $tdFecha = $(document.createElement("td"));
     var $tdEliminar = $(document.createElement("td"));
-    var $spanEliminar = $(document.createElement("span"));
+    var $btnEliminar = $(document.createElement("button"));
+    var $iconoEliminar = $(document.createElement("i"));
 
     var data = {
         estado: 0,
@@ -56,19 +60,18 @@ function agregar_asistencia(e) {
      */
 
     if (!re_fecha.test(data.fechaRegistro)) {
-        $("#error6").css("display", "block");
+        $("#error6").removeClass("hidden");
         return;
     }
-    debugger;
     var arreglo_fecha = data.fechaRegistro.split("-");
     var fechaObj = new Date(parseInt(arreglo_fecha[0]), parseInt(arreglo_fecha[1])-1, parseInt(arreglo_fecha[2]));
     if (fechaObj.getDay() === 0 || fechaObj.getDay() === 6) {
-        $("#error6").css("display", "block");
+        $("#error6").removeClass("hidden");
         return;
     }
     var actual = new Date();
     if (fechaObj > actual) {
-        $("#error6").css("display", "block");
+        $("#error6").removeClass("hidden");
         return;
     }
     $.ajax({
@@ -80,17 +83,17 @@ function agregar_asistencia(e) {
         success: function(resultado) {
             if (resultado.estado === 2) { // Trayectoria A
                 console.log("Mostar error de trayectoria A");
-                $("#error1").css("display", "block");
+                $("#error1").removeClass("hidden");
                 $inputTarjeta.val("");
                 return;
             } else if (resultado.estado === 3 ){ // Trayectoria B
                 console.log("Mostrar error de trayectoria B");
-                $("#errorB").css("display", "block");
+                $("#errorB").removeClass("hidden");
                 return;
             } else if (resultado.estado === 4) { // Trayectoria C
                 console.log("Mostrar otro de Trayectoria C");
                 limpiar_campos();
-                $("#errorC").css("display", "block");
+                $("#errorC").removeClass("hidden");
                 return;
             }
 
@@ -100,26 +103,26 @@ function agregar_asistencia(e) {
 
             if (!re_hora.test(hora_entrada)) {
                 console.log("LA hora de entrada esta mal");
-                $("#error3").css("display", "block");
+                $("#error3").removeClass("hidden");
                 return;
             }
             if (!re_hora.test(hora_salida)) {
                 console.log("La hora de salida esta mal");
-                $("#error4").css("display", "block");
+                $("#error4").removeClass("hidden");
                 return;
             }
             var condicion = Date.parse("01/01/2011 " + hora_entrada + ":00") < Date.parse("01/01/2011 6:30:00");
             condicion = condicion || Date.parse("01/01/2011 " + hora_entrada + ":00") > Date.parse("01/01/2011 22:00:00");
             if (condicion) {
                 console.log("La hora de entrada esta mal");
-                $("#error3").css("display", "block");
+                $("#error3").removeClass("hidden");
                 return;
             }
             condicion = Date.parse("01/01/2011 " + hora_salida + ":00") < Date.parse("01/01/2011 7:00");
             condicion = condicion || Date.parse("01/01/2011 " + hora_salida + ":00") > Date.parse("01/01/2011 23:00:00");
             if (condicion) {
                 console.log("La hora de salida esta mal");
-                $("#error4").css("display", "block");
+                $("#error4").removeClass("hidden");
                 return;
             }
 
@@ -128,9 +131,11 @@ function agregar_asistencia(e) {
             $tdSalida.text($inputSalida.val());
             $tdFecha.text($inputFecha.val());
 
-            $spanEliminar.addClass("oi oi-minus custom-remove-icon");
-            $spanEliminar.on("click", eliminar_registro_tabla);
-            $tdEliminar.append($spanEliminar);
+            $btnEliminar.addClass("btn btn-white");
+            $iconoEliminar.addClass("fa fa-times");
+            $btnEliminar.append($iconoEliminar);
+            $btnEliminar.on("click", eliminar_registro_tabla);
+            $tdEliminar.append($btnEliminar);
 
             $fila.append($tdTarjeta);
             $fila.append($tdEntrada);
@@ -140,8 +145,7 @@ function agregar_asistencia(e) {
 
             $bodyRegistros.append($fila);
             lista_registros.push(resultado.noTarjeta);
-            $(".invalid-feedback").css("display", "none");
-            $(".valid-feedback").css("display", "none");
+            $(".help-block").addClass("hidden");
         },
         error: function(e) {
             console.log("ERROR: " + e);
@@ -155,6 +159,9 @@ function registrar_asistencias(e) {
     // For para obtener toda la data
     var lista = [];
     var hijos = $bodyRegistros.children();
+
+    if (hijos.length < 1)
+        return;
 
     for (var i = 0; i < hijos.length; i++) {
         var tempNoTarjeta = hijos[i].children[0].textContent;
@@ -184,11 +191,11 @@ function registrar_asistencias(e) {
             limpiar_campos();
             $bodyRegistros.empty();
             lista_registros = [];
-            $(".valid-feedback").css("display", "block");
+            $("#exito").removeClass("hidden");
         },
         error: function(e) {
             console.log("ERROR: " + e);
-            $("#errorF").css("display", "block");
+            $("#errorF").removeClass("hidden");
         }
     });
 }
@@ -197,7 +204,7 @@ function eliminar_registro_tabla(e) {
     e.preventDefault();
     var $elemento = $(this);
     var temp_tarjeta = $elemento.parent().parent().children()[0];
-    var index = lista_registros.indexOf(parseInt(temp_tarjeta));
+    var index = lista_registros.indexOf(parseInt(temp_tarjeta.textContent, 10));
     if (index > -1)
         lista_registros.splice(index, 1);
     $(this).parent().parent().remove();
