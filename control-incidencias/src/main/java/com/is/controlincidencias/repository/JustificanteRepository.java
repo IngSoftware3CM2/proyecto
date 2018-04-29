@@ -23,14 +23,10 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
 
     List<Justificante> findAllByPersonal (Personal personal);
 
-    @Transactional
-    void removeJustificanteByIdJustificante (int id);
-
-
     @Modifying
     @Transactional
     @Query (value="delete from justificante where idjustificante=:id", nativeQuery = true)
-    void eliminar(@Param("id") int id);
+    void removeJustificanteByIdJustificante(@Param("id") int id);
 
     @Modifying
     @Transactional
