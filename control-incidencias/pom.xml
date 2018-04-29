@@ -6,7 +6,7 @@
     <groupId>com.is</groupId>
     <artifactId>control-incidencias</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>control-incidencias</name>
     <description>Proyecto para el control de incidencias de la materia Ingeniería de software del grupo 3CM2 del año
@@ -56,12 +56,12 @@
             <scope>test</scope>
         </dependency>
         <!-- Esto es para deploy-->
-        <!--
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <build>
