@@ -44,5 +44,4 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         return incidenciaRepository.findByIdIncidencia(id);
     }
 
-
 }

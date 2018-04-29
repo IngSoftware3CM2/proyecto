@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <div class="row border-bottom" th:fragment="horizontalnavbar(titulo)">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="col-sm-9">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-center">
-                    <li>
-                        <h2><span th:text="${titulo}">Test</span></h2>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+<div class="row border-bottom" th:fragment="horizontalnavbar(titulo)">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-center">
+            <li>
+                <h2 th:text="${titulo}">Test</h2>
+            </li>
+        </ul>
+    </nav>
+</div>
 </body>
 </html>

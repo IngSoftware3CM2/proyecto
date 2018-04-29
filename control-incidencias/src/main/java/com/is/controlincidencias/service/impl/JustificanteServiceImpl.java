@@ -30,7 +30,7 @@ public class JustificanteServiceImpl implements JustificanteService {
 
     @Override
     public void removeJustificanteByIdJustificante(int id) {
-        justificanteRepository.eliminar(id);
+        justificanteRepository.removeJustificanteByIdJustificante(id);
     }
 
     @Override
