@@ -1,4 +1,4 @@
-var re_hora = /^\d{1,2}:\d\d$/;
+var re_hora = /^\d{2}:\d{2}$/;
 var re_fecha =/^\d{4}-\d{2}-\d{2}$/;
 var re_tarjeta =/^\d{6,8}$/;
 var $inputTarjeta = $("#inputTarjeta");
