@@ -20,8 +20,10 @@ import java.time.format.DateTimeFormatter;
 @Service("asistenciaServiceImpl")
 public class AsistenciaServiceImpl implements AsistenciaService {
     private static final Log LOG = LogFactory.getLog(AsistenciaServiceImpl.class);
-    private LocalTime siete = LocalTime.of(7, 0, 0, 0);
-    private LocalTime veintidos = LocalTime.of(22,  0, 0, 0);
+    private static LocalTime siete = LocalTime.of(7, 0, 0, 0);
+    private static LocalTime veintidos = LocalTime.of(22,  0, 0, 0);
+    private static LocalTime seisMedia = LocalTime.of(6, 30, 00);
+    private static LocalTime veintitres = LocalTime.of(23,  0, 0, 0);
     private DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private DateTimeFormatter formatterHour = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -95,8 +97,14 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         LocalTime horaSalida = LocalTime.parse(asistenciaForm.getHoraSalida(), formatterHour);
         Asistencia a = asistenciaRepository
                 .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
+        validarHoras(horaEntrada, horaSalida);
         a.setHoraEntrada(horaEntrada);
         a.setHoraSalida(horaSalida);
         return asistenciaRepository.save(a);
+    }
+
+    private boolean validarHoras(LocalTime horaEntrada, LocalTime horaSalida) {
+        if (horaEntrada.compareTo(seisMedia) > 0)
+
     }
 }

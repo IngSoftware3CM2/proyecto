@@ -25,6 +25,10 @@ public class AsistenciasController {
     private static final String ELIMINAR_ASISTENCIA = "eliminar-asistencias";
     private static final String RESULTADO = "resultado";
     private static final String MODELO = "modelo";
+    private static final int MODIFICACION_EXITOSA = 3;
+    private static final int ERROR_AL_MODIFICAR = 4;
+    private static final int ESTADO_INICIAL = 0;
+
 
     @Autowired
     @Qualifier("asistenciaServiceImpl")
@@ -44,16 +48,16 @@ public class AsistenciasController {
     @PostMapping(params = "modificar", value = "/modificar")
     public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
         LOG.info("modificarPOST()");
-        int resultado = 0;
+        int resultado;
         AsistenciaForm asistencia = new AsistenciaForm();
-        if (validarDatos(modelo)) {
+        if (validarFormato(modelo)) {
             Asistencia a = asistenciaService.modificarAsistencia(modelo);
             if (a != null)
-                resultado = 3;
+                resultado = MODIFICACION_EXITOSA;
             else
-                resultado = 4;
+                resultado = ERROR_AL_MODIFICAR;
         } else
-            resultado = 4;
+            resultado = ERROR_AL_MODIFICAR;
 
 
         model.addAttribute(RESULTADO, resultado);
@@ -62,7 +66,7 @@ public class AsistenciasController {
         return MODIFICAR_ASISTENCIA;
     }
 
-    private boolean validarDatos(AsistenciaForm modelo) {
+    private boolean validarFormato(AsistenciaForm modelo) {
         if (!modelo.getFecha().matches("^\\d{4}-\\d{2}-\\d{2}$"))
             return false;
         if (!modelo.getHoraEntrada().matches("^\\d{1,2}:\\d\\d$"))
@@ -73,11 +77,11 @@ public class AsistenciasController {
     @PostMapping(params = "consultar", value = "/modificar")
     public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
         LOG.info("consultarPOST: ");
-        int resultado = 0;
+        int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
         resultado = asistenciaService.existeAsistencia(modelo);
-        if (resultado == 0) {
+        if (resultado == ESTADO_INICIAL) {
             asistencia = asistenciaService.buscarAsistencia(modelo);
         }
         model.addAttribute(RESULTADO, resultado);
@@ -93,7 +97,7 @@ public class AsistenciasController {
 
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
-        model.addAttribute(RESULTADO, 0);
+        model.addAttribute(RESULTADO, ESTADO_INICIAL);
 
         LOG.info("saliendo de modificarGET()");
         return MODIFICAR_ASISTENCIA;
