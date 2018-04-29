@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Sistema de Control de Asistencias')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Ver Justificantes</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="active">
+                        <strong>Ver Justificantes</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Incidencias Generadas</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Buscar">
+                            <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                                <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo de Justificacion</th>
+                                    <th>Ver</th>
+                                    <th>Modificar</th>
+                                    <th>Eliminar</th>
+                                    <th>Estado</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="justificante : ${justificantes}">
+                                    <td th:text="${justificante.getFechaAsString()}"></td>
+                                    <td th:text="${justificante.getJustificanteTipo()}"></td>
+                                    <td>VER</td>
+                                    <td><span data-feather="edit"></span></td>
+                                    <td><a  href="#" th:href="@{/docente/removejustificante?(id=__${justificante.idJustificante}__)}"><i class="fa fa-trash"></i></a></td>
+                                    <td th:text="${justificante.getEstado()}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.footable').footable();
+        $('.footable2').footable();
+    });
+</script>
+</body>
+</html>

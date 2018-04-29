@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/head :: head('Iniciar Sesion')"></head>
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <span><img alt="image" class="img-responsive" src="img/escom.png" /></span>
+        </div>
+        <h3>Bienvenido al Sistema Institucional de Control de Incidencias</h3>
+        <p>Iniciar Sesion.</p>
+        <div class="text-left">
+            <form action="" th:action="@{/acceder}" method="post">
+                <div class="form-group">
+                    <label for="user-email">Correo:</label>
+                    <input type="email" placeholder="Correo" class="form-control" name="user-email" id="user-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Contraseña:</label>
+                    <input type="password" placeholder="Contraseña" class="form-control" name="user-password" id="user-password" required>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Iniciar Sesion</strong></button>
+                </div>
+            </form>
+        </div>
+        <p class="m-t"> <small><a href="">He olvidado mi contraseña</a></small> </p>
+    </div>
+</div>
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

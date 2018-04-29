@@ -1,0 +1,255 @@
+﻿noempleaDOC,nombre,apelliDOCpaterno,apelliDOCmaterno,notarjeta,iddepartamento,tipo
+1,Aarón Mauricio,Rodríguez,Alquicira,1,,DOC
+2,ADOClfo,Guzm n,Arenas,2,,DOC
+3,Alberto Jesús,Alcántara,Méndez,3,4,DOC
+4,Alejandro,Botello,Castillo,4,,DOC
+5,Alejandro,Canalez,Cruz,5,,DOC
+6,Alejandro SigfriDOC,Cifuentes,Álvarez,6,5,DOC
+7,Alfonso,Fernández,V zquez,7,5,DOC
+8,Alma Delia,Cuevas,RasgaDOC,8,,DOC
+9,Amilcar,Meneses,Viveros,9,,DOC
+10,Andrés,Ortigoza,Campos,10,1,DOC
+11,Antonio Gustavo,Ju rez,Gracia,11,,DOC
+12,Ariel,López,Rojas,12,4,DOC
+13,Axel Ernesto,Moreno,Cervantes,13,5,DOC
+14,Benjamín,Luna,Benoso,14,5,DOC
+15,Carlos,Silva,Sánchez,15,,DOC
+16,César,Mújica,Ascencio,16,5,DOC
+17,César Roman,Martínez,García,17,3,DOC
+18,Chadwick,Carreto,Arellano,18,5,DOC
+19,Claudia Alejandra,López,Rodríguez,19,4,DOC
+20,Consuelo Varinia,García,MenDOCza,20,5,DOC
+21,Cornelio,Yañez,Márquez,21,5,DOC
+22,Daniel,Cruz,García,22,5,DOC
+23,David,Araujo,Díaz,23,5,DOC
+24,Edgar ArmanDOC,Catal n,SalgaDOC,24,5,DOC
+25,EdgarDOC Adrián,Franco,Martínez,25,5,DOC
+26,EdmunDOC René,Dur n,Camarillo,26,4,DOC
+27,EduarDOC,Bustos,Farías,27,4,DOC
+28,EduarDOC,Chávez,Lima,28,3,DOC
+29,EduarDOC,Gutiérrez,Aldana,29,5,DOC
+30,EduarDOC,Rodríguez,Flores,30,6,DOC
+31,Elba,MenDOCza,Macías,31,6,DOC
+32,Elena Fabiola,Ruiz,Ledesma,32,3,DOC
+33,Enrique,Torres,González,33,6,DOC
+34,Erick Eugenio,Linares,Vallejo,34,6,DOC
+35,Erika,Hern ndez,Rubio,35,5,DOC
+36,Euler,Hern ndez,Contreras,36,5,DOC
+37,Fabiola,Ocampo,Botello,37,5,DOC
+38,Felipe de Jesús,Figueroa,Del PraDOC,38,8,DOC
+39,Felipe RolanDOC,Menchaca,García,39,6,DOC
+40,FernanDOC,Aguilar,S nchez,40,5,DOC
+41,Flavio Arturo,S nchez,G rfias,41,5,DOC
+42,Gabriela De Jesús,López,Ruiz,42,5,DOC
+43,Gelacio,Castillo,Cabrera,43,4,DOC
+44,Germ n,Téllez,Castillo,44,4,DOC
+45,Gilberto,S nchez,Quintanilla,45,5,DOC
+46,Gisela,Gonz lez,Albarr n,46,4,DOC
+47,Guillermo,Márquez,Arreguín,47,5,DOC
+48,Héctor Manuel,Paz,Rodríguez,48,4,DOC
+49,Idalia,MalDOCnaDOC,Castillo,49,5,DOC
+50,Ignacio,Ríos,De la Torre,50,3,DOC
+51,Ismael,Cervantes,De Anda,51,1,DOC
+52,Ismael,Rojas,Mexicano,52,2,DOC
+53,Iv n,Díaz,Toal ,53,3,DOC
+54,Jacqueline,Arzate,Gordillo,54,5,DOC
+55,Jaime Hugo,Puebla,Lomas,55,5,DOC
+56,Jesús AlfreDOC,Martínez,Nuño,56,5,DOC
+57,Jesús Yalj ,Montiel,Pérez,57,4,DOC
+58,Joel Omar,Ju rez,Gambino,58,6,DOC
+59,Jorge,Cortés,Galicia,59,6,DOC
+60,Jorge Israel,ToleDOC,AlvaraDOC,60,6,DOC
+61,Jorge Luis,Rosas,Trigueros,61,6,DOC
+62,José AlfreDOC,Jiménez,Benitez,62,6,DOC
+63,José Antonio,García,Mejía,63,6,DOC
+64,José Antonio,Ortíz,Ramírez,64,8,DOC
+65,José Cruz,Martínez,Perales,65,3,DOC
+66,José David,Ortega,Pacheco,66,5,DOC
+67,José Félix,Serrano,Talamantes,67,5,DOC
+68,José Giovanni,Guzmán,Lugo,68,5,DOC
+69,José Jaime,López,Rabadán,69,5,DOC
+70,José Juan,Pérez,Pérez,70,5,DOC
+71,José Luis,Calderón,Osorno,71,5,DOC
+72,José Luís,Hern ndez,Aguilar,72,5,DOC
+73,José Marco Antonio,Rueda,Meléndez,73,5,DOC
+74,José,S nchez,Ju rez,74,5,DOC
+75,Josefina,Hern ndez,Jaime,75,5,DOC
+76,Juan Antonio,Castillo,Marrufo,76,6,DOC
+77,Juan,Asbun,Bojalil,77,5,DOC
+78,Juan Carlos,Morales,Cruz,78,5,DOC
+79,Juan Carlos,Téllez,Barrera,79,4,DOC
+80,Juan Jesús,Gutiérrez,García,80,3,DOC
+81,Juan José,Torres,Manríquez,81,3,DOC
+82,Juan,Vera,Romero,82,3,DOC
+83,Juan Vicente,García,Sales,83,5,DOC
+84,Julio César,Sosa,Savedra,84,3,DOC
+85,Karina,Viveros,Vela,85,5,DOC
+86,Laura,Méndez,SegunDOC,86,5,DOC
+87,Lorena,Chavarria,B ez,87,4,DOC
+88,Luis Carlos,CoronaDOC,García,88,5,DOC
+89,Luis Octavio,Lopez,Leyva,89,4,DOC
+90,Luz Noé,Oliva,Moreno,90,4,DOC
+91,Macario,Hern ndez,Cruz,91,5,DOC
+92,Manuel Alejandro,Soto,Ramos,92,4,DOC
+93,Marco Antonio,DOCrantes,Gonz lez,93,4,DOC
+94,Marco Antonio,Moreno,Ibarra,94,4,DOC
+95,Margarita Elizabeth,Gómez,Mayorga,95,4,DOC
+96,María Del Rosario,Rocha,Bernabé,96,4,DOC
+97,María Elena,Cruz,Meza,97,4,DOC
+98,María Gabriela,Galiñanes,Rodríguez,98,4,DOC
+99,María Julia,Calderón,Sambarino,99,4,DOC
+100,Mario,Aldape,Pérez,100,4,DOC
+101,Mario Augusto,Ramírez,Morales,101,4,DOC
+102,Martha Rosa,Cordero,López,102,4,DOC
+103,Miguel Ángel,MalDOCnaDOC,Muñoz,103,4,DOC
+104,Miguel Ángel,Vivanco,GallarDOC,104,3,DOC
+105,Miguel Félix,Mata,Rivera,105,3,DOC
+106,Miguel Jesús,Torres,Ruíz,106,3,DOC
+107,Miguel,Olvera,Aldana,107,3,DOC
+108,Miguel Santiago,Su rez,Castañón,108,3,DOC
+109,Miriam,PescaDOCr,Rojas,109,3,DOC
+110,Mondragón Tanibet,Pérez,De Los Santos,110,3,DOC
+111,Mónica,Rivera,De La Rosa,111,3,DOC
+112,Monserrat Gabriela,Pérez,Vera,112,3,DOC
+113,Nancy,Ocotitla,Rojas,113,3,DOC
+114,Nidia Asunción,Cortez,Duarte,114,3,DOC
+115,Odette Berenice,Cancino,Mosqueda,115,3,DOC
+116,Rafael Norman,SauceDOC,DelgaDOC,116,3,DOC
+117,Rafael,Ramírez,Tenorio,117,3,DOC
+118,RicarDOC,Martínez,Rosales,118,3,DOC
+119,Roberto,De Luna,Caballero,119,3,DOC
+120,Roberto Eswart,Zagal,Flores,120,5,DOC
+121,Roberto,V zquez,Arreguín,121,4,DOC
+122,RoDOClfo,Romero,Herrera,122,4,DOC
+123,RolanDOC,Flores,Carapia,123,4,DOC
+124,RolanDOC,Menchaca,Méndez,124,4,DOC
+125,RolanDOC,Quintero,Téllez,125,4,DOC
+126,Rosa Alba,Hern ndez,García,126,4,DOC
+127,Rosaura,Palma,Orozco,127,4,DOC
+128,Rubén,PereDOC,Valderrama,128,4,DOC
+129,SalvaDOCr Elias,Venegas,Andraca,129,4,DOC
+130,Sandra Luz,Morales,Guitrón,130,4,DOC
+131,Saúl,De la O,Torres,131,4,DOC
+132,Serafín,Estrada,Elizalde,132,4,DOC
+133,Sergio Antonio,Velazquez,Sereno,133,4,DOC
+134,Sergio,Salinas,Lugo,134,4,DOC
+135,Ukranio,Coronilla,Contreras,135,4,DOC
+136,Ulises,Vélez,Saldaña,136,2,DOC
+137,Victor Hugo,Garcia,Ortega,137,4,DOC
+138,Virginia,Medina,Mejía,138,4,DOC
+139,Virginia,Sánchez,Cruz,139,4,DOC
+140,Yasmín Ivette,Jiménez,Gal n,140,4,DOC
+141,Yaxkin,Flores,MenDOCza,141,4,DOC
+142,Rubén,Hern ndez,Tovar,142,4,DOC
+143,Raúl,Acosta,Bermejo,143,4,DOC
+144,FernanDOC,GalinDOC,Soria,144,4,DOC
+145,Víctor Hugo,Ponce,Ponce,145,4,DOC
+146,René,GalinDOC,Orozco,146,4,DOC
+147,Miguel Ángel,Norzagaray,Cosio,147,4,DOC
+148,WilebalDOC,Lara,Vargas,148,4,DOC
+149,Julián Guadalupe,Tapia,Aguilar,149,5,DOC
+150,Rubén,Ortega,Gonz lez,150,5,DOC
+151,Jesús Alberto,Martínez,Castro,151,5,DOC
+152,Juan Carlos,Chimal,Eguía,152,5,DOC
+153,Víctor,M rquez,García,153,5,DOC
+154,Héctor Manuel,Paz,Rodríguez,154,5,DOC
+155,José ArmanDOC,Esquivel,Centeno,155,5,DOC
+156,Aurora,Aparicio,Castillo,156,5,DOC
+157,Víctor Rafael,Moreno,Peña,157,5,DOC
+158,Oscar,Carranza,Castillo,158,5,DOC
+159,René,Gutiérrez,Morales,159,5,DOC
+160,Rubén,Galicia,Mejía,160,5,DOC
+161,Gonzalo,Pérez,Araiza,161,5,DOC
+162,Sandra,Díaz,Santiago,162,5,DOC
+163,Mario Humberto,Ramírez,Díaz,163,5,DOC
+164,Miguel Abel,León,Hern ndez,164,5,DOC
+165,Jorge,Ferrer,Tenorio,165,5,DOC
+166,Carlos,Pineda,Guerrero,166,5,DOC
+167,Araceli,Loyola,Espinosa,167,5,DOC
+168,Encarnación,Salinas,Hernández,168,3,DOC
+169,Carlos FernanDOC,Aguilar,Ib ñez,169,5,DOC
+170,Arturo,Pruneda,Martínez,170,5,DOC
+171,RicarDOC Felipe,Díaz,Santiago,171,5,DOC
+172,Isaac Omar,López,V zquez,172,5,DOC
+173,María Del Carmen,DOCmínguez,Ayala,173,5,DOC
+174,Florencio,Guzm n,Aguilar,174,5,DOC
+175,EdgarDOC Manuel,Riverón,Felipe,175,5,DOC
+176,Jesús Manuel,Olivares,Ceja,176,5,DOC
+177,Sergio,Su rez,Guerra,177,5,DOC
+178,Sandra Mercedes,Pérez,Vera,178,5,DOC
+179,Tirso Javier,Salazar,SanDOCval,179,5,DOC
+180,Jazmín Adriana,Ju rez,Ramírez,180,5,DOC
+181,Jesús Alberto,Montero,De La Cruz,181,5,DOC
+182,Carlos,Altamirano,Robles,182,5,DOC
+183,Martha,Franco,Espejel,183,5,DOC
+184,José Manuel,De la Rosa,V zquez,184,5,DOC
+185,EdgarDOC Adri n,Franco,Martínez,185,5,DOC
+186,Raúl,Martínez,Memije,186,5,DOC
+187,Hilario,Martínez,ArreDOCnDOC,187,5,DOC
+188,Richard Alexander,Award,Reyes,188,5,DOC
+189,Rocio,García,Pedraza,189,5,DOC
+190,Norberto,Flores,Guzm n,190,5,DOC
+191,Martín Alberto,Díaz,Viera,191,5,DOC
+192,José Carlos,D valos,López,192,6,DOC
+193,Enrique De Jesús,Aragón,Pineda,193,6,DOC
+194,Alejandro,Cruz,Rojas,194,6,DOC
+195,Marco Antonio,Barranco,Jiménez,195,6,DOC
+196,Laura Rocío,Ortíz,Esquivel,196,7,DOC
+197,Miguel Ángel,Alem n,Arce,197,7,DOC
+198,Maribel,Aragón,García,198,7,DOC
+199,Jesús Ixbalank,Torres,Zuñoga,199,7,DOC
+200,Jorge Javier,Silva,Martínez,200,7,DOC
+201,Hortencia,Gómez,Víquez,201,7,DOC
+202,Juan Manuel,Carballo,Jiménez,202,7,DOC
+203,Juan Carlos,Martínez,Díaz,203,7,DOC
+204,Luis Carlos,CoronaDOC,García,204,7,DOC
+205,Rafael,Fern ndez,Nava,205,8,DOC
+206,Genaro,Ju rez,Martínez,206,8,DOC
+207,Israel,Vite,Silva,207,8,DOC
+208,Sonia,S nchez,Díaz,208,8,DOC
+209,María Elena,AceveDOC,Mosqueda,209,8,DOC
+210,Benjamín,Cruz,Torres,210,8,DOC
+211,RicarDOC,Barrón,Fern ndez,211,8,DOC
+212,David,Cruz,Rojas,212,8,DOC
+213,Rogelio,MalDOCnaDOC,Rodríguez,213,8,DOC
+214,Rocío,Reséndiz,Muñoz,214,8,DOC
+215,Dalia Gabriela,Lara,PerDOCmo,215,8,DOC
+216,Jorge,Sosa,Pedroza,216,8,DOC
+217,Guadalupe Ángel,Gonz lez,Chavez,217,8,DOC
+218,Arturo,Ortíz,Tapia,218,8,DOC
+219,Amadeo,Arguelles,Cruz,219,8,DOC
+220,Samuel,DOCmínguez,Hern ndez,220,8,DOC
+221,José Alejandro,Mora,Rodríguez,221,8,DOC
+222,Rogelio GerarDOC,Hern ndez,García,222,8,DOC
+223,Alexander,Gelbukh,Khan,223,8,DOC
+224,Rogelio,Sotelo,Boy s,224,8,DOC
+225,Roberto A.,Vázquez,Espinoza de los Monteros,225,8,DOC
+226,Freddy Guillermo,Castro,Farf n,226,8,DOC
+227,Samuel,Sánchez,Islas,227,8,DOC
+228,Karinne,Ramírez,Amaro,228,8,DOC
+229,Sandra Dinorah,Orantes,Jiménez,229,8,DOC
+230,Francisco Hiram,Calvo,Castro,230,8,DOC
+231,Cirilo Gabino,León,Vega,231,8,DOC
+232,Jesús,Figueroa,Nazuno,232,8,DOC
+233,Luis Alfonso,Villa,Vargas,233,8,DOC
+234,Gabriel,Sepulveda,Cervantes,234,8,DOC
+235,Jesús Antonio,Álvarez,Cedillo,235,8,DOC
+236,Marco Antonio,Ramírez,Salinas,236,8,DOC
+237,José Antonio,Romero,Serrano,237,8,DOC
+238,Julio Ramiro,Alonso,Cruz,238,8,DOC
+239,Eugenio,Cedillo,Portugal,239,8,DOC
+240,Reyna Elia,Melara,Abarca,240,8,DOC
+241,Edgar Felipe,Maya,Maya,241,8,DOC
+242,Ana Maria,Winfield,Reyes,242,8,DOC
+243,Blanca Esther,Carvajal,G mez,243,8,DOC
+244,Mauricio Ramón,García,Gómez,244,8,DOC
+245,Juan Carlos,Martínez,García,245,8,DOC
+246,Judith Margarita,TiraDOC,Lule,246,8,DOC
+247,Angelica,Camarena,Amaro,247,8,DOC
+248,Alfonso,Méndez,Tenorio,248,8,DOC
+249,Adbel Anahí,Montes,Meza,249,8,DOC
+250,Martha Patricia,Jiménez,Villanueva,250,8,DOC
+251,Fabián,Reyes,Prieto,251,8,DOC
+252,RolanDOC Félix,Cedillo,Caballero,252,8,DOC
+253,Víctor Hugo,Cabrera,Arenas,253,8,DOC
+254,Ángel SalvaDOCr,Montiel,Sánchez,254,8,DOC

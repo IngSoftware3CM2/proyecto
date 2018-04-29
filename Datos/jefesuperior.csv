@@ -1,0 +1,24 @@
+﻿idsuperior,nombre,apellidopaterno,apellidomaterno,jefe
+1,Andrés,Ortigoza,Campos,
+2,Iván Giovanny,Mosso,García,1
+3,Claudia Celia,Díaz,Huerta,2
+4,Raúl,Santillán,Luna,2
+5,César,Mújica,Ascencio,2
+6,Marisol,Rodríguez,Ordaz,2
+7,Pablo,Álvarez ,Velázquez,2
+8,José Antonio,Ortiz,Ramírez,2
+9,Ricardo Felipe,Díaz,Santiago,2
+10,Esther,Carvajal,Gámez,1
+11,Jesús Alfredo,Martínez,Nuño,10
+12,Manuel,Salazar,Ramírez,10
+13,Andrés,Ortigoza,Campos,1
+14,María Guadalupe,Caro,García,13
+15,Fanny,Sosa,Adán,13
+16,José Francisco,Serrano,García,13
+17,Patricia,Escamilla,Miranda,13
+18,Felipe de Jesús,Figueroa,Del Prado,1
+19,Tania,Rodríguez,Sarabia,18
+20,Patricia,Mata,Gil,18
+21,Ricardo Ángel,Aguilar,Pérez,18
+22,Laura,Lazcano,Xoxotla,1
+23,Juan Jesús,Alcaraz,Torres,1

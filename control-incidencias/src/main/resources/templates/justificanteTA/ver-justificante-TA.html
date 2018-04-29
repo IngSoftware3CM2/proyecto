@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/head :: head('Ver justificante tipo A')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Ver Justificante</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#">Ver Incidencias</a>
+                    </li>
+                    <li class="active">
+                        <strong>Ver justificante Tipo A</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Generar Justificante de Incidencia Tipo A</span>
+                </h1>
+                <form class="form-horizontal">
+
+                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : 02-002</label></div>
+                    <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : Licencia Medica</label></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 ">Folio ISSSTE:</label>
+                        <div class="col-sm-4"><input type="text" placeholder="Folio ISSSTE" class="form-control" required="true"/> </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="..."/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2"> Clinica ISSSTE:</label>
+                        <div class="col-sm-3"><select class="form-control m-b" name="account">
+                            <option>Estado 1</option>
+                            <option>Estado 2</option>
+                            <option>Estado 3</option>
+                            <option>Estado 4</option>
+                        </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control m-b" name="account">
+                                <option>Clinica 1</option>
+                                <option>Clinica 2</option>
+                                <option>Clinica 3</option>
+                                <option>Clinica 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2"> Fecha de Inicio:</label>
+                        <div class="input-group date col-sm-2">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="mm/dd/aaaa"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group" id="data_2">
+                        <label class="col-sm-2"> Fecha Final:</label>
+                        <div class="input-group date col-sm-2" >
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="mm/dd/aaaa"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" type="submit">Enviar</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+
+
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+
+
+</body>
+
+</html>
