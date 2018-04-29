@@ -97,14 +97,24 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         LocalTime horaSalida = LocalTime.parse(asistenciaForm.getHoraSalida(), formatterHour);
         Asistencia a = asistenciaRepository
                 .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
-        validarHoras(horaEntrada, horaSalida);
-        a.setHoraEntrada(horaEntrada);
-        a.setHoraSalida(horaSalida);
+        if (!validarHoras(horaEntrada, horaSalida))
+            return null;
+
+        if (horaEntrada.compareTo(siete) > 0)
+            a.setHoraEntrada(horaEntrada);
+        else
+            a.setHoraEntrada(siete);
+        if (horaSalida.compareTo(veintidos) < 0)
+            a.setHoraSalida(horaSalida);
+        else
+            a.setHoraSalida(veintidos);
+
         return asistenciaRepository.save(a);
     }
 
     private boolean validarHoras(LocalTime horaEntrada, LocalTime horaSalida) {
-        if (horaEntrada.compareTo(seisMedia) > 0)
-
+        if (horaEntrada.compareTo(seisMedia) < 0 || horaEntrada.compareTo(veintitres) > 0)
+            return false;
+        return horaSalida.compareTo(seisMedia) >= 0 && horaSalida.compareTo(veintitres) <= 0;
     }
 }
