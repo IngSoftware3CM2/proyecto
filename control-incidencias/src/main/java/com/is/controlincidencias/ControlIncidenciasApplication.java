@@ -2,9 +2,11 @@ package com.is.controlincidencias;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-
+/*
 @SpringBootApplication
 public class ControlIncidenciasApplication {
 
@@ -13,11 +15,11 @@ public class ControlIncidenciasApplication {
     }
 
 }
+*/
 
-
-/* ESTA CLASE ES PARA EL DEPLOY, NO LA BORREN PORQUE SE ME OLVIDA
-* @SpringBootApplication
-*public class ControlIncidenciasApplication extends SpringBootServletInitializer {
+/* ESTA CLASE ES PARA EL DEPLOY, NO LA BORREN PORQUE SE ME OLVIDA*/
+@SpringBootApplication
+public class ControlIncidenciasApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -29,6 +31,3 @@ public class ControlIncidenciasApplication {
     }
 
 }
-*
-*
-* */
