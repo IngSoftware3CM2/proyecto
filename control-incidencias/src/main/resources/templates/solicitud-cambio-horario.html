@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<head th:replace="fragments/head :: head">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambio Horario</title>
 </head>
 <body>
 <section>
-    <h1>Generar Solicitud de cambio de horario</h1>
+    <h1>Solicitud de cambio de horario</h1>
     <br />
     <br />
-    <p>Numero de tarjeta: debe de retornar el # de tarjeta del profesor</p>
-    <p>Fecha de incidencia : debe de retornar fecha del sistema</p>
-    <p>Justificación:<input type="text" placeholder="Le informo que debido a..."/></p>
-    <br />
-    <form action="#" th:action="@{/}" th:object="${}" method="post">
-            <table>
-                <thead>
-                <th colspan="2">Horario Actual</th>
-                <th colspan="2">Cambio de horario</th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Entrada</td>
-                    <td><input type="time" name="" id=""></td>
-                    <td>Entrada</td>
-                    <td><input type="time" name="" id=""></td>
-                </tr>
-                <tr>
-                    <td>Salida</td>
-                    <td><input type="time" name="" id=""></td>
-                    <td>Salida</td>
-                    <td><input type="time" name="" id=""></td>
-                </tr>
-                </tbody>
-            </table>
+    <p>Numero de tarjeta: 666xxx69</p>
+    <p>Nombre: El sensual y poderoso Rabadán</p>
+    <p>Departamento: Olimpo</p>
+    <p>Tipo de personal: Jefazo</p>
+    <p>Fecha de incidencia: 31/12/3000</p>
+    <p>Justificación: </p>
+    <form action="#" th:action="@{/cambio-horario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
+        <table>
+            <thead>
+            <th colspan="2">Horario Actual</th>
+            <th colspan="2">Cambio de horario</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Entrada</td>
+                <td><input type="time" th:field="*{horaEntrada}"></td>
+                <td>Entrada</td>
+                <td><input type="time" th:field="*{horaSalida}"></td>
+            </tr>
+            <tr>
+                <td>Salida</td>
+                <td><input type="time" th:field="*{nuevaSalida}"></td>
+                <td>Salida</td>
+                <td><input type="time" th:field="*{nuevaEntrada}"></td>
+            </tr>
+            </tbody>
+            <br/>
+            <textarea placeholder="Debido a que..." th:field="*{justificación}">No pude venir debido a que... -3-</textarea>
+            <br />
+        </table>
         <input type="submit" value="Aceptar"/>
         <input type="reset" value="Cancelar"/>
     </form>
