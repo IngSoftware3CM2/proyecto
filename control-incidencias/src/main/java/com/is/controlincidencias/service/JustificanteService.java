@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface JustificanteService {
 
-    List <Justificante> getJustificantesByPersonal (Personal personal);
+    public abstract List <Justificante> getJustificantesByPersonal (Personal personal);
 
-    Justificante findJustificanteById (int id);
+    public abstract Justificante findJustificanteById (int id);
 
-    void removeJustificante (int id);
+    public abstract void removeJustificanteByIdJustificante (int id);
+
+    public abstract void guardarJustificante(int noEmpleado);
 }

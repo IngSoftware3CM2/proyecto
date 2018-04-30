@@ -24,14 +24,17 @@ public class Incidencia {
 
     private static final String DEFINITION_2 = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
+    private static final String definition2 = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleado_fk", foreignKeyDefinition = DEFINITION_2))
     private Personal personal;
 
     private static final String DEFINITION3 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE SET NULL";
 
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION3))
+    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION3), columnDefinition = "integer")
     private Justificante justificante;
 
     public Incidencia() {
@@ -66,6 +69,8 @@ public class Incidencia {
         return fechaRegistro;
     }
 
+    public String getFechaAsString () {return fechaRegistro.toString();}
+
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
@@ -95,14 +100,24 @@ public class Incidencia {
         return justificante;
     }
 
-    public void setJustificante(Justificante justificante) {
-        this.justificante = justificante;
-    }
-
     public Quincena getQuincena() {
         return quincena;
     }
 
+
+    @Override
+    public String toString() {
+        return "Incidencia{" +
+                "idIncidencia=" + idIncidencia +
+                ", fechaRegistro=" + fechaRegistro +
+                ", tipo=" + tipo +
+                '}';
+    }
+
+
+    public void setJustificante(Justificante justificante) {
+        this.justificante = justificante;
+    }
     public void setQuincena(Quincena quincena) {
         this.quincena = quincena;
     }

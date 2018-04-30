@@ -33,4 +33,15 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         }
         return incidenciasConIdJustificante;
     }
+
+    @Override
+    public List<Incidencia> listAllIncidencia() {
+        return null;
+    }
+
+    @Override
+    public Incidencia consultarIncidencia(int id) {
+        return incidenciaRepository.findByIdIncidencia(id);
+    }
+
 }

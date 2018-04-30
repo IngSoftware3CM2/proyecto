@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Ver incidencia')"></head>
 <body>
 <div id="wrapper">
@@ -43,7 +43,7 @@
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}">
                                         <div class="row ">
-                                            <td th:text="${incidencia.getFecha()}">Fecha</td>
+                                            <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
                                             <td th:text="${incidencia.getTipo()}">Tipo</td>
                                             <td>
                                                 <div class="row">
