@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/cambio-horario")
 public class CambioHorarioController {
-    static final String VISTA_CAMBIO_HORARIO = "solicitud-cambio-horario";
-    static final String COMFIRMAR_CAMBIO_HORARIO = "ver-cambio-horario";
+    static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
     private static final Log LOGGER = LogFactory.getLog(IniciarSesionController.class);
+    static final String VER_JUSTIFICANTES = "ver-justificantes";
 
     @GetMapping("/registrar")
     public String registrar(Model model)
@@ -26,14 +26,11 @@ public class CambioHorarioController {
             return VISTA_CAMBIO_HORARIO;
         }
 
-    @GetMapping("/comfirmar")
-    public String comfirmar() { return COMFIRMAR_CAMBIO_HORARIO; }
-
     @PostMapping("/add-cambio-horario")
     public ModelAndView addCambioHorario(@ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH)
         {
             LOGGER.info(modeloCH);
-            ModelAndView mav = new ModelAndView(COMFIRMAR_CAMBIO_HORARIO);
+            ModelAndView mav = new ModelAndView(VER_JUSTIFICANTES);
             return mav;
         }
 }
