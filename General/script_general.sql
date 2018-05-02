@@ -11,6 +11,37 @@ DROP TABLE IF EXISTS public.login CASCADE;
 DROP TABLE IF EXISTS public.zona CASCADE;
 DROP TABLE IF EXISTS public.unidadmedica CASCADE;
 DROP TABLE IF EXISTS public.tipoa CASCADE;
+DROP TABLE IF EXISTS public.cambiohorario CASCADE;
+DROP TABLE IF EXISTS public.horarioactual CASCADE;
+DROP TABLE IF EXISTS public.dia CASCADE;
+
+/* 1/5/18 Jonth REVISAR SI ESTA TABLA PUEDE FUSIONARSE CON Personal, pues es uno a uno la relacion, aunque podría generar errores en el mapeo 
+para desarrollo si tenemos que cada empleado tiene un horario único, sino asi esta bien*/
+CREATE TABLE public.horarioactual (
+    	idHorario integer	 NOT NULL,		
+        CONSTRAINT horario_pk PRIMARY KEY (idHorario)
+		
+);
+
+CREATE TABLE public.dia (
+		idDia integer not NULL,
+		nombre CHARACTER(3),									/*LUN MAR MIE JUE VIE*/
+		horaEntrada time without time zone NOT NULL,
+    	horaSalida time without time zone NOT NULL,
+		idHorario integer not NULL,
+		CONSTRAINT dia_pk PRIMARY KEY (idDia),
+		CONSTRAINT diahorario_fk FOREIGN KEY(idHorario)
+			REFERENCES public.horarioactual (idHorario)
+			ON UPDATE CASCADE
+			ON DELETE set null
+		
+);
+/*Esta tabla no será una entidad, porque la relacion con cambiohorario era uno a uno, fue absorbida
+CREATE TABLE public.horariocubierto (
+    	idHorarioCubierto integer	 NOT NULL,
+    	
+        CONSTRAINT horariocubierto_pk PRIMARY KEY (idHorarioCubierto)
+);*/
 
 CREATE TABLE public.quincena (
     idQuincena serial NOT NULL,
@@ -72,15 +103,25 @@ CREATE TABLE public.personal (
     diaseconomicos smallint NOT NULL,
 	idusuario integer NOT NULL,
     idDepartamento smallint NOT NULL,
+	idHorario integer NOT NULL,
+	
     CONSTRAINT personal_pk PRIMARY KEY (noEmpleado),
     CONSTRAINT departamento_fk FOREIGN KEY (idDepartamento)
         REFERENCES public.departamento (idDepartamento)
         ON UPDATE CASCADE
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+
+	CONSTRAINT personalhorario_fk FOREIGN KEY(idHorario)
+		REFERENCES public.horarioactual (idHorario)
+		ON UPDATE CASCADE
+		ON DELETE set null
+		
 );
 
 CREATE TABLE public.justificante (
     idJustificante serial NOT NULL,
+	estado varchar (20) NOT NULL,
+	fecha date NOT NULL,
     noEmpleado integer NOT NULL,
     CONSTRAINT justificante_pk PRIMARY KEY (idJustificante),
     CONSTRAINT personal_fk FOREIGN KEY (noEmpleado)
@@ -132,6 +173,21 @@ CREATE TABLE public.tipoa(
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+/*1/5/18 Jonth*/
+CREATE TABLE public.cambiohorario (
+	idJustificante integer NOT NULL,
+	justificacion text NOT NULL,
+	
+	fecha date NOT NULL,
+    horaEntrada time without time zone NOT NULL,
+    horaSalida time without time zone NOT NULL,
+		
+	CONSTRAINT cambiohorario_pk PRIMARY KEY (idJustificante),
+	CONSTRAINT cambiohorario_idjustificante_fk FOREIGN KEY (idJustificante)
+	REFERENCES public.justificante (idJustificante)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
 
 CREATE TABLE public.incidencia (
     idIncidencia serial NOT NULL,
@@ -167,6 +223,7 @@ CREATE TABLE public.asistencia (
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
+
 
 CREATE TABLE public.login (
 	correo varchar(70) NOT NULL,
