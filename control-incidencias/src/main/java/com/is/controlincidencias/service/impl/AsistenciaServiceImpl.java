@@ -97,6 +97,8 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         LocalTime horaSalida = LocalTime.parse(asistenciaForm.getHoraSalida(), formatterHour);
         Asistencia a = asistenciaRepository
                 .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
+        if (a == null)
+            return null;
         if (!validarHoras(horaEntrada, horaSalida))
             return null;
 

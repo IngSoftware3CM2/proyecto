@@ -4,6 +4,7 @@ import com.is.controlincidencias.component.LicPaternidadConverter;
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
 import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.LicPaternidadRepository;
@@ -62,10 +63,11 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
     }
 
-     @Override
-    public Incidencia consultarIncidencia(int idIncidencia) {
-        return licPaternidadRepository.findById(idIncidencia);
+    @Override
+    public LicPaternidad buscarLicPaternidad(int idJustificante) {
+        return licPaternidadRepository.findById(idJustificante);
     }
+
 
     @Override
     public void subirArchivo(List<MultipartFile> files) throws IOException {

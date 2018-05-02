@@ -69,9 +69,9 @@ public class AsistenciasController {
     private boolean validarFormato(AsistenciaForm modelo) {
         if (!modelo.getFecha().matches("^\\d{4}-\\d{2}-\\d{2}$"))
             return false;
-        if (!modelo.getHoraEntrada().matches("^\\d{1,2}:\\d\\d$"))
+        if (!modelo.getHoraEntrada().matches("^\\d{2}:\\d{2}$"))
             return false;
-        return modelo.getHoraSalida().matches("^\\d{1,2}:\\d\\d$");
+        return modelo.getHoraSalida().matches("^\\d{2}:\\d{2}$");
     }
 
     @PostMapping(params = "consultar", value = "/modificar")
