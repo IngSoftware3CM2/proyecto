@@ -48,6 +48,12 @@ public class Personal {
     public Personal() {
     }
 
+    private static final String DEFINITION2 = "FOREIGN KEY(idHorario) REFERENCES horarioactual (idHorario) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION2))
+    private HorarioActual horarioActual;
+
     public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
         this.noEmpleado = noEmpleado;
         this.noTarjeta = noTarjeta;
@@ -128,6 +134,26 @@ public class Personal {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /*Absalom | Método para usarlo en ver-justificantes y ver-incidencias*/
+    public String nombreAndTipoToString ()
+    {
+        String tipo;
+        String nombre;
+        String nombreAndTipo;
+
+        if (this.getTipo().equals("DOC"))
+        {
+            tipo = "Docente";
+        }
+        else
+        {
+            tipo = "PAAE";
+        }
+        nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
+        nombreAndTipo = tipo + " | " + nombre;
+        return nombreAndTipo;
     }
 
     public void addAsistencia(Asistencia asistencia) {
