@@ -4,8 +4,8 @@ FROM '/home/josericardol/IntellijProjects/proyecto/proyecto/Datos/zona.csv' DELI
 COPY unidadmedica(idUnidad,Nombre,idZona) 
 FROM '/home/josericardol/IntellijProjects/proyecto/proyecto/Datos/unidadmedica.csv' DELIMITER ',' CSV HEADER;
 
-COPY jefesuperior(idsuperior,nombre,apellidopaterno,apellidomaterno,jefe) 
 
+COPY jefesuperior(idsuperior,nombre,apellidopaterno,apellidomaterno,jefe) 
 FROM '/home/josericardol/IntellijProjects/proyecto/proyecto/Datos/jefesuperior.csv' DELIMITER ',' CSV HEADER;
 
 COPY departamento(iddepartamento,nombre,idsuperior) 
@@ -22,4 +22,5 @@ FROM '/home/josericardol/IntellijProjects/proyecto/proyecto/Datos/incidencia.csv
 
 COPY asistencia(idasistencia,fecharegistro,horaentrada,horasalida,noempleado)
 FROM '/home/josericardol/IntellijProjects/proyecto/proyecto/Datos/asistencia.csv' DELIMITER ',' CSV HEADER;
+
 
