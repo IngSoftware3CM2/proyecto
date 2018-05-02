@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' required/></span>
+                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
                                     <span class="custom-file-control form-control-file"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
                                        style="float: none">×</a>
@@ -185,6 +185,31 @@
         $('.footable').footable();
         $('.footable2').footable();
     });
+</script>
+<script>
+    var _validFileExtensions = [".jpg"];
+    function ValidateSingleInput(oInput) {
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+
+                if (!blnValid) {
+                    alert("Lo sentimos, " + sFileName + " es un archivo inválido, la extensión debe de ser: " + _validFileExtensions.join(", "));
+                    oInput.value = "";
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 </script>
 
 
