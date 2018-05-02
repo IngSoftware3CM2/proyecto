@@ -38,7 +38,15 @@ public class DocenteController {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("justificantes", justificanteService.getJustificantesByPersonal(personal));
+        return mav;
+    }
+
+    @GetMapping("/verjustificante")
+    public ModelAndView verJustificante(){
+        int noEmpleado = 22;
+        ModelAndView mav = new ModelAndView("ver-justificante-docente");
         return mav;
     }
 
@@ -47,6 +55,7 @@ public class DocenteController {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         return mav;
     }
