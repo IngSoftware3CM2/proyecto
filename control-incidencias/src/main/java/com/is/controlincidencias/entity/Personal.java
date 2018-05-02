@@ -130,6 +130,26 @@ public class Personal {
         this.tipo = tipo;
     }
 
+    /*Absalom | Método para usarlo en ver-justificantes y ver-incidencias*/
+    public String nombreAndTipoToString ()
+    {
+        String tipo;
+        String nombre;
+        String nombreAndTipo;
+
+        if (this.getTipo().equals("DOC"))
+        {
+            tipo = "Docente";
+        }
+        else
+        {
+            tipo = "PAAE";
+        }
+        nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
+        nombreAndTipo = tipo + " | " + nombre;
+        return nombreAndTipo;
+    }
+
     public void addAsistencia(Asistencia asistencia) {
         asistencias.add(asistencia);
         asistencia.setPersonal(this);
