@@ -13,49 +13,49 @@
                 <div class="logo-element">ESCOM</div>
             </li>
             <li th:class="${is_active == 1} ? 'active'">
-                <a href="#" th:href="@{/asistencias}">
+                <a href="#" th:href="@{/dch}">
                     <i class="fa fa-home"></i>
                     <span class="nav-label">Inicio</span>
                 </a>
             </li>
             <li th:class="${is_active == 2} ? 'active'">
-                <a href="#" th:href="@{/asistencias/registrar}">
+                <a href="#" th:href="@{/dch/asistencias/registrar}">
                     <i class="fa fa-archive"></i>
                     <span class="nav-label">Registrar Asistencia</span>
                 </a>
             </li>
             <li th:class="${is_active == 3} ? 'active'">
-                <a href="#" th:href="@{/asistencias/modificar}">
+                <a href="#" th:href="@{/dch/asistencias/modificar}">
                     <i class="fa fa-edit"></i>
                     <span class="nav-label">Modificar Asistencia</span>
                 </a>
             </li>
             <li th:class="${is_active == 4} ? 'active'">
-                <a href="#">
+                <a href="#" th:href="@{/dch/asistencias/mostrar}">
                     <i class="fa fa-book"></i>
                     <span class="nav-label">Mostrar Asistencia</span>
                 </a>
             </li>
             <li th:class="${is_active == 5} ? 'active'">
-                <a href="#">
+                <a href="#" th:href="@{/dch/asistencias/eliminar}">
                     <i class="fa fa-remove"></i>
                     <span class="nav-label">Eliminar Asistencia</span>
                 </a>
             </li>
             <li th:class="${is_active == 6} ? 'active'">
-                <a href="#">
+                <a href="#" th:href="@{/dch/usuarios/registrar}">
                     <i class="fa fa-users"></i>
                     <span class="nav-label">Registrar Usuarios</span>
                 </a>
             </li>
             <li th:class="${is_active == 7} ? 'active'">
-                <a href="#">
+                <a href="#" th:href="@{/dch/usuarios/modificar}">
                     <i class="fa fa-edit"></i>
                     <span class="nav-label">Modificar Usuarios</span>
                 </a>
             </li>
             <li th:class="${is_active == 8} ? 'active'">
-                <a href="#">
+                <a href="#" th:href="@{/dch/perfil}">
                     <i class="fa fa-user-circle"></i>
                     <span class="nav-label">Ver Perfil</span>
                 </a>
