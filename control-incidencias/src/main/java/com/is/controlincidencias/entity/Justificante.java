@@ -162,6 +162,8 @@ public class Justificante {
             tipo = "Permisos Economicos";
         } else if (!(getLicenciaPaternidad().equals(null))) {
             tipo = "Licencias paternidad";
+        } else if (!(getTipoA().equals(null))) {
+            tipo = "Tipo A";
         }
 
         return tipo;
