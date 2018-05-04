@@ -1,5 +1,6 @@
 package com.is.controlincidencias.repository;
 
+import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.TipoA;
 import org.apache.tomcat.jni.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,10 +13,14 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository("justificanteTARepository")
 public interface JustificanteTARepository extends JpaRepository<TipoA,Serializable> {
 
+    @Transactional
+    @Query(value = "SELECT t.folio FROM tipoa t WHERE idjustificante = :id", nativeQuery = true)
+    List <String> findByIdJustificante (@Param("id") int id);
 
     @Modifying
     @Transactional
