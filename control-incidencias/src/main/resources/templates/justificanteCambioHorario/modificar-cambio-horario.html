@@ -38,7 +38,7 @@
                 <h1 class="text-center">
                     <span class="text-navy">Modificar Solicitud de Cambio de Horario</span>
                 </h1>
-                <form class="form-horizontal" action="#" th:action="@{/cambio-horario/modifica-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
+                <form class="form-horizontal" action="#" th:action="@{/cambio-horario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
 
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>
@@ -48,7 +48,7 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificación}"></textarea></div>
+                            <div class="form-group"><textarea th:text="${justificacionDB}" class="col-lg-6" style="height: 100px" th:field="*{justificación}"></textarea></div>
 
                         </div>
                     </div>
@@ -65,9 +65,9 @@
                     </div>
                     <div class="row ">
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><input type="time" th:field="*{nuevaEntrada}"></input></div>
+                        <div class="col-sm-3"><input type="time" th:text="${nuevaEntradaDB}" th:field="*{nuevaEntrada}"></input></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><input type="time" th:field="*{nuevaSalida}"></input></div>
+                        <div class="col-sm-3"><input type="time" th:text="${nuevaSalidaDB}}" th:field="*{nuevaSalida}"></input></div>
                     </div>
 
                     <div class="row">

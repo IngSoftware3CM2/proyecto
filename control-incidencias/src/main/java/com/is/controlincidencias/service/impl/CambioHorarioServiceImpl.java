@@ -36,7 +36,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida() + ":00");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
-            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificación());
+            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificación(), cambiohorario.getIdJustificante());
         }
 
     @Override
@@ -44,5 +44,12 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         {
             CambioHorario x = new CambioHorario();
                 return x;
+        }
+
+    @Override
+    public CambioHorario getCambioHorario(int id)
+        {
+            CambioHorario camb = cambioHorarioRepository.getCambioHorario(id);
+            return camb;
         }
 }
