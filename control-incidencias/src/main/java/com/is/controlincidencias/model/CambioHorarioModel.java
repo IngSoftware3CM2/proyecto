@@ -5,15 +5,17 @@ public class CambioHorarioModel {
     private String horaSalida;
     private String nuevaEntrada;
     private String nuevaSalida;
-    private String justificación;
+    private String justificacion;
     private String fechaIncidencia;
+    private int idJustificante;
 
-    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificación, String fechaIncidencia, int idJustificante) {
+
+    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificacion, String fechaIncidencia, int idJustificante) {
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.nuevaEntrada = nuevaEntrada;
         this.nuevaSalida = nuevaSalida;
-        this.justificación = justificación;
+        this.justificacion = justificacion;
         this.fechaIncidencia = fechaIncidencia;
         this.idJustificante = idJustificante;
     }
@@ -25,7 +27,7 @@ public class CambioHorarioModel {
                 ", horaSalida='" + horaSalida + '\'' +
                 ", nuevaEntrada='" + nuevaEntrada + '\'' +
                 ", nuevaSalida='" + nuevaSalida + '\'' +
-                ", justificación='" + justificación + '\'' +
+                ", justificación='" + justificacion + '\'' +
                 ", fechaIncidencia='" + fechaIncidencia + '\'' +
                 ", idJustificante=" + idJustificante +
                 '}';
@@ -39,7 +41,6 @@ public class CambioHorarioModel {
         this.idJustificante = idJustificante;
     }
 
-    private int idJustificante;
 
     public String getFechaIncidencia() {
         return fechaIncidencia;
@@ -85,11 +86,11 @@ public class CambioHorarioModel {
         this.nuevaSalida = nuevaSalida;
     }
 
-    public String getJustificación() {
-        return justificación;
+    public String getJustificacion() {
+        return justificacion;
     }
 
-    public void setJustificación(String justificación) {
-        this.justificación = justificación;
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
     }
 }

@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.controller.LicenciaPaternidadController;
 import com.is.controlincidencias.entity.CambioHorario;
 import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.repository.CambioHorarioRepository;
@@ -9,13 +8,9 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Service("cambioHorarioServiceImpl")
@@ -42,14 +37,13 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     @Override
     public CambioHorario getSolicitudCambioHorario()
         {
-            CambioHorario x = new CambioHorario();
-                return x;
+            return new CambioHorario();
+
         }
 
     @Override
     public CambioHorario getCambioHorario(int id)
         {
-            CambioHorario camb = cambioHorarioRepository.getCambioHorario(id);
-            return camb;
+            return cambioHorarioRepository.getCambioHorario(id);
         }
 }

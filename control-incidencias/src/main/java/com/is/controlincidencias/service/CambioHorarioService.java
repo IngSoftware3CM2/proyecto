@@ -6,6 +6,5 @@ import com.is.controlincidencias.model.CambioHorarioModel;
 public interface CambioHorarioService {
     void insertaCambioHorario(CambioHorarioModel cambioHorario);
     CambioHorario getSolicitudCambioHorario();
-    CambioHorario getCambioHorario(int id);
-
+    CambioHorario getCambioHorario(int idJustificante);
 }
