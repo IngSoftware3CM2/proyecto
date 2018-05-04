@@ -60,7 +60,7 @@ public class CambioHorarioController {
         modch.setHoraSalida("15:00");
         modch.setIdJustificante(1);
         modch.setFechaIncidencia("10/11/2012");
-//        modch = cambioService.getCambioHorario(1);
+//         modch = cambioService.getCambioHorario(1);
         ModelAndView mav = new ModelAndView(VER_JUSTIFICANTES);
         mav.addObject("nuevaEntradaDB", modch.getNuevaEntrada());
         mav.addObject("nuevaSalidaDB", modch.getNuevaSalida());
