@@ -1,4 +1,4 @@
-package com.is.controlincidencias.controller.asistencias;
+package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.model.AsistenciaForm;
@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/asistencias")
+@RequestMapping("/dch/asistencias")
 public class AsistenciasController {
     private static final Log LOG = LogFactory.getLog(AsistenciasController.class);
-    private static final String INICIO_ASISTENCIAS = "inicio-asistencias";
-    private static final String REGISTRAR_ASISTENCIA = "registrar-asistencias";
-    private static final String MODIFICAR_ASISTENCIA = "modificar-asistencias";
-    private static final String MOSTRAR_ASISTENCIA = "mostrar-asistencias";
-    private static final String ELIMINAR_ASISTENCIA = "eliminar-asistencias";
+
+    private static final String REGISTRAR_ASISTENCIAS = "dch/asistencias-registrar";
+    private static final String MODIFICAR_ASISTENCIA = "dch/asistencias-modificar";
+    private static final String MOSTRAR_ASISTENCIAS = "dch/asistencias-mostrar";
+    private static final String ELIMINAR_ASISTENCIA = "dch/asistencias-eliminar";
+
     private static final String RESULTADO = "resultado";
     private static final String MODELO = "modelo";
     private static final int MODIFICACION_EXITOSA = 3;
@@ -37,12 +38,12 @@ public class AsistenciasController {
 
     @GetMapping({"", "/"})
     public String inicio() {
-        return INICIO_ASISTENCIAS;
+        return "redirect:/dch";
     }
 
     @GetMapping("/registrar")
     public String registrar() {
-        return REGISTRAR_ASISTENCIA;
+        return REGISTRAR_ASISTENCIAS;
     }
 
     @PostMapping(params = "modificar", value = "/modificar")
@@ -105,7 +106,7 @@ public class AsistenciasController {
 
     @GetMapping("/mostrar")
     public String mostrar() {
-        return MOSTRAR_ASISTENCIA;
+        return MOSTRAR_ASISTENCIAS;
     }
 
     @GetMapping("/eliminar")

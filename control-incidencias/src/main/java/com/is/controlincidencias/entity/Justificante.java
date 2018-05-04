@@ -32,6 +32,9 @@ public class Justificante {
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private TipoA tipoA;
 
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CambioHorario cambioHorario;
+
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
 
@@ -93,6 +96,10 @@ public class Justificante {
     public Integer getIdJustificante() {
         return idJustificante;
     }
+
+    public CambioHorario getCambioHorario() { return cambioHorario; }
+
+    public void setCambioHorario(CambioHorario cambioHorario) { this.cambioHorario = cambioHorario; }
 
     public void setIdJustificante(Integer idJustificante) {
         this.idJustificante = idJustificante;

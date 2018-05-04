@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Sistema de Asistencia')"></head>
+<head th:replace="dch/head :: head('Sistema de Asistencia')"></head>
 <body>
 <div id="wrapper">
-    <nav th:replace="fragments/verticalnavbarAsistencias :: verticalnavbar(1)"></nav>
+    <nav th:replace="dch/verticalbar :: verticalnavbar(5)"></nav>
     <div id="page-wrapper" class="gray-bg">
-        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
+        <div th:replace="dch/navbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-6">
-                <h2>Bienvenido al Sistema de Control de Asistencias</h2>
+                <h2>Registro de Usuarios</h2>
                 <ol class="breadcrumb">
+                    <li>
+                        <a href="#" th:href="@{/dch}">Inicio</a>
+                    </li>
                     <li class="active">
-                        <strong>Inicio</strong>
+                        <strong>Registrar usuarios</strong>
                     </li>
                 </ol>
             </div>

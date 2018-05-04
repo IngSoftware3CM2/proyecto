@@ -1,4 +1,4 @@
-package com.is.controlincidencias.controller.asistencias;
+package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.Consulta;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/asistencias")
+@RequestMapping("/api/dch/asistencias")
 public class RestAsistenciasController {
     private static final Log LOG = LogFactory.getLog(RestAsistenciasController.class);
 
@@ -50,7 +50,7 @@ public class RestAsistenciasController {
 
     @PostMapping("/agregar")
     public Consulta agregar(@RequestBody List<AsistenciaJSON> asistencias) {
-        LOG.info("agregar() asistencias.size=" + asistencias.size());
+        LOG.info("agregar() dch.size=" + asistencias.size());
         for (AsistenciaJSON asistenciaJSON : asistencias)
             asistenciaService.agregarAsistencia(asistenciaJSON);
         return new Consulta();
