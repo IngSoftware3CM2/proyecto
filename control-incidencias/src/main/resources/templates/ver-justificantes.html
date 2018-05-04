@@ -45,7 +45,7 @@
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
-                                    <td th:text="${justificante.getJustificanteTipo()}"></td>
+                                    <td th:text="${justificante.getTipo()}"></td>
                                     <td><a href="#" th:href="@{/docente/verjustificante}">VER</a></td>
                                     <td><span data-feather="edit"></span></td>
                                     <td><a  href="#" th:href="@{/docente/removejustificante?(id=__${justificante.idJustificante}__)}"><i class="fa fa-trash"></i></a></td>

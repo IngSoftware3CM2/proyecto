@@ -1,10 +1,9 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
-import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
-import com.is.controlincidencias.service.impl.PersonalServiceImpl;
+import com.is.controlincidencias.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -33,13 +32,36 @@ public class DocenteController {
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
 
+    @Autowired
+    @Qualifier("licPaternidadServiceImpl")
+    private LicPaternidadServiceImpl licPaternidadService;
+
+    @Autowired
+    @Qualifier("taServiceImpl")
+    private JustificanteTAServiceImpl justificanteTAService;
+
     @GetMapping("/justificantes")
     public ModelAndView showJustificantes() {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        List <Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
+        for (Justificante justificante : justificantes) {
+            if (!(justificanteTAService.findByIdJustificante(justificante.getIdJustificante()).isEmpty()))
+            {
+                justificante.setTipo("Tipo A");
+            }
+            else if (!(licPaternidadService.findByIdJustificante(justificante.getIdJustificante()).isEmpty()))
+            {
+                justificante.setTipo("Licencia Paternidad");
+            }
+            else
+            {
+                justificante.setTipo("Otro Tipo");
+            }
+        }
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        mav.addObject("justificantes", justificanteService.getJustificantesByPersonal(personal));
+        mav.addObject("justificantes", justificantes);
         return mav;
     }
 

@@ -25,7 +25,7 @@ public class JustificacionTAController {
     private static final Log LOG = LogFactory.getLog(JustificacionTAController.class);
 
     @Autowired
-    @Qualifier("justificanteTAServiceImpl")
+    @Qualifier("taServiceImpl")
     private JustificanteTAService justificanteTAService;
 
     @Autowired

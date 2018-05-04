@@ -11,9 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
 @Repository("licPaternidadRepository")
 public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Serializable> {
+
+    @Transactional
+    @Query(value="SELECT t.justificacion FROM licpaternidad t WHERE idjustificante = :id", nativeQuery = true)
+    List <String> findByIdJustificante (@Param("id") int id);
 
     @Modifying
     @Query(value = "insert into licpaternidad (idjustificante, actamatrimonio, actanacimiento, comprobanteingresos, constanciacurso, copiaidentificacion, justificacion, registrolicencia) VALUES (:idjustificante, :actamatrimonio, :actanacimiento, :comprobanteingresos, :constanciacurso, :copiaidentificacion, :justificacion, :registrolicencia)", nativeQuery = true)
@@ -22,4 +28,5 @@ public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Se
 
 
     public LicPaternidad findById(int id);
+
 }

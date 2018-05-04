@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service("licPaternidadServiceImpl")
 
@@ -80,4 +81,8 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     }
 
+    @Override
+    public List <String> findByIdJustificante(int id) {
+        return licPaternidadRepository.findByIdJustificante(id);
+    }
 }

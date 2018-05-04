@@ -18,7 +18,7 @@ import java.util.List;
 @Repository("justificanteRepository")
 public interface JustificanteRepository extends JpaRepository <Justificante, Serializable> {
 
-    public abstract Justificante findByIdJustificante(int id);
+    Justificante findByIdJustificante(int id);
 
 
     List<Justificante> findAllByPersonal (Personal personal);
