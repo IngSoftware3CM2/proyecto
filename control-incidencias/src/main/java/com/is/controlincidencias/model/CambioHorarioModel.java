@@ -6,13 +6,24 @@ public class CambioHorarioModel {
     private String nuevaEntrada;
     private String nuevaSalida;
     private String justificación;
+    private String fechaIncidencia;
 
-    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificación) {
+    public String getFechaIncidencia() {
+        return fechaIncidencia;
+    }
+
+    public void setFechaIncidencia(String fechaIncidencia) {
+        this.fechaIncidencia = fechaIncidencia;
+    }
+
+    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificación, String fechaIncidencia) {
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.nuevaEntrada = nuevaEntrada;
         this.nuevaSalida = nuevaSalida;
         this.justificación = justificación;
+        this.fechaIncidencia = fechaIncidencia;
+
     }
 
     public CambioHorarioModel() {
@@ -26,6 +37,7 @@ public class CambioHorarioModel {
                 ", nuevaEntrada='" + nuevaEntrada + '\'' +
                 ", nuevaSalida='" + nuevaSalida + '\'' +
                 ", justificación='" + justificación + '\'' +
+                ", fechaIncidencia='" + fechaIncidencia + '\'' +
                 '}';
     }
 
