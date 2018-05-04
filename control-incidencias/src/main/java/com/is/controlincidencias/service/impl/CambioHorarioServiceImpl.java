@@ -9,6 +9,7 @@ import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +32,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida() + ":00");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
-            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificación(), cambiohorario.getIdJustificante());
+            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificacion(), cambiohorario.getIdJustificante());
         }
 
     @Override

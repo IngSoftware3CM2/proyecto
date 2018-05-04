@@ -1,10 +1,8 @@
 package com.is.controlincidencias.controller;
 
 
-import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.constants.Constants;
-import com.is.controlincidencias.entity.LicPaternidad;
+import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.model.LicPaternidadModel;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.LicPaternidadService;
@@ -48,7 +46,7 @@ public class LicenciaPaternidadController {
     }
 
     @PostMapping("/add-lic-paternidad")
-    private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) throws IOException {
+    private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan "+licPaternidadModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
