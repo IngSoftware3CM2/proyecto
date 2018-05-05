@@ -20,22 +20,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/personal")
 public class PersonalController {
-    public static final Log LOG =LogFactory.getLog(PersonalController.class);
+    private static final Log LOG = LogFactory.getLog(PersonalController.class);
+    private static final String INICIO = "inicio";
+    private static final String PERFIL = "perfil";
+    private static final String CAMBIAR_CONTRA = "cambiar-contra";
 
-    /*
-    * Para recuperar el correo deben de agregar el parametro de Pincipal
-    * El correo se recupera con getName()
-    * Realizar una consulta a la base de datos para recuperar el ID del usuario
-    * con base en el email
-    * OJO, si se trabaja con el login desactivado al llamar a principal.getName()
-    * produce un error
-    * */
-    @GetMapping({"", "/"})
-    public String inicio(Model model, Principal principal) {
-        if (principal != null)
-            LOG.info("inicio() " + principal.getName());
-        return "inicio";
-    }
+    @Autowired
+    @Qualifier("personalServiceImpl")
+    private PersonalServiceImpl personalService;
 
     @Autowired
     @Qualifier("justificanteServiceImpl")
@@ -46,16 +38,40 @@ public class PersonalController {
     private IncidenciaServiceImpl incidenciaService;
 
     @Autowired
-    @Qualifier("personalServiceImpl")
-    private PersonalServiceImpl personalService;
-
-    @Autowired
     @Qualifier("licPaternidadServiceImpl")
     private LicPaternidadServiceImpl licPaternidadService;
 
     @Autowired
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
+
+    @GetMapping({"", "/"})
+    public String inicio(Model model, Principal principal) {
+        if (principal != null)
+            LOG.info("inicio() " + principal.getName());
+        return INICIO;
+    }
+
+    /*
+     * Para recuperar el correo deben de agregar el parametro de Pincipal
+     * El correo se recupera con getName()
+     * Realizar una consulta a la base de datos para recuperar el ID del usuario
+     * con base en el email
+     * OJO, si se trabaja con el login desactivado al llamar a principal.getName()
+     * produce un error
+     * */
+    @GetMapping("/perfil")
+    public String perfil(Model model, Principal principal) {
+        LOG.info("perfil()");
+        Personal personal = personalService.getPersonalByEmail(principal.getName());
+        model.addAttribute("datos", personal);
+        return PERFIL;
+    }
+
+    @GetMapping("/perfil/cambiar")
+    public String cambiarContra() {
+        return CAMBIAR_CONTRA;
+    }
 
     @GetMapping("/justificantes")
     public ModelAndView showJustificantes() {

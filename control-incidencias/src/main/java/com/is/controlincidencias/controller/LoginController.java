@@ -16,9 +16,9 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-public class IniciarSesionController {
+public class LoginController {
 
-    private static final Log LOG = LogFactory.getLog(IniciarSesionController.class);
+    private static final Log LOG = LogFactory.getLog(LoginController.class);
     private static final String VISTA_INICIO = "inicio";
     private static final String VISTA_LOGIN = "iniciar-sesion";
 
@@ -41,9 +41,11 @@ public class IniciarSesionController {
         List<GrantedAuthority> auths = (List<GrantedAuthority>) auth.getAuthorities();
 
         LOG.info("loginSuccess() principal = " + principal.getName() + " ROLE = " + auths.get(0));
-        LOG.info("loginSuccess() es ROLE_DO? " + request.isUserInRole("DO"));
+        LOG.info("loginSuccess() es ROLE_DOC? " + request.isUserInRole("DOC"));
         LOG.info("loginSuccess() es ROLE_DCH? " + request.isUserInRole("DCH"));
-        if (auths.get(0).toString().equals("ROLE_DO"))
+        LOG.info("loginSuccess() es ROLE_PAEE? " + request.isUserInRole("PAEE"));
+
+        if (request.isUserInRole("DO") || request.isUserInRole("PAEE"))
             redirect = "redirect:/personal";
 
         return redirect;
