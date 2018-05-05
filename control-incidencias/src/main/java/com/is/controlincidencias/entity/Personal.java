@@ -151,7 +151,7 @@ public class Personal {
         String nombre;
         String nombreAndTipo;
 
-        if (this.getTipo().equals("DOC"))
+        if (this.getTipo().equals("ROLE_DOC"))
         {
             tipo = "Docente";
         }
