@@ -24,7 +24,7 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
-    @Column(name = "tipo", nullable = false, length = 4)
+    @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,6 +62,14 @@ public class Personal {
         this.apellidoMaterno = apellidoMaterno;
         this.departamento = departamento;
         this.tipo = tipo;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
     public Integer getNoEmpleado() {
@@ -143,13 +151,17 @@ public class Personal {
         String nombre;
         String nombreAndTipo;
 
-        if (this.getTipo().equals("DOC"))
+        if (this.getTipo().equals("ROLE_DOC"))
         {
             tipo = "Docente";
         }
-        else
+        else if (this.getTipo().equals("ROLE_PAAE"))
         {
             tipo = "PAAE";
+        }
+        else
+        {
+            tipo = "Capital Humano";
         }
         nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
         nombreAndTipo = tipo + " | " + nombre;

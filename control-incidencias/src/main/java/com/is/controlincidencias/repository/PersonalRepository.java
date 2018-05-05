@@ -11,4 +11,6 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     boolean existsPersonalByNoTarjeta(int noTarjeta);
     Personal getPersonalByNoTarjeta(int noTarjeta);
     Personal findByNoEmpleado(int noEmpleado);
+    Personal findByLogin_Correo(String email);
+    Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);
 }

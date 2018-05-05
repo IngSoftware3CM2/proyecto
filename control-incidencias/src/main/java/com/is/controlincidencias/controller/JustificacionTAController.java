@@ -25,7 +25,7 @@ public class JustificacionTAController {
     private static final Log LOG = LogFactory.getLog(JustificacionTAController.class);
 
     @Autowired
-    @Qualifier("justificanteTAServiceImpl")
+    @Qualifier("taServiceImpl")
     private JustificanteTAService justificanteTAService;
 
     @Autowired
@@ -46,14 +46,14 @@ public class JustificacionTAController {
 
 
     @PostMapping("/add-justificante-tipoA")
-    private String guardarJustificanteTA(@ModelAttribute("justificanteTAModel") JustificanteTAModel justificanteTAModel, @RequestParam("file") List<MultipartFile> files) throws IOException {
+    private String guardarJustificanteTA(@ModelAttribute("justificanteTAModel") JustificanteTAModel justificanteTAModel, @RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica("AS-001");
         justificanteTAModel.setTipo("LM");
-        if (files.size() == 0) {
+        if (files.isEmpty()) {
             error=1;
             return Constants.JUSTIFICANTE_A;
         }
@@ -64,7 +64,7 @@ public class JustificacionTAController {
             LOG.info("Aqui trato de subir el archivo");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
         return "redirect:/docente/justificantes";
     }

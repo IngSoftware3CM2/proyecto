@@ -2,7 +2,6 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.component.LicPaternidadConverter;
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
-import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
@@ -54,19 +53,14 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     }
 
     @Override
-    public void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante, int idIncidencia) {
+    public void guardarLicPaternidad(LicPaternidadModel licPaternidadModel,int idIncidencia) {
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        int noEmpleado=1;
+        int noEmpleado=22;
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        LOG.info("\n\n\n"+ids+"\n\n\n");
-        LOG.info("\n\n\n"+ids.get(ids.size()-1)+"\n\n\n");
-        int val = ids.get(ids.size()-1);
-        LOG.info("\n\n\n"+ids.get(ids.size()-2)+"\n\n\n");
-        licPaternidadRepository.altaLicPaternidad(val, licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
-        //Incidencia incidencia = incidenciaService.consultarIncidencia(idIncidencia);
+        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
     }
 
@@ -87,4 +81,8 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     }
 
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return licPaternidadRepository.existsByJustificante_IdJustificante(id);
+    }
 }

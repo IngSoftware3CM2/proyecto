@@ -77,7 +77,7 @@ function agregar_asistencia(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location.origin + "/api/asistencias/consultar",
+        url: window.location.origin + "/api/dch/asistencias/consultar",
         data: JSON.stringify(data),
         dataType: "json",
         success: function(resultado) {
@@ -147,8 +147,9 @@ function agregar_asistencia(e) {
             lista_registros.push(resultado.noTarjeta);
             $(".help-block").addClass("hidden");
         },
-        error: function(e) {
-            console.log("ERROR: " + e);
+        error: function(err) {
+            debugger;
+            console.log("ERROR: " + err);
         }
     });
 }
@@ -183,7 +184,7 @@ function registrar_asistencias(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location.origin + "/api/asistencias/agregar",
+        url: window.location.origin + "/api/dch/asistencias/agregar",
         data: JSON.stringify(lista),
         dataType: "json",
         success: function(resultado) {
@@ -193,8 +194,8 @@ function registrar_asistencias(e) {
             lista_registros = [];
             $("#exito").removeClass("hidden");
         },
-        error: function(e) {
-            console.log("ERROR: " + e);
+        error: function(err) {
+            console.log("ERROR: " + err);
             $("#errorF").removeClass("hidden");
         }
     });

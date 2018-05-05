@@ -6,8 +6,6 @@ import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.JustificanteTARepository;
 import com.is.controlincidencias.service.JustificanteTAService;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,9 +14,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("taServiceImpl")
 public class JustificanteTAServiceImpl implements JustificanteTAService{
-    private static final Log LOG = LogFactory.getLog(JustificanteTAServiceImpl.class);
 
     @Autowired
     @Qualifier("justificanteTARepository")
@@ -47,5 +44,10 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     @Override
     public List<String> findZonas() {
         return justificanteTARepository.findZonas();
+    }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return justificanteTARepository.existsByJustificante_IdJustificante(id);
     }
 }

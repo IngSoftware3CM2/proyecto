@@ -1,4 +1,4 @@
-package com.is.controlincidencias.controller.asistencias;
+package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.model.AsistenciaForm;
@@ -14,15 +14,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
-@RequestMapping("/asistencias")
+@RequestMapping("/dch/asistencias")
 public class AsistenciasController {
     private static final Log LOG = LogFactory.getLog(AsistenciasController.class);
-    private static final String INICIO_ASISTENCIAS = "inicio-asistencias";
-    private static final String REGISTRAR_ASISTENCIA = "registrar-asistencias";
-    private static final String MODIFICAR_ASISTENCIA = "modificar-asistencias";
-    private static final String MOSTRAR_ASISTENCIA = "mostrar-asistencias";
-    private static final String ELIMINAR_ASISTENCIA = "eliminar-asistencias";
+
+    private static final String REGISTRAR_ASISTENCIAS = "dch/asistencias-registrar";
+    private static final String MODIFICAR_ASISTENCIA = "dch/asistencias-modificar";
+    private static final String MOSTRAR_ASISTENCIAS = "dch/asistencias-mostrar";
+    private static final String ELIMINAR_ASISTENCIA = "dch/asistencias-eliminar";
+
     private static final String RESULTADO = "resultado";
     private static final String MODELO = "modelo";
     private static final int MODIFICACION_EXITOSA = 3;
@@ -36,18 +39,21 @@ public class AsistenciasController {
 
 
     @GetMapping({"", "/"})
-    public String inicio() {
-        return INICIO_ASISTENCIAS;
+    public String redirectInicio(Principal principal) {
+        //LOG.info("redirectInicio() principal=" + principal.getName());
+
+        return "redirect:/dch";
     }
 
     @GetMapping("/registrar")
     public String registrar() {
-        return REGISTRAR_ASISTENCIA;
+        return REGISTRAR_ASISTENCIAS;
     }
 
     @PostMapping(params = "modificar", value = "/modificar")
-    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
-        LOG.info("modificarPOST()");
+    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
+                                Model model, Principal principal) {
+        //LOG.info("modificarPOST() principal=" + principal.getName());
         int resultado;
         AsistenciaForm asistencia = new AsistenciaForm();
         if (validarFormato(modelo)) {
@@ -75,8 +81,8 @@ public class AsistenciasController {
     }
 
     @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
-        LOG.info("consultarPOST: ");
+    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model, Principal p) {
+        //LOG.info("consultarPOST() principal = " + p.getName());
         int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
@@ -92,8 +98,8 @@ public class AsistenciasController {
     }
 
     @GetMapping("/modificar")
-    public String modificarGET(Model model) {
-        LOG.info("modificarGET()");
+    public String modificarGET(Model model, Principal principal) {
+        //LOG.info("modificarGET() principal=" + principal.getName());
 
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
@@ -104,12 +110,14 @@ public class AsistenciasController {
     }
 
     @GetMapping("/mostrar")
-    public String mostrar() {
-        return MOSTRAR_ASISTENCIA;
+    public String mostrar(Principal principal) {
+        //LOG.info("mostrar() principal=" + principal.getName());
+        return MOSTRAR_ASISTENCIAS;
     }
 
     @GetMapping("/eliminar")
-    public String eliminar() {
+    public String eliminar(Principal principal) {
+        //LOG.info("eliminar() principal=" + principal.getName());
         return ELIMINAR_ASISTENCIA;
     }
 }
