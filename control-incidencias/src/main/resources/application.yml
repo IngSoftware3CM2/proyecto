@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/proyecto_CI
-    password: postgres
+    password: saidnm
     username: postgres
     platform: postgres
   jpa:
@@ -12,7 +12,7 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-      ddl-auto: update # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
+      ddl-auto: create-drop # Se cambio a update para no borrar mis registros/ create-drop borra y crea tablas
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 logging:

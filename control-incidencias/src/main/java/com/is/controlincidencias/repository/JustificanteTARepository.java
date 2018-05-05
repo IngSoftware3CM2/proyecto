@@ -1,7 +1,6 @@
 package com.is.controlincidencias.repository;
 
 import com.is.controlincidencias.entity.TipoA;
-import org.apache.tomcat.jni.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
