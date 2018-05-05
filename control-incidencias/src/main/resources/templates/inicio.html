@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head th:replace="fragments/head :: head('Inicio')"></head>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Sistema de Incidencias')"></head>
 <body>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
@@ -8,18 +8,14 @@
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Bienvenido</h2>
+                <h2>Bienvenido al Control de Justificantes</h2>
                 <ol class="breadcrumb">
                     <li class="active">
-                        <a href="index.html"><strong>Inicio</strong></a>
+                        <a href="#"><strong>Inicio</strong></a>
                     </li>
                 </ol>
             </div>
-            <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
-            </div>
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 
@@ -30,11 +26,5 @@
 <script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('.footable').footable();
-        $('.footable2').footable();
-    });
-</script>
 </body>
 </html>

@@ -18,4 +18,9 @@ public class PersonalServiceImpl implements PersonalService {
     public Personal getPersonalByNoEmpleado(int noEmpleado) {
         return personalRepository.findByNoEmpleado(noEmpleado);
     }
+
+    @Override
+    public Personal getPersonalByEmail(String email) {
+        return personalRepository.findByLogin_Correo(email);
+    }
 }

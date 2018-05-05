@@ -64,6 +64,14 @@ public class Personal {
         this.tipo = tipo;
     }
 
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
     public Integer getNoEmpleado() {
         return noEmpleado;
     }
