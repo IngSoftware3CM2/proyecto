@@ -23,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userService")
     private UserDetailsService userDetailsService;
 
-
     /*
     * En este metodo se debe de comentar el codigo enorme que tiene
     * el comentario de CON LOGIN y descomentar el que dice
@@ -34,14 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().disable(); // SIN LOGIN
         /*
         http.authorizeRequests()
-                .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll()
-                .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
-                .antMatchers("/personal/**").hasRole("DOC").anyRequest().authenticated()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
+        http.authorizeRequests()
+                .antMatchers("/dch/**").hasRole("DCH")
+                .antMatchers("/personal/**").hasRole("DO")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
         */
+
     }
 
     @Autowired

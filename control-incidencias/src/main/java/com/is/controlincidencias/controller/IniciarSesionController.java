@@ -2,11 +2,18 @@ package com.is.controlincidencias.controller;
 
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class IniciarSesionController {
@@ -24,6 +31,22 @@ public class IniciarSesionController {
         model.addAttribute("logout", logout);
 
         return VISTA_LOGIN;
+    }
+
+    @GetMapping("/loginsuccess")
+    public String loginSuccess(HttpServletRequest request) {
+        String redirect = "redirect:/dch";
+        Principal principal = request.getUserPrincipal();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<GrantedAuthority> auths = (List<GrantedAuthority>) auth.getAuthorities();
+
+        LOG.info("loginSuccess() principal = " + principal.getName() + " ROLE = " + auths.get(0));
+        LOG.info("loginSuccess() es ROLE_DO? " + request.isUserInRole("DO"));
+        LOG.info("loginSuccess() es ROLE_DCH? " + request.isUserInRole("DCH"));
+        if (auths.get(0).toString().equals("ROLE_DO"))
+            redirect = "redirect:/personal";
+
+        return redirect;
     }
 
     @PostMapping("/acceder")
