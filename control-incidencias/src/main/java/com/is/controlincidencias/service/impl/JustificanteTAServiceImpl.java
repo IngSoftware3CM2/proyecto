@@ -6,8 +6,6 @@ import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.JustificanteTARepository;
 import com.is.controlincidencias.service.JustificanteTAService;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,6 @@ import java.util.List;
 
 @Service("taServiceImpl")
 public class JustificanteTAServiceImpl implements JustificanteTAService{
-    private static final Log LOG = LogFactory.getLog(JustificanteTAServiceImpl.class);
 
     @Autowired
     @Qualifier("justificanteTARepository")

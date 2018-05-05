@@ -53,7 +53,7 @@ public class JustificacionTAController {
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica("AS-001");
         justificanteTAModel.setTipo("LM");
-        if (files.size() == 0) {
+        if (files.isEmpty()) {
             error=1;
             return Constants.JUSTIFICANTE_A;
         }
@@ -64,7 +64,7 @@ public class JustificacionTAController {
             LOG.info("Aqui trato de subir el archivo");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
         return "redirect:/docente/justificantes";
     }
