@@ -8,6 +8,7 @@ import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.LicPaternidadRepository;
+import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.LicPaternidadService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -29,7 +30,6 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
-
     @Autowired
     @Qualifier("licPaternidadRepository")
     private LicPaternidadRepository licPaternidadRepository;
@@ -37,6 +37,10 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Autowired
     @Qualifier("justificanteRepository")
     private JustificanteRepository justificanteRepository;
+
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
 
     @Autowired
     @Qualifier("licPaternidadComponent")
@@ -50,17 +54,20 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     }
 
     @Override
-    public void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante) {
+    public void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante, int idIncidencia) {
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
         int noEmpleado=1;
-        LOG.info("lllllllllllllllllllllllllllllllllllllllllll");
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
-        LOG.info("-----*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        LOG.info("0101010101010101010010101010101010101010010");
-        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
+        LOG.info("\n\n\n"+ids+"\n\n\n");
+        LOG.info("\n\n\n"+ids.get(ids.size()-1)+"\n\n\n");
+        int val = ids.get(ids.size()-1);
+        LOG.info("\n\n\n"+ids.get(ids.size()-2)+"\n\n\n");
+        licPaternidadRepository.altaLicPaternidad(val, licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
+        //Incidencia incidencia = incidenciaService.consultarIncidencia(idIncidencia);
+        incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
     }
 
     @Override

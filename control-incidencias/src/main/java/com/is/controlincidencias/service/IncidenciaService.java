@@ -10,4 +10,5 @@ public interface IncidenciaService {
     Incidencia consultarIncidencia(int id);
     List<Incidencia> getIncidenciasByPersonal (Personal personal);
     List<Incidencia> getIncidenciasByJustificanteId (int justificanteId, List<Incidencia> incidencias);
+    void updateIdJustificante(int idJustificante, int idIncidencia);
 }

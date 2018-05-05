@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface LicPaternidadService {
      void subirArchivo(List<MultipartFile> file) throws IOException;
-    void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante);
+    void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante,int idIncidencia);
     LicPaternidad buscarLicPaternidad(int idJustificante);
 }

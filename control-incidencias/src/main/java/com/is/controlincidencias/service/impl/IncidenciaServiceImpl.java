@@ -35,6 +35,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
 
     @Override
+    public void updateIdJustificante(int idJustificante, int idIncidencia) {
+        incidenciaRepository.updateIdJustificante(idJustificante,idIncidencia);
+    }
+
+    @Override
     public List<Incidencia> listAllIncidencia() {
         return null;
     }
