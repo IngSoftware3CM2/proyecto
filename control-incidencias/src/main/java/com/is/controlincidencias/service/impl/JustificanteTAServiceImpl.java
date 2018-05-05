@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("taServiceImpl")
 public class JustificanteTAServiceImpl implements JustificanteTAService{
 
     @Autowired
@@ -44,5 +44,10 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     @Override
     public List<String> findZonas() {
         return justificanteTARepository.findZonas();
+    }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return justificanteTARepository.existsByJustificante_IdJustificante(id);
     }
 }

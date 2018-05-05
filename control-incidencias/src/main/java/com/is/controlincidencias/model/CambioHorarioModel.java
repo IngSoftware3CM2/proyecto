@@ -5,17 +5,19 @@ public class CambioHorarioModel {
     private String horaSalida;
     private String nuevaEntrada;
     private String nuevaSalida;
-    private String justificación;
+    private String justificacion;
+    private String fechaIncidencia;
+    private int idJustificante;
 
-    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificación) {
+
+    public CambioHorarioModel(String horaEntrada, String horaSalida, String nuevaEntrada, String nuevaSalida, String justificacion, String fechaIncidencia, int idJustificante) {
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.nuevaEntrada = nuevaEntrada;
         this.nuevaSalida = nuevaSalida;
-        this.justificación = justificación;
-    }
-
-    public CambioHorarioModel() {
+        this.justificacion = justificacion;
+        this.fechaIncidencia = fechaIncidencia;
+        this.idJustificante = idJustificante;
     }
 
     @Override
@@ -25,8 +27,31 @@ public class CambioHorarioModel {
                 ", horaSalida='" + horaSalida + '\'' +
                 ", nuevaEntrada='" + nuevaEntrada + '\'' +
                 ", nuevaSalida='" + nuevaSalida + '\'' +
-                ", justificación='" + justificación + '\'' +
+                ", justificación='" + justificacion + '\'' +
+                ", fechaIncidencia='" + fechaIncidencia + '\'' +
+                ", idJustificante=" + idJustificante +
                 '}';
+    }
+
+    public int getIdJustificante() {
+        return idJustificante;
+    }
+
+    public void setIdJustificante(int idJustificante) {
+        this.idJustificante = idJustificante;
+    }
+
+
+    public String getFechaIncidencia() {
+        return fechaIncidencia;
+    }
+
+    public void setFechaIncidencia(String fechaIncidencia) {
+        this.fechaIncidencia = fechaIncidencia;
+    }
+
+
+    public CambioHorarioModel() {
     }
 
     public String getHoraEntrada() {
@@ -61,11 +86,11 @@ public class CambioHorarioModel {
         this.nuevaSalida = nuevaSalida;
     }
 
-    public String getJustificación() {
-        return justificación;
+    public String getJustificacion() {
+        return justificacion;
     }
 
-    public void setJustificación(String justificación) {
-        this.justificación = justificación;
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
     }
 }

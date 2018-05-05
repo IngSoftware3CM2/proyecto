@@ -24,7 +24,7 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
-    @Column(name = "tipo", nullable = false, length = 4)
+    @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -47,6 +47,12 @@ public class Personal {
 
     public Personal() {
     }
+
+    private static final String DEFINITION2 = "FOREIGN KEY(idHorario) REFERENCES horarioactual (idHorario) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION2))
+    private HorarioActual horarioActual;
 
     public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
         this.noEmpleado = noEmpleado;

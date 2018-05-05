@@ -25,7 +25,7 @@ public class JustificacionTAController {
     private static final Log LOG = LogFactory.getLog(JustificacionTAController.class);
 
     @Autowired
-    @Qualifier("justificanteTAServiceImpl")
+    @Qualifier("taServiceImpl")
     private JustificanteTAService justificanteTAService;
 
     @Autowired
@@ -46,7 +46,7 @@ public class JustificacionTAController {
 
 
     @PostMapping("/add-justificante-tipoA")
-    private String guardarJustificanteTA(@ModelAttribute("justificanteTAModel") JustificanteTAModel justificanteTAModel, @RequestParam("file") List<MultipartFile> files) throws IOException {
+    private String guardarJustificanteTA(@ModelAttribute("justificanteTAModel") JustificanteTAModel justificanteTAModel, @RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();

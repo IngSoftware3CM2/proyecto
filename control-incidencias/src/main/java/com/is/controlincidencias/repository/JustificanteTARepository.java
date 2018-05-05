@@ -15,19 +15,21 @@ import java.util.List;
 @Repository("justificanteTARepository")
 public interface JustificanteTARepository extends JpaRepository<TipoA,Serializable> {
 
-
     @Modifying
     @Transactional
     @Query(value="insert into tipoa (fechafin, folio, fechainicio, licenciaarchivo, tipo, idjustificante, idunidad) VALUES (:fechafin, :folio, :fechainicio, :licenciaarchivo, :tipo, :idjustificante, :idunidad)", nativeQuery = true)
-    public void saveJustificanteTA(@Param("fechafin") LocalDate fechafin, @Param("folio") String folio, @Param("fechainicio") LocalDate fechainicio, @Param("licenciaarchivo") String licenciaarchivo, @Param("tipo") String tipo,@Param("idjustificante") int idjustificante, @Param("idunidad") String idunidad);
+    void saveJustificanteTA(@Param("fechafin") LocalDate fechafin, @Param("folio") String folio, @Param("fechainicio") LocalDate fechainicio, @Param("licenciaarchivo") String licenciaarchivo, @Param("tipo") String tipo, @Param("idjustificante") int idjustificante, @Param("idunidad") String idunidad);
 
     @Modifying
     @Transactional
     @Query(value="select notarjeta from personal where noempleado= :noempleado", nativeQuery = true)
-    public int findNotarjetaByNoempleado(@Param("noempleado") int noempleado);
+    int findNotarjetaByNoempleado(@Param("noempleado") int noempleado);
 
     @Modifying
     @Transactional
     @Query(value="select nombre from zona ", nativeQuery = true)
-    public List<String> findZonas();
+    List<String> findZonas();
+
+    boolean existsByJustificante_IdJustificante (int id);
+
 }
