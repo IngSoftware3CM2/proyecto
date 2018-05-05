@@ -28,11 +28,8 @@ public interface JustificanteTARepository extends JpaRepository<TipoA,Serializab
     @Modifying
     @Transactional
     @Query(value="select nombre from zona ", nativeQuery = true)
-<<<<<<< HEAD
-    public List<String> findZonas();
 
     boolean existsByJustificante_IdJustificante (int id);
-=======
+
     List<String> findZonas();
->>>>>>> 3d953574cdf98648a9683806527d4603b8a52c0b
 }
