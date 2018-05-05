@@ -12,9 +12,7 @@ public class CambioPasswordModel {
     @NotNull
     private String verifyPassword;
 
-    public CambioPasswordModel() {
-        this("","","");
-    }
+    public CambioPasswordModel(){}
 
     public CambioPasswordModel(String oldPassword, String newPassword, String verifyPassword) {
         this.oldPassword = oldPassword;
