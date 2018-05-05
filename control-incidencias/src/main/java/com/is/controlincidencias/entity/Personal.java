@@ -161,7 +161,7 @@ public class Personal {
         }
         else
         {
-            tipo = "ROLE_DCH"
+            tipo = "Capital Humano";
         }
         nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
         nombreAndTipo = tipo + " | " + nombre;
