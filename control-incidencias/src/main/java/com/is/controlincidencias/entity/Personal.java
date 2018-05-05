@@ -143,13 +143,17 @@ public class Personal {
         String nombre;
         String nombreAndTipo;
 
-        if (this.getTipo().equals("DOC"))
+        if (this.getTipo().equals("ROLE_DOC"))
         {
             tipo = "Docente";
         }
-        else
+        else if (this.getTipo().equals("ROLE_PAAE"))
         {
             tipo = "PAAE";
+        }
+        else
+        {
+            tipo = "ROLE_DCH"
         }
         nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
         nombreAndTipo = tipo + " | " + nombre;
