@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface JustificanteTAService {
     public abstract String findNoTarjetaByNoEmpleado (int noEmpleado);
-    List <String> findByIdJustificante (int id);
+    boolean existsByIdjustificante (int id);
 
     public abstract void saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante);
     public abstract List<String> findZonas();

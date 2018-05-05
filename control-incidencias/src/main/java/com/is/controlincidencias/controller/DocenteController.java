@@ -47,11 +47,11 @@ public class DocenteController {
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         List <Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
-            if (!(justificanteTAService.findByIdJustificante(justificante.getIdJustificante()).isEmpty()))
+            if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante()))
             {
                 justificante.setTipo("Tipo A");
             }
-            else if (!(licPaternidadService.findByIdJustificante(justificante.getIdJustificante()).isEmpty()))
+            else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante()))
             {
                 justificante.setTipo("Licencia Paternidad");
             }
