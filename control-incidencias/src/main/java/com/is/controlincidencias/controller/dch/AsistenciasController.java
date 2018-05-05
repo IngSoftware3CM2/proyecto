@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/dch/asistencias")
 public class AsistenciasController {
@@ -37,7 +39,9 @@ public class AsistenciasController {
 
 
     @GetMapping({"", "/"})
-    public String inicio() {
+    public String redirectInicio(Principal principal) {
+        //LOG.info("redirectInicio() principal=" + principal.getName());
+
         return "redirect:/dch";
     }
 
@@ -47,8 +51,9 @@ public class AsistenciasController {
     }
 
     @PostMapping(params = "modificar", value = "/modificar")
-    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
-        LOG.info("modificarPOST()");
+    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
+                                Model model, Principal principal) {
+        //LOG.info("modificarPOST() principal=" + principal.getName());
         int resultado;
         AsistenciaForm asistencia = new AsistenciaForm();
         if (validarFormato(modelo)) {
@@ -76,8 +81,8 @@ public class AsistenciasController {
     }
 
     @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
-        LOG.info("consultarPOST: ");
+    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model, Principal p) {
+        //LOG.info("consultarPOST() principal = " + p.getName());
         int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
@@ -93,8 +98,8 @@ public class AsistenciasController {
     }
 
     @GetMapping("/modificar")
-    public String modificarGET(Model model) {
-        LOG.info("modificarGET()");
+    public String modificarGET(Model model, Principal principal) {
+        //LOG.info("modificarGET() principal=" + principal.getName());
 
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
@@ -105,12 +110,14 @@ public class AsistenciasController {
     }
 
     @GetMapping("/mostrar")
-    public String mostrar() {
+    public String mostrar(Principal principal) {
+        //LOG.info("mostrar() principal=" + principal.getName());
         return MOSTRAR_ASISTENCIAS;
     }
 
     @GetMapping("/eliminar")
-    public String eliminar() {
+    public String eliminar(Principal principal) {
+        //LOG.info("eliminar() principal=" + principal.getName());
         return ELIMINAR_ASISTENCIA;
     }
 }

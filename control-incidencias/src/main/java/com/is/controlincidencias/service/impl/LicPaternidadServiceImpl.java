@@ -2,7 +2,6 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.component.LicPaternidadConverter;
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
-import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
@@ -22,7 +21,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service("licPaternidadServiceImpl")
 

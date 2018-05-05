@@ -1,6 +1,5 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.impl.*;

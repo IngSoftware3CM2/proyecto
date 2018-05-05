@@ -2,7 +2,6 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.JustificanteTARepository;
@@ -11,13 +10,11 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service("taServiceImpl")
 public class JustificanteTAServiceImpl implements JustificanteTAService{

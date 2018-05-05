@@ -1,7 +1,5 @@
 package com.is.controlincidencias.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class AsistenciaForm {
     private int tarjeta;
     private String horaEntrada;

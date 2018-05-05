@@ -24,7 +24,7 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
-    @Column(name = "tipo", nullable = false, length = 4)
+    @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,6 +1,5 @@
 package com.is.controlincidencias.component;
 
-import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
 import org.springframework.stereotype.Component;

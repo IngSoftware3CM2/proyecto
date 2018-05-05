@@ -147,8 +147,9 @@ function agregar_asistencia(e) {
             lista_registros.push(resultado.noTarjeta);
             $(".help-block").addClass("hidden");
         },
-        error: function(e) {
-            console.log("ERROR: " + e);
+        error: function(err) {
+            debugger;
+            console.log("ERROR: " + err);
         }
     });
 }
@@ -193,8 +194,8 @@ function registrar_asistencias(e) {
             lista_registros = [];
             $("#exito").removeClass("hidden");
         },
-        error: function(e) {
-            console.log("ERROR: " + e);
+        error: function(err) {
+            console.log("ERROR: " + err);
             $("#errorF").removeClass("hidden");
         }
     });

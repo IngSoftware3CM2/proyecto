@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.controller.LicenciaPaternidadController;
 import com.is.controlincidencias.entity.CambioHorario;
 import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.repository.CambioHorarioRepository;
@@ -9,13 +8,10 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Service("cambioHorarioServiceImpl")
@@ -36,13 +32,19 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida() + ":00");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
-            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificación());
+            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificacion(), cambiohorario.getIdJustificante());
         }
 
     @Override
     public CambioHorario getSolicitudCambioHorario()
         {
-            CambioHorario x = new CambioHorario();
-                return x;
+            return new CambioHorario();
+
+        }
+
+    @Override
+    public CambioHorario getCambioHorario(int id)
+        {
+            return cambioHorarioRepository.getCambioHorario(id);
         }
 }
