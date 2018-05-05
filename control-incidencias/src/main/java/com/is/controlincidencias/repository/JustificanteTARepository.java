@@ -15,10 +15,6 @@ import java.util.List;
 @Repository("justificanteTARepository")
 public interface JustificanteTARepository extends JpaRepository<TipoA,Serializable> {
 
-    @Transactional
-    @Query(value = "SELECT t.folio FROM tipoa t WHERE idjustificante = :id", nativeQuery = true)
-    List <String> findByIdJustificante (@Param("id") int id);
-
     @Modifying
     @Transactional
     @Query(value="insert into tipoa (fechafin, folio, fechainicio, licenciaarchivo, tipo, idjustificante, idunidad) VALUES (:fechafin, :folio, :fechainicio, :licenciaarchivo, :tipo, :idjustificante, :idunidad)", nativeQuery = true)
@@ -33,4 +29,7 @@ public interface JustificanteTARepository extends JpaRepository<TipoA,Serializab
     @Transactional
     @Query(value="select nombre from zona ", nativeQuery = true)
     List<String> findZonas();
+
+    boolean existsByJustificante_IdJustificante (int id);
+
 }

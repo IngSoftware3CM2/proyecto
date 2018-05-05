@@ -53,7 +53,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        int noEmpleado=1;
+        int noEmpleado=22;
         LOG.info("lllllllllllllllllllllllllllllllllllllllllll");
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         LOG.info("-----*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
@@ -80,7 +80,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     }
 
     @Override
-    public List <String> findByIdJustificante(int id) {
-        return licPaternidadRepository.findByIdJustificante(id);
+    public boolean existsByIdjustificante(int id) {
+        return licPaternidadRepository.existsByJustificante_IdJustificante(id);
     }
 }

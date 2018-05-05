@@ -50,7 +50,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     }
 
     @Override
-    public List<String> findByIdJustificante(int id) {
-        return justificanteTARepository.findByIdJustificante(id);
+    public boolean existsByIdjustificante(int id) {
+        return justificanteTARepository.existsByJustificante_IdJustificante(id);
     }
 }

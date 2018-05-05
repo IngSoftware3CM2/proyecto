@@ -68,7 +68,7 @@ public class LicenciaPaternidadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "ver-justificantes";
+        return "redirect:/docente/justificantes";
     }
 
 }

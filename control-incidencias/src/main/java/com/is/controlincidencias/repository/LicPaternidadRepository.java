@@ -14,15 +14,12 @@ import java.util.List;
 @Repository("licPaternidadRepository")
 public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Serializable> {
 
-    @Transactional
-    @Query(value="SELECT t.justificacion FROM licpaternidad t WHERE idjustificante = :id", nativeQuery = true)
-    List <String> findByIdJustificante (@Param("id") int id);
-
     @Modifying
     @Query(value = "insert into licpaternidad (idjustificante, actamatrimonio, actanacimiento, comprobanteingresos, constanciacurso, copiaidentificacion, justificacion, registrolicencia) VALUES (:idjustificante, :actamatrimonio, :actanacimiento, :comprobanteingresos, :constanciacurso, :copiaidentificacion, :justificacion, :registrolicencia)", nativeQuery = true)
     @Transactional
     void altaLicPaternidad(@Param("idjustificante") int idjustificante, @Param("actamatrimonio") String actamatrimonio, @Param("actanacimiento") String actanacimiento, @Param("comprobanteingresos") String comprobanteingresos, @Param("constanciacurso") String constanciacurso, @Param("copiaidentificacion") String copiaidentificacion, @Param("justificacion") String justificacion, @Param("registrolicencia") String registrolicencia);
 
+    boolean existsByJustificante_IdJustificante (int id);
 
     LicPaternidad findById(int id);
 

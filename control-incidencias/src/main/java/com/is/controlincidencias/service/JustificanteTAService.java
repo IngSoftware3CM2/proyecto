@@ -6,8 +6,11 @@ import com.is.controlincidencias.model.JustificanteTAModel;
 import java.util.List;
 
 public interface JustificanteTAService {
+
+    boolean existsByIdjustificante (int id);
+
     String findNoTarjetaByNoEmpleado(int noEmpleado);
-    List <String> findByIdJustificante (int id);
+
 
     void saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante);
     List<String> findZonas();

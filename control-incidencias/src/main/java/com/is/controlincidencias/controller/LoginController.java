@@ -41,7 +41,7 @@ public class LoginController {
         List<GrantedAuthority> auths = (List<GrantedAuthority>) auth.getAuthorities();
 
         LOG.info("loginSuccess() principal = " + principal.getName() + " ROLE = " + auths.get(0));
-        LOG.info("loginSuccess() es ROLE_DO? " + request.isUserInRole("DO"));
+        LOG.info("loginSuccess() es ROLE_DOC? " + request.isUserInRole("DOC"));
         LOG.info("loginSuccess() es ROLE_DCH? " + request.isUserInRole("DCH"));
         if (request.isUserInRole("DO"))
             redirect = "redirect:/personal";

@@ -12,5 +12,5 @@ public interface LicPaternidadService {
     void subirArchivo(List<MultipartFile> file) throws IOException;
     void guardarLicPaternidad(LicPaternidadModel licPaternidadModel, Justificante justificante);
     LicPaternidad buscarLicPaternidad(int idJustificante);
-    List <String> findByIdJustificante (int id);
+    boolean existsByIdjustificante (int id);
 }
