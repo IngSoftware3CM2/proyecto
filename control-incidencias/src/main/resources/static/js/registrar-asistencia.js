@@ -77,7 +77,7 @@ function agregar_asistencia(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location.origin + "/api/dch/asistencias/consultar",
+        url: window.location.origin + "/proyecto/api/dch/asistencias/consultar",
         data: JSON.stringify(data),
         dataType: "json",
         success: function(resultado) {
@@ -184,7 +184,7 @@ function registrar_asistencias(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: window.location.origin + "/api/dch/asistencias/agregar",
+        url: window.location.origin + "/proyecto/api/dch/asistencias/agregar",
         data: JSON.stringify(lista),
         dataType: "json",
         success: function(resultado) {
