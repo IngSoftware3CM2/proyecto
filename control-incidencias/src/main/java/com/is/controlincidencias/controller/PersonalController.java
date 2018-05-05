@@ -48,7 +48,7 @@ public class PersonalController {
         return PERFIL;
     }
 
-    @GetMapping("/cambiar")
+    @GetMapping("/perfil/cambiar")
     public String cambiarContra() {
         return CAMBIAR_CONTRA;
     }

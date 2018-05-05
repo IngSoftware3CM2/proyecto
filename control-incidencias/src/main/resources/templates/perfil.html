@@ -27,7 +27,7 @@
                         <p>No. de empleado: <span th:text="${datos.noEmpleado}">7779042666</span></p>
                         <p>No. de tarjeta: <span th:text="${datos.noTarjeta}">7779042666</span></p>
                         <p>Nombre:
-                            <span th:text="${datos.nombre} ${datos.apellidoPaterno} ${datos.apellidoMaterno}">
+                            <span th:text="${datos.nombre} + ' ' + ${datos.apellidoPaterno} + ' ' +  ${datos.apellidoMaterno}">
                                 7779042666
                             </span>
                         </p>
