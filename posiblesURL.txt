@@ -1,0 +1,17 @@
+/personal/perfil (ver perfil)
+/personal/incidencias (ver incidencias)
+
+/personal/incidencias/justificar?idIncidencia=1&tipo=paternidad (Redirige a la respectiva vista de agregar)
+
+/personal/justificantes (ver justificantes)
+
+/personal/justificantes?idJustificante=1
+
+/personal/justificantes/paternidad/agregar
+/personal/justificantes/paternidad/modificar
+/personal/justificantes/economico/agregar
+/personal/justificantes/economico/modificar
+/personal/justificantes/tipoa/agregar
+/personal/justificantes/tipoa/modificar
+/personal/justificantes/cambiohorario/agregar
+/personal/justificantes/cambiohorario/modificar

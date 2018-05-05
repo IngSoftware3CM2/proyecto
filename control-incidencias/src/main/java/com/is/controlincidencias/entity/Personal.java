@@ -24,7 +24,7 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
-    @Column(name = "tipo", nullable = false, length = 4)
+    @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,6 +48,12 @@ public class Personal {
     public Personal() {
     }
 
+    private static final String DEFINITION2 = "FOREIGN KEY(idHorario) REFERENCES horarioactual (idHorario) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION2))
+    private HorarioActual horarioActual;
+
     public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
         this.noEmpleado = noEmpleado;
         this.noTarjeta = noTarjeta;
@@ -56,6 +62,14 @@ public class Personal {
         this.apellidoMaterno = apellidoMaterno;
         this.departamento = departamento;
         this.tipo = tipo;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
     public Integer getNoEmpleado() {
@@ -128,6 +142,30 @@ public class Personal {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /*Absalom | Método para usarlo en ver-justificantes y ver-incidencias*/
+    public String nombreAndTipoToString ()
+    {
+        String tipo;
+        String nombre;
+        String nombreAndTipo;
+
+        if (this.getTipo().equals("ROLE_DOC"))
+        {
+            tipo = "Docente";
+        }
+        else if (this.getTipo().equals("ROLE_PAAE"))
+        {
+            tipo = "PAAE";
+        }
+        else
+        {
+            tipo = "Capital Humano";
+        }
+        nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
+        nombreAndTipo = tipo + " | " + nombre;
+        return nombreAndTipo;
     }
 
     public void addAsistencia(Asistencia asistencia) {

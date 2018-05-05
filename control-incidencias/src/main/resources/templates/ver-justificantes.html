@@ -19,7 +19,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${TipoAndNombre}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -45,11 +45,15 @@
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
-                                    <td th:text="${justificante.getJustificanteTipo()}"></td>
-                                    <td>VER</td>
-                                    <td><span data-feather="edit"></span></td>
+                                    <td th:text="${justificante.getTipo()}"></td>
+                                    <td><a href="#" th:href="@{/docente/verjustificante}"><i class="fa fa-eye"></i></a></td>
+                                    <td><a><i class="fa fa-pencil"></i></a></td>
                                     <td><a  href="#" th:href="@{/docente/removejustificante?(id=__${justificante.idJustificante}__)}"><i class="fa fa-trash"></i></a></td>
-                                    <td th:text="${justificante.getEstado()}"></td>
+                                    <td th:switch="${justificante.getEstado().toLowerCase()}">
+                                        <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
+                                        <span th:case="'espera'"><i class="fa fa-clock-o"></i></span>
+                                        <span th:case="'rechazado'"><i class="fa fa-times"></i></span>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

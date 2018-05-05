@@ -4,13 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+
 /*
 @SpringBootApplication
 public class ControlIncidenciasApplication {
+    private static final Log LOG = LogFactory.getLog(ControlIncidenciasApplication.class);
 
     public static void main(String[] args) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        LOG.info("Hola = " +  encoder.encode("hola"));
         SpringApplication.run(ControlIncidenciasApplication.class, args);
     }
 
@@ -18,6 +20,7 @@ public class ControlIncidenciasApplication {
 */
 
 /* ESTA CLASE ES PARA EL DEPLOY, NO LA BORREN PORQUE SE ME OLVIDA*/
+
 @SpringBootApplication
 public class ControlIncidenciasApplication extends SpringBootServletInitializer {
 
@@ -29,5 +32,4 @@ public class ControlIncidenciasApplication extends SpringBootServletInitializer 
     public static void main(String[] args) {
         SpringApplication.run(ControlIncidenciasApplication.class, args);
     }
-
 }

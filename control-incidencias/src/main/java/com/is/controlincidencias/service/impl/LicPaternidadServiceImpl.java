@@ -2,8 +2,8 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.component.LicPaternidadConverter;
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
-import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.model.LicPaternidadModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.LicPaternidadRepository;
@@ -53,7 +53,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        int noEmpleado=1;
+        int noEmpleado=22;
         LOG.info("lllllllllllllllllllllllllllllllllllllllllll");
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         LOG.info("-----*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
@@ -62,10 +62,11 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
     }
 
-     @Override
-    public Incidencia consultarIncidencia(int idIncidencia) {
-        return licPaternidadRepository.findById(idIncidencia);
+    @Override
+    public LicPaternidad buscarLicPaternidad(int idJustificante) {
+        return licPaternidadRepository.findById(idJustificante);
     }
+
 
     @Override
     public void subirArchivo(List<MultipartFile> files) throws IOException {
@@ -78,4 +79,8 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     }
 
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return licPaternidadRepository.existsByJustificante_IdJustificante(id);
+    }
 }

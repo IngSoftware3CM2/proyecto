@@ -18,13 +18,45 @@ public class Login {
 
     private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
     public Login(String passwordsalt, String passwordhash, Personal personal) {
         this.passwordsalt = passwordsalt;
         this.passwordhash = passwordhash;
+        this.personal = personal;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPasswordsalt() {
+        return passwordsalt;
+    }
+
+    public void setPasswordsalt(String passwordsalt) {
+        this.passwordsalt = passwordsalt;
+    }
+
+    public String getPasswordhash() {
+        return passwordhash;
+    }
+
+    public void setPasswordhash(String passwordhash) {
+        this.passwordhash = passwordhash;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
         this.personal = personal;
     }
 
