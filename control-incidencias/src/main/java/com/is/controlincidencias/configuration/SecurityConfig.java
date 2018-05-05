@@ -23,16 +23,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userService")
     private UserDetailsService userDetailsService;
 
+
+    /*
+    * En este metodo se debe de comentar el codigo enorme que tiene
+    * el comentario de CON LOGIN y descomentar el que dice
+    * SIN LOGIN para poder utilizar el proyecto sin tener que iniciar sesion
+    * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //http.httpBasic().disable();
-        http.authorizeRequests().antMatchers("/css/*").permitAll()
+        //http.httpBasic().disable(); // SIN LOGIN
+        http.authorizeRequests()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll()
                 .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
                 .antMatchers("/personal/**").hasRole("DOC").anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
     }
 
     @Autowired

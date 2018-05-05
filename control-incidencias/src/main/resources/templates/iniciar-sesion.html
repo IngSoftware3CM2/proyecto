@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head th:replace="fragments/head :: head('Sistema de Asistencia')"></head>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Iniciar Sesión')"></head>
 
 <body class="gray-bg">
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
-            <span><img alt="image" class="img-responsive" src="img/escom.png" /></span>
+            <span><img alt="image" class="img-responsive" src="#" th:src="@{/img/escom.png}"/></span>
         </div>
         <h3>Bienvenido al Sistema Institucional de Control de Incidencias</h3>
         <p>Iniciar Sesion.</p>
         <div class="text-left">
-            <form action="" th:action="@{/acceder}" method="post">
+            <form action="#" th:action="@{/logincheck}" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 <div class="form-group">
                     <label for="user-email">Correo:</label>
-                    <input type="email" placeholder="Correo" class="form-control" name="user-email" id="user-email" required>
+                    <input type="email" placeholder="Correo electronico" class="form-control" name="email" id="user-email"
+                           required>
                 </div>
                 <div class="form-group">
                     <label for="user-password">Contraseña:</label>
-                    <input type="password" placeholder="Contraseña" class="form-control" name="user-password" id="user-password" required>
+                    <input type="password" placeholder="Contraseña" class="form-control" name="password"
+                           id="user-password" required>
                 </div>
                 <div>
-                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Iniciar Sesion</strong></button>
+                    <input type="submit" class="btn btn-sm btn-primary pull-right m-t-n-xs" value="Iniciar Sesión">
                 </div>
             </form>
         </div>
-        <p class="m-t"> <small><a href="">He olvidado mi contraseña</a></small> </p>
+        <p class="m-t">
+            <small><a href="#">He olvidado mi contraseña</a></small>
+        </p>
     </div>
 </div>
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
-
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 </body>
 
 </html>
