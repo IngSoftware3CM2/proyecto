@@ -155,9 +155,13 @@ public class Personal {
         {
             tipo = "Docente";
         }
-        else
+        else if (this.getTipo().equals("ROLE_PAAE"))
         {
             tipo = "PAAE";
+        }
+        else
+        {
+            tipo = "Capital Humano";
         }
         nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
         nombreAndTipo = tipo + " | " + nombre;
