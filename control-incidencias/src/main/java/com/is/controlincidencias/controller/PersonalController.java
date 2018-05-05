@@ -14,6 +14,14 @@ import java.security.Principal;
 public class PersonalController {
     public static final Log LOG =LogFactory.getLog(PersonalController.class);
 
+    /*
+    * Para recuperar el correo deben de agregar el parametro de Pincipal
+    * El correo se recupera con getName()
+    * Realizar una consulta a la base de datos para recuperar el ID del usuario
+    * con base en el email
+    * OJO, si se trabaja con el login desactivado al llamar a principal.getName()
+    * produce un error
+    * */
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
