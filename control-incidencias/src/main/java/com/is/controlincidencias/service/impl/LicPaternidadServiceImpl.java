@@ -40,10 +40,6 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
 
-    @Autowired
-    @Qualifier("licPaternidadComponent")
-    private LicPaternidadConverter licPaternidadConverter;
-
     private String ruta_archivos = ".//src//main//resources//files//";
 
 
