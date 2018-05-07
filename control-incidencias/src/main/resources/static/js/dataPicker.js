@@ -69,7 +69,8 @@ $(document).ready(function () {
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: true,
-        autoclose: true
+        autoclose: true,
+        format: "yyyy/mm/dd"
     });
 
     $('#data_2 .input-group.date').datepicker({

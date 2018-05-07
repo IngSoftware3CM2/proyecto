@@ -24,19 +24,22 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${tipoAndNombre}"></label>
             </div>
         </div>
-        <div class="alert alert-error" th:if="${error == 1}">
+        <div class="alert alert-danger" th:if="${error == 1}">
             ¡No seleccionaste ningun archivo!
+        </div>
+        <div class="alert alert-danger" th:if="${errorf == 1}">
+            ¡Las fechas seleccionadas son incorrectas!
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
                     <span class="text-navy">Generar Justificante de Incidencia Tipo A</span>
                 </h1>
-                <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/justificacionTA/add-justificante-tipoA}" th:object="${justificanteTAModel}" method="post">
-                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span>Numero de tarjeta</span></label></div>
+                <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/personal/justificantes/tipoa/agregar}" th:object="${justificanteTAModel}" method="post">
+                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
                     <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : <span th:field="*{tipo}" th:value="*{tipo}" >Licencia Medica</span></label></div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Folio:</label>
@@ -64,20 +67,20 @@
                         </select>
                         </div>
                         <div class="col-sm-3">
-                            <select class="form-control m-b" name="account">
-                                <option th:field="*{idunidadmedica}" th:value="*{idunidadmedica}">Clinica 1</option>
+                            <select class="form-control m-b" name="account" id="getUnidadMedica" th:field="*{idunidadmedica}">
+                                <option th:value="*{idunidadmedica}"></option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group" id="data_1">
-                        <label class="col-sm-2"> Fecha de Inicio(mm/dd/aaaa):</label>
+                        <label class="col-sm-2"> Fecha de Inicio(aaaa/mm/dd):</label>
                         <div class="input-group date col-sm-2">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" required/>
                         </div>
 
                     </div>
                     <div class="form-group" id="data_1">
-                        <label class="col-sm-2"> Fecha Final(mm/dd/aaaa):</label>
+                        <label class="col-sm-2"> Fecha Final(aaaa/mm/dd):</label>
                         <div class="input-group date col-sm-2" >
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fin}" required/>
                         </div>
@@ -89,7 +92,7 @@
                             <button class="btn btn-sm btn-white" type="submit">Enviar</button>
                         </div>
                         <div class="col-lg-3">
-                            <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                            <button class="btn btn-sm btn-white" id="buttonCancelar" type="button" th:href="@{/personal/justificantes/tipoa/cancelar}">Cancelar</button>
                         </div>
                     </div>
                 </form>

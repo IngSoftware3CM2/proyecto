@@ -34,7 +34,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     public void saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante) {
         Date fecha = new Date();
         //Aqui cambia dependiendo el No empleado.
-        int noEmpleado=22;
+        int noEmpleado=justificante.getPersonal().getNoEmpleado();
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());

@@ -51,7 +51,6 @@ public class PersonalController {
             LOG.info("inicio() " + principal.getName());
         return INICIO;
     }
-
     /*
      * Para recuperar el correo deben de agregar el parametro de Pincipal
      * El correo se recupera con getName()

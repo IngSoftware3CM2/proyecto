@@ -32,4 +32,5 @@ public interface JustificanteTARepository extends JpaRepository<TipoA,Serializab
 
     boolean existsByJustificante_IdJustificante (int id);
 
+
 }
