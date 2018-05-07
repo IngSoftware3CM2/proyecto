@@ -81,10 +81,10 @@ public class JustificacionTAController {
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         UnidadMedica unidad = unidadMedicaService.getUnidadMedicaByNombre(justificanteTAModel.getIdunidadmedica());
         justificanteTAModel.setIdunidadmedica(unidad.getIdUnidad());
-        justificanteTAModel.setTipo("LM");
         justificante.setPersonal(personal);
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
+        //Obtengo el tipo de justificante tipoA
         if(inicio.isAfter(fin)){
             errorf=1;
             return "redirect:/personal/justificantes/tipoa";
