@@ -53,12 +53,6 @@ public class JustificacionTAController {
     private Personal personal;
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,Principal principal){
-        /*String email = "ariel@gmail.com"; // aqui poner un email por default
-        if (principal != null && principal.getName() != null)
-            email = principal.getName();
-
-        Personal personal = personalService.getPersonalByEmail(email);
-        */
         personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         model.addAttribute("error",error);

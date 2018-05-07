@@ -40,7 +40,6 @@ public class AsistenciasController {
 
     @GetMapping({"", "/"})
     public String redirectInicio(Principal principal) {
-        //LOG.info("redirectInicio() principal=" + principal.getName());
 
         return "redirect:/dch";
     }
@@ -53,7 +52,6 @@ public class AsistenciasController {
     @PostMapping(params = "modificar", value = "/modificar")
     public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
                                 Model model, Principal principal) {
-        //LOG.info("modificarPOST() principal=" + principal.getName());
         int resultado;
         AsistenciaForm asistencia = new AsistenciaForm();
         if (validarFormato(modelo)) {
@@ -82,7 +80,6 @@ public class AsistenciasController {
 
     @PostMapping(params = "consultar", value = "/modificar")
     public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model, Principal p) {
-        //LOG.info("consultarPOST() principal = " + p.getName());
         int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
@@ -99,7 +96,6 @@ public class AsistenciasController {
 
     @GetMapping("/modificar")
     public String modificarGET(Model model, Principal principal) {
-        //LOG.info("modificarGET() principal=" + principal.getName());
 
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
@@ -111,13 +107,11 @@ public class AsistenciasController {
 
     @GetMapping("/mostrar")
     public String mostrar(Principal principal) {
-        //LOG.info("mostrar() principal=" + principal.getName());
         return MOSTRAR_ASISTENCIAS;
     }
 
     @GetMapping("/eliminar")
     public String eliminar(Principal principal) {
-        //LOG.info("eliminar() principal=" + principal.getName());
         return ELIMINAR_ASISTENCIA;
     }
 }

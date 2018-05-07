@@ -135,9 +135,7 @@ public class PersonalController {
 
     @GetMapping("/verjustificante")
     public ModelAndView verJustificante(){
-        int noEmpleado = 22;
-        ModelAndView mav = new ModelAndView("ver-justificante-docente");
-        return mav;
+        return new ModelAndView("ver-justificante-docente");
     }
 
     @GetMapping("/incidencias")
@@ -152,7 +150,6 @@ public class PersonalController {
 
     @GetMapping("/removejustificante")
     public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
-        int noEmpleado = 22;
         justificanteService.removeJustificanteByIdJustificante(idJustificante);
         return showIncidencias();
     }

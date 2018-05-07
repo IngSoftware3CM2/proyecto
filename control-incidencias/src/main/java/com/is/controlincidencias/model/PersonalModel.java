@@ -107,12 +107,12 @@ public class PersonalModel {
 
     public void addJustificante(JustificanteModel justificante) {
         justificantes.add(justificante);
-        justificante.setPersonal(this);
+        justificante.setPersonalModel(this);
     }
 
     public void removeJustificante(JustificanteModel justificante) {
         justificantes.remove(justificante);
-        justificante.setPersonal(null);
+        justificante.setPersonalModel(null);
     }
 
 
