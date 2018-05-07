@@ -31,11 +31,11 @@ public class DepartamentoModel {
     }
 
 
-    public JefeSuperiorModel getJefesuperior() {
+    public JefeSuperiorModel getJefeSuperior() {
         return jefesuperior;
     }
 
-    public void setJefesuperior(JefeSuperiorModel jefesuperior) {
+    public void setJefeSuperior(JefeSuperiorModel jefesuperior) {
         this.jefesuperior = jefesuperior;
     }
 
