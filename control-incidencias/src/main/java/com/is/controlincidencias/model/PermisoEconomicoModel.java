@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class PermisoEconomicoModel implements Serializable {
 
-    private static final String definition = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
     private JustificanteModel justificante;
 
     public void setJustificante(JustificanteModel justificante) {

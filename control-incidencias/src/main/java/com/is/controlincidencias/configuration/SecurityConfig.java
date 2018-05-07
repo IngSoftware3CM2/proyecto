@@ -30,19 +30,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable(); // SIN LOGIN
+        //http.httpBasic().disable(); // SIN LOGIN
         http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas seguridad
-/*
+
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
         http.authorizeRequests()
                 .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
-                .antMatchers("/personal/**").hasAnyRole("DOC", "PAEE").anyRequest().authenticated()
+                .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE").anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
-*/
+
     }
 
     @Autowired
