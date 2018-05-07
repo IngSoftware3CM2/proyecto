@@ -39,6 +39,14 @@ public class UsuariosController {
 
     @GetMapping("/registrar/paae")
     public String registrarPAAE() {
+        // Recupearar los departamentos con el service
+        // Crear un modelo para el jefe
+
+        // Hacer cosas, solo tiene un dia
+
+        // Generar numero de tarjeta
+        // Generar contra
+
         return REGISTRAR_PAAE;
     }
 
@@ -52,7 +60,7 @@ public class UsuariosController {
         // Recupearar los departamentos con el service
         // Crear un modelo para el jefe
 
-        // Hacer cosas
+        // Hacer cosas, no lleva horario ni horas ni turno
 
         // Generar numero de tarjeta
         // Generar contra

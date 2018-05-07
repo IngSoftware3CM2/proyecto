@@ -1,6 +1,9 @@
 package com.is.controlincidencias.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonalForm {
     private int departamento;
     private int numeroEmpleado;
@@ -10,6 +13,8 @@ public class PersonalForm {
     private String correo;
     private boolean abierto;
     private int horas;
+    private List<DiaForm> dias = new ArrayList<>();
+    // Falta sexo y turno
 
     public boolean isAbierto() {
         return abierto;
@@ -17,6 +22,22 @@ public class PersonalForm {
 
     public void setAbierto(boolean abierto) {
         this.abierto = abierto;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void addDia(DiaForm dia) {
+        dias.add(dia);
+    }
+
+    public List<DiaForm> getDias() {
+        return dias;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
     }
 
     public int getDepartamento() {
