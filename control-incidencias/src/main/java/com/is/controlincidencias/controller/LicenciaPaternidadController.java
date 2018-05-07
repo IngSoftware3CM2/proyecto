@@ -50,7 +50,7 @@ public class LicenciaPaternidadController {
     }
 
     @GetMapping("/agregar")
-    private String RedirectSolicitudLicenciaPaternidadForm(Model model,@RequestParam(name="id", required=true)int id) {//@RequestParam(name="id", required = false) int idJustificante,
+    private String redirectSolicitudLicenciaPaternidadForm(Model model,@RequestParam(name="id", required=true)int id) {//@RequestParam(name="id", required = false) int idJustificante,
         idIncidencia=id;
         Incidencia incidencia = incidenciaService.consultarIncidencia(id);
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
@@ -62,10 +62,9 @@ public class LicenciaPaternidadController {
     }
 
     @PostMapping("/add-lic-paternidad")
-    private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) {
+    private String guardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan "+licPaternidadModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
-        Justificante justificante = new Justificante();
         licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
@@ -76,7 +75,7 @@ public class LicenciaPaternidadController {
             licPaternidadService.subirArchivo(files);
             licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("ERROR:", e);
         }
         return "redirect:/docente/justificantes";
     }
