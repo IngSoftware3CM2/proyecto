@@ -38,9 +38,6 @@ public class JustificanteModel {
         this.incidenciasModel = incidenciasModel;
     }
 
-    public static String getDefinition() {
-        return definition;
-    }
 
     public PersonalModel getPersonalModel() {
         return personalModel;
@@ -81,7 +78,6 @@ public class JustificanteModel {
     }
 
 
-    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     private PersonalModel personalModel;
 

@@ -30,9 +30,6 @@ public class DepartamentoModel {
         this.personales = personales;
     }
 
-    public static String getDefinition2() {
-        return definition2;
-    }
 
     public JefeSuperiorModel getJefesuperior() {
         return jefesuperior;
@@ -67,11 +64,6 @@ public class DepartamentoModel {
     }
 
 
-    private static final String definition2 = "FOREIGN KEY(id_superior) REFERENCES jefe_superior (id_superior) ON UPDATE CASCADE ON DELETE CASCADE";
-
     private JefeSuperiorModel jefesuperior;
 
-    public void setJefeSuperior(JefeSuperiorModel jefesuperior) {
-        this.jefesuperior =jefesuperior;
-    }
 }
