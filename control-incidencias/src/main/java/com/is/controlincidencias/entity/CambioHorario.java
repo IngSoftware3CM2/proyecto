@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "cambiohorario")
-public class CambioHorario implements Serializable{
+public class CambioHorario {
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

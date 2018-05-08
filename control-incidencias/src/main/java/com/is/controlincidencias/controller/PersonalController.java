@@ -101,7 +101,6 @@ public class PersonalController {
         } else {
             LOG.info("confirmar() Chido");
             p.getLogin().setPasswordhash(encoder.encode(cambioPassword.getNewPassword()));
-            p.getLogin().setPasswordsalt(p.getLogin().getPasswordhash());
             personalService.actualizarContra(p);
         }
         mav.setViewName(CAMBIAR_CONTRA);

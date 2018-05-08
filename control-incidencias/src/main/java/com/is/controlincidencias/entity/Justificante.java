@@ -106,7 +106,6 @@ public class Justificante {
 
     }
 
-
     public PermisoEconomico getPermisoEconomico() {
         return this.permisoEconomico;
     }
