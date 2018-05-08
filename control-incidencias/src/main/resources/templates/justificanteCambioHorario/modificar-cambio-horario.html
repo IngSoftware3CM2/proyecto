@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-
-    <head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
-</head>
-
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
 <body>
-
 <div id="wrapper">
 
 
 
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -21,7 +15,7 @@
                 <h2>Ver Justificante</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li class="active">
                         <strong>Ver Justificante</strong>
@@ -93,35 +87,17 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
-        </div>
-
     </div>
 </div>
 
-
-
-<!-- Mainly scripts -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Jasny -->
-<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-
-
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-
-
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+<script src="#" th:src="@{js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 
 </body>
 

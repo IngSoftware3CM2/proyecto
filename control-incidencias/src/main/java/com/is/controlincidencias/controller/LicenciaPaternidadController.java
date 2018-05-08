@@ -46,11 +46,10 @@ public class LicenciaPaternidadController {
     @Qualifier("personalServiceImpl")
     private PersonalService personalService;
 
+
     @Autowired
     @Qualifier("justificanteServiceImpl")
     private JustificanteService justificanteService;
-
-
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
     @GetMapping("/cancel")
@@ -66,7 +65,6 @@ public class LicenciaPaternidadController {
         idIncidencia=idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        LOG.info(noEmpleado+" -------- "+idIncidencia);
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         model.addAttribute("noTajerta",personal.getNoTarjeta().toString());
         model.addAttribute("fecha",incidencia.getFechaRegistro().toString());

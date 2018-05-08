@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html>
-
-<head th:replace="fragments/head :: head('Ver Justificante')"></head>
-
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante por licencia de paternidad')"></head>
 <body>
 
 <div id="wrapper">
 
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -16,15 +14,11 @@
                 <h2>Ver Justificante</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="index.html">Ver Justificante</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li class="active">
                        <strong>Ver Justificante de paternidad</strong>
                     </li>
-
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
@@ -176,7 +170,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <a href="#" th:href="@{/licenciapaternidad/cancel}">
+                                    <a href="#" th:href="@{/personal/justificantes/paternidad/cancel}">
                                         <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
                                     </a>
                                 </div>
@@ -190,7 +184,6 @@
             </div>
 
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 
@@ -207,12 +200,6 @@
 <script src="#" th:src="@{/js/dataPicker.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('.footable').footable();
-        $('.footable2').footable();
-    });
-</script>
 <script>
     var _validFileExtensions = [".jpg",".jpeg"];
     function ValidateSingleInput(oInput) {
@@ -238,9 +225,6 @@
         return true;
     }
 </script>
-
-
-
 
 </body>
 

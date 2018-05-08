@@ -3,7 +3,7 @@
 <head th:replace="fragments/head :: head('Ver justificante tipo A')"></head>
 <body>
 <div id="wrapper">
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -13,10 +13,7 @@
                 <h2>Ver Justificante</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#">Ver Incidencias</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li class="active">
                         <strong>Ver justificante Tipo A</strong>
@@ -105,9 +102,7 @@
                     </div>
                 </form>
             </div>
-
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 
