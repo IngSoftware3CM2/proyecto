@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/personal/justificantes/cambiohorario")
+@RequestMapping("/personal/justificantes/cambiohorario") 
 public class CambioHorarioController {
     static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
     static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
