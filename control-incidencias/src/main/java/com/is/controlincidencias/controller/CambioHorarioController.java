@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/cambio-horario")
@@ -34,19 +37,27 @@ public class CambioHorarioController {
         }
 
     @PostMapping("/add-cambio-horario")
-    public ModelAndView addCambioHorario(@ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH)
+    public ModelAndView addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
         {
-            LOGGER.info(modeloCH);
-            CambioHorarioModel chm = new CambioHorarioModel();
-            chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-            chm.setHoraSalida("15:00"); //esto igual
-            chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-            chm.setNuevaSalida(modeloCH.getNuevaSalida());
-            chm.setJustificacion(modeloCH.getJustificacion());
-            chm.setFechaIncidencia("10/10/2018");
-            chm.setIdJustificante(1);
-            cambioService.insertaCambioHorario(chm);
-            return new ModelAndView(VER_JUSTIFICANTES);
+            if(bindings.hasErrors())
+                {
+                    LOGGER.info("Hubo errores");
+                    return new ModelAndView(VISTA_CAMBIO_HORARIO);
+                }
+            else
+                {
+                    LOGGER.info(modeloCH);
+                    CambioHorarioModel chm = new CambioHorarioModel();
+                    chm.setHoraEntrada("7:00"); //esto debería venir desde la base
+                    chm.setHoraSalida("15:00"); //esto igual
+                    chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
+                    chm.setNuevaSalida(modeloCH.getNuevaSalida());
+                    chm.setJustificacion(modeloCH.getJustificacion());
+                    chm.setFechaIncidencia("10/10/2018");
+                    chm.setIdJustificante(1);
+                    cambioService.insertaCambioHorario(chm);
+                    return new ModelAndView(VER_JUSTIFICANTES);
+                }
 
         }
 

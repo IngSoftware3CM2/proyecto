@@ -48,7 +48,7 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificación}"></textarea></div>
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}"></textarea></div>
 
                         </div>
                     </div>
@@ -65,14 +65,16 @@
                     </div>
                     <div class="row ">
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><input type="time" th:field="*{nuevaEntrada}"/></div>
+                        <div class="col-sm-3"><input type="time" th:field="*{nuevaEntrada}" /></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
                         <div class="col-sm-3"><input type="time" th:field="*{nuevaSalida}"/></div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-4">
-
+                            <p  th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+                                Complete todos los campos obligatorios.
+                            </p>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
