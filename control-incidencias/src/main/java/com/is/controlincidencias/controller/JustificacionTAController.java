@@ -58,17 +58,19 @@ public class JustificacionTAController {
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,Principal principal){
         //Aqui esta la parte del codigo del correo
-        String email = "";
+        /*String email = "";
         if (principal!=null && principal.getName()!=null){
             email=principal.getName();
         }
         personal = personalService.getPersonalByEmail(email);
-        //Aqui termina lo del correo
+        //Aqui termina lo del correo*/
+        personal= personalService.getPersonalByNoEmpleado(22);
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         model.addAttribute("error",error);
         model.addAttribute("errorf",errorf);
         error=0;
         errorf=0;
+        LOG.info("-----------personal"+personal);
         model.addAttribute("justificanteTAModel",new JustificanteTAModel());
         mav.addObject("estados",justificanteTAService.findZonas());
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
@@ -78,12 +80,13 @@ public class JustificacionTAController {
     @GetMapping("/tipoa/modificar")
     public ModelAndView modificarJustificante(@RequestParam("id")int idJustificante, Model model,Principal principal){
         //Aqui esta la parte del codigo del correo
-        String email = "";
+        /*String email = "";
         if (principal!=null && principal.getName()!=null){
             email=principal.getName();
         }
         personal = personalService.getPersonalByEmail(email);
-        //Aqui termina lo del correo
+        //Aqui termina lo del correo*/
+        personal=personalService.getPersonalByNoEmpleado(22);
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         JustificanteTAModel justificanteTAModel = new JustificanteTAModel();
         model.addAttribute("error",error);

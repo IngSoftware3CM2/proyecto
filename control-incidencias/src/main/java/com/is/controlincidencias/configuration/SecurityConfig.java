@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().disable(); // SIN LOGIN
         http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas seguridad
 
-        http.authorizeRequests()
+       /*  http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
-       /* http.authorizeRequests()
+       http.authorizeRequests()
                 .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
                 .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE").anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
