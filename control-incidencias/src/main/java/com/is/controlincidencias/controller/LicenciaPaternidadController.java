@@ -75,7 +75,7 @@ public class LicenciaPaternidadController {
         } catch (IOException e) {
             LOG.error("ERROR:", e);
         }
-        return "redirect:/docente/justificantes";
+        return "redirect:/personal/justificantes";
     }
 
 }
