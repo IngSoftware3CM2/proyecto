@@ -85,7 +85,7 @@ public class PermisoEconomicoController {
         return "redirect:/personal/justificantes";
     }
 
-    @GetMapping("/tipoa/cancelar")
+    @GetMapping("/permiso-economico/cancelar")
     public String cancelarPermisoEconomico(){
         return "redirect:/personal/incidencias";
     }
