@@ -24,20 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     /*
-    * En este metodo se debe de comentar el codigo enorme que tiene
-    * el comentario de CON LOGIN y descomentar el que dice
-    * SIN LOGIN para poder utilizar el proyecto sin tener que iniciar sesion
-    * */
+     * En este metodo se debe de comentar el codigo enorme que tiene
+     * el comentario de CON LOGIN y descomentar el que dice
+     * SIN LOGIN para poder utilizar el proyecto sin tener que iniciar sesion
+     * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable(); // SIN LOGIN
+        //http.httpBasic().disable(); // SIN LOGIN
         http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas seguridad
 
-   /*     http.authorizeRequests()
-=======
-        /*
         http.authorizeRequests()
->>>>>>> b112db7317bd169a51722865e8702a93c9ebab80
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
         http.authorizeRequests()
                 .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
@@ -45,11 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
-
-*/
-
-
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
     }
 
     @Autowired
