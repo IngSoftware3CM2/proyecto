@@ -32,10 +32,16 @@
         <h1 class="text-center">
           <span class="text-navy">Generar Solicitud de Licencia por Dia Economico</span>
         </h1>
-        <form class="form-horizontal">
+        <form class="form-horizontal" th:action="@{/personal/justificantes/tipoa/agregar}" th:object="${permisoEconomicoModel}" method="post">
 
-          <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
-          <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>
+          <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
+          <div class="form-group" id="data_1">
+            <label class="col-sm-2"> Fecha de Inicio(aaaa/mm/dd):</label>
+            <div class="input-group date col-sm-2">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" th:value="${inicio}" required/>
+            </div>
+
+          </div>
           <div class="row">
             <div class="col-sm-4">
             </div>
@@ -62,13 +68,17 @@
 </div>
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
-<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
-<script src="#" th:src="@{js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
 
 </body>
 
