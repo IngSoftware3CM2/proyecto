@@ -46,6 +46,16 @@ public class PersonalController {
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
 
+    @Autowired
+    @Qualifier("cambioHorarioServiceImpl")
+    private CambioHorarioServiceImpl cambioHorarioService;
+
+    @Autowired
+    @Qualifier("permisoEconomicoServiceImpl")
+    private PermisoEconomicoServiceImpl permisoEconomicoService;
+
+
+
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
@@ -101,7 +111,6 @@ public class PersonalController {
         } else {
             LOG.info("confirmar() Chido");
             p.getLogin().setPasswordhash(encoder.encode(cambioPassword.getNewPassword()));
-            p.getLogin().setPasswordsalt(p.getLogin().getPasswordhash());
             personalService.actualizarContra(p);
         }
         mav.setViewName(CAMBIAR_CONTRA);
@@ -118,11 +127,15 @@ public class PersonalController {
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Tipo A");
+                justificante.setTipo(1);
             } else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Licencia Paternidad");
+                justificante.setTipo(2);
+            } else if (cambioHorarioService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(3);
+            } else if (permisoEconomicoService.existsByIdjustificante(justificante.getIdJustificante())) {
+                justificante.setTipo(4);
             } else {
-                justificante.setTipo("Otro Tipo");
+                justificante.setTipo(666);
             }
         }
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
@@ -160,17 +173,13 @@ public class PersonalController {
         String redirectURL = "redirect:/personal";
 
         if (tipo == 1)
-            redirectURL = "redirect:/personal/justificantes/medica/agregar";
+            redirectURL = "redirect:/personal/justificantes/tipoa";
         else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/agregar";
         else if (tipo == 3)
             redirectURL = "redirect:/personal/justificantes/horario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
-        else if (tipo == 5)
-            redirectURL = "redirect:/personal/justificantes/familiares/agregar";
-        else if (tipo == 6)
-            redirectURL = "redirect:/personal/justificantes/maternos/agregar";
         return redirectURL;
     }
 

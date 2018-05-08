@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tipoa")
-public class TipoA implements Serializable {
+public class TipoA {
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

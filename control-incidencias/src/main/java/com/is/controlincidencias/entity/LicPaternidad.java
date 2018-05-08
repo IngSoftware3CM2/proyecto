@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "licpaternidad")
-public class LicPaternidad implements Serializable {
+public class LicPaternidad {
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
