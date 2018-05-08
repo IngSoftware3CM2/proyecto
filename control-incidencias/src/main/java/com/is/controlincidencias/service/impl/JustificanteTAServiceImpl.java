@@ -31,7 +31,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     }
 
     @Override
-    public void saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante) {
+    public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante) {
         Date fecha = new Date();
         String tipoModel = justificanteTAModel.getTipo();
         String tipo;
@@ -49,6 +49,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),tipo,ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
+        return ids.get(ids.size()-1);
     }
     @Override
     public List<String> findZonas() {

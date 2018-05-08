@@ -73,8 +73,7 @@ public class JustificacionTAController {
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
-        UnidadMedica unidad = unidadMedicaService.getUnidadMedicaByNombre(justificanteTAModel.getIdunidadmedica());
-        justificanteTAModel.setIdunidadmedica(unidad.getIdUnidad());
+        justificanteTAModel.setIdunidadmedica(justificanteTAModel.getIdunidadmedica());
         justificante.setPersonal(personal);
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
@@ -89,8 +88,9 @@ public class JustificacionTAController {
             }
             try {
                 //Aqui trato de subir el archivo
-                licPaternidadService.subirArchivo(files,1);
-                justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante);
+                int idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante);
+                licPaternidadService.subirArchivo(files,idJustificante);
+
                 LOG.info("Aqui trato de subir el archivo");
             } catch (IOException e) {
                 LOG.error(e);

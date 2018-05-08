@@ -12,6 +12,6 @@ public interface JustificanteTAService {
     String findNoTarjetaByNoEmpleado(int noEmpleado);
 
 
-    void saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante);
+    int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante);
     List<String> findZonas();
 }
