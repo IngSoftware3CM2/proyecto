@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.List;
 
 @Repository("licPaternidadRepository")
 public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Serializable> {

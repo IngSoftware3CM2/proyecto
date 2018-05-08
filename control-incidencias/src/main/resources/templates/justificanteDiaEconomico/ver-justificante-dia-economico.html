@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
-
-<head th:replace="fragments/head :: head('Ver Justificante')"></head>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante de dia economico')"></head>
 
 <body>
 
 <div id="wrapper">
 
-  <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+  <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
   <div id="page-wrapper" class="gray-bg">
     <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -16,15 +15,11 @@
         <h2>Ver Justificante</h2>
         <ol class="breadcrumb">
           <li>
-            <a href="index.html">Inicio</a>
-          </li>
-          <li>
-            <a href="index.html">Ver Justificante</a>
+            <a href="#" th:href="@{/personal}">Inicio</a>
           </li>
           <li class="active">
             <strong>Ver Justificante de dia economico</strong>
           </li>
-
         </ol>
       </div>
       <div class="col-sm-8 text-right">
@@ -63,7 +58,6 @@
       </div>
 
     </div>
-    <div th:replace="fragments/footer :: footer"></div>
   </div>
 </div>
 
@@ -75,15 +69,6 @@
 <script src="#" th:src="@{js/plugins/jasny/jasny-bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('.footable').footable();
-        $('.footable2').footable();
-    });
-</script>
-
-
-
 
 </body>
 

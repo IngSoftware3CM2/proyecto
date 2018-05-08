@@ -3,7 +3,7 @@
 <head th:replace="fragments/head :: head('Ver justificante tipo A')"></head>
 <body>
 <div id="wrapper">
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -13,10 +13,7 @@
                 <h2>Ver Justificante</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#">Ver Incidencias</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li class="active">
                         <strong>Ver justificante Tipo A</strong>
@@ -40,7 +37,15 @@
                 </h1>
                 <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/personal/justificantes/tipoa/agregar}" th:object="${justificanteTAModel}" method="post">
                     <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
-                    <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : <span th:field="*{tipo}" th:value="*{tipo}" >Licencia Medica</span></label></div>
+                    <div class="form-group"><label class="col-sm-2 ">Tipo de Incidencia : </label>
+                        <div class="col-sm-3">
+                            <select class="form-control m-b" name="account" th:field="*{tipo}">
+                                <option value="1">Licencia Medica</option>
+                                <option value="2">Cuidados Maternos</option>
+                                <option value="3">Cuidados Familiares</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Folio:</label>
                         <div class="col-sm-4"><input type="text" placeholder="Folio" class="form-control" th:field="*{folio}" required="true"/> </div>
@@ -97,9 +102,7 @@
                     </div>
                 </form>
             </div>
-
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
 

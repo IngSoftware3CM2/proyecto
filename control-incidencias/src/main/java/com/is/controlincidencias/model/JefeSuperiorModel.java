@@ -44,10 +44,6 @@ public class JefeSuperiorModel {
         this.departamentos = departamentos;
     }
 
-    public JefeSuperiorModel getJefe() {
-        return jefe;
-    }
-
     public void setJefe(JefeSuperiorModel jefe) {
         this.jefe = jefe;
     }

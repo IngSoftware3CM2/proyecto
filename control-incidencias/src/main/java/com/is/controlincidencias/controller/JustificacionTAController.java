@@ -53,12 +53,6 @@ public class JustificacionTAController {
     private Personal personal;
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,Principal principal){
-        /*String email = "ariel@gmail.com"; // aqui poner un email por default
-        if (principal != null && principal.getName() != null)
-            email = principal.getName();
-
-        Personal personal = personalService.getPersonalByEmail(email);
-        */
         personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         model.addAttribute("error",error);
@@ -81,10 +75,10 @@ public class JustificacionTAController {
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         UnidadMedica unidad = unidadMedicaService.getUnidadMedicaByNombre(justificanteTAModel.getIdunidadmedica());
         justificanteTAModel.setIdunidadmedica(unidad.getIdUnidad());
-        justificanteTAModel.setTipo("LM");
         justificante.setPersonal(personal);
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
+        //Obtengo el tipo de justificante tipoA
         if(inicio.isAfter(fin)){
             errorf=1;
             return "redirect:/personal/justificantes/tipoa";
