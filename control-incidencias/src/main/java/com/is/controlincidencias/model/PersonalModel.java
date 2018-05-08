@@ -47,10 +47,6 @@ public class PersonalModel {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public static String getDefinition() {
-        return definition;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -111,15 +107,14 @@ public class PersonalModel {
 
     public void addJustificante(JustificanteModel justificante) {
         justificantes.add(justificante);
-        justificante.setPersonal(this);
+        justificante.setPersonalModel(this);
     }
 
     public void removeJustificante(JustificanteModel justificante) {
         justificantes.remove(justificante);
-        justificante.setPersonal(null);
+        justificante.setPersonalModel(null);
     }
 
-    private static final String definition = "FOREIGN KEY(id_departamento) REFERENCES departamento (id_departamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
     private DepartamentoModel departamento;
 

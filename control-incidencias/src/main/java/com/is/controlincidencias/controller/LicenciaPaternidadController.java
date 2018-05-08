@@ -66,11 +66,13 @@ public class LicenciaPaternidadController {
         idIncidencia=idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
+        LOG.info(noEmpleado+" -------- "+idIncidencia);
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         model.addAttribute("noTajerta",personal.getNoTarjeta().toString());
         model.addAttribute("fecha",incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;
     }
+
 
     @GetMapping("/modificar")
     private String RedirectSolicitudLicenciaPaternidadFormModificar(Model model,@RequestParam(name="idjustificante")Integer idjustificante) {
@@ -105,7 +107,6 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
         licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
         try {
-
             int idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
             licPaternidadService.subirArchivo(files,idjustificante);
         } catch (IOException e) {
@@ -127,11 +128,13 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
         licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
         licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
+        int idjustificante = 0;
         try {
-            int idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
+            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
             licPaternidadService.subirArchivo(files,idjustificante);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("ERROR:", e);
+            justificanteService.removeJustificanteByIdJustificante(idjustificante);
         }
         return "redirect:/personal/justificantes";
     }

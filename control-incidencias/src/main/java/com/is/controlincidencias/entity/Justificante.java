@@ -115,14 +115,6 @@ public class Justificante {
         this.permisoEconomico = permisoEconomico;
     }
 
-    public LicPaternidad getLicenciaPaternidad() {
-        return licPaternidad;
-    }
-
-    public void setLicenciaPaternidad(LicPaternidad licPaternidad) {
-        this.licPaternidad = licPaternidad;
-    }
-
     public List<Incidencia> getIncidencias() {
         return incidencias;
     }

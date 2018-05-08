@@ -1,18 +1,12 @@
 package com.is.controlincidencias.model;
 
 
-import javax.validation.constraints.NotNull;
-
-
 public class CambioPasswordModel {
-    @NotNull
     private String oldPassword;
-    @NotNull
     private String newPassword;
-    @NotNull
     private String verifyPassword;
 
-    public CambioPasswordModel(){}
+    public CambioPasswordModel(){ }
 
     public CambioPasswordModel(String oldPassword, String newPassword, String verifyPassword) {
         this.oldPassword = oldPassword;

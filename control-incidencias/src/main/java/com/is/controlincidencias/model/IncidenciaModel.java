@@ -55,8 +55,6 @@ public class IncidenciaModel {
 
     private String tipo;
 
-    private static final String definition = "FOREIGN KEY(id_quincena) REFERENCES quincena (id_quincena) ON UPDATE CASCADE ON DELETE CASCADE";
-
     private QuincenaModel quincena;
 
     public QuincenaModel getQuincena(){ return quincena;}
@@ -76,17 +74,11 @@ public class IncidenciaModel {
                 '}';
     }
 
-    private static final String definition2 = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
-
     private PersonalModel personal;
 
     public void setPersonal(PersonalModel personal) {
         this.personal = personal;
     }
-
-
-
-    private static final String definition3 = "FOREIGN KEY(id_justificante) REFERENCES justificante (id_justificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
     private JustificanteModel justificante;
 

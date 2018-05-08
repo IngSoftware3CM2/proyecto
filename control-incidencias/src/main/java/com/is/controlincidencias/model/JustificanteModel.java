@@ -38,9 +38,6 @@ public class JustificanteModel {
         this.incidenciasModel = incidenciasModel;
     }
 
-    public static String getDefinition() {
-        return definition;
-    }
 
     public PersonalModel getPersonalModel() {
         return personalModel;
@@ -81,16 +78,8 @@ public class JustificanteModel {
     }
 
 
-    private static final String definition = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     private PersonalModel personalModel;
-
-    public void setPersonal(PersonalModel personalModel) {
-        this.personalModel = personalModel;
-    }
-
-
-
 
     public Integer getIdJustificante() {
         return idJustificante;
@@ -108,20 +97,12 @@ public class JustificanteModel {
         return this.permisoEconomicoModel;
     }
 
-    public void setPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel) {
-        this.permisoEconomicoModel = permisoEconomicoModel;
-    }
-
     public LicPaternidadModel getLicenciaPaternidad() {
         return licPaternidadModel;
     }
 
     public void setLicenciaPaternidad(LicPaternidadModel licPaternidad) {
         this.licPaternidadModel = licPaternidad;
-    }
-
-    public List<IncidenciaModel> getIncidencias() {
-        return incidenciasModel;
     }
 
     public void setIncidencias(List<IncidenciaModel> incidencias) {

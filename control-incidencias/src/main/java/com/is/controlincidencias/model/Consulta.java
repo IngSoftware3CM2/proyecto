@@ -7,8 +7,6 @@ public class Consulta {
     private int noTarjeta;
     private LocalDate fechaRegistro;
 
-    public Consulta() {}
-
     public int getEstado() {
         return estado;
     }

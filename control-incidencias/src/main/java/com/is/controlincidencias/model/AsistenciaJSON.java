@@ -9,9 +9,6 @@ public class AsistenciaJSON {
     private LocalTime horaSalida;
     private LocalDate fechaRegistro;
 
-    public AsistenciaJSON() {
-    }
-
     public int getNoTarjeta() {
         return noTarjeta;
     }

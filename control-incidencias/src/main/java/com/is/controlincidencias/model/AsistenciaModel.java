@@ -48,10 +48,6 @@ public class AsistenciaModel {
         this.horaSalida = horaSalida;
     }
 
-    public static String getDefinition() {
-        return definition;
-    }
-
     private Integer id;
 
     private LocalDate fechaRegistro;
@@ -60,7 +56,6 @@ public class AsistenciaModel {
 
     private LocalTime horaSalida;
 
-    private static final String definition = "FOREIGN KEY(no_empleado) REFERENCES personal (no_empleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     private PersonalModel personal;
 

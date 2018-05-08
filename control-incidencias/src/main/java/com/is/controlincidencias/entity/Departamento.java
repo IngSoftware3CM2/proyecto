@@ -33,9 +33,6 @@ public class Departamento {
         this.jefesuperior = jefesuperior;
     }
 
-    public void setJefeSuperior(JefeSuperior jefesuperior) {
-        this.jefesuperior = jefesuperior;
-    }
 
     public Integer getIdDepartamento() {
         return idDepartamento;
@@ -65,11 +62,11 @@ public class Departamento {
         return DEFINITION2;
     }
 
-    public JefeSuperior getJefesuperior() {
+    public JefeSuperior getJefeSuperior() {
         return jefesuperior;
     }
 
-    public void setJefesuperior(JefeSuperior jefesuperior) {
+    public void setJefeSuperior(JefeSuperior jefesuperior) {
         this.jefesuperior = jefesuperior;
     }
 
@@ -91,11 +88,11 @@ public class Departamento {
         return Objects.equals(getIdDepartamento(), that.getIdDepartamento()) &&
                 Objects.equals(getNombre(), that.getNombre()) &&
                 Objects.equals(getPersonales(), that.getPersonales()) &&
-                Objects.equals(getJefesuperior(), that.getJefesuperior());
+                Objects.equals(getJefeSuperior(), that.getJefeSuperior());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdDepartamento(), getNombre(), getPersonales(), getJefesuperior());
+        return Objects.hash(getIdDepartamento(), getNombre(), getPersonales(), getJefeSuperior());
     }
 }

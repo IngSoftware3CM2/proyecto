@@ -43,9 +43,9 @@ public class LoginController {
         LOG.info("loginSuccess() principal = " + principal.getName() + " ROLE = " + auths.get(0));
         LOG.info("loginSuccess() es ROLE_DOC? " + request.isUserInRole("DOC"));
         LOG.info("loginSuccess() es ROLE_DCH? " + request.isUserInRole("DCH"));
-        LOG.info("loginSuccess() es ROLE_PAEE? " + request.isUserInRole("PAEE"));
+        LOG.info("loginSuccess() es ROLE_PAAE? " + request.isUserInRole("PAAE"));
 
-        if (request.isUserInRole("DOC") || request.isUserInRole("PAEE"))
+        if (request.isUserInRole("DOC") || request.isUserInRole("PAAE"))
             redirect = "redirect:/personal";
 
         return redirect;
