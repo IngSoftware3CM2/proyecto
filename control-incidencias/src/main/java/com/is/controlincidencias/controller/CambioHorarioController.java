@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/cambio-horario")
+@RequestMapping("/personal/justificantes/cambiohorario") 
 public class CambioHorarioController {
     static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
     static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
@@ -30,7 +30,7 @@ public class CambioHorarioController {
     @Qualifier("cambioHorarioServiceImpl")
     private CambioHorarioService cambioService;
 
-    @GetMapping("/registrar")
+    @GetMapping("/agregar")
     public String registrar(Model model)
         {
             LOGGER.info("Accedí al metodo acceder del controlador");

@@ -46,6 +46,16 @@ public class PersonalController {
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
 
+    @Autowired
+    @Qualifier("cambioHorarioServiceImpl")
+    private CambioHorarioServiceImpl cambioHorarioService;
+
+    @Autowired
+    @Qualifier("permisoEconomicoServiceImpl")
+    private PermisoEconomicoServiceImpl permisoEconomicoService;
+
+
+
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
@@ -117,11 +127,15 @@ public class PersonalController {
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Tipo A");
+                justificante.setTipo(1);
             } else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Licencia Paternidad");
+                justificante.setTipo(2);
+            } else if (cambioHorarioService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(3);
+            } else if (permisoEconomicoService.existsByIdjustificante(justificante.getIdJustificante())) {
+                justificante.setTipo(4);
             } else {
-                justificante.setTipo("Otro Tipo");
+                justificante.setTipo(666);
             }
         }
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());

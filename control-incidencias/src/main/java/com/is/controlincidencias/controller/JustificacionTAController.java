@@ -69,6 +69,7 @@ public class JustificacionTAController {
         model.addAttribute("errorf",errorf);
         error=0;
         errorf=0;
+        LOG.info("-----------personal"+personal);
         model.addAttribute("justificanteTAModel",new JustificanteTAModel());
         mav.addObject("estados",justificanteTAService.findZonas());
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
