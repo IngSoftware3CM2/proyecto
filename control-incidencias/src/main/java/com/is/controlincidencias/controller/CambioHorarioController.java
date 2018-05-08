@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.entity.CambioHorario;
 import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.service.CambioHorarioService;
 import org.apache.juli.logging.Log;
@@ -21,6 +22,7 @@ import javax.validation.Valid;
 @RequestMapping("/cambio-horario")
 public class CambioHorarioController {
     static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
+    static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
     private static final Log LOGGER = LogFactory.getLog(CambioHorarioController.class);
     static final String VER_JUSTIFICANTES = "ver-justificantes";
 
@@ -42,7 +44,7 @@ public class CambioHorarioController {
             if(bindings.hasErrors())
                 {
                     LOGGER.info("Hubo errores");
-                    return new ModelAndView(VISTA_CAMBIO_HORARIO);
+                    return new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
                 }
             else
                 {
@@ -61,6 +63,32 @@ public class CambioHorarioController {
 
         }
 
+
+    @PostMapping("/mod-cambio-horario")
+    public ModelAndView modCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
+    {
+        if(bindings.hasErrors())
+        {
+            LOGGER.info("Hubo errores");
+            return new ModelAndView(VISTA_CAMBIO_HORARIO);
+        }
+        else
+        {
+            LOGGER.info(modeloCH);
+            CambioHorarioModel chm = new CambioHorarioModel();
+            chm.setHoraEntrada("7:00"); //esto debería venir desde la base
+            chm.setHoraSalida("15:00"); //esto igual
+            chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
+            chm.setNuevaSalida(modeloCH.getNuevaSalida());
+            chm.setJustificacion(modeloCH.getJustificacion());
+            chm.setFechaIncidencia("10/10/2018");
+            chm.setIdJustificante(2);
+            cambioService.updateCambioHorario(chm);
+            return new ModelAndView(VER_JUSTIFICANTES);
+        }
+
+    }
+
     @GetMapping("/modificar")
     public ModelAndView modificaCambioHorario(@ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH)
     {
@@ -68,12 +96,17 @@ public class CambioHorarioController {
         CambioHorarioModel modch = new CambioHorarioModel();
         modch.setHoraEntrada("7:00");
         modch.setHoraSalida("15:00");
-        modch.setIdJustificante(1);
+        modch.setIdJustificante(2);
         modch.setFechaIncidencia("10/11/2012");
-        ModelAndView mav = new ModelAndView(VER_JUSTIFICANTES);
-        mav.addObject("nuevaEntradaDB", modch.getNuevaEntrada());
-        mav.addObject("nuevaSalidaDB", modch.getNuevaSalida());
-        mav.addObject("justificacionDB", modch.getJustificacion());
+        CambioHorario chEntidad = cambioService.getIdCambioHorario(2);//regresa entity
+        //cambioService.findAllById(idCH);
+        modch.setJustificacion(chEntidad.getJustificacion());
+        modch.setNuevaSalida(chEntidad.getHoraSalida().toString());
+        modch.setNuevaEntrada(chEntidad.getHoraEntrada().toString());
+        ModelAndView mav = new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
+        mav.addObject("nuevaEntrada", modch.getNuevaEntrada());
+        mav.addObject("nuevaSalida", modch.getNuevaSalida());
+        mav.addObject("justificacion", modch.getJustificacion());
         return mav;
     }
 }
