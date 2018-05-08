@@ -7,4 +7,5 @@ public interface CambioHorarioService {
     void insertaCambioHorario(CambioHorarioModel cambioHorario);
     CambioHorario getIdCambioHorario(int id);
     void updateCambioHorario(CambioHorarioModel chm);
+    boolean existsByIdjustificante (int id);
 }

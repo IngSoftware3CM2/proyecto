@@ -20,7 +20,7 @@ public class Justificante {
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
-    private String tipo;
+    private int tipo;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
@@ -154,11 +154,11 @@ public class Justificante {
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 }
