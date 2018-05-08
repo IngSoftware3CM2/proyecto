@@ -81,6 +81,7 @@ public class PermisoEconomicoController {
     private String guardarPermisoEconomico(@ModelAttribute("permisoEconomicoModel") PermisoEconomicoModel permisoEconomicoModel) {
         Justificante justificante = new Justificante();
         justificante.setPersonal(personal);
+
         permisoEconomicoService.addPermisoEconomico(permisoEconomicoModel, justificante);
         return "redirect:/personal/justificantes";
     }
