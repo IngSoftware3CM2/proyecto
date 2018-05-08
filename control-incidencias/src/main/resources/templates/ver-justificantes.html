@@ -46,11 +46,15 @@
                                     <td th:text="${justificante.getFechaAsString()}"></td>
                                     <td th:text="${justificante.getTipo()}"></td>
                                     <td>
-                                        <a href="#" th:href="@{/docente/verjustificante}">
+                                        <a href="#" th:href="@{/personal/verjustificante}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </td>
-                                    <td><a><i class="fa fa-pencil"></i></a></td>
+                                    <td>
+                                        <a href="#">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </td>
                                     <td><a href="#"
                                            th:href="@{/personal/removejustificante(id=__${justificante.idJustificante}__)}">
                                         <i class="fa fa-trash"></i>

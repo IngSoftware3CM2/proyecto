@@ -39,8 +39,6 @@ public class LicenciaPaternidadController {
     @Qualifier("personalServiceImpl")
     private PersonalService personalService;
 
-
-
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
     @GetMapping("/cancel")
@@ -50,12 +48,12 @@ public class LicenciaPaternidadController {
     }
 
     @GetMapping("/agregar")
-    private String redirectSolicitudLicenciaPaternidadForm(Model model,@RequestParam(name="id", required=true)int id) {//@RequestParam(name="id", required = false) int idJustificante,
+    private String redirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name="id", required=true)int id) {//@RequestParam(name="id", required = false) int idJustificante,
         idIncidencia=id;
         Incidencia incidencia = incidenciaService.consultarIncidencia(id);
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        Personal personal = personalService.getPersonalByNoEmpleado(1);
+        Personal personal = personalService.getPersonalByNoEmpleado(22);
         model.addAttribute("noTajerta",personal.getNoTarjeta().toString());
         model.addAttribute("fecha",incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;

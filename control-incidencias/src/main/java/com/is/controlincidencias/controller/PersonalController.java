@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -85,7 +86,7 @@ public class PersonalController {
         String estado = "exito";
         ModelAndView mav = new ModelAndView();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String email = "carlostonatihu@gmail.com"; // aqui poner un email por default
+        String email = "ariel@gmail.com"; // aqui poner un email por default
         if (principal != null && principal.getName() != null)
             email = principal.getName();
 
@@ -152,5 +153,27 @@ public class PersonalController {
     public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
         justificanteService.removeJustificanteByIdJustificante(idJustificante);
         return showIncidencias();
+    }
+
+    @GetMapping("/justificantes/agregar")
+    public String redirctJustificante(@RequestParam(name = "id") Integer id,
+                                             @RequestParam(name = "tipoJustificante") Integer tipo, RedirectAttributes attributes) {
+        LOG.info("redirectAgregarJustificante() id = " + id + " tipoJustificante = " + tipo);
+        attributes.addAttribute("id", id);
+        String redirectURL = "redirect:/personal";
+
+        if (tipo == 1)
+            redirectURL = "redirect:/personal/justificantes/medica/agregar";
+        else if (tipo == 2)
+            redirectURL = "redirect:/personal/justificantes/paternidad/agregar";
+        else if (tipo == 3)
+            redirectURL = "redirect:/personal/justificantes/horario/agregar";
+        else if (tipo == 4)
+            redirectURL = "redirect:/personal/justificantes/economico/agregar";
+        else if (tipo == 5)
+            redirectURL = "redirect:/personal/justificantes/familiares/agregar";
+        else if (tipo == 6)
+            redirectURL = "redirect:/personal/justificantes/maternos/agregar";
+        return redirectURL;
     }
 }
