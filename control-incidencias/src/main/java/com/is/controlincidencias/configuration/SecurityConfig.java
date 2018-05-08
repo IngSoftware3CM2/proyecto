@@ -24,10 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     /*
-    * En este metodo se debe de comentar el codigo enorme que tiene
-    * el comentario de CON LOGIN y descomentar el que dice
-    * SIN LOGIN para poder utilizar el proyecto sin tener que iniciar sesion
-    * */
+     * En este metodo se debe de comentar el codigo enorme que tiene
+     * el comentario de CON LOGIN y descomentar el que dice
+     * SIN LOGIN para poder utilizar el proyecto sin tener que iniciar sesion
+     * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //http.httpBasic().disable(); // SIN LOGIN
@@ -42,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
-
     }
 
     @Autowired

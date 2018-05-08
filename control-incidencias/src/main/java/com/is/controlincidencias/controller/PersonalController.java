@@ -160,17 +160,13 @@ public class PersonalController {
         String redirectURL = "redirect:/personal";
 
         if (tipo == 1)
-            redirectURL = "redirect:/personal/justificantes/medica/agregar";
+            redirectURL = "redirect:/personal/justificantes/tipoa";
         else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/agregar";
         else if (tipo == 3)
             redirectURL = "redirect:/personal/justificantes/horario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
-        else if (tipo == 5)
-            redirectURL = "redirect:/personal/justificantes/familiares/agregar";
-        else if (tipo == 6)
-            redirectURL = "redirect:/personal/justificantes/maternos/agregar";
         return redirectURL;
     }
 
