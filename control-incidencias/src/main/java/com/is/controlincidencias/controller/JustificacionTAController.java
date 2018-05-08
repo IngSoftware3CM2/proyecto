@@ -4,11 +4,9 @@ import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.entity.UnidadMedica;
 import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.service.JustificanteTAService;
 import com.is.controlincidencias.service.LicPaternidadService;
-import com.is.controlincidencias.service.UnidadMedicaService;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -43,17 +41,19 @@ public class JustificacionTAController {
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
 
-    @Autowired
-    @Qualifier("unidadMedicaServiceImpl")
-    private UnidadMedicaService unidadMedicaService;
 
     private int error=0;
     private int errorf=0;
-    private int noEmpleado = 22 ;
     private Personal personal;
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,Principal principal){
-        personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        //Aqui esta la parte del codigo del correo
+        String email = "";
+        if (principal!=null && principal.getName()!=null){
+            email=principal.getName();
+        }
+        personal = personalService.getPersonalByEmail(email);
+        //Aqui termina lo del correo
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         model.addAttribute("error",error);
         model.addAttribute("errorf",errorf);
