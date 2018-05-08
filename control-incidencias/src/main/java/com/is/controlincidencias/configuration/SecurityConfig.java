@@ -42,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
-
     }
 
     @Autowired

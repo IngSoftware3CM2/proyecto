@@ -2,6 +2,7 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.JustificanteTARepository;
@@ -33,27 +34,23 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     @Override
     public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante) {
         Date fecha = new Date();
-        String tipoModel = justificanteTAModel.getTipo();
-        String tipo;
-        if(tipoModel.equals("1")){
-            tipo="LM";
-        }else if(tipoModel.equals("2")){
-            tipo="CM";
-        }else{
-            tipo="CF";
-        }
         //Aqui cambia dependiendo el No empleado.
         int noEmpleado=justificante.getPersonal().getNoEmpleado();
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
-        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),tipo,ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
+        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
         return ids.get(ids.size()-1);
     }
     @Override
     public List<String> findZonas() {
         return justificanteTARepository.findZonas();
+    }
+
+    @Override
+    public TipoA findByJustificante(Justificante justificante) {
+        return justificanteTARepository.findByJustificante(justificante);
     }
 
     @Override

@@ -2,9 +2,12 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.StringToLocalDate;
+import com.is.controlincidencias.converter.TipoAConverter;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
+import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.JustificanteTAService;
 import com.is.controlincidencias.service.LicPaternidadService;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -41,6 +44,13 @@ public class JustificacionTAController {
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
 
+    @Autowired
+    @Qualifier("justificanteServiceImpl")
+    private JustificanteService justificanteService;
+
+    @Autowired
+    @Qualifier("tipoAConverter")
+    private TipoAConverter tipoAConverter;
 
     private int error=0;
     private int errorf=0;
@@ -65,6 +75,34 @@ public class JustificacionTAController {
         mav.addObject("noTarjeta",personal.getNoTarjeta());
         return mav;
     }
+    @GetMapping("/tipoa/modificar")
+    public ModelAndView modificarJustificante(@RequestParam("id")int idJustificante, Model model,Principal principal){
+        //Aqui esta la parte del codigo del correo
+        String email = "";
+        if (principal!=null && principal.getName()!=null){
+            email=principal.getName();
+        }
+        personal = personalService.getPersonalByEmail(email);
+        //Aqui termina lo del correo
+        ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
+        JustificanteTAModel justificanteTAModel = new JustificanteTAModel();
+        model.addAttribute("error",error);
+        model.addAttribute("errorf",errorf);
+        error=0;
+        errorf=0;
+        if(idJustificante!=0){
+            Justificante justificante = justificanteService.findJustificanteById(idJustificante);
+            TipoA tipoA = justificanteTAService.findByJustificante(justificante);
+            justificanteTAModel = tipoAConverter.entityToModel(tipoA);
+        }
+        mav.addObject("estados",justificanteTAService.findZonas());
+        mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
+        mav.addObject("noTarjeta",personal.getNoTarjeta());
+        model.addAttribute("justificanteTAModel",justificanteTAModel);
+        return mav;
+    }
+
+
 
 
     @PostMapping("/tipoa/agregar")
