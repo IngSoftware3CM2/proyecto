@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,54 +55,57 @@ public class LicenciaPaternidadController {
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
     @GetMapping("/cancel")
-    private String cancel(){
+    private String cancel() {
         //return "redirect:/contacts/showcontacts";
         return "ver-incidencias";
     }
 
     @GetMapping("/agregar")
-    private String RedirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name="id")Integer idincidencia, Principal principal) {
+    private String RedirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name = "id") Integer idincidencia, Principal principal) {
         String email = "";
-        if (principal!=null && principal.getName()!=null){
-            email=principal.getName();
+        if (principal != null && principal.getName() != null) {
+            email = principal.getName();
         }
         Personal personal = personalService.getPersonalByEmail(email);
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
-        idIncidencia=idincidencia;
+        idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
         noEmpleado = personal.getNoEmpleado();
-        model.addAttribute("noTajerta",personal.getNoTarjeta().toString());
-        model.addAttribute("fecha",incidencia.getFechaRegistro().toString());
+        model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
+        model.addAttribute("fecha", incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;
     }
 
 
     @GetMapping("/modificar")
-    private String RedirectSolicitudLicenciaPaternidadFormModificar(Model model,@RequestParam(name="idjustificante")Integer idjustificante) {
-        if (idjustificante!=0){
-            LicPaternidad licPaternidad = licPaternidadService.buscarLicPaternidadPorIdjustificante(idjustificante);
-            LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
-            licPaternidadModel.setJustificacion(licPaternidad.getJustificacion());
-            licPaternidadModificar = licPaternidad;
-            model.addAttribute("actamatrimonio",licPaternidad.getActamatrimonio());
-            model.addAttribute("actanacimiento",licPaternidad.getActanacimiento());
-            model.addAttribute("comprobanteingresos",licPaternidad.getComprobanteingresos());
-            model.addAttribute("copiaidentificacion",licPaternidad.getCopiaidentificacion());
-            model.addAttribute("registrolicencia",licPaternidad.getRegistrolicencia());
-            model.addAttribute("constanciacurso",licPaternidad.getConstanciacurso());
+    private String RedirectSolicitudLicenciaPaternidadFormModificar(Model model, @RequestParam(name = "id") Integer idjustificante, Principal principal) {
 
-            model.addAttribute("licPaternidadModel",licPaternidadModel);
-
+        String email = "";
+        if (principal != null && principal.getName() != null) {
+            email = principal.getName();
         }
-
-        return "justificantePaternidad/form-justificante-paternidad-modificar";
+        Personal personal = personalService.getPersonalByEmail(email);
+        LicPaternidad licPaternidad = licPaternidadService.buscarLicPaternidadPorIdjustificante(idjustificante);
+        LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
+        licPaternidadModel.setJustificacion(licPaternidad.getJustificacion());
+        licPaternidadModificar = licPaternidad;
+        model.addAttribute("actamatrimonio", licPaternidad.getActamatrimonio().substring(licPaternidad.getActamatrimonio().indexOf("_")+1,licPaternidad.getActamatrimonio().length()));
+        model.addAttribute("actanacimiento", licPaternidad.getActanacimiento().substring(licPaternidad.getActanacimiento().indexOf("_")+1,licPaternidad.getActanacimiento().length()));
+        model.addAttribute("comprobanteingresos", licPaternidad.getComprobanteingresos().substring(licPaternidad.getComprobanteingresos().indexOf("_")+1,licPaternidad.getComprobanteingresos().length()));
+        model.addAttribute("copiaidentificacion", licPaternidad.getCopiaidentificacion().substring(licPaternidad.getCopiaidentificacion().indexOf("_")+1,licPaternidad.getCopiaidentificacion().length()));
+        model.addAttribute("registrolicencia", licPaternidad.getRegistrolicencia().substring(licPaternidad.getRegistrolicencia().indexOf("_")+1,licPaternidad.getRegistrolicencia().length()));
+        model.addAttribute("constanciacurso", licPaternidad.getConstanciacurso().substring(licPaternidad.getConstanciacurso().indexOf("_")+1,licPaternidad.getConstanciacurso().length()));
+        model.addAttribute("licPaternidadModel", licPaternidadModel);
+        noEmpleado = personal.getNoEmpleado();
+        model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
+        return "justificantePaternidad/modificar-justificante-paternidad";
     }
 
 
-        @PostMapping("/add-lic-paternidad")
-    private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) {
-        LOG.info("Datos que me llegan "+licPaternidadModel.toString());
+    @PostMapping("/add-lic-paternidad")
+    private String GuardarLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel, @RequestParam("file") List<MultipartFile> files) {
+        LOG.info("Datos que me llegan " + licPaternidadModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
@@ -111,7 +115,7 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
         try {
             int idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
-            licPaternidadService.subirArchivo(files,idjustificante);
+            licPaternidadService.subirArchivo(files, idjustificante);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -119,12 +123,11 @@ public class LicenciaPaternidadController {
     }
 
     @PostMapping("/update-lic-paternidad")
-    private String updateLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel,@RequestParam("file") List<MultipartFile> files) {
-        LOG.info("Datos que me llegan "+licPaternidadModel.toString());
-        //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
-        if (true){
+    private String updateLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel, @RequestParam("file") List<MultipartFile> files) {
+        LOG.info("Datos que me llegan " + licPaternidadModel.toString());
 
-        }
+        licPaternidadService.borrarArchivo("34_img.jpg");
+
         licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
@@ -134,7 +137,7 @@ public class LicenciaPaternidadController {
         int idjustificante = 0;
         try {
             idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
-            licPaternidadService.subirArchivo(files,idjustificante);
+            licPaternidadService.subirArchivo(files, idjustificante);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,7 +53,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
+        justificanteRepository.altaJustificante("Espera",fecha,2,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
@@ -86,5 +87,14 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Override
     public boolean existsByIdjustificante(int id) {
         return licPaternidadRepository.existsByJustificante_IdJustificante(id);
+    }
+
+    @Override
+    public void borrarArchivo(String archivo) {
+            File fichero = new File(".//src//main//resources//files//"+archivo);
+            if (fichero.delete())
+                System.out.println("El fichero ha sido borrado satisfactoriamente");
+            else
+                System.out.println("El fichero no pudó ser borrado");
     }
 }

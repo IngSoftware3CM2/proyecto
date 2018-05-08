@@ -13,4 +13,5 @@ public interface LicPaternidadService {
     LicPaternidad buscarLicPaternidadPorIdjustificante(int idJustificante);
     LicPaternidad buscarLicPaternidad(int idJustificante);
     boolean existsByIdjustificante (int id);
+    void borrarArchivo(String archivo);
 }
