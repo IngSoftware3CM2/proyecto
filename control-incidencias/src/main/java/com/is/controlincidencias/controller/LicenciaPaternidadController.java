@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -58,13 +59,17 @@ public class LicenciaPaternidadController {
     }
 
     @GetMapping("/agregar")
-    private String RedirectSolicitudLicenciaPaternidadForm(Model model,@RequestParam(name="id")Integer idincidencia,@RequestParam(name="noEmpleado")Integer noempleado) {
-        noEmpleado = noempleado;
+    private String RedirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name="id")Integer idincidencia, Principal principal) {
+        String email = "";
+        if (principal!=null && principal.getName()!=null){
+            email=principal.getName();
+        }
+        Personal personal = personalService.getPersonalByEmail(email);
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         idIncidencia=idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        noEmpleado = personal.getNoEmpleado();
         model.addAttribute("noTajerta",personal.getNoTarjeta().toString());
         model.addAttribute("fecha",incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;
