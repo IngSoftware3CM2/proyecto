@@ -180,7 +180,7 @@ public class PersonalController {
                                                   RedirectAttributes attributes) {
         LOG.info("redirectJustificanteToModificar() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
-        String redirectURL = "redirect:/personal";
+        String redirectURL = "redirect:/persona, Rl";
 
         if (tipo.equals("Tipo A"))
             redirectURL = "redirect:/personal/justificantes/tipoa/modificar";
