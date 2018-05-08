@@ -48,15 +48,21 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     }
 
     @Override
-    public void guardarLicPaternidad(LicPaternidadModel licPaternidadModel,int idIncidencia) {
+    public int guardarLicPaternidad(LicPaternidadModel licPaternidadModel,int idIncidencia, int noEmpleado) {
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        int noEmpleado=22;
         justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), licPaternidadModel.getActamatrimonio(), licPaternidadModel.getActanacimiento(), licPaternidadModel.getComprobanteingresos(), licPaternidadModel.getConstanciacurso(), licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), licPaternidadModel.getRegistrolicencia());
+        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
+        LOG.info(ids);
+        return ids.get(ids.size()-1);
+    }
+
+    @Override
+    public LicPaternidad buscarLicPaternidadPorIdjustificante(int idJustificante) {
+        return licPaternidadRepository.selectByIdjustificante(idJustificante);
     }
 
     @Override
@@ -66,11 +72,12 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
 
     @Override
-    public void subirArchivo(List<MultipartFile> files) throws IOException {
+    public void subirArchivo(List<MultipartFile> files,int noJustificante) throws IOException {
         for(MultipartFile file: files) {
             if(file.isEmpty()) continue;
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(ruta_archivos + file.getOriginalFilename());
+            Date fecha = new Date();
+            Path path = Paths.get(ruta_archivos+noJustificante+"_"+file.getOriginalFilename());
             Files.write(path,bytes);
         }
 

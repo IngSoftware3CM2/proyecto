@@ -45,6 +45,7 @@
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
                                     <td th:text="${justificante.getTipo()}"></td>
+
                                     <td>
                                         <a href="#" th:href="@{/personal/verjustificante}">
                                             <i class="fa fa-eye"></i>

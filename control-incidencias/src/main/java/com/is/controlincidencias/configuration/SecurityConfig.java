@@ -35,14 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         /*
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
-        http.authorizeRequests()
+        /*http.authorizeRequests()
                 .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
                 .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE").anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
-                */
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll(); */ // CON LOGIN
+
     }
 
     @Autowired
