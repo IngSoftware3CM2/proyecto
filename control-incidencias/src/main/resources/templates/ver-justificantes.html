@@ -47,7 +47,7 @@
                                     <td th:text="${justificante.getFechaAsString()}"></td>
                                     <td th:text="${justificante.getTipo()}"></td>
                                     <td><a href="#" th:href="@{/docente/verjustificante}"><i class="fa fa-eye"></i></a></td>
-                                    <td><a><i class="fa fa-pencil"></i></a></td>
+                                    <td><a href="#" th:href="@{/personal/justificantes/paternidad/modificar?(idjustificante=__${justificante.idJustificante}__)}"><i class="fa fa-pencil"></i></a></td>
                                     <td><a  href="#" th:href="@{/docente/removejustificante?(id=__${justificante.idJustificante}__)}"><i class="fa fa-trash"></i></a></td>
                                     <td th:switch="${justificante.getEstado().toLowerCase()}">
                                         <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
