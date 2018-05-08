@@ -44,7 +44,15 @@
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
-                                    <td th:text="${justificante.getTipo()}"></td>
+
+
+                                    <td th:switch="${justificante.getTipo()}">
+                                        <span th:case="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</span>
+                                        <span th:case="2">Licencia por Paternidad</span>
+                                        <span th:case="3">Cambio de Horario</span>
+                                        <span th:case="4">Dias Economicos</span>
+                                    </td>
+
 
                                     <td>
                                         <a href="#" th:href="@{/personal/verjustificante}">
@@ -53,7 +61,7 @@
                                     </td>
                                     <td>
                                         <a href="#"
-                                           th:href="@{/personal/justificantes/modificar(id=${justificante.idJustificante}, tipo=${justificante.tipo})}">
+                                           th:href="@{/personal/justificantes/modificar(id=${justificante.idJustificante}, tipo=${justificante.getTipo()})}">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>
