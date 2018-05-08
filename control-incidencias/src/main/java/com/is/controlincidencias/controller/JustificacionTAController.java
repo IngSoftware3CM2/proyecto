@@ -89,7 +89,7 @@ public class JustificacionTAController {
             }
             try {
                 //Aqui trato de subir el archivo
-                licPaternidadService.subirArchivo(files);
+                licPaternidadService.subirArchivo(files,1);
                 justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante);
                 LOG.info("Aqui trato de subir el archivo");
             } catch (IOException e) {
