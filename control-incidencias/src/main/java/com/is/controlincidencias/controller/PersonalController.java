@@ -52,6 +52,7 @@ public class PersonalController {
             LOG.info("inicio() " + principal.getName());
         return INICIO;
     }
+
     /*
      * Para recuperar el correo deben de agregar el parametro de Pincipal
      * El correo se recupera con getName()
@@ -63,11 +64,11 @@ public class PersonalController {
     @GetMapping("/perfil")
     public String perfil(Model model, Principal principal) {
         LOG.info("perfil()");
-        String email = "ariel@gmail.com"; // aqui poner un email por default
+        String email = "ariel@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
 
-        Personal personal = personalService.getPersonalByEmail(email);
+        Personal personal = personalService.getPersonalByEmail(email); // Obtenemos el personal (noEmpleado)
         model.addAttribute("datos", personal);
         return PERFIL;
     }
@@ -116,16 +117,11 @@ public class PersonalController {
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
-            if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante()))
-            {
+            if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
                 justificante.setTipo("Tipo A");
-            }
-            else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante()))
-            {
+            } else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante())) {
                 justificante.setTipo("Licencia Paternidad");
-            }
-            else
-            {
+            } else {
                 justificante.setTipo("Otro Tipo");
             }
         }
@@ -135,12 +131,12 @@ public class PersonalController {
     }
 
     @GetMapping("/verjustificante")
-    public ModelAndView verJustificante(){
+    public ModelAndView verJustificante() {
         return new ModelAndView("ver-justificante-docente");
     }
 
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(){
+    public ModelAndView showIncidencias() {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
         Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
@@ -150,14 +146,15 @@ public class PersonalController {
     }
 
     @GetMapping("/removejustificante")
-    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante){
+    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante) {
         justificanteService.removeJustificanteByIdJustificante(idJustificante);
         return showIncidencias();
     }
 
     @GetMapping("/justificantes/agregar")
-    public String redirctJustificante(@RequestParam(name = "id") Integer id,
-                                             @RequestParam(name = "tipoJustificante") Integer tipo, RedirectAttributes attributes) {
+    public String redirectIncidenciaToJustificante(@RequestParam(name = "id") Integer id,
+                                                  @RequestParam(name = "tipoJustificante") Integer tipo,
+                                                   RedirectAttributes attributes) {
         LOG.info("redirectAgregarJustificante() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
         String redirectURL = "redirect:/personal";
@@ -170,6 +167,22 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/horario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
+        return redirectURL;
+    }
+
+    @GetMapping("/justificantes/modificar")
+    public String redirectJustificanteToModificar(@RequestParam(name = "id") Integer id,
+                                                  @RequestParam(name = "tipo") String tipo,
+                                                  RedirectAttributes attributes) {
+        LOG.info("redirectJustificanteToModificar() id = " + id + " tipoJustificante = " + tipo);
+        attributes.addAttribute("id", id);
+        String redirectURL = "redirect:/personal";
+
+        if (tipo.equals("Tipo A"))
+            redirectURL = "redirect:/personal/justificantes/tipoa/modificar";
+        else if (tipo.equals("Licencia Paternidad"))
+            redirectURL = "redirect:/personal/justificantes/paternidad/modificar";
+
         return redirectURL;
     }
 }
