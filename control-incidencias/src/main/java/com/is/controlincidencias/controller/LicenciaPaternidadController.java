@@ -57,7 +57,8 @@ public class LicenciaPaternidadController {
     }
 
     @GetMapping("/agregar")
-    private String RedirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name = "id") Integer idincidencia, Principal principal) {
+    private String redirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name =
+            "id") Integer idincidencia, Principal principal) {
 
         String email = "";
         if (principal != null && principal.getName() != null) {
@@ -76,7 +77,8 @@ public class LicenciaPaternidadController {
 
 
     @GetMapping("/modificar")
-    private String RedirectSolicitudLicenciaPaternidadFormModificar(Model model, @RequestParam(name = "id") Integer idjustificante, Principal principal) {
+    private String redirectSolicitudLicenciaPaternidadFormModificar(Model model, @RequestParam
+            (name = "id") Integer idjustificante, Principal principal) {
         String email = "";
         if (principal != null && principal.getName() != null) {
             email = principal.getName();

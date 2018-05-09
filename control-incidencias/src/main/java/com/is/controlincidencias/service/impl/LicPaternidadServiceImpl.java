@@ -41,7 +41,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
 
-    private String ruta_archivos = ".//src//main//resources//files//";
+    private String rutaArchivos = ".//src//main//resources//files//";
 
 
     public Justificante consultarJustificante(int id) {
@@ -77,8 +77,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         for(MultipartFile file: files) {
             if(file.isEmpty()) continue;
             byte[] bytes = file.getBytes();
-            Date fecha = new Date();
-            Path path = Paths.get(ruta_archivos+noJustificante+"_"+file.getOriginalFilename());
+            Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
             Files.write(path,bytes);
         }
 
@@ -93,8 +92,8 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     public void borrarArchivo(String archivo) {
             File fichero = new File(".//src//main//resources//files//"+archivo);
             if (fichero.delete())
-                System.out.println("El fichero ha sido borrado satisfactoriamente");
+                LOG.info("El fichero ha sido borrado satisfactoriamente");
             else
-                System.out.println("El fichero no pudó ser borrado");
+                LOG.info("El fichero no pudó ser borrado");
     }
 }

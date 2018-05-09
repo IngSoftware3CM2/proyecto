@@ -147,24 +147,24 @@ public class Personal {
     /*Absalom | Método para usarlo en ver-justificantes y ver-incidencias*/
     public String nombreAndTipoToString ()
     {
-        String tipo;
-        String nombre;
+        String tempTipo;
+        String nombreCompleto;
         String nombreAndTipo;
 
         if (this.getTipo().equals("ROLE_DOC"))
         {
-            tipo = "Docente";
+            tempTipo = "Docente";
         }
         else if (this.getTipo().equals("ROLE_PAAE"))
         {
-            tipo = "PAAE";
+            tempTipo = "PAAE";
         }
         else
         {
-            tipo = "Capital Humano";
+            tempTipo = "Capital Humano";
         }
-        nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
-        nombreAndTipo = tipo + " | " + nombre;
+        nombreCompleto = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
+        nombreAndTipo = tempTipo + " | " + nombreCompleto;
         return nombreAndTipo;
     }
 

@@ -69,7 +69,6 @@ public class JustificanteModel {
 
     public void addAsistencia(IncidenciaModel incidenciaModel) {
         incidenciasModel.add(incidenciaModel);
-        //incidenciaModel.setJustificante(this);
     }
 
     public void removeAsistencia(IncidenciaModel incidencia) {

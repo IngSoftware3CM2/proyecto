@@ -49,7 +49,6 @@ public class Justificante {
 
     public void addAsistencia(Incidencia incidencia) {
         incidencias.add(incidencia);
-        //incidencia.setJustificante(this);
     }
 
     public void removeAsistencia(Incidencia incidencia) {

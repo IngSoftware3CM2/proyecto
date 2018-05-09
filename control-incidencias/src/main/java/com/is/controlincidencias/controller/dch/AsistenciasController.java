@@ -50,18 +50,15 @@ public class AsistenciasController {
     }
 
     @PostMapping(params = "modificar", value = "/modificar")
-    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
-                                Model model, Principal principal) {
+    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model,
+            Principal principal) {
         int resultado;
         AsistenciaForm asistencia = new AsistenciaForm();
         if (validarFormato(modelo)) {
             Asistencia a = asistenciaService.modificarAsistencia(modelo);
-            if (a != null)
-                resultado = MODIFICACION_EXITOSA;
-            else
-                resultado = ERROR_AL_MODIFICAR;
-        } else
-            resultado = ERROR_AL_MODIFICAR;
+            if (a != null) resultado = MODIFICACION_EXITOSA;
+            else resultado = ERROR_AL_MODIFICAR;
+        } else resultado = ERROR_AL_MODIFICAR;
 
 
         model.addAttribute(RESULTADO, resultado);
@@ -71,15 +68,14 @@ public class AsistenciasController {
     }
 
     private boolean validarFormato(AsistenciaForm modelo) {
-        if (!modelo.getFecha().matches("^\\d{4}-\\d{2}-\\d{2}$"))
-            return false;
-        if (!modelo.getHoraEntrada().matches("^\\d{2}:\\d{2}$"))
-            return false;
+        if (!modelo.getFecha().matches("^\\d{4}-\\d{2}-\\d{2}$")) return false;
+        if (!modelo.getHoraEntrada().matches("^\\d{2}:\\d{2}$")) return false;
         return modelo.getHoraSalida().matches("^\\d{2}:\\d{2}$");
     }
 
     @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model, Principal p) {
+    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model,
+            Principal p) {
         int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
