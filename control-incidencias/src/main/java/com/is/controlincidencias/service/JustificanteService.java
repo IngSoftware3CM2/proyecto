@@ -12,6 +12,4 @@ public interface JustificanteService {
     Justificante findJustificanteById(int id);
 
     void removeJustificanteByIdJustificante(int id);
-
-    void guardarJustificante(int noEmpleado);
 }

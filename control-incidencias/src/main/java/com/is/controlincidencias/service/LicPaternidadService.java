@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.util.List;
 
 public interface LicPaternidadService {
-     void subirArchivo(List<MultipartFile> file, int noEmpleado) throws IOException;
+    LicPaternidad buscarLicPaternidad(int idJustificante);
+
+    void subirArchivo(List<MultipartFile> file, int noEmpleado) throws IOException;
     int guardarLicPaternidad(LicPaternidadModel licPaternidadModel, int idIncidencia, int noEmpleado);
     LicPaternidad buscarLicPaternidadPorIdjustificante(int idJustificante);
-    LicPaternidad buscarLicPaternidad(int idJustificante);
     boolean existsByIdjustificante (int id);
     void borrarArchivo(String archivo);
 }
