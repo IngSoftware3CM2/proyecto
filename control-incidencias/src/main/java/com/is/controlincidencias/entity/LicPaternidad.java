@@ -1,7 +1,6 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity

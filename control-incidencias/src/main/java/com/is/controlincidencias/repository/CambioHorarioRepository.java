@@ -1,9 +1,6 @@
 package com.is.controlincidencias.repository;
 
 import com.is.controlincidencias.entity.CambioHorario;
-import com.is.controlincidencias.service.impl.CambioHorarioServiceImpl;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

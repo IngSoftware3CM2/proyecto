@@ -4,8 +4,6 @@ import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component("tipoAConverter")
 public class TipoAConverter {
     public JustificanteTAModel entityToModel(TipoA tipoa){

@@ -1,8 +1,6 @@
 package com.is.controlincidencias.converter;
 
 import com.is.controlincidencias.entity.PermisoEconomico;
-import com.is.controlincidencias.entity.TipoA;
-import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.model.PermisoEconomicoModel;
 import org.springframework.stereotype.Component;
 
