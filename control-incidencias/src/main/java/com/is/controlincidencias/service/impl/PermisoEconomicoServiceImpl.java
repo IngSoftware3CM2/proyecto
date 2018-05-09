@@ -37,7 +37,7 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
     public int addPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel, Justificante justificante) {
         Date fecha = new Date();
         int noEmpleado=justificante.getPersonal().getNoEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
+        justificanteRepository.altaJustificante("Espera",fecha,3,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaIncidencia = StringToLocalDate.tryParseDate(permisoEconomicoModel.getFechaIncidencia());
         permisoEconomicoRepository.addPermisoEconomico(fechaIncidencia, ids.get(ids.size()-1));
