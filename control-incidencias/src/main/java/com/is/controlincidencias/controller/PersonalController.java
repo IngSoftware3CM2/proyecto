@@ -177,7 +177,7 @@ public class PersonalController {
         else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/agregar";
         else if (tipo == 3)
-            redirectURL = "redirect:/personal/justificantes/horario/agregar";
+            redirectURL = "redirect:/personal/justificantes/cambiohorario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
         return redirectURL;
@@ -185,16 +185,20 @@ public class PersonalController {
 
     @GetMapping("/justificantes/modificar")
     public String redirectJustificanteToModificar(@RequestParam(name = "id") Integer id,
-                                                  @RequestParam(name = "tipo") String tipo,
+                                                  @RequestParam(name = "tipo") Integer tipo,
                                                   RedirectAttributes attributes) {
         LOG.info("redirectJustificanteToModificar() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
         String redirectURL = "redirect:/personal";
 
-        if (tipo.equals("Tipo A"))
+        if (tipo == 1)
             redirectURL = "redirect:/personal/justificantes/tipoa/modificar";
-        else if (tipo.equals("Licencia Paternidad"))
+        else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/modificar";
+        else if (tipo == 3)
+            redirectURL = "redirect:/personal/justificantes/cambiohorario/modificar";
+        else if (tipo == 4)
+            redirectURL = "redirect:/personal/justificantes/economico/modificar";
 
         return redirectURL;
     }
