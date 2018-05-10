@@ -55,7 +55,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
         justificanteRepository.altaJustificante("Espera",fecha,2,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
+        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
         LOG.info(ids);
         return ids.get(ids.size()-1);

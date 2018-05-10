@@ -20,6 +20,7 @@ public class Justificante {
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
+    @Column (name="tipo")
     private int tipo;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)

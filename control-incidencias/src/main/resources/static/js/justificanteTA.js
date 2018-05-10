@@ -1,3 +1,6 @@
+
+var _validFileExtensions = [".jpg",".jpeg"];
+
 $(document).ready(function () {
     llenarEstado();
     $(document).on('change', '#getEstado', function(event) {
@@ -7,7 +10,31 @@ $(document).ready(function () {
     $("#buttonCancelar").on("click",function(){
         window.location.href="/personal/justificantes/tipoa/cancelar";
     });
-});
+})
+function ValidateSingleInput(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+            if (!blnValid) {
+                $("#mensajeArchivo").removeClass("hidden");
+                oInput.value = "";
+                return false;
+            }
+            $("#mensajeArchivo").addClass("hidden");
+        }
+    }
+    return true;
+}
+
+
 
 function llenarEstado() {
         var estado=$("#getEstado option:selected").html();

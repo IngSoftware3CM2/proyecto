@@ -39,13 +39,13 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
-                    <span class="text-navy">Generar Justificante de Incidencia Tipo A</span>
+                    <span class="text-navy">Modificar Justificante de Incidencia Tipo A</span>
                 </h1>
-                <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/personal/justificantes/tipoa/agregar}" th:object="${justificanteTAModel}" method="post">
+                <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/personal/justificantes/tipoa/modificar/add-modificar}" th:object="${justificanteTAModel}" method="post">
                     <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
                     <div class="form-group"><label class="col-sm-2 ">Tipo de Incidencia : </label>
                         <div class="col-sm-3">
-                            <select class="form-control m-b" name="account" th:field="*{tipo}" th:value="${tipo}">
+                            <select class="form-control m-b" name="account" th:field="*{tipo}" th:value="${tipo}" th:selected="${tipo}">
                                 <option value="LM">Licencia Medica</option>
                                 <option value="CM">Cuidados Maternos</option>
                                 <option value="CF">Cuidados Familiares</option>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Folio:</label>
-                        <div class="col-sm-4"><input type="text" placeholder="Deben ser 12 caracteres" class="form-control" th:field="*{folio}" maxlength="12" required="true"/> </div>
+                        <div class="col-sm-4"><input type="text" placeholder="Deben ser 12 caracteres" class="form-control" th:field="*{folio}" th:value="${folio}" maxlength="12" required="true"/> </div>
                         <div class="col-sm-6 text-right">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
@@ -64,12 +64,11 @@
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' required/>
+                                    <input type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' />
                                 </span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2"> Clinica ISSSTE:</label>
@@ -86,14 +85,14 @@
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha de Inicio(aaaa/mm/dd):</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" required/>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" th:value="${inicio}" required/>
                         </div>
 
                     </div>
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha Final(aaaa/mm/dd):</label>
                         <div class="input-group date col-sm-2" >
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fin}" required/>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fin}" th:value="${fin}" required/>
                         </div>
 
                     </div>
