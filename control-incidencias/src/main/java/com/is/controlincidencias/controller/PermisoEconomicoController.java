@@ -2,33 +2,21 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.PermisoEconomicoConverter;
-import com.is.controlincidencias.converter.StringToLocalDate;
-import com.is.controlincidencias.converter.TipoAConverter;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.entity.TipoA;
-import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.model.PermisoEconomicoModel;
 import com.is.controlincidencias.service.JustificanteService;
-import com.is.controlincidencias.service.JustificanteTAService;
-import com.is.controlincidencias.service.LicPaternidadService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @RequestMapping("/personal/justificantes")

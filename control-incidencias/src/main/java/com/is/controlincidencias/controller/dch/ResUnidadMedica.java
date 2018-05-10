@@ -30,16 +30,16 @@ public class ResUnidadMedica {
     @Autowired
     @Qualifier("unidadMedicaServiceImpl")
     private UnidadMedicaService unidadMedicaService;
-    
+
     @PostMapping("/unidadMedica")
-    public List<ConsultaUnidadMedica> consultaUnidadMedica(@RequestBody ZonaJSON zonaJSON){
+    public List<ConsultaUnidadMedica> consultaUnidadMedica(@RequestBody ZonaJSON zonaJSON) {
         Zona zona = zonaService.getZonabyNombre(zonaJSON.getNombre());
         List<UnidadMedica> unidadMedica;
-        List<ConsultaUnidadMedica> unidades= new ArrayList<>();
-        LOG.info("Zona: "+ zona.getNombre());
+        List<ConsultaUnidadMedica> unidades = new ArrayList<>();
+        LOG.info("Zona: " + zona.getNombre());
         unidadMedica = unidadMedicaService.getunidadesMedicasByZona(zona);
-        for (UnidadMedica unidad:unidadMedica) {
-            ConsultaUnidadMedica consultaUnidadMedica= new ConsultaUnidadMedica();
+        for (UnidadMedica unidad : unidadMedica) {
+            ConsultaUnidadMedica consultaUnidadMedica = new ConsultaUnidadMedica();
             consultaUnidadMedica.setIdUnidadMedica(unidad.getIdUnidad());
             consultaUnidadMedica.setNameUnidadMedica(unidad.getNombre());
             unidades.add(consultaUnidadMedica);

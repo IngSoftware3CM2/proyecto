@@ -2,9 +2,7 @@ package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "quincena")
@@ -25,6 +23,16 @@ public class Quincena {
                                                                 pero no sucede asi con Quincena e Incidencia
                                                                 es decir, no tiene mucho sentido decir "Una quincena tiene n Incidencias"
                                                                 */
+
+    @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonalQuincena> empleados = new ArrayList<>();
+
+    /*@ManyToMany(mappedBy = "quincena")
+    private Set<Personal> personal = new HashSet<Personal>();
+
+    public Set<Personal> getGroups() {
+        return personal;
+    }*/
 
     public Quincena() {
     }

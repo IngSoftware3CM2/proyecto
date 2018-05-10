@@ -1,13 +1,12 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "permisoeconomico")
-public class PermisoEconomico implements Serializable {
+public class PermisoEconomico {
     @Id
     @Column(name = "id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

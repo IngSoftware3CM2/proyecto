@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @Repository("permisoEconomicoRepository")
 public interface PermisoEconomicoRepository extends JpaRepository<TipoA,Serializable> {

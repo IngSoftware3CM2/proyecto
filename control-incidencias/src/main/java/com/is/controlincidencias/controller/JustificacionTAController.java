@@ -10,6 +10,7 @@ import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.JustificanteTAService;
 import com.is.controlincidencias.service.LicPaternidadService;
+import com.is.controlincidencias.service.PersonalService;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -42,7 +43,7 @@ public class JustificacionTAController {
 
     @Autowired
     @Qualifier("personalServiceImpl")
-    private PersonalServiceImpl personalService;
+    private PersonalService personalService;
 
     @Autowired
     @Qualifier("justificanteServiceImpl")
@@ -54,29 +55,38 @@ public class JustificacionTAController {
 
     private int error=0;
     private int errorf=0;
+    private int errorFolio=0;
     private Personal personal;
+    private int idIncidencia;
+    private int idJustificante;
+
     @GetMapping("/tipoa")
-        public ModelAndView verJustificante(Model model,Principal principal){
+        public ModelAndView verJustificante(Model model,@RequestParam(name =
+            "id") Integer idincidencia,Principal principal){
         //Aqui esta la parte del codigo del correo
         String email = "";
         if (principal!=null && principal.getName()!=null){
             email=principal.getName();
         }
+        idIncidencia=idincidencia;
         personal = personalService.getPersonalByEmail(email);
         //Aqui termina lo del correo
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
         model.addAttribute("error",error);
         model.addAttribute("errorf",errorf);
+        model.addAttribute("errorFolio",errorFolio);
         error=0;
         errorf=0;
+        errorFolio=0;
         model.addAttribute("justificanteTAModel",new JustificanteTAModel());
         mav.addObject("estados",justificanteTAService.findZonas());
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("noTarjeta",personal.getNoTarjeta());
         return mav;
     }
+
     @GetMapping("/tipoa/modificar")
-    public ModelAndView modificarJustificante(@RequestParam("id")int idJustificante, Model model,Principal principal){
+    public ModelAndView modificarJustificante(@RequestParam("id")int idjustificante, Model model,Principal principal){
         //Aqui esta la parte del codigo del correo
         String email = "";
         if (principal!=null && principal.getName()!=null){
@@ -84,12 +94,15 @@ public class JustificacionTAController {
         }
         personal = personalService.getPersonalByEmail(email);
         //Aqui termina lo del correo
-        ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A);
+        idJustificante=idjustificante;
+        ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_A_MOD);
         JustificanteTAModel justificanteTAModel = new JustificanteTAModel();
         model.addAttribute("error",error);
         model.addAttribute("errorf",errorf);
+        model.addAttribute("errorFolio",errorFolio);
         error=0;
         errorf=0;
+        errorFolio=0;
         if(idJustificante!=0){
             Justificante justificante = justificanteService.findJustificanteById(idJustificante);
             TipoA tipoA = justificanteTAService.findByJustificante(justificante);
@@ -103,8 +116,6 @@ public class JustificacionTAController {
     }
 
 
-
-
     @PostMapping("/tipoa/agregar")
     private String guardarJustificanteTA(@ModelAttribute("justificanteTAModel") JustificanteTAModel justificanteTAModel, @RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
@@ -116,24 +127,26 @@ public class JustificacionTAController {
         justificante.setPersonal(personal);
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
+        if(justificanteTAModel.getFolio().length() != 12){
+            errorFolio=1;
+            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+        }
         //Obtengo el tipo de justificante tipoA
         if(inicio.isAfter(fin)){
             errorf=1;
-            return "redirect:/personal/justificantes/tipoa";
-        }else {
-            if (files.isEmpty()) {
-                error = 1;
-                return "redirect:/personal/justificantes/tipoa";
-            }
-            try {
-                //Aqui trato de subir el archivo
-                int idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante);
-                licPaternidadService.subirArchivo(files,idJustificante);
-
-                LOG.info("Aqui trato de subir el archivo");
-            } catch (IOException e) {
-                LOG.error(e);
-            }
+            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+        }
+        if (files.isEmpty()) {
+            error = 1;
+            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+        }
+        try {
+         //Aqui trato de subir el archivo
+            int idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante,idIncidencia);
+            licPaternidadService.subirArchivo(files,idJustificante);
+            LOG.info("Aqui trato de subir el archivo");
+        } catch (IOException e) {
+            LOG.error(e);
         }
         return "redirect:/personal/justificantes";
     }

@@ -13,7 +13,7 @@ public class UsuariosController {
     private static final String REGISTRAR_DOCENTE = "dch/usuarios-registrar-docente";
     private static final String REGISTRAR_PAAE = "dch/usuarios-registrar-paae";
     private static final String REGISTRAR_ADMON = "dch/usuarios-registrar-admon";
-    private static final String REGISTRAR_JEFE= "dch/usuarios-registrar-jefe";
+    private static final String REGISTRAR_JEFE = "dch/usuarios-registrar-jefe";
 
     private static final String MODIFICAR_USUARIO = "dch/usuarios-modificar";
 

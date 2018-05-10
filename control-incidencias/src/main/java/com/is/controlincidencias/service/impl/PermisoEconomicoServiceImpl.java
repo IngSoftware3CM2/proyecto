@@ -3,13 +3,9 @@ package com.is.controlincidencias.service.impl;
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
-import com.is.controlincidencias.entity.TipoA;
-import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.model.PermisoEconomicoModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
-import com.is.controlincidencias.repository.JustificanteTARepository;
 import com.is.controlincidencias.repository.PermisoEconomicoRepository;
-import com.is.controlincidencias.service.JustificanteTAService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,7 +33,7 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
     public int addPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel, Justificante justificante) {
         Date fecha = new Date();
         int noEmpleado=justificante.getPersonal().getNoEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
+        justificanteRepository.altaJustificante("Espera",fecha,4,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaIncidencia = StringToLocalDate.tryParseDate(permisoEconomicoModel.getFechaIncidencia());
         permisoEconomicoRepository.addPermisoEconomico(fechaIncidencia, ids.get(ids.size()-1));

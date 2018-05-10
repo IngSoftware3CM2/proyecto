@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Justificante de cambio de horario')">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
-
-
-</head>
+<head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
 <body>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
@@ -38,7 +28,7 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Cambio de Horario</span>
                 </h1>
-                <form class="form-horizontal" action="#" th:action="@{/cambio-horario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
+                <form class="form-horizontal" action="#" th:action="@{/cambiohorario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
 
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>
