@@ -2,61 +2,22 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Justificante por licencia de paternidad')"></head>
 <body>
-
-<body>
-
     <div id="wrapper">
-
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-responsive" src="img/escom.png" />
-                             </span>
-                    </div>
-                    <div class="logo-element">
-                        SII
-                    </div>
-                </li>
-                <li ><a href="#"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a></li>
-                    
-                
-                <li><a href="#"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Ver Perfil</span></a></li>
-                
-                <li ><a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Ver Incidencias</span></a></li>
-                    
-                
-                <li class="active"><a href="#"><i class="fa fa-folder-o"></i> <span class="nav-label">Ver Justificantes</span></a></li> 
-                <li><a href="#"><i class="fa fa-sign-out"></i> <span class="nav-label">Cerrar Sesion</span></a></li>                
-            </ul>
-
-        </div>
-    </nav>
-
+        <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
         <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-        </div>
-            <ul class="nav navbar-top-links navbar-center">
-                
-                <li>
-                    <h2>Control de Justificantes</h2>
-                </li>
-            </ul>
-        </nav>
-        </div>
+            <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Ver Justificante</h2>
+                    <h2>Modificar Justificante por Paternidad</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Inicio</a>
+                            <a href="#" th:href="@{/personal}">Inicio</a>
+                        </li>
+                        <li>
+                            Justificantes
                         </li>
                         <li class="active">
-                            <strong>Ver Justificante</strong>
+                            <strong>Modificar Justificante por Paternidad</strong>
                         </li>
                     </ol>
                 </div>
@@ -65,7 +26,6 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-
             <div class="ibox-content">
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Licencia por Paternidad</span>
@@ -233,10 +193,6 @@
 
         </div>
         </div>
-
-
-
-
     <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
     <script src="#" th:src="@{/js/justificanteTA.js}"></script>
     <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
@@ -274,9 +230,6 @@
             return true;
         }
     </script>
-
-
-
 </body>
 
 </html>
