@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/dch/usuarios")
 public class UsuariosController {
-    private static final String REGISTRAR_DOCENTE = "dch/usuarios-registrar-docente";
-    private static final String REGISTRAR_PAAE = "dch/usuarios-registrar-paae";
-    private static final String REGISTRAR_ADMON = "dch/usuarios-registrar-admon";
-    private static final String REGISTRAR_JEFE = "dch/usuarios-registrar-jefe";
+    private static final String REGISTRAR_DOCENTE = "dch/registrar-docente";
+    private static final String REGISTRAR_PAAE = "dch/registrar-paae";
+    private static final String REGISTRAR_ADMON = "dch/registrar-admon";
+    private static final String REGISTRAR_JEFE = "dch/registrar-jefe";
 
     private static final String MODIFICAR_USUARIO = "dch/usuarios-modificar";
 
