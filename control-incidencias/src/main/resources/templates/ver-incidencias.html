@@ -3,7 +3,7 @@
 <head th:replace="fragments/head :: head('Ver incidencia')"></head>
 <body>
 <div id="wrapper">
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
@@ -12,7 +12,7 @@
                 <h2>Ver Incidencias</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li class="active">
                         <strong>Ver Incidencias</strong>
@@ -31,7 +31,6 @@
                             <h5>Incidencias Generadas</h5>
                         </div>
                         <div class="ibox-content">
-                            <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Buscar">
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
                                 <thead>
                                 <tr>
@@ -41,52 +40,43 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX" th:each="incidencia : ${incidencias}" th:if="${incidencia.getJustificante() == null}">
-                                        <div class="row ">
-                                            <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
-                                            <td th:text="${incidencia.getTipo()}">Tipo</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-sm-8">
-                                                        <select class="form-control m-b" name="tipoJustificante">
-                                                            <option th:value="1">Licencia Medica</option>
-                                                            <option th:value="2">Licencia por Paternidad</option>
-                                                            <option th:value="3">Cambio de Horario</option>
-                                                            <option th:value="4">Dias Economicos</option>
-                                                            <option th:value="5">Cuidados Familiares</option>
-                                                            <option th:value="6">Cuidados Maternos</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="form-group">
-                                                            <div class="col">
-                                                                <button class="btn btn-sm btn-white" type="submit">Justificar
-                                                                </button>
-                                                            </div>
+                                <tr class="gradeX" th:each="incidencia : ${incidencias}"
+                                    th:if="${incidencia.getJustificante() == null}">
+                                    <form action="#" th:action="@{/personal/justificantes/agregar}" method="get">
+                                        <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
+                                        <td th:text="${incidencia.getTipo()}">Tipo</td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <select class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</option>
+                                                        <option th:value="2">Licencia por Paternidad</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <div class="col">
+                                                            <input type="text" hidden
+                                                                   th:value="${incidencia.idIncidencia}" name="id">
+                                                            <button class="btn btn-sm btn-white" type="submit">
+                                                                Justificar
+                                                            </button>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                            </td>
-                                        </div>
+                                            </div>
+                                        </td>
+                                    </form>
                                 </tr>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <ul class="pagination pull-right"></ul>
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
-
-
     </div>
 </div>
 
@@ -97,11 +87,5 @@
 <script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('.footable').footable();
-        $('.footable2').footable();
-    });
-</script>
 </body>
 </html>

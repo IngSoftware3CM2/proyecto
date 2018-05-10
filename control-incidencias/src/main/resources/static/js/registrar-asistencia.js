@@ -148,7 +148,6 @@ function agregar_asistencia(e) {
             $(".help-block").addClass("hidden");
         },
         error: function(err) {
-            debugger;
             console.log("ERROR: " + err);
         }
     });

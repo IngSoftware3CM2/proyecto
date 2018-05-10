@@ -10,9 +10,6 @@ public class Login {
     @Column(name = "correo", nullable = false)
     private String correo;
 
-    @Column(name = "passwordsalt", nullable = false, length = 255)
-    private String passwordsalt;
-
     @Column(name = "passwordhash", nullable = false, length = 255)
     private String passwordhash;
 
@@ -22,8 +19,7 @@ public class Login {
     @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
-    public Login(String passwordsalt, String passwordhash, Personal personal) {
-        this.passwordsalt = passwordsalt;
+    public Login(String passwordhash, Personal personal) {
         this.passwordhash = passwordhash;
         this.personal = personal;
     }
@@ -34,14 +30,6 @@ public class Login {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getPasswordsalt() {
-        return passwordsalt;
-    }
-
-    public void setPasswordsalt(String passwordsalt) {
-        this.passwordsalt = passwordsalt;
     }
 
     public String getPasswordhash() {
@@ -68,13 +56,12 @@ public class Login {
         if (!(o instanceof Login)) return false;
         Login login = (Login) o;
         return Objects.equals(correo, login.correo) &&
-                Objects.equals(passwordsalt, login.passwordsalt) &&
                 Objects.equals(passwordhash, login.passwordhash) &&
                 Objects.equals(personal, login.personal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(correo, passwordsalt, passwordhash, personal);
+        return Objects.hash(correo, passwordhash, personal);
     }
 }

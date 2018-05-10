@@ -1,5 +1,6 @@
 package com.is.controlincidencias.repository;
 
+import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.TipoA;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,4 +33,5 @@ public interface JustificanteTARepository extends JpaRepository<TipoA,Serializab
 
     boolean existsByJustificante_IdJustificante (int id);
 
+    TipoA findByJustificante(Justificante justificante);
 }

@@ -26,6 +26,16 @@ public class Quincena {
                                                                 es decir, no tiene mucho sentido decir "Una quincena tiene n Incidencias"
                                                                 */
 
+    @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonalQuincena> empleados = new ArrayList<>();
+
+    /*@ManyToMany(mappedBy = "quincena")
+    private Set<Personal> personal = new HashSet<Personal>();
+
+    public Set<Personal> getGroups() {
+        return personal;
+    }*/
+
     public Quincena() {
     }
 

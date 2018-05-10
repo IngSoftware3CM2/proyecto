@@ -12,6 +12,9 @@ public class Personal {
     @Column(name = "noEmpleado", length = 8)
     private Integer noEmpleado;
 
+
+
+
     @Column(name = "noTarjeta", nullable = false, length = 6, unique = true)
     private Integer noTarjeta;
 
@@ -24,8 +27,28 @@ public class Personal {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
+/*Los siguientes atributos fueron agregados por el CU 'Registrar Usuario'*/
+    @Column(name = "sexo", nullable = false, length = 2)
+    private char sexo;
+
+    @Column(name = "correo", nullable = false, length = 50)
+    private String correo;
+
+    @Column(name = "activo", nullable = false)  //se deja en false si es docente y se va de año sabático, eg,  para no generarle incidencias, para quien haga el cronos
+    private Boolean activo;
+
     @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
+
+
+   /* @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "PersonalQuincena",
+            joinColumns = @JoinColumn(name = "noEmpleado"),
+            inverseJoinColumns = @JoinColumn(name = "idQuincena")
+    )
+    private Set<Quincena> quincena = new HashSet<Quincena>();*/
+
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Asistencia> asistencias = new ArrayList<>();
@@ -36,6 +59,9 @@ public class Personal {
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Justificante> justificantes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonalQuincena> quincenas = new ArrayList<>();
+
     private static final String DEFINITION = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -45,6 +71,8 @@ public class Personal {
     @OneToOne(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Login login;
 
+
+
     public Personal() {
     }
 
@@ -53,6 +81,7 @@ public class Personal {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION2))
     private HorarioActual horarioActual;
+
 
     public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
         this.noEmpleado = noEmpleado;
@@ -147,24 +176,24 @@ public class Personal {
     /*Absalom | Método para usarlo en ver-justificantes y ver-incidencias*/
     public String nombreAndTipoToString ()
     {
-        String tipo;
-        String nombre;
+        String tempTipo;
+        String nombreCompleto;
         String nombreAndTipo;
 
         if (this.getTipo().equals("ROLE_DOC"))
         {
-            tipo = "Docente";
+            tempTipo = "Docente";
         }
         else if (this.getTipo().equals("ROLE_PAAE"))
         {
-            tipo = "PAAE";
+            tempTipo = "PAAE";
         }
         else
         {
-            tipo = "Capital Humano";
+            tempTipo = "Capital Humano";
         }
-        nombre = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
-        nombreAndTipo = tipo + " | " + nombre;
+        nombreCompleto = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
+        nombreAndTipo = tempTipo + " | " + nombreCompleto;
         return nombreAndTipo;
     }
 

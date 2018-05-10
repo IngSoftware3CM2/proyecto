@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante por licencia de paternidad')"></head>
+<body>
+    <div id="wrapper">
+        <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>Modificar Justificante por Paternidad</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#" th:href="@{/personal}">Inicio</a>
+                        </li>
+                        <li>
+                            Justificantes
+                        </li>
+                        <li class="active">
+                            <strong>Modificar Justificante por Paternidad</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <label>Docente | Jaime Lopez Rabadan</label>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Generar Solicitud de Licencia por Paternidad</span>
+                </h1>
+                <form class="form-horizontal" action="#" enctype="multipart/form-data" th:action="@{/personal/justificantes/paternidad/update-lic-paternidad}" th:object="${licPaternidadModel}" method="post">
+                    
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : <span th:text="${noTajerta}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">  </label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            
+                        </div>
+                        <div class="col-sm-8 center">
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" placeholder="Debido a... " th:field="*{justificacion}" th:value="${justificacion}" required></textarea></div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-4 ">Selecciona los Archivos </label></div>
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Formato de Registro de la Licencia por Paternidad</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${registrolicencia}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Acta de Nacimiento o Adopcion</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${actanacimiento}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Acta de Matrimonio o Constancia de Dependencia economica de la
+                            Pareja</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${actamatrimonio}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Constancia curso "Paternidad-es"</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${constanciacurso}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Copia de identificacion como trabajador del IPN</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${copiaidentificacion}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5"> <label>Comprobante de ingresos del Docente</label></div>
+                        <div class="col-sm-4">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Archivo actual: <span th:text="${comprobanteingresos}"></span></label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                </form>
+            </div>
+            
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+        </div>
+        </div>
+    <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <script src="#" th:src="@{/js/justificanteTA.js}"></script>
+    <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+    <script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+    <script src="#" th:src="@{/js/inspinia.js}"></script>
+    <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+    <script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+    <script src="#" th:src="@{/js/dataPicker.js}"></script>
+    <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+    <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+    <script>
+        var _validFileExtensions = [".jpg",".jpeg"];
+        function ValidateSingleInput(oInput) {
+            if (oInput.type == "file") {
+                var sFileName = oInput.value;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            break;
+                        }
+                    }
+
+                    if (!blnValid) {
+                        alert("Lo sentimos, " + sFileName + " es un archivo inválido, la extensión debe de ser: " + _validFileExtensions.join(", "));
+                        oInput.value = "";
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

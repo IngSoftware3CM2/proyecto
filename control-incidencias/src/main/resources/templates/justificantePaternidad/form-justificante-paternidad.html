@@ -1,30 +1,24 @@
 <!DOCTYPE html>
-<html>
-
-<head th:replace="fragments/head :: head('Ver Justificante')"></head>
-
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante por licencia de paternidad')"></head>
 <body>
-
 <div id="wrapper">
-
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
-
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Ver Justificante</h2>
+                <h2>Agregar Justificante por Paternidad</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li>
-                        <a href="index.html">Ver Justificante</a>
+                        Justificantes
                     </li>
                     <li class="active">
-                       <strong>Ver Justificante de paternidad</strong>
+                       <strong>Agregar Justificante por Paternidad</strong>
                     </li>
-
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
@@ -37,10 +31,10 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Licencia por Paternidad</span>
                 </h1>
-                <form class="form-horizontal" action="#" enctype="multipart/form-data" th:action="@{/licenciapaternidad/add-lic-paternidad}" th:object="${licPaternidadModel}" method="post">
+                <form class="form-horizontal" action="#" enctype="multipart/form-data" th:action="@{/personal/justificantes/paternidad/add-lic-paternidad}" th:object="${licPaternidadModel}" method="post">
 
-                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
-                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label>
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : <span th:text="${noTajerta}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label>
                     </div>
                     <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
                     <div class="row">
@@ -48,37 +42,43 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" placeholder="Debido a... " th:field="*{justificacion}" th:value="*{justificacion}" required></textarea></div>
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" placeholder="Debido a... " th:field="*{justificacion}" th:value="${justificacion}" required></textarea></div>
 
                         </div>
                     </div>
                     <div class="form-group"><label class="col-lg-4 ">Selecciona los Archivos </label></div>
                     <div class="row">
                         <div class="col-sm-6"><label>Formato de Registro de la Licencia por Paternidad</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label>Acta de Nacimiento o Adopcion</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
@@ -86,60 +86,72 @@
                     <div class="row">
                         <div class="col-sm-6"><label>Acta de Matrimonio o Constancia de Dependencia economica de la
                             Pareja</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label>Constancia curso "Paternidad-es"</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label>Copia de identificacion como trabajador del IPN</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label>Comprobante de ingresos del Docente</label></div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <span class="custom-file">
-                                    <span class="fileinput-exists">Change</span><input type="file" name="file" onchange="ValidateSingleInput(this);" aria-describedby="fileHelp" accept='.jpg' required/></span>
-                                    <span class="custom-file-control form-control-file"></span>
-                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                       style="float: none">×</a>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
                                 </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg' onchange="ValidateSingleInput(this);" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 
@@ -155,45 +167,42 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                </form>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-10">
-                            <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <a href="#" th:href="@{/personal/justificantes/paternidad/cancel}">
+                                        <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>
-        <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div>
-
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
-<script src="#" th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
-<script src="#" th:src="@{js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
 <script>
-    $(document).ready(function () {
-        $('.footable').footable();
-        $('.footable2').footable();
-    });
-</script>
-<script>
-    var _validFileExtensions = [".jpg"];
+    var _validFileExtensions = [".jpg",".jpeg"];
     function ValidateSingleInput(oInput) {
         if (oInput.type == "file") {
             var sFileName = oInput.value;
             if (sFileName.length > 0) {
                 var blnValid = false;
-                for (var j = 0; j < _validFileExtensions.length; j++) { 
+                for (var j = 0; j < _validFileExtensions.length; j++) {
                     var sCurExtension = _validFileExtensions[j];
                     if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
                         blnValid = true;
@@ -211,9 +220,6 @@
         return true;
     }
 </script>
-
-
-
 
 </body>
 

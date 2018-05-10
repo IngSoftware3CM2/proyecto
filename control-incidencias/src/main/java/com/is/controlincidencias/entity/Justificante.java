@@ -20,7 +20,8 @@ public class Justificante {
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
-    private String tipo;
+    @Column (name="tipo")
+    private int tipo;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermisoEconomico permisoEconomico;
@@ -49,7 +50,6 @@ public class Justificante {
 
     public void addAsistencia(Incidencia incidencia) {
         incidencias.add(incidencia);
-        //incidencia.setJustificante(this);
     }
 
     public void removeAsistencia(Incidencia incidencia) {
@@ -106,21 +106,12 @@ public class Justificante {
 
     }
 
-
     public PermisoEconomico getPermisoEconomico() {
         return this.permisoEconomico;
     }
 
     public void setPermisoEconomico(PermisoEconomico permisoEconomico) {
         this.permisoEconomico = permisoEconomico;
-    }
-
-    public LicPaternidad getLicenciaPaternidad() {
-        return licPaternidad;
-    }
-
-    public void setLicenciaPaternidad(LicPaternidad licPaternidad) {
-        this.licPaternidad = licPaternidad;
     }
 
     public List<Incidencia> getIncidencias() {
@@ -162,11 +153,11 @@ public class Justificante {
         return idJustificante != null && idJustificante.equals(((Justificante) obj).idJustificante);
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 }

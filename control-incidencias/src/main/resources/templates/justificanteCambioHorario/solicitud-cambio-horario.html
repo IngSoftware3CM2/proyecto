@@ -1,30 +1,23 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-
-    <head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
-</head>
-
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
 <body>
-
 <div id="wrapper">
-
-
-
-    <nav th:replace="fragments/verticalnavbar :: verticalnavbar"></nav>
-
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Ver Justificante</h2>
+                <h2>Solicitud de Cambio de Horario</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
+                    </li>
+                    <li>
+                        Justificantes
                     </li>
                     <li class="active">
-                        <strong>Ver Justificante</strong>
+                        <strong>Solicitud de Cambio de Horario</strong>
                     </li>
                 </ol>
             </div>
@@ -38,7 +31,7 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Cambio de Horario</span>
                 </h1>
-                <form class="form-horizontal" action="#" th:action="@{/cambio-horario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
+                <form class="form-horizontal" action="#" th:action="@{/cambiohorario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
 
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>
@@ -48,7 +41,7 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificación}"></textarea></div>
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}"></textarea></div>
 
                         </div>
                     </div>
@@ -61,18 +54,36 @@
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
                         <div class="col-sm-3"><label>7:00</label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
-                        <div class="col-sm-3"><label>10:00</label></div>
+                        <div class="col-sm-2">
+                            <div class="input-group clockpicker" data-autoclose="true">
+                                <input type="text" class="form-control"  th:field="*{nuevaEntrada}" placeholder="07:00" >
+                                <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                                </span>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="row ">
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><input type="time" th:field="*{nuevaEntrada}"/></div>
+                        <div class="col-sm-3"><label>15:00</label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><input type="time" th:field="*{nuevaSalida}"/></div>
+                        <div class="col-sm-2">
+                            <div class="input-group clockpicker" data-autoclose="true">
+                                <input type="text" class="form-control"th:field="*{nuevaSalida}"  placeholder="15:00">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                                </span>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-4">
-
+                            <p  th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+                                Complete todos los campos obligatorios.
+                            </p>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -84,7 +95,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+                                    <button class="btn btn-sm btn-white" type="cancel">Cancelar</button>
                                 </div>
                             </div>
                         </div>
@@ -93,35 +104,25 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
-        </div>
-
     </div>
 </div>
 
-
-
-<!-- Mainly scripts -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Jasny -->
-<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-
-
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-
-
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/clockpicker/clockpicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script type="text/javascript">
+    $('.clockpicker').clockpicker();
+</script>
 
 </body>
 

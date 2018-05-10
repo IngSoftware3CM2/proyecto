@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Ver justificante tipo A')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(1)"></nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Modificar Justificante Tipo A</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
+                    </li>
+                    <li>
+                        Justificantes
+                    </li>
+                    <li class="active">
+                        <strong>Modificar Justificante Tipo A</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label th:text="${tipoAndNombre}"></label>
+            </div>
+        </div>
+        <div class="alert alert-danger" th:if="${error == 1}">
+            ¡No seleccionaste ningun archivo!
+        </div>
+        <div class="alert alert-danger" th:if="${errorf == 1}">
+            ¡Las fechas seleccionadas son incorrectas!
+        </div>
+        <div class="alert alert-danger" th:if="${errorFolio == 1}">
+            ¡El folio ingresado debe ser de 12 caracteres!
+        </div>
+        <div class=" hidden alert alert-danger" id="mensajeArchivo">
+            Lo sentimos el archivo debe ser un archivo tipo .JPG o .JPEG
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Modificar Justificante de Incidencia Tipo A</span>
+                </h1>
+                <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/personal/justificantes/tipoa/modificar/add-modificar}" th:object="${justificanteTAModel}" method="post">
+                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
+                    <div class="form-group"><label class="col-sm-2 ">Tipo de Incidencia : </label>
+                        <div class="col-sm-3">
+                            <select class="form-control m-b" name="account" th:field="*{tipo}" th:value="${tipo}" th:selected="${tipo}">
+                                <option value="LM">Licencia Medica</option>
+                                <option value="CM">Cuidados Maternos</option>
+                                <option value="CF">Cuidados Familiares</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 ">Folio:</label>
+                        <div class="col-sm-4"><input type="text" placeholder="Deben ser 12 caracteres" class="form-control" th:field="*{folio}" th:value="${folio}" maxlength="12" required="true"/> </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' />
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2"> Clinica ISSSTE:</label>
+                        <div class="col-sm-3"><select class="form-control m-b" name="account" id="getEstado">
+                            <option th:each = "estado : ${estados}"><span th:text="${estado}">Estado 1</span></option>
+                        </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control m-b" name="account" id="getUnidadMedica" th:field="*{idunidadmedica}">
+                                <option th:value="*{idunidadmedica}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2"> Fecha de Inicio(aaaa/mm/dd):</label>
+                        <div class="input-group date col-sm-2">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" th:value="${inicio}" required/>
+                        </div>
+
+                    </div>
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2"> Fecha Final(aaaa/mm/dd):</label>
+                        <div class="input-group date col-sm-2" >
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fin}" th:value="${fin}" required/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" type="submit">Enviar</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" id="buttonCancelar" type="button" th:href="@{/personal/justificantes/tipoa/cancelar}">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+
+
+</body>
+
+</html>

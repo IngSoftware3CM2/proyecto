@@ -36,15 +36,23 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         }
 
     @Override
-    public CambioHorario getSolicitudCambioHorario()
+    public CambioHorario  getIdCambioHorario(int idJustificante)
         {
-            return new CambioHorario();
-
+            LOG.info("ID JUSTIFICANTE ES " + idJustificante);
+            return cambioHorarioRepository.getIdCambioHorario(idJustificante);
         }
 
     @Override
-    public CambioHorario getCambioHorario(int id)
+    public void updateCambioHorario(CambioHorarioModel chm)
         {
-            return cambioHorarioRepository.getCambioHorario(id);
+            Time entrada = Time.valueOf(chm.getNuevaEntrada() + ":00");
+            Time salida =  Time.valueOf(chm.getNuevaSalida() + ":00");
+
+            cambioHorarioRepository.updateCambioHorario(entrada, salida, chm.getJustificacion(), chm.getIdJustificante());
         }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return cambioHorarioRepository.existsByJustificante_IdJustificante(id);
+    }
 }

@@ -31,9 +31,4 @@ public class JustificanteServiceImpl implements JustificanteService {
     public void removeJustificanteByIdJustificante(int id) {
         justificanteRepository.removeJustificanteByIdJustificante(id);
     }
-
-    @Override
-    public void guardarJustificante(int noEmpleado) {
-
-    }
 }
