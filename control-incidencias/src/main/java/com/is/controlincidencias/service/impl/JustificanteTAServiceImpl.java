@@ -6,6 +6,7 @@ import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.JustificanteTARepository;
+import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.JustificanteTAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,13 +27,17 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     @Qualifier("justificanteRepository")
     private JustificanteRepository justificanteRepository;
 
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
+
     @Override
     public String findNoTarjetaByNoEmpleado(int noEmpleado) {
         return Integer.toString(justificanteTARepository.findNotarjetaByNoempleado(noEmpleado));
     }
 
     @Override
-    public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante) {
+    public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante,int idIncidencia) {
         Date fecha = new Date();
         //Aqui cambia dependiendo el No empleado.
         int noEmpleado=justificante.getPersonal().getNoEmpleado();
@@ -41,6 +46,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
+        incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
         return ids.get(ids.size()-1);
     }
     @Override
