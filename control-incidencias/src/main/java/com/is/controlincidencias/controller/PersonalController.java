@@ -74,7 +74,7 @@ public class PersonalController {
     @GetMapping("/perfil")
     public String perfil(Model model, Principal principal) {
         LOG.info("perfil()");
-        String email = "ariel@gmail.com"; // aqui poner un email por default para que no de error
+        String email = "correo@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
 
@@ -97,7 +97,7 @@ public class PersonalController {
         String estado = "exito";
         ModelAndView mav = new ModelAndView();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String email = "ariel@gmail.com"; // aqui poner un email por default
+        String email = "correo@gmail.com"; // aqui poner un email por default
         if (principal != null && principal.getName() != null)
             email = principal.getName();
 

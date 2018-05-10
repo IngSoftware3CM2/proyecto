@@ -32,7 +32,7 @@ public class ControlIncidenciasApplication extends SpringBootServletInitializer 
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        log.info("Password de prueba: hola = " +  encoder.encode("hola"));
         SpringApplication.run(ControlIncidenciasApplication.class, args);
+        log.info("Password de prueba: hola = " +  encoder.encode("hola"));
     }
 }
