@@ -11,7 +11,6 @@ import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.JustificanteTAService;
 import com.is.controlincidencias.service.LicPaternidadService;
 import com.is.controlincidencias.service.PersonalService;
-import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;

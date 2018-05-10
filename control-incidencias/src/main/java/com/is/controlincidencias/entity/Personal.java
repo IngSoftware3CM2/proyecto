@@ -1,7 +1,9 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "personal")

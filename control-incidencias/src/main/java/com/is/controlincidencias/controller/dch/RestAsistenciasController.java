@@ -1,10 +1,9 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
-import com.is.controlincidencias.model.Consulta;
+import com.is.controlincidencias.model.ConsultaAsistencia;
 import com.is.controlincidencias.service.AsistenciaService;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/dch/asistencias")
 public class RestAsistenciasController {
-    private static final Log LOG = LogFactory.getLog(RestAsistenciasController.class);
-
     /*
      * 0 = Solititud
      * 1 = Bien chido
@@ -32,26 +30,26 @@ public class RestAsistenciasController {
     private AsistenciaService asistenciaService;
 
     @PostMapping("/consultar")
-    public Consulta consultar(@RequestBody Consulta consulta) {
-        LOG.info("consultar() -> consulta.noTarjeta=" + consulta.getNoTarjeta());
+    public ConsultaAsistencia consultar(@RequestBody ConsultaAsistencia consultaAsistencia) {
+        log.info("consultar() -> consultaAsistencia.noTarjeta=" + consultaAsistencia.getNoTarjeta());
 
-        boolean valor = asistenciaService.buscarTarjeta(consulta.getNoTarjeta());
+        boolean valor = asistenciaService.buscarTarjeta(consultaAsistencia.getNoTarjeta());
         if (!valor) {
-            consulta.setEstado(2);
-            return consulta;
+            consultaAsistencia.setEstado(2);
+            return consultaAsistencia;
         }
-        valor = asistenciaService.buscarAsistencia(consulta.getFechaRegistro(),
-                consulta.getNoTarjeta());
-        if (valor) consulta.setEstado(4);
-        else consulta.setEstado(1);
-        return consulta;
+        valor = asistenciaService.buscarAsistencia(consultaAsistencia.getFechaRegistro(),
+                consultaAsistencia.getNoTarjeta());
+        if (valor) consultaAsistencia.setEstado(4);
+        else consultaAsistencia.setEstado(1);
+        return consultaAsistencia;
     }
 
     @PostMapping("/agregar")
-    public Consulta agregar(@RequestBody List<AsistenciaJSON> asistencias) {
-        LOG.info("agregar() dch.size=" + asistencias.size());
+    public ConsultaAsistencia agregar(@RequestBody List<AsistenciaJSON> asistencias) {
+        log.info("agregar() dch.size=" + asistencias.size());
         for (AsistenciaJSON asistenciaJSON : asistencias)
             asistenciaService.agregarAsistencia(asistenciaJSON);
-        return new Consulta();
+        return new ConsultaAsistencia();
     }
 }

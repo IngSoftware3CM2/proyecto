@@ -1,50 +1,20 @@
 package com.is.controlincidencias.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.validation.constraints.NotBlank;
+
+@ToString
+@Setter
+@Getter
 public class LoginModel {
+    @NotBlank
     private String oldPassword;
+    @NotBlank
     private String newPassword;
+    @NotBlank
     private String verifyPassword;
-
-    public LoginModel(){ }
-
-    public LoginModel(String oldPassword, String newPassword, String verifyPassword) {
-        this.oldPassword = oldPassword;
-        this.newPassword = newPassword;
-        this.verifyPassword = verifyPassword;
-    }
-
-    @Override
-    public String toString() {
-        return "LoginModel{" +
-                "oldPassword='" + oldPassword + '\'' +
-                ", newPassword='" + newPassword + '\'' +
-                ", verifyPassword='" + verifyPassword + '\'' +
-                '}';
-    }
-
-    public String getOldPassword() {
-        return oldPassword;
-    }
-
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
-    }
-
 }

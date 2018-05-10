@@ -4,15 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-
 
 @Setter
 @Getter
-public class AsistenciaJSON {
-    private Integer noTarjeta;
-    private LocalTime horaEntrada;
-    private LocalTime horaSalida;
+public class ConsultaAsistencia {
+    private int estado;
+    private int noTarjeta;
     private LocalDate fechaRegistro;
 
 }
