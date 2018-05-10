@@ -2,7 +2,7 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.model.CambioPasswordModel;
+import com.is.controlincidencias.model.LoginModel;
 import com.is.controlincidencias.service.impl.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -86,13 +86,13 @@ public class PersonalController {
     @GetMapping("/perfil/cambiar")
     public String cambiarContra(Model model) {
         LOG.info("cambiarContra()");
-        model.addAttribute("contraModel", new CambioPasswordModel());
+        model.addAttribute("contraModel", new LoginModel());
         model.addAttribute("estado", "nada");
         return CAMBIAR_CONTRA;
     }
 
     @PostMapping("/perfil/cambiar/confirmar")
-    public ModelAndView confirmar(@ModelAttribute("contraModel") CambioPasswordModel cambioPassword, Principal principal) {
+    public ModelAndView confirmar(@ModelAttribute("contraModel") LoginModel cambioPassword, Principal principal) {
         LOG.info("confirmar()");
         String estado = "exito";
         ModelAndView mav = new ModelAndView();
@@ -115,7 +115,7 @@ public class PersonalController {
         }
         mav.setViewName(CAMBIAR_CONTRA);
         mav.addObject("estado", estado);
-        mav.addObject("contraModel", new CambioPasswordModel());
+        mav.addObject("contraModel", new LoginModel());
         return mav;
     }
 

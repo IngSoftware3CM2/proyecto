@@ -1,14 +1,14 @@
 package com.is.controlincidencias.model;
 
 
-public class CambioPasswordModel {
+public class LoginModel {
     private String oldPassword;
     private String newPassword;
     private String verifyPassword;
 
-    public CambioPasswordModel(){ }
+    public LoginModel(){ }
 
-    public CambioPasswordModel(String oldPassword, String newPassword, String verifyPassword) {
+    public LoginModel(String oldPassword, String newPassword, String verifyPassword) {
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
         this.verifyPassword = verifyPassword;
@@ -16,7 +16,7 @@ public class CambioPasswordModel {
 
     @Override
     public String toString() {
-        return "CambioPasswordModel{" +
+        return "LoginModel{" +
                 "oldPassword='" + oldPassword + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 ", verifyPassword='" + verifyPassword + '\'' +

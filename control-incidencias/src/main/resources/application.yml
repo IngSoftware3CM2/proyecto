@@ -15,6 +15,8 @@ spring:
       ddl-auto: update # Se cambio a update para no borrar mis registros/ create-drop borra y crea
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  thymeleaf:
+    cache: false # Para no tener que reiniciar el server cada que cambian los template
 logging:
   level:
     org:
