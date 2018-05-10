@@ -110,6 +110,7 @@ public class JustificacionTAController {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
+
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica(justificanteTAModel.getIdunidadmedica());
         justificante.setPersonal(personal);
