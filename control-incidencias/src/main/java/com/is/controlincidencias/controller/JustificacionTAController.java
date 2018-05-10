@@ -58,6 +58,7 @@ public class JustificacionTAController {
     private Personal personal;
     private int idIncidencia;
     private int idJustificante;
+    public static final String redirectURL = "redirect:/personal/justificantes/tipoa?id=";
 
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,@RequestParam(name =
@@ -128,21 +129,21 @@ public class JustificacionTAController {
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         if(justificanteTAModel.getFolio().length() != 12){
             errorFolio=1;
-            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+            return redirectURL+idIncidencia;
         }
         //Obtengo el tipo de justificante tipoA
         if(inicio.isAfter(fin)){
             errorf=1;
-            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+            return redirectURL+idIncidencia;
         }
         if (files.isEmpty()) {
             error = 1;
-            return "redirect:/personal/justificantes/tipoa?id="+idIncidencia;
+            return redirectURL+idIncidencia;
         }
         try {
          //Aqui trato de subir el archivo
             int idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante,idIncidencia);
-            licPaternidadService.subirArchivo(files,idJustificante);
+            licPaternidadService.subirArchivo(files, idJustificante);
             LOG.info("Aqui trato de subir el archivo");
         } catch (IOException e) {
             LOG.error(e);

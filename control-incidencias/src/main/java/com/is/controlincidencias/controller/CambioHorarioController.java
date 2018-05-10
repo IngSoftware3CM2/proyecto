@@ -25,6 +25,7 @@ public class CambioHorarioController {
     static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
     private static final Log LOGGER = LogFactory.getLog(CambioHorarioController.class);
     static final String VER_JUSTIFICANTES = "ver-justificantes";
+    public static final String HORA_QUINCE = "15:00";
 
     @Autowired
     @Qualifier("cambioHorarioServiceImpl")
@@ -51,7 +52,7 @@ public class CambioHorarioController {
                     LOGGER.info(modeloCH);
                     CambioHorarioModel chm = new CambioHorarioModel();
                     chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-                    chm.setHoraSalida("15:00"); //esto igual
+                    chm.setHoraSalida(HORA_QUINCE); //esto igual
                     chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
                     chm.setNuevaSalida(modeloCH.getNuevaSalida());
                     chm.setJustificacion(modeloCH.getJustificacion());
@@ -77,7 +78,7 @@ public class CambioHorarioController {
             LOGGER.info(modeloCH);
             CambioHorarioModel chm = new CambioHorarioModel();
             chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-            chm.setHoraSalida("15:00"); //esto igual
+            chm.setHoraSalida(HORA_QUINCE); //esto igual
             chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
             chm.setNuevaSalida(modeloCH.getNuevaSalida());
             chm.setJustificacion(modeloCH.getJustificacion());
@@ -95,7 +96,7 @@ public class CambioHorarioController {
         LOGGER.info(modeloCH);
         CambioHorarioModel modch = new CambioHorarioModel();
         modch.setHoraEntrada("7:00");
-        modch.setHoraSalida("15:00");
+        modch.setHoraSalida(HORA_QUINCE);
         modch.setIdJustificante(2);
         modch.setFechaIncidencia("10/11/2012");
         CambioHorario chEntidad = cambioService.getIdCambioHorario(2);//regresa entity
