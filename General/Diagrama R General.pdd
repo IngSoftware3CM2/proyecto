@@ -2,7 +2,7 @@
 
 <DBMODEL Version="1.92" TYPE="PostgreSQL">
 
-<MODELSETTINGS MDDVERSION="1.12.3 (build 1150)" ModelProject="" ModelName="Diagrama R General" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2018-05-02 17:58:46" ModelUpdated="2018-05-02 17:58:46" Description="" Annotation="" ZoomFac="100.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  NotValidConstraints = False\n  ConcurrentlyIndexes = False\n  ISQL = False\n  ExecuteAfterGeneration = True\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  EntityFontColor = clBlack\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  SPFontColor = clBlack\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  ViewFontColor = clBlack\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  RefLabelFontColor = clBlack\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" PKColumnsFirst="0" HPageCount="5" VPageCount="5" />
+<MODELSETTINGS MDDVERSION="1.12.3 (build 1150)" ModelProject="" ModelName="Diagrama R General" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2018-05-09 21:35:59" ModelUpdated="2018-05-09 21:38:58" Description="" Annotation="" ZoomFac="50.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  NotValidConstraints = False\n  ConcurrentlyIndexes = False\n  ISQL = False\n  ExecuteAfterGeneration = True\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  EntityFontColor = clBlack\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  SPFontColor = clBlack\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  ViewFontColor = clBlack\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  RefLabelFontColor = clBlack\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" PKColumnsFirst="0" HPageCount="5" VPageCount="5" />
 
 <DATABASE Name="Database_1" CharacterSet="" Collate="" CType="" Tablespace="" Owner="" Template="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="0" />
 
@@ -23,74 +23,78 @@
 </SCHEMAS>
 
 <SEQUENCES>
-<SEQUENCE ID="26236" Name="hibernate_sequence" SchemaName="public" SchemaOID="0" Owner="postgres" Comments="" Increment="1" MinValue="1" MaxValue="9223372036854775807" StartValue="1" Cache="1" Cycle="0"></SEQUENCE>
+<SEQUENCE ID="27117" Name="hibernate_sequence" SchemaName="public" SchemaOID="0" Owner="postgres" Comments="" Increment="1" MinValue="1" MaxValue="9223372036854775807" StartValue="1" Cache="1" Cycle="0"></SEQUENCE>
 </SEQUENCES>
 
 <DOMAINS>
 </DOMAINS>
 
 <COMPOSITES>
-<COMPOSITE ID="10000" Name="asistencia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26240">
+<COMPOSITE ID="10000" Name="asistencia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27121">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10001" Name="cambiohorario" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26250">
+<COMPOSITE ID="10001" Name="cambiohorario" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27131">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10002" Name="departamento" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26257">
+<COMPOSITE ID="10002" Name="departamento" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27138">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10003" Name="dia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26262">
+<COMPOSITE ID="10003" Name="dia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27143">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10004" Name="horarioactual" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26267">
+<COMPOSITE ID="10004" Name="horarioactual" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27148">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10006" Name="incidencia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26272">
+<COMPOSITE ID="10006" Name="incidencia" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27153">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10007" Name="jefesuperior" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26277">
+<COMPOSITE ID="10007" Name="jefesuperior" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27158">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10008" Name="justificante" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26284">
+<COMPOSITE ID="10008" Name="justificante" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27165">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10009" Name="licpaternidad" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26294">
+<COMPOSITE ID="10009" Name="licpaternidad" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27175">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10010" Name="login" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26304">
+<COMPOSITE ID="10010" Name="login" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27185">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10011" Name="permisoeconomico" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26316">
+<COMPOSITE ID="10011" Name="permisoeconomico" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27197">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10012" Name="personal" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26323">
+<COMPOSITE ID="10012" Name="personal" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27204">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10013" Name="quincena" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26328">
+<COMPOSITE ID="10013" Name="personalquincena" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27209">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10014" Name="tipoa" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26337">
+<COMPOSITE ID="10014" Name="quincena" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27214">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10015" Name="unidadmedica" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26347">
+<COMPOSITE ID="10015" Name="tipoa" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27223">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10016" Name="zona" SchemaName="public" OwnerName="" Comments="" MasterTableOID="26352">
+<COMPOSITE ID="10016" Name="unidadmedica" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27233">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10017" Name="zona" SchemaName="public" OwnerName="" Comments="" MasterTableOID="27238">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
@@ -107,7 +111,7 @@
 
 <METADATA>
 <ENTITIES>
-<ENTITY ID="26240" Name="asistencia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="780" YPos="480" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27121" Name="asistencia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="800" YPos="550" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="1" Name="idasistencia" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="2" Name="fecharegistro" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -116,16 +120,16 @@
 		<COLUMN ID="5" Name="noempleado" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26359" />
+		<REFERENCE_END ID="27245" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26245" Name="asistencia_pkey" Kind="2" Expression="" ReferenceIndex="26244" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27126" Name="asistencia_pkey" Kind="2" Expression="" ReferenceIndex="27125" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="1"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26244" Name="asistencia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26245" StorageParams="" Comments="">
+		<INDEX ID="27125" Name="asistencia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27126" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idasistencia"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -133,7 +137,7 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26250" Name="cambiohorario" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="430" YPos="500" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27131" Name="cambiohorario" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="390" YPos="600" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="6" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="7" Name="fecha" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -143,16 +147,16 @@
 		<COLUMN ID="11" Name="idjustificante" Pos="6" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26364" />
+		<REFERENCE_END ID="27250" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26256" Name="cambiohorario_pkey" Kind="2" Expression="" ReferenceIndex="26255" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27137" Name="cambiohorario_pkey" Kind="2" Expression="" ReferenceIndex="27136" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="6"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26255" Name="cambiohorario_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26256" StorageParams="" Comments="">
+		<INDEX ID="27136" Name="cambiohorario_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27137" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="id"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -160,26 +164,26 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26257" Name="departamento" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1050" YPos="350" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27138" Name="departamento" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1080" YPos="370" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="12" Name="iddepartamento" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="13" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="14" Name="idsuperior" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26419" />
+		<REFERENCE_BEGIN ID="27305" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26369" />
+		<REFERENCE_END ID="27255" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26261" Name="departamento_pkey" Kind="2" Expression="" ReferenceIndex="26260" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27142" Name="departamento_pkey" Kind="2" Expression="" ReferenceIndex="27141" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="12"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26260" Name="departamento_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26261" StorageParams="" Comments="">
+		<INDEX ID="27141" Name="departamento_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27142" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="iddepartamento"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -187,7 +191,7 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26262" Name="dia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1030" YPos="140" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27143" Name="dia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1080" YPos="120" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="15" Name="iddia" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="16" Name="horaentrada" Pos="2" Datatype="1083" Type="time" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -196,16 +200,16 @@
 		<COLUMN ID="19" Name="idhorario" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26374" />
+		<REFERENCE_END ID="27260" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26266" Name="dia_pkey" Kind="2" Expression="" ReferenceIndex="26265" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27147" Name="dia_pkey" Kind="2" Expression="" ReferenceIndex="27146" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="15"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26265" Name="dia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26266" StorageParams="" Comments="">
+		<INDEX ID="27146" Name="dia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27147" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="iddia"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -213,22 +217,22 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26267" Name="horarioactual" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1050" YPos="290" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27148" Name="horarioactual" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1110" YPos="310" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="20" Name="idhorario" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26374" />
-		<REFERENCE_BEGIN ID="26424" />
+		<REFERENCE_BEGIN ID="27260" />
+		<REFERENCE_BEGIN ID="27310" />
 	</REFERENCES_BEGIN>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26271" Name="horarioactual_pkey" Kind="2" Expression="" ReferenceIndex="26270" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27152" Name="horarioactual_pkey" Kind="2" Expression="" ReferenceIndex="27151" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="20"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26270" Name="horarioactual_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26271" StorageParams="" Comments="">
+		<INDEX ID="27151" Name="horarioactual_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27152" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idhorario"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -236,7 +240,7 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26272" Name="incidencia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="90" YPos="280" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27153" Name="incidencia" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="0" YPos="330" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="25" Name="idincidencia" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="26" Name="fecharegistro" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -246,18 +250,18 @@
 		<COLUMN ID="30" Name="idquincena" Pos="6" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26379" />
-		<REFERENCE_END ID="26384" />
-		<REFERENCE_END ID="26389" />
+		<REFERENCE_END ID="27265" />
+		<REFERENCE_END ID="27270" />
+		<REFERENCE_END ID="27275" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26276" Name="incidencia_pkey" Kind="2" Expression="" ReferenceIndex="26275" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27157" Name="incidencia_pkey" Kind="2" Expression="" ReferenceIndex="27156" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="25"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26275" Name="incidencia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26276" StorageParams="" Comments="">
+		<INDEX ID="27156" Name="incidencia_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27157" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idincidencia"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -265,7 +269,7 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26277" Name="jefesuperior" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1050" YPos="480" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27158" Name="jefesuperior" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1080" YPos="510" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="31" Name="idsuperior" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="32" Name="apellidomaterno" Pos="2" Datatype="1043" Type="varchar" Width="30" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -274,20 +278,20 @@
 		<COLUMN ID="35" Name="jefe" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26369" />
-		<REFERENCE_BEGIN ID="26394" />
+		<REFERENCE_BEGIN ID="27255" />
+		<REFERENCE_BEGIN ID="27280" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26394" />
+		<REFERENCE_END ID="27280" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26281" Name="jefesuperior_pkey" Kind="2" Expression="" ReferenceIndex="26280" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27162" Name="jefesuperior_pkey" Kind="2" Expression="" ReferenceIndex="27161" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="31"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26280" Name="jefesuperior_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26281" StorageParams="" Comments="">
+		<INDEX ID="27161" Name="jefesuperior_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27162" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idsuperior"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -295,31 +299,32 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26284" Name="justificante" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="430" YPos="340" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27165" Name="justificante" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="390" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="36" Name="idjustificante" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="37" Name="estado" Pos="2" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="38" Name="fecha" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="39" Name="noempleado" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="39" Name="tipo" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="40" Name="noempleado" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26364" />
-		<REFERENCE_BEGIN ID="26379" />
-		<REFERENCE_BEGIN ID="26404" />
-		<REFERENCE_BEGIN ID="26414" />
-		<REFERENCE_BEGIN ID="26429" />
+		<REFERENCE_BEGIN ID="27250" />
+		<REFERENCE_BEGIN ID="27265" />
+		<REFERENCE_BEGIN ID="27290" />
+		<REFERENCE_BEGIN ID="27300" />
+		<REFERENCE_BEGIN ID="27325" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26399" />
+		<REFERENCE_END ID="27285" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26289" Name="justificante_pkey" Kind="2" Expression="" ReferenceIndex="26288" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27170" Name="justificante_pkey" Kind="2" Expression="" ReferenceIndex="27169" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="36"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26288" Name="justificante_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26289" StorageParams="" Comments="">
+		<INDEX ID="27169" Name="justificante_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27170" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idjustificante"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -327,29 +332,29 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26294" Name="licpaternidad" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="220" YPos="500" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27175" Name="licpaternidad" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="180" YPos="600" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="40" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="41" Name="actamatrimonio" Pos="2" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="42" Name="actanacimiento" Pos="3" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="43" Name="comprobanteingresos" Pos="4" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="44" Name="constanciacurso" Pos="5" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="45" Name="copiaidentificacion" Pos="6" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="46" Name="justificacion" Pos="7" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="47" Name="registrolicencia" Pos="8" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="48" Name="idjustificante" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="41" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="42" Name="actamatrimonio" Pos="2" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="43" Name="actanacimiento" Pos="3" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="44" Name="comprobanteingresos" Pos="4" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="45" Name="constanciacurso" Pos="5" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="46" Name="copiaidentificacion" Pos="6" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="47" Name="justificacion" Pos="7" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="48" Name="registrolicencia" Pos="8" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="49" Name="idjustificante" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26404" />
+		<REFERENCE_END ID="27290" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26303" Name="licpaternidad_pkey" Kind="2" Expression="" ReferenceIndex="26302" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="40"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27184" Name="licpaternidad_pkey" Kind="2" Expression="" ReferenceIndex="27183" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="41"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26302" Name="licpaternidad_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26303" StorageParams="" Comments="">
+		<INDEX ID="27183" Name="licpaternidad_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27184" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="id"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -357,24 +362,23 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26304" Name="login" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="760" YPos="140" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27185" Name="login" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="780" YPos="120" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="49" Name="correo" Pos="1" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="50" Name="passwordhash" Pos="2" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="51" Name="passwordsalt" Pos="3" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="52" Name="noempleado" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="50" Name="correo" Pos="1" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="51" Name="passwordhash" Pos="2" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="52" Name="noempleado" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26409" />
+		<REFERENCE_END ID="27295" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26311" Name="login_pkey" Kind="2" Expression="" ReferenceIndex="26310" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="49"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27192" Name="login_pkey" Kind="2" Expression="" ReferenceIndex="27191" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="50"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26310" Name="login_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26311" StorageParams="" Comments="">
+		<INDEX ID="27191" Name="login_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27192" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="correo"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -382,22 +386,23 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26316" Name="permisoeconomico" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="80" YPos="500" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27197" Name="permisoeconomico" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="20" YPos="600" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
 		<COLUMN ID="53" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="54" Name="idjustificante" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="54" Name="fechaincidencia" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="55" Name="idjustificante" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26414" />
+		<REFERENCE_END ID="27300" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26322" Name="permisoeconomico_pkey" Kind="2" Expression="" ReferenceIndex="26321" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="27203" Name="permisoeconomico_pkey" Kind="2" Expression="" ReferenceIndex="27202" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="53"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26321" Name="permisoeconomico_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26322" StorageParams="" Comments="">
+		<INDEX ID="27202" Name="permisoeconomico_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27203" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="id"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -405,44 +410,48 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26323" Name="personal" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="760" YPos="260" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27204" Name="personal" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="780" YPos="260" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="55" Name="noempleado" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="56" Name="apellidomaterno" Pos="2" Datatype="1043" Type="varchar" Width="30" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="57" Name="apellidopaterno" Pos="3" Datatype="1043" Type="varchar" Width="30" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="58" Name="notarjeta" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="59" Name="nombre" Pos="5" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="60" Name="tipo" Pos="6" Datatype="1043" Type="varchar" Width="4" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="61" Name="iddepartamento" Pos="7" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="62" Name="idhorario" Pos="8" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="56" Name="noempleado" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="57" Name="activo" Pos="2" Datatype="16" Type="bool" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="58" Name="apellidomaterno" Pos="3" Datatype="1043" Type="varchar" Width="30" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="59" Name="apellidopaterno" Pos="4" Datatype="1043" Type="varchar" Width="30" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="60" Name="correo" Pos="5" Datatype="1043" Type="varchar" Width="50" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="61" Name="notarjeta" Pos="6" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="62" Name="nombre" Pos="7" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="63" Name="sexo" Pos="8" Datatype="1042" Type="char" Width="1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="64" Name="tipo" Pos="9" Datatype="1043" Type="varchar" Width="10" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="65" Name="iddepartamento" Pos="10" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="66" Name="idhorario" Pos="11" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26359" />
-		<REFERENCE_BEGIN ID="26384" />
-		<REFERENCE_BEGIN ID="26399" />
-		<REFERENCE_BEGIN ID="26409" />
+		<REFERENCE_BEGIN ID="27245" />
+		<REFERENCE_BEGIN ID="27270" />
+		<REFERENCE_BEGIN ID="27285" />
+		<REFERENCE_BEGIN ID="27295" />
+		<REFERENCE_BEGIN ID="27315" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26419" />
-		<REFERENCE_END ID="26424" />
+		<REFERENCE_END ID="27305" />
+		<REFERENCE_END ID="27310" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26327" Name="personal_pkey" Kind="2" Expression="" ReferenceIndex="26326" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="55"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27208" Name="personal_pkey" Kind="2" Expression="" ReferenceIndex="27207" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="56"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
-		<CONSTRAINT ID="26358" Name="uk_5gn9np9b8rx1fmbq23cv74lgt" Kind="1" Expression="" ReferenceIndex="26357" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="58"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27244" Name="uk_5gn9np9b8rx1fmbq23cv74lgt" Kind="1" Expression="" ReferenceIndex="27243" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="61"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26326" Name="personal_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26327" StorageParams="" Comments="">
+		<INDEX ID="27207" Name="personal_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27208" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="noempleado"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
 		</INDEX>
-		<INDEX ID="26357" Name="uk_5gn9np9b8rx1fmbq23cv74lgt" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26358" StorageParams="" Comments="">
+		<INDEX ID="27243" Name="uk_5gn9np9b8rx1fmbq23cv74lgt" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27244" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="notarjeta"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -450,23 +459,50 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26328" Name="quincena" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="120" YPos="170" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27209" Name="personalquincena" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="380" YPos="160" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="63" Name="idquincena" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="64" Name="fin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="65" Name="inicio" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="67" Name="idpersonalquincena" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="68" Name="diaseconomicossolicitados" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="69" Name="noempleado" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="70" Name="idquincena" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
-	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26389" />
-	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="27315" />
+		<REFERENCE_END ID="27320" />
+	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26332" Name="quincena_pkey" Kind="2" Expression="" ReferenceIndex="26331" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="63"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27213" Name="personalquincena_pkey" Kind="2" Expression="" ReferenceIndex="27212" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="67"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26331" Name="quincena_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26332" StorageParams="" Comments="">
+		<INDEX ID="27212" Name="personalquincena_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27213" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="idpersonalquincena"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="27214" Name="quincena" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="30" YPos="170" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+	<COLUMNS>
+		<COLUMN ID="71" Name="idquincena" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="72" Name="fin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="73" Name="inicio" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="27275" />
+		<REFERENCE_BEGIN ID="27320" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="27218" Name="quincena_pkey" Kind="2" Expression="" ReferenceIndex="27217" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="71"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="27217" Name="quincena_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27218" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idquincena"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -474,29 +510,29 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26337" Name="tipoa" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="590" YPos="500" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27223" Name="tipoa" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="570" YPos="600" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="66" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="67" Name="fechafin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="68" Name="folio" Pos="3" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="69" Name="fechainicio" Pos="4" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="70" Name="licenciaarchivo" Pos="5" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="71" Name="tipo" Pos="6" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="72" Name="idjustificante" Pos="7" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="73" Name="idunidad" Pos="8" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="74" Name="id" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="75" Name="fechafin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="76" Name="folio" Pos="3" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="77" Name="fechainicio" Pos="4" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="78" Name="licenciaarchivo" Pos="5" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="79" Name="tipo" Pos="6" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="80" Name="idjustificante" Pos="7" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="81" Name="idunidad" Pos="8" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26429" />
-		<REFERENCE_END ID="26434" />
+		<REFERENCE_END ID="27325" />
+		<REFERENCE_END ID="27330" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26346" Name="tipoa_pkey" Kind="2" Expression="" ReferenceIndex="26345" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="66"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27232" Name="tipoa_pkey" Kind="2" Expression="" ReferenceIndex="27231" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="74"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26345" Name="tipoa_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26346" StorageParams="" Comments="">
+		<INDEX ID="27231" Name="tipoa_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27232" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="id"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -504,26 +540,26 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26347" Name="unidadmedica" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="600" YPos="700" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27233" Name="unidadmedica" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="870" YPos="680" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="74" Name="idunidad" Pos="1" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="75" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="180" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="76" Name="idzona" Pos="3" Datatype="1043" Type="varchar" Width="35" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="82" Name="idunidad" Pos="1" Datatype="1043" Type="varchar" Width="255" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="83" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="180" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="84" Name="idzona" Pos="3" Datatype="1043" Type="varchar" Width="35" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26434" />
+		<REFERENCE_BEGIN ID="27330" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
-		<REFERENCE_END ID="26439" />
+		<REFERENCE_END ID="27335" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26351" Name="unidadmedica_pkey" Kind="2" Expression="" ReferenceIndex="26350" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="74"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27237" Name="unidadmedica_pkey" Kind="2" Expression="" ReferenceIndex="27236" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="82"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26350" Name="unidadmedica_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26351" StorageParams="" Comments="">
+		<INDEX ID="27236" Name="unidadmedica_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27237" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idunidad"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -531,22 +567,22 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="26352" Name="zona" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="820" YPos="710" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777200" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
+<ENTITY ID="27238" Name="zona" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1130" YPos="690" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16446719" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=False\n" >
 	<COLUMNS>
-		<COLUMN ID="77" Name="idzona" Pos="1" Datatype="1043" Type="varchar" Width="35" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="78" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="180" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="85" Name="idzona" Pos="1" Datatype="1043" Type="varchar" Width="35" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="86" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="180" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="26439" />
+		<REFERENCE_BEGIN ID="27335" />
 	</REFERENCES_BEGIN>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="26356" Name="zona_pkey" Kind="2" Expression="" ReferenceIndex="26355" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
-			<CONSTRAINTCOLUMNS COMMATEXT="77"></CONSTRAINTCOLUMNS>
+		<CONSTRAINT ID="27242" Name="zona_pkey" Kind="2" Expression="" ReferenceIndex="27241" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="85"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
 	<INDEXES>
-		<INDEX ID="26355" Name="zona_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="26356" StorageParams="" Comments="">
+		<INDEX ID="27241" Name="zona_pkey" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="27242" StorageParams="" Comments="">
 			<INDEXCOLUMNS COMMATEXT="idzona"></INDEXCOLUMNS>
 			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
 			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
@@ -557,71 +593,79 @@
 </ENTITIES>
 
 <REFERENCES>
-<REFERENCE ID="26359" Name="personal_fk" SOURCE="26323" DESTINATION="26240" FKIDS="55=5\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27245" Name="personal_fk" SOURCE="27204" DESTINATION="27121" FKIDS="56=5\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26364" Name="justificante_fk" SOURCE="26284" DESTINATION="26250" FKIDS="36=11\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27250" Name="justificante_fk" SOURCE="27165" DESTINATION="27131" FKIDS="36=11\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26369" Name="jefesuperior_fk" SOURCE="26277" DESTINATION="26257" FKIDS="31=14\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27255" Name="jefesuperior_fk" SOURCE="27158" DESTINATION="27138" FKIDS="31=14\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26374" Name="horarioactual_fk" SOURCE="26267" DESTINATION="26262" FKIDS="20=19\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27260" Name="horarioactual_fk" SOURCE="27148" DESTINATION="27143" FKIDS="20=19\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26379" Name="justificante_fk" SOURCE="26284" DESTINATION="26272" FKIDS="36=28\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="2" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27265" Name="justificante_fk" SOURCE="27165" DESTINATION="27153" FKIDS="36=28\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="2" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26384" Name="empleado_fk" SOURCE="26323" DESTINATION="26272" FKIDS="55=29\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27270" Name="empleado_fk" SOURCE="27204" DESTINATION="27153" FKIDS="56=29\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26389" Name="quincena_fk" SOURCE="26328" DESTINATION="26272" FKIDS="63=30\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27275" Name="quincena_fk" SOURCE="27214" DESTINATION="27153" FKIDS="71=30\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26394" Name="jefesuperior_fk" SOURCE="26277" DESTINATION="26277" FKIDS="31=31\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27280" Name="jefesuperior_fk" SOURCE="27158" DESTINATION="27158" FKIDS="31=31\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26399" Name="justificante_fk" SOURCE="26323" DESTINATION="26284" FKIDS="55=39\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27285" Name="justificante_fk" SOURCE="27204" DESTINATION="27165" FKIDS="56=40\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26404" Name="justificante_fk" SOURCE="26284" DESTINATION="26294" FKIDS="36=48\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27290" Name="justificante_fk" SOURCE="27165" DESTINATION="27175" FKIDS="36=49\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26409" Name="personal_fk" SOURCE="26323" DESTINATION="26304" FKIDS="55=52\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27295" Name="personal_fk" SOURCE="27204" DESTINATION="27185" FKIDS="56=52\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26414" Name="justificante_fk" SOURCE="26284" DESTINATION="26316" FKIDS="36=54\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27300" Name="justificante_fk" SOURCE="27165" DESTINATION="27197" FKIDS="36=55\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26419" Name="departamento_fk" SOURCE="26257" DESTINATION="26323" FKIDS="12=61\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27305" Name="departamento_fk" SOURCE="27138" DESTINATION="27204" FKIDS="12=65\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26424" Name="horarioactual_fk" SOURCE="26267" DESTINATION="26323" FKIDS="20=62\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27310" Name="horarioactual_fk" SOURCE="27148" DESTINATION="27204" FKIDS="20=66\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26429" Name="justificante_fk" SOURCE="26284" DESTINATION="26337" FKIDS="36=72\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27315" Name="empleado_fk" SOURCE="27204" DESTINATION="27209" FKIDS="56=69\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26434" Name="unidadmedica_fk" SOURCE="26347" DESTINATION="26337" FKIDS="74=73\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27320" Name="quincena_fk" SOURCE="27214" DESTINATION="27209" FKIDS="71=70\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
-<REFERENCE ID="26439" Name="zona_fk" SOURCE="26352" DESTINATION="26347" FKIDS="77=76\n" Direction="0" RefColor="8388608" RefLabelColor="16777200" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+<REFERENCE ID="27325" Name="justificante_fk" SOURCE="27165" DESTINATION="27223" FKIDS="36=80\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="27330" Name="unidadmedica_fk" SOURCE="27233" DESTINATION="27223" FKIDS="82=81\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
+	<USERPOINTS>
+	</USERPOINTS>
+</REFERENCE>
+<REFERENCE ID="27335" Name="zona_fk" SOURCE="27238" DESTINATION="27233" FKIDS="85=84\n" Direction="0" RefColor="8388608" RefLabelColor="16446719" RefLabelFontColor="0" OnDelete="1" OnUpdate="1" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="0" LabelPointNumber="2" LabelPosition="0.5" ManualStartTailPosition="0" ManualEndTailPosition="0" />
 	<USERPOINTS>
 	</USERPOINTS>
 </REFERENCE>
