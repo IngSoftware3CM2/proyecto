@@ -2,7 +2,9 @@ package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+/*esta entidad intermedia sirve para llevar el registro de cuántos dias económicos ha pedido Personal por cada quincena
+(para validar que no haya pedido más de los permitidos). No usamos @Embedded porque generaba cuetro llaves foraneas en vez de cuatro,
+ademas que éstas no tenían nombre*/
 @Entity
 @Table(name = "personalquincena")
 public class PersonalQuincena {
