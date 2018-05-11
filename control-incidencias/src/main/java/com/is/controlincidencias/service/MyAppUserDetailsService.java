@@ -2,8 +2,7 @@ package com.is.controlincidencias.service;
 
 import com.is.controlincidencias.entity.Login;
 import com.is.controlincidencias.repository.LoginRepository;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,9 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service("userService")
 public class MyAppUserDetailsService implements UserDetailsService {
-    public static final Log LOG = LogFactory.getLog(MyAppUserDetailsService.class);
 
     @Autowired
     @Qualifier("loginRepository")
@@ -27,7 +26,7 @@ public class MyAppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        LOG.info("loadUserByUsername() email = " + s);
+        log.info("loadUserByUsername() email = " + s);
         Login login = loginRepository.findByCorreo(s);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         if (login != null)

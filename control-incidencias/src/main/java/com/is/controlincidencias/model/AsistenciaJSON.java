@@ -1,43 +1,18 @@
 package com.is.controlincidencias.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+@Setter
+@Getter
 public class AsistenciaJSON {
-    private int noTarjeta;
+    private Integer noTarjeta;
     private LocalTime horaEntrada;
     private LocalTime horaSalida;
     private LocalDate fechaRegistro;
 
-    public int getNoTarjeta() {
-        return noTarjeta;
-    }
-
-    public void setNoTarjeta(int noTarjeta) {
-        this.noTarjeta = noTarjeta;
-    }
-
-    public LocalTime getHoraEntrada() {
-        return horaEntrada;
-    }
-
-    public void setHoraEntrada(LocalTime horaEntrada) {
-        this.horaEntrada = horaEntrada;
-    }
-
-    public LocalTime getHoraSalida() {
-        return horaSalida;
-    }
-
-    public void setHoraSalida(LocalTime horaSalida) {
-        this.horaSalida = horaSalida;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
 }

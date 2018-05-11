@@ -1,9 +1,6 @@
 package com.is.controlincidencias.repository;
 
 import com.is.controlincidencias.entity.CambioHorario;
-import com.is.controlincidencias.service.impl.CambioHorarioServiceImpl;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,6 +35,7 @@ public interface CambioHorarioRepository extends JpaRepository<CambioHorario, Se
     @Query(value="update cambiohorario set  horaentrada = :horaentrada, horasalida = :horasalida, justificacion = :justificacion where idjustificante = :idjustificante", nativeQuery = true)
     void updateCambioHorario(@Param("horaentrada") Time horaentrada, @Param("horasalida") Time horaSalida, @Param("justificacion") String justificacion, @Param("idjustificante") int idjustificante);
 
+
     @Transactional
     @Query(value="select idjustificante from justificante where noempleado = :noempleado", nativeQuery = true)
     int getIdJustificanteByNoEmpleado(@Param("noempleado") int noempleado);
@@ -45,4 +43,7 @@ public interface CambioHorarioRepository extends JpaRepository<CambioHorario, Se
     @Transactional
     @Query(value = "select noempleado from incidencia where idincidencia = :idincidencia", nativeQuery = true)
     int getNoEmpleadoByIdIncidencia(@Param("idincidencia") int idincidencia);
+
+    boolean existsByJustificante_IdJustificante (int id);
+
 }

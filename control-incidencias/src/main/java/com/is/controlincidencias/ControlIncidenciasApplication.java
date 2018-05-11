@@ -12,7 +12,7 @@ public class ControlIncidenciasApplication {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        LOG.info("Hola = " +  encoder.encode("hola"));
+        LOG.info("hola = " +  encoder.encode("hola"));
         SpringApplication.run(ControlIncidenciasApplication.class, args);
     }
 

@@ -2,7 +2,7 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.model.CambioPasswordModel;
+import com.is.controlincidencias.model.LoginModel;
 import com.is.controlincidencias.service.impl.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -46,6 +46,16 @@ public class PersonalController {
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
 
+    @Autowired
+    @Qualifier("cambioHorarioServiceImpl")
+    private CambioHorarioServiceImpl cambioHorarioService;
+
+    @Autowired
+    @Qualifier("permisoEconomicoServiceImpl")
+    private PermisoEconomicoServiceImpl permisoEconomicoService;
+
+
+
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
@@ -76,13 +86,13 @@ public class PersonalController {
     @GetMapping("/perfil/cambiar")
     public String cambiarContra(Model model) {
         LOG.info("cambiarContra()");
-        model.addAttribute("contraModel", new CambioPasswordModel());
+        model.addAttribute("contraModel", new LoginModel());
         model.addAttribute("estado", "nada");
         return CAMBIAR_CONTRA;
     }
 
     @PostMapping("/perfil/cambiar/confirmar")
-    public ModelAndView confirmar(@ModelAttribute("contraModel") CambioPasswordModel cambioPassword, Principal principal) {
+    public ModelAndView confirmar(@ModelAttribute("contraModel") LoginModel cambioPassword, Principal principal) {
         LOG.info("confirmar()");
         String estado = "exito";
         ModelAndView mav = new ModelAndView();
@@ -101,12 +111,11 @@ public class PersonalController {
         } else {
             LOG.info("confirmar() Chido");
             p.getLogin().setPasswordhash(encoder.encode(cambioPassword.getNewPassword()));
-            p.getLogin().setPasswordsalt(p.getLogin().getPasswordhash());
             personalService.actualizarContra(p);
         }
         mav.setViewName(CAMBIAR_CONTRA);
         mav.addObject("estado", estado);
-        mav.addObject("contraModel", new CambioPasswordModel());
+        mav.addObject("contraModel", new LoginModel());
         return mav;
     }
 
@@ -118,11 +127,15 @@ public class PersonalController {
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Tipo A");
+                justificante.setTipo(1);
             } else if (licPaternidadService.existsByIdjustificante(justificante.getIdJustificante())) {
-                justificante.setTipo("Licencia Paternidad");
+                justificante.setTipo(2);
+            } else if (cambioHorarioService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(3);
+            } else if (permisoEconomicoService.existsByIdjustificante(justificante.getIdJustificante())) {
+                justificante.setTipo(4);
             } else {
-                justificante.setTipo("Otro Tipo");
+                justificante.setTipo(666);
             }
         }
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
@@ -164,7 +177,7 @@ public class PersonalController {
         else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/agregar";
         else if (tipo == 3)
-            redirectURL = "redirect:/personal/justificantes/horario/agregar";
+            redirectURL = "redirect:/personal/justificantes/cambiohorario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
         return redirectURL;
@@ -172,16 +185,20 @@ public class PersonalController {
 
     @GetMapping("/justificantes/modificar")
     public String redirectJustificanteToModificar(@RequestParam(name = "id") Integer id,
-                                                  @RequestParam(name = "tipo") String tipo,
+                                                  @RequestParam(name = "tipo") Integer tipo,
                                                   RedirectAttributes attributes) {
         LOG.info("redirectJustificanteToModificar() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
         String redirectURL = "redirect:/personal";
 
-        if (tipo.equals("Tipo A"))
+        if (tipo == 1)
             redirectURL = "redirect:/personal/justificantes/tipoa/modificar";
-        else if (tipo.equals("Licencia Paternidad"))
+        else if (tipo == 2)
             redirectURL = "redirect:/personal/justificantes/paternidad/modificar";
+        else if (tipo == 3)
+            redirectURL = "redirect:/personal/justificantes/cambiohorario/modificar";
+        else if (tipo == 4)
+            redirectURL = "redirect:/personal/justificantes/economico/modificar";
 
         return redirectURL;
     }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<ul class="nav nav-tabs" th:fragment="navbar(is_active)">
+    <li th:class="${is_active == 1} ? 'active'">
+        <a href="#" th:href="@{/dch/usuarios/registrar/docente}">
+            Docentes
+        </a>
+    </li>
+    <li th:class="${is_active == 2} ? 'active'">
+        <a href="#" th:href="@{/dch/usuarios/registrar/paae}">
+            PAAE
+        </a>
+    </li>
+    <li th:class="${is_active == 3} ? 'active'">
+        <a href="#" th:href="@{/dch/usuarios/registrar/admon}">
+            Docente Administrativo
+        </a>
+    </li>
+    <li th:class="${is_active == 4} ? 'active'">
+        <a href="#" th:href="@{/dch/usuarios/registrar/jefe}">
+            Jefe Superior
+        </a>
+    </li>
+</ul>
+</body>
+</html>

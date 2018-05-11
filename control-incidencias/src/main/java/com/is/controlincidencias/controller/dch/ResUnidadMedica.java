@@ -6,8 +6,7 @@ import com.is.controlincidencias.model.ConsultaUnidadMedica;
 import com.is.controlincidencias.model.ZonaJSON;
 import com.is.controlincidencias.service.UnidadMedicaService;
 import com.is.controlincidencias.service.ZonaService;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/personal/justificantes/tipoa")
 public class ResUnidadMedica {
-    private static final Log LOG = LogFactory.getLog(ResUnidadMedica.class);
 
     @Autowired
     @Qualifier("zonaServiceImpl")
@@ -30,21 +29,21 @@ public class ResUnidadMedica {
     @Autowired
     @Qualifier("unidadMedicaServiceImpl")
     private UnidadMedicaService unidadMedicaService;
-    
+
     @PostMapping("/unidadMedica")
-    public List<ConsultaUnidadMedica> consultaUnidadMedica(@RequestBody ZonaJSON zonaJSON){
+    public List<ConsultaUnidadMedica> consultaUnidadMedica(@RequestBody ZonaJSON zonaJSON) {
         Zona zona = zonaService.getZonabyNombre(zonaJSON.getNombre());
         List<UnidadMedica> unidadMedica;
-        List<ConsultaUnidadMedica> unidades= new ArrayList<>();
-        LOG.info("Zona: "+ zona.getNombre());
+        List<ConsultaUnidadMedica> unidades = new ArrayList<>();
+        log.info("Zona: " + zona.getNombre());
         unidadMedica = unidadMedicaService.getunidadesMedicasByZona(zona);
-        for (UnidadMedica unidad:unidadMedica) {
-            ConsultaUnidadMedica consultaUnidadMedica= new ConsultaUnidadMedica();
+        for (UnidadMedica unidad : unidadMedica) {
+            ConsultaUnidadMedica consultaUnidadMedica = new ConsultaUnidadMedica();
             consultaUnidadMedica.setIdUnidadMedica(unidad.getIdUnidad());
             consultaUnidadMedica.setNameUnidadMedica(unidad.getNombre());
             unidades.add(consultaUnidadMedica);
         }
-        LOG.info(unidades);
+        log.info(unidades.toString());
         return unidades;
     }
 }

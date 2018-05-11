@@ -1,9 +1,15 @@
 package com.is.controlincidencias.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+@Setter
+@Getter
 @Entity
 @Table(name = "asistencia")
 public class Asistencia {
@@ -23,7 +29,7 @@ public class Asistencia {
 
     private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
@@ -35,50 +41,6 @@ public class Asistencia {
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.personal = personal;
-    }
-
-    public Integer getIdAsistencia() {
-        return idAsistencia;
-    }
-
-    public void setIdAsistencia(Integer idAsistencia) {
-        this.idAsistencia = idAsistencia;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public LocalTime getHoraEntrada() {
-        return horaEntrada;
-    }
-
-    public void setHoraEntrada(LocalTime horaEntrada) {
-        this.horaEntrada = horaEntrada;
-    }
-
-    public LocalTime getHoraSalida() {
-        return horaSalida;
-    }
-
-    public void setHoraSalida(LocalTime horaSalida) {
-        this.horaSalida = horaSalida;
-    }
-
-    public Personal getPersonal() {
-        return personal;
-    }
-
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
-    }
-
-    public static String getDefinition() {
-        return DEFINITION;
     }
 
     @Override

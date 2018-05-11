@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Justificante de cambio de horario')">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
-
-
-</head>
+<head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
 <body>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
@@ -18,13 +8,16 @@
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Ver Justificante</h2>
+                <h2>Solicitud de Cambio de Horario</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
+                    <li>
+                        Justificantes
+                    </li>
                     <li class="active">
-                        <strong>Ver Justificante</strong>
+                        <strong>Solicitud de Cambio de Horario</strong>
                     </li>
                 </ol>
             </div>
@@ -38,7 +31,11 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Cambio de Horario</span>
                 </h1>
+<<<<<<< HEAD
                 <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/horario/addCambioHorario}" th:object="${cambioHorarioModel}" method="post">
+=======
+                <form class="form-horizontal" action="#" th:action="@{/cambiohorario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
+>>>>>>> e7db761dcc9e93ce4e8f2f9b578fb9b027026072
 
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>

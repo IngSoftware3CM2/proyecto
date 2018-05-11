@@ -9,4 +9,5 @@ public interface CambioHorarioService {
     void updateCambioHorario(CambioHorarioModel chm);
     int getNoEmpleadoByIdIncidencia(int id);
     int getIdJustificanteByNoEmpleado(int id);
+    boolean existsByIdjustificante (int id);
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,7 +41,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
 
-    private String ruta_archivos = ".//src//main//resources//files//";
+    private String rutaArchivos = ".//src//main//resources//files//";
 
 
     public Justificante consultarJustificante(int id) {
@@ -52,9 +53,9 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //necesito hacer la conversioon y guardar el justificante
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        justificanteRepository.altaJustificante("Espera",fecha,noEmpleado);
+        justificanteRepository.altaJustificante("Espera",fecha,2,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
+        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
         LOG.info(ids);
         return ids.get(ids.size()-1);
@@ -76,8 +77,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         for(MultipartFile file: files) {
             if(file.isEmpty()) continue;
             byte[] bytes = file.getBytes();
-            Date fecha = new Date();
-            Path path = Paths.get(ruta_archivos+noJustificante+"_"+file.getOriginalFilename());
+            Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
             Files.write(path,bytes);
         }
 
@@ -86,5 +86,14 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     @Override
     public boolean existsByIdjustificante(int id) {
         return licPaternidadRepository.existsByJustificante_IdJustificante(id);
+    }
+
+    @Override
+    public void borrarArchivo(String archivo) {
+            File fichero = new File(".//src//main//resources//files//"+archivo);
+            if (fichero.delete())
+                LOG.info("El fichero ha sido borrado satisfactoriamente");
+            else
+                LOG.info("El fichero no pudó ser borrado");
     }
 }

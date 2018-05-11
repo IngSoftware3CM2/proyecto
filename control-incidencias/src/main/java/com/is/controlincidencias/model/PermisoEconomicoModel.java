@@ -4,35 +4,38 @@ import java.io.Serializable;
 
 public class PermisoEconomicoModel implements Serializable {
 
-    private JustificanteModel justificante;
+    private int idjustificante;
+    private String fechaIncidencia;
 
-    public void setJustificante(JustificanteModel justificante) {
-        this.justificante = justificante;
+    public int getIdjustificante() {
+        return idjustificante;
     }
 
+    public void setIdjustificante(int idjustificante) {
+        this.idjustificante = idjustificante;
+    }
+
+    public String getFechaIncidencia() {
+        return fechaIncidencia;
+    }
+
+    public void setFechaIncidencia(String fechaIncidencia) {
+        this.fechaIncidencia = fechaIncidencia;
+    }
+
+    public PermisoEconomicoModel(int idjustificante, String fechaIncidencia) {
+        this.idjustificante = idjustificante;
+        this.fechaIncidencia = fechaIncidencia;
+    }
+
+    public PermisoEconomicoModel() {
+    }
 
     @Override
-    public int hashCode() {
-        return 33;
+    public String toString() {
+        return "PermisoEconomicoModel{" +
+                "idjustificante=" + idjustificante +
+                ", fechaIncidencia='" + fechaIncidencia + '\'' +
+                '}';
     }
-
-    public PermisoEconomicoModel(){
-    }
-
-    public JustificanteModel getJustificante() {
-        return justificante;
-    }
-
-    public PermisoEconomicoModel(JustificanteModel justificante) {
-        this.justificante = justificante;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof PermisoEconomicoModel)) return false;
-        return justificante != null && justificante.equals(((PermisoEconomicoModel) obj).justificante);
-    }
-
-
 }

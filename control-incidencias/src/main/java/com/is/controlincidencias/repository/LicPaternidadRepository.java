@@ -22,9 +22,6 @@ public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Se
 
     LicPaternidad findById(int id);
 
-
-
-    @Modifying
     @Query(value = "select * from licpaternidad where idjustificante=:idjustificante", nativeQuery = true)
     @Transactional
     LicPaternidad selectByIdjustificante(@Param("idjustificante") int idjustificante);
