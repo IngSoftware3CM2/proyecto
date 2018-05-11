@@ -10,15 +10,9 @@
             <div class="col-sm-6">
                 <h2>Registrar jefe</h2>
                 <ol class="breadcrumb">
-                    <li>
-                        <a href="#" th:href="@{/dch}">Inicio</a>
-                    </li>
-                    <li>
-                        Registrar Usuarios
-                    </li>
-                    <li class="active">
-                        <strong>Registrar Jefe</strong>
-                    </li>
+                    <li><a href="#" th:href="@{/dch}">Inicio</a></li>
+                    <li>Registrar Usuarios</li>
+                    <li class="active"><strong>Registrar Jefe</strong></li>
                 </ol>
             </div>
         </div>
@@ -29,74 +23,82 @@
                     <div class="tab-content">
                         <div id="tab-4" class="tab-pane active">
                             <div class="panel-body">
-                                <form class="form-horizontal text-right" id=>
+                                <form class="form-horizontal text-right" th:object="${modeloJefe}" method="post"
+                                      action="#" th:action="@{/dch/usuarios/registrar/jefe}">
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Departamento: </label>
+                                        <label class="col-lg-4">Departamento: </label>
                                         <div class="col-lg-4">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Estado 1</option>
-                                                <option>Estado 2</option>
-                                                <option>Estado 3</option>
-                                                <option>Estado 4</option>
+                                            <select class="form-control m-b" th:field="*{departamento}">
+                                                <option th:each="departamento : ${departamentos}"
+                                                        th:value="${departamento.idDepartamento}"
+                                                        th:text="${departamento.nombre}">Estado
+                                                </option>
                                             </select>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Numero de Empleado: </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Numero de Empleado" class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                            <input type="text" placeholder="Numero de Empleado" class="form-control"
+                                                   th:field="*{numeroEmpleado}">
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('numeroEmpleado')}"> * Dato no
+                                                valido</span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Nombre (s): </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                        <label class="col-lg-4">Nombre (s):</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control"
+                                                   th:field="*{nombre}">
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('nombre')}"> * Dato no valido</span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Apellido Paterno: </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                        <label class="col-lg-4">Apellido Paterno: </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control"
+                                                   th:field="*{apPaterno}">
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('apPaterno')}"> * Dato no valido</span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Apellido Materno: </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                        <label class="col-lg-4">Apellido Materno: </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control"
+                                                   th:field="*{apMaterno}">
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('apMaterno')}"> * Dato no valido</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Correo Electronico: </label>
                                         <div class="col-lg-4">
-                                            <input type="email" placeholder="Numero de Empleado" class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                            <input type="email" placeholder="Numero de Empleado" class="form-control"
+                                                   th:field="*{correo}">
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('correo')}"> * Dato no
+                                                valido</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Sexo: </label>
                                         <div class="col-lg-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
-
+                                            <select class="form-control m-b" th:field="*{sexo}">
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-offset-3 col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-outline btn-primary">
-                                                REGISTRAR
-                                            </button>
+                                            <input type="submit" class="btn btn-block btn-outline btn-primary"
+                                                   value="REGISTRAR">
                                         </div>
                                     </div>
+                                    <!--
                                     <div class="row">
                                         <div class="col-sm-offset-1 col-sm-3">
                                             <span class="help-block m-b-none text-danger">
@@ -110,6 +112,7 @@
                                             * Numero de empleado ya registrado
                                         </span></div>
                                     </div>
+                                    -->
                                 </form>
                             </div>
                         </div>

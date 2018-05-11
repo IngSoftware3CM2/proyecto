@@ -1,14 +1,15 @@
 package com.is.controlincidencias.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+
+@Setter
+@Getter
 public class PaaeForm extends JefeForm{
-    // Falta turno
     private DiaForm dia;
+    @NotBlank
+    private String turno;
 
-    public DiaForm getDia() {
-        return dia;
-    }
-
-    public void setDia(DiaForm dia) {
-        this.dia = dia;
-    }
 }

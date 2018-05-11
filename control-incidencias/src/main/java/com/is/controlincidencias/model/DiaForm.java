@@ -1,8 +1,12 @@
 package com.is.controlincidencias.model;
 
+import lombok.ToString;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
+@ToString
 public class DiaForm {
     private LocalTime horaEntrada;
     private static final DateTimeFormatter formatterHour = DateTimeFormatter.ofPattern("HH:mm");
@@ -25,11 +29,4 @@ public class DiaForm {
         this.horaSalida = LocalTime.parse(horaSalida, formatterHour);
     }
 
-    @Override
-    public String toString() {
-        return "DiaForm{" +
-                "horaEntrada=" + horaEntrada +
-                ", horaSalida=" + horaSalida +
-                '}';
-    }
 }
