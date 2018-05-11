@@ -5,6 +5,7 @@ import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.repository.CambioHorarioRepository;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.IncidenciaService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     private static final Log LOG = LogFactory.getLog(CambioHorarioServiceImpl.class);
 
     @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
+
+    @Autowired
     @Qualifier("CambioHorarioRepository")
     private CambioHorarioRepository cambioHorarioRepository;
 
@@ -40,10 +45,12 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida() + ":00");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
-            List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
             Date fecha2 = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
             justificanteRepository.altaJustificante("Espera",fecha2,0,cambiohorario.getIdJustificante()); //idJustificante es el noempleado :3
-            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificacion(), ids.get(ids.size()));
+            List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
+            LOG.info("--- EL ID ES " + ids.get(ids.size() - 1));
+            cambioHorarioRepository.guardaJustificanteCH(fecha, entrada, salida, cambiohorario.getJustificacion(), ids.get(ids.size() - 1));
+            incidenciaService.updateIdJustificante(ids.get(ids.size() - 1), idincidencia);
         }
 
     @Override
@@ -58,7 +65,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         {
             Time entrada = Time.valueOf(chm.getNuevaEntrada() + ":00");
             Time salida =  Time.valueOf(chm.getNuevaSalida() + ":00");
-
+            LOG.info("*** SERVIVE IMPL Justificacion" + chm.getJustificacion());
             cambioHorarioRepository.updateCambioHorario(entrada, salida, chm.getJustificacion(), chm.getIdJustificante());
         }
     @Override
@@ -76,4 +83,6 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     public boolean existsByIdjustificante(int id) {
         return cambioHorarioRepository.existsByJustificante_IdJustificante(id);
     }
+
 }
+

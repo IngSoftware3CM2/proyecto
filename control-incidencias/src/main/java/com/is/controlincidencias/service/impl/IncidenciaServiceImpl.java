@@ -49,4 +49,10 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         return incidenciaRepository.findByIdIncidencia(id);
     }
 
+
+    @Override
+    public int getNoEmpleadoByIdJustificante(int id)
+        {
+            return incidenciaRepository.getNoEmpleadoByIdJustificante(id);
+        }
 }
