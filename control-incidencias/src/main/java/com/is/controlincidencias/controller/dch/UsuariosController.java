@@ -57,10 +57,10 @@ public class UsuariosController {
     @PostMapping("/registrar/paae")
     public String registrarPaaePOST(@Valid @ModelAttribute("modeloPAAE") PaaeForm paaeForm,
             BindingResult bindingResult, Model model) {
-        log.info("registrarJefePOST() Se recibio: " + paaeForm.toString());
+        log.info("registrarPAAEPOST() Se recibio: " + paaeForm.toString());
         if (bindingResult.hasErrors()){
             model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos());
-            return REGISTRAR_JEFE;
+            return REGISTRAR_PAAE;
         }
         return "redirect:/dch";
     }

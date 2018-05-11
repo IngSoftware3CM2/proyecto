@@ -29,22 +29,26 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">
                             <div class="panel-body">
-                                <form class="form-horizontal text-right" action="#" th:action="@{/dch/registrar/docente}" method="post">
+                                <form class="form-horizontal text-right" action="#"
+                                      th:action="@{/dch/registrar/docente}" method="post">
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Departamento: </label>
                                         <div class="col-lg-4">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Estado 1</option>
-                                                <option>Estado 2</option>
-                                                <option>Estado 3</option>
-                                                <option>Estado 4</option>
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" name="account" required>
+                                                    <option>Estado 1</option>
+                                                    <option>Estado 2</option>
+                                                    <option>Estado 3</option>
+                                                    <option>Estado 4</option>
+                                                </select>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Numero de Empleado: </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Numero de Empleado" class="form-control">
+                                            <input type="text" placeholder="Numero de Empleado" class="form-control"
+                                            >
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
 
@@ -52,7 +56,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Nombre (s): </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)" class="form-control">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control" required>
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
 
@@ -60,31 +64,34 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Apellido Paterno: </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)" class="form-control">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control" required>
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Apellido Materno: </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)" class="form-control">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control" required>
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Correo Electronico: </label>
                                         <div class="col-lg-4">
-                                            <input type="email" placeholder="Numero de Empleado" class="form-control">
+                                            <input type="email" placeholder="Numero de Empleado" class="form-control"
+                                                   required>
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-4 ">Sexo: </label>
                                         <div class="col-lg-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" name="account" required>
+                                                    <option>Masculino</option>
+                                                    <option>Femenino</option>
+                                                </select>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="row">
