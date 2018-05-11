@@ -28,15 +28,19 @@ public class AsistenciasController {
 
     private static final String RESULTADO = "resultado";
     private static final String MODELO = "modelo";
-    private static final int MODIFICACION_EXITOSA = 3;
+    private static final int OPERACION_EXITOSA = 3;
     private static final int ERROR_AL_MODIFICAR = 4;
     private static final int ESTADO_INICIAL = 0;
+    private static final String VALIDAR = "validar";
 
+
+    private final AsistenciaService asistenciaService;
 
     @Autowired
-    @Qualifier("asistenciaServiceImpl")
-    private AsistenciaService asistenciaService;
-
+    public AsistenciasController(
+            @Qualifier("asistenciaServiceImpl") AsistenciaService asistenciaService) {
+        this.asistenciaService = asistenciaService;
+    }
 
     @GetMapping({"", "/"})
     public String redirectInicio() {
@@ -52,37 +56,42 @@ public class AsistenciasController {
     public String modificarPOST(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
             BindingResult bindingResult, Model model) {
         int resultado;
-        log.info("modificarPOST");
+        log.info("modificarPOST() " + modelo.toString());
 
         if (!bindingResult.hasErrors()) {
             Asistencia a = asistenciaService.modificarAsistencia(modelo);
             if (a != null) {
-                resultado = MODIFICACION_EXITOSA;
+                resultado = OPERACION_EXITOSA;
                 model.addAttribute(MODELO, new AsistenciaForm());
-            }
-            else resultado = ERROR_AL_MODIFICAR;
+            } else resultado = ERROR_AL_MODIFICAR;
         } else {
             log.info("ERROR en modificarPOST()");
             resultado = ERROR_AL_MODIFICAR;
         }
 
         model.addAttribute(RESULTADO, resultado);
+        model.addAttribute(VALIDAR, true);
         log.info("saliendo de modificarPOST()");
         return MODIFICAR_ASISTENCIA;
     }
 
     @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
+    public String consultarPOST(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
+            BindingResult bindingResult,
             Model model) {
         log.info("consultarPOST()");
         int resultado;
 
+        if (bindingResult.hasErrors())
+            log.error("consultarPOST() errores");
+
         AsistenciaForm asistencia = new AsistenciaForm();
         resultado = asistenciaService.existeAsistencia(modelo);
-        if (resultado == ESTADO_INICIAL) {
+        if (resultado == ESTADO_INICIAL)
             asistencia = asistenciaService.buscarAsistencia(modelo);
-        }
+
         model.addAttribute(RESULTADO, resultado);
+        model.addAttribute(VALIDAR, false);
         model.addAttribute(MODELO, asistencia);
 
         log.info("saliendo de consultarPOST()");
@@ -94,6 +103,7 @@ public class AsistenciasController {
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
         model.addAttribute(RESULTADO, ESTADO_INICIAL);
+        model.addAttribute(VALIDAR, false);
 
         log.info("saliendo de modificarGET()");
         return MODIFICAR_ASISTENCIA;

@@ -4,9 +4,11 @@ package com.is.controlincidencias.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @ToString
 @Setter
@@ -14,11 +16,10 @@ import javax.validation.constraints.Pattern;
 public class AsistenciaForm {
     @NotNull
     private Integer tarjeta;
-    @Pattern(regexp = "^\\d{2}:\\d{2}$")
-    private String horaEntrada;
-    @Pattern(regexp = "^\\d{2}:\\d{2}$")
-    private String horaSalida;
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
-    private String fecha;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime horaEntrada;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime horaSalida;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate fecha;
 }

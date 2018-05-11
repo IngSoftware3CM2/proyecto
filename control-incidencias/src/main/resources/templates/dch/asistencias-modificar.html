@@ -52,16 +52,17 @@
                                     <div class="col-lg-3">
                                         <input type="text" placeholder="Número de Tarjeta" id="inputTarjeta"
                                                class="form-control" name="tarjeta"
-                                               th:value="${modelo.tarjeta == 0} ? '' : ${modelo.tarjeta}" required>
+                                               th:value="${modelo.tarjeta == 0} ? '' : ${modelo.tarjeta}" required/>
                                     </div>
                                     <label for="inputEntrada" class="col-lg-1 control-label">
                                         Hora de Entrada:
                                     </label>
                                     <div class="col-lg-2">
                                         <input type="text" placeholder="Hora de Entrada" id="inputEntrada"
-                                               class="form-control" pattern="^\d{2}:\d{2}$" th:field="*{horaEntrada}">
+                                               class="form-control" pattern="^\d{2}:\d{2}$" th:value="*{horaEntrada}"
+                                               name="horaEntrada"/>
                                         <span class="help-block text-danger"
-                                              th:if="${#fields.hasErrors('horaEntrada')}">
+                                              th:if="${#fields.hasErrors('horaEntrada')} and ${validar}">
                                             *Hora erronea
                                         </span>
                                     </div>
@@ -70,9 +71,10 @@
                                     </label>
                                     <div class="col-lg-2">
                                         <input type="text" placeholder="Hora de Salida" id="inputSalida"
-                                               class="form-control" pattern="^\d{2}:\d{2}$" th:field="*{horaSalida}">
+                                               class="form-control" pattern="^\d{2}:\d{2}$" name="horaSalida"
+                                               th:value="*{horaSalida}"/>
                                         <span class="help-block text-danger"
-                                              th:if="${#fields.hasErrors('horaSalida')}">
+                                              th:if="${#fields.hasErrors('horaSalida')} and ${validar}">
                                             *Hora erronea
                                         </span>
                                     </div>
@@ -85,10 +87,10 @@
                                             *Número de tarjeta no encontrado
                                         </span>
                                         <span class="help-block text-danger" th:if="${#fields.hasErrors('tarjeta')}">
-                                            *Ingresa un número de tarjeta que sea valido
+                                            *Ingresa el Numero de Tarjeta
                                         </span>
                                         <span th:if="${resultado == 2}" class="help-block text-danger">
-                                            *Número de tarjeta sin registro
+                                            *No se encontró registro
                                         </span>
                                     </div>
                                     <div class="col-lg-5"></div>
@@ -96,10 +98,10 @@
                                         <input class="btn btn-white" type="submit" name="modificar"
                                                value="Modificar Asistencia"/>
                                         <span th:if="${resultado == 3}" class="help-block text-success">
-                                            *Modificación exitosa
+                                            *Operación Exitosa
                                         </span>
                                         <span th:if="${resultado == 4}" class="help-block text-danger">
-                                            *No se guardo el registro
+                                            *No se guardaron los registros
                                         </span>
                                     </div>
                                     <div class="col-lg-1"></div>
