@@ -84,7 +84,7 @@ public class UsuariosController {
             BindingResult bindingResult, Model model) {
         log.info("registrarJefePOST() Se recibio: " + jefeForm.toString());
         if (bindingResult.hasErrors()){
-            model.addAttribute("departamentos", usuariosService.recuperarDepartamentos());
+            model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos());
             return REGISTRAR_JEFE;
         }
         return "redirect:/dch";

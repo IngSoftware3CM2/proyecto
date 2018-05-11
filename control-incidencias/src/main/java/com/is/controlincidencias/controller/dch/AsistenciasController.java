@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
+import javax.validation.Valid;
 
 @Slf4j
 @Controller
@@ -38,8 +39,7 @@ public class AsistenciasController {
 
 
     @GetMapping({"", "/"})
-    public String redirectInicio(Principal principal) {
-
+    public String redirectInicio() {
         return "redirect:/dch";
     }
 
@@ -49,31 +49,32 @@ public class AsistenciasController {
     }
 
     @PostMapping(params = "modificar", value = "/modificar")
-    public String modificarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model) {
+    public String modificarPOST(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
+            BindingResult bindingResult, Model model) {
         int resultado;
-        AsistenciaForm asistencia = new AsistenciaForm();
-        if (validarFormato(modelo)) {
-            Asistencia a = asistenciaService.modificarAsistencia(modelo);
-            if (a != null) resultado = MODIFICACION_EXITOSA;
-            else resultado = ERROR_AL_MODIFICAR;
-        } else resultado = ERROR_AL_MODIFICAR;
+        log.info("modificarPOST");
 
+        if (!bindingResult.hasErrors()) {
+            Asistencia a = asistenciaService.modificarAsistencia(modelo);
+            if (a != null) {
+                resultado = MODIFICACION_EXITOSA;
+                model.addAttribute(MODELO, new AsistenciaForm());
+            }
+            else resultado = ERROR_AL_MODIFICAR;
+        } else {
+            log.info("ERROR en modificarPOST()");
+            resultado = ERROR_AL_MODIFICAR;
+        }
 
         model.addAttribute(RESULTADO, resultado);
-        model.addAttribute(MODELO, asistencia);
         log.info("saliendo de modificarPOST()");
         return MODIFICAR_ASISTENCIA;
     }
 
-    private boolean validarFormato(AsistenciaForm modelo) {
-        if (!modelo.getFecha().matches("^\\d{4}-\\d{2}-\\d{2}$")) return false;
-        if (!modelo.getHoraEntrada().matches("^\\d{2}:\\d{2}$")) return false;
-        return modelo.getHoraSalida().matches("^\\d{2}:\\d{2}$");
-    }
-
     @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo, Model model,
-            Principal p) {
+    public String consultarPOST(@ModelAttribute(name = "modelo") AsistenciaForm modelo,
+            Model model) {
+        log.info("consultarPOST()");
         int resultado;
 
         AsistenciaForm asistencia = new AsistenciaForm();
@@ -99,12 +100,12 @@ public class AsistenciasController {
     }
 
     @GetMapping("/mostrar")
-    public String mostrar(Principal principal) {
+    public String mostrar() {
         return MOSTRAR_ASISTENCIAS;
     }
 
     @GetMapping("/eliminar")
-    public String eliminar(Principal principal) {
+    public String eliminar() {
         return ELIMINAR_ASISTENCIA;
     }
 }
