@@ -10,35 +10,36 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/cambio-horario")
+@RequestMapping("personal/justificantes/horario")
 public class CambioHorarioController {
     static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
     static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
     private static final Log LOGGER = LogFactory.getLog(CambioHorarioController.class);
     static final String VER_JUSTIFICANTES = "ver-justificantes";
+    int noEmpleado, idIncidencia;
 
     @Autowired
     @Qualifier("cambioHorarioServiceImpl")
     private CambioHorarioService cambioService;
 
-    @GetMapping("/registrar")
-    public String registrar(Model model)
+    @GetMapping("/agregar")
+    public String registrar(Model model, @RequestParam(name="id")Integer idincidencia)
         {
             LOGGER.info("Accedí al metodo acceder del controlador");
+            idIncidencia = idincidencia;
+            noEmpleado = cambioService.getNoEmpleadoByIdIncidencia(idincidencia); //obtengo el numero de empelado para todo *3*
+            LOGGER.info("El id de la incidencia es " + idincidencia + " el ID EMPLEADO es " + noEmpleado);
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
             return VISTA_CAMBIO_HORARIO;
         }
 
-    @PostMapping("/add-cambio-horario")
+    @PostMapping("/addCambioHorario")
     public ModelAndView addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
         {
             if(bindings.hasErrors())
@@ -49,6 +50,7 @@ public class CambioHorarioController {
             else
                 {
                     LOGGER.info(modeloCH);
+                    LOGGER.info("******************* Num Empleado es *********** " + noEmpleado);
                     CambioHorarioModel chm = new CambioHorarioModel();
                     chm.setHoraEntrada("7:00"); //esto debería venir desde la base
                     chm.setHoraSalida("15:00"); //esto igual
@@ -56,8 +58,8 @@ public class CambioHorarioController {
                     chm.setNuevaSalida(modeloCH.getNuevaSalida());
                     chm.setJustificacion(modeloCH.getJustificacion());
                     chm.setFechaIncidencia("10/10/2018");
-                    chm.setIdJustificante(1);
-                    cambioService.insertaCambioHorario(chm);
+                    chm.setIdJustificante(noEmpleado); //aqui meto el noEmpleado para enviarselo an repository
+                    cambioService.insertaCambioHorario(chm, idIncidencia);
                     return new ModelAndView(VER_JUSTIFICANTES);
                 }
 
@@ -99,7 +101,6 @@ public class CambioHorarioController {
         modch.setIdJustificante(2);
         modch.setFechaIncidencia("10/11/2012");
         CambioHorario chEntidad = cambioService.getIdCambioHorario(2);//regresa entity
-        //cambioService.findAllById(idCH);
         modch.setJustificacion(chEntidad.getJustificacion());
         modch.setNuevaSalida(chEntidad.getHoraSalida().toString());
         modch.setNuevaEntrada(chEntidad.getHoraEntrada().toString());
