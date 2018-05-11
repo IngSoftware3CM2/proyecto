@@ -1,27 +1,17 @@
 package com.is.controlincidencias.model;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class DepartamentoForm {
-    private int idDepartamento;
+    private Integer idDepartamento;
     private String nombre;
 
-    public DepartamentoForm(int idDepartamento, String nombre) {
+    public DepartamentoForm(Integer idDepartamento, String nombre) {
         this.idDepartamento = idDepartamento;
-        this.nombre = nombre;
-    }
-
-    public int getIdDepartamento() {
-        return idDepartamento;
-    }
-
-    public void setIdDepartamento(int idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 }
