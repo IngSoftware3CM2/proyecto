@@ -31,7 +31,7 @@ public class RestAsistenciasController {
 
     @PostMapping("/consultar")
     public ConsultaAsistencia consultar(@RequestBody ConsultaAsistencia consultaAsistencia) {
-        log.info("consultar() -> consultaAsistencia.noTarjeta=" + consultaAsistencia.getNoTarjeta());
+        log.info("consultar() consultaAsistencia.noTarjeta=" + consultaAsistencia.getNoTarjeta());
 
         boolean valor = asistenciaService.buscarTarjeta(consultaAsistencia.getNoTarjeta());
         if (!valor) {

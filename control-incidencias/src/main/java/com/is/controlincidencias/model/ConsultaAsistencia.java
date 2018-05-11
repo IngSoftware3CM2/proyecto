@@ -8,8 +8,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class ConsultaAsistencia {
-    private int estado;
-    private int noTarjeta;
+    private Integer estado;
+    private Integer noTarjeta;
     private LocalDate fechaRegistro;
-
 }
