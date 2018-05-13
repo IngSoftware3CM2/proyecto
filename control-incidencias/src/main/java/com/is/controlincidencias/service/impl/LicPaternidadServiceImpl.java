@@ -96,4 +96,9 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
             else
                 LOG.info("El fichero no pudó ser borrado");
     }
+
+    @Override
+    public void updateLicPaternidad(LicPaternidad licPaternidad, int idjustificante) {
+        licPaternidadRepository.updateLicPaternidad(licPaternidad.getJustificacion(),licPaternidad.getActamatrimonio(),licPaternidad.getActanacimiento(),licPaternidad.getComprobanteingresos(),licPaternidad.getConstanciacurso(),licPaternidad.getCopiaidentificacion(),licPaternidad.getRegistrolicencia());
+    }
 }

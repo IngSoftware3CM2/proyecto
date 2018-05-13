@@ -30,6 +30,7 @@ public class LicenciaPaternidadController {
 
     int idIncidencia;
     int noEmpleado;
+    int idJustificanteModificar;
     LicPaternidad licPaternidadModificar = new LicPaternidad();
 
     @Autowired
@@ -85,6 +86,7 @@ public class LicenciaPaternidadController {
         }
         Personal personal = personalService.getPersonalByEmail(email);
         LicPaternidad licPaternidad = licPaternidadService.buscarLicPaternidadPorIdjustificante(idjustificante);
+        idJustificanteModificar = idjustificante;
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         licPaternidadModel.setJustificacion(licPaternidad.getJustificacion());
         licPaternidadModificar = licPaternidad;
@@ -112,11 +114,14 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
         licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
         licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
+        int idjustificante=0;
         try {
-            int idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
+
+            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
+            justificanteService.removeJustificanteByIdJustificante(idjustificante);
         }
         return "redirect:/personal/justificantes";
     }
@@ -124,22 +129,38 @@ public class LicenciaPaternidadController {
     @PostMapping("/update-lic-paternidad")
     private String updateLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel, @RequestParam("file") List<MultipartFile> files) {
         LOG.info("Datos que me llegan " + licPaternidadModel.toString());
+        //licPaternidadService.borrarArchivo("34_img.jpg");
 
-        licPaternidadService.borrarArchivo("34_img.jpg");
-
-        licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
-        licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
-        licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
-        licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
-        licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
-        int idjustificante = 0;
+        licPaternidadModificar.setJustificacion(licPaternidadModel.getJustificacion());
+        if(!files.get(0).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getRegistrolicencia());
+            licPaternidadModificar.setRegistrolicencia(files.get(0).getOriginalFilename());
+        }
+        if(!files.get(1).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getActanacimiento());
+            licPaternidadModificar.setActanacimiento(files.get(1).getOriginalFilename());
+        }
+        if(!files.get(2).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getActamatrimonio());
+            licPaternidadModificar.setActamatrimonio(files.get(2).getOriginalFilename());
+        }
+        if(!files.get(3).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getConstanciacurso());
+            licPaternidadModificar.setConstanciacurso(files.get(3).getOriginalFilename());
+        }
+        if(!files.get(4).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getCopiaidentificacion());
+            licPaternidadModificar.setCopiaidentificacion(files.get(4).getOriginalFilename());
+        }
+        if(!files.get(5).isEmpty()){
+            licPaternidadService.borrarArchivo(licPaternidadModificar.getComprobanteingresos());
+            licPaternidadModificar.setComprobanteingresos(files.get(5).getOriginalFilename());
+        }
         try {
-            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
-            licPaternidadService.subirArchivo(files, idjustificante);
+            licPaternidadService.updateLicPaternidad(licPaternidadModificar, idJustificanteModificar);
+            licPaternidadService.subirArchivo(files, idJustificanteModificar);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
-            justificanteService.removeJustificanteByIdJustificante(idjustificante);
         }
         return "redirect:/personal/justificantes";
     }
