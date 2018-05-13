@@ -29,8 +29,10 @@ public class MyAppUserDetailsService implements UserDetailsService {
         log.info("loadUserByUsername() email = " + s);
         Login login = loginRepository.findByCorreo(s);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        if (login != null)
-            grantedAuthorities.add(new SimpleGrantedAuthority(login.getPersonal().getTipo()));
+        if (login == null)
+            throw new UsernameNotFoundException("not found");
+
+        grantedAuthorities.add(new SimpleGrantedAuthority(login.getPersonal().getTipo()));
 
         return new User(login.getCorreo(), login.getPasswordhash(), grantedAuthorities);
     }
