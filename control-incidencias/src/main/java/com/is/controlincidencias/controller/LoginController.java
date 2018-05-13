@@ -22,8 +22,8 @@ public class LoginController {
     private static final String VISTA_LOGIN = "iniciar-sesion";
 
     @GetMapping("/login")
-    public String login(Model model, @RequestParam(name = "error", required = false) String error,
-                        @RequestParam(name = "logout", required = false) String logout) {
+    public String login(@RequestParam(name = "error", required = false) String error,
+            @RequestParam(name = "logout", required = false) String logout, Model model) {
         log.info("login() -- PARAMS: error: " + error + ", logout: " + logout);
 
         model.addAttribute("error", error);

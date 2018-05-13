@@ -1,7 +1,6 @@
 package com.is.controlincidencias.configuration;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final Log LOG = LogFactory.getLog(SecurityConfig.class);
 
     @Autowired
     @Qualifier("userService")
@@ -36,18 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
         http.authorizeRequests()
-                .antMatchers("/dch/**").hasRole("DCH").anyRequest().authenticated()
-                .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE").anyRequest().authenticated()
+                .antMatchers("/dch/**").hasRole("DCH")
+                .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll()
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
-
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        LOG.info("configureGlobal()");
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
