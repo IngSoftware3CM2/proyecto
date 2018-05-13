@@ -26,14 +26,14 @@ public class MyAppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        log.info("loadUserByUsername() email = " + s);
         Login login = loginRepository.findByCorreo(s);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        if (login == null)
+        if (login == null) {
+            log.error("Usuario no encontrado email = " + s);
             throw new UsernameNotFoundException("not found");
-
+        }
+        log.info("TODO CHIDO EN loadUserByUsername() email = " + s);
         grantedAuthorities.add(new SimpleGrantedAuthority(login.getPersonal().getTipo()));
-
         return new User(login.getCorreo(), login.getPasswordhash(), grantedAuthorities);
     }
 }
