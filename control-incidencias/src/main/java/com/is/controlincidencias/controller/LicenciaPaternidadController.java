@@ -133,27 +133,22 @@ public class LicenciaPaternidadController {
 
         licPaternidadModificar.setJustificacion(licPaternidadModel.getJustificacion());
         if(!files.get(0).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getRegistrolicencia());
+            //licPaternidadService.borrarArchivo(licPaternidadModificar.getRegistrolicencia());
             licPaternidadModificar.setRegistrolicencia(files.get(0).getOriginalFilename());
         }
         if(!files.get(1).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getActanacimiento());
             licPaternidadModificar.setActanacimiento(files.get(1).getOriginalFilename());
         }
         if(!files.get(2).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getActamatrimonio());
             licPaternidadModificar.setActamatrimonio(files.get(2).getOriginalFilename());
         }
         if(!files.get(3).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getConstanciacurso());
             licPaternidadModificar.setConstanciacurso(files.get(3).getOriginalFilename());
         }
         if(!files.get(4).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getCopiaidentificacion());
             licPaternidadModificar.setCopiaidentificacion(files.get(4).getOriginalFilename());
         }
         if(!files.get(5).isEmpty()){
-            licPaternidadService.borrarArchivo(licPaternidadModificar.getComprobanteingresos());
             licPaternidadModificar.setComprobanteingresos(files.get(5).getOriginalFilename());
         }
         try {
