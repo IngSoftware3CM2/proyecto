@@ -19,7 +19,7 @@ spring:
     cache: false # Para no tener que reiniciar el server cada que cambian los template
   servlet:
             multipart:
-                max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir 
+                max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir  
                 max-request-size: 100MB
 logging:
   level:
