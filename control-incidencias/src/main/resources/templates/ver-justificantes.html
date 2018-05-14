@@ -41,6 +41,10 @@
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
+                                <div th:if="${add == 1}" class="alert alert-success" role="alert">Justificación exitosa</div>
+                                <div th:if="${modificar == 1}" class="alert alert-success" role="alert">Modificación de justificación exitosa</div>
+                                <div th:if="${modificar == 2}" class="alert alert-danger" role="alert">Modificación de justificación cancelada</div>
+
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
@@ -83,6 +87,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>

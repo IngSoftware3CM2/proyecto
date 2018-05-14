@@ -53,8 +53,12 @@ public class LicenciaPaternidadController {
 
     @GetMapping("/cancel")
     private String cancel() {
-        //return "redirect:/contacts/showcontacts";
-        return "ver-incidencias";
+        return "redirect:/personal/incidencias?cancelar=1";
+    }
+
+    @GetMapping("/cancelMod")
+    private String cancelMod() {
+        return "redirect:/personal/justificantes?modificar=2";
     }
 
     @GetMapping("/agregar")
@@ -123,7 +127,7 @@ public class LicenciaPaternidadController {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);
         }
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
     }
 
     @PostMapping("/update-lic-paternidad")
@@ -157,7 +161,7 @@ public class LicenciaPaternidadController {
         } catch (IOException e) {
             LOG.error("ERROR:", e);
         }
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?modificar=1";
     }
 
 }
