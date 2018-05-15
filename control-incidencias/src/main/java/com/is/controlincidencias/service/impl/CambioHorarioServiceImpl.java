@@ -69,15 +69,15 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             cambioHorarioRepository.updateCambioHorario(entrada, salida, chm.getJustificacion(), chm.getIdJustificante());
         }
     @Override
-    public int getNoEmpleadoByIdIncidencia(int id)
+    public int getIdEmpleadoByIdIncidencia(int id)
         {
-            return cambioHorarioRepository.getNoEmpleadoByIdIncidencia(id);
+            return cambioHorarioRepository.getIdEmpleadoByIdIncidencia(id);
         }
 
     @Override
-    public int getIdJustificanteByNoEmpleado(int id)
+    public int getIdJustificanteByIdEmpleado(int id)
         {
-            return cambioHorarioRepository.getIdJustificanteByNoEmpleado(id);
+            return cambioHorarioRepository.getIdJustificanteByIdEmpleado(id);
         }
     @Override
     public boolean existsByIdjustificante(int id) {

@@ -123,7 +123,7 @@ public class PersonalController {
     public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar) {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
-        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
@@ -154,7 +154,7 @@ public class PersonalController {
     public ModelAndView showIncidencias(Model model,@RequestParam(name = "cancelar", required = false) Integer cancelar) {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
-        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());

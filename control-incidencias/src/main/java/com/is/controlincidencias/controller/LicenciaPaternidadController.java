@@ -29,7 +29,7 @@ import java.util.List;
 public class LicenciaPaternidadController {
 
     int idIncidencia;
-    int noEmpleado;
+    int idEmpleado;
     int idJustificanteModificar;
     LicPaternidad licPaternidadModificar = new LicPaternidad();
 
@@ -74,7 +74,7 @@ public class LicenciaPaternidadController {
         idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        noEmpleado = personal.getNoEmpleado();
+        idEmpleado = personal.getIdEmpleado();
         model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
         model.addAttribute("fecha", incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;
@@ -101,7 +101,7 @@ public class LicenciaPaternidadController {
         model.addAttribute("registrolicencia", licPaternidad.getRegistrolicencia().substring(licPaternidad.getRegistrolicencia().indexOf("_")+1,licPaternidad.getRegistrolicencia().length()));
         model.addAttribute("constanciacurso", licPaternidad.getConstanciacurso().substring(licPaternidad.getConstanciacurso().indexOf("_")+1,licPaternidad.getConstanciacurso().length()));
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        noEmpleado = personal.getNoEmpleado();
+        idEmpleado = personal.getIdEmpleado();
         model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
         return "justificantePaternidad/modificar-justificante-paternidad";
     }
@@ -121,7 +121,7 @@ public class LicenciaPaternidadController {
         int idjustificante=0;
         try {
 
-            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
+            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
         } catch (IOException e) {
             LOG.error("ERROR:", e);

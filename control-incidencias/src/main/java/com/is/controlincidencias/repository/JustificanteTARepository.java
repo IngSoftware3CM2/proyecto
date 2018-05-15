@@ -24,7 +24,7 @@ public interface JustificanteTARepository extends JpaRepository<TipoA,Serializab
     @Modifying
     @Transactional
     @Query(value="select notarjeta from personal where noempleado= :noempleado", nativeQuery = true)
-    int findNotarjetaByNoempleado(@Param("noempleado") int noempleado);
+    int findNotarjetaByIdempleado(@Param("noempleado") int idempleado);
 
     @Modifying
     @Transactional

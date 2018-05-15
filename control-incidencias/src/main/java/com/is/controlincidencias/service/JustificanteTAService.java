@@ -10,7 +10,7 @@ public interface JustificanteTAService {
 
     boolean existsByIdjustificante (int id);
 
-    String findNoTarjetaByNoEmpleado(int noEmpleado);
+    String findNoTarjetaByIdEmpleado(int idEmpleado);
 
     int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante, int idIncidencia);
     List<String> findZonas();

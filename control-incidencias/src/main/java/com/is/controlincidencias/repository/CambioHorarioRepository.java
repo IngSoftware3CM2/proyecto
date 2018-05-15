@@ -37,12 +37,12 @@ public interface CambioHorarioRepository extends JpaRepository<CambioHorario, Se
 
 
     @Transactional
-    @Query(value="select idjustificante from justificante where noempleado = :noempleado", nativeQuery = true)
-    int getIdJustificanteByNoEmpleado(@Param("noempleado") int noempleado);
+    @Query(value="select idjustificante from justificante where idempleado = :idempleado", nativeQuery = true)
+    int getIdJustificanteByIdEmpleado(@Param("idempleado") int idempleado);
 
     @Transactional
-    @Query(value = "select noempleado from incidencia where idincidencia = :idincidencia", nativeQuery = true)
-    int getNoEmpleadoByIdIncidencia(@Param("idincidencia") int idincidencia);
+    @Query(value = "select idempleado from incidencia where idincidencia = :idincidencia", nativeQuery = true)
+    int getIdEmpleadoByIdIncidencia(@Param("idincidencia") int idincidencia);
 
     boolean existsByJustificante_IdJustificante (int id);
 }
