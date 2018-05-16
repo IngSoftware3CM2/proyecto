@@ -7,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import java.util.List;
 @Controller
 public class LoginController {
 
-    private static final String VISTA_INICIO = "inicio";
     private static final String VISTA_LOGIN = "iniciar-sesion";
 
     @GetMapping("/login")
@@ -48,11 +46,5 @@ public class LoginController {
             redirect = "redirect:/personal";
 
         return redirect;
-    }
-
-    @PostMapping("/acceder")
-    public String acceder() {
-        log.info("Accedí al metodo acceder del controlador.");
-        return VISTA_INICIO;
     }
 }
