@@ -31,9 +31,6 @@ public class Personal {
     @Column(name = "sexo", nullable = false, length = 2)
     private char sexo;
 
-    @Column(name = "correo", nullable = false, length = 50)
-    private String correo;
-
     @Column(name = "activo", nullable = false)  //se deja en false si es docente y se va de año sabático, eg,  para no generarle incidencias, para quien haga el cronos
     private Boolean activo;
 
