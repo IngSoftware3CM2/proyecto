@@ -7,8 +7,8 @@ import com.is.controlincidencias.model.AsistenciaJSON;
 import java.time.LocalDate;
 
 public interface AsistenciaService {
-    boolean buscarAsistencia(LocalDate fecha, int noTarjeta);
-    boolean buscarTarjeta(int noTarjeta);
+    boolean buscarAsistencia(LocalDate fecha, String noTarjeta);
+    boolean buscarTarjeta(String noTarjeta);
     void agregarAsistencia(AsistenciaJSON asistenciaJSON);
     int existeAsistencia(AsistenciaForm asistenciaForm);
     AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm);

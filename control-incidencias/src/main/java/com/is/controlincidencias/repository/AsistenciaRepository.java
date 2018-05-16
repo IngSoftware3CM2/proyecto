@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializable> {
-    boolean existsAsistenciaByFechaRegistroAndPersonal_NoTarjeta(LocalDate fecha, int noTarjeta);
-    Asistencia findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(LocalDate fecha, int noTarjeta);
+    boolean existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(LocalDate fecha, String noTarjeta);
+    Asistencia findAsistenciaByFechaRegistroAndPersonalNoTarjeta(LocalDate fecha, String
+            noTarjeta);
 }

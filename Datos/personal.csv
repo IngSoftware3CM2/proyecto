@@ -1,255 +1,255 @@
 ﻿idempleado,noempleado,activo,correo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo
-1,00000015,TRUE,rpb@ipn.mx,M,Aarón Mauricio,Rodríguez,Alquicira,040001,4,DOC
-2,00000016,TRUE,rpb@ipn.mx,M,Adolfo,Guzmán,Arenas,040002,4,DOC
-3,00000017,TRUE,rpb@ipn.mx,M,Alberto Jesús,Alcántara,Méndez,040003,4,DOC
-4,00000018,TRUE,rpb@ipn.mx,M,Alejandro,Botello,Castillo,040004,4,DOC
-5,00000019,TRUE,rpb@ipn.mx,M,Alejandro,Canalez,Cruz,040005,4,DOC
-6,00000020,TRUE,rpb@ipn.mx,M,Alejandro Sigfrido,Cifuentes,Álvarez,040006,4,DOC
-7,00000021,TRUE,rpb@ipn.mx,M,Alfonso,Fernández,Vázquez,040007,4,DOC
-8,00000022,TRUE,rpb@ipn.mx,M,Alma Delia,Cuevas,Rasgado,040008,4,DOC
-9,00000023,TRUE,rpb@ipn.mx,M,Amilcar,Meneses,Viveros,040009,4,DOC
-10,00000024,TRUE,rpb@ipn.mx,M,Andrés,Ortigoza,Campos,040010,4,DOC
-11,00000025,TRUE,rpb@ipn.mx,M,Antonio Gustavo,Juárez,Gracia,040011,4,DOC
-12,00000026,TRUE,rpb@ipn.mx,M,Ariel,López,Rojas,040012,4,DOC
-13,00000027,TRUE,rpb@ipn.mx,M,Axel Ernesto,Moreno,Cervantes,040013,4,DOC
-14,00000028,TRUE,rpb@ipn.mx,M,Benjamín,Luna,Benoso,040014,4,DOC
-15,00000029,TRUE,rpb@ipn.mx,M,Carlos,Silva,Sánchez,040015,4,DOC
-16,00000030,TRUE,rpb@ipn.mx,M,César,Mújica,Ascencio,040016,4,DOC
-17,00000031,TRUE,rpb@ipn.mx,M,César Roman,Martínez,García,040017,4,DOC
-18,00000032,TRUE,rpb@ipn.mx,M,Chadwick,Carreto,Arellano,040018,4,DOC
-19,00000033,TRUE,rpb@ipn.mx,M,Claudia Alejandra,López,Rodríguez,040019,4,DOC
-20,00000034,TRUE,rpb@ipn.mx,M,Consuelo Varinia,García,Mendoza,040020,4,DOC
-21,00000035,TRUE,rpb@ipn.mx,M,Cornelio,Yañez,M rquez,040021,4,DOC
-22,00000036,TRUE,rpb@ipn.mx,M,Daniel,Cruz,García,040022,4,DOC
-23,00000037,TRUE,rpb@ipn.mx,M,David,Araujo,Díaz,040023,4,DOC
-24,00000038,TRUE,rpb@ipn.mx,M,Edgar Armando,Catalán,Salgado,040024,4,DOC
-25,00000039,TRUE,rpb@ipn.mx,M,Edgardo Adrián,Franco,Martínez,040025,4,DOC
-26,00000040,TRUE,rpb@ipn.mx,M,Edmundo René,Durán,Camarillo,040026,4,DOC
-27,00000041,TRUE,rpb@ipn.mx,M,Eduardo,Bustos,Farías,040027,4,DOC
-28,00000042,TRUE,rpb@ipn.mx,M,Eduardo,Chávez,Lima,040028,4,DOC
-29,00000043,TRUE,rpb@ipn.mx,M,Eduardo,Gutiérrez,Aldana,040029,4,DOC
-30,00000044,TRUE,rpb@ipn.mx,M,Eduardo,Rodríguez,Flores,040030,4,DOC
-31,00000045,TRUE,rpb@ipn.mx,M,Elba,Mendoza,Macías,040031,4,DOC
-32,00000046,TRUE,rpb@ipn.mx,M,Elena Fabiola,Ruiz,Ledesma,040032,4,DOC
-33,00000047,TRUE,rpb@ipn.mx,M,Enrique,Torres,González,040033,4,DOC
-34,00000048,TRUE,rpb@ipn.mx,M,Erick Eugenio,Linares,Vallejo,040034,4,DOC
-35,00000049,TRUE,rpb@ipn.mx,M,Erika,Hernández,Rubio,040035,4,DOC
-36,00000050,TRUE,rpb@ipn.mx,M,Euler,Hernández,Contreras,040036,4,DOC
-37,00000051,TRUE,rpb@ipn.mx,M,Fabiola,Ocampo,Botello,050001,5,DOC
-38,00000052,TRUE,rpb@ipn.mx,M,Felipe de Jesús,Figueroa,Del Prado,050002,5,DOC
-39,00000053,TRUE,rpb@ipn.mx,M,Felipe Rolando,Menchaca,García,050003,5,DOC
-40,00000054,TRUE,rpb@ipn.mx,H,Fernando,Aguilar,Sánchez,050004,5,DOC
-41,00000055,TRUE,rpb@ipn.mx,H,Flavio Arturo,Sánchez,Gárfias,050005,5,DOC
-42,00000056,TRUE,rpb@ipn.mx,H,Gabriela De Jesús,López,Ruiz,050006,5,DOC
-43,00000057,TRUE,rpb@ipn.mx,H,Gelacio,Castillo,Cabrera,050007,5,DOC
-44,00000058,TRUE,rpb@ipn.mx,H,Germán,Téllez,Castillo,050008,5,DOC
-45,00000059,TRUE,rpb@ipn.mx,H,Gilberto,S nchez,Quintanilla,050009,5,DOC
-46,00000060,TRUE,rpb@ipn.mx,H,Gisela,Gonz lez,Albarr n,050010,5,DOC
-47,00000061,TRUE,rpb@ipn.mx,H,Guillermo,Márquez,Arreguín,050011,5,DOC
-48,00000062,TRUE,rpb@ipn.mx,H,Héctor Manuel,Paz,Rodríguez,050012,5,DOC
-49,00000063,TRUE,rpb@ipn.mx,H,Idalia,Maldonado,Castillo,050013,5,DOC
-50,00000064,TRUE,rpb@ipn.mx,H,Ignacio,Ríos,De la Torre,050014,5,DOC
-51,00000065,TRUE,rpb@ipn.mx,H,Ismael,Cervantes,De Anda,050015,5,DOC
-52,00000066,TRUE,rpb@ipn.mx,H,Ismael,Rojas,Mexicano,050016,5,DOC
-53,00000067,TRUE,rpb@ipn.mx,H,Iván,Díaz,Toal ,050017,5,DOC
-54,00000068,TRUE,rpb@ipn.mx,H,Jacqueline,Arzate,Gordillo,050018,5,DOC
-55,00000069,TRUE,rpb@ipn.mx,H,Jaime Hugo,Puebla,Lomas,050019,5,DOC
-56,00000070,TRUE,rpb@ipn.mx,H,Jesús Alfredo,Martínez,Nuño,050020,5,DOC
-57,00000071,TRUE,rpb@ipn.mx,H,Jesús Yalj ,Montiel,Pérez,030001,3,DOC
-58,00000072,TRUE,rpb@ipn.mx,H,Joel Omar,Juárez,Gambino,030002,3,DOC
-59,00000073,TRUE,rpb@ipn.mx,H,Jorge,Cortés,Galicia,030003,3,DOC
-60,00000074,TRUE,rpb@ipn.mx,H,Jorge Israel,Toledo,Alvarado,030004,3,DOC
-61,00000075,TRUE,rpb@ipn.mx,H,Jorge Luis,Rosas,Trigueros,030005,3,DOC
-62,00000076,TRUE,rpb@ipn.mx,H,José Alfredo,Jiménez,Benitez,030006,3,DOC
-63,00000077,TRUE,rpb@ipn.mx,H,José Antonio,García,Mejía,030007,3,DOC
-64,00000078,TRUE,rpb@ipn.mx,H,José Antonio,Ortíz,Ramírez,030008,3,DOC
-65,00000079,TRUE,rpb@ipn.mx,H,José Cruz,Martínez,Perales,030009,3,DOC
-66,00000080,TRUE,rpb@ipn.mx,H,José David,Ortega,Pacheco,030010,3,DOC
-67,00000081,TRUE,rpb@ipn.mx,H,José Félix,Serrano,Talamantes,030011,3,DOC
-68,00000082,TRUE,rpb@ipn.mx,H,José Giovanni,Guzmán,Lugo,030012,3,DOC
-69,00000083,TRUE,rpb@ipn.mx,H,José Jaime,López,Rabadán,030013,3,DOC
-70,00000084,TRUE,rpb@ipn.mx,H,José Juan,Pérez,Pérez,030014,3,DOC
-71,00000085,TRUE,rpb@ipn.mx,H,José Luis,Calderón,Osorno,030015,3,DOC
-72,00000086,TRUE,rpb@ipn.mx,H,José Luís,Hern ndez,Aguilar,030016,3,DOC
-73,00000087,TRUE,rpb@ipn.mx,H,José Marco Antonio,Rueda,Meléndez,030017,3,DOC
-74,00000088,TRUE,rpb@ipn.mx,H,José,S nchez,Ju rez,030018,3,DOC
-75,00000089,TRUE,rpb@ipn.mx,H,Josefina,Hern ndez,Jaime,030019,3,DOC
-76,00000090,TRUE,rpb@ipn.mx,H,Juan Antonio,Castillo,Marrufo,030020,3,DOC
-77,00000091,TRUE,rpb@ipn.mx,H,Juan,Asbun,Bojalil,030021,3,DOC
-78,00000092,TRUE,rpb@ipn.mx,H,Juan Carlos,Morales,Cruz,030022,3,DOC
-79,00000093,TRUE,rpb@ipn.mx,H,Juan Carlos,Téllez,Barrera,030023,3,DOC
-80,00000094,TRUE,rpb@ipn.mx,H,Juan Jesús,Gutiérrez,García,030024,3,DOC
-81,00000095,TRUE,rpb@ipn.mx,H,Juan José,Torres,Manríquez,030025,3,DOC
-82,00000096,TRUE,rpb@ipn.mx,H,Juan,Vera,Romero,030026,3,DOC
-83,00000097,TRUE,rpb@ipn.mx,H,Juan Vicente,García,Sales,030027,3,DOC
-84,00000098,TRUE,rpb@ipn.mx,H,Julio César,Sosa,Savedra,030028,3,DOC
-85,00000099,TRUE,rpb@ipn.mx,H,Karina,Viveros,Vela,030029,3,DOC
-86,00000100,TRUE,rpb@ipn.mx,H,Laura,Méndez,Segundo,030030,3,DOC
-87,00000101,TRUE,rpb@ipn.mx,H,Lorena,Chavarria,B ez,030031,3,DOC
-88,00000102,TRUE,rpb@ipn.mx,H,Luis Carlos,Coronado,García,030032,3,DOC
-89,00000103,TRUE,rpb@ipn.mx,H,Luis Octavio,Lopez,Leyva,030033,3,DOC
-90,00000104,TRUE,rpb@ipn.mx,H,Luz Noé,Oliva,Moreno,030034,3,DOC
-91,00000105,TRUE,rpb@ipn.mx,H,Macario,Hern ndez,Cruz,030035,3,DOC
-92,00000106,TRUE,rpb@ipn.mx,H,Manuel Alejandro,Soto,Ramos,030036,3,DOC
-93,00000107,TRUE,rpb@ipn.mx,H,Marco Antonio,Dorantes,Gonz lez,030037,3,DOC
-94,00000108,TRUE,rpb@ipn.mx,H,Marco Antonio,Moreno,Ibarra,030038,3,DOC
-95,00000109,TRUE,rpb@ipn.mx,H,Margarita Elizabeth,Gómez,Mayorga,030039,3,DOC
-96,00000110,TRUE,rpb@ipn.mx,H,María Del Rosario,Rocha,Bernabé,030040,3,DOC
-97,00000111,TRUE,rpb@ipn.mx,H,María Elena,Cruz,Meza,030041,3,DOC
-98,00000112,TRUE,rpb@ipn.mx,H,María Gabriela,Galiñanes,Rodríguez,030042,3,DOC
-99,00000113,TRUE,rpb@ipn.mx,H,María Julia,Calderón,Sambarino,030043,3,DOC
-100,00000114,TRUE,rpb@ipn.mx,H,Mario,Aldape,Pérez,030044,3,DOC
-101,00000115,TRUE,rpb@ipn.mx,H,Mario Augusto,Ramírez,Morales,030045,3,DOC
-102,00000116,TRUE,rpb@ipn.mx,H,Martha Rosa,Cordero,López,030046,3,DOC
-103,00000117,TRUE,rpb@ipn.mx,H,Miguel Ángel,Maldonado,Muñoz,030047,3,DOC
-104,00000118,TRUE,rpb@ipn.mx,H,Miguel Ángel,Vivanco,Gallardo,030048,3,DOC
-105,00000119,TRUE,rpb@ipn.mx,H,Miguel Félix,Mata,Rivera,030049,3,DOC
-106,00000120,TRUE,rpb@ipn.mx,H,Miguel Jesús,Torres,Ruíz,030050,3,DOC
-107,00000121,TRUE,rpb@ipn.mx,H,Miguel,Olvera,Aldana,030051,3,DOC
-108,00000122,TRUE,rpb@ipn.mx,H,Miguel Santiago,Su rez,Castañón,060001,6,DOC
-109,00000123,TRUE,rpb@ipn.mx,H,Miriam,Pescador,Rojas,060002,6,DOC
-110,00000124,TRUE,rpb@ipn.mx,H,Mondragón Tanibet,Pérez,De Los Santos,060003,6,DOC
-111,00000125,TRUE,rpb@ipn.mx,H,Mónica,Rivera,De La Rosa,060004,6,DOC
-112,00000126,TRUE,rpb@ipn.mx,H,Monserrat Gabriela,Pérez,Vera,060005,6,DOC
-113,00000127,TRUE,rpb@ipn.mx,H,Nancy,Ocotitla,Rojas,060006,6,DOC
-114,00000128,TRUE,rpb@ipn.mx,H,Nidia Asunción,Cortez,Duarte,060007,6,DOC
-115,00000129,TRUE,rpb@ipn.mx,H,Odette Berenice,Cancino,Mosqueda,060008,6,DOC
-116,00000130,TRUE,rpb@ipn.mx,H,Rafael Norman,Saucedo,Delgado,060009,6,DOC
-117,00000131,TRUE,rpb@ipn.mx,H,Rafael,Ramírez,Tenorio,060010,6,DOC
-118,00000132,TRUE,rpb@ipn.mx,H,Ricardo,Martínez,Rosales,060011,6,DOC
-119,00000133,TRUE,rpb@ipn.mx,H,Roberto,De Luna,Caballero,060012,6,DOC
-120,00000134,TRUE,rpb@ipn.mx,H,Roberto Eswart,Zagal,Flores,060013,6,DOC
-121,00000135,TRUE,rpb@ipn.mx,H,Roberto,V zquez,Arreguín,060014,6,DOC
-122,00000136,TRUE,rpb@ipn.mx,H,Rodolfo,Romero,Herrera,060015,6,DOC
-123,00000137,TRUE,rpb@ipn.mx,H,Rolando,Flores,Carapia,060016,6,DOC
-124,00000138,TRUE,rpb@ipn.mx,H,Rolando,Menchaca,Méndez,060017,6,DOC
-125,00000139,TRUE,rpb@ipn.mx,H,Rolando,Quintero,Téllez,060018,6,DOC
-126,00000140,TRUE,rpb@ipn.mx,H,Rosa Alba,Hern ndez,García,060019,6,DOC
-127,00000141,TRUE,rpb@ipn.mx,H,Rosaura,Palma,Orozco,060020,6,DOC
-128,00000142,TRUE,rpb@ipn.mx,H,Rubén,Peredo,Valderrama,060021,6,DOC
-129,00000143,TRUE,rpb@ipn.mx,H,Salvador Elias,Venegas,Andraca,060022,6,DOC
-130,00000144,TRUE,rpb@ipn.mx,H,Sandra Luz,Morales,Gitrón,060023,6,DOC
-131,00000145,TRUE,rpb@ipn.mx,H,Saúl,De la O,Torres,060024,6,DOC
-132,00000146,TRUE,rpb@ipn.mx,H,Serafín,Estrada,Elizalde,060025,6,DOC
-133,00000147,TRUE,rpb@ipn.mx,H,Sergio Antonio,Velazquez,Sereno,060026,6,DOC
-134,00000148,TRUE,rpb@ipn.mx,H,Sergio,Salinas,Lugo,060027,6,DOC
-135,00000149,TRUE,rpb@ipn.mx,H,Ukranio,Coronilla,Contreras,060028,6,DOC
-136,00000150,TRUE,rpb@ipn.mx,H,Ulises,Vélez,Saldaña,060029,6,DOC
-137,00000151,TRUE,rpb@ipn.mx,H,Victor Hugo,Garcia,Ortega,060030,6,DOC
-138,00000152,TRUE,rpb@ipn.mx,H,Virginia,Medina,Mejía,060031,6,DOC
-139,00000153,TRUE,rpb@ipn.mx,H,Virginia,Sánchez,Cruz,060032,6,DOC
-140,00000154,TRUE,rpb@ipn.mx,H,Yasmín Ivette,Jiménez,Gal n,060033,6,DOC
-141,00000155,TRUE,rpb@ipn.mx,H,Yaxkin,Flores,Mendoza,060034,6,DOC
-142,00000156,TRUE,rpb@ipn.mx,H,Rubén,Hern ndez,Tovar,060035,6,DOC
-143,00000157,TRUE,rpb@ipn.mx,H,Raúl,Acosta,Bermejo,060036,6,DOC
-144,00000158,TRUE,rpb@ipn.mx,H,Fernando,Galindo,Soria,060037,6,DOC
-145,00000159,TRUE,rpb@ipn.mx,H,Víctor Hugo,Ponce,Ponce,060038,6,DOC
-146,00000160,TRUE,rpb@ipn.mx,H,René,Galindo,Orozco,060039,6,DOC
-147,00000161,TRUE,rpb@ipn.mx,H,Miguel Ángel,Norzagaray,Cosio,060040,6,DOC
-148,00000162,TRUE,rpb@ipn.mx,H,Wilebaldo,Lara,Vargas,060041,6,DOC
-149,00000163,TRUE,rpb@ipn.mx,H,Julián Guadalupe,Tapia,Aguilar,060042,6,DOC
-150,00000164,TRUE,rpb@ipn.mx,H,Rubén,Ortega,Gonz lez,060043,6,DOC
-151,00000165,TRUE,rpb@ipn.mx,H,Jesús Alberto,Martínez,Castro,060044,6,DOC
-152,00000166,TRUE,rpb@ipn.mx,H,Juan Carlos,Chimal,Eguía,060045,6,DOC
-153,00000167,TRUE,rpb@ipn.mx,H,Víctor,M rquez,García,060046,6,DOC
-154,00000168,TRUE,rpb@ipn.mx,H,Héctor Manuel,Paz,Rodríguez,060047,6,DOC
-155,00000169,TRUE,rpb@ipn.mx,H,José Armando,Esquivel,Centeno,060048,6,DOC
-156,00000170,TRUE,rpb@ipn.mx,H,Aurora,Aparicio,Castillo,060049,6,DOC
-157,00000171,TRUE,rpb@ipn.mx,H,Víctor Rafael,Moreno,Peña,060050,6,DOC
-158,00000172,TRUE,rpb@ipn.mx,H,Oscar,Carranza,Castillo,060051,6,DOC
-159,00000173,TRUE,rpb@ipn.mx,H,René,Gutiérrez,Morales,060052,6,DOC
-160,00000174,TRUE,rpb@ipn.mx,H,Rubén,Galicia,Mejía,060053,6,DOC
-161,00000175,TRUE,rpb@ipn.mx,H,Gonzalo,Pérez,Araiza,060054,6,DOC
-162,00000176,TRUE,rpb@ipn.mx,H,Sandra,Díaz,Santiago,060055,6,DOC
-163,00000177,TRUE,rpb@ipn.mx,H,Mario Humberto,Ramírez,Díaz,060056,6,DOC
-164,00000178,TRUE,rpb@ipn.mx,H,Miguel Abel,León,Hern ndez,060057,6,DOC
-165,00000179,TRUE,rpb@ipn.mx,H,Jorge,Ferrer,Tenorio,060058,6,DOC
-166,00000180,TRUE,rpb@ipn.mx,H,Carlos,Pineda,Guerrero,060059,6,DOC
-167,00000181,TRUE,rpb@ipn.mx,H,Araceli,Loyola,Espinosa,060060,6,DOC
-168,00000182,TRUE,rpb@ipn.mx,H,Encarnación,Salinas,Hernández,060061,6,DOC
-169,00000183,TRUE,rpb@ipn.mx,H,Carlos Fernando,Aguilar,Ib ñez,060062,6,DOC
-170,00000184,TRUE,rpb@ipn.mx,H,Arturo,Pruneda,Martínez,060063,6,DOC
-171,00000185,TRUE,rpb@ipn.mx,H,Ricardo Felipe,Díaz,Santiago,060064,6,DOC
-172,00000186,TRUE,rpb@ipn.mx,H,Isaac Omar,López,V zquez,060065,6,DOC
-173,00000187,TRUE,rpb@ipn.mx,H,María Del Carmen,Domínguez,Ayala,060066,6,DOC
-174,00000188,TRUE,rpb@ipn.mx,H,Florencio,Guzm n,Aguilar,060067,6,DOC
-175,00000189,TRUE,rpb@ipn.mx,H,Edgardo Manuel,Riverón,Felipe,060068,6,DOC
-176,00000190,TRUE,rpb@ipn.mx,H,Jesús Manuel,Olivares,Ceja,060069,6,DOC
-177,00000191,TRUE,rpb@ipn.mx,H,Sergio,Su rez,Guerra,060070,6,DOC
-178,00000192,TRUE,rpb@ipn.mx,H,Sandra Mercedes,Pérez,Vera,060071,6,DOC
-179,00000193,TRUE,rpb@ipn.mx,H,Tirso Javier,Salazar,Sandoval,060072,6,DOC
-180,00000194,TRUE,rpb@ipn.mx,H,Jazmín Adriana,Ju rez,Ramírez,060073,6,DOC
-181,00000195,TRUE,rpb@ipn.mx,H,Jesús Alberto,Montero,De La Cruz,060074,6,DOC
-182,00000196,TRUE,rpb@ipn.mx,H,Carlos,Altamirano,Robles,060075,6,DOC
-183,00000197,TRUE,rpb@ipn.mx,H,Martha,Franco,Espejel,060076,6,DOC
-184,00000198,TRUE,rpb@ipn.mx,H,José Manuel,De la Rosa,V zquez,060077,6,DOC
-185,00000199,TRUE,rpb@ipn.mx,M,Edgardo Adri n,Franco,Martínez,060078,6,DOC
-186,00000200,TRUE,rpb@ipn.mx,M,Raúl,Martínez,Memije,060079,6,DOC
-187,00000201,TRUE,rpb@ipn.mx,M,Hilario,Martínez,Arredondo,060080,6,DOC
-188,00000202,FALSE,rpb@ipn.mx,M,Richard Alexander,Award,Reyes,060081,6,DOC
-189,00000203,FALSE,rpb@ipn.mx,M,Rocio,García,Pedraza,060082,6,DOC
-190,00000204,FALSE,rpb@ipn.mx,M,Norberto,Flores,Guzm n,060083,6,DOC
-191,00000205,FALSE,rpb@ipn.mx,M,Martín Alberto,Díaz,Viera,060084,6,DOC
-192,00000206,FALSE,rpb@ipn.mx,M,José Carlos,D valos,López,060085,6,DOC
-193,00000207,FALSE,rpb@ipn.mx,M,Enrique De Jesús,Aragón,Pineda,060086,6,DOC
-194,00000208,FALSE,rpb@ipn.mx,M,Alejandro,Cruz,Rojas,060087,6,DOC
-195,00000209,FALSE,rpb@ipn.mx,M,Marco Antonio,Barranco,Jiménez,060088,6,DOC
-196,00000210,FALSE,rpb@ipn.mx,M,Laura Rocío,Ortíz,Esquivel,060089,6,DOC
-197,00000211,FALSE,rpb@ipn.mx,M,Miguel Ángel,Alem n,Arce,060090,6,DOC
-198,00000212,FALSE,rpb@ipn.mx,M,Maribel,Aragón,García,060091,6,DOC
-199,00000213,FALSE,rpb@ipn.mx,M,Jesús Ixbalank,Torres,Zúñiga,060092,6,DOC
-200,00000214,FALSE,rpb@ipn.mx,M,Jorge Javier,Silva,Martínez,060093,6,DOC
-201,00000215,FALSE,rpb@ipn.mx,M,Hortencia,Gómez,Víquez,060094,6,DOC
-202,00000216,FALSE,rpb@ipn.mx,M,Juan Manuel,Carballo,Jiménez,060095,6,DOC
-203,00000217,FALSE,rpb@ipn.mx,M,Juan Carlos,Martínez,Díaz,060096,6,DOC
-204,00000218,FALSE,rpb@ipn.mx,M,Luis Carlos,Coronado,García,060097,6,DOC
-205,00000219,FALSE,rpb@ipn.mx,M,Rafael,Fern ndez,Nava,230001,23,DOC
-206,00000220,FALSE,rpb@ipn.mx,M,Genaro,Ju rez,Martínez,230002,23,DOC
-207,00000221,FALSE,rpb@ipn.mx,M,Israel,Vite,Silva,230003,23,DOC
-208,00000222,FALSE,rpb@ipn.mx,M,Sonia,S nchez,Díaz,230004,23,DOC
-209,00000223,FALSE,rpb@ipn.mx,M,María Elena,Acevedo,Mosqueda,230005,23,DOC
-210,00000224,FALSE,rpb@ipn.mx,M,Benjamín,Cruz,Torres,230006,23,DOC
-211,00000225,FALSE,rpb@ipn.mx,M,Ricardo,Barrón,Fern ndez,230007,23,DOC
-212,00000226,FALSE,rpb@ipn.mx,M,David,Cruz,Rojas,230008,23,DOC
-213,00000227,FALSE,rpb@ipn.mx,M,Rogelio,Maldonado,Rodríguez,230009,23,DOC
-214,00000228,FALSE,rpb@ipn.mx,M,Rocío,Reséndiz,Muñoz,230010,23,DOC
-215,00000229,FALSE,rpb@ipn.mx,M,Dalia Gabriela,Lara,Perdomo,230011,23,DOC
-216,00000230,FALSE,rpb@ipn.mx,M,Jorge,Sosa,Pedroza,230012,23,DOC
-217,00000231,FALSE,rpb@ipn.mx,M,Guadalupe Ángel,Gonz lez,Chavez,230013,23,DOC
-218,00000232,FALSE,rpb@ipn.mx,M,Arturo,Ortíz,Tapia,230014,23,DOC
-219,00000233,FALSE,rpb@ipn.mx,M,Amadeo,Arguelles,Cruz,230015,23,DOC
-220,00000234,FALSE,rpb@ipn.mx,M,Samuel,Domínguez,Hern ndez,230016,23,DOC
-221,00000235,FALSE,rpb@ipn.mx,M,José Alejandro,Mora,Rodríguez,230017,23,DOC
-222,00000236,FALSE,rpb@ipn.mx,M,Rogelio Gerardo,Hern ndez,García,230018,23,DOC
-223,00000237,FALSE,rpb@ipn.mx,M,Alexander,Gelbukh,Khan,230019,23,DOC
-224,00000238,FALSE,rpb@ipn.mx,M,Rogelio,Sotelo,Boy s,230020,23,DOC
-225,00000239,FALSE,rpb@ipn.mx,M,Roberto A.,Vázquez,Espinoza de los Monteros,230021,23,DOC
-226,00000240,FALSE,rpb@ipn.mx,M,Freddy Guillermo,Castro,Farfán,230022,23,DOC
-227,00000241,FALSE,rpb@ipn.mx,M,Samuel,Sánchez,Islas,230023,23,DOC
-228,00000242,FALSE,rpb@ipn.mx,M,Karinne,Ramírez,Amaro,230024,23,DOC
-229,00000243,FALSE,rpb@ipn.mx,M,Sandra Dinorah,Orantes,Jiménez,230025,23,DOC
-230,00000244,FALSE,rpb@ipn.mx,M,Francisco Hiram,Calvo,Castro,230026,23,DOC
-231,00000245,FALSE,rpb@ipn.mx,M,Cirilo Gabino,León,Vega,110124,11,DOC
-232,00000246,FALSE,rpb@ipn.mx,M,Jesús,Figueroa,Nazuno,110125,11,DOC
-233,00000247,FALSE,rpb@ipn.mx,M,Luis Alfonso,Villa,Vargas,110126,11,DOC
-234,00000248,FALSE,rpb@ipn.mx,M,Gabriel,Sepulveda,Cervantes,110127,11,DOC
-235,00000249,FALSE,rpb@ipn.mx,M,Jesús Antonio,Álvarez,Cedillo,110128,11,DOC
-236,00000250,FALSE,rpb@ipn.mx,M,Marco Antonio,Ramírez,Salinas,110129,11,DOC
-237,00000251,FALSE,rpb@ipn.mx,M,José Antonio,Romero,Serrano,110130,11,DOC
-238,00000252,FALSE,rpb@ipn.mx,M,Julio Ramiro,Alonso,Cruz,110131,11,DOC
-239,00000253,FALSE,rpb@ipn.mx,M,Eugenio,Cedillo,Portugal,110132,11,DOC
-240,00000254,FALSE,rpb@ipn.mx,M,Reyna Elia,Melara,Abarca,110133,11,DOC
-241,00000255,FALSE,rpb@ipn.mx,M,Edgar Felipe,Maya,Maya,110134,11,DOC
-242,00000256,FALSE,rpb@ipn.mx,M,Ana Maria,Winfield,Reyes,110135,11,DOC
-243,00000257,FALSE,rpb@ipn.mx,M,Blanca Esther,Carvajal,Gámez,110136,11,DOC
-244,00000258,FALSE,rpb@ipn.mx,M,Mauricio Ramón,García,Gómez,110137,11,DOC
-245,00000259,FALSE,rpb@ipn.mx,M,Juan Carlos,Martínez,García,110138,11,DOC
-246,00000260,FALSE,rpb@ipn.mx,M,Judith Margarita,Tirado,Lule,110139,11,DOC
-247,00000261,FALSE,rpb@ipn.mx,M,Angelica,Camarena,Amaro,110140,11,DOC
-248,00000262,FALSE,rpb@ipn.mx,M,Alfonso,Méndez,Tenorio,110141,11,DOC
-249,00000263,FALSE,rpb@ipn.mx,M,Adbel Anahí,Montes,Meza,110142,11,DOC
-250,00000264,FALSE,rpb@ipn.mx,M,Martha Patricia,Jiménez,Villanueva,110143,11,DOC
-251,00000265,FALSE,rpb@ipn.mx,M,Fabián,Reyes,Prieto,110144,11,DOC
-252,00000266,TRUE,rpb@ipn.mx,M,Rolando Félix,Cedillo,Caballero,110145,11,DOC
-253,00000267,TRUE,rpb@ipn.mx,M,Víctor Hugo,Cabrera,Arenas,110146,11,DOC
-254,00000268,TRUE,rpb@ipn.mx,M,Ángel Salvador,Montiel,Sánchez,110147,11,DOC
+1,00000015,TRUE,rpb@ipn.mx,M,Aarón Mauricio,Rodríguez,Alquicira,040001,4,ROLE_DOC
+2,00000016,TRUE,rpb@ipn.mx,M,Adolfo,Guzmán,Arenas,040002,4,ROLE_DOC
+3,00000017,TRUE,rpb@ipn.mx,M,Alberto Jesús,Alcántara,Méndez,040003,4,ROLE_DOC
+4,00000018,TRUE,rpb@ipn.mx,M,Alejandro,Botello,Castillo,040004,4,ROLE_DOC
+5,00000019,TRUE,rpb@ipn.mx,M,Alejandro,Canalez,Cruz,040005,4,ROLE_DOC
+6,00000020,TRUE,rpb@ipn.mx,M,Alejandro Sigfrido,Cifuentes,Álvarez,040006,4,ROLE_DOC
+7,00000021,TRUE,rpb@ipn.mx,M,Alfonso,Fernández,Vázquez,040007,4,ROLE_DOC
+8,00000022,TRUE,rpb@ipn.mx,M,Alma Delia,Cuevas,Rasgado,040008,4,ROLE_DOC
+9,00000023,TRUE,rpb@ipn.mx,M,Amilcar,Meneses,Viveros,040009,4,ROLE_DOC
+10,00000024,TRUE,rpb@ipn.mx,M,Andrés,Ortigoza,Campos,040010,4,ROLE_DOC
+11,00000025,TRUE,rpb@ipn.mx,M,Antonio Gustavo,Juárez,Gracia,040011,4,ROLE_DOC
+12,00000026,TRUE,rpb@ipn.mx,M,Ariel,López,Rojas,040012,4,ROLE_DOC
+13,00000027,TRUE,rpb@ipn.mx,M,Axel Ernesto,Moreno,Cervantes,040013,4,ROLE_DOC
+14,00000028,TRUE,rpb@ipn.mx,M,Benjamín,Luna,Benoso,040014,4,ROLE_DOC
+15,00000029,TRUE,rpb@ipn.mx,M,Carlos,Silva,Sánchez,040015,4,ROLE_DOC
+16,00000030,TRUE,rpb@ipn.mx,M,César,Mújica,Ascencio,040016,4,ROLE_DOC
+17,00000031,TRUE,rpb@ipn.mx,M,César Roman,Martínez,García,040017,4,ROLE_DOC
+18,00000032,TRUE,rpb@ipn.mx,M,Chadwick,Carreto,Arellano,040018,4,ROLE_DOC
+19,00000033,TRUE,rpb@ipn.mx,M,Claudia Alejandra,López,Rodríguez,040019,4,ROLE_DOC
+20,00000034,TRUE,rpb@ipn.mx,M,Consuelo Varinia,García,Mendoza,040020,4,ROLE_DOC
+21,00000035,TRUE,rpb@ipn.mx,M,Cornelio,Yañez,M rquez,040021,4,ROLE_DOC
+22,00000036,TRUE,rpb@ipn.mx,M,Daniel,Cruz,García,040022,4,ROLE_DOC
+23,00000037,TRUE,rpb@ipn.mx,M,David,Araujo,Díaz,040023,4,ROLE_DOC
+24,00000038,TRUE,rpb@ipn.mx,M,Edgar Armando,Catalán,Salgado,040024,4,ROLE_DOC
+25,00000039,TRUE,rpb@ipn.mx,M,Edgardo Adrián,Franco,Martínez,040025,4,ROLE_DOC
+26,00000040,TRUE,rpb@ipn.mx,M,Edmundo René,Durán,Camarillo,040026,4,ROLE_DOC
+27,00000041,TRUE,rpb@ipn.mx,M,Eduardo,Bustos,Farías,040027,4,ROLE_DOC
+28,00000042,TRUE,rpb@ipn.mx,M,Eduardo,Chávez,Lima,040028,4,ROLE_DOC
+29,00000043,TRUE,rpb@ipn.mx,M,Eduardo,Gutiérrez,Aldana,040029,4,ROLE_DOC
+30,00000044,TRUE,rpb@ipn.mx,M,Eduardo,Rodríguez,Flores,040030,4,ROLE_DOC
+31,00000045,TRUE,rpb@ipn.mx,M,Elba,Mendoza,Macías,040031,4,ROLE_DOC
+32,00000046,TRUE,rpb@ipn.mx,M,Elena Fabiola,Ruiz,Ledesma,040032,4,ROLE_DOC
+33,00000047,TRUE,rpb@ipn.mx,M,Enrique,Torres,González,040033,4,ROLE_DOC
+34,00000048,TRUE,rpb@ipn.mx,M,Erick Eugenio,Linares,Vallejo,040034,4,ROLE_DOC
+35,00000049,TRUE,rpb@ipn.mx,M,Erika,Hernández,Rubio,040035,4,ROLE_DOC
+36,00000050,TRUE,rpb@ipn.mx,M,Euler,Hernández,Contreras,040036,4,ROLE_DOC
+37,00000051,TRUE,rpb@ipn.mx,M,Fabiola,Ocampo,Botello,050001,5,ROLE_DOC
+38,00000052,TRUE,rpb@ipn.mx,M,Felipe de Jesús,Figueroa,Del Prado,050002,5,ROLE_DOC
+39,00000053,TRUE,rpb@ipn.mx,M,Felipe Rolando,Menchaca,García,050003,5,ROLE_DOC
+40,00000054,TRUE,rpb@ipn.mx,H,Fernando,Aguilar,Sánchez,050004,5,ROLE_DOC
+41,00000055,TRUE,rpb@ipn.mx,H,Flavio Arturo,Sánchez,Gárfias,050005,5,ROLE_DOC
+42,00000056,TRUE,rpb@ipn.mx,H,Gabriela De Jesús,López,Ruiz,050006,5,ROLE_DOC
+43,00000057,TRUE,rpb@ipn.mx,H,Gelacio,Castillo,Cabrera,050007,5,ROLE_DOC
+44,00000058,TRUE,rpb@ipn.mx,H,Germán,Téllez,Castillo,050008,5,ROLE_DOC
+45,00000059,TRUE,rpb@ipn.mx,H,Gilberto,S nchez,Quintanilla,050009,5,ROLE_DOC
+46,00000060,TRUE,rpb@ipn.mx,H,Gisela,Gonz lez,Albarr n,050010,5,ROLE_DOC
+47,00000061,TRUE,rpb@ipn.mx,H,Guillermo,Márquez,Arreguín,050011,5,ROLE_DOC
+48,00000062,TRUE,rpb@ipn.mx,H,Héctor Manuel,Paz,Rodríguez,050012,5,ROLE_DOC
+49,00000063,TRUE,rpb@ipn.mx,H,Idalia,Maldonado,Castillo,050013,5,ROLE_DOC
+50,00000064,TRUE,rpb@ipn.mx,H,Ignacio,Ríos,De la Torre,050014,5,ROLE_DOC
+51,00000065,TRUE,rpb@ipn.mx,H,Ismael,Cervantes,De Anda,050015,5,ROLE_DOC
+52,00000066,TRUE,rpb@ipn.mx,H,Ismael,Rojas,Mexicano,050016,5,ROLE_DOC
+53,00000067,TRUE,rpb@ipn.mx,H,Iván,Díaz,Toal ,050017,5,ROLE_DOC
+54,00000068,TRUE,rpb@ipn.mx,H,Jacqueline,Arzate,Gordillo,050018,5,ROLE_DOC
+55,00000069,TRUE,rpb@ipn.mx,H,Jaime Hugo,Puebla,Lomas,050019,5,ROLE_DOC
+56,00000070,TRUE,rpb@ipn.mx,H,Jesús Alfredo,Martínez,Nuño,050020,5,ROLE_DOC
+57,00000071,TRUE,rpb@ipn.mx,H,Jesús Yalj ,Montiel,Pérez,030001,3,ROLE_DOC
+58,00000072,TRUE,rpb@ipn.mx,H,Joel Omar,Juárez,Gambino,030002,3,ROLE_DOC
+59,00000073,TRUE,rpb@ipn.mx,H,Jorge,Cortés,Galicia,030003,3,ROLE_DOC
+60,00000074,TRUE,rpb@ipn.mx,H,Jorge Israel,Toledo,Alvarado,030004,3,ROLE_DOC
+61,00000075,TRUE,rpb@ipn.mx,H,Jorge Luis,Rosas,Trigueros,030005,3,ROLE_DOC
+62,00000076,TRUE,rpb@ipn.mx,H,José Alfredo,Jiménez,Benitez,030006,3,ROLE_DOC
+63,00000077,TRUE,rpb@ipn.mx,H,José Antonio,García,Mejía,030007,3,ROLE_DOC
+64,00000078,TRUE,rpb@ipn.mx,H,José Antonio,Ortíz,Ramírez,030008,3,ROLE_DOC
+65,00000079,TRUE,rpb@ipn.mx,H,José Cruz,Martínez,Perales,030009,3,ROLE_DOC
+66,00000080,TRUE,rpb@ipn.mx,H,José David,Ortega,Pacheco,030010,3,ROLE_DOC
+67,00000081,TRUE,rpb@ipn.mx,H,José Félix,Serrano,Talamantes,030011,3,ROLE_DOC
+68,00000082,TRUE,rpb@ipn.mx,H,José Giovanni,Guzmán,Lugo,030012,3,ROLE_DOC
+69,00000083,TRUE,rpb@ipn.mx,H,José Jaime,López,Rabadán,030013,3,ROLE_DOC
+70,00000084,TRUE,rpb@ipn.mx,H,José Juan,Pérez,Pérez,030014,3,ROLE_DOC
+71,00000085,TRUE,rpb@ipn.mx,H,José Luis,Calderón,Osorno,030015,3,ROLE_DOC
+72,00000086,TRUE,rpb@ipn.mx,H,José Luís,Hern ndez,Aguilar,030016,3,ROLE_DOC
+73,00000087,TRUE,rpb@ipn.mx,H,José Marco Antonio,Rueda,Meléndez,030017,3,ROLE_DOC
+74,00000088,TRUE,rpb@ipn.mx,H,José,S nchez,Ju rez,030018,3,ROLE_DOC
+75,00000089,TRUE,rpb@ipn.mx,H,Josefina,Hern ndez,Jaime,030019,3,ROLE_DOC
+76,00000090,TRUE,rpb@ipn.mx,H,Juan Antonio,Castillo,Marrufo,030020,3,ROLE_DOC
+77,00000091,TRUE,rpb@ipn.mx,H,Juan,Asbun,Bojalil,030021,3,ROLE_DOC
+78,00000092,TRUE,rpb@ipn.mx,H,Juan Carlos,Morales,Cruz,030022,3,ROLE_DOC
+79,00000093,TRUE,rpb@ipn.mx,H,Juan Carlos,Téllez,Barrera,030023,3,ROLE_DOC
+80,00000094,TRUE,rpb@ipn.mx,H,Juan Jesús,Gutiérrez,García,030024,3,ROLE_DOC
+81,00000095,TRUE,rpb@ipn.mx,H,Juan José,Torres,Manríquez,030025,3,ROLE_DOC
+82,00000096,TRUE,rpb@ipn.mx,H,Juan,Vera,Romero,030026,3,ROLE_DOC
+83,00000097,TRUE,rpb@ipn.mx,H,Juan Vicente,García,Sales,030027,3,ROLE_DOC
+84,00000098,TRUE,rpb@ipn.mx,H,Julio César,Sosa,Savedra,030028,3,ROLE_DOC
+85,00000099,TRUE,rpb@ipn.mx,H,Karina,Viveros,Vela,030029,3,ROLE_DOC
+86,00000100,TRUE,rpb@ipn.mx,H,Laura,Méndez,Segundo,030030,3,ROLE_DOC
+87,00000101,TRUE,rpb@ipn.mx,H,Lorena,Chavarria,B ez,030031,3,ROLE_DOC
+88,00000102,TRUE,rpb@ipn.mx,H,Luis Carlos,Coronado,García,030032,3,ROLE_DOC
+89,00000103,TRUE,rpb@ipn.mx,H,Luis Octavio,Lopez,Leyva,030033,3,ROLE_DOC
+90,00000104,TRUE,rpb@ipn.mx,H,Luz Noé,Oliva,Moreno,030034,3,ROLE_DOC
+91,00000105,TRUE,rpb@ipn.mx,H,Macario,Hern ndez,Cruz,030035,3,ROLE_DOC
+92,00000106,TRUE,rpb@ipn.mx,H,Manuel Alejandro,Soto,Ramos,030036,3,ROLE_DOC
+93,00000107,TRUE,rpb@ipn.mx,H,Marco Antonio,Dorantes,Gonz lez,030037,3,ROLE_DOC
+94,00000108,TRUE,rpb@ipn.mx,H,Marco Antonio,Moreno,Ibarra,030038,3,ROLE_DOC
+95,00000109,TRUE,rpb@ipn.mx,H,Margarita Elizabeth,Gómez,Mayorga,030039,3,ROLE_DOC
+96,00000110,TRUE,rpb@ipn.mx,H,María Del Rosario,Rocha,Bernabé,030040,3,ROLE_DOC
+97,00000111,TRUE,rpb@ipn.mx,H,María Elena,Cruz,Meza,030041,3,ROLE_DOC
+98,00000112,TRUE,rpb@ipn.mx,H,María Gabriela,Galiñanes,Rodríguez,030042,3,ROLE_DOC
+99,00000113,TRUE,rpb@ipn.mx,H,María Julia,Calderón,Sambarino,030043,3,ROLE_DOC
+100,00000114,TRUE,rpb@ipn.mx,H,Mario,Aldape,Pérez,030044,3,ROLE_DOC
+101,00000115,TRUE,rpb@ipn.mx,H,Mario Augusto,Ramírez,Morales,030045,3,ROLE_DOC
+102,00000116,TRUE,rpb@ipn.mx,H,Martha Rosa,Cordero,López,030046,3,ROLE_DOC
+103,00000117,TRUE,rpb@ipn.mx,H,Miguel Ángel,Maldonado,Muñoz,030047,3,ROLE_DOC
+104,00000118,TRUE,rpb@ipn.mx,H,Miguel Ángel,Vivanco,Gallardo,030048,3,ROLE_DOC
+105,00000119,TRUE,rpb@ipn.mx,H,Miguel Félix,Mata,Rivera,030049,3,ROLE_DOC
+106,00000120,TRUE,rpb@ipn.mx,H,Miguel Jesús,Torres,Ruíz,030050,3,ROLE_DOC
+107,00000121,TRUE,rpb@ipn.mx,H,Miguel,Olvera,Aldana,030051,3,ROLE_DOC
+108,00000122,TRUE,rpb@ipn.mx,H,Miguel Santiago,Su rez,Castañón,060001,6,ROLE_DOC
+109,00000123,TRUE,rpb@ipn.mx,H,Miriam,Pescador,Rojas,060002,6,ROLE_DOC
+110,00000124,TRUE,rpb@ipn.mx,H,Mondragón Tanibet,Pérez,De Los Santos,060003,6,ROLE_DOC
+111,00000125,TRUE,rpb@ipn.mx,H,Mónica,Rivera,De La Rosa,060004,6,ROLE_DOC
+112,00000126,TRUE,rpb@ipn.mx,H,Monserrat Gabriela,Pérez,Vera,060005,6,ROLE_DOC
+113,00000127,TRUE,rpb@ipn.mx,H,Nancy,Ocotitla,Rojas,060006,6,ROLE_DOC
+114,00000128,TRUE,rpb@ipn.mx,H,Nidia Asunción,Cortez,Duarte,060007,6,ROLE_DOC
+115,00000129,TRUE,rpb@ipn.mx,H,Odette Berenice,Cancino,Mosqueda,060008,6,ROLE_DOC
+116,00000130,TRUE,rpb@ipn.mx,H,Rafael Norman,Saucedo,Delgado,060009,6,ROLE_DOC
+117,00000131,TRUE,rpb@ipn.mx,H,Rafael,Ramírez,Tenorio,060010,6,ROLE_DOC
+118,00000132,TRUE,rpb@ipn.mx,H,Ricardo,Martínez,Rosales,060011,6,ROLE_DOC
+119,00000133,TRUE,rpb@ipn.mx,H,Roberto,De Luna,Caballero,060012,6,ROLE_DOC
+120,00000134,TRUE,rpb@ipn.mx,H,Roberto Eswart,Zagal,Flores,060013,6,ROLE_DOC
+121,00000135,TRUE,rpb@ipn.mx,H,Roberto,V zquez,Arreguín,060014,6,ROLE_DOC
+122,00000136,TRUE,rpb@ipn.mx,H,Rodolfo,Romero,Herrera,060015,6,ROLE_DOC
+123,00000137,TRUE,rpb@ipn.mx,H,Rolando,Flores,Carapia,060016,6,ROLE_DOC
+124,00000138,TRUE,rpb@ipn.mx,H,Rolando,Menchaca,Méndez,060017,6,ROLE_DOC
+125,00000139,TRUE,rpb@ipn.mx,H,Rolando,Quintero,Téllez,060018,6,ROLE_DOC
+126,00000140,TRUE,rpb@ipn.mx,H,Rosa Alba,Hern ndez,García,060019,6,ROLE_DOC
+127,00000141,TRUE,rpb@ipn.mx,H,Rosaura,Palma,Orozco,060020,6,ROLE_DOC
+128,00000142,TRUE,rpb@ipn.mx,H,Rubén,Peredo,Valderrama,060021,6,ROLE_DOC
+129,00000143,TRUE,rpb@ipn.mx,H,Salvador Elias,Venegas,Andraca,060022,6,ROLE_DOC
+130,00000144,TRUE,rpb@ipn.mx,H,Sandra Luz,Morales,Gitrón,060023,6,ROLE_DOC
+131,00000145,TRUE,rpb@ipn.mx,H,Saúl,De la O,Torres,060024,6,ROLE_DOC
+132,00000146,TRUE,rpb@ipn.mx,H,Serafín,Estrada,Elizalde,060025,6,ROLE_DOC
+133,00000147,TRUE,rpb@ipn.mx,H,Sergio Antonio,Velazquez,Sereno,060026,6,ROLE_DOC
+134,00000148,TRUE,rpb@ipn.mx,H,Sergio,Salinas,Lugo,060027,6,ROLE_DOC
+135,00000149,TRUE,rpb@ipn.mx,H,Ukranio,Coronilla,Contreras,060028,6,ROLE_DOC
+136,00000150,TRUE,rpb@ipn.mx,H,Ulises,Vélez,Saldaña,060029,6,ROLE_DOC
+137,00000151,TRUE,rpb@ipn.mx,H,Victor Hugo,Garcia,Ortega,060030,6,ROLE_DOC
+138,00000152,TRUE,rpb@ipn.mx,H,Virginia,Medina,Mejía,060031,6,ROLE_DOC
+139,00000153,TRUE,rpb@ipn.mx,H,Virginia,Sánchez,Cruz,060032,6,ROLE_DOC
+140,00000154,TRUE,rpb@ipn.mx,H,Yasmín Ivette,Jiménez,Gal n,060033,6,ROLE_DOC
+141,00000155,TRUE,rpb@ipn.mx,H,Yaxkin,Flores,Mendoza,060034,6,ROLE_DOC
+142,00000156,TRUE,rpb@ipn.mx,H,Rubén,Hern ndez,Tovar,060035,6,ROLE_DOC
+143,00000157,TRUE,rpb@ipn.mx,H,Raúl,Acosta,Bermejo,060036,6,ROLE_DOC
+144,00000158,TRUE,rpb@ipn.mx,H,Fernando,Galindo,Soria,060037,6,ROLE_DOC
+145,00000159,TRUE,rpb@ipn.mx,H,Víctor Hugo,Ponce,Ponce,060038,6,ROLE_DOC
+146,00000160,TRUE,rpb@ipn.mx,H,René,Galindo,Orozco,060039,6,ROLE_DOC
+147,00000161,TRUE,rpb@ipn.mx,H,Miguel Ángel,Norzagaray,Cosio,060040,6,ROLE_DOC
+148,00000162,TRUE,rpb@ipn.mx,H,Wilebaldo,Lara,Vargas,060041,6,ROLE_DOC
+149,00000163,TRUE,rpb@ipn.mx,H,Julián Guadalupe,Tapia,Aguilar,060042,6,ROLE_DOC
+150,00000164,TRUE,rpb@ipn.mx,H,Rubén,Ortega,Gonz lez,060043,6,ROLE_DOC
+151,00000165,TRUE,rpb@ipn.mx,H,Jesús Alberto,Martínez,Castro,060044,6,ROLE_DOC
+152,00000166,TRUE,rpb@ipn.mx,H,Juan Carlos,Chimal,Eguía,060045,6,ROLE_DOC
+153,00000167,TRUE,rpb@ipn.mx,H,Víctor,M rquez,García,060046,6,ROLE_DOC
+154,00000168,TRUE,rpb@ipn.mx,H,Héctor Manuel,Paz,Rodríguez,060047,6,ROLE_DOC
+155,00000169,TRUE,rpb@ipn.mx,H,José Armando,Esquivel,Centeno,060048,6,ROLE_DOC
+156,00000170,TRUE,rpb@ipn.mx,H,Aurora,Aparicio,Castillo,060049,6,ROLE_DOC
+157,00000171,TRUE,rpb@ipn.mx,H,Víctor Rafael,Moreno,Peña,060050,6,ROLE_DOC
+158,00000172,TRUE,rpb@ipn.mx,H,Oscar,Carranza,Castillo,060051,6,ROLE_DOC
+159,00000173,TRUE,rpb@ipn.mx,H,René,Gutiérrez,Morales,060052,6,ROLE_DOC
+160,00000174,TRUE,rpb@ipn.mx,H,Rubén,Galicia,Mejía,060053,6,ROLE_DOC
+161,00000175,TRUE,rpb@ipn.mx,H,Gonzalo,Pérez,Araiza,060054,6,ROLE_DOC
+162,00000176,TRUE,rpb@ipn.mx,H,Sandra,Díaz,Santiago,060055,6,ROLE_DOC
+163,00000177,TRUE,rpb@ipn.mx,H,Mario Humberto,Ramírez,Díaz,060056,6,ROLE_DOC
+164,00000178,TRUE,rpb@ipn.mx,H,Miguel Abel,León,Hern ndez,060057,6,ROLE_DOC
+165,00000179,TRUE,rpb@ipn.mx,H,Jorge,Ferrer,Tenorio,060058,6,ROLE_DOC
+166,00000180,TRUE,rpb@ipn.mx,H,Carlos,Pineda,Guerrero,060059,6,ROLE_DOC
+167,00000181,TRUE,rpb@ipn.mx,H,Araceli,Loyola,Espinosa,060060,6,ROLE_DOC
+168,00000182,TRUE,rpb@ipn.mx,H,Encarnación,Salinas,Hernández,060061,6,ROLE_DOC
+169,00000183,TRUE,rpb@ipn.mx,H,Carlos Fernando,Aguilar,Ib ñez,060062,6,ROLE_DOC
+170,00000184,TRUE,rpb@ipn.mx,H,Arturo,Pruneda,Martínez,060063,6,ROLE_DOC
+171,00000185,TRUE,rpb@ipn.mx,H,Ricardo Felipe,Díaz,Santiago,060064,6,ROLE_DOC
+172,00000186,TRUE,rpb@ipn.mx,H,Isaac Omar,López,V zquez,060065,6,ROLE_DOC
+173,00000187,TRUE,rpb@ipn.mx,H,María Del Carmen,Domínguez,Ayala,060066,6,ROLE_DOC
+174,00000188,TRUE,rpb@ipn.mx,H,Florencio,Guzm n,Aguilar,060067,6,ROLE_DOC
+175,00000189,TRUE,rpb@ipn.mx,H,Edgardo Manuel,Riverón,Felipe,060068,6,ROLE_DOC
+176,00000190,TRUE,rpb@ipn.mx,H,Jesús Manuel,Olivares,Ceja,060069,6,ROLE_DOC
+177,00000191,TRUE,rpb@ipn.mx,H,Sergio,Su rez,Guerra,060070,6,ROLE_DOC
+178,00000192,TRUE,rpb@ipn.mx,H,Sandra Mercedes,Pérez,Vera,060071,6,ROLE_DOC
+179,00000193,TRUE,rpb@ipn.mx,H,Tirso Javier,Salazar,Sandoval,060072,6,ROLE_DOC
+180,00000194,TRUE,rpb@ipn.mx,H,Jazmín Adriana,Ju rez,Ramírez,060073,6,ROLE_DOC
+181,00000195,TRUE,rpb@ipn.mx,H,Jesús Alberto,Montero,De La Cruz,060074,6,ROLE_DOC
+182,00000196,TRUE,rpb@ipn.mx,H,Carlos,Altamirano,Robles,060075,6,ROLE_DOC
+183,00000197,TRUE,rpb@ipn.mx,H,Martha,Franco,Espejel,060076,6,ROLE_DOC
+184,00000198,TRUE,rpb@ipn.mx,H,José Manuel,De la Rosa,V zquez,060077,6,ROLE_DOC
+185,00000199,TRUE,rpb@ipn.mx,M,Edgardo Adri n,Franco,Martínez,060078,6,ROLE_DOC
+186,00000200,TRUE,rpb@ipn.mx,M,Raúl,Martínez,Memije,060079,6,ROLE_DOC
+187,00000201,TRUE,rpb@ipn.mx,M,Hilario,Martínez,Arredondo,060080,6,ROLE_DOC
+188,00000202,FALSE,rpb@ipn.mx,M,Richard Alexander,Award,Reyes,060081,6,ROLE_DOC
+189,00000203,FALSE,rpb@ipn.mx,M,Rocio,García,Pedraza,060082,6,ROLE_DOC
+190,00000204,FALSE,rpb@ipn.mx,M,Norberto,Flores,Guzm n,060083,6,ROLE_DOC
+191,00000205,FALSE,rpb@ipn.mx,M,Martín Alberto,Díaz,Viera,060084,6,ROLE_DOC
+192,00000206,FALSE,rpb@ipn.mx,M,José Carlos,D valos,López,060085,6,ROLE_DOC
+193,00000207,FALSE,rpb@ipn.mx,M,Enrique De Jesús,Aragón,Pineda,060086,6,ROLE_DOC
+194,00000208,FALSE,rpb@ipn.mx,M,Alejandro,Cruz,Rojas,060087,6,ROLE_DOC
+195,00000209,FALSE,rpb@ipn.mx,M,Marco Antonio,Barranco,Jiménez,060088,6,ROLE_DOC
+196,00000210,FALSE,rpb@ipn.mx,M,Laura Rocío,Ortíz,Esquivel,060089,6,ROLE_DOC
+197,00000211,FALSE,rpb@ipn.mx,M,Miguel Ángel,Alem n,Arce,060090,6,ROLE_DOC
+198,00000212,FALSE,rpb@ipn.mx,M,Maribel,Aragón,García,060091,6,ROLE_DOC
+199,00000213,FALSE,rpb@ipn.mx,M,Jesús Ixbalank,Torres,Zúñiga,060092,6,ROLE_DOC
+200,00000214,FALSE,rpb@ipn.mx,M,Jorge Javier,Silva,Martínez,060093,6,ROLE_DOC
+201,00000215,FALSE,rpb@ipn.mx,M,Hortencia,Gómez,Víquez,060094,6,ROLE_DOC
+202,00000216,FALSE,rpb@ipn.mx,M,Juan Manuel,Carballo,Jiménez,060095,6,ROLE_DOC
+203,00000217,FALSE,rpb@ipn.mx,M,Juan Carlos,Martínez,Díaz,060096,6,ROLE_DOC
+204,00000218,FALSE,rpb@ipn.mx,M,Luis Carlos,Coronado,García,060097,6,ROLE_DOC
+205,00000219,FALSE,rpb@ipn.mx,M,Rafael,Fern ndez,Nava,230001,23,ROLE_DOC
+206,00000220,FALSE,rpb@ipn.mx,M,Genaro,Ju rez,Martínez,230002,23,ROLE_DOC
+207,00000221,FALSE,rpb@ipn.mx,M,Israel,Vite,Silva,230003,23,ROLE_DOC
+208,00000222,FALSE,rpb@ipn.mx,M,Sonia,S nchez,Díaz,230004,23,ROLE_DOC
+209,00000223,FALSE,rpb@ipn.mx,M,María Elena,Acevedo,Mosqueda,230005,23,ROLE_DOC
+210,00000224,FALSE,rpb@ipn.mx,M,Benjamín,Cruz,Torres,230006,23,ROLE_DOC
+211,00000225,FALSE,rpb@ipn.mx,M,Ricardo,Barrón,Fern ndez,230007,23,ROLE_DOC
+212,00000226,FALSE,rpb@ipn.mx,M,David,Cruz,Rojas,230008,23,ROLE_DOC
+213,00000227,FALSE,rpb@ipn.mx,M,Rogelio,Maldonado,Rodríguez,230009,23,ROLE_DOC
+214,00000228,FALSE,rpb@ipn.mx,M,Rocío,Reséndiz,Muñoz,230010,23,ROLE_DOC
+215,00000229,FALSE,rpb@ipn.mx,M,Dalia Gabriela,Lara,Perdomo,230011,23,ROLE_DOC
+216,00000230,FALSE,rpb@ipn.mx,M,Jorge,Sosa,Pedroza,230012,23,ROLE_DOC
+217,00000231,FALSE,rpb@ipn.mx,M,Guadalupe Ángel,Gonz lez,Chavez,230013,23,ROLE_DOC
+218,00000232,FALSE,rpb@ipn.mx,M,Arturo,Ortíz,Tapia,230014,23,ROLE_DOC
+219,00000233,FALSE,rpb@ipn.mx,M,Amadeo,Arguelles,Cruz,230015,23,ROLE_DOC
+220,00000234,FALSE,rpb@ipn.mx,M,Samuel,Domínguez,Hern ndez,230016,23,ROLE_DOC
+221,00000235,FALSE,rpb@ipn.mx,M,José Alejandro,Mora,Rodríguez,230017,23,ROLE_DOC
+222,00000236,FALSE,rpb@ipn.mx,M,Rogelio Gerardo,Hern ndez,García,230018,23,ROLE_DOC
+223,00000237,FALSE,rpb@ipn.mx,M,Alexander,Gelbukh,Khan,230019,23,ROLE_DOC
+224,00000238,FALSE,rpb@ipn.mx,M,Rogelio,Sotelo,Boy s,230020,23,ROLE_DOC
+225,00000239,FALSE,rpb@ipn.mx,M,Roberto A.,Vázquez,Espinoza de los Monteros,230021,23,ROLE_DOC
+226,00000240,FALSE,rpb@ipn.mx,M,Freddy Guillermo,Castro,Farfán,230022,23,ROLE_DOC
+227,00000241,FALSE,rpb@ipn.mx,M,Samuel,Sánchez,Islas,230023,23,ROLE_DOC
+228,00000242,FALSE,rpb@ipn.mx,M,Karinne,Ramírez,Amaro,230024,23,ROLE_DOC
+229,00000243,FALSE,rpb@ipn.mx,M,Sandra Dinorah,Orantes,Jiménez,230025,23,ROLE_DOC
+230,00000244,FALSE,rpb@ipn.mx,M,Francisco Hiram,Calvo,Castro,230026,23,ROLE_DOC
+231,00000245,FALSE,rpb@ipn.mx,M,Cirilo Gabino,León,Vega,110124,11,ROLE_DOC
+232,00000246,FALSE,rpb@ipn.mx,M,Jesús,Figueroa,Nazuno,110125,11,ROLE_DOC
+233,00000247,FALSE,rpb@ipn.mx,M,Luis Alfonso,Villa,Vargas,110126,11,ROLE_DOC
+234,00000248,FALSE,rpb@ipn.mx,M,Gabriel,Sepulveda,Cervantes,110127,11,ROLE_DOC
+235,00000249,FALSE,rpb@ipn.mx,M,Jesús Antonio,Álvarez,Cedillo,110128,11,ROLE_DOC
+236,00000250,FALSE,rpb@ipn.mx,M,Marco Antonio,Ramírez,Salinas,110129,11,ROLE_DOC
+237,00000251,FALSE,rpb@ipn.mx,M,José Antonio,Romero,Serrano,110130,11,ROLE_DOC
+238,00000252,FALSE,rpb@ipn.mx,M,Julio Ramiro,Alonso,Cruz,110131,11,ROLE_DOC
+239,00000253,FALSE,rpb@ipn.mx,M,Eugenio,Cedillo,Portugal,110132,11,ROLE_DOC
+240,00000254,FALSE,rpb@ipn.mx,M,Reyna Elia,Melara,Abarca,110133,11,ROLE_DOC
+241,00000255,FALSE,rpb@ipn.mx,M,Edgar Felipe,Maya,Maya,110134,11,ROLE_DOC
+242,00000256,FALSE,rpb@ipn.mx,M,Ana Maria,Winfield,Reyes,110135,11,ROLE_DOC
+243,00000257,FALSE,rpb@ipn.mx,M,Blanca Esther,Carvajal,Gámez,110136,11,ROLE_DOC
+244,00000258,FALSE,rpb@ipn.mx,M,Mauricio Ramón,García,Gómez,110137,11,ROLE_DOC
+245,00000259,FALSE,rpb@ipn.mx,M,Juan Carlos,Martínez,García,110138,11,ROLE_DOC
+246,00000260,FALSE,rpb@ipn.mx,M,Judith Margarita,Tirado,Lule,110139,11,ROLE_DOC
+247,00000261,FALSE,rpb@ipn.mx,M,Angelica,Camarena,Amaro,110140,11,ROLE_DOC
+248,00000262,FALSE,rpb@ipn.mx,M,Alfonso,Méndez,Tenorio,110141,11,ROLE_DOC
+249,00000263,FALSE,rpb@ipn.mx,M,Adbel Anahí,Montes,Meza,110142,11,ROLE_DOC
+250,00000264,FALSE,rpb@ipn.mx,M,Martha Patricia,Jiménez,Villanueva,110143,11,ROLE_DOC
+251,00000265,FALSE,rpb@ipn.mx,M,Fabián,Reyes,Prieto,110144,11,ROLE_DOC
+252,00000266,TRUE,rpb@ipn.mx,M,Rolando Félix,Cedillo,Caballero,110145,11,ROLE_DOC
+253,00000267,TRUE,rpb@ipn.mx,M,Víctor Hugo,Cabrera,Arenas,110146,11,ROLE_DOC
+254,00000268,TRUE,rpb@ipn.mx,M,Ángel Salvador,Montiel,Sánchez,110147,11,ROLE_DOC

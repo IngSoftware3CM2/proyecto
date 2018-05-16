@@ -6,7 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -14,8 +15,9 @@ import java.time.LocalTime;
 @Setter
 @Getter
 public class AsistenciaForm {
-    @NotNull
-    private Integer tarjeta;
+    @NotBlank
+    @Size(max = 8)
+    private String tarjeta;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime horaEntrada;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)

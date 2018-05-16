@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 @Repository("personalRepository")
 public interface PersonalRepository extends JpaRepository<Personal, Serializable> {
-    boolean existsPersonalByNoTarjeta(int noTarjeta);
-    Personal getPersonalByNoTarjeta(int noTarjeta);
+    boolean existsPersonalByNoTarjeta(String noTarjeta);
+    Personal getPersonalByNoTarjeta(String noTarjeta);
     Personal findByIdEmpleado(int idEmpleado);
     Personal findByLogin_Correo(String email);
     Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);

@@ -9,6 +9,6 @@ import java.time.LocalDate;
 @Getter
 public class ConsultaAsistencia {
     private Integer estado;
-    private Integer noTarjeta;
+    private String noTarjeta;
     private LocalDate fechaRegistro;
 }

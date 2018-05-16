@@ -35,13 +35,13 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     }
 
     @Override
-    public boolean buscarAsistencia(LocalDate fecha, int noTarjeta) {
-        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha,
+    public boolean buscarAsistencia(LocalDate fecha, String noTarjeta) {
+        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(fecha,
                 noTarjeta);
     }
 
     @Override
-    public boolean buscarTarjeta(int noTarjeta) {
+    public boolean buscarTarjeta(String noTarjeta) {
         return personalRepository.existsPersonalByNoTarjeta(noTarjeta);
     }
 
@@ -67,20 +67,17 @@ public class AsistenciaServiceImpl implements AsistenciaService {
                 asistenciaForm.getTarjeta());
         if (!existeTarjeta) return 1; // No existe la tarjeta
 
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(asistenciaForm.getFecha(),
-                        asistenciaForm.getTarjeta());
-        if (a == null)
-            return 2; // No se encontro registro
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
+        if (a == null) return 2; // No se encontro registro
 
         return 0; // Salio chido
     }
 
     @Override
     public AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm) {
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(asistenciaForm.getFecha(),
-                        asistenciaForm.getTarjeta());
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
 
         asistenciaForm.setHoraSalida(a.getHoraSalida());
         asistenciaForm.setHoraEntrada(a.getHoraEntrada());
@@ -93,9 +90,8 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
         LocalTime horaEntrada = asistenciaForm.getHoraEntrada();
         LocalTime horaSalida = asistenciaForm.getHoraSalida();
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(asistenciaForm.getFecha(),
-                        asistenciaForm.getTarjeta());
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
         if (a == null) return null;
         if (!validarHoras(horaEntrada, horaSalida)) return null;
 
