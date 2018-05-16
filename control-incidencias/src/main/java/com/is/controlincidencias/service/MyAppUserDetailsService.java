@@ -20,9 +20,13 @@ import java.util.Set;
 @Service("userService")
 public class MyAppUserDetailsService implements UserDetailsService {
 
+    private final LoginRepository loginRepository;
+
     @Autowired
-    @Qualifier("loginRepository")
-    private LoginRepository loginRepository;
+    public MyAppUserDetailsService(
+            @Qualifier("loginRepository") LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

@@ -40,16 +40,6 @@ public class Personal {
     @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
-
-   /* @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "PersonalQuincena",
-            joinColumns = @JoinColumn(name = "idEmpleado"),
-            inverseJoinColumns = @JoinColumn(name = "idQuincena")
-    )
-    private Set<Quincena> quincena = new HashSet<Quincena>();*/
-
-
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Asistencia> asistencias = new ArrayList<>();
 
@@ -71,10 +61,7 @@ public class Personal {
     @OneToOne(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Login login;
 
-
-
-    public Personal() {
-    }
+    public Personal() { }
 
     private static final String DEFINITION2 = "FOREIGN KEY(idHorario) REFERENCES horarioactual (idHorario) ON UPDATE CASCADE ON DELETE CASCADE";
 

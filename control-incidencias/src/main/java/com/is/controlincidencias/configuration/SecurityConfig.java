@@ -1,14 +1,16 @@
 package com.is.controlincidencias.configuration;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.authentication.builders
+        .AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration
+        .EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration
+        .WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -17,9 +19,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsService userDetailsService;
+
     @Autowired
-    @Qualifier("userService")
-    private UserDetailsService userDetailsService;
+    public SecurityConfig(@Qualifier("userService") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     /*
      * En este metodo se debe de comentar el codigo enorme que tiene
@@ -29,17 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //http.httpBasic().disable(); // SIN LOGIN
-        http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas seguridad
+        http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas
+        // seguridad
 
-       http.authorizeRequests()
-                .antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**", "/font-awesome/**").permitAll();
-        http.authorizeRequests()
-                .antMatchers("/dch/**").hasRole("DCH")
+        http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**",
+                "/font-awesome/**").permitAll();
+        http.authorizeRequests().antMatchers("/dch/**").hasRole("DCH")
                 .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
-                .defaultSuccessUrl("/loginsuccess").permitAll()
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
+                .defaultSuccessUrl("/loginsuccess").permitAll().and().logout().logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout").permitAll();  // CON LOGIN
     }
 
     @Autowired
