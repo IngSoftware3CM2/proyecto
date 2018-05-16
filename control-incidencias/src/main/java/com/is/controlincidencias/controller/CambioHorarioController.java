@@ -27,7 +27,7 @@ public class CambioHorarioController {
     private static final Log LOGGER = LogFactory.getLog(CambioHorarioController.class);
     static final String VER_JUSTIFICANTES = "ver-justificantes";
 
-    int noEmpleado;
+    int idEmpleado;
     int idIncidencia;
     int modCambHorarioJust;
     public static final String HORA_QUINCE = "15:00";
@@ -50,10 +50,10 @@ public class CambioHorarioController {
             ModelAndView mav = new ModelAndView(VISTA_CAMBIO_HORARIO);
             LOGGER.info("Accedí al metodo acceder del controlador");
             idIncidencia = idincidencia;
-            noEmpleado = cambioService.getNoEmpleadoByIdIncidencia(idincidencia); //obtengo el numero de empelado
-            LOGGER.info("El id de la incidencia es " + idincidencia + " el ID EMPLEADO es " + noEmpleado);
+            idEmpleado = cambioService.getIdEmpleadoByIdIncidencia(idincidencia); //obtengo el numero de empelado
+            LOGGER.info("El id de la incidencia es " + idincidencia + " el ID EMPLEADO es " + idEmpleado);
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
-            Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+            Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
             mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
             Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
             model.addAttribute("tarjeta", personal.getNoTarjeta().toString());
@@ -72,7 +72,7 @@ public class CambioHorarioController {
             else
                 {
                     LOGGER.info(modeloCH);
-                    LOGGER.info("******************* Num Empleado es *********** " + noEmpleado);
+                    LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
                     CambioHorarioModel chm = new CambioHorarioModel();
                     chm.setHoraEntrada("7:00"); //esto debería venir desde la base
                     chm.setHoraSalida(HORA_QUINCE); //esto igual
@@ -80,7 +80,7 @@ public class CambioHorarioController {
                     chm.setNuevaSalida(modeloCH.getNuevaSalida());
                     chm.setJustificacion(modeloCH.getJustificacion());
                     chm.setFechaIncidencia("10/10/2018");
-                    chm.setIdJustificante(noEmpleado); //aqui meto el noEmpleado para enviarselo an repository
+                    chm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                     cambioService.insertaCambioHorario(chm, idIncidencia);
                     return "redirect:/personal/justificantes";
                 }
@@ -116,11 +116,11 @@ public class CambioHorarioController {
     @GetMapping("/modificar")
     public ModelAndView modificaCambioHorario(Model model, @RequestParam(name="id")Integer idJustificante)
     {
-        int noempleado = incidenciaService.getNoEmpleadoByIdJustificante(idJustificante);
+        int idempleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
         CambioHorario entCH = cambioService.getIdCambioHorario(idJustificante);
-        Personal personal = personalService.getPersonalByNoEmpleado(noempleado);
+        Personal personal = personalService.getPersonalByIdEmpleado(idempleado);
         ModelAndView mav = new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
-        LOGGER.info("No empleado es " + noempleado);
+        LOGGER.info("ID empleado es " + idempleado);
         model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
         LOGGER.info("Y vale **** " + personal.nombreAndTipoToString());
         modCambHorarioJust = idJustificante;

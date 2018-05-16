@@ -1,8 +1,15 @@
 package com.is.controlincidencias.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "login")
 public class Login {
@@ -10,45 +17,19 @@ public class Login {
     @Column(name = "correo", nullable = false)
     private String correo;
 
-    @Column(name = "passwordhash", nullable = false, length = 255)
+    @Column(name = "passwordhash", nullable = false)
     private String passwordhash;
 
-    private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    private static final String DEFINITION = "FOREIGN KEY(idEmpleado) REFERENCES personal (idEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @OneToOne
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
+    @JoinColumn(name = "idEmpleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
     public Login(String passwordhash, Personal personal) {
         this.passwordhash = passwordhash;
         this.personal = personal;
     }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getPasswordhash() {
-        return passwordhash;
-    }
-
-    public void setPasswordhash(String passwordhash) {
-        this.passwordhash = passwordhash;
-    }
-
-    public Personal getPersonal() {
-        return personal;
-    }
-
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
-    }
-
-    public Login(){}
 
     @Override
     public boolean equals(Object o) {

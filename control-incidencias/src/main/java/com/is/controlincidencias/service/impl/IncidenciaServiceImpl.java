@@ -51,8 +51,8 @@ public class IncidenciaServiceImpl implements IncidenciaService {
 
 
     @Override
-    public int getNoEmpleadoByIdJustificante(int id)
+    public int getIdEmpleadoByIdJustificante(int id)
         {
-            return incidenciaRepository.getNoEmpleadoByIdJustificante(id);
+            return incidenciaRepository.getIdEmpleadoByIdJustificante(id);
         }
 }

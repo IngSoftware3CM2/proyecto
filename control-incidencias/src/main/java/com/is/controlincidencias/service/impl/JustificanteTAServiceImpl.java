@@ -32,16 +32,16 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     private IncidenciaService incidenciaService;
 
     @Override
-    public String findNoTarjetaByNoEmpleado(int noEmpleado) {
-        return Integer.toString(justificanteTARepository.findNotarjetaByNoempleado(noEmpleado));
+    public String findNoTarjetaByIdEmpleado(int idEmpleado) {
+        return Integer.toString(justificanteTARepository.findNotarjetaByIdempleado(idEmpleado));
     }
 
     @Override
     public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante,int idIncidencia) {
         Date fecha = new Date();
         //Aqui cambia dependiendo el No empleado.
-        int noEmpleado=justificante.getPersonal().getNoEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,1,noEmpleado);
+        int idEmpleado=justificante.getPersonal().getIdEmpleado();
+        justificanteRepository.altaJustificante("Espera",fecha,1,idEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());

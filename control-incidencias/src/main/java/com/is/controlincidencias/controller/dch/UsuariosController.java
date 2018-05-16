@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.function.Consumer;
 
 @Slf4j
 @Controller
@@ -27,6 +26,7 @@ public class UsuariosController {
     private static final String REGISTRAR_JEFE = "dch/registrar-jefe";
     private static final String MODIFICAR_USUARIO = "dch/usuarios-modificar";
     private static final String DEPARTAMENTOS = "departamentos";
+    private static final String REDIRECT_HOME = "redirect:/dch";
 
     @Autowired
     @Qualifier("usuariosServiceImpl")
@@ -34,7 +34,7 @@ public class UsuariosController {
 
     @GetMapping({"", "/"})
     public String inicio() {
-        return "redirect:/dch";
+        return REDIRECT_HOME;
     }
 
     @GetMapping("/registrar")
@@ -57,12 +57,12 @@ public class UsuariosController {
     @PostMapping("/registrar/paae")
     public String registrarPaaePOST(@Valid @ModelAttribute("modeloPAAE") PaaeForm paaeForm,
             BindingResult bindingResult, Model model) {
-        log.info("registrarJefePOST() Se recibio: " + paaeForm.toString());
+        log.info("registrarPAAEPOST() Se recibio: " + paaeForm.toString());
         if (bindingResult.hasErrors()){
             model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos());
-            return REGISTRAR_JEFE;
+            return REGISTRAR_PAAE;
         }
-        return "redirect:/dch";
+        return REDIRECT_HOME;
     }
 
     @GetMapping("/registrar/admon")
@@ -84,10 +84,10 @@ public class UsuariosController {
             BindingResult bindingResult, Model model) {
         log.info("registrarJefePOST() Se recibio: " + jefeForm.toString());
         if (bindingResult.hasErrors()){
-            model.addAttribute("departamentos", usuariosService.recuperarDepartamentos());
+            model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos());
             return REGISTRAR_JEFE;
         }
-        return "redirect:/dch";
+        return REDIRECT_HOME;
     }
 
     @GetMapping("/modificar")

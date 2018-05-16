@@ -14,33 +14,34 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Service("asistenciaServiceImpl")
 public class AsistenciaServiceImpl implements AsistenciaService {
     private static LocalTime siete = LocalTime.of(7, 0, 0, 0);
-    private static LocalTime veintidos = LocalTime.of(22,  0, 0, 0);
-    private static LocalTime seisMedia = LocalTime.of(6, 30, 00);
-    private static LocalTime veintitres = LocalTime.of(23,  0, 0, 0);
-    private DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private DateTimeFormatter formatterHour = DateTimeFormatter.ofPattern("HH:mm");
+    private static LocalTime veintidos = LocalTime.of(22, 0, 0, 0);
+    private static LocalTime seisMedia = LocalTime.of(6, 30, 0);
+    private static LocalTime veintitres = LocalTime.of(23, 0, 0, 0);
+
+    private final AsistenciaRepository asistenciaRepository;
+    private final PersonalRepository personalRepository;
 
     @Autowired
-    @Qualifier("asistenciaRepository")
-    private AsistenciaRepository asistenciaRepository;
-
-    @Autowired
-    @Qualifier("personalRepository")
-    private PersonalRepository personalRepository;
-
-    @Override
-    public boolean buscarAsistencia(LocalDate fecha, int noTarjeta) {
-        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, noTarjeta);
+    public AsistenciaServiceImpl(
+            @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
+            @Qualifier("personalRepository") PersonalRepository personalRepository) {
+        this.asistenciaRepository = asistenciaRepository;
+        this.personalRepository = personalRepository;
     }
 
     @Override
-    public boolean buscarTarjeta(int noTarjeta) {
+    public boolean buscarAsistencia(LocalDate fecha, String noTarjeta) {
+        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(fecha,
+                noTarjeta);
+    }
+
+    @Override
+    public boolean buscarTarjeta(String noTarjeta) {
         return personalRepository.existsPersonalByNoTarjeta(noTarjeta);
     }
 
@@ -50,65 +51,54 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
         asistencia.setFechaRegistro(asistenciaJSON.getFechaRegistro());
-        if (asistenciaJSON.getHoraEntrada().compareTo(siete) > 0)
-            asistencia.setHoraEntrada(asistenciaJSON.getHoraEntrada());
-        else
-            asistencia.setHoraEntrada(siete);
-        if (asistenciaJSON.getHoraSalida().compareTo(veintidos) < 0)
-            asistencia.setHoraSalida(asistenciaJSON.getHoraSalida());
-        else
-            asistencia.setHoraSalida(veintidos);
+        if (asistenciaJSON.getHoraEntrada().compareTo(siete) > 0) asistencia.setHoraEntrada(
+                asistenciaJSON.getHoraEntrada());
+        else asistencia.setHoraEntrada(siete);
+        if (asistenciaJSON.getHoraSalida().compareTo(veintidos) < 0) asistencia.setHoraSalida(
+                asistenciaJSON.getHoraSalida());
+        else asistencia.setHoraSalida(veintidos);
         Asistencia a = asistenciaRepository.save(asistencia);
         log.info("Id Asistencia: " + a.getIdAsistencia());
     }
 
     @Override
     public int existeAsistencia(AsistenciaForm asistenciaForm) {
-        boolean existeTarjeta = personalRepository.existsPersonalByNoTarjeta(asistenciaForm.getTarjeta());
-        if (!existeTarjeta)
-            return 1; // No existe la tarjeta
+        boolean existeTarjeta = personalRepository.existsPersonalByNoTarjeta(
+                asistenciaForm.getTarjeta());
+        if (!existeTarjeta) return 1; // No existe la tarjeta
 
-        LocalDate fecha = LocalDate.parse(asistenciaForm.getFecha(), formatterDate);
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
-        if (a == null)
-            return 2; // No se encontro registro
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
+        if (a == null) return 2; // No se encontro registro
 
         return 0; // Salio chido
     }
 
     @Override
     public AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm) {
-        LocalDate fecha = LocalDate.parse(asistenciaForm.getFecha(), formatterDate);
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
 
-        asistenciaForm.setHoraSalida(a.getHoraSalida().format(formatterHour));
-        asistenciaForm.setHoraEntrada(a.getHoraEntrada().format(formatterHour));
+        asistenciaForm.setHoraSalida(a.getHoraSalida());
+        asistenciaForm.setHoraEntrada(a.getHoraEntrada());
 
         return asistenciaForm;
     }
 
     @Override
     public Asistencia modificarAsistencia(AsistenciaForm asistenciaForm) {
-        LocalDate fecha = LocalDate.parse(asistenciaForm.getFecha(), formatterDate);
-        LocalTime horaEntrada = LocalTime.parse(asistenciaForm.getHoraEntrada(), formatterHour);
-        LocalTime horaSalida = LocalTime.parse(asistenciaForm.getHoraSalida(), formatterHour);
-        Asistencia a = asistenciaRepository
-                .findAsistenciaByFechaRegistroAndPersonal_NoTarjeta(fecha, asistenciaForm.getTarjeta());
-        if (a == null)
-            return null;
-        if (!validarHoras(horaEntrada, horaSalida))
-            return null;
 
-        if (horaEntrada.compareTo(siete) > 0)
-            a.setHoraEntrada(horaEntrada);
-        else
-            a.setHoraEntrada(siete);
-        if (horaSalida.compareTo(veintidos) < 0)
-            a.setHoraSalida(horaSalida);
-        else
-            a.setHoraSalida(veintidos);
+        LocalTime horaEntrada = asistenciaForm.getHoraEntrada();
+        LocalTime horaSalida = asistenciaForm.getHoraSalida();
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
+                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
+        if (a == null) return null;
+        if (!validarHoras(horaEntrada, horaSalida)) return null;
+
+        if (horaEntrada.compareTo(siete) > 0) a.setHoraEntrada(horaEntrada);
+        else a.setHoraEntrada(siete);
+        if (horaSalida.compareTo(veintidos) < 0) a.setHoraSalida(horaSalida);
+        else a.setHoraSalida(veintidos);
 
         return asistenciaRepository.save(a);
     }

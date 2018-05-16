@@ -8,7 +8,7 @@
         <div th:replace="dch/navbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-6">
-                <h2>Registrar PAEE</h2>
+                <h2>Registrar PAAE</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/dch}">Inicio</a>
@@ -17,7 +17,7 @@
                         Registrar Usuarios
                     </li>
                     <li class="active">
-                        <strong>Registrar PAEE</strong>
+                        <strong>Registrar PAAE</strong>
                     </li>
                 </ol>
             </div>
@@ -33,127 +33,142 @@
                                       th:action="@{/dch/usuarios/registrar/paae}" method="post"
                                       th:object="${modeloPAAE}">
                                     <div class="form-group">
-                                        <label class="col-lg-4">Departamento: </label>
+                                        <label class="col-lg-4" th:for="departamento">Departamento: </label>
                                         <div class="col-lg-4">
-                                            <select class="form-control m-b" th:field="*{departamento}">
-                                                <option th:each="departamento : ${departamentos}"
-                                                        th:value="${departamento.idDepartamento}"
-                                                        th:text="${departamento.nombre}">Estado
-                                                </option>
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" th:field="*{departamento}" required>
+                                                    <option th:each="departamento : ${departamentos}"
+                                                            th:value="${departamento.idDepartamento}"
+                                                            th:text="${departamento.nombre}">Estado
+                                                    </option>
+                                                </select>
+                                            </label>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Numero de Empleado: </label>
+                                        <label class="col-lg-4" th:for="numeroEmpleado">Numero de Empleado: </label>
                                         <div class="col-lg-4">
-                                            <input type="text" placeholder="Numero de Empleado" class="form-control">
+                                            <input type="text" placeholder="Numero de Empleado" class="form-control"
+                                                   th:field="*{numeroEmpleado}" required/>
                                             <span class="help-block m-b-none text-danger"> * Dato no valido</span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Nombre (s): </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 ">Apellido Paterno: </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 ">Apellido Materno: </label>
-                                        <div class="col-lg-4"><input type="text" placeholder="Nombre (s)"
-                                                                     class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 ">Correo Electronico: </label>
+                                        <label class="col-lg-4" th:for="nombre">Nombre (s): </label>
                                         <div class="col-lg-4">
-                                            <input type="email" placeholder="Numero de Empleado" class="form-control">
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                            <input type="text" placeholder="Nombre (s)" class="form-control"
+                                                   th:field="*{nombre}" required/>
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('nombre')}">
+                                                * Dato no valido
+                                            </span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Sexo: </label>
+                                        <label class="col-lg-4" th:for="apPaterno">Apellido Paterno: </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" placeholder="Nombre (s)"
+                                                   class="form-control" th:field="*{apPaterno}" required/>
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('apPaterno')}">
+                                                * Dato no valido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-4" th:for="apMaterno">Apellido Materno: </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" placeholder="Nombre (s)" class="form-control"
+                                                   th:field="*{apMaterno}" required/>
+                                            <span class="help-block m-b-none text-danger"
+                                                  th:if="${#fields.hasErrors('apMaterno')}">
+                                                * Dato no valido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-4" th:for="correo">Correo Electronico: </label>
+                                        <div class="col-lg-4">
+                                            <input type="email" placeholder="Numero de Empleado" class="form-control"
+                                                   th:field="*{correo}" required/>
+                                            <span class="help-block m-b-none text-danger" th:if="${#fields.hasErrors('correo')}">
+                                                * Dato no valido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-4" th:for="sexo">Sexo:</label>
                                         <div class="col-lg-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
-
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" th:field="*{sexo}" required>
+                                                    <option value="M">Masculino</option>
+                                                    <option value="F">Femenino</option>
+                                                </select>
+                                            </label>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-4 ">Turno: </label>
+                                        <label class="col-lg-4" th:for="turno">Turno:</label>
                                         <div class="col-lg-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>Matutino</option>
-                                                <option>Vespertino</option>
-
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" th:field="*{turno}" required>
+                                                    <option value="matutino">Matutino</option>
+                                                    <option value="vespertino">Vespertino</option>
+                                                </select>
+                                            </label>
                                         </div>
-
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-sm-offset-2 col-sm-2"><label>Hora de Entrada:</label></div>
-                                        <div class=" col-sm-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
-
-                                            </select>
-                                        </div>
-
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-offset-2 col-sm-2"><label>Hora de Salida:</label></div>
+                                        <div class="col-sm-offset-2 col-sm-2"><label th:for="dia.horaEntrada">
+                                            Hora de Entrada:
+                                        </label></div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
-
-                                            </select>
+                                            <label>
+                                                <select class="form-control m-b" th:field="*{dia.horaEntrada}" required>
+                                                    <option th:value="'opcion 1'">opcion 1</option>
+                                                    <option th:value="'opcion 2'">opcion 2</option>
+                                                </select>
+                                            </label>
                                         </div>
-
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-offset-2 col-sm-2"><label th:for="dia.horaSalida">
+                                            Hora de Salida:
+                                        </label></div>
+                                        <div class=" col-sm-2">
+                                            <label>
+                                                <select class="form-control m-b" th:field="*{dia.horaSalida}" required>
+                                                    <option th:value="'opcion'">opcion 1</option>
+                                                    <option th:value="'otro'">opcion 2</option>
+                                                </select>
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="row text-left">
-                                        <div class="col-sm-offset-4 col-sm-4"><span
-                                                class="help-block m-b-none text-danger"> * Horario no coincide con turno</span>
+                                        <div class="col-sm-offset-4 col-sm-4">
+                                            <span class="help-block m-b-none text-danger">
+                                                * Horario no coincide con turno
+                                            </span>
                                         </div>
-
                                     </div>
                                     <div class="form-group">
-
                                         <div class="col-lg-offset-3 col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-outline btn-primary">
-                                                REGISTRAR
-                                            </button>
+                                            <input type="submit" class="btn btn-block btn-outline btn-primary"
+                                                   value="REGISTRAR"/>
                                         </div>
-
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-offset-1 col-sm-3"><span
-                                                class="help-block m-b-none text-danger"> * No se registro al usuario</span>
+                                        <div class="col-sm-offset-1 col-sm-3">
+                                            <span class="help-block m-b-none text-danger">
+                                                * No se registro al usuario
+                                            </span>
                                         </div>
-                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger"> * Complete todos los campos obligatorios</span>
-                                        </div>
-                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger"> * Numero de empleado ya registrado</span>
-                                        </div>
-
+                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger">
+                                            * Complete todos los campos obligatorios
+                                        </span></div>
+                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger">
+                                            * Numero de empleado ya registrado
+                                        </span></div>
                                     </div>
                                 </form>
                             </div>

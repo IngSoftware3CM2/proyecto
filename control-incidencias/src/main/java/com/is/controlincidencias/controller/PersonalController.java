@@ -120,10 +120,10 @@ public class PersonalController {
     }
 
     @GetMapping("/justificantes")
-    public ModelAndView showJustificantes() {
+    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar) {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-justificantes");
-        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
@@ -138,6 +138,8 @@ public class PersonalController {
                 justificante.setTipo(666);
             }
         }
+        model.addAttribute("add", add);
+        model.addAttribute("modificar", modificar);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("justificantes", justificantes);
         return mav;
@@ -149,19 +151,22 @@ public class PersonalController {
     }
 
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias() {
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "cancelar", required = false) Integer cancelar) {
         int noEmpleado = 22;
         ModelAndView mav = new ModelAndView("ver-incidencias");
-        Personal personal = personalService.getPersonalByNoEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
+        LOG.info("*****************************************"+cancelar);
+        model.addAttribute("cancelar", cancelar);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         return mav;
     }
 
+
     @GetMapping("/removejustificante")
-    public ModelAndView removeJustificante(@RequestParam(name = "id", required = true) int idJustificante) {
+    public String removeJustificante(@RequestParam(name = "id", required = true) int idJustificante) {
         justificanteService.removeJustificanteByIdJustificante(idJustificante);
-        return showIncidencias();
+        return "redirect:/personal/incidencias?cancelar=0";
     }
 
     @GetMapping("/justificantes/agregar")

@@ -9,14 +9,14 @@ import java.util.Objects;
 @Table(name = "personal")
 public class Personal {
     @Id
-    @Column(name = "noEmpleado", length = 8)
-    private Integer noEmpleado;
+    @Column(name = "idEmpleado", length = 8)
+    private Integer idEmpleado;
 
+    @Column(name = "noEmpleado", nullable = false, length = 8, unique = true)
+    private String noEmpleado;
 
-
-
-    @Column(name = "noTarjeta", nullable = false, length = 6, unique = true)
-    private Integer noTarjeta;
+    @Column(name = "noTarjeta", nullable = false, length = 8, unique = true)
+    private String noTarjeta;
 
     @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
@@ -40,16 +40,6 @@ public class Personal {
     @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
-
-   /* @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "PersonalQuincena",
-            joinColumns = @JoinColumn(name = "noEmpleado"),
-            inverseJoinColumns = @JoinColumn(name = "idQuincena")
-    )
-    private Set<Quincena> quincena = new HashSet<Quincena>();*/
-
-
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Asistencia> asistencias = new ArrayList<>();
 
@@ -71,10 +61,7 @@ public class Personal {
     @OneToOne(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Login login;
 
-
-
-    public Personal() {
-    }
+    public Personal() { }
 
     private static final String DEFINITION2 = "FOREIGN KEY(idHorario) REFERENCES horarioactual (idHorario) ON UPDATE CASCADE ON DELETE CASCADE";
 
@@ -83,8 +70,8 @@ public class Personal {
     private HorarioActual horarioActual;
 
 
-    public Personal(Integer noEmpleado, Integer noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
-        this.noEmpleado = noEmpleado;
+    public Personal(Integer idEmpleado, String noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
+        this.idEmpleado = idEmpleado;
         this.noTarjeta = noTarjeta;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -101,19 +88,19 @@ public class Personal {
         this.login = login;
     }
 
-    public Integer getNoEmpleado() {
-        return noEmpleado;
+    public Integer getIdEmpleado() {
+        return idEmpleado;
     }
 
-    public void setNoEmpleado(Integer noEmpleado) {
-        this.noEmpleado = noEmpleado;
+    public void setIdEmpleado(Integer idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
-    public Integer getNoTarjeta() {
+    public String getNoTarjeta() {
         return noTarjeta;
     }
 
-    public void setNoTarjeta(Integer noTarjeta) {
+    public void setNoTarjeta(String noTarjeta) {
         this.noTarjeta = noTarjeta;
     }
 
@@ -240,7 +227,7 @@ public class Personal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Personal personal = (Personal) o;
-        return Objects.equals(getNoEmpleado(), personal.getNoEmpleado()) &&
+        return Objects.equals(getIdEmpleado(), personal.getIdEmpleado()) &&
                 Objects.equals(getNoTarjeta(), personal.getNoTarjeta()) &&
                 Objects.equals(getNombre(), personal.getNombre()) &&
                 Objects.equals(getApellidoPaterno(), personal.getApellidoPaterno()) &&
@@ -256,6 +243,6 @@ public class Personal {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getNoEmpleado(), getNoTarjeta(), getNombre(), getApellidoPaterno(), getApellidoMaterno(), getAsistencias(), getIncidencias(), getJustificantes(), getDepartamento(), getTipo(), login);
+        return Objects.hash(getIdEmpleado(), getNoTarjeta(), getNombre(), getApellidoPaterno(), getApellidoMaterno(), getAsistencias(), getIncidencias(), getJustificantes(), getDepartamento(), getTipo(), login);
     }
 }

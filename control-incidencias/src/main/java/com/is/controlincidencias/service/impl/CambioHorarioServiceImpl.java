@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.time.ZoneId;
 
 @Service("cambioHorarioServiceImpl")
 public class CambioHorarioServiceImpl implements CambioHorarioService{
@@ -69,15 +69,15 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             cambioHorarioRepository.updateCambioHorario(entrada, salida, chm.getJustificacion(), chm.getIdJustificante());
         }
     @Override
-    public int getNoEmpleadoByIdIncidencia(int id)
+    public int getIdEmpleadoByIdIncidencia(int id)
         {
-            return cambioHorarioRepository.getNoEmpleadoByIdIncidencia(id);
+            return cambioHorarioRepository.getIdEmpleadoByIdIncidencia(id);
         }
 
     @Override
-    public int getIdJustificanteByNoEmpleado(int id)
+    public int getIdJustificanteByIdEmpleado(int id)
         {
-            return cambioHorarioRepository.getIdJustificanteByNoEmpleado(id);
+            return cambioHorarioRepository.getIdJustificanteByIdEmpleado(id);
         }
     @Override
     public boolean existsByIdjustificante(int id) {

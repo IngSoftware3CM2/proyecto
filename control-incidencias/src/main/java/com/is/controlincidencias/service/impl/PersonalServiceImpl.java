@@ -15,8 +15,8 @@ public class PersonalServiceImpl implements PersonalService {
     private PersonalRepository personalRepository;
 
     @Override
-    public Personal getPersonalByNoEmpleado(int noEmpleado) {
-        return personalRepository.findByNoEmpleado(noEmpleado);
+    public Personal getPersonalByIdEmpleado(int idEmpleado) {
+        return personalRepository.findByIdEmpleado(idEmpleado);
     }
 
     @Override

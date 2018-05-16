@@ -4,14 +4,13 @@ FROM 'C:\Users\jonat\Documents\GitHub\proyecto\Datos\zona.csv' DELIMITER ',' CSV
 COPY unidadmedica(idUnidad,Nombre,idZona) 
 FROM 'C:\Users\jonat\Documents\GitHub\proyecto\Datos\unidadmedica.csv' DELIMITER ',' CSV HEADER;
 
-
 COPY jefesuperior(idsuperior,nombre,apellidopaterno,apellidomaterno,jefe) 
 FROM 'C:\Users\jonat\Documents\GitHub\proyecto\Datos\jefesuperior.csv' DELIMITER ',' CSV HEADER;
 
-COPY departamento(iddepartamento,nombre,idsuperior) 
+COPY departamento(iddepartamento,nombre,idsuperior,permisodocente,permisopaee,permisodocpaee) 
 FROM 'C:\Users\jonat\Documents\GitHub\proyecto\Datos\departamento.csv' DELIMITER ',' CSV HEADER;
 
-COPY personal(noempleado,activo,correo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo) 
+COPY personal(idempleado,noempleado,activo,correo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo) 
 FROM 'C:\Users\jonat\Documents\GitHub\proyecto\Datos\personal.csv' DELIMITER ','CSV HEADER;
 
 COPY quincena(idquincena,inicio,fin)
