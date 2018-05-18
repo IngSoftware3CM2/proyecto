@@ -148,7 +148,7 @@ public class JustificacionTAController {
         } catch (IOException e) {
             LOG.error(e);
         }
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
     }
 
     @GetMapping("/tipoa/cancelar")
