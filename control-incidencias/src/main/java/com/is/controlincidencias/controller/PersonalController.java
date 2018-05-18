@@ -120,10 +120,12 @@ public class PersonalController {
     }
 
     @GetMapping("/justificantes")
-    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar) {
-        int noEmpleado = 22;
+    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar, Principal principal) {
+        String email = "a@gmail.com"; // aqui poner un email por default para que no de error
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
         ModelAndView mav = new ModelAndView("ver-justificantes");
-        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByEmail(email);
         List<Justificante> justificantes = justificanteService.getJustificantesByPersonal(personal);
         for (Justificante justificante : justificantes) {
             if (justificanteTAService.existsByIdjustificante(justificante.getIdJustificante())) {
@@ -151,10 +153,12 @@ public class PersonalController {
     }
 
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(Model model,@RequestParam(name = "cancelar", required = false) Integer cancelar) {
-        int noEmpleado = 22;
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "cancelar", required = false) Integer cancelar, Principal principal) {
+        String email = "a@gmail.com"; // aqui poner un email por default para que no de error
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
         ModelAndView mav = new ModelAndView("ver-incidencias");
-        Personal personal = personalService.getPersonalByIdEmpleado(noEmpleado);
+        Personal personal = personalService.getPersonalByEmail(email);
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
