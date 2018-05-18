@@ -45,9 +45,10 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
         LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
-        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
+        int idJustificante =ids.get(ids.size()-1);
+        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,idJustificante+"_"+justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
-        return ids.get(ids.size()-1);
+        return idJustificante;
     }
     @Override
     public List<String> findZonas() {
