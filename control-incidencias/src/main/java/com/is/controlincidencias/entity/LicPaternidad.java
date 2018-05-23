@@ -11,7 +11,7 @@ public class LicPaternidad {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "justificacion", nullable = false)
+    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(600)")
     private String justificacion;
 
     @Column(name = "registrolicencia", nullable = false)
