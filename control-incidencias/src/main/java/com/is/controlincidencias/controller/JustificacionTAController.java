@@ -24,6 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -125,13 +129,21 @@ public class JustificacionTAController {
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica(justificanteTAModel.getIdunidadmedica());
         justificante.setPersonal(personal);
+        Date input = new Date();
+        LocalDate actual = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
+        LocalDate fechamin = actual.minus(15,ChronoUnit.DAYS);
         if(justificanteTAModel.getFolio().length() != 12){
             errorFolio=1;
             return REDIRECTURL+idIncidencia;
         }
-        //Obtengo el tipo de justificante tipoA
+        //Validacion de la regla de negocio RN12
+        if(inicio.isAfter(actual) || inicio.isBefore(fechamin)){
+            errorf=1;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negoio RN
         if(inicio.isAfter(fin)){
             errorf=1;
             return REDIRECTURL+idIncidencia;
@@ -153,8 +165,6 @@ public class JustificacionTAController {
 
     @GetMapping("/tipoa/cancelar")
     public String cancelarTipoA(){
-        return "redirect:/personal/incidencias";
+        return "redirect:/personal/incidencias?cancelar=1";
     }
-
-
 }

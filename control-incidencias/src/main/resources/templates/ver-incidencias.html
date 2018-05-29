@@ -31,7 +31,7 @@
                             <h5>Incidencias Generadas</h5>
                         </div>
                         <div class="ibox-content">
-                            <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operacion de Generar justificante por Licencia por paternidad cancelada</div>
+                            <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operación cancelada</div>
                             <div th:if="${cancelar == 0}" class="alert alert-success" role="alert">Justificante eliminado</div>
                             <div th:if="${cancelar == 2}" class="alert alert-danger" role="alert">Operacion de modificacion cancelada</div>
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
