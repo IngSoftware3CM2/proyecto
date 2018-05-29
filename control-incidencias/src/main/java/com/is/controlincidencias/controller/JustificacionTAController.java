@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.converter.TipoAConverter;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -52,13 +55,17 @@ public class JustificacionTAController {
     @Qualifier("tipoAConverter")
     private TipoAConverter tipoAConverter;
 
+    @Autowired
+    @Qualifier("reglasNegocioComponent")
+    private ReglasNegocio reglasNegocio;
+
     private int error=0;
     private int errorf=0;
     private int errorFolio=0;
     private Personal personal;
     private int idIncidencia;
     private int idJustificante;
-    public static final String redirectURL = "redirect:/personal/justificantes/tipoa?id=";
+    public static final String REDIRECTURL = "redirect:/personal/justificantes/tipoa?id=";
 
     @GetMapping("/tipoa")
         public ModelAndView verJustificante(Model model,@RequestParam(name =
@@ -121,40 +128,50 @@ public class JustificacionTAController {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
-
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica(justificanteTAModel.getIdunidadmedica());
         justificante.setPersonal(personal);
+        Date input = new Date();
+        LocalDate actual = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
-        if(justificanteTAModel.getFolio().length() != 12){
-            errorFolio=1;
-            return redirectURL+idIncidencia;
-        }
-        //Obtengo el tipo de justificante tipoA
-        if(inicio.isAfter(fin)){
+        //Validacion de la regla de negocio RN12
+        if(reglasNegocio.rn12(inicio,actual)){
             errorf=1;
-            return redirectURL+idIncidencia;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negocio RN14
+        if(reglasNegocio.rn14(inicio,fin)){
+            errorf=1;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negocio RN15
+        if(reglasNegocio.rn15(justificanteTAModel.getFolio())){
+            errorFolio=1;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negocio RN28
+        if(reglasNegocio.rn28(inicio,fin)){
+            errorf=1;
+            return REDIRECTURL+idIncidencia;
         }
         if (files.isEmpty()) {
             error = 1;
-            return redirectURL+idIncidencia;
+            return REDIRECTURL+idIncidencia;
         }
         try {
          //Aqui trato de subir el archivo
-            int idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante,idIncidencia);
+            idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante,idIncidencia);
             licPaternidadService.subirArchivo(files, idJustificante);
             LOG.info("Aqui trato de subir el archivo");
         } catch (IOException e) {
             LOG.error(e);
         }
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
     }
 
     @GetMapping("/tipoa/cancelar")
     public String cancelarTipoA(){
-        return "redirect:/personal/incidencias";
+        return "redirect:/personal/incidencias?cancelar=1";
     }
-
-
 }

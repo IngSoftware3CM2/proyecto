@@ -31,13 +31,16 @@
             ¡No seleccionaste ningun archivo!
         </div>
         <div class="alert alert-danger" th:if="${errorf == 1}">
-            ¡Las fechas seleccionadas son incorrectas!
+            Fecha incorrecta
         </div>
         <div class="alert alert-danger" th:if="${errorFolio == 1}">
-            ¡El folio ingresado debe ser de 12 caracteres!
+            Dato no valido
         </div>
-        <div class=" hidden alert alert-danger" id="mensajeArchivo">
-            Lo sentimos el archivo debe ser un archivo tipo .JPG o .JPEG
+        <div class=" hidden alert alert-danger" id="mensajeArchivoE">
+            No se adjuntaron los archivos correctamente
+        </div>
+        <div class=" hidden alert alert-success" id="mensajeArchivoS">
+            Se adjuntaron los archivos correctamente.
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
@@ -87,14 +90,14 @@
                         </div>
                     </div>
                     <div class="form-group" id="data_1">
-                        <label class="col-sm-2"> Fecha de Inicio(aaaa/mm/dd):</label>
+                        <label class="col-sm-2"> Fecha de Inicio(aaaa-mm-dd):</label>
                         <div class="input-group date col-sm-2">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{inicio}" required/>
                         </div>
 
                     </div>
                     <div class="form-group" id="data_1">
-                        <label class="col-sm-2"> Fecha Final(aaaa/mm/dd):</label>
+                        <label class="col-sm-2"> Fecha Final(aaaa-mm-dd):</label>
                         <div class="input-group date col-sm-2" >
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fin}" required/>
                         </div>
