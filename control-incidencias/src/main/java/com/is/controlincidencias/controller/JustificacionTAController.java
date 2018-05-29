@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.converter.TipoAConverter;
@@ -24,9 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +54,10 @@ public class JustificacionTAController {
     @Autowired
     @Qualifier("tipoAConverter")
     private TipoAConverter tipoAConverter;
+
+    @Autowired
+    @Qualifier("reglasNegocioComponent")
+    private ReglasNegocio reglasNegocio;
 
     private int error=0;
     private int errorf=0;
@@ -125,7 +128,6 @@ public class JustificacionTAController {
         LOG.info("Datos que me llegan "+justificanteTAModel.toString());
         //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
         Justificante justificante = new Justificante();
-
         justificanteTAModel.setLicenciaArchivo(files.get(0).getOriginalFilename());
         justificanteTAModel.setIdunidadmedica(justificanteTAModel.getIdunidadmedica());
         justificante.setPersonal(personal);
@@ -133,18 +135,23 @@ public class JustificacionTAController {
         LocalDate actual = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate inicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
         LocalDate fin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
-        LocalDate fechamin = actual.minus(15,ChronoUnit.DAYS);
-        if(justificanteTAModel.getFolio().length() != 12){
-            errorFolio=1;
-            return REDIRECTURL+idIncidencia;
-        }
         //Validacion de la regla de negocio RN12
-        if(inicio.isAfter(actual) || inicio.isBefore(fechamin)){
+        if(reglasNegocio.rn12(inicio,actual)){
             errorf=1;
             return REDIRECTURL+idIncidencia;
         }
-        //Validacion de la regla de negoio RN
-        if(inicio.isAfter(fin)){
+        //Validacion de la regla de negocio RN14
+        if(reglasNegocio.rn14(inicio,fin)){
+            errorf=1;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negocio RN15
+        if(reglasNegocio.rn15(justificanteTAModel.getFolio())){
+            errorFolio=1;
+            return REDIRECTURL+idIncidencia;
+        }
+        //Validacion de la regla de negocio RN28
+        if(reglasNegocio.rn28(inicio,fin)){
             errorf=1;
             return REDIRECTURL+idIncidencia;
         }
