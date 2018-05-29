@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('.tagsinput').tagsinput({
         tagClass: 'label label-primary'
     });
@@ -63,7 +62,6 @@ $(document).ready(function () {
     $("#setDrag").click(function () {
         $image.cropper("setDragMode", "crop");
     });
-
     $('#data_1 .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
