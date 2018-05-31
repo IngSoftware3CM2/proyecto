@@ -30,5 +30,5 @@ public interface LicPaternidadRepository extends JpaRepository<LicPaternidad, Se
     @Modifying
     @Query(value = "UPDATE licpaternidad SET justificacion = :justificacion, actamatrimonio=:actamatrimonio, actanacimiento=:actanacimiento,comprobanteingresos=:comprobanteingresos, constanciacurso=:constanciacurso, copiaidentificacion=:copiaidentificacion,registrolicencia=:registrolicencia where  idjustificante = :idjustificante", nativeQuery = true)
     @Transactional
-    public void updateLicPaternidad(@Param("idjustificante") int idjustificante,@Param("justificacion") String justificacion, @Param("actamatrimonio") String actamatrimonio, @Param("actanacimiento") String actanacimiento, @Param("comprobanteingresos") String comprobanteingresos, @Param("constanciacurso") String constanciacurso, @Param("copiaidentificacion") String copiaidentificacion, @Param("registrolicencia") String registrolicencia);
+    public void updateLicPaternidad(@Param("idjustificante") int idjustificante,@Param("justificacion") String justificacion, @Param("actamatrimonio") String actamatrimonio, @Param("actanacimiento") String actanacimiento, @Param("comprobanteingresos") String comprobanteingresos, @Param("constanciacurso") String constanciacurso, @Param("registrolicencia") String registrolicencia);
 }

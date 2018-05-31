@@ -103,6 +103,6 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     @Override
     public void updateLicPaternidad(LicPaternidad licPaternidad, int idjustificante) {
-        licPaternidadRepository.updateLicPaternidad(idjustificante,licPaternidad.getJustificacion(),licPaternidad.getActamatrimonio(),licPaternidad.getActanacimiento(),licPaternidad.getComprobanteingresos(),licPaternidad.getConstanciacurso(),licPaternidad.getCopiaidentificacion(),licPaternidad.getRegistrolicencia());
+        licPaternidadRepository.updateLicPaternidad(idjustificante,licPaternidad.getJustificacion(),licPaternidad.getActamatrimonio(),licPaternidad.getActanacimiento(),licPaternidad.getComprobanteingresos(),licPaternidad.getConstanciacurso(),licPaternidad.getRegistrolicencia());
     }
 }
