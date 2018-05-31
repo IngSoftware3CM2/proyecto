@@ -115,8 +115,7 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
         licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
-        licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
+        licPaternidadModel.setComprobanteingresos(files.get(4).getOriginalFilename());
         int idjustificante=0;
         try {
 
