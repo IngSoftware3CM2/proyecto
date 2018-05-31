@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/personal/justificantes")
+@RequestMapping("/personal/justificantes/economico")
 public class PermisoEconomicoController {
 
     private final PermisoEconomicoService permisoEconomicoService;
@@ -65,16 +65,16 @@ public class PermisoEconomicoController {
         return modelAndView;
     }
 
-    @PostMapping("/permiso-economico/agregar")
+    @PostMapping("/agregar")
     private String guardarPermisoEconomico(@ModelAttribute("permisoEconomicoModel") PermisoEconomicoModel permisoEconomicoModel) {
         Justificante justificante = new Justificante();
         justificante.setPersonal(personal);
 
         permisoEconomicoService.addPermisoEconomico(permisoEconomicoModel, justificante);
-        return "redirect:/personal/justificantes";
+        return "ver-justificante-dia-economico";
     }
 
-    @GetMapping("/permiso-economico/cancelar")
+    @GetMapping("/cancelar")
     public String cancelarPermisoEconomico(){
         return "redirect:/personal/incidencias";
     }
