@@ -41,9 +41,9 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         {
             LOG.info("***************************  Servide IMPL :3");
             LOG.info(cambiohorario);
-            Time entrada = Time.valueOf(cambiohorario.getNuevaEntrada() + ":00");
-            Time salida =  Time.valueOf(cambiohorario.getNuevaSalida() + ":00");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            Time entrada = Time.valueOf(cambiohorario.getNuevaEntrada());
+            Time salida =  Time.valueOf(cambiohorario.getNuevaSalida());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
             Date fecha2 = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
             justificanteRepository.altaJustificante("Espera",fecha2,0,cambiohorario.getIdJustificante()); //idJustificante es el noempleado :3
@@ -63,10 +63,10 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     @Override
     public void updateCambioHorario(CambioHorarioModel chm)
         {
-            Time entrada = Time.valueOf(chm.getNuevaEntrada() + ":00");
-            Time salida =  Time.valueOf(chm.getNuevaSalida() + ":00");
+//            Time entrada = Time.valueOf(chm.getNuevaEntrada() + ":00");
+  //          Time salida =  Time.valueOf(chm.getNuevaSalida() + ":00");
             LOG.info("*** SERVIVE IMPL Justificacion" + chm.getJustificacion());
-            cambioHorarioRepository.updateCambioHorario(entrada, salida, chm.getJustificacion(), chm.getIdJustificante());
+            cambioHorarioRepository.updateCambioHorario(chm.getJustificacion(), chm.getIdJustificante());
         }
     @Override
     public int getIdEmpleadoByIdIncidencia(int id)
@@ -84,5 +84,20 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         return cambioHorarioRepository.existsByJustificante_IdJustificante(id);
     }
 
+    @Override
+    public String getHoraEntrada(int id, String fecha)
+        {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+            LocalDate fecha2 = LocalDate.parse(fecha, formatter);
+            return cambioHorarioRepository.getHoraEntrada(id, fecha2);
+        }
+
+    @Override
+    public String getHoraSalida(int id, String fecha)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        LocalDate fecha2 = LocalDate.parse(fecha, formatter);
+        return cambioHorarioRepository.getHoraSalida(id, fecha2);
+    }
 }
 

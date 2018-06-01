@@ -97,7 +97,6 @@ public class LicenciaPaternidadController {
         model.addAttribute("actamatrimonio", licPaternidad.getActamatrimonio().substring(licPaternidad.getActamatrimonio().indexOf("_")+1,licPaternidad.getActamatrimonio().length()));
         model.addAttribute("actanacimiento", licPaternidad.getActanacimiento().substring(licPaternidad.getActanacimiento().indexOf("_")+1,licPaternidad.getActanacimiento().length()));
         model.addAttribute("comprobanteingresos", licPaternidad.getComprobanteingresos().substring(licPaternidad.getComprobanteingresos().indexOf("_")+1,licPaternidad.getComprobanteingresos().length()));
-        model.addAttribute("copiaidentificacion", licPaternidad.getCopiaidentificacion().substring(licPaternidad.getCopiaidentificacion().indexOf("_")+1,licPaternidad.getCopiaidentificacion().length()));
         model.addAttribute("registrolicencia", licPaternidad.getRegistrolicencia().substring(licPaternidad.getRegistrolicencia().indexOf("_")+1,licPaternidad.getRegistrolicencia().length()));
         model.addAttribute("constanciacurso", licPaternidad.getConstanciacurso().substring(licPaternidad.getConstanciacurso().indexOf("_")+1,licPaternidad.getConstanciacurso().length()));
         model.addAttribute("licPaternidadModel", licPaternidadModel);
@@ -116,8 +115,7 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
         licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
-        licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
+        licPaternidadModel.setComprobanteingresos(files.get(4).getOriginalFilename());
         int idjustificante=0;
         try {
 
@@ -149,9 +147,7 @@ public class LicenciaPaternidadController {
         if(!files.get(3).isEmpty()){
             licPaternidadModificar.setConstanciacurso(files.get(3).getOriginalFilename());
         }
-        if(!files.get(4).isEmpty()){
-            licPaternidadModificar.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        }
+
         if(!files.get(5).isEmpty()){
             licPaternidadModificar.setComprobanteingresos(files.get(5).getOriginalFilename());
         }

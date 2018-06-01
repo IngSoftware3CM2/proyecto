@@ -3,6 +3,8 @@ package com.is.controlincidencias.service;
 import com.is.controlincidencias.entity.CambioHorario;
 import com.is.controlincidencias.model.CambioHorarioModel;
 
+import java.util.Date;
+
 public interface CambioHorarioService {
     void insertaCambioHorario(CambioHorarioModel cambioHorario, int id);
 
@@ -16,4 +18,7 @@ public interface CambioHorarioService {
 
     boolean existsByIdjustificante (int id);
 
+    String getHoraEntrada(int id, String fecha);
+
+    String getHoraSalida(int id, String fecha);
 }
