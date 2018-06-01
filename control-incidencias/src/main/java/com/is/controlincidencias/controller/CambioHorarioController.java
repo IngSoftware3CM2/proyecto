@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/personal/justificantes/cambiohorario")
@@ -56,8 +57,11 @@ public class CambioHorarioController {
             Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
             mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
             Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
+            String fecha = incidencia.getFechaRegistro().toString();
             model.addAttribute("tarjeta", personal.getNoTarjeta().toString());
-            model.addAttribute("fecha", incidencia.getFechaRegistro().toString());
+            model.addAttribute("fecha", fecha);
+            model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
+            model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
             return mav;
         }
 
@@ -71,15 +75,21 @@ public class CambioHorarioController {
                 }
             else
                 {
-                    LOGGER.info(modeloCH);
+
                     LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
                     CambioHorarioModel chm = new CambioHorarioModel();
-                    chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-                    chm.setHoraSalida(HORA_QUINCE); //esto igual
-                    chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-                    chm.setNuevaSalida(modeloCH.getNuevaSalida());
+
+                    //Éstas cuatro cosas se sacan de la BD
+                    chm.setHoraEntrada(""); //esto debería venir desde la base
+                    chm.setHoraSalida(""); //esto igual
+                    String fecha =  modeloCH.getFechaIncidencia();
+
+                    chm.setNuevaEntrada(cambioService.getHoraEntrada(idEmpleado, fecha));
+                    chm.setNuevaSalida(cambioService.getHoraSalida(idEmpleado, fecha));
+
                     chm.setJustificacion(modeloCH.getJustificacion());
-                    chm.setFechaIncidencia("10/10/2018");
+                    chm.setFechaIncidencia(modeloCH.getFechaIncidencia());
+
                     chm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                     cambioService.insertaCambioHorario(chm, idIncidencia);
                     return "redirect:/personal/justificantes";
@@ -101,10 +111,10 @@ public class CambioHorarioController {
             LOGGER.info("MODIFICANDO :3 *3*");
             LOGGER.info(modeloCH);
             CambioHorarioModel chm = new CambioHorarioModel();
-            chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-            chm.setHoraSalida(HORA_QUINCE); //esto igual
-            chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-            chm.setNuevaSalida(modeloCH.getNuevaSalida());
+           // chm.setHoraEntrada("7:00"); //esto debería venir desde la base
+          //  chm.setHoraSalida(HORA_QUINCE); //esto igual
+           // chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
+            //chm.setNuevaSalida(modeloCH.getNuevaSalida());
             chm.setIdJustificante(modCambHorarioJust);
             chm.setJustificacion(modeloCH.getJustificacion());
             cambioService.updateCambioHorario(chm);
@@ -120,16 +130,21 @@ public class CambioHorarioController {
         CambioHorario entCH = cambioService.getIdCambioHorario(idJustificante);
         Personal personal = personalService.getPersonalByIdEmpleado(idempleado);
         ModelAndView mav = new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
+        String fecha = entCH.getFecha().toString();
         LOGGER.info("ID empleado es " + idempleado);
         model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
         LOGGER.info("Y vale **** " + personal.nombreAndTipoToString());
         modCambHorarioJust = idJustificante;
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        model.addAttribute("tarjeta", personal.getNoTarjeta().toString());
-        model.addAttribute("fecha", entCH.getFecha().toString());
+        model.addAttribute("tarjeta", personal.getNoTarjeta());
+        model.addAttribute("fecha", fecha);
+        //model.addAttribute("fecha", fecha);
+        //model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
+        //model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
+
         LOGGER.info("**********tengo " + entCH.getHoraEntrada().toString() + " y tambien " + entCH.getHoraSalida() + " Y... " + entCH.getJustificacion());
-        model.addAttribute("nuevaEntrada", entCH.getHoraEntrada().toString());
-        model.addAttribute("nuevaSalida", entCH.getHoraSalida());
+        model.addAttribute("horae", entCH.getHoraEntrada().toString());
+        model.addAttribute("horas", entCH.getHoraSalida());
         model.addAttribute("justificacion", entCH.getJustificacion());
         return mav;
     }
