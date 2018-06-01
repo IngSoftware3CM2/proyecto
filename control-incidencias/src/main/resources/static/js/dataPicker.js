@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('.tagsinput').tagsinput({
         tagClass: 'label label-primary'
     });
@@ -63,14 +62,13 @@ $(document).ready(function () {
     $("#setDrag").click(function () {
         $image.cropper("setDragMode", "crop");
     });
-
     $('#data_1 .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: true,
         autoclose: true,
-        format: "yyyy/mm/dd"
+        format: "yyyy-mm-dd"
     });
 
     $('#data_2 .input-group.date').datepicker({
@@ -79,7 +77,7 @@ $(document).ready(function () {
         keyboardNavigation: false,
         forceParse: false,
         autoclose: true,
-        format: "dd/mm/yyyy"
+        format: "dd-mm-yyyy"
     });
 
     $('#data_3 .input-group.date').datepicker({

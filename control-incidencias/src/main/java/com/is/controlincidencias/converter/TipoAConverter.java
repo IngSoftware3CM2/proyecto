@@ -11,8 +11,8 @@ public class TipoAConverter {
         justificanteTAModel.setFolio(tipoa.getFolio());
         justificanteTAModel.setTipo(tipoa.getTipo());
         justificanteTAModel.setLicenciaArchivo(tipoa.getlicenciaArchivo());
-        justificanteTAModel.setInicio(tipoa.getInicio().toString());
-        justificanteTAModel.setFin(tipoa.getFin().toString());
+        justificanteTAModel.setInicio(tipoa.getInicio());
+        justificanteTAModel.setFin(tipoa.getFin());
         justificanteTAModel.setIdjustificante(tipoa.getJustificante().getIdJustificante());
         justificanteTAModel.setIdunidadmedica(tipoa.getUnidadMedica().getIdUnidad());
         return justificanteTAModel;
@@ -22,8 +22,8 @@ public class TipoAConverter {
         TipoA tipoA = new TipoA();
         tipoA.setTipo(justificanteTAModel.getTipo());
         tipoA.setlicenciaArchivo(justificanteTAModel.getLicenciaArchivo());
-        tipoA.setInicio(StringToLocalDate.tryParseDate(justificanteTAModel.getInicio()));
-        tipoA.setFin(StringToLocalDate.tryParseDate(justificanteTAModel.getFin()));
+        tipoA.setInicio(justificanteTAModel.getInicio());
+        tipoA.setFin(justificanteTAModel.getFin());
         return tipoA;
     }
 

@@ -16,7 +16,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   thymeleaf:
-    cache: false # Para no tener que reiniciar el server cada que cambian los template
+    cache: false #Para no tener que reiniciar el server cada que cambian los template
   servlet:
     multipart:
       max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir

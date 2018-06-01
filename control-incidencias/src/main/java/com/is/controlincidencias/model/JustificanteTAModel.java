@@ -1,10 +1,13 @@
 package com.is.controlincidencias.model;
 
 
+
+import java.time.LocalDate;
+
 public class JustificanteTAModel {
     private String folio;
-    private String inicio;
-    private String fin;
+    private LocalDate inicio;
+    private LocalDate fin;
     private String licenciaArchivo;
     private String tipo;
     private int idjustificante;
@@ -13,7 +16,7 @@ public class JustificanteTAModel {
     public JustificanteTAModel() {
     }
 
-    public JustificanteTAModel(String folio, String inicio, String fin, String licenciaArchivo, String tipo, int idjustificante, String unidadmedica) {
+    public JustificanteTAModel(String folio, LocalDate inicio, LocalDate fin, String licenciaArchivo, String tipo, int idjustificante, String unidadmedica) {
         super();
         this.folio = folio;
         this.inicio = inicio;
@@ -33,19 +36,19 @@ public class JustificanteTAModel {
         this.folio = folio;
     }
 
-    public String getInicio() {
+    public LocalDate getInicio() {
         return inicio;
     }
 
-    public void setInicio(String inicio) {
+    public void setInicio(LocalDate inicio) {
         this.inicio = inicio;
     }
 
-    public String getFin() {
+    public LocalDate getFin() {
         return fin;
     }
 
-    public void setFin(String fin) {
+    public void setFin(LocalDate fin) {
         this.fin = fin;
     }
 

@@ -43,8 +43,8 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
         int idEmpleado=justificante.getPersonal().getIdEmpleado();
         justificanteRepository.altaJustificante("Espera",fecha,1,idEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
-        LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
+        LocalDate fechaFin = justificanteTAModel.getFin();
+        LocalDate fechaInicio = justificanteTAModel.getInicio();
         int idJustificante =ids.get(ids.size()-1);
         justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,idJustificante+"_"+justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);

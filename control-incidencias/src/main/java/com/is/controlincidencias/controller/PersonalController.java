@@ -120,7 +120,7 @@ public class PersonalController {
     }
 
     @GetMapping("/justificantes")
-    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar, Principal principal) {
+    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar,Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
