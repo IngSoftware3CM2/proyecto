@@ -12,7 +12,7 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   thymeleaf:
