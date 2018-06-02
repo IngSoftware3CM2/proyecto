@@ -38,6 +38,9 @@ public class Justificante {
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private ConstanciaTiempo contanciaTiempo;
 
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private OmisionEntrSal omisionEntrSal;
+
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
 
