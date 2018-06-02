@@ -16,7 +16,7 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\horarioactual.csv' DELI
 COPY dia(iddia,horaentrada,horasalida,nombre,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\dia.csv' DELIMITER ',' CSV HEADER;
 
-COPY personal(idempleado,idempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
+COPY personal(idempleado,noempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\personal.csv' DELIMITER ','CSV HEADER;
 
 COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,habil,fechalimite)
