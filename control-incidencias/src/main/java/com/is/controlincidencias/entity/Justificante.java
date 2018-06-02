@@ -38,9 +38,6 @@ public class Justificante {
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private ConstanciaTiempo contanciaTiempo;
 
-    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Notificacion notificacion;
-
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
 

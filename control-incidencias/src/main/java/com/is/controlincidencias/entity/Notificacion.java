@@ -24,11 +24,10 @@ public class Notificacion {
     @Column(name = "archivo", nullable = false)     //qué archivo será el que suba el usuario dependerá del motivo
     private LocalDate archivo;
 
-    private static final String DEFINITION2 = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION2))
-    private Justificante justificante;
-
+    private static final String DEFINITION2 = "FOREIGN KEY(idempleado) REFERENCES personal (idempleado) ON UPDATE CASCADE ON DELETE CASCADE";
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idempleado", foreignKey = @ForeignKey(name = "personal_fk", foreignKeyDefinition = DEFINITION2))
+    private Personal personal;
 
     public Integer getId() {
         return id;
@@ -62,12 +61,12 @@ public class Notificacion {
         this.archivo = archivo;
     }
 
-    public Justificante getJustificante() {
-        return justificante;
+    public Personal getPersonal() {
+        return personal;
     }
 
-    public void setJustificante(Justificante justificante) {
-        this.justificante = justificante;
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
     }
 
     @Override
@@ -79,23 +78,12 @@ public class Notificacion {
                 Objects.equals(getMotivo(), that.getMotivo()) &&
                 Objects.equals(getFecha(), that.getFecha()) &&
                 Objects.equals(getArchivo(), that.getArchivo()) &&
-                Objects.equals(getJustificante(), that.getJustificante());
+                Objects.equals(getPersonal(), that.getPersonal());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getMotivo(), getFecha(), getArchivo(), getJustificante());
-    }
-
-    @Override
-    public String toString() {
-        return "Notificacion{" +
-                "id=" + id +
-                ", motivo=" + motivo +
-                ", fecha=" + fecha +
-                ", archivo=" + archivo +
-                ", justificante=" + justificante +
-                '}';
+        return Objects.hash(getId(), getMotivo(), getFecha(), getArchivo(), getPersonal());
     }
 }

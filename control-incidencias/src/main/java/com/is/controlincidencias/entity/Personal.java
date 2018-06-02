@@ -67,6 +67,19 @@ public class Personal {
     private HorarioActual horarioActual;
 
 
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notificacion> notificaciones = new ArrayList<>();
+
+    public void addUnidadMedica(Notificacion notificacion) {
+        notificaciones.add(notificacion);
+        notificacion.setPersonal(this);
+    }
+
+    public void removeUnidadMedica(Notificacion notificacion) {
+        notificaciones.remove(notificacion);
+        notificacion.setPersonal(null);
+    }
+
     public Personal(Integer idEmpleado, String noTarjeta, String nombre, String apellidoPaterno, String apellidoMaterno, Departamento departamento, String tipo) {
         this.idEmpleado = idEmpleado;
         this.noTarjeta = noTarjeta;
