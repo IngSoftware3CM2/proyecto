@@ -70,12 +70,12 @@ public class Personal {
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notificacion> notificaciones = new ArrayList<>();
 
-    public void addUnidadMedica(Notificacion notificacion) {
+    public void addNotificacion(Notificacion notificacion) {
         notificaciones.add(notificacion);
         notificacion.setPersonal(this);
     }
 
-    public void removeUnidadMedica(Notificacion notificacion) {
+    public void removeNotificacion(Notificacion notificacion) {
         notificaciones.remove(notificacion);
         notificacion.setPersonal(null);
     }
