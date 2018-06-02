@@ -65,7 +65,7 @@ public class LicenciaPaternidadController {
     private String redirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name =
             "id") Integer idincidencia, Principal principal) {
 
-        String email = "";
+        String email = "correo@gmail.com";
         if (principal != null && principal.getName() != null) {
             email = principal.getName();
         }

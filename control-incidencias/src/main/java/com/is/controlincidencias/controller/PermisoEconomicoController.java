@@ -2,10 +2,12 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.PermisoEconomicoConverter;
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.PermisoEconomicoModel;
+import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -40,6 +42,10 @@ public class PermisoEconomicoController {
         this.permisoEconomicoConverter = permisoEconomicoConverter;
     }
 
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
+
     @GetMapping("/permiso-economico")
     public ModelAndView verPermisoEconomico(Model model, Principal principal){
         personal = getPersonal(principal);
@@ -49,30 +55,27 @@ public class PermisoEconomicoController {
         modelAndView.addObject("noTarjeta",personal.getNoTarjeta());
         return modelAndView;
     }
-    @GetMapping("/permiso-economico/modificar")
-    public ModelAndView modificarPermisoEconomicoe(@RequestParam("id")int idJustificante, Model model, Principal principal){
-        personal = getPersonal(principal);
-        ModelAndView modelAndView = new ModelAndView(Constants.JUSTIFICANTE_DE);
-        PermisoEconomicoModel permisoEconomicoModel = new PermisoEconomicoModel();
-        if(idJustificante!=0){
-            Justificante justificante = justificanteService.findJustificanteById(idJustificante);
-            PermisoEconomico permisoEconomico = permisoEconomicoService.findByJustificante(justificante);
-            permisoEconomicoModel = permisoEconomicoConverter.converterPermisoEconomicoToPermisoEconomicoModel(permisoEconomico);
+
+
+    @GetMapping("/agregar")
+    private String redirectFormPermisoEconomico(Model model, @RequestParam(name =
+            "id") Integer idincidencia, Principal principal) {
+        String email = "";
+        if (principal != null && principal.getName() != null) {
+            email = principal.getName();
         }
-        modelAndView.addObject("tipoAndNombre", personal.nombreAndTipoToString());
-        modelAndView.addObject("noTarjeta",personal.getNoTarjeta());
-        model.addAttribute("permisoEconomicoModel",permisoEconomicoModel);
-        return modelAndView;
+        Personal personal = personalService.getPersonalByEmail(email);
+        Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
+        model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
+        model.addAttribute("fecha", incidencia.getFechaRegistro().toString());
+        return Constants.JUSTIFICANTE_DE;
     }
 
-    @PostMapping("/agregar")
-    private String guardarPermisoEconomico(@ModelAttribute("permisoEconomicoModel") PermisoEconomicoModel permisoEconomicoModel) {
-        Justificante justificante = new Justificante();
-        justificante.setPersonal(personal);
-
-        permisoEconomicoService.addPermisoEconomico(permisoEconomicoModel, justificante);
-        return "ver-justificante-dia-economico";
+    @PostMapping("/add-permisoE")
+    private String guardarPermisoEconomico() {
+        return "redirect:/personal/justificantes?add=1";
     }
+
 
     @GetMapping("/cancelar")
     public String cancelarPermisoEconomico(){

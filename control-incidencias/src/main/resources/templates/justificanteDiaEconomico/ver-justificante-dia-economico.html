@@ -32,16 +32,17 @@
         <h1 class="text-center">
           <span class="text-navy">Generar Solicitud de Licencia por Dia Economico</span>
         </h1>
-        <form class="form-horizontal" th:action="@{/personal/justificantes/permiso-economico/agregar}" th:object="${permisoEconomicoModel}" method="post">
+        <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/economico/agregar}"  method="post">
 
-          <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">Numero de tarjeta</span></label></div>
-          <div class="form-group" id="data_1">
+          <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTajerta}"></span></label></div>
+          <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label>
+          <!--<div class="form-group" id="data_1">
             <label class="col-sm-2"> Fecha de Incidencia:</label>
             <div class="input-group date col-sm-2">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fechaIncidencia}" th:value="${permisoEconomicoModel.getFechaIncidencia()}" required/>
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control"  required/>
             </div>
 
-          </div>
+          </div>-->
           <div class="row">
             <div class="col-sm-4">
             </div>
@@ -52,15 +53,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                  <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
-                </div>
-              </div>
-            </div>
+          </div>
           </div>
         </form>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+              <a href="#" th:href="@{/personal/justificantes/paternidad/cancel}">
+                <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
