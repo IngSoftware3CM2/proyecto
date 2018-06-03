@@ -21,4 +21,8 @@ public interface CambioHorarioService {
     String getHoraEntrada(int id, String fecha);
 
     String getHoraSalida(int id, String fecha);
+
+    String getHoraS(int id, String dia);
+
+    String getHoraE(int id, String dia);
 }

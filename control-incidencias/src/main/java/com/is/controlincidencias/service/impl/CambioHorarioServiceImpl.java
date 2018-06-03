@@ -99,5 +99,17 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         LocalDate fecha2 = LocalDate.parse(fecha, formatter);
         return cambioHorarioRepository.getHoraSalida(id, fecha2);
     }
+
+    @Override
+    public String getHoraS(int id, String dia)
+        {
+            return cambioHorarioRepository.getHoraS(id, dia);
+        }
+
+    @Override
+    public String getHoraE(int id, String dia)
+        {
+            return cambioHorarioRepository.getHoraE(id, dia);
+        }
 }
 
