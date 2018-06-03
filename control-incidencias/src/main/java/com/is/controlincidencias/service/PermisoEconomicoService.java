@@ -6,8 +6,7 @@ import com.is.controlincidencias.model.PermisoEconomicoModel;
 
 public interface PermisoEconomicoService {
 
-    int addPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel, Justificante justificante);
-    PermisoEconomico findByJustificante(Justificante justificante);
+    int preguntarAnoQuincena(int idempleado, int idquincena, String tipo);
     boolean existsByIdjustificante (int id);
 
 }
