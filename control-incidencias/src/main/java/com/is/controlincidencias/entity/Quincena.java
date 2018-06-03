@@ -50,12 +50,6 @@ public class Quincena {
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonalQuincena> empleados = new ArrayList<>();
 
-    /*@ManyToMany(mappedBy = "quincena")
-    private Set<Personal> personal = new HashSet<Personal>();
-
-    public Set<Personal> getGroups() {
-        return personal;
-    }*/
 
     public Quincena() {
     }

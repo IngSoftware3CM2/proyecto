@@ -28,4 +28,7 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\incidencia.csv' DELIMIT
 COPY asistencia(idasistencia,fecharegistro,horaentrada,horasalida,idempleado)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\asistencia.csv' DELIMITER ',' CSV HEADER;
 
+COPY periodoinhabil(idperiodo,inicio,fin,horasalida,descripcion)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
+
 
