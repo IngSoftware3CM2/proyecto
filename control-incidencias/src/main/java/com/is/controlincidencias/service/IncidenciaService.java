@@ -17,4 +17,5 @@ public interface IncidenciaService {
     void updateIdJustificante(int idJustificante, int idIncidencia);
 
     int getIdEmpleadoByIdJustificante(int id);
+
 }
