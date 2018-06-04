@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/personal/justificantes/cambiohorario")
@@ -48,6 +51,12 @@ public class CambioHorarioController {
     @GetMapping("/agregar")
     public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
         {
+            String diaSemana = "";
+            Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
+            String fecha = incidencia.getFechaRegistro().toString();
+            diaSemana = getDiaSemana(fecha);
+            LOGGER.info("--------------------------------" + diaSemana);
+
             ModelAndView mav = new ModelAndView(VISTA_CAMBIO_HORARIO);
             LOGGER.info("Accedí al metodo acceder del controlador");
             idIncidencia = idincidencia;
@@ -56,10 +65,10 @@ public class CambioHorarioController {
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
             Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
             mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-            Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
-            String fecha = incidencia.getFechaRegistro().toString();
             model.addAttribute("tarjeta", personal.getNoTarjeta().toString());
             model.addAttribute("fecha", fecha);
+            model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
+            model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
             model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
             model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
             return mav;
@@ -128,14 +137,19 @@ public class CambioHorarioController {
     {
         int idempleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
         CambioHorario entCH = cambioService.getIdCambioHorario(idJustificante);
+        String fecha = entCH.getFecha().toString();
         Personal personal = personalService.getPersonalByIdEmpleado(idempleado);
         ModelAndView mav = new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
-        String fecha = entCH.getFecha().toString();
+        String diaSemana = "";
+        diaSemana = getDiaSemana(fecha);
+
         LOGGER.info("ID empleado es " + idempleado);
         model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
         LOGGER.info("Y vale **** " + personal.nombreAndTipoToString());
         modCambHorarioJust = idJustificante;
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+        model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
+        model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
         model.addAttribute("tarjeta", personal.getNoTarjeta());
         model.addAttribute("fecha", fecha);
         //model.addAttribute("fecha", fecha);
@@ -148,4 +162,17 @@ public class CambioHorarioController {
         model.addAttribute("justificacion", entCH.getJustificacion());
         return mav;
     }
+    public String getDiaSemana(String fechaCompleta)
+        {
+            Date date = null;
+            try
+            {
+                date = new SimpleDateFormat("yyyy-M-d").parse(fechaCompleta);
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+            return new SimpleDateFormat("EEEE", new Locale("es","ES")).format(date).toUpperCase().substring(0,2);
+        }
 }

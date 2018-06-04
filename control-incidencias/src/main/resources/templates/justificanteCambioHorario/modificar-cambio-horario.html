@@ -52,13 +52,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
-                        <div class="col-sm-3"><label>7:00</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioEntrada}"></label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
                         <div class="col-sm-3"><label th:text="${horae}"></label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><label>15:00</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioSalida}"></label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
                         <div class="col-sm-3"><label th:text="${horas}"></label></div>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <a href="#" th:href="@{/personal/incidencias?cancelar=1}">
+                                    <a href="#" th:href="@{/personal/justificantes?cancelar=1}">
                                         <button class="btn btn-sm btn-white" type="button">Cancelar</button>
                                     </a>
                                 </div>
