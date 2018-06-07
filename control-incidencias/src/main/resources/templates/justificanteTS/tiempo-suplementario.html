@@ -13,7 +13,7 @@
                 <h2>Agregar Justificante Tiempo Suplementario</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li>
                         Justificantes
@@ -24,7 +24,7 @@
                 </ol>
             </div>
             <div class="col-sm-5 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${tipoAndNombre}">Docente | Jaime Lopez Rabadan</label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -35,9 +35,9 @@
                 </h1>
                 <form class="form-horizontal">
 
-                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : 02-002</label></div>
+                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">02-002</span></label></div>
                     <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : Tiempo Suplementario</label></div>
-                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: 15/05/2018</label></div>
+                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: <span th:text="${incidencia}"> 15/05/2018 </span></label></div>
                     <div class="form-group" >
                         <label class="col-sm-2"> Tiempo a Cubrir:</label>
                         <div class="input-group date col-sm-2">
