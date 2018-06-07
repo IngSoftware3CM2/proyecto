@@ -65,7 +65,7 @@ public class CambioHorarioController {
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
             Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
             mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-            model.addAttribute("tarjeta", personal.getNoTarjeta().toString());
+            model.addAttribute("tarjeta", personal.getNoTarjeta());
             model.addAttribute("fecha", fecha);
             model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
             model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));

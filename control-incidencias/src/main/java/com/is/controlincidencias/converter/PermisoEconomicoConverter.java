@@ -8,13 +8,11 @@ import org.springframework.stereotype.Component;
 public class PermisoEconomicoConverter {
     public PermisoEconomico converterPermisoEconomicoModelToPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel) {
         PermisoEconomico permisoEconomico = new PermisoEconomico();
-        permisoEconomico.setFechaIncidencia(StringToLocalDate.tryParseDate(permisoEconomicoModel.getFechaIncidencia()));
         return permisoEconomico;
     }
 
     public PermisoEconomicoModel converterPermisoEconomicoToPermisoEconomicoModel(PermisoEconomico permisoEconomico) {
         PermisoEconomicoModel permisoEconomicoModel = new PermisoEconomicoModel();
-        permisoEconomicoModel.setFechaIncidencia(permisoEconomico.getFechaIncidencia().toString());
         permisoEconomicoModel.setIdjustificante(permisoEconomico.getJustificante().getIdJustificante());
         return permisoEconomicoModel;
     }

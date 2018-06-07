@@ -1,12 +1,14 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "omisionentrsal")
 public class OmisionEntrSal {
     @Id
-    @Column(name = "id", length = 8)
+    @Column(name = "id", columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(600)")
@@ -50,5 +52,32 @@ public class OmisionEntrSal {
 
     public void setJustificante(Justificante justificante) {
         this.justificante = justificante;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OmisionEntrSal that = (OmisionEntrSal) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(justificacion, that.justificacion) &&
+                Objects.equals(tipo, that.tipo) &&
+                Objects.equals(justificante, that.justificante);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, justificacion, tipo, justificante);
+    }
+
+    @Override
+    public String toString() {
+        return "OmisionEntrSal{" +
+                "id=" + id +
+                ", justificacion='" + justificacion + '\'' +
+                ", tipo=" + tipo +
+                ", justificante=" + justificante +
+                '}';
     }
 }

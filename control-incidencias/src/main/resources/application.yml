@@ -12,7 +12,11 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
+<<<<<<< HEAD
       ddl-auto: create-drop
+=======
+      ddl-auto: update #update #Se cambio a update para no borrar mis registros/ create-drop borra y crea
+>>>>>>> c0159657a1dd1138663153aa874215528ff3e7d5
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   thymeleaf:
