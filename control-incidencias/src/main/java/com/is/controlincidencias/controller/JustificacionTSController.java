@@ -47,5 +47,9 @@ public class JustificacionTSController {
         return mav;
     }
 
+    @GetMapping("/tiemposuplementario/cancelar")
+    public String cancelarTipoA(){
+        return "redirect:/personal/incidencias?cancelar=1";
+    }
 
 }
