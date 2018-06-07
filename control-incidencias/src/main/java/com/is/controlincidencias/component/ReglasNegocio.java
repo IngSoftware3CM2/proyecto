@@ -13,6 +13,10 @@ public class ReglasNegocio {
     private ReglasNegocio(){
     }
 
+    public boolean rn1(String input){
+        return (input.trim().length()!=0) ;
+    }
+
     public boolean rn2(LocalDate fecha){
         Pattern p;
         Matcher m;
@@ -36,6 +40,16 @@ public class ReglasNegocio {
         // comprueba que no contenga caracteres prohibidos
         p = Pattern.compile("[^A-Z0-9]");
         m = p.matcher(folio);
+        return m.find();
+    }
+
+    public boolean rn21(String newPassword){
+        Pattern p;
+        Matcher m;
+        p = Pattern.compile("[^a-zA-Z0-9]");
+        m = p.matcher(newPassword);
+        if(newPassword.length()<8 || newPassword.length()>30)
+            return true;
         return m.find();
     }
 

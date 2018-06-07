@@ -35,7 +35,7 @@ public class ResUnidadMedica {
         Zona zona = zonaService.getZonabyNombre(zonaJSON.getNombre());
         List<UnidadMedica> unidadMedica;
         List<ConsultaUnidadMedica> unidades = new ArrayList<>();
-        log.info("Zona: " + zona.getNombre());
+        //log.info("Zona: " + zona.getNombre());
         unidadMedica = unidadMedicaService.getunidadesMedicasByZona(zona);
         for (UnidadMedica unidad : unidadMedica) {
             ConsultaUnidadMedica consultaUnidadMedica = new ConsultaUnidadMedica();

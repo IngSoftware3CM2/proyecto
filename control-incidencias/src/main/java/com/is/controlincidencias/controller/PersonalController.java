@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
@@ -54,7 +55,9 @@ public class PersonalController {
     @Qualifier("permisoEconomicoServiceImpl")
     private PermisoEconomicoServiceImpl permisoEconomicoService;
 
-
+    @Autowired
+    @Qualifier("reglasNegocioComponent")
+    private ReglasNegocio reglasNegocio;
 
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
@@ -105,7 +108,16 @@ public class PersonalController {
         if (!encoder.matches(cambioPassword.getOldPassword(), p.getLogin().getPasswordhash())) {
             LOG.info("confirmar() La contraseña vieja no cuadra");
             estado = "error";
-        } else if (!cambioPassword.getNewPassword().equals(cambioPassword.getVerifyPassword())) {
+        } else if (!reglasNegocio.rn1(cambioPassword.getNewPassword())
+                || !reglasNegocio.rn1(cambioPassword.getOldPassword())
+                || !reglasNegocio.rn1(cambioPassword.getVerifyPassword())) {
+            LOG.info("confirmar() ERROR REGLA DE NEGOCIO 1");
+            estado = "error1";
+        } else if ( reglasNegocio.rn21(cambioPassword.getNewPassword()) ) {
+            LOG.info("confirmar() ERROR REGLA DE NEGOCIO 21");
+            estado = "error2";
+        }
+        else if (!cambioPassword.getNewPassword().equals(cambioPassword.getVerifyPassword())) {
             LOG.info("confirmar() Las nuevas contraseñas no cuadran");
             estado = "diferente";
         } else {
