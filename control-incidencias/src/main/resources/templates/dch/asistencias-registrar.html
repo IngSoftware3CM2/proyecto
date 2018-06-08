@@ -33,7 +33,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" id="fecha"/>
+                                                <input type="text" class="form-control" id="fecha"/>
                                             </div>
                                         </div>
                                     </div>
@@ -46,8 +46,8 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="tarjeta" class="col-2">Numero de Tarjeta*:</label>
-                                            <input type="text" placeholder="Numero de Tarjeta" id="tarjeta"
+                                            <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
+                                            <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
                                                    class="form-control">
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="exampleInput" class="col-2">Agregar</label><br>
+                                            <label class="col-2">Agregar</label><br>
                                             <button class="btn btn-white" type="button"><i class="fa fa-plus"></i>
                                             </button>
 
@@ -120,7 +120,6 @@
         </div>
     </div>
 </div>
-</div>
 <!--Archivos javascript, luego los pongo en su propio archivo como el header-->
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
@@ -130,5 +129,15 @@
 <script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script>
+    $('#data_1 .input-group.date').datepicker({
+        todayBtn: true,
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: false,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+    });
+</script>
 </body>
 </html>
