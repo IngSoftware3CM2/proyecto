@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tiemposuplgenerado")
-public class tiempoSuplGenerado {
+public class TiempoSuplGenerado {
     @Id
     @Column(name = "idAsistencia", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -61,7 +61,7 @@ public class tiempoSuplGenerado {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        tiempoSuplGenerado that = (tiempoSuplGenerado) o;
+        TiempoSuplGenerado that = (TiempoSuplGenerado) o;
         return Objects.equals(getIdAsistencia(), that.getIdAsistencia()) &&
                 Objects.equals(getFechaRegistro(), that.getFechaRegistro()) &&
                 Objects.equals(getHoras(), that.getHoras()) &&

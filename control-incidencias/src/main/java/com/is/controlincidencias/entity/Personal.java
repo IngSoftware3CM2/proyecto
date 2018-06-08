@@ -50,7 +50,7 @@ public class Personal {
     private List<PersonalQuincena> quincenas = new ArrayList<>();
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<tiempoSuplGenerado> tiempoSuplGenerados = new ArrayList<>();
+    private List<TiempoSuplGenerado> TiempoSuplGenerados = new ArrayList<>();
 
     private static final String DEFINITION = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
