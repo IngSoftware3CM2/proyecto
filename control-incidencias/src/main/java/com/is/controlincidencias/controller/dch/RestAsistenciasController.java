@@ -2,14 +2,12 @@ package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.ConsultaAsistencia;
+import com.is.controlincidencias.model.ConsultaAsistenciaJSON;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +53,21 @@ public class RestAsistenciasController {
         for (AsistenciaJSON asistenciaJSON : asistencias)
             asistenciaService.agregarAsistencia(asistenciaJSON);
         return new ConsultaAsistencia();
+    }
+
+    /* CASO DE USO MOSTRAR ASISTENCIAS */
+    @GetMapping("/anios")
+    public void buscarAnios(@RequestBody ConsultaAsistenciaJSON asistencia) {
+
+    }
+
+    @GetMapping("/quincenas")
+    public void buscarQuincenas(@RequestBody ConsultaAsistenciaJSON asistencia) {
+
+    }
+
+    @GetMapping("/visualizar")
+    public void vizualizar(@RequestBody ConsultaAsistenciaJSON asistencia) {
+
     }
 }

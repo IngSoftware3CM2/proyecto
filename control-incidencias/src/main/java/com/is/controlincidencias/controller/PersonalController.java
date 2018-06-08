@@ -201,6 +201,8 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/cambiohorario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
+        else if(tipo==5)
+            redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
         return redirectURL;
     }
 

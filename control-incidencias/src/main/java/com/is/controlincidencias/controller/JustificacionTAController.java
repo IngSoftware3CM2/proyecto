@@ -72,7 +72,7 @@ public class JustificacionTAController {
         public ModelAndView verJustificante(Model model,@RequestParam(name =
             "id") Integer idincidencia,Principal principal){
         //Aqui esta la parte del codigo del correo
-        String email = "";
+        String email = "correo@gmail.com";
         if (principal!=null && principal.getName()!=null){
             email=principal.getName();
         }

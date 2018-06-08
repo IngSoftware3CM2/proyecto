@@ -26,15 +26,19 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-      ddl-auto: update #Se cambio a update para no borrar mis registros/  borra y crea
+<<<<<<< HEAD
+      ddl-auto: create-drop
+=======
+      ddl-auto: create-drop
+>>>>>>> 68ce7f818166ef101852838d1c07600c121082fe
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   thymeleaf:
     cache: false #Para no tener que reiniciar el server cada que cambian los template
   servlet:
-            multipart:
-                max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir
-                max-request-size: 100MB
+    multipart:
+      max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir
+      max-request-size: 100MB
 logging:
   level:
     org:
