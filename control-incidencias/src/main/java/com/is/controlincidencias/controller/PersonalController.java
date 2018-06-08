@@ -2,6 +2,8 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.Motivo;
+import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
 import com.is.controlincidencias.service.impl.*;
@@ -42,6 +44,10 @@ public class PersonalController {
     @Autowired
     @Qualifier("licPaternidadServiceImpl")
     private LicPaternidadServiceImpl licPaternidadService;
+
+    @Autowired
+    @Qualifier ("notificacionServiceImpl")
+    private NotificacionServiceImpl notificacionService;
 
     @Autowired
     @Qualifier("taServiceImpl")
@@ -175,6 +181,12 @@ public class PersonalController {
         model.addAttribute("cancelar", cancelar);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+        Integer motivo = new Integer (-1);
+        if (notificacionService.existsByPersonal(personal)){
+            Notificacion notificacion = notificacionService.findByPersonal(personal);
+            motivo = new Integer(notificacion.getMotivo().getIdMotivo());
+        }
+        mav.addObject("motivo", motivo);
         return mav;
     }
 

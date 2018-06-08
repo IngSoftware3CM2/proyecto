@@ -36,8 +36,6 @@
                                     <th>Fecha</th>
                                     <th>Tipo de Justificacion</th>
                                     <th>Ver</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
@@ -63,17 +61,7 @@
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </td>
-                                    <td>
-                                        <a href="#"
-                                           th:href="@{/personal/justificantes/modificar(id=${justificante.idJustificante}, tipo=${justificante.getTipo()})}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td><a href="#"
-                                           th:href="@{/personal/removejustificante(id=__${justificante.idJustificante}__)}">
-                                        <i class="fa fa-trash"></i>
-                                    </a></td>
-                                    <td th:switch="${justificante.getEstado().toLowerCase()}">
+                                   <td th:switch="${justificante.getEstado().toLowerCase()}">
                                         <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
                                         <span th:case="'espera'"><i class="fa fa-clock-o"></i></span>
                                         <span th:case="'rechazado'"><i class="fa fa-times"></i></span>
