@@ -33,7 +33,8 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="fecha"/>
+                                                <input type="text" class="form-control" id="fecha" required
+                                                       pattern="^\d{4}-\d{2}-\d{2}$"/>
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +49,7 @@
                                         <div class="form-group">
                                             <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
                                             <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
-                                                   class="form-control">
+                                                   class="form-control" required pattern="^0[1-8]\d{4}$">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -67,10 +68,10 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="col-2">Agregar</label><br>
-                                            <button class="btn btn-white" type="button"><i class="fa fa-plus"></i>
+                                            <label class="col-2"> </label><br>
+                                            <button class="btn btn-white" type="button" disabled>
+                                                Registrar
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -130,14 +131,22 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
-    $('#data_1 .input-group.date').datepicker({
+    let inputDate = $('#data_1 .input-group.date');
+    inputDate.datepicker({
         todayBtn: true,
+        endDate: '+0d',
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: false,
         autoclose: true,
         format: "yyyy-mm-dd"
     });
+    inputDate.on("changeDate", function (ev) {
+        ev.preventDefault();
+        console.log("CAMBIO LA FECHA");
+    });
+    inputDate.datepicker("setDate", new Date());
+
 </script>
 </body>
 </html>
