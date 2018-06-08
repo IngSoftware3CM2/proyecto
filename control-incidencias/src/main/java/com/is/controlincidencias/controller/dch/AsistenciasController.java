@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -48,7 +49,22 @@ public class AsistenciasController {
     }
 
     @GetMapping("/registrar")
-    public String registrar() {
+    public String registrar(Model model) {
+        model.addAttribute(MODELO, new AsistenciaForm());
+        return REGISTRAR_ASISTENCIAS;
+    }
+
+    @PostMapping(params = "buscar", value = "/registro")
+    public String buscar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
+            BindingResult bindingResult, Model model) {
+        log.info("registarBuscar()");
+
+
+        AsistenciaForm asistencia = asistenciaService.buscarAsistencia(modelo);
+
+        model.addAttribute(MODELO, asistencia);
+
+        log.info("saliendo de registarBuscar()");
         return REGISTRAR_ASISTENCIAS;
     }
 

@@ -46,8 +46,6 @@
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
-
-
                                     <td th:switch="${justificante.getTipo()}">
                                         <span th:case="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</span>
                                         <span th:case="2">Licencia por Paternidad</span>

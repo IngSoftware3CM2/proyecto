@@ -1,4 +1,18 @@
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sci.escom.noreply@gmail.com
+    password: postgres
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+        auth: true
+        starttls.enable: true
+        ssl.trust: smtp.gmail.com
+    properties:
+        mail:
+          from: <sci.escom.noreply@gmail.com>
   datasource:
     url: jdbc:postgresql://localhost:5432/proyecto_CI
     password: postgres
@@ -12,15 +26,15 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true
     hibernate:
-      ddl-auto: update #update #Se cambio a update para no borrar mis registros/  borra y crea
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   thymeleaf:
     cache: false #Para no tener que reiniciar el server cada que cambian los template
   servlet:
-            multipart:
-                max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir
-                max-request-size: 100MB
+    multipart:
+      max-file-size: 100MB #Esta cosa controla el tamaño de los archivos que se pueden subir
+      max-request-size: 100MB
 logging:
   level:
     org:

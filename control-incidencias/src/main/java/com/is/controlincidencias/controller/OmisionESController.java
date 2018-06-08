@@ -5,6 +5,7 @@ import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.service.CambioHorarioService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
+import com.is.controlincidencias.service.impl.OmisionESServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -28,10 +29,12 @@ import java.util.Locale;
 public class OmisionESController
     {
         static final String VISTA_OMISION_ES = "justificanteOmisionES/omision-es.html";
-        static final String VISTA_MOD_OMISION_ES = "";
+        static final String VISTA_MOD_OMISION_ES =  "justificanteOmisionES/mod-omision-es.html";
         private static final Log LOGGER = LogFactory.getLog(OmisionESController.class);
         int idEmpleado;
         int idIncidencia;
+        String fesha = "0000-00-00";
+        int idJustGlobal = 0; //si modifica, esta agarra valor
 
         @Autowired
         @Qualifier("cambioHorarioServiceImpl")
@@ -45,6 +48,10 @@ public class OmisionESController
         @Qualifier("personalServiceImpl")
         private PersonalServiceImpl personalService;
 
+        @Autowired
+        @Qualifier("omisionServiceImpl")
+        private OmisionESServiceImpl omisionService;
+
         @GetMapping("/agregar")
         public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
         {
@@ -53,6 +60,7 @@ public class OmisionESController
             String horaS = "";
             Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
             String fecha = incidencia.getFechaRegistro().toString();
+            fesha = fecha;
             diaSemana = getDiaSemana(fecha);
             LOGGER.info("--------------------------------" + diaSemana);
 
@@ -67,41 +75,62 @@ public class OmisionESController
             horaE = cambioService.getHoraEntrada(idEmpleado, fecha);
             horaS = cambioService.getHoraSalida(idEmpleado, fecha);
             LOGGER.info("****************//////////////////////////////// Tengo" + horaE + " - " + horaS);
-            boolean tipo;
-            if(horaE.equals("00:00:00")) //hora entrada omitida, false
-            {
-                tipo = false;
-                model.addAttribute("horae", "N/A");
-                model.addAttribute("horas", horaS);
-            }
-            else
-            {
-                tipo = true;
-                model.addAttribute("horae", horaE);
-                model.addAttribute("horas", "N/A");
-            }
+            setTipos(model, horaS, horaE);
 
             model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
             model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
-            model.addAttribute("tipoe", !tipo);
-            model.addAttribute("tipos", tipo);
+
 
             return mav;
         }
 
         @PostMapping("/addOmision")
-        public String addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") OmisionModel modeloES, BindingResult bindings)
+        public String addOmision(@Valid @ModelAttribute("omisionModel") OmisionModel modeloES, BindingResult bindings)
         {
-                LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
                 OmisionModel om = new OmisionModel();
                 om.setJustificacion(modeloES.getJustificacion());
                 om.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                 om.setTipo(modeloES.isTipo());
-             //   cambioService.insertaCambioHorario(om, idIncidencia);
+                omisionService.addOmision(om, idIncidencia, fesha);
                 return "redirect:/personal/justificantes";
         }
 
 
+
+        @PostMapping("/modOmision")
+        public String modOmision(@Valid @ModelAttribute("omisionModel") OmisionModel modeloES)
+        {
+            omisionService.updateJust(modeloES.getJustificacion(), idJustGlobal);
+            return "redirect:/personal/justificantes";
+        }
+
+
+        @GetMapping("/modificar")
+        public ModelAndView modificar(Model model,  @RequestParam(name="id")Integer idJustificante)
+        {
+            String diaSemana = "";
+            String horaE = "";
+            String horaS = "";
+            idJustGlobal = idJustificante;
+            String fecha = omisionService.getFecha(idJustificante);
+            diaSemana = getDiaSemana(fecha);
+            LOGGER.info("--------------------------------" + diaSemana);
+            int idempleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
+            ModelAndView mav = new ModelAndView(VISTA_MOD_OMISION_ES);
+            model.addAttribute("omisionModel", new OmisionModel());
+            Personal personal = personalService.getPersonalByIdEmpleado(idempleado);
+            mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+            model.addAttribute("tarjeta", personal.getNoTarjeta());
+            model.addAttribute("fecha", fecha);
+            horaE = cambioService.getHoraEntrada(idempleado, fecha);
+            horaS = cambioService.getHoraSalida(idempleado, fecha);
+            LOGGER.info("****************//////////////////////////////// Tengo" + horaE + " - " + horaS);
+            setTipos(model, horaS, horaE);
+            model.addAttribute("horarioEntrada", cambioService.getHoraE(idempleado, diaSemana));
+            model.addAttribute("horarioSalida", cambioService.getHoraS(idempleado, diaSemana));
+            model.addAttribute("justificacion", omisionService.getJust(idJustificante));
+            return mav;
+        }
 
 
         public String getDiaSemana(String fechaCompleta)
@@ -118,5 +147,24 @@ public class OmisionESController
             return new SimpleDateFormat("EEEE", new Locale("es","ES")).format(date).toUpperCase().substring(0,2);
         }
 
+        public void setTipos(Model model, String horaS, String horaE)
+            {
+                boolean tipo;
+                if(horaE.equals("00:00:00")) //hora entrada omitida, false
+                {
+                    tipo = false;
+                    model.addAttribute("horae", "N/A");
+                    model.addAttribute("horas", horaS);
+                    model.addAttribute("tipoes", "Entrada");
+                }
+                else
+                {
+                    tipo = true;
+                    model.addAttribute("horae", horaE);
+                    model.addAttribute("horas", "N/A");
+                    model.addAttribute("tipoes", "Salida");
+                }
+                model.addAttribute("tipo", tipo);
+            }
     }
 
