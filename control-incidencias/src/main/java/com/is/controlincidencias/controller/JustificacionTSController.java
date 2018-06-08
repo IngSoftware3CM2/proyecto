@@ -3,8 +3,10 @@ package com.is.controlincidencias.controller;
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.PersonalService;
+import com.is.controlincidencias.service.TiempoSuplGeneradoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/personal/justificantes")
@@ -28,8 +31,14 @@ public class JustificacionTSController {
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
 
+    @Autowired
+    @Qualifier("tiempoSuplGeneradoServiceImpl")
+    private TiempoSuplGeneradoService tiempoSuplGeneradoService;
+
     private int idIncidencia;
     private Personal personal;
+    private int sinTiempoError;
+    private static final String REDIRECT = "redirect:redirect:/personal/justificantes/tiemposuplementario?id=";
     @GetMapping("/tiemposuplementario")
     public ModelAndView verJustificante(Model model, @RequestParam(name =
             "id") Integer idincidencia, Principal principal){
@@ -40,7 +49,14 @@ public class JustificacionTSController {
         idIncidencia=idincidencia;
         personal = personalService.getPersonalByEmail(email);
         Incidencia incidencia = incidenciaService.consultarIncidencia(idIncidencia);
+        List<TiempoSuplGenerado> tiemposSuplementarios= tiempoSuplGeneradoService.findByPersonal(personal);
+        sinTiempoError=0;
+        if(tiemposSuplementarios.isEmpty()){
+            sinTiempoError=1;
+        }
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_TS);
+        model.addAttribute("sinTiempo",sinTiempoError);
+        mav.addObject("tiempoSuplGenerado",tiemposSuplementarios);
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("noTarjeta",personal.getNoTarjeta());
         mav.addObject("incidencia",incidencia.getFechaRegistro());
