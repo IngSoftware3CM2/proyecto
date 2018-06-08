@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="periodoinhabil")
-public class periodoInhabil {
+public class PeriodoInhabil {
     @Id
     @Column(name = "idperiodo", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -63,7 +63,7 @@ public class periodoInhabil {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        periodoInhabil that = (periodoInhabil) o;
+        PeriodoInhabil that = (PeriodoInhabil) o;
         return Objects.equals(getIdperiodo(), that.getIdperiodo()) &&
                 Objects.equals(getInicio(), that.getInicio()) &&
                 Objects.equals(getFin(), that.getFin()) &&

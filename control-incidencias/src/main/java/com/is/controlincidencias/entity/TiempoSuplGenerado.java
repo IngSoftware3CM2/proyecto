@@ -16,6 +16,9 @@ public class TiempoSuplGenerado {
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
+    @Column(name = "usado", nullable = false) /*para saber si este tiempoSuplementarioGenerado ya fue contempleado en un justificante*/
+    private Boolean usado;              /*falso si aun no se ha usado*/
+
     @Column(name = "horas", nullable = false, columnDefinition = "time without time zone")
     private LocalTime horas;
 
