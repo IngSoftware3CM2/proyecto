@@ -27,6 +27,9 @@ public class PersonalQuincena {
     @Column(name = "diasEconomicosSolicitados")
     private Integer dias_econ_solic;
 
+    @Column(name = "justificacionesSuplementario")
+    private Integer justiftiemposuplementario;
+
     public PersonalQuincena() {}
 
     @Override

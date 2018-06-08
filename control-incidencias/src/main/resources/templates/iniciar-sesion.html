@@ -33,7 +33,7 @@
             </form>
         </div>
         <p class="m-t">
-            <small><a href="#">He olvidado mi contraseña</a></small>
+            <small><a th:href="@{/password-recovery}">He olvidado mi contraseña</a></small>
         </p>
         <div th:if="${error != null}" class="alert alert-danger" role="alert">
             Constraseña y/o email incorrectos

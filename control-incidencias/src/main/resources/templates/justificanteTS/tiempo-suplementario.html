@@ -13,7 +13,7 @@
                 <h2>Agregar Justificante Tiempo Suplementario</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Inicio</a>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
                     </li>
                     <li>
                         Justificantes
@@ -24,8 +24,11 @@
                 </ol>
             </div>
             <div class="col-sm-5 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${tipoAndNombre}">Docente | Jaime Lopez Rabadan</label>
             </div>
+        </div>
+        <div class="alert alert-danger" th:if="${sinTiempo == 1}">
+            No tienes tiempos suplementarios
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
 
@@ -33,19 +36,16 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar solicitud de tiempo suplementario</span>
                 </h1>
-                <form class="form-horizontal">
-
-                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : 02-002</label></div>
+                <form class="form-horizontal" method="post">
+                    <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">02-002</span></label></div>
                     <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : Tiempo Suplementario</label></div>
-                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: 15/05/2018</label></div>
+                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: <span th:text="${incidencia}"> 15/05/2018 </span></label></div>
                     <div class="form-group" >
                         <label class="col-sm-2"> Tiempo a Cubrir:</label>
                         <div class="input-group date col-sm-2">
-
                             <select class="form-control m-b" name="account">
                                 <option>1 hr</option>
                                 <option>opcion 2</option>
-
                             </select>
                         </div>
 
@@ -59,46 +59,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>16 / 04 / 2018</td>
-                            <td>100 hr</td>
+                        <tr th:each="tiempo : ${tiempoSuplGenerado}">
+                            <td th:text="${tiempo.fechaRegistro}">16 / 04 / 2018</td>
+                            <td th:text="${tiempo.horas}">100 hr</td>
                             <td>
                                 <div class="form-group" >
                                     <div class="input-group date col-sm-2">
-
-                                        <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
+                                        <div class="i-checks col-lg-6"><label><input type="checkbox"/><i></i></label></div>
                                     </div>
 
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>16 / 04 / 2018</td>
-                            <td>100 hr</td>
-                            <td>
-                                <div class="form-group" >
-                                    <div class="input-group date col-sm-2">
-
-                                        <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>16 / 04 / 2018</td>
-                            <td>100 hr</td>
-                            <td>
-                                <div class="form-group" >
-                                    <div class="input-group date col-sm-2">
-
-                                        <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
                         </tbody>
                     </table>
                     <div class="form-group">
@@ -107,7 +79,7 @@
                             <button class="btn btn-sm btn-white" type="submit">Enviar</button>
                         </div>
                         <div class="col-lg-3">
-                            <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                            <button class="btn btn-sm btn-white" id ="buttonCancelar" type="button" th:href="@{/personal/justificantes/tiempo-suplementario/cancelar}">Cancelar</button>
                         </div>
                     </div>
                 </form>
@@ -115,8 +87,12 @@
         </div>
     </div>
 </div>
+<script>  $("#buttonCancelar").on("click",function(){
+    window.location.href="/personal/justificantes/tiempo-suplementario/cancelar";
+});</script>
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTS.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
