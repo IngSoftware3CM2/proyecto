@@ -25,4 +25,20 @@ public interface OmisionESRepository extends JpaRepository<OmisionEntrSal, Seria
     @Query(value = "insert into omisionentrsal (justificacion, tipo, idjustificante) VALUES (:justificacion, :tipo, :idjustificante)", nativeQuery = true)
     void guardaJustificanteOmision(@Param("justificacion") String justificacion, @Param("tipo") boolean tipo, @Param("idjustificante") int idjustificante);
 
+
+    @Transactional
+    @Query(value = "select justificacion from omisionentrsal where idjustificante = :idjustificante", nativeQuery = true)
+    String getJustificacion(@Param("idjustificante") int idjustificante);
+
+
+    @Transactional
+    @Query(value = "select coalesce(to_char(fecha, 'YYYY-MM-DD'), '') as fecha from justificante j where j.idjustificante = :idjustificante", nativeQuery = true)
+    String getFecha(@Param("idjustificante") int idjustificante);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update omisionentrsal set justificacion = :justificacion where idjustificante = :idjustificante", nativeQuery = true)
+    void updateOmision(@Param("justificacion") String justificacion, @Param("idjustificante") int idjustificante);
+
+
 }

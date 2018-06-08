@@ -45,4 +45,22 @@ public class OmisionESServiceImpl implements OmisionESService{
             omisionRepository.guardaJustificanteOmision(om.getJustificacion(), om.isTipo(),  ids.get(ids.size() - 1));
             incidenciaService.updateIdJustificante(ids.get(ids.size() - 1), idincidencia);
         }
+
+    @Override
+    public String getJust(int idJust)
+        {
+            return omisionRepository.getJustificacion(idJust);
+        }
+
+    @Override
+    public String getFecha(int id)
+        {
+            return omisionRepository.getFecha(id);
+        }
+
+    @Override
+    public void updateJust(String just, int id)
+        {
+            omisionRepository.updateOmision(just, id);
+        }
 }
