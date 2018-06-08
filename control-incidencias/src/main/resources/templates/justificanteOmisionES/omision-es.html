@@ -9,7 +9,7 @@
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Solicitud de Cambio de Horario</h2>
+                <h2>Solicitud de Justificante por Omisión de entrada/salidao</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/personal}">Inicio</a>
@@ -18,7 +18,7 @@
                         Justificantes
                     </li>
                     <li class="active">
-                        <strong>Solicitud de Justificante por Omisión entrada/Salida</strong>
+                        <strong>Solicitud de Justificante por Omisión entrada/salida</strong>
                     </li>
                 </ol>
             </div>
@@ -48,8 +48,10 @@
                     <div class="form-group">
                         <label class="col-lg-4">Omision</label>
                         <div class="col-lg-8">
-                            <label class="checkbox-inline"> <input type="checkbox" value="E" id="ECheckbox" readonly="readonly" th:checked="${tipoe}" th:field="*{tipo}"> Entrada </label>
-                            <label class="checkbox-inline"> <input type="checkbox" value="S" id="SCheckbox" readonly="readonly" th:checked="${tipos}" th:field="*{tipo}"> Salida </label>
+                            <div class="col-sm-3"><label th:text="${tipoes}"></label></div>
+                        </div>
+                        <div hidden>
+                            <textarea class="col-lg-6" style="height: 100px" th:field="*{tipo}" th:text="${tipo}"></textarea>
                         </div>
                     </div>
                     <div class="row">

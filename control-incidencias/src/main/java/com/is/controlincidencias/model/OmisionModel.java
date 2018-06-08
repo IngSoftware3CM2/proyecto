@@ -16,7 +16,7 @@ public class OmisionModel {
     @Override
     public String toString() {
         return "OmisionModel{" +
-                ", justificacion='" + justificacion + '\'' +
+                " justificacion='" + justificacion + '\'' +
                 ", tipo=" + tipo +
                 ", idJustificante=" + idJustificante +
                 '}';

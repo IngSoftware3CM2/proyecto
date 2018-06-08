@@ -5,6 +5,7 @@ import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.service.CambioHorarioService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
+import com.is.controlincidencias.service.impl.OmisionESServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -32,6 +33,7 @@ public class OmisionESController
         private static final Log LOGGER = LogFactory.getLog(OmisionESController.class);
         int idEmpleado;
         int idIncidencia;
+        String fesha = "0000-00-00";
 
         @Autowired
         @Qualifier("cambioHorarioServiceImpl")
@@ -45,6 +47,10 @@ public class OmisionESController
         @Qualifier("personalServiceImpl")
         private PersonalServiceImpl personalService;
 
+        @Autowired
+        @Qualifier("omisionServiceImpl")
+        private OmisionESServiceImpl omisionService;
+
         @GetMapping("/agregar")
         public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
         {
@@ -53,6 +59,7 @@ public class OmisionESController
             String horaS = "";
             Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
             String fecha = incidencia.getFechaRegistro().toString();
+            fesha = fecha;
             diaSemana = getDiaSemana(fecha);
             LOGGER.info("--------------------------------" + diaSemana);
 
@@ -73,18 +80,19 @@ public class OmisionESController
                 tipo = false;
                 model.addAttribute("horae", "N/A");
                 model.addAttribute("horas", horaS);
+                model.addAttribute("tipoes", "Entrada");
             }
             else
             {
                 tipo = true;
                 model.addAttribute("horae", horaE);
                 model.addAttribute("horas", "N/A");
+                model.addAttribute("tipoes", "Salida");
             }
 
             model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
             model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
-            model.addAttribute("tipoe", !tipo);
-            model.addAttribute("tipos", tipo);
+            model.addAttribute("tipo", tipo);
 
             return mav;
         }
@@ -92,12 +100,13 @@ public class OmisionESController
         @PostMapping("/addOmision")
         public String addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") OmisionModel modeloES, BindingResult bindings)
         {
-                LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
+                //LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
                 OmisionModel om = new OmisionModel();
                 om.setJustificacion(modeloES.getJustificacion());
                 om.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                 om.setTipo(modeloES.isTipo());
-             //   cambioService.insertaCambioHorario(om, idIncidencia);
+                //LOGGER.info("/////////////////-------------- " + om);
+                omisionService.addOmision(om, idIncidencia, fesha);
                 return "redirect:/personal/justificantes";
         }
 
