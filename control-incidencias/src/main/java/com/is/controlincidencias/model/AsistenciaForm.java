@@ -24,4 +24,6 @@ public class AsistenciaForm {
     private LocalTime horaSalida;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fecha;
+    private String nombre;
+    private Integer idAsistencia;
 }

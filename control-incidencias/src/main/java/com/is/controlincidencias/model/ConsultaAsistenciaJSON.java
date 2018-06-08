@@ -3,10 +3,12 @@ package com.is.controlincidencias.model;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+import java.time.LocalDate;
+
 @Setter
+@Getter
 public class ConsultaAsistenciaJSON {
-    private String tarjeta;
-    private String year;
-    private String quincena;
+    private Integer estado;
+    private String noTarjeta;
+    private LocalDate fecha;
 }

@@ -24,7 +24,9 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form role="form" class="form-inline">
+                            <form class="form-inline" th:action="@{/dch/asistencias/registro}" method="POST"
+                                  th:object="${modelo}">
+                                <input type="text" hidden id="idAsistencia" th:field="*{idAsistencia}">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" id="data_1">
@@ -34,7 +36,7 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
                                                 <input type="text" class="form-control" id="fecha" required
-                                                       pattern="^\d{4}-\d{2}-\d{2}$"/>
+                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -49,29 +51,30 @@
                                         <div class="form-group">
                                             <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
                                             <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
-                                                   class="form-control" required pattern="^0[1-8]\d{4}$">
+                                                   class="form-control" required pattern="^0[1-8]\d{4}$"
+                                                   th:field="*{tarjeta}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaEntrada" class="col-2">Hora de Entrada*</label>
                                             <input type="text" placeholder="Hora de Entrada" id="horaEntrada"
-                                                   class="form-control">
+                                                   class="form-control" th:field="*{horaEntrada}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaSalida" class="col-2">Hora de Salida*</label>
                                             <input type="text" placeholder="Hora de Salida" id="horaSalida"
-                                                   class="form-control">
+                                                   class="form-control" th:field="*{horaSalida}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label class="col-2"> </label><br>
-                                            <button class="btn btn-white" type="button" disabled>
-                                                Registrar
-                                            </button>
+                                            <input class="btn btn-white" value="Registrar" type="submit"
+                                                   name="registrar" disabled/>
+
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +82,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <button class="btn btn-white" type="button">Buscar</button>
+                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -91,28 +94,14 @@
                                 <thead>
                                 <tr>
                                     <th>Fecha de Registro</th>
-                                    <th>Numero de Tarjeta</th>
+                                    <th>Número de Tarjeta</th>
                                     <th>Hora de Entrada</th>
                                     <th>Hora de Salida</th>
                                     <th>Modificar</th>
                                     <th>Eliminar</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>16 / 04 / 2018</td>
-                                    <td>01-0002</td>
-                                    <td>07:11</td>
-                                    <td>15:00</td>
-                                    <td>
-                                        <button class="btn btn-white" type="button"><i class="fa fa-pencil"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-white" type="button"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-                                </tbody>
+                                <tbody id="bodyTabla"></tbody>
                             </table>
                         </div>
                     </div>
@@ -131,10 +120,19 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
+    function eliminar_registro() {
+        
+    }
+
+    function modificar_registro() {
+
+    }
+    
+    let $bodyRegistros = $("#bodyTabla");
     let inputDate = $('#data_1 .input-group.date');
     inputDate.datepicker({
-        todayBtn: true,
-        endDate: '+0d',
+        todayBtn: false,
+        endDate: '+1d',
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: false,
@@ -143,10 +141,81 @@
     });
     inputDate.on("changeDate", function (ev) {
         ev.preventDefault();
+
+        $bodyRegistros.empty();
+
+        let $fila = $(document.createElement("tr"));
+        let $tdFecha = $(document.createElement("td"));
+        let $tdTarjeta = $(document.createElement("td"));
+        let $tdEntrada = $(document.createElement("td"));
+        let $tdSalida = $(document.createElement("td"));
+        let $tdEliminar = $(document.createElement("td"));
+        let $tdModificar= $(document.createElement("td"));
+        let $btnEliminar = $(document.createElement("button"));
+        let $btnModificar = $(document.createElement("button"));
+        let $iconoEliminar = $(document.createElement("i"));
+        let $iconoModificar = $(document.createElement("i"));
+
+        let data = {
+            fecha: $('#fecha').val()
+        };
         console.log("CAMBIO LA FECHA");
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: window.location.origin + "/api/dch/asistencias/consultar/todas",
+            data: JSON.stringify(data),
+            dataType: "json",
+            success: function(resultado) {
+                console.log("SUCCESS");
+                debugger;
+                for (let dato of resultado) {
+                    $fila = $(document.createElement("tr"));
+                    $tdFecha = $(document.createElement("td"));
+                    $tdTarjeta = $(document.createElement("td"));
+                    $tdEntrada = $(document.createElement("td"));
+                    $tdSalida = $(document.createElement("td"));
+                    $tdEliminar = $(document.createElement("td"));
+                    $tdModificar= $(document.createElement("td"));
+                    $btnEliminar = $(document.createElement("button"));
+                    $btnModificar = $(document.createElement("button"));
+                    $iconoEliminar = $(document.createElement("i"));
+                    $iconoModificar = $(document.createElement("i"));
+
+                    $tdFecha.text(dato.fecha);
+                    $tdTarjeta.text(dato.tarjeta);
+                    $tdEntrada.text(dato.horaEntrada);
+                    $tdSalida.text(dato.horaSalida);
+
+                    $btnModificar.addClass("btn btn-white");
+                    $iconoModificar.addClass("fa fa-pencil");
+                    $btnModificar.append($iconoModificar);
+                    $btnEliminar.on("click", modificar_registro);
+                    $tdModificar.append($btnModificar);
+
+                    $btnEliminar.addClass("btn btn-white");
+                    $iconoEliminar.addClass("fa fa-times");
+                    $btnEliminar.append($iconoEliminar);
+                    $btnEliminar.on("click", eliminar_registro);
+                    $tdEliminar.append($btnEliminar);
+
+                    $fila.append($tdFecha);
+                    $fila.append($tdTarjeta);
+                    $fila.append($tdEntrada);
+                    $fila.append($tdSalida);
+                    $fila.append($tdModificar);
+                    $fila.append($tdEliminar);
+
+                    $bodyRegistros.append($fila);
+                }
+            },
+            error: function(err) {
+                console.log("ERROR " + err);
+            }
+        });
     });
     inputDate.datepicker("setDate", new Date());
-
 </script>
 </body>
 </html>

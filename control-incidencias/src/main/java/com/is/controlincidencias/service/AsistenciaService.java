@@ -5,6 +5,7 @@ import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface AsistenciaService {
     boolean buscarAsistencia(LocalDate fecha, String noTarjeta);
@@ -13,4 +14,5 @@ public interface AsistenciaService {
     int existeAsistencia(AsistenciaForm asistenciaForm);
     AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm);
     Asistencia modificarAsistencia(AsistenciaForm asistenciaForm);
+    List<AsistenciaJSON> obtenerAsistencias(LocalDate fecha);
 }
