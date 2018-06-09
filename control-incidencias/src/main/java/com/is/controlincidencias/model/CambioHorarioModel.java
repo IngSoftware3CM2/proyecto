@@ -9,7 +9,7 @@ public class CambioHorarioModel {
     private String nuevaEntrada;
     private String nuevaSalida;
     @NotNull
-    @Size(min = 1)
+    @Size(min = 10)
     private String justificacion;
     private String fechaIncidencia;
     private int idJustificante;

@@ -24,93 +24,85 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group" id="data_1">
-                                    <label class="col-lg-9 control-label">Fecha de Asistencia:</label>
-                                    <div class="input-group date col-lg-2" data-provide="datepicker">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="yyyy-mm-dd"
-                                               id="inputFecha" pattern="^\d{4}-\d{2}-\d{2}$"/>
+                            <form class="form-inline" th:action="@{/dch/asistencias/registro}" method="POST"
+                                  th:object="${modelo}">
+                                <input type="text" hidden id="idAsistencia" th:field="*{idAsistencia}">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group" id="data_1">
+                                            <label class="col-4" for="fecha"> Fecha de Asistencia*:</label>
+                                            <div class="input-group date col-sm-6">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                                <input type="text" class="form-control" id="fecha" required
+                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <span class="help-block m-b-none">*Campo Obligatorio</span>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
+                                            <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
+                                                   class="form-control" required pattern="^0[1-8]\d{4}$"
+                                                   th:field="*{tarjeta}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="horaEntrada" class="col-2">Hora de Entrada*</label>
+                                            <input type="text" placeholder="Hora de Entrada" id="horaEntrada"
+                                                   class="form-control" th:field="*{horaEntrada}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="horaSalida" class="col-2">Hora de Salida*</label>
+                                            <input type="text" placeholder="Hora de Salida" id="horaSalida"
+                                                   class="form-control" th:field="*{horaSalida}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="col-2"> </label><br>
+                                            <input class="btn btn-white" value="Registrar" type="submit"
+                                                   name="registrar" disabled/>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-9"></div>
-                                    <span class="col-lg-2 help-block text-danger hidden" id="error6">
-                                            *Error en la fecha
-                                    </span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputTarjeta" class="col-lg-2 control-label">
-                                        Número de Tarjeta:
-                                    </label>
-                                    <div class="col-lg-3">
-                                        <input type="text" placeholder="Número de Tarjeta" id="inputTarjeta"
-                                               class="form-control" pattern="^\d{6,8}$">
-                                        <span class="help-block text-danger hidden" id="error1">
-                                            *Número de tarjeta no encontrado
-                                        </span>
-                                        <span class="help-block text-danger hidden" id="errorB">
-                                            *Ingresa un número de tarjeta que sea valido
-                                        </span>
-                                        <span class="help-block text-danger hidden" id="errorC">
-                                            *Registro repetido en el sistema en el dia ingresado
-                                        </span>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"/>
+                                        </div>
                                     </div>
-                                    <label for="inputEntrada" class="col-lg-1 control-label">
-                                        Hora de Entrada:
-                                    </label>
-                                    <div class="col-lg-2">
-                                        <input type="text" placeholder="Hora de Entrada" id="inputEntrada"
-                                               class="form-control" pattern="^\d{2}:\d{2}$">
-                                        <span class="help-block text-danger hidden" id="error3">
-                                            *Hora erronea
-                                        </span>
-                                    </div>
-                                    <label for="inputSalida" class="col-lg-1 control-label">
-                                        Hora de Salida:
-                                    </label>
-                                    <div class="col-lg-2">
-                                        <input type="text" placeholder="Hora de Salida" id="inputSalida"
-                                               class="form-control" pattern="^\d{2}:\d{2}$">
-                                        <span class="help-block text-danger hidden" id="error4">
-                                            *Hora erronea
-                                        </span>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <button class="form-control btn btn-white" type="button" id="btnAgregar">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
+                                    <div class="col-sm-6">
+                                        <p class="lead"><u id="nombre">Nombre de usuario</u></p>
                                     </div>
                                 </div>
                             </form>
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>Fecha de Registro</th>
                                     <th>Número de Tarjeta</th>
                                     <th>Hora de Entrada</th>
                                     <th>Hora de Salida</th>
-                                    <th>Fecha de Registro</th>
+                                    <th>Modificar</th>
                                     <th>Eliminar</th>
                                 </tr>
                                 </thead>
-                                <tbody id="bodyRegistros"></tbody>
+                                <tbody id="bodyTabla"></tbody>
                             </table>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    <button class="btn btn-white" type="button" id="btnRegistrarAsistencias">
-                                        Registrar Asistencias
-                                    </button>
-                                    <span class="help-block text-success hidden" id="exito">
-                                            *Operación exitosa
-                                    </span>
-                                    <span class="help-block text-success hidden" id="errorF">
-                                            *No se guardaron los registros
-                                    </span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,6 +119,103 @@
 <script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
-<script src="#" th:src="@{/js/registrar-asistencia.js}" type="text/javascript"></script>
+<script>
+    function eliminar_registro() {
+        
+    }
+
+    function modificar_registro() {
+
+    }
+    
+    let $bodyRegistros = $("#bodyTabla");
+    let inputDate = $('#data_1 .input-group.date');
+    inputDate.datepicker({
+        todayBtn: false,
+        endDate: '+1d',
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: false,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+    });
+    inputDate.on("changeDate", function (ev) {
+        ev.preventDefault();
+
+        $bodyRegistros.empty();
+
+        let $fila = $(document.createElement("tr"));
+        let $tdFecha = $(document.createElement("td"));
+        let $tdTarjeta = $(document.createElement("td"));
+        let $tdEntrada = $(document.createElement("td"));
+        let $tdSalida = $(document.createElement("td"));
+        let $tdEliminar = $(document.createElement("td"));
+        let $tdModificar= $(document.createElement("td"));
+        let $btnEliminar = $(document.createElement("button"));
+        let $btnModificar = $(document.createElement("button"));
+        let $iconoEliminar = $(document.createElement("i"));
+        let $iconoModificar = $(document.createElement("i"));
+
+        let data = {
+            fecha: $('#fecha').val()
+        };
+        console.log("CAMBIO LA FECHA");
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: window.location.origin + "/api/dch/asistencias/consultar/todas",
+            data: JSON.stringify(data),
+            dataType: "json",
+            success: function(resultado) {
+                console.log("SUCCESS");
+                debugger;
+                for (let dato of resultado) {
+                    $fila = $(document.createElement("tr"));
+                    $tdFecha = $(document.createElement("td"));
+                    $tdTarjeta = $(document.createElement("td"));
+                    $tdEntrada = $(document.createElement("td"));
+                    $tdSalida = $(document.createElement("td"));
+                    $tdEliminar = $(document.createElement("td"));
+                    $tdModificar= $(document.createElement("td"));
+                    $btnEliminar = $(document.createElement("button"));
+                    $btnModificar = $(document.createElement("button"));
+                    $iconoEliminar = $(document.createElement("i"));
+                    $iconoModificar = $(document.createElement("i"));
+
+                    $tdFecha.text(dato.fecha);
+                    $tdTarjeta.text(dato.tarjeta);
+                    $tdEntrada.text(dato.horaEntrada);
+                    $tdSalida.text(dato.horaSalida);
+
+                    $btnModificar.addClass("btn btn-white");
+                    $iconoModificar.addClass("fa fa-pencil");
+                    $btnModificar.append($iconoModificar);
+                    $btnEliminar.on("click", modificar_registro);
+                    $tdModificar.append($btnModificar);
+
+                    $btnEliminar.addClass("btn btn-white");
+                    $iconoEliminar.addClass("fa fa-times");
+                    $btnEliminar.append($iconoEliminar);
+                    $btnEliminar.on("click", eliminar_registro);
+                    $tdEliminar.append($btnEliminar);
+
+                    $fila.append($tdFecha);
+                    $fila.append($tdTarjeta);
+                    $fila.append($tdEntrada);
+                    $fila.append($tdSalida);
+                    $fila.append($tdModificar);
+                    $fila.append($tdEliminar);
+
+                    $bodyRegistros.append($fila);
+                }
+            },
+            error: function(err) {
+                console.log("ERROR " + err);
+            }
+        });
+    });
+    inputDate.datepicker("setDate", new Date());
+</script>
 </body>
 </html>

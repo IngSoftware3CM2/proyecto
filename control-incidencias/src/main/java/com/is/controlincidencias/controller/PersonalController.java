@@ -1,6 +1,9 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.Motivo;
+import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
 import com.is.controlincidencias.service.impl.*;
@@ -43,6 +46,10 @@ public class PersonalController {
     private LicPaternidadServiceImpl licPaternidadService;
 
     @Autowired
+    @Qualifier ("notificacionServiceImpl")
+    private NotificacionServiceImpl notificacionService;
+
+    @Autowired
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
 
@@ -54,7 +61,9 @@ public class PersonalController {
     @Qualifier("permisoEconomicoServiceImpl")
     private PermisoEconomicoServiceImpl permisoEconomicoService;
 
-
+    @Autowired
+    @Qualifier("reglasNegocioComponent")
+    private ReglasNegocio reglasNegocio;
 
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
@@ -105,7 +114,16 @@ public class PersonalController {
         if (!encoder.matches(cambioPassword.getOldPassword(), p.getLogin().getPasswordhash())) {
             LOG.info("confirmar() La contraseña vieja no cuadra");
             estado = "error";
-        } else if (!cambioPassword.getNewPassword().equals(cambioPassword.getVerifyPassword())) {
+        } else if (!reglasNegocio.rn1(cambioPassword.getNewPassword())
+                || !reglasNegocio.rn1(cambioPassword.getOldPassword())
+                || !reglasNegocio.rn1(cambioPassword.getVerifyPassword())) {
+            LOG.info("confirmar() ERROR REGLA DE NEGOCIO 1");
+            estado = "error1";
+        } else if ( reglasNegocio.rn21(cambioPassword.getNewPassword()) ) {
+            LOG.info("confirmar() ERROR REGLA DE NEGOCIO 21");
+            estado = "error2";
+        }
+        else if (!cambioPassword.getNewPassword().equals(cambioPassword.getVerifyPassword())) {
             LOG.info("confirmar() Las nuevas contraseñas no cuadran");
             estado = "diferente";
         } else {
@@ -167,6 +185,12 @@ public class PersonalController {
         model.addAttribute("quincena", quincena);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+        Integer motivo = new Integer (-1);
+        if (notificacionService.existsByPersonal(personal)){
+            Notificacion notificacion = notificacionService.findByPersonal(personal);
+            motivo = new Integer(notificacion.getMotivo().getIdMotivo());
+        }
+        mav.addObject("motivo", motivo);
         return mav;
     }
 
@@ -193,6 +217,8 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/cambiohorario/agregar";
         else if (tipo == 4)
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
+        else if(tipo==5)
+            redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
         return redirectURL;
     }
 

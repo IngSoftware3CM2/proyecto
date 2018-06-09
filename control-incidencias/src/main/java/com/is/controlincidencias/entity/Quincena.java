@@ -26,6 +26,9 @@ public class Quincena {
     @Column(name = "fechaLimite", nullable = false)
     private Timestamp fechaLimite;
 
+    @Column(name = "fechaLimPersonal", nullable = false)
+    private Timestamp fechaLimPersonal;
+
     @Column(name = "habil", nullable = false)         //por si la quincena cae en vacaciones, útil para el demon de asistencia
     private Boolean habil;
 

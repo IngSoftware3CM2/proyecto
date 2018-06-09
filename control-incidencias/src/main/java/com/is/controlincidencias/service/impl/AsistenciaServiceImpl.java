@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service("asistenciaServiceImpl")
@@ -47,10 +49,10 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
     @Override
     public void agregarAsistencia(AsistenciaJSON asistenciaJSON) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaJSON.getNoTarjeta());
+        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaJSON.getTarjeta());
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
-        asistencia.setFechaRegistro(asistenciaJSON.getFechaRegistro());
+        asistencia.setFechaRegistro(asistenciaJSON.getFecha());
         if (asistenciaJSON.getHoraEntrada().compareTo(siete) > 0) asistencia.setHoraEntrada(
                 asistenciaJSON.getHoraEntrada());
         else asistencia.setHoraEntrada(siete);
@@ -81,6 +83,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
         asistenciaForm.setHoraSalida(a.getHoraSalida());
         asistenciaForm.setHoraEntrada(a.getHoraEntrada());
+        asistenciaForm.setFecha(asistenciaForm.getFecha());
+        asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
+        asistenciaForm.setIdAsistencia(asistenciaForm.getIdAsistencia());
+        asistenciaForm.setNombre(a.getPersonal().getNombre() + " "
+                + a.getPersonal().getApellidoPaterno() + " " + " "
+                + a.getPersonal().getApellidoMaterno());
 
         return asistenciaForm;
     }
@@ -101,6 +109,21 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         else a.setHoraSalida(veintidos);
 
         return asistenciaRepository.save(a);
+    }
+
+    @Override
+    public List<AsistenciaJSON> obtenerAsistencias(LocalDate fecha) {
+        List<AsistenciaJSON> lista = new ArrayList<>();
+        asistenciaRepository.findAllByFechaRegistro(fecha).forEach(item -> {
+            AsistenciaJSON asistencia = new AsistenciaJSON();
+            asistencia.setFecha(item.getFechaRegistro());
+            asistencia.setHoraEntrada(item.getHoraEntrada());
+            asistencia.setHoraSalida(item.getHoraSalida());
+            asistencia.setTarjeta(item.getPersonal().getNoTarjeta());
+            asistencia.setId(item.getIdAsistencia());
+            lista.add(asistencia);
+        });
+        return lista;
     }
 
     private boolean validarHoras(LocalTime horaEntrada, LocalTime horaSalida) {

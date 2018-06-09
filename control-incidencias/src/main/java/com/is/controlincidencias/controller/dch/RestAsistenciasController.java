@@ -1,15 +1,12 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
-import com.is.controlincidencias.model.ConsultaAsistencia;
+import com.is.controlincidencias.model.ConsultaAsistenciaJSON;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class RestAsistenciasController {
      * 4 = Ya hay registro del numero de tarjeta en el sistema en el dia indicado
      * */
 
-    private final AsistenciaService asistenciaService;
+    private AsistenciaService asistenciaService;
 
     @Autowired
     public RestAsistenciasController(
@@ -33,27 +30,9 @@ public class RestAsistenciasController {
         this.asistenciaService = asistenciaService;
     }
 
-    @PostMapping("/consultar")
-    public ConsultaAsistencia consultar(@RequestBody ConsultaAsistencia consultaAsistencia) {
-        log.info("consultar() consultaAsistencia.noTarjeta=" + consultaAsistencia.getNoTarjeta());
-
-        boolean valor = asistenciaService.buscarTarjeta(consultaAsistencia.getNoTarjeta());
-        if (!valor) {
-            consultaAsistencia.setEstado(2);
-            return consultaAsistencia;
-        }
-        valor = asistenciaService.buscarAsistencia(consultaAsistencia.getFechaRegistro(),
-                consultaAsistencia.getNoTarjeta());
-        if (valor) consultaAsistencia.setEstado(4);
-        else consultaAsistencia.setEstado(1);
-        return consultaAsistencia;
-    }
-
-    @PostMapping("/agregar")
-    public ConsultaAsistencia agregar(@RequestBody List<AsistenciaJSON> asistencias) {
-        log.info("agregar() dch.size=" + asistencias.size());
-        for (AsistenciaJSON asistenciaJSON : asistencias)
-            asistenciaService.agregarAsistencia(asistenciaJSON);
-        return new ConsultaAsistencia();
+    @PostMapping("/consultar/todas")
+    public List<AsistenciaJSON> consultarTodas(@RequestBody ConsultaAsistenciaJSON consulta) {
+        log.info(consulta.toString());
+        return asistenciaService.obtenerAsistencias(consulta.getFecha());
     }
 }
