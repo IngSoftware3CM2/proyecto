@@ -9,9 +9,9 @@ import java.util.Objects;
 @Table(name = "tiemposuplgenerado")
 public class TiempoSuplGenerado {
     @Id
-    @Column(name = "idAsistencia", columnDefinition = "serial")
+    @Column(name = "idtiemposuplgenerado", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer idAsistencia;
+    private Integer idtiemposuplgenerado;
 
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
@@ -36,12 +36,12 @@ public class TiempoSuplGenerado {
         this.personal = personal;
     }
 
-    public Integer getIdAsistencia() {
-        return idAsistencia;
+    public Integer getId() {
+        return idtiemposuplgenerado;
     }
 
     public void setIdAsistencia(Integer idAsistencia) {
-        this.idAsistencia = idAsistencia;
+        this.idtiemposuplgenerado = idAsistencia;
     }
 
     public LocalDate getFechaRegistro() {
@@ -65,7 +65,7 @@ public class TiempoSuplGenerado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TiempoSuplGenerado that = (TiempoSuplGenerado) o;
-        return Objects.equals(getIdAsistencia(), that.getIdAsistencia()) &&
+        return Objects.equals(getId(), that.getId()) &&
                 Objects.equals(getFechaRegistro(), that.getFechaRegistro()) &&
                 Objects.equals(getHoras(), that.getHoras()) &&
                 Objects.equals(getPersonal(), that.getPersonal());
@@ -73,7 +73,6 @@ public class TiempoSuplGenerado {
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getIdAsistencia(), getFechaRegistro(), getHoras(), getPersonal());
+        return Objects.hash(getId(), getFechaRegistro(), getHoras(), getPersonal());
     }
 }
