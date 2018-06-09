@@ -20,7 +20,7 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
 
     @Modifying
     @Transactional
-    @Query(value="select * from tiemposuplgenerado where idEmpleado= :noempleado and usado=false and fechaRegistro >= :fecha", nativeQuery = true)
+    @Query(value="select * from tiemposuplgenerado where idEmpleado= :noempleado and usado=false and fechaRegistro >= :fecha order by fechaRegistro ASC ", nativeQuery = true)
     List<TiempoSuplGenerado> findAllByPersonal(@Param("noempleado") int idempleado, @Param("fecha")LocalDate fecha);
 
 }
