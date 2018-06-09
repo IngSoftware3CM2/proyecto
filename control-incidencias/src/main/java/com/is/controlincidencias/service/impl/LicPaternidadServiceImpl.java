@@ -84,7 +84,6 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
                 fos.close();
             }
         }
-
     }
 
     @Override

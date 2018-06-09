@@ -85,13 +85,19 @@ public class PermisoEconomicoController {
         int idquincena = quincenaService.idquincenaConFechaDeIncidencia(incidencia.getFechaRegistro());
         LOG.info(idquincena);
         //me falta obtener idquincena
-        if(permisoEconomicoService.preguntarAnoQuincena(idEmpleado,idquincena,tipo)==1){
+        int bandera = permisoEconomicoService.preguntarAnoQuincena(idEmpleado,idquincena,tipo);
+        if(bandera==1){
             LOG.error("Si hay registro******************");
+            permisoEconomicoService.registrarJustificante(idEmpleado, incidencia);
+            return "redirect:/personal/justificantes?add=1";
         }
-        else{
-            LOG.error("No hay registro******************");
+         else if(bandera==-1) { //ya ocupo todos los permisos del año
+            return "redirect:/personal/incidencias?ano=1";
         }
-        return "redirect:/personal/justificantes?add=1";
+        else{//ya ocupo todos los permisos de la quicena
+            return "redirect:/personal/incidencias?quincena=1";
+        }
+
     }
 
 
