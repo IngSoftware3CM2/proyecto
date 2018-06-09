@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante por Constancia de Tiempo')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Agregar Justificante por Constancia de Tiempo</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
+                    </li>
+                    <li>
+                        Justificantes
+                    </li>
+                    <li class="active">
+                        <strong>Agregar Justificante por Constancia de Tiempo</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Generar Justificante de Incidencia</span>
+                </h1>
+                <form class="form-horizontal" action="#" enctype="multipart/form-data" th:action="@{/personal/justificantes/constanciatiempo/add-constancia-tiempo}" th:object="${contanciaTiempoModel}" method="post">
+
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : <span th:text="${noTajerta}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Tipo de incidencia : Constancia de Tiempo</label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Tipo de constancia : </label>
+                        <select class="form-control m-b" th:field="*{tipo}">
+                            <option th:each="institucion : ${instituciones}" th:value="${institucion}"th:text="${institucion}"/>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="col-lg-4 ">Selecciona un archivo :</label></div>
+                    <div class="row">
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  id='fileinput1' onchange="ValidateSingleInput(this);" oninvalid="this.setCustomValidity('Complete todos los campos obligatorios')" oninput="setCustomValidity('')" required/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-sm btn-white" type="submit">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <a href="#" th:href="@{/personal/justificantes/constanciatiempo/cancel}">
+                                <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script>
+    var _validFileExtensions = [".jpg",".jpeg"];
+    function ValidateSingleInput(oInput) {
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                if (!blnValid) {
+                    alert("Formato de archivo incorrecto.");
+                    oInput.value = "";
+                    return false;
+                }
+            }
+        }
+        if (showFileSize(oInput)==false){
+            oInput.value = "";
+            return false;
+        }
+        return true;
+    }
+
+    function showFileSize(oInput) {
+        var input, file;
+        input = document.getElementById(oInput.id);
+        file = input.files[0];
+        if(file.size>5000000){
+            alert("Excede el tamaño de archivo permitido.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+</body>
+
+</html>

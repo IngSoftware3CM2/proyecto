@@ -49,6 +49,7 @@ public class LicenciaPaternidadController {
     @Autowired
     @Qualifier("justificanteServiceImpl")
     private JustificanteService justificanteService;
+
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
     @GetMapping("/cancel")
