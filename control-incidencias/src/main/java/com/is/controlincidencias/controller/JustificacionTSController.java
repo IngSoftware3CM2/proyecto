@@ -7,6 +7,7 @@ import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.PersonalService;
 import com.is.controlincidencias.service.TiempoSuplGeneradoService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -49,7 +54,10 @@ public class JustificacionTSController {
         idIncidencia=idincidencia;
         personal = personalService.getPersonalByEmail(email);
         Incidencia incidencia = incidenciaService.consultarIncidencia(idIncidencia);
-        List<TiempoSuplGenerado> tiemposSuplementarios= tiempoSuplGeneradoService.findByPersonal(personal);
+        Date fecha = new Date();
+        LocalDate fechaActual = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate limTiempoSupl = fechaActual.minus(2,ChronoUnit.MONTHS);
+        List<TiempoSuplGenerado> tiemposSuplementarios= tiempoSuplGeneradoService.findByPersonal(personal.getIdEmpleado(),limTiempoSupl);
         sinTiempoError=0;
         if(tiemposSuplementarios.isEmpty()){
             sinTiempoError=1;
