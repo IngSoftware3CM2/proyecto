@@ -19,7 +19,7 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\dia.csv' DELIMITER ',' 
 COPY personal(idempleado,noempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\personal.csv' DELIMITER ','CSV HEADER;
 
-COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,habil,fechalimite)
+COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,habil,fechalimite,fechalimpersonal)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\quincena.csv' DELIMITER ',' CSV HEADER;
 
 COPY incidencia(idincidencia,fecharegistro,tipo,idjustificante,idempleado,idquincena)
