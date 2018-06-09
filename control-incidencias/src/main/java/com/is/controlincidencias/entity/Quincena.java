@@ -32,7 +32,6 @@ public class Quincena {
     @Column(name = "habil", nullable = false)         //por si la quincena cae en vacaciones, útil para el demon de asistencia
     private Boolean habil;
 
-
     private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)        //Quincena en la que será procesada
@@ -41,7 +40,6 @@ public class Quincena {
 
     @OneToMany(mappedBy = "quincenaEnQueSeraProcesada", cascade = CascadeType.ALL, orphanRemoval = true) /*Quincena procesada durante esta quincena*/
     private List<Quincena> quincenasQueProcesa = new ArrayList<>();
-
 
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();   /*supongo que este arrayList es util para
@@ -52,7 +50,6 @@ public class Quincena {
 
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonalQuincena> empleados = new ArrayList<>();
-
 
     public Quincena() {
     }
@@ -99,7 +96,6 @@ public class Quincena {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getIdQuincena(), getInicio(), getFin(), incidencias);
     }
 
