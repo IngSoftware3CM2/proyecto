@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "personalperiodoinhabil")
-public class PersonalPeriodoInhabil {
+public class    PersonalPeriodoInhabil {
     @Id
     @Column(name = "idPersonalPeriodoInhabil", length = 8)
     private Integer idpersonalperiodoinhabil;
