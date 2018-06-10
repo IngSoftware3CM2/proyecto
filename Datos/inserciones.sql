@@ -19,7 +19,7 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\dia.csv' DELIMITER ',' 
 COPY personal(idempleado,noempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\personal.csv' DELIMITER ','CSV HEADER;
 
-COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,habil,fechalimite,fechalimpersonal)
+COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,fechalimite,fechalimpersonal)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\quincena.csv' DELIMITER ',' CSV HEADER;
 
 COPY incidencia(idincidencia,fecharegistro,tipo,idjustificante,idempleado,idquincena)
@@ -28,5 +28,5 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\incidencia.csv' DELIMIT
 COPY asistencia(idasistencia,fecharegistro,horaentrada,horasalida,idempleado)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\asistencia.csv' DELIMITER ',' CSV HEADER;
 
-COPY periodoinhabil(idperiodo,inicio,fin,horasalida,descripcion)
+COPY periodoinhabil(idperiodo,inicio,fin,horasalida,descripcion,aplicadocente,aplicadocpaee,aplicapaee,justificacionarchivo)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
