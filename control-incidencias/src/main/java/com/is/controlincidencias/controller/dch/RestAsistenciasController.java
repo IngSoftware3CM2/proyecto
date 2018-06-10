@@ -21,14 +21,9 @@ public class RestAsistenciasController {
      * 3 = Campo tarjeta vacio
      * 4 = Ya hay registro del numero de tarjeta en el sistema en el dia indicado
      * */
-
-    private AsistenciaService asistenciaService;
-
     @Autowired
-    public RestAsistenciasController(
-            @Qualifier("asistenciaServiceImpl") AsistenciaService asistenciaService) {
-        this.asistenciaService = asistenciaService;
-    }
+    @Qualifier("asistenciaServiceImpl")
+    private AsistenciaService asistenciaService;
 
     @PostMapping("/consultar/todas")
     public List<AsistenciaJSON> consultarTodas(@RequestBody ConsultaAsistenciaJSON consulta) {

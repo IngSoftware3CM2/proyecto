@@ -10,7 +10,7 @@ import java.util.List;
 public interface AsistenciaService {
     boolean buscarAsistencia(LocalDate fecha, String noTarjeta);
     boolean buscarTarjeta(String noTarjeta);
-    void agregarAsistencia(AsistenciaJSON asistenciaJSON);
+    Asistencia agregarAsistencia(AsistenciaForm asistenciaForm);
     int existeAsistencia(AsistenciaForm asistenciaForm);
     AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm);
     Asistencia modificarAsistencia(AsistenciaForm asistenciaForm);

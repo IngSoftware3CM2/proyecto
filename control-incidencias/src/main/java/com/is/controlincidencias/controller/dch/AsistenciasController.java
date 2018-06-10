@@ -1,6 +1,5 @@
 package com.is.controlincidencias.controller.dch;
 
-import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -23,23 +21,26 @@ public class AsistenciasController {
     private static final String REGISTRAR_ASISTENCIAS = "dch/asistencias-registrar";
     private static final String MODIFICAR_ASISTENCIA = "dch/asistencias-modificar";
     private static final String MOSTRAR_ASISTENCIAS = "dch/asistencias-mostrar";
-    private static final String ELIMINAR_ASISTENCIA = "dch/asistencias-eliminar";
+
+    private static final String BUSCAR_DESHABILITADO = "buscar_deshabilitado";
+    private static final String FECHA_DESHABILITADO = "fecha_deshabilitado";
+    private static final String TARJETA_DESHABILITADO = "tarjeta_deshabilitado";
+    private static final String REGISTRAR_DESHABILITADO = "registrar_deshabilitado";
 
     private static final String RESULTADO = "resultado";
     private static final String MODELO = "modelo";
+    private static final int NO_EXISTE_TARJETA = 1;
+    private static final int REGISTRO_DUPLICADO = 2;
     private static final int OPERACION_EXITOSA = 3;
-    private static final int ERROR_AL_MODIFICAR = 4;
+    private static final int ERROR_HORA = 4;
+    private static final int FECHA_ASISTENCIA_INVALIDA = 5;
+
     private static final int ESTADO_INICIAL = 0;
     private static final String VALIDAR = "validar";
 
-
-    private final AsistenciaService asistenciaService;
-
     @Autowired
-    public AsistenciasController(
-            @Qualifier("asistenciaServiceImpl") AsistenciaService asistenciaService) {
-        this.asistenciaService = asistenciaService;
-    }
+    @Qualifier("asistenciaServiceImpl")
+    private AsistenciaService asistenciaService;
 
     @GetMapping({"", "/"})
     public String redirectInicio() {
@@ -51,53 +52,92 @@ public class AsistenciasController {
         AsistenciaForm a = new AsistenciaForm();
         a.setFecha(LocalDate.now());
         model.addAttribute(MODELO, a);
+        model.addAttribute(BUSCAR_DESHABILITADO, false);
+        model.addAttribute(FECHA_DESHABILITADO, false);
+        model.addAttribute(TARJETA_DESHABILITADO, false);
+        model.addAttribute(REGISTRAR_DESHABILITADO, true);
         return REGISTRAR_ASISTENCIAS;
     }
 
     @PostMapping(params = "registrar", value = "/registrar")
     public String registrar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
             BindingResult bindingResult, Model model) {
-        int resultado;
+        int resultado = ERROR_HORA;
         log.info("registrar() " + modelo.toString());
-        AsistenciaForm form = new AsistenciaForm();
-        form.setFecha(modelo.getFecha());
-        if (!bindingResult.hasErrors()) {
-            if (asistenciaService.modificarAsistencia(modelo) != null) {
+
+        AsistenciaForm a = new AsistenciaForm();
+        a.setFecha(LocalDate.now());
+        if (bindingResult.hasErrors())
+            log.error("registrar() errores");
+
+        if (modelo.getId() == null) {
+            if (asistenciaService.agregarAsistencia(modelo) != null)
                 resultado = OPERACION_EXITOSA;
-                form.setFecha(LocalDate.now());
-            } else resultado = ERROR_AL_MODIFICAR;
         } else {
-            log.info("ERROR en registrar()");
-            resultado = ERROR_AL_MODIFICAR;
+            if (asistenciaService.modificarAsistencia(modelo) !=null)
+                resultado = OPERACION_EXITOSA;
         }
 
-        model.addAttribute(MODELO, form);
+        if (resultado == ERROR_HORA) {
+            a.setTarjeta(modelo.getTarjeta());
+            a.setFecha(modelo.getFecha());
+            a.setNombre(modelo.getNombre());
+            a.setId(modelo.getId());
+            model.addAttribute(BUSCAR_DESHABILITADO, true);
+            model.addAttribute(FECHA_DESHABILITADO, true);
+            model.addAttribute(TARJETA_DESHABILITADO, true);
+            model.addAttribute(REGISTRAR_DESHABILITADO, false);
+        } else {
+            model.addAttribute(BUSCAR_DESHABILITADO, false);
+            model.addAttribute(FECHA_DESHABILITADO, false);
+            model.addAttribute(TARJETA_DESHABILITADO, false);
+            model.addAttribute(REGISTRAR_DESHABILITADO, true);
+        }
+
+        model.addAttribute(MODELO, a);
         model.addAttribute(RESULTADO, resultado);
-        model.addAttribute(VALIDAR, true);
-        log.info("saliendo de modificarPOST()");
+        log.info("saliendo de registrar()");
         return REGISTRAR_ASISTENCIAS;
     }
 
     @PostMapping(params = "buscar", value = "/registrar")
     public String buscar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
-            BindingResult bindingResult,
-            Model model) {
-        log.info("consultarPOST()");
+            BindingResult bindingResult, Model model) {
+        log.info("buscar()");
         int resultado;
 
         if (bindingResult.hasErrors())
-            log.error("consultarPOST() errores");
+            log.error("buscar() errores");
 
         AsistenciaForm asistencia = new AsistenciaForm();
         resultado = asistenciaService.existeAsistencia(modelo);
-        if (resultado == ESTADO_INICIAL)
+        if (resultado == FECHA_ASISTENCIA_INVALIDA) { // trayectoria D
+            asistencia.setFecha(LocalDate.now());
+            asistencia.setTarjeta(modelo.getTarjeta());
+            model.addAttribute(BUSCAR_DESHABILITADO, false);
+            model.addAttribute(FECHA_DESHABILITADO, false);
+            model.addAttribute(TARJETA_DESHABILITADO, false);
+            model.addAttribute(REGISTRAR_DESHABILITADO, true);
+            // Trayectoria F y E
+        }else if (resultado == NO_EXISTE_TARJETA || resultado == REGISTRO_DUPLICADO){
+            asistencia.setFecha(modelo.getFecha());
+            model.addAttribute(BUSCAR_DESHABILITADO, false);
+            model.addAttribute(FECHA_DESHABILITADO, false);
+            model.addAttribute(TARJETA_DESHABILITADO, false);
+            model.addAttribute(REGISTRAR_DESHABILITADO, true);
+        } else {
             asistencia = asistenciaService.buscarAsistencia(modelo);
-
+            model.addAttribute(BUSCAR_DESHABILITADO, true);
+            model.addAttribute(FECHA_DESHABILITADO, true);
+            model.addAttribute(TARJETA_DESHABILITADO, true);
+            model.addAttribute(REGISTRAR_DESHABILITADO, false);
+            model.addAttribute(VALIDAR, true);
+        }
         model.addAttribute(RESULTADO, resultado);
-        model.addAttribute(VALIDAR, false);
         model.addAttribute(MODELO, asistencia);
 
-        log.info("saliendo de consultarPOST()");
+
+        log.info("saliendo de buscar()");
         return REGISTRAR_ASISTENCIAS;
     }
 
@@ -107,7 +147,7 @@ public class AsistenciasController {
         AsistenciaForm a = new AsistenciaForm();
         a.setFecha(LocalDate.now());
         model.addAttribute(MODELO, a);
-        return REGISTRAR_ASISTENCIAS;
+        return "redirect:/dch/asistencias/registrar";
     }
 
 

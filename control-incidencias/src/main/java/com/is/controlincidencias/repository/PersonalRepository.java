@@ -13,4 +13,5 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     Personal findByIdEmpleado(int idEmpleado);
     Personal findByLogin_Correo(String email);
     Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);
+    Personal findByNoTarjeta(String tarjeta);
 }

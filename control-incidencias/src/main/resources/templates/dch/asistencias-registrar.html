@@ -36,7 +36,8 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
                                                 <input type="text" class="form-control" id="fecha" required
-                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"/>
+                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"
+                                                       th:readonly="${fecha_deshabilitado}" oninput="setCustomValidity('')"/>
                                             </div>
                                         </div>
                                     </div>
@@ -52,22 +53,24 @@
                                             <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
                                             <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
                                                    class="form-control" required pattern="^0[1-8]\d{4}$"
-                                                   th:field="*{tarjeta}">
+                                                   th:field="*{tarjeta}" th:readonly="${tarjeta_deshabilitado}" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaEntrada" class="col-2">Hora de Entrada*</label>
                                             <input type="text" placeholder="Hora de Entrada" id="horaEntrada"
-                                                   class="form-control" th:field="*{horaEntrada}"
-                                                   pattern="^[0-2]\d:[0-5]\d$">
+                                                   class="form-control" name="horaEntrada"
+                                                   th:value="*{horaEntrada == null} and ${validar} != null ? '-' : *{horaEntrada}"
+                                                   pattern="^[0-2]\d:[0-5]\d$"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaSalida" class="col-2">Hora de Salida*</label>
                                             <input type="text" placeholder="Hora de Salida" id="horaSalida"
-                                                   class="form-control" th:field="*{horaSalida}"
+                                                   class="form-control" name="horaSalida"
+                                                   th:value="*{horaSalida == null} and ${validar} != null ? '-' : *{horaSalida}"
                                                    pattern="^[0-2]\d:[0-5]\d$">
                                         </div>
                                     </div>
@@ -75,7 +78,8 @@
                                         <div class="form-group">
                                             <label class="col-2"> </label><br>
                                             <input class="btn btn-white" value="Registrar" type="submit"
-                                                   name="registrar" disabled id="btnRegistrar"/>
+                                                   name="registrar" th:disabled="${registrar_deshabilitado}"
+                                                   id="btnRegistrar"/>
 
                                         </div>
                                     </div>
@@ -85,19 +89,31 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <input class="btn btn-white" value="Buscar" type="submit" name="buscar"
-                                                   id="btnBuscar"/>
+                                                   id="btnBuscar" th:disabled="${buscar_deshabilitado}"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p class="lead"><u id="nombre">Nombre de usuario</u></p>
+                                        <p class="lead"><u id="nombre" th:text="${modelo.nombre}">Nombre de usuario</u></p>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 1}">
+                                        Numero de tarjeta no encontrado
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 2}">
+                                        Asistencia con el numero de tarjeta ya registrado
+                                    </div>
                                     <div class="alert alert-success" role="alert" th:if="${resultado == 3}">
                                         Operación exitosa
                                     </div>
                                     <div class="alert alert-danger" role="alert" th:if="${resultado == 4}">
-                                        Error
+                                        Hora de entrada es mayor a la hora de salida
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 5}">
+                                        Fecha no valida para registrar asistencias
+                                    </div>
+                                    <div>
+
                                     </div>
                                 </div>
                             </form>
@@ -152,6 +168,7 @@
         document.getElementById("tarjeta").value = $trModificar.children()[1].textContent;
         document.getElementById("horaEntrada").value = $trModificar.children()[2].textContent;
         document.getElementById("horaSalida").value = $trModificar.children()[3].textContent;
+        document.getElementById("idAsistencia").value = $(ev.target).attr("data-id");
     }
 
     let $bodyRegistros = $("#bodyTabla");
@@ -209,8 +226,8 @@
 
                     $tdFecha.text(dato.fecha);
                     $tdTarjeta.text(dato.tarjeta);
-                    $tdEntrada.text(dato.horaEntrada);
-                    $tdSalida.text(dato.horaSalida);
+                    $tdEntrada.text(dato.horaEntrada.substring(0, 5));
+                    $tdSalida.text(dato.horaSalida.substring(0, 5));
 
                     $btnModificar.addClass("btn btn-white");
                     $iconoModificar.addClass("fa fa-pencil");
@@ -242,6 +259,21 @@
         });
     });
     inputDate.trigger("changeDate");
+    document.getElementById("tarjeta").oninvalid = function(ev) {
+        console.log("input tarjeta");
+        if (this.validity.patternMismatch)
+            this.setCustomValidity("Numero de tarjeta incorrecto");
+        else if (!this.validity.valid) {
+            this.setCustomValidity("Complete todos los campos obligatorios");
+            console.log("NO VALIDO");
+        } else {
+            console.log("VALIDO");
+        }
+    };
+    document.getElementById("fecha").oninvalid = function(ev) {
+        console.log("input fecha");
+        this.setCustomValidity("Complete todos los campos obligatorios");
+    };
 </script>
 </body>
 </html>
