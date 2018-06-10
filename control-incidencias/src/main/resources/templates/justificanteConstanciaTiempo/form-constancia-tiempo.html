@@ -31,13 +31,15 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Justificante de Incidencia</span>
                 </h1>
-                <form class="form-horizontal" action="#" enctype="multipart/form-data" th:action="@{/personal/justificantes/constanciatiempo/add-constancia-tiempo}" th:object="${contanciaTiempoModel}" method="post">
+                <form class="form-horizontal"  action="#" enctype="multipart/form-data" th:action="@{/personal/justificantes/constanciatiempo/add-constancia-tiempo}" th:object="${constanciaTiempoModel}" method="post">
 
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : <span th:text="${noTajerta}"></span></label></div>
                     <div class="form-group"><label class="col-lg-4 ">Tipo de incidencia : Constancia de Tiempo</label></div>
                     <div class="form-group"><label class="col-lg-4 ">Tipo de constancia : </label>
-                        <select class="form-control m-b" th:field="*{tipo}">
-                            <option th:each="institucion : ${instituciones}" th:value="${institucion}"th:text="${institucion}"/>
+                        <select class="form-control m-b" id="activitySelector" th:field="*{tipo}">
+                            <option  th:value="CENDI"th:text="CENDI"/>
+                            <option  th:value="ISSSTE"th:text="ISSSTE"/>
+                            <option  th:value="CLIDDA"th:text="CLIDDA"/>
                         </select>
                     </div>
                     <div class="form-group"><label class="col-lg-4 ">Selecciona un archivo :</label></div>
@@ -60,6 +62,8 @@
                     </div>
 
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
+                    <div class="form-group" id="formulario"><label class="col-lg-4 " id="lbltipAddedComment"></div>
+
                     <div class="row">
                         <div class="col-sm-4">
 
@@ -99,6 +103,37 @@
 <script src="#" th:src="@{/js/dataPicker.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script th:inline="javascript">
+    function start(){
+        document.getElementById("activitySelector").addEventListener("change", addActivityItem, false);
+    }
+
+    function addActivityItem(){
+        //option is selected
+        var elem = document.getElementById("activitySelector"),
+            selectedNode = elem.options[elem.selectedIndex];
+        if ( selectedNode.value === "CLIDDA") {
+            document.getElementById('lbltipAddedComment').remove()
+       // <label class="col-lg-4 " >Fecha a justificar : </label>
+            //th:field="*{justificacion}"
+            var y = document.createElement("LABEL");
+            y.setAttribute("class", "col-lg-4");
+            y.setAttribute("id", "lbltipAddedComment");
+            document.getElementById("formulario").appendChild(y);
+            document.getElementById('lbltipAddedComment').innerHTML = 'fecha a justificar : ';
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "date");
+            x.setAttribute("th:field","*{segfecha}");
+            document.getElementById("lbltipAddedComment").appendChild(x);
+        }
+        else{
+            document.getElementById('lbltipAddedComment').innerHTML = "";
+        }
+    }
+
+
+    window.addEventListener("load", start, false);
+</script>
 <script>
     var _validFileExtensions = [".jpg",".jpeg"];
     function ValidateSingleInput(oInput) {

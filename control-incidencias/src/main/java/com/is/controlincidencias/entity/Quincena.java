@@ -29,9 +29,6 @@ public class Quincena {
     @Column(name = "fechaLimPersonal", nullable = false)
     private Timestamp fechaLimPersonal;
 
-    @Column(name = "habil", nullable = false)         //por si la quincena cae en vacaciones, útil para el demon de asistencia
-    private Boolean habil;
-
     private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)        //Quincena en la que será procesada
