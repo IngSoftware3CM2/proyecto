@@ -52,6 +52,12 @@ public class Personal {
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TiempoSuplGenerado> TiempoSuplGenerados = new ArrayList<>();
 
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notificacion> notificaciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<PersonalPeriodoInhabil> periodosInhabiles = new ArrayList<>();
+
     private static final String DEFINITION = "FOREIGN KEY(idDepartamento) REFERENCES departamento (idDepartamento) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -69,9 +75,6 @@ public class Personal {
     @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION2))
     private HorarioActual horarioActual;
 
-
-    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Notificacion> notificaciones = new ArrayList<>();
 
     public void addNotificacion(Notificacion notificacion) {
         notificaciones.add(notificacion);

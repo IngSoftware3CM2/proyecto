@@ -48,6 +48,9 @@ public class Quincena {
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonalQuincena> empleados = new ArrayList<>();
 
+    @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuincenaPerInhabil> quincenaPerInhabiless = new ArrayList<>();
+
     public Quincena() {
     }
 

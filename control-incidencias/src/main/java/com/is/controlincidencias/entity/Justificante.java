@@ -38,6 +38,9 @@ public class Justificante {
     private ConstanciaTiempo contanciaTiempo;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TiempoSuplementario tiempoSuplementario;
+
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private OmisionEntrSal omisionEntrSal;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
