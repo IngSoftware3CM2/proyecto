@@ -71,9 +71,11 @@ public class AsistenciasController {
             log.error("registrar() errores");
 
         if (modelo.getId() == null) {
+            log.info("registrar() ALTA");
             if (asistenciaService.agregarAsistencia(modelo) != null)
                 resultado = OPERACION_EXITOSA;
         } else {
+            log.info("registrar() MODIFICACION");
             if (asistenciaService.modificarAsistencia(modelo) !=null)
                 resultado = OPERACION_EXITOSA;
         }
@@ -108,6 +110,7 @@ public class AsistenciasController {
 
         if (bindingResult.hasErrors())
             log.error("buscar() errores");
+
 
         AsistenciaForm asistencia = new AsistenciaForm();
         resultado = asistenciaService.existeAsistencia(modelo);
