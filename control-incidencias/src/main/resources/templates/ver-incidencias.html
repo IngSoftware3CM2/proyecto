@@ -41,6 +41,9 @@
                                     <th>Justificacion</th>
                                 </tr>
                                 </thead>
+                                <div th:if="${ano == 1}" class="alert alert-danger" role="alert">Excede el límite de permisos economicos anuales.</div>
+                                <div th:if="${quincena == 1}" class="alert alert-danger" role="alert">Excede límite de permisos economicos quincenales.</div>
+
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}"
                                     th:if="${incidencia.getJustificante() == null}">
@@ -54,6 +57,7 @@
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
                                                     </select>
                                                 </div>
 
@@ -63,6 +67,7 @@
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
                                                     </select>
                                                 </div>
 
@@ -71,6 +76,7 @@
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
                                                     </select>
                                                 </div>
 

@@ -21,6 +21,10 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
 
     List<Justificante> findAllByPersonal (Personal personal);
 
+    @Query(value = "select max(idjustificante) from justificante", nativeQuery = true)
+    @Transactional
+    Integer selectMaxIdPermisoEconomico();
+
     @Modifying
     @Transactional
     @Query (value="delete from justificante where idjustificante=:id", nativeQuery = true)

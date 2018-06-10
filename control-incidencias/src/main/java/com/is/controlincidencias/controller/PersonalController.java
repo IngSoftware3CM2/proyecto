@@ -137,8 +137,10 @@ public class PersonalController {
         return mav;
     }
 
+
+
     @GetMapping("/justificantes")
-    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar,Principal principal) {
+    public ModelAndView showJustificantes(Model model, @RequestParam(name = "add", required = false) Integer add,@RequestParam(name = "modificar", required = false) Integer modificar, Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
@@ -171,7 +173,7 @@ public class PersonalController {
     }
 
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(Model model,@RequestParam(name = "cancelar", required = false) Integer cancelar, Principal principal) {
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar, Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
@@ -179,6 +181,8 @@ public class PersonalController {
         Personal personal = personalService.getPersonalByEmail(email);
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
+        model.addAttribute("ano", ano);
+        model.addAttribute("quincena", quincena);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         Integer motivo = new Integer (-1);
@@ -215,6 +219,8 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/economico/agregar";
         else if(tipo==5)
             redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
+        else if(tipo==6)
+            redirectURL = "redirect:/personal/justificantes/constanciatiempo/agregar";
         return redirectURL;
     }
 

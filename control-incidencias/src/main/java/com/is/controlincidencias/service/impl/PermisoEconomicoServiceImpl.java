@@ -2,12 +2,15 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
 import com.is.controlincidencias.converter.StringToLocalDate;
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
+import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.PermisoEconomicoModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.PermisoEconomicoRepository;
 import com.is.controlincidencias.repository.PersonalQuincenaRepository;
+import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -23,13 +26,23 @@ import java.util.List;
 public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
 
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
-    private final PermisoEconomicoRepository permisoEconomicoRepository;
 
-    private final JustificanteRepository justificanteRepository;
+
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
 
     @Autowired
     @Qualifier("personalQuincenaRepository")
     private PersonalQuincenaRepository personalQuincenaRepository;
+
+    @Autowired
+    @Qualifier("justificanteRepository")
+    private JustificanteRepository justificanteRepository;
+
+    @Autowired
+    @Qualifier("permisoEconomicoRepository")
+    private PermisoEconomicoRepository permisoEconomicoRepository;
 
     @Autowired
     public PermisoEconomicoServiceImpl(@Qualifier("permisoEconomicoRepository") PermisoEconomicoRepository permisoEconomicoRepository, @Qualifier("justificanteRepository") JustificanteRepository justificanteRepository) {
@@ -62,7 +75,7 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
                 }
             }
             else{
-                return 0;
+                return -1;
                 //ya no puedes, tienes todas los permisos posibles
             }
         }
@@ -84,5 +97,21 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
     @Override
     public boolean existsByIdjustificante(int id) {
         return permisoEconomicoRepository.existsByJustificante_IdJustificante(id);
+    }
+
+    @Override
+    public void registrarJustificante(int idEmpleado, Incidencia incidencia) {
+        Date fecha = new Date();
+        justificanteRepository.altaJustificante("espera",fecha,4,idEmpleado);
+        Integer idPermisoEconomico = permisoEconomicoRepository.selectMaxIdPermisoEconomico();
+        if(idPermisoEconomico!=null){
+            permisoEconomicoRepository.insertRegistro(idPermisoEconomico+1,incidencia.getFechaRegistro(),justificanteRepository.selectMaxIdPermisoEconomico());
+            incidenciaService.updateIdJustificante(justificanteRepository.selectMaxIdPermisoEconomico(),incidencia.getIdIncidencia());
+        }
+        else{
+            permisoEconomicoRepository.insertRegistro(1,incidencia.getFechaRegistro(),justificanteRepository.selectMaxIdPermisoEconomico());
+            incidenciaService.updateIdJustificante(justificanteRepository.selectMaxIdPermisoEconomico(),incidencia.getIdIncidencia());
+        }
+
     }
 }
