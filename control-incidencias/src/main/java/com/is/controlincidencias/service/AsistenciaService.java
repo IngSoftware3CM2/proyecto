@@ -15,4 +15,5 @@ public interface AsistenciaService {
     AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm);
     Asistencia modificarAsistencia(AsistenciaForm asistenciaForm);
     List<AsistenciaJSON> obtenerAsistencias(LocalDate fecha);
+    void eliminarAsistenciaPorId(Integer id);
 }

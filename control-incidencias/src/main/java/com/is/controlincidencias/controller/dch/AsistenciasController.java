@@ -9,13 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Slf4j
 @Controller
@@ -50,49 +48,38 @@ public class AsistenciasController {
 
     @GetMapping("/registrar")
     public String registrar(Model model) {
-        model.addAttribute(MODELO, new AsistenciaForm());
+        AsistenciaForm a = new AsistenciaForm();
+        a.setFecha(LocalDate.now());
+        model.addAttribute(MODELO, a);
         return REGISTRAR_ASISTENCIAS;
     }
 
-    @PostMapping(params = "buscar", value = "/registro")
-    public String buscar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
-            BindingResult bindingResult, Model model) {
-        log.info("registarBuscar()");
-
-
-        AsistenciaForm asistencia = asistenciaService.buscarAsistencia(modelo);
-
-        model.addAttribute(MODELO, asistencia);
-
-        log.info("saliendo de registarBuscar()");
-        return REGISTRAR_ASISTENCIAS;
-    }
-
-    @PostMapping(params = "modificar", value = "/modificar")
-    public String modificarPOST(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
+    @PostMapping(params = "registrar", value = "/registrar")
+    public String registrar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
             BindingResult bindingResult, Model model) {
         int resultado;
-        log.info("modificarPOST() " + modelo.toString());
-
+        log.info("registrar() " + modelo.toString());
+        AsistenciaForm form = new AsistenciaForm();
+        form.setFecha(modelo.getFecha());
         if (!bindingResult.hasErrors()) {
-            Asistencia a = asistenciaService.modificarAsistencia(modelo);
-            if (a != null) {
+            if (asistenciaService.modificarAsistencia(modelo) != null) {
                 resultado = OPERACION_EXITOSA;
-                model.addAttribute(MODELO, new AsistenciaForm());
+                form.setFecha(LocalDate.now());
             } else resultado = ERROR_AL_MODIFICAR;
         } else {
-            log.info("ERROR en modificarPOST()");
+            log.info("ERROR en registrar()");
             resultado = ERROR_AL_MODIFICAR;
         }
 
+        model.addAttribute(MODELO, form);
         model.addAttribute(RESULTADO, resultado);
         model.addAttribute(VALIDAR, true);
         log.info("saliendo de modificarPOST()");
-        return MODIFICAR_ASISTENCIA;
+        return REGISTRAR_ASISTENCIAS;
     }
 
-    @PostMapping(params = "consultar", value = "/modificar")
-    public String consultarPOST(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
+    @PostMapping(params = "buscar", value = "/registrar")
+    public String buscar(@Valid @ModelAttribute(name = "modelo") AsistenciaForm modelo,
             BindingResult bindingResult,
             Model model) {
         log.info("consultarPOST()");
@@ -111,11 +98,21 @@ public class AsistenciasController {
         model.addAttribute(MODELO, asistencia);
 
         log.info("saliendo de consultarPOST()");
-        return MODIFICAR_ASISTENCIA;
+        return REGISTRAR_ASISTENCIAS;
     }
 
+    @GetMapping("/eliminar/{idAsistencia}")
+    public String eliminar(@PathVariable("idAsistencia") Integer id, Model model) {
+        asistenciaService.eliminarAsistenciaPorId(id);
+        AsistenciaForm a = new AsistenciaForm();
+        a.setFecha(LocalDate.now());
+        model.addAttribute(MODELO, a);
+        return REGISTRAR_ASISTENCIAS;
+    }
+
+
     @GetMapping("/modificar")
-    public String modificarGET(Model model) {
+    public String mostrarModificar(Model model) {
         AsistenciaForm asistencia = new AsistenciaForm();
         model.addAttribute(MODELO, asistencia);
         model.addAttribute(RESULTADO, ESTADO_INICIAL);
@@ -130,8 +127,5 @@ public class AsistenciasController {
         return MOSTRAR_ASISTENCIAS;
     }
 
-    @GetMapping("/eliminar")
-    public String eliminar() {
-        return ELIMINAR_ASISTENCIA;
-    }
+
 }

@@ -24,9 +24,9 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form class="form-inline" th:action="@{/dch/asistencias/registro}" method="POST"
+                            <form class="form-inline" th:action="@{/dch/asistencias/registrar}" method="POST"
                                   th:object="${modelo}">
-                                <input type="text" hidden id="idAsistencia" th:field="*{idAsistencia}">
+                                <input type="text" hidden id="idAsistencia" th:field="*{id}"/>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" id="data_1">
@@ -59,21 +59,23 @@
                                         <div class="form-group">
                                             <label for="horaEntrada" class="col-2">Hora de Entrada*</label>
                                             <input type="text" placeholder="Hora de Entrada" id="horaEntrada"
-                                                   class="form-control" th:field="*{horaEntrada}">
+                                                   class="form-control" th:field="*{horaEntrada}"
+                                                   pattern="^[0-2]\d:[0-5]\d$">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaSalida" class="col-2">Hora de Salida*</label>
                                             <input type="text" placeholder="Hora de Salida" id="horaSalida"
-                                                   class="form-control" th:field="*{horaSalida}">
+                                                   class="form-control" th:field="*{horaSalida}"
+                                                   pattern="^[0-2]\d:[0-5]\d$">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label class="col-2"> </label><br>
                                             <input class="btn btn-white" value="Registrar" type="submit"
-                                                   name="registrar" disabled/>
+                                                   name="registrar" disabled id="btnRegistrar"/>
 
                                         </div>
                                     </div>
@@ -82,11 +84,20 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"/>
+                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"
+                                                   id="btnBuscar"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="lead"><u id="nombre">Nombre de usuario</u></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="alert alert-success" role="alert" th:if="${resultado == 3}">
+                                        Operación exitosa
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 4}">
+                                        Error
                                     </div>
                                 </div>
                             </form>
@@ -120,16 +131,32 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
-    function eliminar_registro() {
-        
+    function eliminar_registro(ev) {
+        console.log("eliminar_registro");
+        let $trEliminar = $(ev.target).parent().parent();
+        if (window.confirm("¿Eliminar registro?")) {
+            $trEliminar.empty();
+        } else
+            ev.preventDefault()
     }
 
-    function modificar_registro() {
+    function modificar_registro(ev) {
+        ev.preventDefault();
+        let $trModificar = $(ev.target).parent().parent();
 
+        document.getElementById("btnRegistrar").disabled = false;
+        document.getElementById("btnBuscar").disabled = true;
+        document.getElementById("fecha").readOnly = true;
+        document.getElementById("tarjeta").readOnly = true;
+
+        document.getElementById("tarjeta").value = $trModificar.children()[1].textContent;
+        document.getElementById("horaEntrada").value = $trModificar.children()[2].textContent;
+        document.getElementById("horaSalida").value = $trModificar.children()[3].textContent;
     }
-    
+
     let $bodyRegistros = $("#bodyTabla");
     let inputDate = $('#data_1 .input-group.date');
+
     inputDate.datepicker({
         todayBtn: false,
         endDate: '+1d',
@@ -139,9 +166,9 @@
         autoclose: true,
         format: "yyyy-mm-dd"
     });
+
     inputDate.on("changeDate", function (ev) {
         ev.preventDefault();
-
         $bodyRegistros.empty();
 
         let $fila = $(document.createElement("tr"));
@@ -150,8 +177,8 @@
         let $tdEntrada = $(document.createElement("td"));
         let $tdSalida = $(document.createElement("td"));
         let $tdEliminar = $(document.createElement("td"));
-        let $tdModificar= $(document.createElement("td"));
-        let $btnEliminar = $(document.createElement("button"));
+        let $tdModificar = $(document.createElement("td"));
+        let $btnEliminar = $(document.createElement("a"));
         let $btnModificar = $(document.createElement("button"));
         let $iconoEliminar = $(document.createElement("i"));
         let $iconoModificar = $(document.createElement("i"));
@@ -159,17 +186,14 @@
         let data = {
             fecha: $('#fecha').val()
         };
-        console.log("CAMBIO LA FECHA");
-
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location.origin + "/api/dch/asistencias/consultar/todas",
+            url: "/api/dch/asistencias/consultar/todas",
             data: JSON.stringify(data),
             dataType: "json",
-            success: function(resultado) {
+            success: function (resultado) {
                 console.log("SUCCESS");
-                debugger;
                 for (let dato of resultado) {
                     $fila = $(document.createElement("tr"));
                     $tdFecha = $(document.createElement("td"));
@@ -177,8 +201,8 @@
                     $tdEntrada = $(document.createElement("td"));
                     $tdSalida = $(document.createElement("td"));
                     $tdEliminar = $(document.createElement("td"));
-                    $tdModificar= $(document.createElement("td"));
-                    $btnEliminar = $(document.createElement("button"));
+                    $tdModificar = $(document.createElement("td"));
+                    $btnEliminar = $(document.createElement("a"));
                     $btnModificar = $(document.createElement("button"));
                     $iconoEliminar = $(document.createElement("i"));
                     $iconoModificar = $(document.createElement("i"));
@@ -191,10 +215,12 @@
                     $btnModificar.addClass("btn btn-white");
                     $iconoModificar.addClass("fa fa-pencil");
                     $btnModificar.append($iconoModificar);
-                    $btnEliminar.on("click", modificar_registro);
+                    $btnModificar.attr("data-id", dato.id);
+                    $btnModificar.on("click", modificar_registro);
                     $tdModificar.append($btnModificar);
 
                     $btnEliminar.addClass("btn btn-white");
+                    $btnEliminar.attr("href", `/dch/asistencias/eliminar/${dato.id}`);
                     $iconoEliminar.addClass("fa fa-times");
                     $btnEliminar.append($iconoEliminar);
                     $btnEliminar.on("click", eliminar_registro);
@@ -210,12 +236,12 @@
                     $bodyRegistros.append($fila);
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log("ERROR " + err);
             }
         });
     });
-    inputDate.datepicker("setDate", new Date());
+    inputDate.trigger("changeDate");
 </script>
 </body>
 </html>

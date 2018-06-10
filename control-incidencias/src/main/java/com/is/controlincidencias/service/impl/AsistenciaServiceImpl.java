@@ -85,7 +85,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         asistenciaForm.setHoraEntrada(a.getHoraEntrada());
         asistenciaForm.setFecha(asistenciaForm.getFecha());
         asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
-        asistenciaForm.setIdAsistencia(asistenciaForm.getIdAsistencia());
+        asistenciaForm.setId(asistenciaForm.getId());
         asistenciaForm.setNombre(a.getPersonal().getNombre() + " "
                 + a.getPersonal().getApellidoPaterno() + " " + " "
                 + a.getPersonal().getApellidoMaterno());
@@ -98,8 +98,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
         LocalTime horaEntrada = asistenciaForm.getHoraEntrada();
         LocalTime horaSalida = asistenciaForm.getHoraSalida();
-        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
-                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
+        Asistencia a = asistenciaRepository.findByIdAsistencia(asistenciaForm.getId());
         if (a == null) return null;
         if (!validarHoras(horaEntrada, horaSalida)) return null;
 
@@ -124,6 +123,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             lista.add(asistencia);
         });
         return lista;
+    }
+
+    @Override
+    public void eliminarAsistenciaPorId(Integer id) {
+        if (asistenciaRepository.existsById(id))
+            asistenciaRepository.deleteById(id);
     }
 
     private boolean validarHoras(LocalTime horaEntrada, LocalTime horaSalida) {

@@ -11,5 +11,6 @@ public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializ
     boolean existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(LocalDate fecha, String noTarjeta);
     Asistencia findAsistenciaByFechaRegistroAndPersonalNoTarjeta(LocalDate fecha, String
             noTarjeta);
+    Asistencia findByIdAsistencia(Integer id);
     List<Asistencia> findAllByFechaRegistro(LocalDate fecha);
 }
