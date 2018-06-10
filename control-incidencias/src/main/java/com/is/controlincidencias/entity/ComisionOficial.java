@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "justificante")
+@Table(name = "comisionoficial")
 public class ComisionOficial {
     @Id
     @Column(name = "id", columnDefinition = "serial")
