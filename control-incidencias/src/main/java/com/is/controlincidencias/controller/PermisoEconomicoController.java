@@ -94,9 +94,7 @@ public class PermisoEconomicoController {
         else{//ya ocupo todos los permisos de la quicena
             return "redirect:/personal/incidencias?quincena=1";
         }
-
     }
-
 
     @GetMapping("/cancelar")
     public String cancelarPermisoEconomico(){
