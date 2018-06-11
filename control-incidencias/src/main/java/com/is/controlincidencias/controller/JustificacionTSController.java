@@ -6,10 +6,8 @@ import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.model.JustificateTiempoSuplModel;
-import com.is.controlincidencias.service.IncidenciaService;
-import com.is.controlincidencias.service.PersonalService;
-import com.is.controlincidencias.service.TiempoSuplGeneradoService;
-import com.is.controlincidencias.service.TiempoSuplementarioService;
+import com.is.controlincidencias.service.*;
+import com.is.controlincidencias.service.impl.QuincenaServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.Null;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -54,9 +53,16 @@ public class JustificacionTSController {
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
 
+    @Autowired
+    @Qualifier("quincenaServiceImpl")
+    private QuincenaServiceImpl quincenaService;
+
+    @Autowired
+    @Qualifier("personalQuincenaServiceImpl")
+    private PersonalQuincenaService personalQuincenaService;
     private Incidencia incidencia;
-    private Personal personal;
     private int errorRN29=0;
+    private int errorRN31=0;
 
     private static final String REDIRECT = "redirect:/personal/justificantes/tiemposuplementario?id=";
     @GetMapping("/tiemposuplementario")
@@ -67,7 +73,7 @@ public class JustificacionTSController {
         if (principal!=null && principal.getName()!=null){
             email=principal.getName();
         }
-        personal = personalService.getPersonalByEmail(email);
+        Personal personal = personalService.getPersonalByEmail(email);
         incidencia = incidenciaService.consultarIncidencia(idincidencia);
         Date fecha = new Date();
         LocalDate fechaActual = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -80,10 +86,12 @@ public class JustificacionTSController {
 
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_TS);
         model.addAttribute("sinTiempo",sinTiempoError);
-        model.addAttribute("errorHorasCubrir",errorRN29);
+        model.addAttribute("errorJustificantes",errorRN29);
+        model.addAttribute("errorHorasCubrir",errorRN31);
         model.addAttribute("justTiempoSuplementario",new JustificateTiempoSuplModel());
         model.addAttribute("selectedValue",new ArrayList<Integer>());
         errorRN29=0;
+        errorRN31=0;
         mav.addObject("tiempoSuplGenerado",tiemposSuplementarios);
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("noTarjeta",personal.getNoTarjeta());
@@ -100,6 +108,8 @@ public class JustificacionTSController {
     @PostMapping("/tiemposuplementario/agregar")
     private String agregarJustificante (@ModelAttribute("justTiempoSuplementario")JustificateTiempoSuplModel justificateTiempoSuplModel){
         LOG.info(justificateTiempoSuplModel.getTiempocubrir());
+        Date input = new Date();
+        LocalDate date = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         List<TiempoSuplGenerado> tiemposGenerados = new ArrayList<>();
         LocalTime horasTotales=LocalTime.parse("00:00:00");
         for (Integer id:justificateTiempoSuplModel.getIdSeleccionados()
@@ -111,21 +121,34 @@ public class JustificacionTSController {
         }
         LOG.info(horasTotales);
         //Validacion de otra regla de negocio
-
-        //Validacion de la regla de negocio 29
-        if(!reglasNegocio.rn29(horasTotales,justificateTiempoSuplModel.getTiempocubrir())){
-            errorRN29=1;
-            LOG.info("ERROR REGLA DE NEGOCIO 29");
-            return REDIRECT + incidencia.getIdIncidencia();
-        }
+            int idQuincena = quincenaService.idquincenaConFechaDeIncidencia(date);
+            Integer idPersonalQuincena = personalQuincenaService.selectMaxIdPersonalQuincena();
+            int idEmpleado = incidencia.getPersonal().getIdEmpleado();
+            //Validacion de la regla de negocio 31
+            if(!reglasNegocio.rn31(horasTotales,justificateTiempoSuplModel.getTiempocubrir())){
+                errorRN31=1;
+                LOG.info("ERROR REGLA DE NEGOCIO 31");
+                return REDIRECT + incidencia.getIdIncidencia();
+            }
+            if(idPersonalQuincena == null){
+                personalQuincenaService.insertRegistroSupl(1,1,idEmpleado,idQuincena);
+            }
+            else{
+                Integer diasUsados = personalQuincenaService.preguntarPorDiasSuplementariosQuincena(idEmpleado,idQuincena);
+                if(reglasNegocio.rn29(diasUsados)){
+                    personalQuincenaService.updateSuplementarioQuincena(diasUsados+1,idEmpleado,idQuincena);
+                }
+                else{
+                    errorRN29 =1;
+                    LOG.info("ERROR REGLA DE NEGOCIO 29");
+                    return REDIRECT + incidencia.getIdIncidencia();
+                }
+            }
         // Actualizamos los tiempos suplementarios generados guardados
         for (TiempoSuplGenerado tiemposSupl:tiemposGenerados
              ) {
             tiempoSuplGeneradoService.updatetiempoUsados(tiemposSupl.getId());
         }
-        //Actualizamos la tabla personalquincena
-
-
         //Guardamos el registro
             tiempoSuplementarioService.saveJustificanteTS(justificateTiempoSuplModel,incidencia);
         return "redirect:/personal/justificantes?add=1";

@@ -58,7 +58,15 @@ public class ReglasNegocio {
         return inicio.isAfter(fin);
     }
 
-    public boolean rn29(LocalTime horas,Integer tiempoSolicitado){
+    public boolean rn29(Integer dias){
+        if(dias >= 3){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public boolean rn31(LocalTime horas,Integer tiempoSolicitado){
         return horas.minus(tiempoSolicitado,ChronoUnit.HOURS).equals(LocalTime.parse("00:00:00"));
     }
 }

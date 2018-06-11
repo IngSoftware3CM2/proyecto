@@ -33,6 +33,9 @@
         <div class="alert alert-danger" th:if="${errorHorasCubrir == 1}">
             Las horas seleccionadas no coinciden con el campo tiempo a cubrir
         </div>
+        <div class="alert alert-danger" th:if="${errorJustificantes == 1}">
+            No cuentas con tiempo suplementario disponible.
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
 
             <div class="ibox-content">
