@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.repository.TiempoSuplGeneradoRepository;
 import com.is.controlincidencias.service.TiempoSuplGeneradoService;

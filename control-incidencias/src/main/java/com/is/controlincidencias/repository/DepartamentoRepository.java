@@ -7,5 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Serializable> {
-    List<Departamento> findAll();
+    List<Departamento> findAllByPermisopaeeIsTrueOrPermisodocpaeeIsTrue();
+    List<Departamento> findAllByPermisodocenteIsTrueOrPermisodocpaeeIsTrue();
+
 }

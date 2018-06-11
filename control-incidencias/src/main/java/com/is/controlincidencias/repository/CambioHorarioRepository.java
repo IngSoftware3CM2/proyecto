@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Repository("CambioHorarioRepository")

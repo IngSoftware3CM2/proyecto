@@ -7,7 +7,6 @@ import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.PersonalService;
 import com.is.controlincidencias.service.TiempoSuplGeneradoService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

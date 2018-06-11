@@ -2,7 +2,6 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
