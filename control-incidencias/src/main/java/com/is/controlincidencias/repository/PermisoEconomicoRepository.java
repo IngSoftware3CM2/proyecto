@@ -1,8 +1,6 @@
 package com.is.controlincidencias.repository;
 
-import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
-import com.is.controlincidencias.entity.TipoA;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,14 +12,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Repository("permisoEconomicoRepository")
-public interface PermisoEconomicoRepository extends JpaRepository<TipoA,Serializable> {
+public interface PermisoEconomicoRepository extends JpaRepository<PermisoEconomico,Serializable> {
 
-    @Modifying
+    @Query(value = "select max(id) from permisoeconomico", nativeQuery = true)
     @Transactional
-    @Query(value="insert into permisoeconomico (fechaIncidencia, idjustificante) VALUES (:fechaIncidencia, :idjustificante)", nativeQuery = true)
-    void addPermisoEconomico(@Param("fechaIncidencia") LocalDate fechaIncidencia, @Param("idjustificante") int idjustificante);
+    Integer selectMaxIdPermisoEconomico();
 
     boolean existsByJustificante_IdJustificante (int id);
 
-    PermisoEconomico findByJustificante(Justificante justificante);
+    @Modifying
+    @Query(value = "insert into permisoeconomico (id, fechaincidencia,idjustificante) VALUES (:id, :fechaincidencia,:idjustificante)", nativeQuery = true)
+    @Transactional
+    void insertRegistro(@Param("id") int id, @Param("fechaincidencia") LocalDate fechaincidencia, @Param("idjustificante") int idjustificante);
+
 }

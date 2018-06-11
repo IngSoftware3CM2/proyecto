@@ -1,0 +1,10 @@
+﻿idperiodo,inicio,fin,descripcion,aplicadocente,aplicadocpaee,aplicapaee,justificacionarchivo
+1,02/11/2017,02/11/2017,Día de muertos,TRUE,TRUE,TRUE,archivoJustif1.jpg
+2,20/11/2017,20/11/2017,Revolución Mexicana,TRUE,TRUE,TRUE,archivoJustif2.jpg
+3,21/12/2017,05/01/2018,Vacaciones diciembre,TRUE,TRUE,TRUE,archivoJustif1.jpg
+4,05/02/2018,05/02/2018,Constitución Mexicana,TRUE,TRUE,TRUE,archivoJustif2.jpg
+5,19/03/2018,19/03/2018,Expropiación petrolera,TRUE,TRUE,TRUE,archivoJustif1.jpg
+6,26/03/2018,30/03/2018,Vacaciones semana santa,TRUE,TRUE,TRUE,archivoJustif2.jpg
+7,01/05/2018,01/05/2018,Día del trabajo,TRUE,TRUE,TRUE,archivoJustif1.jpg
+8,15/05/2018,15/05/2018,Día del maestro,TRUE,TRUE,TRUE,archivoJustif2.jpg
+9,09/07/2018,27/07/2018,Vacaciones de verano,TRUE,TRUE,TRUE,archivoJustif1.jpg

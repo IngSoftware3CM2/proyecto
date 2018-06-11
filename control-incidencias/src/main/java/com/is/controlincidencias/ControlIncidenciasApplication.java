@@ -6,12 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 /*
 @Slf4j
 @SpringBootApplication
 public class ControlIncidenciasApplication {
-
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         log.info("Password de prueba: hola = " +  encoder.encode("hola"));
@@ -21,6 +19,7 @@ public class ControlIncidenciasApplication {
 */
 
 /* ESTA CLASE ES PARA EL DEPLOY, NO LA BORREN PORQUE SE ME OLVIDA */
+
 @Slf4j
 @SpringBootApplication
 public class ControlIncidenciasApplication extends SpringBootServletInitializer {

@@ -36,21 +36,22 @@
                                     <th>Fecha</th>
                                     <th>Tipo de Justificacion</th>
                                     <th>Ver</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
+                                <div th:if="${add == 1}" class="alert alert-success" role="alert">Se registró solicitud.</div>
+                                <div th:if="${modificar == 1}" class="alert alert-success" role="alert">Modificación de justificación exitosa</div>
+                                <div th:if="${modificar == 2}" class="alert alert-danger" role="alert">Modificación de justificación cancelada</div>
+
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
                                     <td th:text="${justificante.getFechaAsString()}"></td>
-
-
                                     <td th:switch="${justificante.getTipo()}">
                                         <span th:case="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</span>
                                         <span th:case="2">Licencia por Paternidad</span>
                                         <span th:case="3">Cambio de Horario</span>
                                         <span th:case="4">Dias Economicos</span>
+                                        <span th:case="5">Tiempo Suplementario</span>
                                     </td>
 
 
@@ -59,17 +60,7 @@
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </td>
-                                    <td>
-                                        <a href="#"
-                                           th:href="@{/personal/justificantes/modificar(id=${justificante.idJustificante}, tipo=${justificante.getTipo()})}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td><a href="#"
-                                           th:href="@{/personal/removejustificante(id=__${justificante.idJustificante}__)}">
-                                        <i class="fa fa-trash"></i>
-                                    </a></td>
-                                    <td th:switch="${justificante.getEstado().toLowerCase()}">
+                                   <td th:switch="${justificante.getEstado().toLowerCase()}">
                                         <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
                                         <span th:case="'espera'"><i class="fa fa-clock-o"></i></span>
                                         <span th:case="'rechazado'"><i class="fa fa-times"></i></span>
@@ -83,6 +74,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>

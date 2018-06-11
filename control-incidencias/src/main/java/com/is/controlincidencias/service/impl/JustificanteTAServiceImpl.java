@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
@@ -32,22 +31,23 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
     private IncidenciaService incidenciaService;
 
     @Override
-    public String findNoTarjetaByNoEmpleado(int noEmpleado) {
-        return Integer.toString(justificanteTARepository.findNotarjetaByNoempleado(noEmpleado));
+    public String findNoTarjetaByIdEmpleado(int idEmpleado) {
+        return Integer.toString(justificanteTARepository.findNotarjetaByIdempleado(idEmpleado));
     }
 
     @Override
     public int saveJustificanteTA(JustificanteTAModel justificanteTAModel, Justificante justificante,int idIncidencia) {
         Date fecha = new Date();
         //Aqui cambia dependiendo el No empleado.
-        int noEmpleado=justificante.getPersonal().getNoEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,1,noEmpleado);
+        int idEmpleado=justificante.getPersonal().getIdEmpleado();
+        justificanteRepository.altaJustificante("Espera",fecha,1,idEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        LocalDate fechaFin = StringToLocalDate.tryParseDate(justificanteTAModel.getFin());
-        LocalDate fechaInicio = StringToLocalDate.tryParseDate(justificanteTAModel.getInicio());
-        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
+        LocalDate fechaFin = justificanteTAModel.getFin();
+        LocalDate fechaInicio = justificanteTAModel.getInicio();
+        int idJustificante =ids.get(ids.size()-1);
+        justificanteTARepository.saveJustificanteTA(fechaFin,justificanteTAModel.getFolio(),fechaInicio,idJustificante+"_"+justificanteTAModel.getLicenciaArchivo(),justificanteTAModel.getTipo(),ids.get(ids.size()-1),justificanteTAModel.getIdunidadmedica());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
-        return ids.get(ids.size()-1);
+        return idJustificante;
     }
     @Override
     public List<String> findZonas() {

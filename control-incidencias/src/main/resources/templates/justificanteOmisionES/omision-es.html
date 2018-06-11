@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Solicitud de Justificante por Omisión de entrada/salidao</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
+                    </li>
+                    <li>
+                        Justificantes
+                    </li>
+                    <li class="active">
+                        <strong>Solicitud de Justificante por Omisión entrada/salida</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label th:text="${TipoAndNombre}"></label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Generar Solicitud de Justificante por Omisión de Entrada/Salida</span>
+                </h1>
+                <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/omision/addOmision}" th:object="${omisionModel}" method="post">
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta :  <span th:text="${tarjeta}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-8 center">
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}" required minlength="10"></textarea></div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4">Omision</label>
+                        <div class="col-lg-8">
+                            <div class="col-sm-3"><label th:text="${tipoes}"></label></div>
+                        </div>
+                        <div hidden>
+                            <textarea class="col-lg-6" style="height: 100px" th:field="*{tipo}" th:text="${tipo}"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"> <h3>Horario Laboral</h3></div>
+                        <div class="col-sm-6"><h3>Horario Registrado</h3></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioEntrada}"></label></div>
+                        <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
+                        <div class="col-sm-3"><label th:text="${horae}"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioSalida}"></label></div>
+                        <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
+                        <div class="col-sm-3"><label th:text="${horas}"></label></div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-sm btn-white" type="submit">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <a href="#" th:href="@{/personal/incidencias?cancelar=1}">
+                                        <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <p  th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+                                Complete todos los campos obligatorios.
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/clockpicker/clockpicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script type="text/javascript">
+    $('.clockpicker').clockpicker();
+</script>
+
+</body>
+
+</html>

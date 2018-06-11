@@ -1,24 +1,24 @@
-﻿iddepartamento,nombre,idsuperior
-1,Direccion,1
-2,Subdirección Académica,2
-3,Formación Básica,3
-4,Ciencias e Ingeniería de la Computación,4
-5,Ingeniería en Sistemas Computacionales,5
-6,Formación Integral e Institucional,6
-7,Evaluación y Seguimiento Académico,7
-8,Innovación Educativa,8
-9,Tecnología Educativa y Campus Virtual,9
-10,Sección de Estudios de Posgrado e Investigación,10
-11,Departamento de Posgrado,11
-12,Departamento de Investigación,12
-13,Subdirección de Servicios Educativos e Integración Social,13
-14,Departamento de Gestión Escolar,14
-15,Departamento de Servicios Estudiantiles,15
-16,Departamento de Extensión y Apoyos Educativos,16
-17,Unidad Politécnica de Integración Social,17
-18,Subdirección Administrativa,18
-19,Departamento de Capital Humano,19
-20,Departamento de Recursos Financieros,20
-21,Departamento de Recursos Materiales y Servicios,21
-22,Coordinación de Enlace y Gestión Técnica,22
-23,Unidad de Informática,23
+﻿iddepartamento,nombre,idsuperior,permisodocente,permisopaee,permisodocpaee
+1,Direccion,1,FALSE,TRUE,TRUE
+2,Subdirección Académica,2,FALSE,TRUE,TRUE
+3,Formación Básica,3,TRUE,FALSE,TRUE
+4,Ciencias e Ingeniería de la Computación,4,TRUE,FALSE,TRUE
+5,Ingeniería en Sistemas Computacionales,5,TRUE,FALSE,TRUE
+6,Formación Integral e Institucional,6,TRUE,FALSE,TRUE
+7,Evaluación y Seguimiento Académico,7,FALSE,TRUE,TRUE
+8,Innovación Educativa,8,FALSE,TRUE,TRUE
+9,Tecnología Educativa y Campus Virtual,9,FALSE,TRUE,TRUE
+10,Sección de Estudios de Posgrado e Investigación,10,FALSE,TRUE,TRUE
+11,Departamento de Posgrado,11,TRUE,FALSE,TRUE
+12,Departamento de Investigación,12,FALSE,TRUE,TRUE
+13,Subdirección de Servicios Educativos e Integración Social,13,FALSE,TRUE,TRUE
+14,Departamento de Gestión Escolar,14,FALSE,TRUE,TRUE
+15,Departamento de Servicios Estudiantiles,15,FALSE,TRUE,TRUE
+16,Departamento de Extensión y Apoyos Educativos,16,FALSE,TRUE,TRUE
+17,Unidad Politécnica de Integración Social,17,FALSE,TRUE,TRUE
+18,Subdirección Administrativa,18,FALSE,TRUE,TRUE
+19,Departamento de Capital Humano,19,FALSE,TRUE,TRUE
+20,Departamento de Recursos Financieros,20,FALSE,TRUE,TRUE
+21,Departamento de Recursos Materiales y Servicios,21,FALSE,TRUE,TRUE
+22,Coordinación de Enlace y Gestión Técnica,22,FALSE,TRUE,TRUE
+23,Unidad de Informática,23,TRUE,FALSE,TRUE

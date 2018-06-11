@@ -25,5 +25,7 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
     @Transactional
     public void updateIdJustificante(@Param("idjustificante") int idjustificante, @Param("idincidencia") int idincidencia);
 
-
+    @Transactional
+    @Query(value = "select idempleado from incidencia where idjustificante = :idjustificante", nativeQuery = true)
+    public int getIdEmpleadoByIdJustificante(@Param("idjustificante") int idjustificante);
 }

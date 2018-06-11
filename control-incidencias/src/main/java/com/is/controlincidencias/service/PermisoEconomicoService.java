@@ -1,13 +1,11 @@
 package com.is.controlincidencias.service;
 
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.PermisoEconomico;
-import com.is.controlincidencias.model.PermisoEconomicoModel;
+import com.is.controlincidencias.entity.Incidencia;
 
 public interface PermisoEconomicoService {
 
-    int addPermisoEconomico(PermisoEconomicoModel permisoEconomicoModel, Justificante justificante);
-    PermisoEconomico findByJustificante(Justificante justificante);
+    int preguntarAnoQuincena(int idempleado, int idquincena, String tipo);
     boolean existsByIdjustificante (int id);
 
+    void registrarJustificante(int idEmpleado, Incidencia incidencia);
 }

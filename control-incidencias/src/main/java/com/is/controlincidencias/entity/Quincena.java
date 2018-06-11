@@ -1,6 +1,7 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,29 @@ public class Quincena {
     @Column(name = "idQuincena", length = 4)
     private Integer idQuincena;
 
-    @Column(name = "inicio", nullable = false)
+    @Column(name = "inicio", nullable = false, unique = true)
     private LocalDate inicio;
 
-    @Column(name = "fin", nullable = false)
+    @Column(name = "fin", nullable = false, unique = true)
     private LocalDate fin;
+
+    @Column(name = "quincenaReportada", nullable = false)    //quincena a la que se refiere
+    private String quincenaReportada;
+
+    @Column(name = "fechaLimite", nullable = false)
+    private Timestamp fechaLimite;
+
+    @Column(name = "fechaLimPersonal", nullable = false)
+    private Timestamp fechaLimPersonal;
+
+    private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)        //Quincena en la que será procesada
+    @JoinColumn(name = "quincenaEnQueSeraProcesada", nullable = true, insertable = false, updatable = false, foreignKey = @ForeignKey(name = "quincena_fk", foreignKeyDefinition = DEFINITION))
+    private Quincena quincenaEnQueSeraProcesada;
+
+    @OneToMany(mappedBy = "quincenaEnQueSeraProcesada", cascade = CascadeType.ALL, orphanRemoval = true) /*Quincena procesada durante esta quincena*/
+    private List<Quincena> quincenasQueProcesa = new ArrayList<>();
 
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();   /*supongo que este arrayList es util para
@@ -29,12 +48,8 @@ public class Quincena {
     @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonalQuincena> empleados = new ArrayList<>();
 
-    /*@ManyToMany(mappedBy = "quincena")
-    private Set<Personal> personal = new HashSet<Personal>();
-
-    public Set<Personal> getGroups() {
-        return personal;
-    }*/
+    @OneToMany(mappedBy = "quincena", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuincenaPerInhabil> quincenaPerInhabiless = new ArrayList<>();
 
     public Quincena() {
     }
@@ -81,7 +96,6 @@ public class Quincena {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getIdQuincena(), getInicio(), getFin(), incidencias);
     }
 

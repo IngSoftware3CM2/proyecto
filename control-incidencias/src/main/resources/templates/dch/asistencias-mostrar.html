@@ -8,13 +8,13 @@
         <div th:replace="dch/navbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-6">
-                <h2>Mostrar Asistencias</h2>
+                <h2>Visualizar Asistencias</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/dch}">Inicio</a>
                     </li>
                     <li class="active">
-                        <strong>Mostrar asistencias</strong>
+                        <strong>Visualizar asistencias</strong>
                     </li>
                 </ol>
             </div>
@@ -22,7 +22,62 @@
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="ibox float-e-margins"></div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <form role="form" class="form-inline">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="numTarjeta" class="col-2">Número de Tarjeta:</label>
+                                            <input type="text" placeholder="Número de Tarjeta" id="numTarjeta"
+                                                   class="form-control" name="numTarjeta" required pattern="^\d{6}$">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="anio" class="col-2">Año</label>
+                                            <select class="form-control m-b" name="anio" id="anio" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="quincena" class="col-2">Quincena</label>
+                                            <select class="form-control m-b" name="quincena" id="quincena" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <button class="btn btn-white" type="button" id="btnBuscar">
+                                                Buscar Personal
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <button class="btn btn-white" type="button" id="btnMostrar">
+                                                Mostrar Asistencias
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Dia de Asistencia</th>
+                                    <th>Hora de Entrada</th>
+                                    <th>Hora de Salida</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

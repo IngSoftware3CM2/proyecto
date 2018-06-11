@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Cambiar Contrase&ntilde;a')"></head>
+<head th:replace="fragments/head :: head('Cambiar Contraseña')"></head>
 <body>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(2)"></nav>
@@ -8,7 +8,7 @@
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Tu Perfil</h2>
+                <h2>Cambiar Contraseña</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/personal}">Inicio</a>
@@ -37,9 +37,12 @@
                                 <label class="col-lg-4">Contraseña Actual: </label>
                                 <div class="col-lg-4">
                                     <input type="password" placeholder="Contraseña actual" class="form-control"
-                                           required th:field="*{oldPassword}">
+                                           th:field="*{oldPassword}"
+                                           oninvalid="this.setCustomValidity('Complete todos los campos obligatorios.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required>
                                     <div th:if="${estado == 'error'}" class="alert alert-danger danger" role="alert">
-                                        La contraseña actual no cuadra
+                                        Contraseña incorrecta.
                                     </div>
                                 </div>
                             </div>
@@ -47,23 +50,28 @@
                                 <label class="col-lg-4">Nueva Contraseña: </label>
                                 <div class="col-lg-4">
                                     <input type="password" class="form-control"
-                                           placeholder="Nueva contraseña" th:field="*{newPassword}" required>
+                                           placeholder="Nueva contraseña" th:field="*{newPassword}"
+                                           oninvalid="this.setCustomValidity('Complete todos los campos obligatorios.')"
+                                           oninput="this.setCustomValidity('')" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-4">Repite Nueva Contraseña: </label>
+                                <label class="col-lg-4">Repita Nueva Contraseña: </label>
                                 <div class="col-lg-4">
                                     <input type="password" placeholder="Confirma la nueva contraseña"
-                                           class="form-control" th:field="*{verifyPassword}" required>
+                                           class="form-control" th:field="*{verifyPassword}"
+                                           oninvalid="this.setCustomValidity('Complete todos los campos obligatorios.')"
+                                           oninput="this.setCustomValidity('')"
+                                           required>
                                     <div th:if="${estado == 'diferente'}" class="alert alert-danger" role="alert">
-                                        Las contraseñas no coinciden
+                                        Nueva contraseña no coincide con la confirmación.
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-6">
-                                    <input type="submit" value="Confirmar"
+                                    <input type="submit" value="Cambiar Contrase&ntilde;a"
                                            class="btn btn-sm btn-primary pull-right m-t-n-xs">
                                 </div>
                             </div>
@@ -71,7 +79,10 @@
                                 <div class="col-lg-3"></div>
                                 <div class="col-lg-6">
                                     <div th:if="${estado == 'exito'}" class="alert alert-success text-center" role="alert">
-                                        Se ha cambiado la contraseña
+                                        Tu contraseña ha sido actualizada.
+                                    </div>
+                                    <div th:if="${estado == 'error2'}" class="alert alert-danger text-center" role="alert">
+                                        Contraseña no válida.
                                     </div>
                                 </div>
                                 <div class="col-lg-3"></div>
@@ -91,5 +102,4 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 </body>
-
 </html>

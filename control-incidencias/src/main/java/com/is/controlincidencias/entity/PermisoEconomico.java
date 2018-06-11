@@ -12,9 +12,6 @@ public class PermisoEconomico {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "fechaIncidencia", nullable = false)
-    private LocalDate fechaIncidencia;
-
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idJustificante", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
@@ -24,16 +21,7 @@ public class PermisoEconomico {
     }
 
     public PermisoEconomico(LocalDate fechaIncidencia, Justificante justificante) {
-        this.fechaIncidencia = fechaIncidencia;
         this.justificante = justificante;
-    }
-
-    public LocalDate getFechaIncidencia() {
-        return fechaIncidencia;
-    }
-
-    public void setFechaIncidencia(LocalDate fechaIncidencia) {
-        this.fechaIncidencia = fechaIncidencia;
     }
 
     public Justificante getJustificante() {
@@ -62,7 +50,6 @@ public class PermisoEconomico {
     public String toString() {
         return "PermisoEconomico{" +
                 "id=" + id +
-                ", fechaIncidencia='" + fechaIncidencia + '\'' +
                 ", justificante=" + justificante +
                 '}';
     }

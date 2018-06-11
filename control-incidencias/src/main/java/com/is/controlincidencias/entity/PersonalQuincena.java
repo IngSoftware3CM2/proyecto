@@ -13,9 +13,9 @@ public class PersonalQuincena {
     private Integer idpersonalquincena;
    // @EmbeddedId
    // private  id;
-   private static final String DEFINITION = "FOREIGN KEY(noEmpleado) REFERENCES personal (noEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
+   private static final String DEFINITION = "FOREIGN KEY(idEmpleado) REFERENCES personal (idEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "noEmpleado", foreignKey = @ForeignKey(name = "empleado_fk", foreignKeyDefinition = DEFINITION))
+    @JoinColumn(name = "idEmpleado", foreignKey = @ForeignKey(name = "empleado_fk", foreignKeyDefinition = DEFINITION))
     //@MapsId("noEmpleado")
     private Personal personal;
 
@@ -26,6 +26,9 @@ public class PersonalQuincena {
 
     @Column(name = "diasEconomicosSolicitados")
     private Integer dias_econ_solic;
+
+    @Column(name = "justificacionesSuplementario")
+    private Integer justiftiemposuplementario;
 
     public PersonalQuincena() {}
 

@@ -31,30 +31,55 @@
                             <h5>Incidencias Generadas</h5>
                         </div>
                         <div class="ibox-content">
+                            <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operación cancelada</div>
+                            <div th:if="${cancelar == 0}" class="alert alert-success" role="alert">Justificante eliminado</div>
+                            <div th:if="${cancelar == 2}" class="alert alert-danger" role="alert">Operacion de modificacion cancelada</div>
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
                                 <thead>
                                 <tr>
                                     <th>Fecha de Generacion</th>
-                                    <th>Tipo de Incidencia</th>
                                     <th>Justificacion</th>
                                 </tr>
                                 </thead>
+                                <div th:if="${ano == 1}" class="alert alert-danger" role="alert">Excede el límite de permisos economicos anuales.</div>
+                                <div th:if="${quincena == 1}" class="alert alert-danger" role="alert">Excede límite de permisos economicos quincenales.</div>
+
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}"
                                     th:if="${incidencia.getJustificante() == null}">
                                     <form action="#" th:action="@{/personal/justificantes/agregar}" method="get">
                                         <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
-                                        <td th:text="${incidencia.getTipo()}">Tipo</td>
                                         <td>
-                                            <div class="row">
-                                                <div class="col-sm-8">
+                                            <div th:switch="${motivo.intValue()}" class="row">
+                                                <div th:case="1" class="col-sm-8">
                                                     <select class="form-control m-b" name="tipoJustificante">
-                                                        <option th:value="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</option>
                                                         <option th:value="2">Licencia por Paternidad</option>
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
                                                     </select>
                                                 </div>
+
+                                                <div th:case="2" class="col-sm-8">
+                                                    <select class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                    </select>
+                                                </div>
+
+                                                <div th:case="-1" class="col-sm-8">
+                                                    <select class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                    </select>
+                                                </div>
+
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <div class="col">

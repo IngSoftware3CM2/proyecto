@@ -21,6 +21,10 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
 
     List<Justificante> findAllByPersonal (Personal personal);
 
+    @Query(value = "select max(idjustificante) from justificante", nativeQuery = true)
+    @Transactional
+    Integer selectMaxIdPermisoEconomico();
+
     @Modifying
     @Transactional
     @Query (value="delete from justificante where idjustificante=:id", nativeQuery = true)
@@ -32,9 +36,7 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
     List<Integer> ultimoJustificanteAnadido();
 
     @Modifying
-    @Query(value = "insert into justificante (estado,fecha,tipo,noempleado) VALUES (:estado,:fecha,:tipo,:noempleado)", nativeQuery = true)
+    @Query(value = "insert into justificante (estado,fecha,tipo,idempleado) VALUES (:estado,:fecha,:tipo,:idempleado)", nativeQuery = true)
     @Transactional
-    void altaJustificante(@Param("estado") String estado, @Param("fecha") Date fecha, @Param("tipo") int tipo, @Param("noempleado") int noempleado);
-
-
+    void altaJustificante(@Param("estado") String estado, @Param("fecha") Date fecha, @Param("tipo") int tipo, @Param("idempleado") int idempleado);
 }

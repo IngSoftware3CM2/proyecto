@@ -1,8 +1,12 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.CambioHorario;
+import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
+import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,104 +14,165 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Controller
-@RequestMapping("/personal/justificantes/cambiohorario") 
+@RequestMapping("/personal/justificantes/cambiohorario")
 public class CambioHorarioController {
     static final String VISTA_CAMBIO_HORARIO = "justificanteCambioHorario/solicitud-cambio-horario";
     static final String VISTA_MOD_CAMBIO_HORARIO = "justificanteCambioHorario/modificar-cambio-horario";
     private static final Log LOGGER = LogFactory.getLog(CambioHorarioController.class);
     static final String VER_JUSTIFICANTES = "ver-justificantes";
+
+    int idEmpleado;
+    int idIncidencia;
+    int modCambHorarioJust;
     public static final String HORA_QUINCE = "15:00";
 
     @Autowired
     @Qualifier("cambioHorarioServiceImpl")
     private CambioHorarioService cambioService;
 
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaServiceImpl incidenciaService;
+
+    @Autowired
+    @Qualifier("personalServiceImpl")
+    private PersonalServiceImpl personalService;
+
     @GetMapping("/agregar")
-    public String registrar(Model model)
+    public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
         {
+            String diaSemana = "";
+            Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
+            String fecha = incidencia.getFechaRegistro().toString();
+            diaSemana = getDiaSemana(fecha);
+            LOGGER.info("--------------------------------" + diaSemana);
+
+            ModelAndView mav = new ModelAndView(VISTA_CAMBIO_HORARIO);
             LOGGER.info("Accedí al metodo acceder del controlador");
+            idIncidencia = idincidencia;
+            idEmpleado = cambioService.getIdEmpleadoByIdIncidencia(idincidencia); //obtengo el numero de empelado
+            LOGGER.info("El id de la incidencia es " + idincidencia + " el ID EMPLEADO es " + idEmpleado);
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
-            return VISTA_CAMBIO_HORARIO;
+            Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
+            mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+            model.addAttribute("tarjeta", personal.getNoTarjeta());
+            model.addAttribute("fecha", fecha);
+            model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
+            model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
+            model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
+            model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
+            return mav;
         }
 
-    @PostMapping("/add-cambio-horario")
-    public ModelAndView addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
+    @PostMapping("/addCambioHorario")
+    public String addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
         {
             if(bindings.hasErrors())
                 {
                     LOGGER.info("Hubo errores");
-                    return new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
+                    return VISTA_CAMBIO_HORARIO;
                 }
             else
                 {
-                    LOGGER.info(modeloCH);
+
+                    LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
                     CambioHorarioModel chm = new CambioHorarioModel();
-                    chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-                    chm.setHoraSalida(HORA_QUINCE); //esto igual
-                    chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-                    chm.setNuevaSalida(modeloCH.getNuevaSalida());
+
+                    //Éstas cuatro cosas se sacan de la BD
+                    chm.setHoraEntrada(""); //esto debería venir desde la base
+                    chm.setHoraSalida(""); //esto igual
+                    String fecha =  modeloCH.getFechaIncidencia();
+
+                    chm.setNuevaEntrada(cambioService.getHoraEntrada(idEmpleado, fecha));
+                    chm.setNuevaSalida(cambioService.getHoraSalida(idEmpleado, fecha));
+
                     chm.setJustificacion(modeloCH.getJustificacion());
-                    chm.setFechaIncidencia("10/10/2018");
-                    chm.setIdJustificante(1);
-                    cambioService.insertaCambioHorario(chm);
-                    return new ModelAndView(VER_JUSTIFICANTES);
+                    chm.setFechaIncidencia(modeloCH.getFechaIncidencia());
+
+                    chm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
+                    cambioService.insertaCambioHorario(chm, idIncidencia);
+                    return "redirect:/personal/justificantes";
                 }
 
         }
 
 
-    @PostMapping("/mod-cambio-horario")
-    public ModelAndView modCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
+    @PostMapping("/modCambioHorario")
+    public String modCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
     {
         if(bindings.hasErrors())
         {
             LOGGER.info("Hubo errores");
-            return new ModelAndView(VISTA_CAMBIO_HORARIO);
+            return VISTA_MOD_CAMBIO_HORARIO;
         }
         else
         {
+            LOGGER.info("MODIFICANDO :3 *3*");
             LOGGER.info(modeloCH);
             CambioHorarioModel chm = new CambioHorarioModel();
-            chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-            chm.setHoraSalida(HORA_QUINCE); //esto igual
-            chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-            chm.setNuevaSalida(modeloCH.getNuevaSalida());
+           // chm.setHoraEntrada("7:00"); //esto debería venir desde la base
+          //  chm.setHoraSalida(HORA_QUINCE); //esto igual
+           // chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
+            //chm.setNuevaSalida(modeloCH.getNuevaSalida());
+            chm.setIdJustificante(modCambHorarioJust);
             chm.setJustificacion(modeloCH.getJustificacion());
-            chm.setFechaIncidencia("10/10/2018");
-            chm.setIdJustificante(2);
             cambioService.updateCambioHorario(chm);
-            return new ModelAndView(VER_JUSTIFICANTES);
+            return "redirect:/personal/justificantes";
         }
 
     }
 
     @GetMapping("/modificar")
-    public ModelAndView modificaCambioHorario(@ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH)
+    public ModelAndView modificaCambioHorario(Model model, @RequestParam(name="id")Integer idJustificante)
     {
-        LOGGER.info(modeloCH);
-        CambioHorarioModel modch = new CambioHorarioModel();
-        modch.setHoraEntrada("7:00");
-        modch.setHoraSalida(HORA_QUINCE);
-        modch.setIdJustificante(2);
-        modch.setFechaIncidencia("10/11/2012");
-        CambioHorario chEntidad = cambioService.getIdCambioHorario(2);//regresa entity
-        //cambioService.findAllById(idCH);
-        modch.setJustificacion(chEntidad.getJustificacion());
-        modch.setNuevaSalida(chEntidad.getHoraSalida().toString());
-        modch.setNuevaEntrada(chEntidad.getHoraEntrada().toString());
+        int idempleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
+        CambioHorario entCH = cambioService.getIdCambioHorario(idJustificante);
+        String fecha = entCH.getFecha().toString();
+        Personal personal = personalService.getPersonalByIdEmpleado(idempleado);
         ModelAndView mav = new ModelAndView(VISTA_MOD_CAMBIO_HORARIO);
-        mav.addObject("nuevaEntrada", modch.getNuevaEntrada());
-        mav.addObject("nuevaSalida", modch.getNuevaSalida());
-        mav.addObject("justificacion", modch.getJustificacion());
+        String diaSemana = "";
+        diaSemana = getDiaSemana(fecha);
+
+        LOGGER.info("ID empleado es " + idempleado);
+        model.addAttribute("cambioHorarioModel", new CambioHorarioModel());
+        LOGGER.info("Y vale **** " + personal.nombreAndTipoToString());
+        modCambHorarioJust = idJustificante;
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+        model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
+        model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
+        model.addAttribute("tarjeta", personal.getNoTarjeta());
+        model.addAttribute("fecha", fecha);
+        //model.addAttribute("fecha", fecha);
+        //model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
+        //model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
+
+        LOGGER.info("**********tengo " + entCH.getHoraEntrada().toString() + " y tambien " + entCH.getHoraSalida() + " Y... " + entCH.getJustificacion());
+        model.addAttribute("horae", entCH.getHoraEntrada().toString());
+        model.addAttribute("horas", entCH.getHoraSalida());
+        model.addAttribute("justificacion", entCH.getJustificacion());
         return mav;
     }
+    public String getDiaSemana(String fechaCompleta)
+        {
+            Date date = null;
+            try
+            {
+                date = new SimpleDateFormat("yyyy-M-d").parse(fechaCompleta);
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+            return new SimpleDateFormat("EEEE", new Locale("es","ES")).format(date).toUpperCase().substring(0,2);
+        }
 }

@@ -4,6 +4,7 @@
 <body>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
+
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
@@ -22,7 +23,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${TipoAndNombre}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -31,17 +32,16 @@
                 <h1 class="text-center">
                     <span class="text-navy">Generar Solicitud de Cambio de Horario</span>
                 </h1>
-                <form class="form-horizontal" action="#" th:action="@{/cambiohorario/add-cambio-horario}" th:object="${cambioHorarioModel}" method="post">
-
-                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta : 02-002</label></div>
-                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : 5 / Abril / 2018</label></div>
+                <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/cambiohorario/addCambioHorario}" th:object="${cambioHorarioModel}" method="post">
+                    <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta :  <span th:text="${tarjeta}"></span></label></div>
+                    <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
                     <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
                     <div class="row">
                         <div class="col-sm-4">
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}"></textarea></div>
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}" required minlength="10"></textarea></div>
 
                         </div>
                     </div>
@@ -50,40 +50,23 @@
                         <div class="col-sm-6"> <h3>Horario Actual</h3></div>
                         <div class="col-sm-6"><h3>Cambio de Horario</h3></div>
                     </div>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
-                        <div class="col-sm-3"><label>7:00</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioEntrada}"></label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Entrada:</label></div>
-                        <div class="col-sm-2">
-                            <div class="input-group clockpicker" data-autoclose="true">
-                                <input type="text" class="form-control"  th:field="*{nuevaEntrada}" placeholder="07:00" >
-                                <span class="input-group-addon">
-                                    <span class="fa fa-clock-o"></span>
-                                </span>
-                            </div>
-
-                        </div>
+                        <div class="col-sm-3"><label th:text="${horae}"></label></div>
                     </div>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-3"><label>15:00</label></div>
+                        <div class="col-sm-3"><label th:text="${horarioSalida}"></label></div>
                         <div class="col-sm-3 text-right"> <label>Hora de Salida:</label></div>
-                        <div class="col-sm-2">
-                            <div class="input-group clockpicker" data-autoclose="true">
-                                <input type="text" class="form-control"th:field="*{nuevaSalida}"  placeholder="15:00">
-                                <span class="input-group-addon">
-                                    <span class="fa fa-clock-o"></span>
-                                </span>
-                            </div>
-
-                        </div>
+                        <div class="col-sm-3"><label th:text="${horas}"></label></div>
                     </div>
 
                     <div class="row">
+
                         <div class="col-sm-4">
-                            <p  th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
-                                Complete todos los campos obligatorios.
-                            </p>
+
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -95,10 +78,20 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <button class="btn btn-sm btn-white" type="cancel">Cancelar</button>
+                                    <a href="#" th:href="@{/personal/incidencias?cancelar=1}">
+                                        <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <p  th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+                                Complete todos los campos obligatorios.
+                            </p>
+                        </div>
+                    </div>
+                    <div hidden>
+                        <textarea class="col-lg-6" style="height: 100px" th:field="*{fechaIncidencia}" th:text="${fecha}"></textarea>
                     </div>
                 </form>
             </div>

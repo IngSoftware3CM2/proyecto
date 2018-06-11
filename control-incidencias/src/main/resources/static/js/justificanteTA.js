@@ -24,11 +24,17 @@ function ValidateSingleInput(oInput) {
                 }
             }
             if (!blnValid) {
-                $("#mensajeArchivo").removeClass("hidden");
+                $("#mensajeArchivoE").removeClass("hidden");
+                $("#mensajeArchivoS").addClass("hidden");
                 oInput.value = "";
                 return false;
             }
-            $("#mensajeArchivo").addClass("hidden");
+            $("#mensajeArchivoE").addClass("hidden");
+            $("#mensajeArchivoS").removeClass("hidden");
+        }
+        else{
+            $("#mensajeArchivoE").addClass("hidden");
+            $("#mensajeArchivoS").addClass("hidden");
         }
     }
     return true;

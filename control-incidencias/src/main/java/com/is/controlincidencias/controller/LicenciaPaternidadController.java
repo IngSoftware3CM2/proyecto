@@ -29,7 +29,8 @@ import java.util.List;
 public class LicenciaPaternidadController {
 
     int idIncidencia;
-    int noEmpleado;
+    int idEmpleado;
+    int idJustificanteModificar;
     LicPaternidad licPaternidadModificar = new LicPaternidad();
 
     @Autowired
@@ -48,19 +49,24 @@ public class LicenciaPaternidadController {
     @Autowired
     @Qualifier("justificanteServiceImpl")
     private JustificanteService justificanteService;
+
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
 
     @GetMapping("/cancel")
     private String cancel() {
-        //return "redirect:/contacts/showcontacts";
-        return "ver-incidencias";
+        return "redirect:/personal/incidencias?cancelar=1";
+    }
+
+    @GetMapping("/cancelMod")
+    private String cancelMod() {
+        return "redirect:/personal/justificantes?modificar=2";
     }
 
     @GetMapping("/agregar")
     private String redirectSolicitudLicenciaPaternidadForm(Model model, @RequestParam(name =
             "id") Integer idincidencia, Principal principal) {
 
-        String email = "";
+        String email = "correo@gmail.com";
         if (principal != null && principal.getName() != null) {
             email = principal.getName();
         }
@@ -69,7 +75,7 @@ public class LicenciaPaternidadController {
         idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        noEmpleado = personal.getNoEmpleado();
+        idEmpleado = personal.getIdEmpleado();
         model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
         model.addAttribute("fecha", incidencia.getFechaRegistro().toString());
         return Constants.JUSTIFICANTE_P;
@@ -85,17 +91,17 @@ public class LicenciaPaternidadController {
         }
         Personal personal = personalService.getPersonalByEmail(email);
         LicPaternidad licPaternidad = licPaternidadService.buscarLicPaternidadPorIdjustificante(idjustificante);
+        idJustificanteModificar = idjustificante;
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         licPaternidadModel.setJustificacion(licPaternidad.getJustificacion());
         licPaternidadModificar = licPaternidad;
         model.addAttribute("actamatrimonio", licPaternidad.getActamatrimonio().substring(licPaternidad.getActamatrimonio().indexOf("_")+1,licPaternidad.getActamatrimonio().length()));
         model.addAttribute("actanacimiento", licPaternidad.getActanacimiento().substring(licPaternidad.getActanacimiento().indexOf("_")+1,licPaternidad.getActanacimiento().length()));
         model.addAttribute("comprobanteingresos", licPaternidad.getComprobanteingresos().substring(licPaternidad.getComprobanteingresos().indexOf("_")+1,licPaternidad.getComprobanteingresos().length()));
-        model.addAttribute("copiaidentificacion", licPaternidad.getCopiaidentificacion().substring(licPaternidad.getCopiaidentificacion().indexOf("_")+1,licPaternidad.getCopiaidentificacion().length()));
         model.addAttribute("registrolicencia", licPaternidad.getRegistrolicencia().substring(licPaternidad.getRegistrolicencia().indexOf("_")+1,licPaternidad.getRegistrolicencia().length()));
         model.addAttribute("constanciacurso", licPaternidad.getConstanciacurso().substring(licPaternidad.getConstanciacurso().indexOf("_")+1,licPaternidad.getConstanciacurso().length()));
         model.addAttribute("licPaternidadModel", licPaternidadModel);
-        noEmpleado = personal.getNoEmpleado();
+        idEmpleado = personal.getIdEmpleado();
         model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
         return "justificantePaternidad/modificar-justificante-paternidad";
     }
@@ -110,38 +116,49 @@ public class LicenciaPaternidadController {
         licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
         licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
         licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
-        licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
+        licPaternidadModel.setComprobanteingresos(files.get(4).getOriginalFilename());
+        int idjustificante=0;
         try {
-            int idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
-            licPaternidadService.subirArchivo(files, idjustificante);
-        } catch (IOException e) {
-            LOG.error("ERROR:", e);
-        }
-        return "redirect:/personal/justificantes";
-    }
 
-    @PostMapping("/update-lic-paternidad")
-    private String updateLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel, @RequestParam("file") List<MultipartFile> files) {
-        LOG.info("Datos que me llegan " + licPaternidadModel.toString());
-
-        licPaternidadService.borrarArchivo("34_img.jpg");
-
-        licPaternidadModel.setRegistrolicencia(files.get(0).getOriginalFilename());
-        licPaternidadModel.setActanacimiento(files.get(1).getOriginalFilename());
-        licPaternidadModel.setActamatrimonio(files.get(2).getOriginalFilename());
-        licPaternidadModel.setConstanciacurso(files.get(3).getOriginalFilename());
-        licPaternidadModel.setCopiaidentificacion(files.get(4).getOriginalFilename());
-        licPaternidadModel.setComprobanteingresos(files.get(5).getOriginalFilename());
-        int idjustificante = 0;
-        try {
-            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, noEmpleado);
+            idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);
         }
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
+    }
+
+    @PostMapping("/update-lic-paternidad")
+    private String updateLicPaternidad(@ModelAttribute("licPaternidadModel") LicPaternidadModel licPaternidadModel, @RequestParam("file") List<MultipartFile> files) {
+        LOG.info("Datos que me llegan " + licPaternidadModel.toString());
+        //licPaternidadService.borrarArchivo("34_img.jpg");
+
+        licPaternidadModificar.setJustificacion(licPaternidadModel.getJustificacion());
+        if(!files.get(0).isEmpty()){
+            //licPaternidadService.borrarArchivo(licPaternidadModificar.getRegistrolicencia());
+            licPaternidadModificar.setRegistrolicencia(files.get(0).getOriginalFilename());
+        }
+        if(!files.get(1).isEmpty()){
+            licPaternidadModificar.setActanacimiento(files.get(1).getOriginalFilename());
+        }
+        if(!files.get(2).isEmpty()){
+            licPaternidadModificar.setActamatrimonio(files.get(2).getOriginalFilename());
+        }
+        if(!files.get(3).isEmpty()){
+            licPaternidadModificar.setConstanciacurso(files.get(3).getOriginalFilename());
+        }
+
+        if(!files.get(5).isEmpty()){
+            licPaternidadModificar.setComprobanteingresos(files.get(5).getOriginalFilename());
+        }
+        try {
+            licPaternidadService.updateLicPaternidad(licPaternidadModificar, idJustificanteModificar);
+            licPaternidadService.subirArchivo(files, idJustificanteModificar);
+        } catch (IOException e) {
+            LOG.error("ERROR:", e);
+        }
+        return "redirect:/personal/justificantes?modificar=1";
     }
 
 }

@@ -15,7 +15,6 @@
 *.iws
 *.iml
 *.ipr
-
 ### NetBeans ###
 /nbproject/private/
 /build/
@@ -23,3 +22,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+/src/main/resources/files

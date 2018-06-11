@@ -11,7 +11,7 @@ public class LicPaternidad {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "justificacion", nullable = false)
+    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(600)")
     private String justificacion;
 
     @Column(name = "registrolicencia", nullable = false)
@@ -29,8 +29,6 @@ public class LicPaternidad {
     @Column(name = "comprobanteingresos", nullable = false)
     private String comprobanteingresos;
 
-    @Column(name = "copiaidentificacion", nullable = false)
-    private String copiaidentificacion;
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
 
@@ -41,14 +39,13 @@ public class LicPaternidad {
     public LicPaternidad() {
     }
 
-    public LicPaternidad(String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, String copiaidentificacion, Justificante justificante) {
+    public LicPaternidad(String justificacion, String registrolicencia, String actanacimiento, String actamatrimonio, String constanciacurso, String comprobanteingresos, Justificante justificante) {
         this.justificacion = justificacion;
         this.registrolicencia = registrolicencia;
         this.actanacimiento = actanacimiento;
         this.actamatrimonio = actamatrimonio;
         this.constanciacurso = constanciacurso;
         this.comprobanteingresos = comprobanteingresos;
-        this.copiaidentificacion = copiaidentificacion;
         this.justificante = justificante;
     }
 
@@ -108,13 +105,6 @@ public class LicPaternidad {
         this.comprobanteingresos = comprobanteingresos;
     }
 
-    public String getCopiaidentificacion() {
-        return copiaidentificacion;
-    }
-
-    public void setCopiaidentificacion(String copiaidentificacion) {
-        this.copiaidentificacion = copiaidentificacion;
-    }
 
     public Justificante getJustificante() {
         return justificante;
@@ -136,13 +126,12 @@ public class LicPaternidad {
                 Objects.equals(actamatrimonio, that.actamatrimonio) &&
                 Objects.equals(constanciacurso, that.constanciacurso) &&
                 Objects.equals(comprobanteingresos, that.comprobanteingresos) &&
-                Objects.equals(copiaidentificacion, that.copiaidentificacion) &&
                 Objects.equals(justificante, that.justificante);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, justificacion, registrolicencia, actanacimiento, actamatrimonio, constanciacurso, comprobanteingresos, copiaidentificacion, justificante);
+        return Objects.hash(id, justificacion, registrolicencia, actanacimiento, actamatrimonio, constanciacurso, comprobanteingresos, justificante);
     }
 
     @Override
@@ -155,7 +144,6 @@ public class LicPaternidad {
                 ", actamatrimonio='" + actamatrimonio + '\'' +
                 ", constanciacurso='" + constanciacurso + '\'' +
                 ", comprobanteingresos='" + comprobanteingresos + '\'' +
-                ", copiaidentificacion='" + copiaidentificacion + '\'' +
                 ", justificante=" + justificante +
                 '}';
     }

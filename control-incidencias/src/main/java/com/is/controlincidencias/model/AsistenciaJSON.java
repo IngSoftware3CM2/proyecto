@@ -10,9 +10,9 @@ import java.time.LocalTime;
 @Setter
 @Getter
 public class AsistenciaJSON {
-    private Integer noTarjeta;
+    private String tarjeta;
     private LocalTime horaEntrada;
     private LocalTime horaSalida;
-    private LocalDate fechaRegistro;
-
+    private LocalDate fecha;
+    private Integer id;
 }

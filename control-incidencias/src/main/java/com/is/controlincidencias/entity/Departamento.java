@@ -15,6 +15,19 @@ public class Departamento {
     @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 
+    /*Las siguientes columnas booleanas de Departamento son útiles cuando se registra un ususario, por la RN donde se especifica a que
+    * ciertos tipos de usuarios solos pueden estar en ciertos Departamentos, e.g Un docente no puede pertenecer a Gestión Escolar*/
+
+    @Column(name = "permisopaee", nullable = false)  //se deja en false si este tipo de usuario no puede trabajar en este depto.
+    private Boolean permisopaee;
+
+    @Column(name = "permisodocente", nullable = false)
+    private Boolean permisodocente;
+
+    @Column(name = "permisodocpaee", nullable = false)  //se deja en false si este tipo de usuario no puede trabajar en este depto.
+    private Boolean permisodocpaee;
+
+
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Personal> personales = new ArrayList<>();
 

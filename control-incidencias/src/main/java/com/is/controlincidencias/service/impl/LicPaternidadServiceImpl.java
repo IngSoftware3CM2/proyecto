@@ -16,10 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +53,7 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
         justificanteRepository.altaJustificante("Espera",fecha,2,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
-        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getCopiaidentificacion(), licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
+        licPaternidadRepository.altaLicPaternidad(ids.get(ids.size()-1), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActamatrimonio(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getActanacimiento(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getComprobanteingresos(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getConstanciacurso(),  licPaternidadModel.getJustificacion(), ids.get(ids.size()-1)+"_"+licPaternidadModel.getRegistrolicencia());
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
         LOG.info(ids);
         return ids.get(ids.size()-1);
@@ -76,11 +74,16 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
     public void subirArchivo(List<MultipartFile> files,int noJustificante) throws IOException {
         for(MultipartFile file: files) {
             if(file.isEmpty()) continue;
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
-            Files.write(path,bytes);
+            //byte[] bytes = file.getBytes();
+            //Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
+            //Files.write(path,bytes);
+            File convFile = new File(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
+            convFile.createNewFile();
+            try (FileOutputStream fos = new FileOutputStream(convFile)) {
+                fos.write(file.getBytes());
+                fos.close();
+            }
         }
-
     }
 
     @Override
@@ -95,5 +98,10 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
                 LOG.info("El fichero ha sido borrado satisfactoriamente");
             else
                 LOG.info("El fichero no pudó ser borrado");
+    }
+
+    @Override
+    public void updateLicPaternidad(LicPaternidad licPaternidad, int idjustificante) {
+        licPaternidadRepository.updateLicPaternidad(idjustificante,licPaternidad.getJustificacion(),licPaternidad.getActamatrimonio(),licPaternidad.getActanacimiento(),licPaternidad.getComprobanteingresos(),licPaternidad.getConstanciacurso(),licPaternidad.getRegistrolicencia());
     }
 }
