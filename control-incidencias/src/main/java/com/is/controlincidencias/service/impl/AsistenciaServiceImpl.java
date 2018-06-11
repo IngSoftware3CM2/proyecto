@@ -120,13 +120,15 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             asistenciaForm.setHoraSalida(a.getHoraSalida());
             asistenciaForm.setHoraEntrada(a.getHoraEntrada());
         } else {
-            List<Dia> dias = p.getHorarioActual().getDias();
-            for (Dia d : dias) {
-                if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
-                    asistenciaForm.setHoraSalida(d.getHoraSalida());
-                    asistenciaForm.setHoraEntrada(d.getHoraEntrada());
-                    log.info("El dia es " + d.getNombre() + " " + asistenciaForm.getHoraEntrada());
-                    break;
+            if (p.getHorarioActual() != null) {
+                List<Dia> dias = p.getHorarioActual().getDias();
+                for (Dia d : dias) {
+                    if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
+                        asistenciaForm.setHoraSalida(d.getHoraSalida());
+                        asistenciaForm.setHoraEntrada(d.getHoraEntrada());
+                        log.info("El dia es " + d.getNombre() + " " + asistenciaForm.getHoraEntrada());
+                        break;
+                    }
                 }
             }
         }
