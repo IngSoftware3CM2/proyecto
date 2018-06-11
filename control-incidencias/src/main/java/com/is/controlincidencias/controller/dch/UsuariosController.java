@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller.dch;
 
+import com.is.controlincidencias.model.DocenteModel;
 import com.is.controlincidencias.model.PaaeModel;
 import com.is.controlincidencias.service.UsuariosService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,23 +49,45 @@ public class UsuariosController {
     }
 
     @GetMapping("/registrar/docente")
-    public String mostrarVistaDocente() {
+    public String mostrarVistaDocente(Model model) {
+        DocenteModel docente = new DocenteModel();
+        List<LocalTime> horas = calcularHoras();
+        model.addAttribute("modelo", docente);
+        model.addAttribute("horas", horas);
+        model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos(TIPO_DOC));
+
         return REGISTRAR_DOCENTE;
+    }
+
+    @PostMapping("/registrar/docente")
+    public String registrarDocente(@Valid @ModelAttribute("modelo") DocenteModel modelo,
+            BindingResult bindingResult, Model model) {
+        log.info("registrarDocente() Se recibio: " + modelo.toString());
+
+        if (bindingResult.hasErrors())
+            bindingResult.getAllErrors().forEach(item -> log.error(item.toString()));
+
+        return REDIRECT_HOME;
     }
 
     @GetMapping("/registrar/paae")
     public String mostarVistaPaae(Model model) {
         PaaeModel paaeModel = new PaaeModel();
+        List<LocalTime> horas = calcularHoras();
+        model.addAttribute("modeloPAAE", paaeModel);
+        model.addAttribute("horas", horas);
+        model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos(TIPO_PAEE));
+        return REGISTRAR_PAAE;
+    }
+
+    private List<LocalTime> calcularHoras() {
         List<LocalTime> horas = new ArrayList<>();
         LocalTime temp = LocalTime.of(8, 0);
         while (temp.isBefore(LocalTime.of(22, 30))) {
             horas.add(temp);
             temp = temp.plusMinutes(30);
         }
-        model.addAttribute("modeloPAAE", paaeModel);
-        model.addAttribute("horas", horas);
-        model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos(TIPO_PAEE));
-        return REGISTRAR_PAAE;
+        return horas;
     }
 
     @PostMapping("/registrar/paae")
@@ -80,10 +103,9 @@ public class UsuariosController {
         } else
             log.info("NO TAN CHIDO");
 
-        if (bindingResult.hasErrors()){
-            model.addAttribute(DEPARTAMENTOS, usuariosService.recuperarDepartamentos(TIPO_PAEE));
-            return REGISTRAR_PAAE;
-        }
+        if (bindingResult.hasErrors())
+            bindingResult.getAllErrors().forEach(item -> log.error(item.toString()));
+
         return REDIRECT_HOME;
     }
 
