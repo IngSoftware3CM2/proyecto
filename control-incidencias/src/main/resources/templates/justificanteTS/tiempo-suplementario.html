@@ -30,31 +30,36 @@
         <div class="alert alert-danger" th:if="${sinTiempo == 1}">
             No cuenta con horas de tiempo suplementario realizadas
         </div>
+        <div class="alert alert-danger" th:if="${errorHorasCubrir == 1}">
+            Las horas seleccionadas no coinciden con el campo tiempo a cubrir
+        </div>
+        <div class="alert alert-danger" th:if="${errorJustificantes == 1}">
+            No cuentas con tiempo suplementario disponible.
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
 
             <div class="ibox-content">
                 <h1 class="text-center">
                     <span class="text-navy">Generar solicitud de tiempo suplementario</span>
                 </h1>
-                <form class="form-horizontal" th:action="@{/personal/justificantes/tiemposuplementario/agregar}" method="post">
+                <form class="form-horizontal" th:action="@{/personal/justificantes/tiemposuplementario/agregar}" th:object="${justTiempoSuplementario}" method="post">
                     <div class="form-group"><label class="col-lg-6 ">Numero de Tarjeta : <span th:text="${noTarjeta}">02-002</span></label></div>
                     <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : Tiempo Suplementario</label></div>
-                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: <span th:text="${incidencia}"> 15/05/2018 </span></label></div>
+                    <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: <span th:text="${incidencia}" th:value="${incidencia}" th:field="*{fecha}"> 15/05/2018 </span></label></div>
                     <div class="form-group" >
                         <label class="col-sm-2"> Tiempo a Cubrir:</label>
                         <div class="input-group date col-sm-2">
-                            <select class="form-control m-b" name="account">
-                                <option value="01:00">1 hr</option>
-                                <option value="02:00">2 hrs</option>
-                                <option value="03:00">3 hrs</option>
-                                <option value="04:00">4 hrs</option>
-                                <option value="05:00">5 hrs</option>
-                                <option value="06:00">6 hrs</option>
-                                <option value="07:00">7 hrs</option>
-                                <option value="08:00">8 hrs</option>
+                            <select class="form-control m-b" name="account" th:field="*{tiempocubrir}">
+                                <option value="1">1 hr</option>
+                                <option value="2">2 hrs</option>
+                                <option value="3">3 hrs</option>
+                                <option value="4">4 hrs</option>
+                                <option value="5">5 hrs</option>
+                                <option value="6">6 hrs</option>
+                                <option value="7">7 hrs</option>
+                                <option value="8">8 hrs</option>
                             </select>
                         </div>
-
                     </div>
                     <table class="table">
                         <thead>
@@ -71,9 +76,8 @@
                             <td>
                                 <div class="form-group" >
                                     <div class="input-group date col-sm-2">
-                                        <div class="i-checks col-lg-6"><label><input type="checkbox"/><i></i></label></div>
+                                        <div class="i-checks col-lg-6"><label><input type="checkbox" th:value="${tiempo.id}" th:field="*{idSeleccionados}" /><i></i></label></div>
                                     </div>
-
                                 </div>
                             </td>
                         </tr>

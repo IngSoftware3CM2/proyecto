@@ -1,19 +1,19 @@
 package com.is.controlincidencias.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "horarioactual")
-public class HorarioActual implements Serializable {
+public class HorarioActual {
     @Id
     @Column(name = "idHorario")
     private Integer idHorario;
 
-    @OneToOne(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true, fetch
+            = FetchType.LAZY)
     private Personal personal;
 
     @OneToMany(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -45,6 +45,9 @@ public class HorarioActual implements Serializable {
         this.personal = personal;
     }
 
+    public List<Dia> getDias() {
+        return dias;
+    }
 
     @Override
     public boolean equals(Object o) {

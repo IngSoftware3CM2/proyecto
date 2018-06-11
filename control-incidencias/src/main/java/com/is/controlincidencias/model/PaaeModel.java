@@ -13,11 +13,12 @@ import javax.validation.constraints.Size;
 @ToString
 @Setter
 @Getter
-public class JefeForm {
+public class PaaeModel {
     @NotNull
     private Integer departamento;
-    @NotNull
-    private Integer numeroEmpleado;
+    @NotBlank
+    @Size(min = 4, max = 8)
+    private String noEmpleado;
     @NotBlank
     private String nombre;
     @NotBlank
@@ -30,4 +31,8 @@ public class JefeForm {
     @NotBlank
     @Size(min = 1, max = 1)
     private String sexo;
+    @NotNull
+    private DiaModel lunes;
+    private String contra;
+    private String tarjeta;
 }

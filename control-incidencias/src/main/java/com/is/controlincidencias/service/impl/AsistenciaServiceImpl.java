@@ -1,6 +1,7 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.entity.Asistencia;
+import com.is.controlincidencias.entity.Dia;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
@@ -61,8 +62,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         Personal p = personalRepository.getPersonalByNoTarjeta(form.getTarjeta());
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
-        if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
-            return null;
+        if (form.getHoraEntrada() == null || form.getHoraSalida() == null) {
+            log.info("OMISION DE HORARIO");
+        } else {
+            if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
+                return null;
+        }
         asistencia.setFechaRegistro(form.getFecha());
         asistencia.setHoraEntrada(form.getHoraEntrada());
         asistencia.setHoraSalida(form.getHoraSalida());
@@ -77,8 +82,8 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
         LocalDate fechaFinal = LocalDate.now();
         LocalDate fechaIncial = fechaFinal;
-        log.info("existeAsistencia() AQUI 1");
-        if (esInhabil(asistenciaForm.getFecha())) return FECHA_ASISTENCIA_INVALIDA;
+        if (esInhabil(asistenciaForm.getFecha()))
+            return FECHA_ASISTENCIA_INVALIDA;
         int contador = 0;
         while (contador < 2) {
             fechaIncial = fechaIncial.minusDays(1);
@@ -94,6 +99,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         boolean existe = asistenciaRepository
                 .existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(asistenciaForm.getFecha(),
                         asistenciaForm.getTarjeta());
+
         if (existe) return REGISTRO_DUPLICADO;
 
         return 0; // Salio chido
@@ -109,12 +115,41 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
         asistenciaForm.setId(asistenciaForm.getId());
         asistenciaForm.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
+
         if (a != null) {
             asistenciaForm.setHoraSalida(a.getHoraSalida());
             asistenciaForm.setHoraEntrada(a.getHoraEntrada());
-
+        } else {
+            if (p.getHorarioActual() != null) {
+                List<Dia> dias = p.getHorarioActual().getDias();
+                for (Dia d : dias) {
+                    if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
+                        asistenciaForm.setHoraSalida(d.getHoraSalida());
+                        asistenciaForm.setHoraEntrada(d.getHoraEntrada());
+                        log.info("El dia es " + d.getNombre() + " " + asistenciaForm.getHoraEntrada());
+                        break;
+                    }
+                }
+            }
         }
         return asistenciaForm;
+    }
+
+    private String obtenerDia(LocalDate fecha) {
+        switch (fecha.getDayOfWeek()) {
+            case MONDAY:
+                return "LUN";
+            case TUESDAY:
+                return "MAR";
+            case WEDNESDAY:
+                return "MIE";
+            case THURSDAY:
+                return "JUE";
+            case FRIDAY:
+                return "VIE";
+            default:
+                return "LUN";
+        }
     }
 
     @Override

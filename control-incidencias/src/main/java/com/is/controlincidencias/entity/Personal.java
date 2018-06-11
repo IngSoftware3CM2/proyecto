@@ -96,6 +96,10 @@ public class Personal {
         this.tipo = tipo;
     }
 
+    public HorarioActual getHorarioActual() {
+        return horarioActual;
+    }
+
     public Login getLogin() {
         return login;
     }

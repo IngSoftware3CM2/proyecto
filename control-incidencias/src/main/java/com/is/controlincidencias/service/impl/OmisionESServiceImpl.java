@@ -1,7 +1,6 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.model.OmisionModel;
-import com.is.controlincidencias.repository.CambioHorarioRepository;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.OmisionESRepository;
 import com.is.controlincidencias.service.IncidenciaService;

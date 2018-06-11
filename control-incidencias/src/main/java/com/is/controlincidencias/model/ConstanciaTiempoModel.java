@@ -2,7 +2,6 @@ package com.is.controlincidencias.model;
 
 import com.is.controlincidencias.entity.Justificante;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 

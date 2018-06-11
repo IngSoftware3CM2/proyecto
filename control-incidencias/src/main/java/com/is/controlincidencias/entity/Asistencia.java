@@ -21,10 +21,10 @@ public class Asistencia {
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
-    @Column(name = "horaEntrada", nullable = false, columnDefinition = "time without time zone")
+    @Column(name = "horaEntrada", nullable = true, columnDefinition = "time without time zone")
     private LocalTime horaEntrada;
 
-    @Column(name = "horaSalida", nullable = false, columnDefinition = "time without time zone")
+    @Column(name = "horaSalida", nullable = true, columnDefinition = "time without time zone")
     private LocalTime horaSalida;
 
     private static final String DEFINITION = "FOREIGN KEY(idEmpleado) REFERENCES personal (idEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";

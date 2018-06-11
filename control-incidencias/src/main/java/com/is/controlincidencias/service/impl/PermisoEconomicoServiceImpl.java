@@ -1,12 +1,7 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
-import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.PermisoEconomico;
-import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.model.PermisoEconomicoModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.PermisoEconomicoRepository;
 import com.is.controlincidencias.repository.PersonalQuincenaRepository;
@@ -18,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Service("permisoEconomicoServiceImpl")
 public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress XmlInvalidId -->
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="dch/head :: head('Sistema de Asistencia')"></head>
 <body>
@@ -29,146 +30,123 @@
                     <div class="tab-content">
                         <div id="tab-2" class="tab-pane active">
                             <div class="panel-body">
-                                <form class="form-horizontal text-right" action="#"
-                                      th:action="@{/dch/usuarios/registrar/paae}" method="post"
-                                      th:object="${modeloPAAE}">
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="departamento">Departamento: </label>
-                                        <div class="col-lg-4">
-                                            <label>
-                                                <select class="form-control m-b" th:field="*{departamento}" required>
-                                                    <option th:each="departamento : ${departamentos}"
-                                                            th:value="${departamento.idDepartamento}"
-                                                            th:text="${departamento.nombre}">Estado
-                                                    </option>
-                                                </select>
-                                            </label>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-right">
+                                        <span class="help-block m-b-none">*Campo Obligatorio</span>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="numeroEmpleado">Numero de Empleado: </label>
-                                        <div class="col-lg-4">
-                                            <input type="text" placeholder="Numero de Empleado" class="form-control"
-                                                   th:field="*{numeroEmpleado}" required/>
-                                            <span class="help-block m-b-none text-danger"> * Dato no valido</span>
+                                </div>
+                                <br>
+                                <form class="form-horizontal" action="#" th:action="@{/dch/usuarios/registrar/paae}"
+                                      method="POST" th:object="${modeloPAAE}">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="nombre">Nombre*:</label>
+                                                <div class="input-group col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="Nombre"
+                                                           required th:field="*{nombre}"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="nombre">Nombre (s): </label>
-                                        <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)" class="form-control"
-                                                   th:field="*{nombre}" required/>
-                                            <span class="help-block m-b-none text-danger"
-                                                  th:if="${#fields.hasErrors('nombre')}">
-                                                * Dato no valido
-                                            </span>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="apPaterno">Apellido Paterno*:</label>
+                                                <div class="input-group col-sm-8">
+                                                    <input type="text" class="form-control" required
+                                                           th:field="*{apPaterno}" placeholder="Apellido Paterno">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="apPaterno">Apellido Paterno: </label>
-                                        <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)"
-                                                   class="form-control" th:field="*{apPaterno}" required/>
-                                            <span class="help-block m-b-none text-danger"
-                                                  th:if="${#fields.hasErrors('apPaterno')}">
-                                                * Dato no valido
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="apMaterno">Apellido Materno: </label>
-                                        <div class="col-lg-4">
-                                            <input type="text" placeholder="Nombre (s)" class="form-control"
-                                                   th:field="*{apMaterno}" required/>
-                                            <span class="help-block m-b-none text-danger"
-                                                  th:if="${#fields.hasErrors('apMaterno')}">
-                                                * Dato no valido
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="correo">Correo Electronico: </label>
-                                        <div class="col-lg-4">
-                                            <input type="email" placeholder="Numero de Empleado" class="form-control"
-                                                   th:field="*{correo}" required/>
-                                            <span class="help-block m-b-none text-danger" th:if="${#fields.hasErrors('correo')}">
-                                                * Dato no valido
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="sexo">Sexo:</label>
-                                        <div class="col-lg-2">
-                                            <label>
-                                                <select class="form-control m-b" th:field="*{sexo}" required>
-                                                    <option value="M">Masculino</option>
-                                                    <option value="F">Femenino</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4" th:for="turno">Turno:</label>
-                                        <div class="col-lg-2">
-                                            <label>
-                                                <select class="form-control m-b" th:field="*{turno}" required>
-                                                    <option value="matutino">Matutino</option>
-                                                    <option value="vespertino">Vespertino</option>
-                                                </select>
-                                            </label>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="apMaterno">Apellido Materno*:</label>
+                                                <div class="input-group col-sm-8">
+                                                    <input type="text" class="form-control" required
+                                                           th:field="*{apMaterno}" placeholder="Apellido Materno" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-offset-2 col-sm-2"><label th:for="dia.horaEntrada">
-                                            Hora de Entrada:
-                                        </label></div>
-                                        <div class=" col-sm-2">
-                                            <label>
-                                                <select class="form-control m-b" th:field="*{dia.horaEntrada}" required>
-                                                    <option th:value="'opcion 1'">opcion 1</option>
-                                                    <option th:value="'opcion 2'">opcion 2</option>
-                                                </select>
-                                            </label>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="departamento">Departamento*:</label>
+                                                <div class="input-group col-sm-6">
+                                                    <select class="form-control m-b" required
+                                                            th:field="*{departamento}">
+                                                        <option th:each="depa : ${departamentos}"
+                                                                th:value="${depa.idDepartamento}"
+                                                                th:text="${depa.nombre}">Estado
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-offset-2 col-sm-2"><label th:for="dia.horaSalida">
-                                            Hora de Salida:
-                                        </label></div>
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="noEmpleado">
+                                                    Numero de Empleado*:
+                                                </label>
+                                                <div class="input-group col-sm-6">
+                                                    <input type="text" class="form-control" required pattern="^\d{4,8}$"
+                                                           placeholder="Numero de Empleado" th:field="*{noEmpleado}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="sexo">Sexo*:</label>
+                                                <div class="input-group col-sm-8">
+                                                    <select class="form-control m-b" th:field="*{sexo}" required>
+                                                        <option value="H">Hombre</option>
+                                                        <option value="M">Mujer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label class="col-sm-4" for="correo">Correo Electronico*:</label>
+                                                <div class="input-group col-sm-6">
+                                                    <input type="email" class="form-control" required
+                                                           placeholder="Correo Electronico" th:field="*{correo}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="horaEntrada">Hora de Entrada:</label>
+                                        </div>
                                         <div class=" col-sm-2">
-                                            <label>
-                                                <select class="form-control m-b" th:field="*{dia.horaSalida}" required>
-                                                    <option th:value="'opcion'">opcion 1</option>
-                                                    <option th:value="'otro'">opcion 2</option>
-                                                </select>
-                                            </label>
+                                            <select class="form-control m-b" th:field="*{lunes.horaEntrada}"
+                                                    required>
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="row text-left">
-                                        <div class="col-sm-offset-4 col-sm-4">
-                                            <span class="help-block m-b-none text-danger">
-                                                * Horario no coincide con turno
-                                            </span>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="horaSalida">Hora de Salida:</label>
+                                        </div>
+                                        <div class=" col-sm-2">
+                                            <select class="form-control m-b" th:field="*{lunes.horaSalida}" required>
+                                                <option th:each="hora : ${horas}" th:value="${hora}" th:text="${hora}"></option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="row">
                                         <div class="col-lg-offset-3 col-lg-6">
                                             <input type="submit" class="btn btn-block btn-outline btn-primary"
                                                    value="REGISTRAR"/>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-offset-1 col-sm-3">
-                                            <span class="help-block m-b-none text-danger">
-                                                * No se registro al usuario
-                                            </span>
-                                        </div>
-                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger">
-                                            * Complete todos los campos obligatorios
-                                        </span></div>
-                                        <div class="col-sm-3"><span class="help-block m-b-none text-danger">
-                                            * Numero de empleado ya registrado
-                                        </span></div>
                                     </div>
                                 </form>
                             </div>
