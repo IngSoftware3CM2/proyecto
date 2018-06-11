@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Repository("personalRepository")
 public interface PersonalRepository extends JpaRepository<Personal, Serializable> {
@@ -14,4 +15,6 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     Personal findByLogin_Correo(String email);
     Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);
     Personal findByNoTarjeta(String tarjeta);
+    List<Personal> findByTipoOrderByNoTarjeta(String tipo);
+    List<Personal> findByDepartamento_IdDepartamentoOrderByNoTarjeta(Integer id);
 }

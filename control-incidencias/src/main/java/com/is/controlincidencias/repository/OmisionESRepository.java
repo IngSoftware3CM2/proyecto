@@ -1,7 +1,6 @@
 package com.is.controlincidencias.repository;
 
 
-import com.is.controlincidencias.entity.CambioHorario;
 import com.is.controlincidencias.entity.OmisionEntrSal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.LocalDate;
 
 @Repository("OmisionRepository")
 

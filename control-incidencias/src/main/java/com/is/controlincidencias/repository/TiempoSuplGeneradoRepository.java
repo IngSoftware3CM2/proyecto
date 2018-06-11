@@ -1,6 +1,5 @@
 package com.is.controlincidencias.repository;
 
-import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
