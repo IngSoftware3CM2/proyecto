@@ -43,6 +43,46 @@ public class PersonalQuincena {
                 Objects.equals(dias_econ_solic, that.dias_econ_solic);
     }
 
+    public Integer getIdpersonalquincena() {
+        return idpersonalquincena;
+    }
+
+    public void setIdpersonalquincena(Integer idpersonalquincena) {
+        this.idpersonalquincena = idpersonalquincena;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public Quincena getQuincena() {
+        return quincena;
+    }
+
+    public void setQuincena(Quincena quincena) {
+        this.quincena = quincena;
+    }
+
+    public Integer getDias_econ_solic() {
+        return dias_econ_solic;
+    }
+
+    public void setDias_econ_solic(Integer dias_econ_solic) {
+        this.dias_econ_solic = dias_econ_solic;
+    }
+
+    public Integer getJustiftiemposuplementario() {
+        return justiftiemposuplementario;
+    }
+
+    public void setJustiftiemposuplementario(Integer justiftiemposuplementario) {
+        this.justiftiemposuplementario = justiftiemposuplementario;
+    }
+
     @Override
     public int hashCode() {
 

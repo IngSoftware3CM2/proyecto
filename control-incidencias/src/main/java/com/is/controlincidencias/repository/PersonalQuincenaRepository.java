@@ -19,6 +19,10 @@ public interface PersonalQuincenaRepository  extends JpaRepository<PersonalQuinc
     @Transactional
     Integer preguntarPorDiasSuplementariosQuincena(@Param("idempleado") int idempleado, @Param("idquincena") int idquincena);
 
+    @Query(value="select * from personalquincena where idempleado =:idempleado and idquincena=:idquincena", nativeQuery = true)
+    @Transactional
+    PersonalQuincena findAllByPersonalQuincena(@Param("idempleado") int idempleado, @Param("idquincena") int idquincena);
+
     @Query(value="select sum(diaseconomicossolicitados) from personalquincena where idempleado =:idempleado", nativeQuery = true)
     @Transactional
     Integer preguntarPorDiasAno(@Param("idempleado") int idempleado);

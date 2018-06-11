@@ -4,6 +4,7 @@ import com.is.controlincidencias.component.ReglasNegocio;
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.PersonalQuincena;
 import com.is.controlincidencias.entity.TiempoSuplGenerado;
 import com.is.controlincidencias.model.JustificateTiempoSuplModel;
 import com.is.controlincidencias.service.*;
@@ -17,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.constraints.Null;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -134,14 +134,22 @@ public class JustificacionTSController {
                 personalQuincenaService.insertRegistroSupl(1,1,idEmpleado,idQuincena);
             }
             else{
-                Integer diasUsados = personalQuincenaService.preguntarPorDiasSuplementariosQuincena(idEmpleado,idQuincena);
-                if(reglasNegocio.rn29(diasUsados)){
-                    personalQuincenaService.updateSuplementarioQuincena(diasUsados+1,idEmpleado,idQuincena);
-                }
-                else{
-                    errorRN29 =1;
-                    LOG.info("ERROR REGLA DE NEGOCIO 29");
-                    return REDIRECT + incidencia.getIdIncidencia();
+                PersonalQuincena personalQuincena = personalQuincenaService.findAllByPersonalQuincena(idEmpleado,idQuincena);
+                if(personalQuincena==null){
+                    personalQuincenaService.insertRegistroSupl(idPersonalQuincena+1,1,idEmpleado,idQuincena);
+                }else{
+                    Integer diasUsados = personalQuincena.getJustiftiemposuplementario();
+                    if (diasUsados==null){
+                        diasUsados=0;
+                    }
+                    if(reglasNegocio.rn29(diasUsados)){
+                        personalQuincenaService.updateSuplementarioQuincena(diasUsados+1,idEmpleado,idQuincena);
+                    }
+                    else{
+                        errorRN29 =1;
+                        LOG.info("ERROR REGLA DE NEGOCIO 29");
+                        return REDIRECT + incidencia.getIdIncidencia();
+                    }
                 }
             }
         // Actualizamos los tiempos suplementarios generados guardados

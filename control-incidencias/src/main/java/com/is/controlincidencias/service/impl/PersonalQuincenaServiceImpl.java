@@ -1,5 +1,6 @@
 package com.is.controlincidencias.service.impl;
 
+import com.is.controlincidencias.entity.PersonalQuincena;
 import com.is.controlincidencias.repository.PersonalQuincenaRepository;
 import com.is.controlincidencias.service.PersonalQuincenaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,10 @@ public class PersonalQuincenaServiceImpl implements PersonalQuincenaService {
     @Override
     public void updateSuplementarioQuincena(int tiempossuplsolicitados, int idempleado, int idquincena) {
         personalQuincenaRepository.updateSuplementarioQuincena(tiempossuplsolicitados,idempleado,idquincena);
+    }
+
+    @Override
+    public PersonalQuincena findAllByPersonalQuincena(int idempleado, int idquincena) {
+        return personalQuincenaRepository.findAllByPersonalQuincena(idempleado,idquincena);
     }
 }
