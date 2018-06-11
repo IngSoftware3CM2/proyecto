@@ -6,6 +6,7 @@ import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
+import com.is.controlincidencias.service.TiempoSuplementarioService;
 import com.is.controlincidencias.service.impl.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -52,6 +53,10 @@ public class PersonalController {
     @Autowired
     @Qualifier("taServiceImpl")
     private JustificanteTAServiceImpl justificanteTAService;
+
+    @Autowired
+    @Qualifier("tiempoSuplementarioServiceImpl")
+    private TiempoSuplementarioService tiempoSuplementarioService;
 
     @Autowired
     @Qualifier("cambioHorarioServiceImpl")
@@ -156,7 +161,10 @@ public class PersonalController {
                 justificante.setTipo(3);
             } else if (permisoEconomicoService.existsByIdjustificante(justificante.getIdJustificante())) {
                 justificante.setTipo(4);
-            } else {
+            } else if(tiempoSuplementarioService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(5);
+            }
+            else {
                 justificante.setTipo(666);
             }
         }
