@@ -35,15 +35,15 @@
                                     </div>
                                 </div>
                                 <br/>
-                                <form class="form-horizontal" action="#" th:action="@{/dch/registrar/docente}"
-                                      method="POST">
+                                <form class="form-horizontal" action="#" th:action="@{/dch/usuarios/registrar/docente}"
+                                      method="POST" th:object="${modelo}">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="col-sm-4" for="nombre">Nombre*:</label>
                                                 <div class="input-group col-sm-8">
                                                     <input type="text" class="form-control" placeholder="Nombre"
-                                                           id="nombre" required />
+                                                           th:field="*{nombre}" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                                 <label class="col-sm-4" for="apPaterno">Apellido Paterno*:</label>
                                                 <div class="input-group col-sm-8">
                                                     <input type="text" class="form-control" required
-                                                           placeholder="Apellido Paterno" id="apPaterno" />
+                                                           placeholder="Apellido Paterno" th:field="*{apPaterno}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                                 <label class="col-sm-4" for="apMaterno">Apellido Materno*:</label>
                                                 <div class="input-group col-sm-8">
                                                     <input type="text" class="form-control" required
-                                                           placeholder="Apellido Materno" id="apMaterno" />
+                                                           placeholder="Apellido Materno" th:field="*{apMaterno}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,11 +71,13 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4" for="dapartamento">Departamento*:</label>
                                                 <div class="input-group col-sm-6">
-                                                    <select class="form-control m-b" id="dapartamento" required>
-                                                        <option>Estado 1</option>
-                                                        <option>Estado 2</option>
-                                                        <option>Estado 3</option>
-                                                        <option>Estado 4</option>
+                                                    <select class="form-control m-b" th:field="*{departamento}"
+                                                            required>
+                                                        <option th:each="depa : ${departamentos}"
+                                                                th:value="${depa.idDepartamento}"
+                                                                th:text="${depa.nombre}">
+                                                            DEPARTAMENTO
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -84,13 +86,13 @@
                                             <div class="form-group">
                                                 <div class="i-checks">
                                                     <label>
-                                                        <input type="radio" value="option1"/>
+                                                        <input type="radio" value="1" th:field="*{tipo}"/>
                                                         <i></i>Docente Administrativo
                                                     </label>
                                                 </div>
                                                 <div class="i-checks">
                                                     <label>
-                                                        <input type="radio" value="option2"/>
+                                                        <input type="radio" value="2" th:field="*{tipo}"/>
                                                         <i></i>Jefe Superior
                                                     </label>
                                                 </div>
@@ -105,7 +107,7 @@
                                                 </label>
                                                 <div class="input-group col-sm-6">
                                                     <input type="text" class="form-control" required
-                                                           placeholder="Numero de Empleado" id="noEmpleado"/>
+                                                           placeholder="Numero de Empleado" th:field="*{noEmpleado}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,9 +117,9 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4" for="sexo">Sexo*:</label>
                                                 <div class="input-group col-sm-8">
-                                                    <select class="form-control m-b" id="sexo" required>
-                                                        <option>Hombre</option>
-                                                        <option>Mujer</option>
+                                                    <select class="form-control m-b" th:field="*{sexo}" required>
+                                                        <option value="H">Hombre</option>
+                                                        <option value="M">Mujer</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -129,7 +131,7 @@
                                                 <label class="col-sm-4" for="correo">Correo Electronico*:</label>
                                                 <div class="input-group col-sm-6">
                                                     <input type="email" class="form-control" required
-                                                           placeholder="Correo Electronico" id="correo"/>
+                                                           placeholder="Correo Electronico" th:field="*{correo}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,8 +139,8 @@
                                             <div class="form-group">
                                                 <div class="i-checks col-lg-6">
                                                     <label>
-                                                        <input type="checkbox"><i></i>
-                                                        Horario Abierto
+                                                        <input type="checkbox" th:field="*{abierto}">
+                                                        <i></i>Horario Abierto
                                                     </label>
                                                 </div>
                                             </div>
@@ -166,33 +168,33 @@
                                             <label>Hora de Entrada:</label>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{lunes.horaEntrada}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{martes.horaEntrada}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{miercoles.horaEntrada}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{jueves.horaEntrada}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{viernes.horaEntrada}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -201,33 +203,33 @@
                                             <label>Hora de Salida:</label>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b" name="account">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{lunes.horaSalida}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{martes.horaSalida}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{miercoles.horaSalida}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{jueves.horaSalida}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                         <div class=" col-sm-2">
-                                            <select class="form-control m-b">
-                                                <option>opcion 1</option>
-                                                <option>opcion 2</option>
+                                            <select class="form-control m-b" th:field="*{viernes.horaSalida}">
+                                                <option th:each="hora, stat : ${horas}" th:value="${hora}"
+                                                        th:text="${hora}"></option>
                                             </select>
                                         </div>
                                     </div>
