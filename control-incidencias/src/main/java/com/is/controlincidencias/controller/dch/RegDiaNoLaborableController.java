@@ -30,6 +30,7 @@ public class RegDiaNoLaborableController {
         }
         Personal personal = personalService.getPersonalByEmail(email);
         ModelAndView mav = new ModelAndView(Constants.DIA_NO_LABORABLE);
+        mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
         return mav;
     }
 
