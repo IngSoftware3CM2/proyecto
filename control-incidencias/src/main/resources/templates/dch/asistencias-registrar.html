@@ -37,8 +37,7 @@
                                                 </span>
                                                 <input type="text" class="form-control" id="fecha" required
                                                        pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"
-                                                       th:readonly="${fecha_deshabilitado}"
-                                                       oninput="setCustomValidity('')"/>
+                                                       th:readonly="${fecha_deshabilitado}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -54,8 +53,7 @@
                                             <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
                                             <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
                                                    class="form-control" required pattern="^0[1-8]\d{4}$"
-                                                   th:field="*{tarjeta}" th:readonly="${tarjeta_deshabilitado}"
-                                                   oninput="setCustomValidity('')">
+                                                   th:field="*{tarjeta}" th:readonly="${tarjeta_deshabilitado}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -115,8 +113,11 @@
                                     <div class="alert alert-danger" role="alert" th:if="${resultado == 5}">
                                         Fecha no valida para registrar asistencias
                                     </div>
-                                    <div>
-
+                                    <div class="alert alert-danger hidden" role="alert" id="alertTarjeta">
+                                        Numero de tarjeta incorrecto
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="alertCampos">
+                                        Complete todos los campos obligatorios
                                     </div>
                                 </div>
                             </form>
@@ -268,13 +269,28 @@
         });
     });
     inputDate.trigger("changeDate");
+
+    document.getElementById("tarjeta").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+    };
+
+    document.getElementById("fecha").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+    };
+
     document.getElementById("tarjeta").oninvalid = function (ev) {
         console.log("input tarjeta");
-        if (this.validity.patternMismatch)
+        if (this.validity.patternMismatch) {
             this.setCustomValidity("Numero de tarjeta incorrecto");
-        else if (!this.validity.valid) {
+            $("#alertTarjeta").removeClass("hidden");
+        }else if (!this.validity.valid) {
             this.setCustomValidity("Complete todos los campos obligatorios");
             console.log("NO VALIDO");
+            $("#alertCampos").removeClass("hidden");
         } else {
             console.log("VALIDO");
         }
@@ -282,6 +298,7 @@
     document.getElementById("fecha").oninvalid = function (ev) {
         console.log("input fecha");
         this.setCustomValidity("Complete todos los campos obligatorios");
+        $("#alertCampos").removeClass("hidden");
     };
 </script>
 </body>
