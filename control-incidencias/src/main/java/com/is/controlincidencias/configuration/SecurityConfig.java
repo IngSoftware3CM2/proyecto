@@ -36,16 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().disable(); // SIN LOGIN
         http.csrf().disable(); // Necesario para peticiones ajax, luego checo como meterle mas
         // seguridad
-/*
+        /*
         http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**",
                 "/font-awesome/**").permitAll();
         http.authorizeRequests().antMatchers("/dch/**").hasRole("DCH")
-                .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE")
+                .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE", "DCADM")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/loginsuccess").permitAll().and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout").permitAll(); // CON LOGIN
-*/
+        */
     }
 
     @Autowired
