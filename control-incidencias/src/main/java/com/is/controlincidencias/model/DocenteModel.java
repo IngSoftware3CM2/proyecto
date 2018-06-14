@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
+@ToString(callSuper = true)
 @Setter
 @Getter
 public class DocenteModel extends PaaeModel{
@@ -12,4 +12,6 @@ public class DocenteModel extends PaaeModel{
     private DiaModel miercoles;
     private DiaModel jueves;
     private DiaModel viernes;
+    private Boolean abierto;
+    private Integer tipo;
 }

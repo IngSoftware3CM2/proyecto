@@ -21,4 +21,14 @@ public class TiempoSuplGeneradoServiceImpl implements TiempoSuplGeneradoService 
     public List<TiempoSuplGenerado> findByPersonal(int idEmpleado, LocalDate fecha) {
         return tiempoSuplGeneradoRepository.findAllByPersonal(idEmpleado,fecha);
     }
+
+    @Override
+    public TiempoSuplGenerado findById(Integer id) {
+        return tiempoSuplGeneradoRepository.findByIdtiemposuplgenerado(id);
+    }
+
+    @Override
+    public int updatetiempoUsados(int idTiempoSupl) {
+        return tiempoSuplGeneradoRepository.updateTiempoSuplGenerado(idTiempoSupl,true);
+    }
 }

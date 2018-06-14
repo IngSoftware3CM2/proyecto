@@ -2,6 +2,9 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Ver justificante tipo A')"></head>
 <body>
+<script>
+    var MSG_16 = "Complete todos los campos obligatorios";
+</script>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
@@ -42,6 +45,9 @@
         <div class=" hidden alert alert-success" id="mensajeArchivoS">
             Se adjuntaron los archivos correctamente.
         </div>
+        <div class="hidden alert alert-danger" id="MSG">
+            Complete todos los campos obligatorios
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
@@ -60,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Folio:</label>
-                        <div class="col-sm-4"><input type="text" placeholder="Folio" class="form-control" th:field="*{folio}" maxlength="12" required="true" oninvalid="this.setCustomValidity('Completa todos los campos obligatorios')" oninput="setCustomValidity('')"/></div>
+                        <div class="col-sm-4"><input type="text" placeholder="Folio" class="form-control" th:field="*{folio}" maxlength="12" required="true" oninvalid="if(this.value.length==0){this.setCustomValidity(MSG_16);$('#MSG').removeClass('hidden');}" oninput="setCustomValidity(''); $('#MSG').addClass('hidden');"/></div>
                         <div class="col-sm-6 text-right">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
@@ -70,7 +76,7 @@
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input oninvalid="this.setCustomValidity('Completa todos los campos obligatorios')" oninput="setCustomValidity('')" type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' required/>
+                                    <input oninvalid="if(this.value.length==0){this.setCustomValidity(MSG_16);$('#MSG').removeClass('hidden');}" oninput="setCustomValidity(''); $('#MSG').addClass('hidden');" type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' required/>
                                 </span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
@@ -92,14 +98,14 @@
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha de Inicio(aaaa-mm-dd):</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id= "inicio" type="text" oninvalid="this.setCustomValidity('Completa todos los campos obligatorios')" oninput="setCustomValidity('')" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{inicio}" required/>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id= "inicio" type="text" oninvalid=" if(this.value.length==0){this.setCustomValidity('Completa todos los campos obligatorios');$('#MSG').innerHTML=MSG_16;}" oninput="setCustomValidity('');" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{inicio}" required/>
                         </div>
 
                     </div>
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha Final(aaaa-mm-dd):</label>
                         <div class="input-group date col-sm-2" >
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="fin" type="text" oninvalid="this.setCustomValidity('Completa todos los campos obligatorios')" oninput="setCustomValidity('')" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{fin}" required/>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="fin" type="text" oninvalid=" if(this.value.length==0){this.setCustomValidity('Completa todos los campos obligatorios'); $('#MSG').innerHTML=MSG_16;}" oninput="setCustomValidity('');" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{fin}" required/>
                         </div>
 
                     </div>

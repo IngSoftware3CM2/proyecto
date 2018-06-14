@@ -12,7 +12,7 @@
         <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Solicitud de Justificante por Omisión de entrada/salidao</h2>
+                <h2>Modificación de Justificante por Retardo</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#" th:href="@{/personal}">Inicio</a>
@@ -21,7 +21,7 @@
                         Justificantes
                     </li>
                     <li class="active">
-                        <strong>Solicitud de Justificante por Omisión entrada/salida</strong>
+                        <strong>Modificación de Justificante por Retardo</strong>
                     </li>
                 </ol>
             </div>
@@ -33,9 +33,9 @@
 
             <div class="ibox-content">
                 <h1 class="text-center">
-                    <span class="text-navy">Generar Solicitud de Justificante por Omisión de Entrada/Salida</span>
+                    <span class="text-navy">Modificación Solicitud de Justificante por Retardo</span>
                 </h1>
-                <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/omision/addOmision}" th:object="${omisionModel}" method="post">
+                <form class="form-horizontal" action="#" th:action="@{/personal/justificantes/retardo/modRetardo}" th:object="${retardoModel}" method="post">
                     <div class="form-group"><label class="col-lg-4 ">Numero de Tarjeta :  <span th:text="${tarjeta}"></span></label></div>
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
                     <div class="form-group"><label class="col-lg-4 ">Justificacion: </label></div>
@@ -44,7 +44,7 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}"
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}" th:text="${justificacion}"
                                                               oninvalid="if(this.value.length == 0){this.setCustomValidity(MSG1_6); document.getElementById('MSG').innerHTML = MSG1_6}"
                                                               oninput="this.setCustomValidity('')"
                                                               required ></textarea>
@@ -52,15 +52,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-4">Omision</label>
-                        <div class="col-lg-8">
-                            <div class="col-sm-3"><label th:text="${tipoes}"></label></div>
-                        </div>
-                        <div hidden>
-                            <textarea class="col-lg-6" style="height: 100px" th:field="*{tipo}" th:text="${tipo}"></textarea>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-sm-6"> <h3>Horario Laboral</h3></div>
                         <div class="col-sm-6"><h3>Horario Registrado</h3></div>

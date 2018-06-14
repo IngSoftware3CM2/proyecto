@@ -27,10 +27,7 @@ public class PeriodoInhabil {
     @Column(name = "aplicadocente", nullable = false)
     private Boolean permisodocente;
 
-    @Column(name = "aplicadocpaee", nullable = false)  //se deja en false si este tipo de personal no tiene este periodoInhabil.
-    private Boolean permisodocpaee;
-
-    @Column(name = "justificacionarchivo", nullable = false)
+    @Column(name = "justificacionarchivo")
     private String justificacionarchivo;
    /* private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
