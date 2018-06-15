@@ -60,6 +60,7 @@ public class CambioHorarioController {
             ModelAndView mav = new ModelAndView(VISTA_CAMBIO_HORARIO);
             LOGGER.info("Accedí al metodo acceder del controlador");
             idIncidencia = idincidencia;
+            LOGGER.info("La variable global vale " + idIncidencia);
             idEmpleado = cambioService.getIdEmpleadoByIdIncidencia(idincidencia); //obtengo el numero de empelado
             LOGGER.info("El id de la incidencia es " + idincidencia + " el ID EMPLEADO es " + idEmpleado);
             model.addAttribute("cambioHorarioModel", new CambioHorarioModel());

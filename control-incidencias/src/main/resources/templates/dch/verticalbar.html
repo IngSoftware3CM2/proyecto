@@ -54,6 +54,18 @@
                     <span class="nav-label">Modificar Usuarios</span>
                 </a>
             </li>
+            <li th:class="${is_active == 9} ? 'active'">
+                <a href="#" th:href="@{/dch/asistencia/dianolaborable}">
+                    <i class="fa fa-paste"></i>
+                    <span class="nav-label">Registrar dia no laborable</span>
+                </a>
+            </li>
+            <li th:class="${is_active == 10} ? 'active'">
+                <a href="#" th:href="@{/dch/asistencia/periodovacacional}">
+                    <i class="fa fa-paste"></i>
+                    <span class="nav-label">Registrar periodo vacacional</span>
+                </a>
+            </li>
             <li th:class="${is_active == 8} ? 'active'">
                 <a href="#" th:href="@{/dch/perfil}">
                     <i class="fa fa-user-circle"></i>

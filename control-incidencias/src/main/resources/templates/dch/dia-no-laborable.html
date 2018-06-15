@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="dch/head :: head('Sistema de Asistencia')"></head>
+<body>
+<div id="wrapper">
+    <nav th:replace="dch/verticalbar :: verticalnavbar(9)"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="dch/navbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Registrar dia no laborable</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="active">
+                        <strong>Registrar dia no laborable</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label>Docente | Jaime Lopez Rabadan</label>
+            </div>
+        </div>
+        <div class=" hidden alert alert-danger" id="fechaInvalida">
+            Fecha invalida
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content">
+                <h1 class="text-center">
+                    <span class="text-navy">Registrar dia no Laborable</span>
+                </h1>
+                <form class="form-horizontal">
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2"> Fecha del dia no laborable:</label>
+                        <div class="input-group date col-sm-2">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" pattern="^\d{4}-\d{2}-\d{2}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2"> Tipo de Personal:</label>
+                        <div class="input-group col-sm-4">
+                            <div class="i-checks col-sm-4 "><label> <input type="radio" value="1" name="a"/> <i></i>Personal Docente </label></div>
+                            <div class="i-checks col-sm-4"><label> <input type="radio" value="2" name="a"/> <i></i>PAAE </label></div>
+                            <div class="i-checks col-sm-4"><label> <input type="radio" value="3" name="a"/> <i></i>Personal Docente y PAAE </label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 ">Justificacion:</label>
+                        <div class="col-sm-4"><textarea  style="height: 100%"></textarea> </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar Archivo</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <input type="file" name="..."/>
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" >
+                        <div class="input-group date col-sm-6">
+                            <label class="col-sm-4 ">Seleccionar Todos:</label>
+                            <div class="i-checks col-sm-2"><label> <input type="checkbox"/><i></i></label></div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Numero de Tarjeta</th>
+                                    <th>Seleccionar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Jaime Rabadan</td>
+                                    <td>02200</td>
+                                    <td>
+                                        <div class="form-group" >
+                                            <div class="input-group date col-sm-2">
+                                                <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>otro nombre</td>
+                                    <td>12345</td>
+                                    <td>
+                                        <div class="form-group" >
+                                            <div class="input-group date col-sm-2">
+                                                <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" type="submit">Registrar</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+
+</body>
+
+</html>
