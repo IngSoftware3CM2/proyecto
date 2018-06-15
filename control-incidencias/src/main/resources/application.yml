@@ -15,7 +15,7 @@ spring:
           from: <sci.escom.noreply@gmail.com>
   datasource:
     url: jdbc:postgresql://localhost:5432/proyecto_CI
-    password: postgres
+    password: saidnm
     username: postgres
     platform: postgres
   jpa:

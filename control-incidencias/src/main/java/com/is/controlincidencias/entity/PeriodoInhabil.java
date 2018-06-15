@@ -67,6 +67,30 @@ public class PeriodoInhabil {
         this.descripcion = descripcion;
     }
 
+    public Boolean getPermisopaee() {
+        return permisopaee;
+    }
+
+    public void setPermisopaee(Boolean permisopaee) {
+        this.permisopaee = permisopaee;
+    }
+
+    public Boolean getPermisodocente() {
+        return permisodocente;
+    }
+
+    public void setPermisodocente(Boolean permisodocente) {
+        this.permisodocente = permisodocente;
+    }
+
+    public String getJustificacionarchivo() {
+        return justificacionarchivo;
+    }
+
+    public void setJustificacionarchivo(String justificacionarchivo) {
+        this.justificacionarchivo = justificacionarchivo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

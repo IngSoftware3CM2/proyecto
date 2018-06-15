@@ -9,6 +9,10 @@ import java.time.LocalDate;
 
 @Repository("periodoInhabilRepository")
 public interface PeriodoInhabilRepository extends JpaRepository<PeriodoInhabil, Serializable> {
+
     boolean existsByInicioIsLessThanEqualAndFinGreaterThanEqual(LocalDate fecha, LocalDate
             fecha2);
+
+
+
 }

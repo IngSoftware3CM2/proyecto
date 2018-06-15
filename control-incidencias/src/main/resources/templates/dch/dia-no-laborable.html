@@ -25,16 +25,25 @@
         <div class=" hidden alert alert-danger" id="fechaInvalida">
             Fecha invalida
         </div>
+        <div class=" hidden alert alert-danger" id="mensajeArchivoE">
+            No se adjuntaron los archivos correctamente
+        </div>
+        <div class="hidden alert alert-danger" id="MSG">
+            Complete todos los campos obligatorios
+        </div>
+        <div class="hidden alert alert-danger" id="errorRN54">
+            Dato no valido
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
                     <span class="text-navy">Registrar dia no Laborable</span>
                 </h1>
-                <form class="form-horizontal" th:object="${diaNoLaborable}" >
+                <form class="form-horizontal" id="formDia" enctype="multipart/form-data" th:object="${diaNoLaborable}" >
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha del dia no laborable:</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" th:field="*{fecha}" pattern="^\d{4}-\d{2}-\d{2}" >
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="fechaDia" class="form-control" th:field="*{fecha}" pattern="^\d{4}-\d{2}-\d{2}" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Justificacion:</label>
-                        <div class="col-sm-4"><textarea  th:field="*{justificacion}" style="height: 100%"></textarea> </div>
+                        <div class="col-sm-4"><textarea  id="justificacion" th:field="*{justificacion}" style="height: 100%" required></textarea> </div>
                         <div class="col-sm-6 text-right">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
@@ -57,7 +66,7 @@
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input th:field="*{archivo}" type="file" name="file" onchange="ValidateSingleInput()" accept=".jpg"/>
+                                    <input th:field="*{archivo}" type="file" name="file" id="file2" onchange="ValidateSingleInput(this);" accept=".jpg"/>
                                 </span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
@@ -104,7 +113,6 @@
 
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-<script src="#" th:src="@{/js/diaNoLaborable.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
@@ -115,6 +123,9 @@
 <script src="#" th:src="@{/js/dataPicker.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script src="#" th:src="@{/js/jquery.form.js}"></script>
+<script src="#" th:src="@{/js/diaNoLaborable.js}"></script>
+
 
 </body>
 

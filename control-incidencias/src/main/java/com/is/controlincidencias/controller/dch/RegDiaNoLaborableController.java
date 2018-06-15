@@ -43,18 +43,13 @@ public class RegDiaNoLaborableController {
         model.addAttribute("diaNoLaborable", new DiaNoLaborableModel());
         return mav;
     }
-
-/*
-    @PostMapping("/dianolaborable/agregar")
-    private String guardarJustificanteTA(@Valid @ModelAttribute("diaNoLaborable") DiaNoLaborableModel diaNoLaborableModel,
-                                          BindingResult bindingResult) {
-        LOG.info("----------------------------------------------------------");
-        LOG.info("Datos que me llegan "+diaNoLaborableModel.getFecha().toString());
-        LOG.info("Datos: "+ diaNoLaborableModel.getJustificacion());
-        LOG.info(diaNoLaborableModel.getIdPersonal());
-        if(bindingResult.hasErrors())
-            LOG.info("Errorcito");
-        return "redirect:/dch/asistencia/dianolaborable";
+    @GetMapping("/dianolaborable/exito")
+    public String exito(){
+        return "redirect:/dch?succes=1";
     }
-    */
+
+    @GetMapping("/dianolaborable/cancelar")
+    public String cancelar(){
+        return "redirect:/dch?error=1";
+    }
 }
