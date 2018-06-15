@@ -105,11 +105,11 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
         justificanteRepository.altaJustificante("espera",fecha,4,idEmpleado);
         Integer idPermisoEconomico = permisoEconomicoRepository.selectMaxIdPermisoEconomico();
         if(idPermisoEconomico!=null){
-            permisoEconomicoRepository.insertRegistro(idPermisoEconomico+1,incidencia.getFechaRegistro(),justificanteRepository.selectMaxIdPermisoEconomico());
+            permisoEconomicoRepository.insertRegistro(idPermisoEconomico+1,justificanteRepository.selectMaxIdPermisoEconomico());
             incidenciaService.updateIdJustificante(justificanteRepository.selectMaxIdPermisoEconomico(),incidencia.getIdIncidencia());
         }
         else{
-            permisoEconomicoRepository.insertRegistro(1,incidencia.getFechaRegistro(),justificanteRepository.selectMaxIdPermisoEconomico());
+            permisoEconomicoRepository.insertRegistro(1,justificanteRepository.selectMaxIdPermisoEconomico());
             incidenciaService.updateIdJustificante(justificanteRepository.selectMaxIdPermisoEconomico(),incidencia.getIdIncidencia());
         }
 

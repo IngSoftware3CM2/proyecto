@@ -22,8 +22,8 @@ public interface PermisoEconomicoRepository extends JpaRepository<PermisoEconomi
     boolean existsByJustificante_IdJustificante (int id);
 
     @Modifying
-    @Query(value = "insert into permisoeconomico (id, fechaincidencia,idjustificante) VALUES (:id, :fechaincidencia,:idjustificante)", nativeQuery = true)
+    @Query(value = "insert into permisoeconomico (id, idjustificante) VALUES (:id, :idjustificante)", nativeQuery = true)
     @Transactional
-    void insertRegistro(@Param("id") int id, @Param("fechaincidencia") LocalDate fechaincidencia, @Param("idjustificante") int idjustificante);
+    void insertRegistro(@Param("id") int id,  @Param("idjustificante") int idjustificante);
 
 }
