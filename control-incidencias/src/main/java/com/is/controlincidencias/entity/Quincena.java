@@ -60,6 +60,14 @@ public class Quincena {
         this.fin = fin;
     }
 
+    public String getQuincenaReportada() {
+        return quincenaReportada;
+    }
+
+    public void setQuincenaReportada(String quincenaReportada) {
+        this.quincenaReportada = quincenaReportada;
+    }
+
     public Integer getIdQuincena() {
         return idQuincena;
     }
