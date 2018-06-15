@@ -1,262 +1,261 @@
-Ôªøidempleado,noempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario
-1,00000015,TRUE,M,Aar√≥n Mauricio,Rodr√≠guez,Alquicira,020001,2,ROLE_DOC,1
-2,00000016,TRUE,M,Adolfo,Guzm√°n,Arenas,020002,2,ROLE_DOC,1
-3,00000017,TRUE,M,Alberto Jes√∫s,Alc√°ntara,M√©ndez,020003,2,ROLE_DOC,1
-4,00000018,TRUE,M,Alejandro,Botello,Castillo,020004,2,ROLE_DOC,1
-5,00000019,TRUE,M,Alejandro,Canalez,Cruz,020005,2,ROLE_DOC,1
-6,00000020,TRUE,M,Alejandro Sigfrido,Cifuentes,√Ålvarez,020006,2,ROLE_DOC,1
-7,00000021,TRUE,M,Alfonso,Fern√°ndez,V√°zquez,020007,2,ROLE_DOC,1
-8,00000022,TRUE,M,Alma Delia,Cuevas,Rasgado,020008,2,ROLE_DOC,1
-9,00000023,TRUE,M,Amilcar,Meneses,Viveros,020009,2,ROLE_DOC,1
-10,00000024,TRUE,M,Andr√©s,Ortigoza,Campos,020010,2,ROLE_DOC,1
-11,00000025,TRUE,M,Antonio Gustavo,Ju√°rez,Gracia,020011,2,ROLE_DOC,1
-12,00000026,TRUE,M,Ariel,L√≥pez,Rojas,020012,2,ROLE_DOC,1
-13,00000027,TRUE,M,Axel Ernesto,Moreno,Cervantes,020013,2,ROLE_DOC,1
-14,00000028,TRUE,M,Benjam√≠n,Luna,Benoso,020014,2,ROLE_DOC,1
-15,00000029,TRUE,M,Carlos,Silva,S√°nchez,020015,2,ROLE_DOC,1
-16,00000030,TRUE,M,C√©sar,M√∫jica,Ascencio,020016,2,ROLE_DOC,1
-17,00000031,TRUE,M,C√©sar Roman,Mart√≠nez,Garc√≠a,020017,2,ROLE_DOC,1
-18,00000032,TRUE,M,Chadwick,Carreto,Arellano,020018,2,ROLE_DOC,1
-19,00000033,TRUE,M,Claudia Alejandra,L√≥pez,Rodr√≠guez,020019,2,ROLE_DOC,1
-20,00000034,TRUE,M,Consuelo Varinia,Garc√≠a,Mendoza,020020,2,ROLE_DOC,1
-21,00000035,TRUE,M,Cornelio,Ya√±ez,M¬†rquez,020021,2,ROLE_DOC,1
-22,00000036,TRUE,M,Daniel,Cruz,Garc√≠a,020022,2,ROLE_DOC,1
-23,00000037,TRUE,M,David,Araujo,D√≠az,020023,2,ROLE_DOC,1
-24,00000038,TRUE,M,Edgar Armando,Catal√°n,Salgado,020024,2,ROLE_DOC,1
-25,00000039,TRUE,M,Edgardo Adri√°n,Franco,Mart√≠nez,020025,2,ROLE_DOC,1
-26,00000040,TRUE,M,Edmundo Ren√©,Dur√°n,Camarillo,020026,2,ROLE_DOC,1
-27,00000041,TRUE,M,Eduardo,Bustos,Far√≠as,020027,2,ROLE_DOC,1
-28,00000042,TRUE,M,Eduardo,Ch√°vez,Lima,020028,2,ROLE_DOC,1
-29,00000043,TRUE,M,Eduardo,Guti√©rrez,Aldana,020029,2,ROLE_DOC,1
-30,00000044,TRUE,M,Eduardo,Rodr√≠guez,Flores,020030,2,ROLE_DOC,1
-31,00000045,TRUE,M,Elba,Mendoza,Mac√≠as,020031,2,ROLE_DOC,1
-32,00000046,TRUE,M,Elena Fabiola,Ruiz,Ledesma,020032,2,ROLE_DOC,1
-33,00000047,TRUE,M,Enrique,Torres,Gonz√°lez,020033,2,ROLE_DOC,1
-34,00000048,TRUE,M,Erick Eugenio,Linares,Vallejo,020034,2,ROLE_DOC,1
-35,00000049,TRUE,M,Erika,Hern√°ndez,Rubio,020035,2,ROLE_DOC,1
-36,00000050,TRUE,M,Euler,Hern√°ndez,Contreras,020036,2,ROLE_DOC,1
-37,00000051,TRUE,M,Fabiola,Ocampo,Botello,050001,5,ROLE_DOC,1
-38,00000052,TRUE,M,Felipe de Jes√∫s,Figueroa,Del Prado,050002,5,ROLE_DOC,1
-39,00000053,TRUE,M,Felipe Rolando,Menchaca,Garc√≠a,050003,5,ROLE_DOC,1
-40,00000054,TRUE,H,Fernando,Aguilar,S√°nchez,050004,5,ROLE_DOC,1
-41,00000055,TRUE,H,Flavio Arturo,S√°nchez,G√°rfias,050005,5,ROLE_DOC,1
-42,00000056,TRUE,H,Gabriela De Jes√∫s,L√≥pez,Ruiz,050006,5,ROLE_DOC,1
-43,00000057,TRUE,H,Gelacio,Castillo,Cabrera,050007,5,ROLE_DOC,1
-44,00000058,TRUE,H,Germ√°n,T√©llez,Castillo,050008,5,ROLE_DOC,1
-45,00000059,TRUE,H,Gilberto,S¬†nchez,Quintanilla,050009,5,ROLE_DOC,1
-46,00000060,TRUE,H,Gisela,Gonz¬†lez,Albarr¬†n,050010,5,ROLE_DOC,1
-47,00000061,TRUE,H,Guillermo,M√°rquez,Arregu√≠n,050011,5,ROLE_DOC,1
-48,00000062,TRUE,H,H√©ctor Manuel,Paz,Rodr√≠guez,050012,5,ROLE_DOC,1
-49,00000063,TRUE,H,Idalia,Maldonado,Castillo,050013,5,ROLE_DOC,1
-50,00000064,TRUE,H,Ignacio,R√≠os,De la Torre,050014,5,ROLE_DOC,1
-51,00000065,TRUE,H,Ismael,Cervantes,De Anda,050015,5,ROLE_DOC,1
-52,00000066,TRUE,H,Ismael,Rojas,Mexicano,050016,5,ROLE_DOC,1
-53,00000067,TRUE,H,Iv√°n,D√≠az,Toal¬†,050017,5,ROLE_DOC,1
-54,00000068,TRUE,H,Jacqueline,Arzate,Gordillo,050018,5,ROLE_DOC,1
-55,00000069,TRUE,H,Jaime Hugo,Puebla,Lomas,050019,5,ROLE_DOC,1
-56,00000070,TRUE,H,Jes√∫s Alfredo,Mart√≠nez,Nu√±o,050020,5,ROLE_DOC,1
-57,00000071,TRUE,H,Jes√∫s Yalj¬†,Montiel,P√©rez,070001,7,ROLE_DOC,1
-58,00000072,TRUE,H,Joel Omar,Ju√°rez,Gambino,070002,7,ROLE_DOC,1
-59,00000073,TRUE,H,Jorge,Cort√©s,Galicia,070003,7,ROLE_DOC,1
-60,00000074,TRUE,H,Jorge Israel,Toledo,Alvarado,070004,7,ROLE_DOC,1
-61,00000075,TRUE,H,Jorge Luis,Rosas,Trigueros,070005,7,ROLE_DOC,2
-62,00000076,TRUE,H,Jos√© Alfredo,Jim√©nez,Benitez,070006,7,ROLE_DOC,2
-63,00000077,TRUE,H,Jos√© Antonio,Garc√≠a,Mej√≠a,070007,7,ROLE_DOC,2
-64,00000078,TRUE,H,Jos√© Antonio,Ort√≠z,Ram√≠rez,070008,7,ROLE_DOC,2
-65,00000079,TRUE,H,Jos√© Cruz,Mart√≠nez,Perales,070009,7,ROLE_DOC,2
-66,00000080,TRUE,H,Jos√© David,Ortega,Pacheco,070010,7,ROLE_DOC,2
-67,00000081,TRUE,H,Jos√© F√©lix,Serrano,Talamantes,070011,7,ROLE_DOC,2
-68,00000082,TRUE,H,Jos√© Giovanni,Guzm√°n,Lugo,070012,7,ROLE_DOC,2
-69,00000083,TRUE,H,Jos√© Jaime,L√≥pez,Rabad√°n,070013,7,ROLE_DOC,2
-70,00000084,TRUE,H,Jos√© Juan,P√©rez,P√©rez,070014,7,ROLE_DOC,2
-71,00000085,TRUE,H,Jos√© Luis,Calder√≥n,Osorno,070015,7,ROLE_DOC,2
-72,00000086,TRUE,H,Jos√© Lu√≠s,Hern¬†ndez,Aguilar,070016,7,ROLE_DOC,2
-73,00000087,TRUE,H,Jos√© Marco Antonio,Rueda,Mel√©ndez,070017,7,ROLE_DOC,2
-74,00000088,TRUE,H,Jos√©,S¬†nchez,Ju¬†rez,070018,7,ROLE_DOC,2
-75,00000089,TRUE,H,Josefina,Hern¬†ndez,Jaime,070019,7,ROLE_DOC,2
-76,00000090,TRUE,H,Juan Antonio,Castillo,Marrufo,070020,7,ROLE_DOC,2
-77,00000091,TRUE,H,Juan,Asbun,Bojalil,070021,7,ROLE_DOC,2
-78,00000092,TRUE,H,Juan Carlos,Morales,Cruz,070022,7,ROLE_DOC,2
-79,00000093,TRUE,H,Juan Carlos,T√©llez,Barrera,070023,7,ROLE_DOC,2
-80,00000094,TRUE,H,Juan Jes√∫s,Guti√©rrez,Garc√≠a,070024,7,ROLE_DOC,2
-81,00000095,TRUE,H,Juan Jos√©,Torres,Manr√≠quez,070025,7,ROLE_DOC,2
-82,00000096,TRUE,H,Juan,Vera,Romero,070026,7,ROLE_DOC,2
-83,00000097,TRUE,H,Juan Vicente,Garc√≠a,Sales,070027,7,ROLE_DOC,2
-84,00000098,TRUE,H,Julio C√©sar,Sosa,Savedra,070028,7,ROLE_DOC,2
-85,00000099,TRUE,H,Karina,Viveros,Vela,070029,7,ROLE_DOC,2
-86,00000100,TRUE,H,Laura,M√©ndez,Segundo,070030,7,ROLE_DOC,2
-87,00000101,TRUE,H,Lorena,Chavarria,B¬†ez,070031,7,ROLE_DOC,2
-88,00000102,TRUE,H,Luis Carlos,Coronado,Garc√≠a,070032,7,ROLE_DOC,2
-89,00000103,TRUE,H,Luis Octavio,Lopez,Leyva,070033,7,ROLE_DOC,2
-90,00000104,TRUE,H,Luz No√©,Oliva,Moreno,070034,7,ROLE_DOC,2
-91,00000105,TRUE,H,Macario,Hern¬†ndez,Cruz,070035,7,ROLE_DOC,2
-92,00000106,TRUE,H,Manuel Alejandro,Soto,Ramos,070036,7,ROLE_DOC,2
-93,00000107,TRUE,H,Marco Antonio,Dorantes,Gonz¬†lez,070037,7,ROLE_DOC,2
-94,00000108,TRUE,H,Marco Antonio,Moreno,Ibarra,070038,7,ROLE_DOC,2
-95,00000109,TRUE,H,Margarita Elizabeth,G√≥mez,Mayorga,070039,7,ROLE_DOC,2
-96,00000110,TRUE,H,Mar√≠a Del Rosario,Rocha,Bernab√©,070040,7,ROLE_DOC,2
-97,00000111,TRUE,H,Mar√≠a Elena,Cruz,Meza,070041,7,ROLE_DOC,2
-98,00000112,TRUE,H,Mar√≠a Gabriela,Gali√±anes,Rodr√≠guez,070042,7,ROLE_DOC,2
-99,00000113,TRUE,H,Mar√≠a Julia,Calder√≥n,Sambarino,070043,7,ROLE_DOC,2
-100,00000114,TRUE,H,Mario,Aldape,P√©rez,070044,7,ROLE_DOC,2
-101,00000115,TRUE,H,Mario Augusto,Ram√≠rez,Morales,070045,7,ROLE_DOC,2
-102,00000116,TRUE,H,Martha Rosa,Cordero,L√≥pez,070046,7,ROLE_DOC,2
-103,00000117,TRUE,H,Miguel √Ångel,Maldonado,Mu√±oz,070047,7,ROLE_DOC,2
-104,00000118,TRUE,H,Miguel √Ångel,Vivanco,Gallardo,070048,7,ROLE_DOC,2
-105,00000119,TRUE,H,Miguel F√©lix,Mata,Rivera,070049,7,ROLE_DOC,2
-106,00000120,TRUE,H,Miguel Jes√∫s,Torres,Ru√≠z,070050,7,ROLE_DOC,2
-107,00000121,TRUE,H,Miguel,Olvera,Aldana,070051,7,ROLE_DOC,2
-108,00000122,TRUE,H,Miguel Santiago,Su¬†rez,Casta√±√≥n,060001,6,ROLE_DOC,2
-109,00000123,TRUE,H,Miriam,Pescador,Rojas,060002,6,ROLE_DOC,2
-110,00000124,TRUE,H,Mondrag√≥n Tanibet,P√©rez,De Los Santos,060003,6,ROLE_DOC,2
-111,00000125,TRUE,H,M√≥nica,Rivera,De La Rosa,060004,6,ROLE_DOC,2
-112,00000126,TRUE,H,Monserrat Gabriela,P√©rez,Vera,060005,6,ROLE_DOC,2
-113,00000127,TRUE,H,Nancy,Ocotitla,Rojas,060006,6,ROLE_DOC,2
-114,00000128,TRUE,H,Nidia Asunci√≥n,Cortez,Duarte,060007,6,ROLE_DOC,2
-115,00000129,TRUE,H,Odette Berenice,Cancino,Mosqueda,060008,6,ROLE_DOC,2
-116,00000130,TRUE,H,Rafael Norman,Saucedo,Delgado,060009,6,ROLE_DOC,2
-117,00000131,TRUE,H,Rafael,Ram√≠rez,Tenorio,060010,6,ROLE_DOC,2
-118,00000132,TRUE,H,Ricardo,Mart√≠nez,Rosales,060011,6,ROLE_DOC,2
-119,00000133,TRUE,H,Roberto,De Luna,Caballero,060012,6,ROLE_DOC,2
-120,00000134,TRUE,H,Roberto Eswart,Zagal,Flores,060013,6,ROLE_DOC,2
-121,00000135,TRUE,H,Roberto,V¬†zquez,Arregu√≠n,060014,6,ROLE_DOC,3
-122,00000136,TRUE,H,Rodolfo,Romero,Herrera,060015,6,ROLE_DOC,3
-123,00000137,TRUE,H,Rolando,Flores,Carapia,060016,6,ROLE_DOC,3
-124,00000138,TRUE,H,Rolando,Menchaca,M√©ndez,060017,6,ROLE_DOC,3
-125,00000139,TRUE,H,Rolando,Quintero,T√©llez,060018,6,ROLE_DOC,3
-126,00000140,TRUE,H,Rosa Alba,Hern¬†ndez,Garc√≠a,060019,6,ROLE_DOC,3
-127,00000141,TRUE,H,Rosaura,Palma,Orozco,060020,6,ROLE_DOC,3
-128,00000142,TRUE,H,Rub√©n,Peredo,Valderrama,060021,6,ROLE_DOC,3
-129,00000143,TRUE,H,Salvador Elias,Venegas,Andraca,060022,6,ROLE_DOC,3
-130,00000144,TRUE,H,Sandra Luz,Morales,G¬Åitr√≥n,060023,6,ROLE_DOC,3
-131,00000145,TRUE,H,Sa√∫l,De la O,Torres,060024,6,ROLE_DOC,3
-132,00000146,TRUE,H,Seraf√≠n,Estrada,Elizalde,060025,6,ROLE_DOC,3
-133,00000147,TRUE,H,Sergio Antonio,Velazquez,Sereno,060026,6,ROLE_DOC,3
-134,00000148,TRUE,H,Sergio,Salinas,Lugo,060027,6,ROLE_DOC,3
-135,00000149,TRUE,H,Ukranio,Coronilla,Contreras,060028,6,ROLE_DOC,3
-136,00000150,TRUE,H,Ulises,V√©lez,Salda√±a,060029,6,ROLE_DOC,3
-137,00000151,TRUE,H,Victor Hugo,Garcia,Ortega,060030,6,ROLE_DOC,3
-138,00000152,TRUE,H,Virginia,Medina,Mej√≠a,060031,6,ROLE_DOC,3
-139,00000153,TRUE,H,Virginia,S√°nchez,Cruz,060032,6,ROLE_DOC,3
-140,00000154,TRUE,H,Yasm√≠n Ivette,Jim√©nez,Gal¬†n,060033,6,ROLE_DOC,3
-141,00000155,TRUE,H,Yaxkin,Flores,Mendoza,060034,6,ROLE_DOC,3
-142,00000156,TRUE,H,Rub√©n,Hern¬†ndez,Tovar,060035,6,ROLE_DOC,3
-143,00000157,TRUE,H,Ra√∫l,Acosta,Bermejo,060036,6,ROLE_DOC,3
-144,00000158,TRUE,H,Fernando,Galindo,Soria,060037,6,ROLE_DOC,3
-145,00000159,TRUE,H,V√≠ctor Hugo,Ponce,Ponce,060038,6,ROLE_DOC,3
-146,00000160,TRUE,H,Ren√©,Galindo,Orozco,060039,6,ROLE_DOC,3
-147,00000161,TRUE,H,Miguel √Ångel,Norzagaray,Cosio,060040,6,ROLE_DOC,3
-148,00000162,TRUE,H,Wilebaldo,Lara,Vargas,060041,6,ROLE_DOC,3
-149,00000163,TRUE,H,Juli√°n Guadalupe,Tapia,Aguilar,060042,6,ROLE_DOC,3
-150,00000164,TRUE,H,Rub√©n,Ortega,Gonz¬†lez,060043,6,ROLE_DOC,3
-151,00000165,TRUE,H,Jes√∫s Alberto,Mart√≠nez,Castro,060044,6,ROLE_DOC,3
-152,00000166,TRUE,H,Juan Carlos,Chimal,Egu√≠a,060045,6,ROLE_DOC,3
-153,00000167,TRUE,H,V√≠ctor,M¬†rquez,Garc√≠a,060046,6,ROLE_DOC,3
-154,00000168,TRUE,H,H√©ctor Manuel,Paz,Rodr√≠guez,060047,6,ROLE_DOC,3
-155,00000169,TRUE,H,Jos√© Armando,Esquivel,Centeno,060048,6,ROLE_DOC,3
-156,00000170,TRUE,H,Aurora,Aparicio,Castillo,060049,6,ROLE_DOC,3
-157,00000171,TRUE,H,V√≠ctor Rafael,Moreno,Pe√±a,060050,6,ROLE_DOC,3
-158,00000172,TRUE,H,Oscar,Carranza,Castillo,060051,6,ROLE_DOC,3
-159,00000173,TRUE,H,Ren√©,Guti√©rrez,Morales,060052,6,ROLE_DOC,3
-160,00000174,TRUE,H,Rub√©n,Galicia,Mej√≠a,060053,6,ROLE_DOC,3
-161,00000175,TRUE,H,Gonzalo,P√©rez,Araiza,060054,6,ROLE_DOC,4
-162,00000176,TRUE,H,Sandra,D√≠az,Santiago,060055,6,ROLE_DOC,4
-163,00000177,TRUE,H,Mario Humberto,Ram√≠rez,D√≠az,060056,6,ROLE_DOC,4
-164,00000178,TRUE,H,Miguel Abel,Le√≥n,Hern¬†ndez,060057,6,ROLE_DOC,4
-165,00000179,TRUE,H,Jorge,Ferrer,Tenorio,060058,6,ROLE_DOC,4
-166,00000180,TRUE,H,Carlos,Pineda,Guerrero,060059,6,ROLE_DOC,4
-167,00000181,TRUE,H,Araceli,Loyola,Espinosa,060060,6,ROLE_DOC,4
-168,00000182,TRUE,H,Encarnaci√≥n,Salinas,Hern√°ndez,060061,6,ROLE_DOC,4
-169,00000183,TRUE,H,Carlos Fernando,Aguilar,Ib¬†√±ez,060062,6,ROLE_DOC,4
-170,00000184,TRUE,H,Arturo,Pruneda,Mart√≠nez,060063,6,ROLE_DOC,4
-171,00000185,TRUE,H,Ricardo Felipe,D√≠az,Santiago,060064,6,ROLE_DOC,4
-172,00000186,TRUE,H,Isaac Omar,L√≥pez,V¬†zquez,060065,6,ROLE_DOC,4
-173,00000187,TRUE,H,Mar√≠a Del Carmen,Dom√≠nguez,Ayala,060066,6,ROLE_DOC,4
-174,00000188,TRUE,H,Florencio,Guzm¬†n,Aguilar,060067,6,ROLE_DOC,4
-175,00000189,TRUE,H,Edgardo Manuel,River√≥n,Felipe,060068,6,ROLE_DOC,4
-176,00000190,TRUE,H,Jes√∫s Manuel,Olivares,Ceja,060069,6,ROLE_DOC,4
-177,00000191,TRUE,H,Sergio,Su¬†rez,Guerra,060070,6,ROLE_DOC,4
-178,00000192,TRUE,H,Sandra Mercedes,P√©rez,Vera,060071,6,ROLE_DOC,4
-179,00000193,TRUE,H,Tirso Javier,Salazar,Sandoval,060072,6,ROLE_DOC,4
-180,00000194,TRUE,H,Jazm√≠n Adriana,Ju¬†rez,Ram√≠rez,060073,6,ROLE_DOC,4
-181,00000195,TRUE,H,Jes√∫s Alberto,Montero,De La Cruz,060074,6,ROLE_DOC,4
-182,00000196,TRUE,H,Carlos,Altamirano,Robles,060075,6,ROLE_DOC,4
-183,00000197,TRUE,H,Martha,Franco,Espejel,060076,6,ROLE_DOC,4
-184,00000198,TRUE,H,Jos√© Manuel,De la Rosa,V¬†zquez,060077,6,ROLE_DOC,4
-185,00000199,TRUE,M,Edgardo Adri¬†n,Franco,Mart√≠nez,060078,6,ROLE_DOC,4
-186,00000200,TRUE,M,Ra√∫l,Mart√≠nez,Memije,060079,6,ROLE_DOC,4
-187,00000201,TRUE,M,Hilario,Mart√≠nez,Arredondo,060080,6,ROLE_DOC,4
-188,00000202,FALSE,M,Richard Alexander,Award,Reyes,060081,6,ROLE_DOC,4
-189,00000203,FALSE,M,Rocio,Garc√≠a,Pedraza,060082,6,ROLE_DOC,4
-190,00000204,FALSE,M,Norberto,Flores,Guzm¬†n,060083,6,ROLE_DOC,4
-191,00000205,FALSE,M,Mart√≠n Alberto,D√≠az,Viera,060084,6,ROLE_DOC,4
-192,00000206,FALSE,M,Jos√© Carlos,D¬†valos,L√≥pez,060085,6,ROLE_DOC,4
-193,00000207,FALSE,M,Enrique De Jes√∫s,Arag√≥n,Pineda,060086,6,ROLE_DOC,4
-194,00000208,FALSE,M,Alejandro,Cruz,Rojas,060087,6,ROLE_DOC,4
-195,00000209,FALSE,M,Marco Antonio,Barranco,Jim√©nez,060088,6,ROLE_DOC,4
-196,00000210,FALSE,M,Laura Roc√≠o,Ort√≠z,Esquivel,060089,6,ROLE_DOC,4
-197,00000211,FALSE,M,Miguel √Ångel,Alem¬†n,Arce,060090,6,ROLE_DOC,4
-198,00000212,FALSE,M,Maribel,Arag√≥n,Garc√≠a,060091,6,ROLE_DOC,4
-199,00000213,FALSE,M,Jes√∫s Ixbalank,Torres,Z√∫√±iga,060092,6,ROLE_DOC,4
-200,00000214,FALSE,M,Jorge Javier,Silva,Mart√≠nez,060093,6,ROLE_DOC,4
-201,00000215,FALSE,M,Hortencia,G√≥mez,V√≠quez,060094,6,ROLE_DOC,4
-202,00000216,FALSE,M,Juan Manuel,Carballo,Jim√©nez,060095,6,ROLE_DOC,4
-203,00000217,FALSE,M,Juan Carlos,Mart√≠nez,D√≠az,060096,6,ROLE_DOC,4
-204,00000218,FALSE,M,Luis Carlos,Coronado,Garc√≠a,060097,6,ROLE_DOC,4
-205,00000219,FALSE,M,Rafael,Fern¬†ndez,Nava,080001,8,ROLE_DOC,4
-206,00000220,FALSE,M,Genaro,Ju¬†rez,Mart√≠nez,080002,8,ROLE_DOC,4
-207,00000221,FALSE,M,Israel,Vite,Silva,080003,8,ROLE_DOC,4
-208,00000222,FALSE,M,Sonia,S¬†nchez,D√≠az,080004,8,ROLE_DOC,4
-209,00000223,FALSE,M,Mar√≠a Elena,Acevedo,Mosqueda,080005,8,ROLE_DOC,4
-210,00000224,FALSE,M,Benjam√≠n,Cruz,Torres,080006,8,ROLE_DOC,4
-211,00000225,FALSE,M,Ricardo,Barr√≥n,Fern¬†ndez,080007,8,ROLE_DOC,4
-212,00000226,FALSE,M,David,Cruz,Rojas,080008,8,ROLE_DOC,4
-213,00000227,FALSE,M,Rogelio,Maldonado,Rodr√≠guez,080009,8,ROLE_DOC,4
-214,00000228,FALSE,M,Roc√≠o,Res√©ndiz,Mu√±oz,080010,8,ROLE_DOC,4
-215,00000229,FALSE,M,Dalia Gabriela,Lara,Perdomo,080011,8,ROLE_DOC,4
-216,00000230,FALSE,M,Jorge,Sosa,Pedroza,080012,8,ROLE_DOC,4
-217,00000231,FALSE,M,Guadalupe √Ångel,Gonz¬†lez,Chavez,080013,8,ROLE_DOC,4
-218,00000232,FALSE,M,Arturo,Ort√≠z,Tapia,080014,8,ROLE_DOC,4
-219,00000233,FALSE,M,Amadeo,Arguelles,Cruz,080015,8,ROLE_DOC,4
-220,00000234,FALSE,M,Samuel,Dom√≠nguez,Hern¬†ndez,080016,8,ROLE_DOC,4
-221,00000235,FALSE,M,Jos√© Alejandro,Mora,Rodr√≠guez,080017,8,ROLE_DOC,5
-222,00000236,FALSE,M,Rogelio Gerardo,Hern¬†ndez,Garc√≠a,080018,8,ROLE_DOC,5
-223,00000237,FALSE,M,Alexander,Gelbukh,Khan,080019,8,ROLE_DOC,5
-224,00000238,FALSE,M,Rogelio,Sotelo,Boy¬†s,080020,8,ROLE_DOC,5
-225,00000239,FALSE,M,Roberto A.,V√°zquez,Espinoza de los Monteros,080021,8,ROLE_DOC,5
-226,00000240,FALSE,M,Freddy Guillermo,Castro,Farf√°n,080022,8,ROLE_DOC,5
-227,00000241,FALSE,M,Samuel,S√°nchez,Islas,080023,8,ROLE_DOC,5
-228,00000242,FALSE,M,Karinne,Ram√≠rez,Amaro,080024,8,ROLE_DOC,5
-229,00000243,FALSE,M,Sandra Dinorah,Orantes,Jim√©nez,080025,8,ROLE_DOC,5
-230,00000244,FALSE,M,Francisco Hiram,Calvo,Castro,080026,8,ROLE_DOC,5
-231,00000245,FALSE,M,Cirilo Gabino,Le√≥n,Vega,110124,11,ROLE_DOC,5
-232,00000246,FALSE,M,Jes√∫s,Figueroa,Nazuno,110125,11,ROLE_DOC,5
-233,00000247,FALSE,M,Luis Alfonso,Villa,Vargas,110126,11,ROLE_DOC,5
-234,00000248,FALSE,M,Gabriel,Sepulveda,Cervantes,110127,11,ROLE_DOC,5
-235,00000249,FALSE,M,Jes√∫s Antonio,√Ålvarez,Cedillo,110128,11,ROLE_DOC,5
-236,00000250,FALSE,M,Marco Antonio,Ram√≠rez,Salinas,110129,11,ROLE_DOC,5
-237,00000251,FALSE,M,Jos√© Antonio,Romero,Serrano,110130,11,ROLE_DOC,5
-238,00000252,FALSE,M,Julio Ramiro,Alonso,Cruz,110131,11,ROLE_DOC,5
-239,00000253,FALSE,M,Eugenio,Cedillo,Portugal,110132,11,ROLE_DOC,5
-240,00000254,FALSE,M,Reyna Elia,Melara,Abarca,110133,11,ROLE_DOC,5
-241,00000255,FALSE,M,Edgar Felipe,Maya,Maya,110134,11,ROLE_DOC,5
-242,00000256,FALSE,M,Ana Maria,Winfield,Reyes,110135,11,ROLE_DOC,5
-243,00000257,FALSE,M,Blanca Esther,Carvajal,G√°mez,110136,11,ROLE_DOC,5
-244,00000258,FALSE,M,Mauricio Ram√≥n,Garc√≠a,G√≥mez,110137,11,ROLE_DOC,5
-245,00000259,FALSE,M,Juan Carlos,Mart√≠nez,Garc√≠a,110138,11,ROLE_DOC,5
-246,00000260,FALSE,M,Judith Margarita,Tirado,Lule,110139,11,ROLE_DOC,5
-247,00000261,FALSE,M,Angelica,Camarena,Amaro,110140,11,ROLE_DOC,5
-248,00000262,FALSE,M,Alfonso,M√©ndez,Tenorio,110141,11,ROLE_DOC,5
-249,00000263,FALSE,M,Adbel Anah√≠,Montes,Meza,110142,11,ROLE_DOC,5
-250,00000264,FALSE,M,Martha Patricia,Jim√©nez,Villanueva,110143,11,ROLE_DOC,5
-251,00000265,FALSE,M,Fabi√°n,Reyes,Prieto,110144,11,ROLE_DOC,5
-252,00000266,TRUE,M,Rolando F√©lix,Cedillo,Caballero,110145,11,ROLE_DOC,5
-253,00000267,TRUE,M,V√≠ctor Hugo,Cabrera,Arenas,110146,11,ROLE_DOC,5
-254,00000268,TRUE,M,√Ångel Salvador,Montiel,S√°nchez,110147,11,ROLE_DOC,5
-255,00000269,TRUE,H,Ricardo,Flores,Torres,110148,11,ROLE_PAEE,5
-256,00000270,TRUE,M,Margarita Elizabeth,Vazquez,Benitez,110149,11,ROLE_PAEE,5
-257,00000271,TRUE,M,Guillermo,Nu√±ez,Herrera,110150,11,ROLE_PAEE,1
-258,00000272,TRUE,M,Roberto,Rosas,Cuevas,110151,11,ROLE_PAEE,1
-259,00000273,TRUE,M,Iv√°n,Camacho,Morales,110152,11,ROLE_CH,1
-260,00000274,TRUE,H,Tania,Rodriguez,Sarabia,110153,11,ROLE_CH,2
-,,,,,,,,,,
+idempleado	noempleado	activo	sexo	nombre	apellidopaterno	apellidomaterno	notarjeta	iddepartamento	tipo	idhorario
+1	15	TRUE	M	AarÛn Mauricio	RodrÌguez	Alquicira	20001	2	ROLE_DOC	1
+2	16	TRUE	M	Adolfo	Guzm·n	Arenas	20002	2	ROLE_DOC	1
+3	17	TRUE	M	Alberto Jes˙s	Alc·ntara	MÈndez	20003	2	ROLE_DOC	1
+4	18	TRUE	M	Alejandro	Botello	Castillo	20004	2	ROLE_DOC	1
+5	19	TRUE	M	Alejandro	Canalez	Cruz	20005	2	ROLE_DOC	1
+6	20	TRUE	M	Alejandro Sigfrido	Cifuentes	¡lvarez	20006	2	ROLE_DOC	1
+7	21	TRUE	M	Alfonso	Fern·ndez	V·zquez	20007	2	ROLE_DOC	1
+8	22	TRUE	M	Alma Delia	Cuevas	Rasgado	20008	2	ROLE_DOC	1
+9	23	TRUE	M	Amilcar	Meneses	Viveros	20009	2	ROLE_DOC	1
+10	24	TRUE	M	AndrÈs	Ortigoza	Campos	20010	2	ROLE_DOC	1
+11	25	TRUE	M	Antonio Gustavo	Ju·rez	Gracia	20011	2	ROLE_DOC	1
+12	26	TRUE	M	Ariel	LÛpez	Rojas	20012	2	ROLE_DOC	1
+13	27	TRUE	M	Axel Ernesto	Moreno	Cervantes	20013	2	ROLE_DOC	1
+14	28	TRUE	M	BenjamÌn	Luna	Benoso	20014	2	ROLE_DOC	1
+15	29	TRUE	M	Carlos	Silva	S·nchez	20015	2	ROLE_DOC	1
+16	30	TRUE	M	CÈsar	M˙jica	Ascencio	20016	2	ROLE_DOC	1
+17	31	TRUE	M	CÈsar Roman	MartÌnez	GarcÌa	20017	2	ROLE_DOC	1
+18	32	TRUE	M	Chadwick	Carreto	Arellano	20018	2	ROLE_DOC	1
+19	33	TRUE	M	Claudia Alejandra	LÛpez	RodrÌguez	20019	2	ROLE_DOC	1
+20	34	TRUE	M	Consuelo Varinia	GarcÌa	Mendoza	20020	2	ROLE_DOC	1
+21	35	TRUE	M	Cornelio	YaÒez	M†rquez	20021	2	ROLE_DOC	1
+22	36	TRUE	M	Daniel	Cruz	GarcÌa	20022	2	ROLE_DOC	1
+23	37	TRUE	M	David	Araujo	DÌaz	20023	2	ROLE_DOC	1
+24	38	TRUE	M	Edgar Armando	Catal·n	Salgado	20024	2	ROLE_DOC	1
+25	39	TRUE	M	Edgardo Adri·n	Franco	MartÌnez	20025	2	ROLE_DOC	1
+26	40	TRUE	M	Edmundo RenÈ	Dur·n	Camarillo	20026	2	ROLE_DOC	1
+27	41	TRUE	M	Eduardo	Bustos	FarÌas	20027	2	ROLE_DOC	1
+28	42	TRUE	M	Eduardo	Ch·vez	Lima	20028	2	ROLE_DOC	1
+29	43	TRUE	M	Eduardo	GutiÈrrez	Aldana	20029	2	ROLE_DOC	1
+30	44	TRUE	M	Eduardo	RodrÌguez	Flores	20030	2	ROLE_DOC	1
+31	45	TRUE	M	Elba	Mendoza	MacÌas	20031	2	ROLE_DOC	1
+32	46	TRUE	M	Elena Fabiola	Ruiz	Ledesma	20032	2	ROLE_DOC	1
+33	47	TRUE	M	Enrique	Torres	Gonz·lez	20033	2	ROLE_DOC	1
+34	48	TRUE	M	Erick Eugenio	Linares	Vallejo	20034	2	ROLE_DOC	1
+35	49	TRUE	M	Erika	Hern·ndez	Rubio	20035	2	ROLE_DOC	1
+36	50	TRUE	M	Euler	Hern·ndez	Contreras	20036	2	ROLE_DOC	1
+37	51	TRUE	M	Fabiola	Ocampo	Botello	50001	5	ROLE_DOC	1
+38	52	TRUE	M	Felipe de Jes˙s	Figueroa	Del Prado	50002	5	ROLE_DOC	1
+39	53	TRUE	M	Felipe Rolando	Menchaca	GarcÌa	50003	5	ROLE_DOC	1
+40	54	TRUE	H	Fernando	Aguilar	S·nchez	50004	5	ROLE_DOC	1
+41	55	TRUE	H	Flavio Arturo	S·nchez	G·rfias	50005	5	ROLE_DOC	1
+42	56	TRUE	H	Gabriela De Jes˙s	LÛpez	Ruiz	50006	5	ROLE_DOC	1
+43	57	TRUE	H	Gelacio	Castillo	Cabrera	50007	5	ROLE_DOC	1
+44	58	TRUE	H	Germ·n	TÈllez	Castillo	50008	5	ROLE_DOC	1
+45	59	TRUE	H	Gilberto	S†nchez	Quintanilla	50009	5	ROLE_DOC	1
+46	60	TRUE	H	Gisela	Gonz†lez	Albarr†n	50010	5	ROLE_DOC	1
+47	61	TRUE	H	Guillermo	M·rquez	ArreguÌn	50011	5	ROLE_DOC	1
+48	62	TRUE	H	HÈctor Manuel	Paz	RodrÌguez	50012	5	ROLE_DOC	1
+49	63	TRUE	H	Idalia	Maldonado	Castillo	50013	5	ROLE_DOC	1
+50	64	TRUE	H	Ignacio	RÌos	De la Torre	50014	5	ROLE_DOC	1
+51	65	TRUE	H	Ismael	Cervantes	De Anda	50015	5	ROLE_DOC	1
+52	66	TRUE	H	Ismael	Rojas	Mexicano	50016	5	ROLE_DOC	1
+53	67	TRUE	H	Iv·n	DÌaz	Toal†	50017	5	ROLE_DOC	1
+54	68	TRUE	H	Jacqueline	Arzate	Gordillo	50018	5	ROLE_DOC	1
+55	69	TRUE	H	Jaime Hugo	Puebla	Lomas	50019	5	ROLE_DOC	1
+56	70	TRUE	H	Jes˙s Alfredo	MartÌnez	NuÒo	50020	5	ROLE_DOC	1
+57	71	TRUE	H	Jes˙s Yalj†	Montiel	PÈrez	70001	7	ROLE_DOC	1
+58	72	TRUE	H	Joel Omar	Ju·rez	Gambino	70002	7	ROLE_DOC	1
+59	73	TRUE	H	Jorge	CortÈs	Galicia	70003	7	ROLE_DOC	1
+60	74	TRUE	H	Jorge Israel	Toledo	Alvarado	70004	7	ROLE_DOC	1
+61	75	TRUE	H	Jorge Luis	Rosas	Trigueros	70005	7	ROLE_DOC	2
+62	76	TRUE	H	JosÈ Alfredo	JimÈnez	Benitez	70006	7	ROLE_DOC	2
+63	77	TRUE	H	JosÈ Antonio	GarcÌa	MejÌa	70007	7	ROLE_DOC	2
+64	78	TRUE	H	JosÈ Antonio	OrtÌz	RamÌrez	70008	7	ROLE_DOC	2
+65	79	TRUE	H	JosÈ Cruz	MartÌnez	Perales	70009	7	ROLE_DOC	2
+66	80	TRUE	H	JosÈ David	Ortega	Pacheco	70010	7	ROLE_DOC	2
+67	81	TRUE	H	JosÈ FÈlix	Serrano	Talamantes	70011	7	ROLE_DOC	2
+68	82	TRUE	H	JosÈ Giovanni	Guzm·n	Lugo	70012	7	ROLE_DOC	2
+69	83	TRUE	H	JosÈ Jaime	LÛpez	Rabad·n	70013	7	ROLE_DOC	2
+70	84	TRUE	H	JosÈ Juan	PÈrez	PÈrez	70014	7	ROLE_DOC	2
+71	85	TRUE	H	JosÈ Luis	CalderÛn	Osorno	70015	7	ROLE_DOC	2
+72	86	TRUE	H	JosÈ LuÌs	Hern†ndez	Aguilar	70016	7	ROLE_DOC	2
+73	87	TRUE	H	JosÈ Marco Antonio	Rueda	MelÈndez	70017	7	ROLE_DOC	2
+74	88	TRUE	H	JosÈ	S†nchez	Ju†rez	70018	7	ROLE_DOC	2
+75	89	TRUE	H	Josefina	Hern†ndez	Jaime	70019	7	ROLE_DOC	2
+76	90	TRUE	H	Juan Antonio	Castillo	Marrufo	70020	7	ROLE_DOC	2
+77	91	TRUE	H	Juan	Asbun	Bojalil	70021	7	ROLE_DOC	2
+78	92	TRUE	H	Juan Carlos	Morales	Cruz	70022	7	ROLE_DOC	2
+79	93	TRUE	H	Juan Carlos	TÈllez	Barrera	70023	7	ROLE_DOC	2
+80	94	TRUE	H	Juan Jes˙s	GutiÈrrez	GarcÌa	70024	7	ROLE_DOC	2
+81	95	TRUE	H	Juan JosÈ	Torres	ManrÌquez	70025	7	ROLE_DOC	2
+82	96	TRUE	H	Juan	Vera	Romero	70026	7	ROLE_DOC	2
+83	97	TRUE	H	Juan Vicente	GarcÌa	Sales	70027	7	ROLE_DOC	2
+84	98	TRUE	H	Julio CÈsar	Sosa	Savedra	70028	7	ROLE_DOC	2
+85	99	TRUE	H	Karina	Viveros	Vela	70029	7	ROLE_DOC	2
+86	100	TRUE	H	Laura	MÈndez	Segundo	70030	7	ROLE_DOC	2
+87	101	TRUE	H	Lorena	Chavarria	B†ez	70031	7	ROLE_DOC	2
+88	102	TRUE	H	Luis Carlos	Coronado	GarcÌa	70032	7	ROLE_DOC	2
+89	103	TRUE	H	Luis Octavio	Lopez	Leyva	70033	7	ROLE_DOC	2
+90	104	TRUE	H	Luz NoÈ	Oliva	Moreno	70034	7	ROLE_DOC	2
+91	105	TRUE	H	Macario	Hern†ndez	Cruz	70035	7	ROLE_DOC	2
+92	106	TRUE	H	Manuel Alejandro	Soto	Ramos	70036	7	ROLE_DOC	2
+93	107	TRUE	H	Marco Antonio	Dorantes	Gonz†lez	70037	7	ROLE_DOC	2
+94	108	TRUE	H	Marco Antonio	Moreno	Ibarra	70038	7	ROLE_DOC	2
+95	109	TRUE	H	Margarita Elizabeth	GÛmez	Mayorga	70039	7	ROLE_DOC	2
+96	110	TRUE	H	MarÌa Del Rosario	Rocha	BernabÈ	70040	7	ROLE_DOC	2
+97	111	TRUE	H	MarÌa Elena	Cruz	Meza	70041	7	ROLE_DOC	2
+98	112	TRUE	H	MarÌa Gabriela	GaliÒanes	RodrÌguez	70042	7	ROLE_DOC	2
+99	113	TRUE	H	MarÌa Julia	CalderÛn	Sambarino	70043	7	ROLE_DOC	2
+100	114	TRUE	H	Mario	Aldape	PÈrez	70044	7	ROLE_DOC	2
+101	115	TRUE	H	Mario Augusto	RamÌrez	Morales	70045	7	ROLE_DOC	2
+102	116	TRUE	H	Martha Rosa	Cordero	LÛpez	70046	7	ROLE_DOC	2
+103	117	TRUE	H	Miguel ¡ngel	Maldonado	MuÒoz	70047	7	ROLE_DOC	2
+104	118	TRUE	H	Miguel ¡ngel	Vivanco	Gallardo	70048	7	ROLE_DOC	2
+105	119	TRUE	H	Miguel FÈlix	Mata	Rivera	70049	7	ROLE_DOC	2
+106	120	TRUE	H	Miguel Jes˙s	Torres	RuÌz	70050	7	ROLE_DOC	2
+107	121	TRUE	H	Miguel	Olvera	Aldana	70051	7	ROLE_DOC	2
+108	122	TRUE	H	Miguel Santiago	Su†rez	CastaÒÛn	60001	6	ROLE_DOC	2
+109	123	TRUE	H	Miriam	Pescador	Rojas	60002	6	ROLE_DOC	2
+110	124	TRUE	H	MondragÛn Tanibet	PÈrez	De Los Santos	60003	6	ROLE_DOC	2
+111	125	TRUE	H	MÛnica	Rivera	De La Rosa	60004	6	ROLE_DOC	2
+112	126	TRUE	H	Monserrat Gabriela	PÈrez	Vera	60005	6	ROLE_DOC	2
+113	127	TRUE	H	Nancy	Ocotitla	Rojas	60006	6	ROLE_DOC	2
+114	128	TRUE	H	Nidia AsunciÛn	Cortez	Duarte	60007	6	ROLE_DOC	2
+115	129	TRUE	H	Odette Berenice	Cancino	Mosqueda	60008	6	ROLE_DOC	2
+116	130	TRUE	H	Rafael Norman	Saucedo	Delgado	60009	6	ROLE_DOC	2
+117	131	TRUE	H	Rafael	RamÌrez	Tenorio	60010	6	ROLE_DOC	2
+118	132	TRUE	H	Ricardo	MartÌnez	Rosales	60011	6	ROLE_DOC	2
+119	133	TRUE	H	Roberto	De Luna	Caballero	60012	6	ROLE_DOC	2
+120	134	TRUE	H	Roberto Eswart	Zagal	Flores	60013	6	ROLE_DOC	2
+121	135	TRUE	H	Roberto	V†zquez	ArreguÌn	60014	6	ROLE_DOC	3
+122	136	TRUE	H	Rodolfo	Romero	Herrera	60015	6	ROLE_DOC	3
+123	137	TRUE	H	Rolando	Flores	Carapia	60016	6	ROLE_DOC	3
+124	138	TRUE	H	Rolando	Menchaca	MÈndez	60017	6	ROLE_DOC	3
+125	139	TRUE	H	Rolando	Quintero	TÈllez	60018	6	ROLE_DOC	3
+126	140	TRUE	H	Rosa Alba	Hern†ndez	GarcÌa	60019	6	ROLE_DOC	3
+127	141	TRUE	H	Rosaura	Palma	Orozco	60020	6	ROLE_DOC	3
+128	142	TRUE	H	RubÈn	Peredo	Valderrama	60021	6	ROLE_DOC	3
+129	143	TRUE	H	Salvador Elias	Venegas	Andraca	60022	6	ROLE_DOC	3
+130	144	TRUE	H	Sandra Luz	Morales	GÅitrÛn	60023	6	ROLE_DOC	3
+131	145	TRUE	H	Sa˙l	De la O	Torres	60024	6	ROLE_DOC	3
+132	146	TRUE	H	SerafÌn	Estrada	Elizalde	60025	6	ROLE_DOC	3
+133	147	TRUE	H	Sergio Antonio	Velazquez	Sereno	60026	6	ROLE_DOC	3
+134	148	TRUE	H	Sergio	Salinas	Lugo	60027	6	ROLE_DOC	3
+135	149	TRUE	H	Ukranio	Coronilla	Contreras	60028	6	ROLE_DOC	3
+136	150	TRUE	H	Ulises	VÈlez	SaldaÒa	60029	6	ROLE_DOC	3
+137	151	TRUE	H	Victor Hugo	Garcia	Ortega	60030	6	ROLE_DOC	3
+138	152	TRUE	H	Virginia	Medina	MejÌa	60031	6	ROLE_DOC	3
+139	153	TRUE	H	Virginia	S·nchez	Cruz	60032	6	ROLE_DOC	3
+140	154	TRUE	H	YasmÌn Ivette	JimÈnez	Gal†n	60033	6	ROLE_DOC	3
+141	155	TRUE	H	Yaxkin	Flores	Mendoza	60034	6	ROLE_DOC	3
+142	156	TRUE	H	RubÈn	Hern†ndez	Tovar	60035	6	ROLE_DOC	3
+143	157	TRUE	H	Ra˙l	Acosta	Bermejo	60036	6	ROLE_DOC	3
+144	158	TRUE	H	Fernando	Galindo	Soria	60037	6	ROLE_DOC	3
+145	159	TRUE	H	VÌctor Hugo	Ponce	Ponce	60038	6	ROLE_DOC	3
+146	160	TRUE	H	RenÈ	Galindo	Orozco	60039	6	ROLE_DOC	3
+147	161	TRUE	H	Miguel ¡ngel	Norzagaray	Cosio	60040	6	ROLE_DOC	3
+148	162	TRUE	H	Wilebaldo	Lara	Vargas	60041	6	ROLE_DOC	3
+149	163	TRUE	H	Juli·n Guadalupe	Tapia	Aguilar	60042	6	ROLE_DOC	3
+150	164	TRUE	H	RubÈn	Ortega	Gonz†lez	60043	6	ROLE_DOC	3
+151	165	TRUE	H	Jes˙s Alberto	MartÌnez	Castro	60044	6	ROLE_DOC	3
+152	166	TRUE	H	Juan Carlos	Chimal	EguÌa	60045	6	ROLE_DOC	3
+153	167	TRUE	H	VÌctor	M†rquez	GarcÌa	60046	6	ROLE_DOC	3
+154	168	TRUE	H	HÈctor Manuel	Paz	RodrÌguez	60047	6	ROLE_DOC	3
+155	169	TRUE	H	JosÈ Armando	Esquivel	Centeno	60048	6	ROLE_DOC	3
+156	170	TRUE	H	Aurora	Aparicio	Castillo	60049	6	ROLE_DOC	3
+157	171	TRUE	H	VÌctor Rafael	Moreno	PeÒa	60050	6	ROLE_DOC	3
+158	172	TRUE	H	Oscar	Carranza	Castillo	60051	6	ROLE_DOC	3
+159	173	TRUE	H	RenÈ	GutiÈrrez	Morales	60052	6	ROLE_DOC	3
+160	174	TRUE	H	RubÈn	Galicia	MejÌa	60053	6	ROLE_DOC	3
+161	175	TRUE	H	Gonzalo	PÈrez	Araiza	60054	6	ROLE_DOC	4
+162	176	TRUE	H	Sandra	DÌaz	Santiago	60055	6	ROLE_DOC	4
+163	177	TRUE	H	Mario Humberto	RamÌrez	DÌaz	60056	6	ROLE_DOC	4
+164	178	TRUE	H	Miguel Abel	LeÛn	Hern†ndez	60057	6	ROLE_DOC	4
+165	179	TRUE	H	Jorge	Ferrer	Tenorio	60058	6	ROLE_DOC	4
+166	180	TRUE	H	Carlos	Pineda	Guerrero	60059	6	ROLE_DOC	4
+167	181	TRUE	H	Araceli	Loyola	Espinosa	60060	6	ROLE_DOC	4
+168	182	TRUE	H	EncarnaciÛn	Salinas	Hern·ndez	60061	6	ROLE_DOC	4
+169	183	TRUE	H	Carlos Fernando	Aguilar	Ib†Òez	60062	6	ROLE_DOC	4
+170	184	TRUE	H	Arturo	Pruneda	MartÌnez	60063	6	ROLE_DOC	4
+171	185	TRUE	H	Ricardo Felipe	DÌaz	Santiago	60064	6	ROLE_DOC	4
+172	186	TRUE	H	Isaac Omar	LÛpez	V†zquez	60065	6	ROLE_DOC	4
+173	187	TRUE	H	MarÌa Del Carmen	DomÌnguez	Ayala	60066	6	ROLE_DOC	4
+174	188	TRUE	H	Florencio	Guzm†n	Aguilar	60067	6	ROLE_DOC	4
+175	189	TRUE	H	Edgardo Manuel	RiverÛn	Felipe	60068	6	ROLE_DOC	4
+176	190	TRUE	H	Jes˙s Manuel	Olivares	Ceja	60069	6	ROLE_DOC	4
+177	191	TRUE	H	Sergio	Su†rez	Guerra	60070	6	ROLE_DOC	4
+178	192	TRUE	H	Sandra Mercedes	PÈrez	Vera	60071	6	ROLE_DOC	4
+179	193	TRUE	H	Tirso Javier	Salazar	Sandoval	60072	6	ROLE_DOC	4
+180	194	TRUE	H	JazmÌn Adriana	Ju†rez	RamÌrez	60073	6	ROLE_DOC	4
+181	195	TRUE	H	Jes˙s Alberto	Montero	De La Cruz	60074	6	ROLE_DOC	4
+182	196	TRUE	H	Carlos	Altamirano	Robles	60075	6	ROLE_DOC	4
+183	197	TRUE	H	Martha	Franco	Espejel	60076	6	ROLE_DOC	4
+184	198	TRUE	H	JosÈ Manuel	De la Rosa	V†zquez	60077	6	ROLE_DOC	4
+185	199	TRUE	M	Edgardo Adri†n	Franco	MartÌnez	60078	6	ROLE_DOC	4
+186	200	TRUE	M	Ra˙l	MartÌnez	Memije	60079	6	ROLE_DOC	4
+187	201	TRUE	M	Hilario	MartÌnez	Arredondo	60080	6	ROLE_DOC	4
+188	202	FALSE	M	Richard Alexander	Award	Reyes	60081	6	ROLE_DOC	4
+189	203	FALSE	M	Rocio	GarcÌa	Pedraza	60082	6	ROLE_DOC	4
+190	204	FALSE	M	Norberto	Flores	Guzm†n	60083	6	ROLE_DOC	4
+191	205	FALSE	M	MartÌn Alberto	DÌaz	Viera	60084	6	ROLE_DOC	4
+192	206	FALSE	M	JosÈ Carlos	D†valos	LÛpez	60085	6	ROLE_DOC	4
+193	207	FALSE	M	Enrique De Jes˙s	AragÛn	Pineda	60086	6	ROLE_DOC	4
+194	208	FALSE	M	Alejandro	Cruz	Rojas	60087	6	ROLE_DOC	4
+195	209	FALSE	M	Marco Antonio	Barranco	JimÈnez	60088	6	ROLE_DOC	4
+196	210	FALSE	M	Laura RocÌo	OrtÌz	Esquivel	60089	6	ROLE_DOC	4
+197	211	FALSE	M	Miguel ¡ngel	Alem†n	Arce	60090	6	ROLE_DOC	4
+198	212	FALSE	M	Maribel	AragÛn	GarcÌa	60091	6	ROLE_DOC	4
+199	213	FALSE	M	Jes˙s Ixbalank	Torres	Z˙Òiga	60092	6	ROLE_DOC	4
+200	214	FALSE	M	Jorge Javier	Silva	MartÌnez	60093	6	ROLE_DOC	4
+201	215	FALSE	M	Hortencia	GÛmez	VÌquez	60094	6	ROLE_DOC	4
+202	216	FALSE	M	Juan Manuel	Carballo	JimÈnez	60095	6	ROLE_DOC	4
+203	217	FALSE	M	Juan Carlos	MartÌnez	DÌaz	60096	6	ROLE_DOC	4
+204	218	FALSE	M	Luis Carlos	Coronado	GarcÌa	60097	6	ROLE_DOC	4
+205	219	FALSE	M	Rafael	Fern†ndez	Nava	80001	8	ROLE_DOC	4
+206	220	FALSE	M	Genaro	Ju†rez	MartÌnez	80002	8	ROLE_DOC	4
+207	221	FALSE	M	Israel	Vite	Silva	80003	8	ROLE_DOC	4
+208	222	FALSE	M	Sonia	S†nchez	DÌaz	80004	8	ROLE_DOC	4
+209	223	FALSE	M	MarÌa Elena	Acevedo	Mosqueda	80005	8	ROLE_DOC	4
+210	224	FALSE	M	BenjamÌn	Cruz	Torres	80006	8	ROLE_DOC	4
+211	225	FALSE	M	Ricardo	BarrÛn	Fern†ndez	80007	8	ROLE_DOC	4
+212	226	FALSE	M	David	Cruz	Rojas	80008	8	ROLE_DOC	4
+213	227	FALSE	M	Rogelio	Maldonado	RodrÌguez	80009	8	ROLE_DOC	4
+214	228	FALSE	M	RocÌo	ResÈndiz	MuÒoz	80010	8	ROLE_DOC	4
+215	229	FALSE	M	Dalia Gabriela	Lara	Perdomo	80011	8	ROLE_DOC	4
+216	230	FALSE	M	Jorge	Sosa	Pedroza	80012	8	ROLE_DOC	4
+217	231	FALSE	M	Guadalupe ¡ngel	Gonz†lez	Chavez	80013	8	ROLE_DOC	4
+218	232	FALSE	M	Arturo	OrtÌz	Tapia	80014	8	ROLE_DOC	4
+219	233	FALSE	M	Amadeo	Arguelles	Cruz	80015	8	ROLE_DOC	4
+220	234	FALSE	M	Samuel	DomÌnguez	Hern†ndez	80016	8	ROLE_DOC	4
+221	235	FALSE	M	JosÈ Alejandro	Mora	RodrÌguez	80017	8	ROLE_DOC	5
+222	236	FALSE	M	Rogelio Gerardo	Hern†ndez	GarcÌa	80018	8	ROLE_DOC	5
+223	237	FALSE	M	Alexander	Gelbukh	Khan	80019	8	ROLE_DOC	5
+224	238	FALSE	M	Rogelio	Sotelo	Boy†s	80020	8	ROLE_DOC	5
+225	239	FALSE	M	Roberto A.	V·zquez	Espinoza de los Monteros	80021	8	ROLE_DOC	5
+226	240	FALSE	M	Freddy Guillermo	Castro	Farf·n	80022	8	ROLE_DOC	5
+227	241	FALSE	M	Samuel	S·nchez	Islas	80023	8	ROLE_DOC	5
+228	242	FALSE	M	Karinne	RamÌrez	Amaro	80024	8	ROLE_DOC	5
+229	243	FALSE	M	Sandra Dinorah	Orantes	JimÈnez	80025	8	ROLE_DOC	5
+230	244	FALSE	M	Francisco Hiram	Calvo	Castro	80026	8	ROLE_DOC	5
+231	245	FALSE	M	Cirilo Gabino	LeÛn	Vega	110124	11	ROLE_DOC	5
+232	246	FALSE	M	Jes˙s	Figueroa	Nazuno	110125	11	ROLE_DOC	5
+233	247	FALSE	M	Luis Alfonso	Villa	Vargas	110126	11	ROLE_DOC	5
+234	248	FALSE	M	Gabriel	Sepulveda	Cervantes	110127	11	ROLE_DOC	5
+235	249	FALSE	M	Jes˙s Antonio	¡lvarez	Cedillo	110128	11	ROLE_DOC	5
+236	250	FALSE	M	Marco Antonio	RamÌrez	Salinas	110129	11	ROLE_DOC	5
+237	251	FALSE	M	JosÈ Antonio	Romero	Serrano	110130	11	ROLE_DOC	5
+238	252	FALSE	M	Julio Ramiro	Alonso	Cruz	110131	11	ROLE_DOC	5
+239	253	FALSE	M	Eugenio	Cedillo	Portugal	110132	11	ROLE_DOC	5
+240	254	FALSE	M	Reyna Elia	Melara	Abarca	110133	11	ROLE_DOC	5
+241	255	FALSE	M	Edgar Felipe	Maya	Maya	110134	11	ROLE_DOC	5
+242	256	FALSE	M	Ana Maria	Winfield	Reyes	110135	11	ROLE_DOC	5
+243	257	FALSE	M	Blanca Esther	Carvajal	G·mez	110136	11	ROLE_DOC	5
+244	258	FALSE	M	Mauricio RamÛn	GarcÌa	GÛmez	110137	11	ROLE_DOC	5
+245	259	FALSE	M	Juan Carlos	MartÌnez	GarcÌa	110138	11	ROLE_DOC	5
+246	260	FALSE	M	Judith Margarita	Tirado	Lule	110139	11	ROLE_DOC	5
+247	261	FALSE	M	Angelica	Camarena	Amaro	110140	11	ROLE_DOC	5
+248	262	FALSE	M	Alfonso	MÈndez	Tenorio	110141	11	ROLE_DOC	5
+249	263	FALSE	M	Adbel AnahÌ	Montes	Meza	110142	11	ROLE_DOC	5
+250	264	FALSE	M	Martha Patricia	JimÈnez	Villanueva	110143	11	ROLE_DOC	5
+251	265	FALSE	M	Fabi·n	Reyes	Prieto	110144	11	ROLE_DOC	5
+252	266	TRUE	M	Rolando FÈlix	Cedillo	Caballero	110145	11	ROLE_DOC	5
+253	267	TRUE	M	VÌctor Hugo	Cabrera	Arenas	110146	11	ROLE_DOC	5
+254	268	TRUE	M	¡ngel Salvador	Montiel	S·nchez	110147	11	ROLE_DOC	5
+255	269	TRUE	H	Ricardo	Flores	Torres	110148	11	ROLE_PAAE	5
+256	270	TRUE	M	Margarita Elizabeth	Vazquez	Benitez	110149	11	ROLE_PAAE	5
+257	271	TRUE	M	Guillermo	NuÒez	Herrera	110150	11	ROLE_PAAE	1
+258	272	TRUE	M	Roberto	Rosas	Cuevas	110151	11	ROLE_PAAE	1
+259	273	TRUE	M	Iv·n	Camacho	Morales	110152	11	ROLE_CH	1
+260	274	TRUE	H	Tania	Rodriguez	Sarabia	110153	11	ROLE_CH	2
