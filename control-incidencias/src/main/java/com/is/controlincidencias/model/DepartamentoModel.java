@@ -6,11 +6,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class DepartamentoForm {
+public class DepartamentoModel {
     private Integer idDepartamento;
     private String nombre;
 
-    public DepartamentoForm(Integer idDepartamento, String nombre) {
+    public DepartamentoModel(Integer idDepartamento, String nombre) {
         this.idDepartamento = idDepartamento;
         this.nombre = nombre;
     }

@@ -4,6 +4,7 @@ package com.is.controlincidencias.component;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,4 +58,15 @@ public class ReglasNegocio {
         return inicio.isAfter(fin);
     }
 
+    public boolean rn29(Integer dias){
+        if(dias >= 3){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public boolean rn31(LocalTime horas,Integer tiempoSolicitado){
+        return horas.minus(tiempoSolicitado,ChronoUnit.HOURS).equals(LocalTime.parse("00:00:00"));
+    }
 }

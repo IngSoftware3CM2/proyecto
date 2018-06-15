@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "justificante")
 public class Justificante {
-
     @Id
     @Column(name = "idJustificante", length = 4, columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -39,7 +38,16 @@ public class Justificante {
     private ConstanciaTiempo contanciaTiempo;
 
     @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TiempoSuplementario tiempoSuplementario;
+
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private OmisionEntrSal omisionEntrSal;
+
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Retardo retardo;
+
+    @OneToOne(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ComisionOficial comisionOficial;
 
     @OneToMany(mappedBy = "justificante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidencia> incidencias = new ArrayList<>();
@@ -47,7 +55,7 @@ public class Justificante {
     private static final String DEFINITION = "FOREIGN KEY(idEmpleado) REFERENCES personal (idEmpleado) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idEmpleado", foreignKey = @ForeignKey(name = "justificante_fk", foreignKeyDefinition = DEFINITION))
+    @JoinColumn(name = "idEmpleado", foreignKey = @ForeignKey(name = "empleado_fk", foreignKeyDefinition = DEFINITION))
     private Personal personal;
 
     public Justificante() {

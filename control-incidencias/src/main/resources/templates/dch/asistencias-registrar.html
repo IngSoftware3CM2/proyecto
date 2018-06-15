@@ -24,9 +24,9 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form class="form-inline" th:action="@{/dch/asistencias/registro}" method="POST"
+                            <form class="form-inline" th:action="@{/dch/asistencias/registrar}" method="POST"
                                   th:object="${modelo}">
-                                <input type="text" hidden id="idAsistencia" th:field="*{idAsistencia}">
+                                <input type="text" hidden id="idAsistencia" th:field="*{id}"/>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" id="data_1">
@@ -36,7 +36,8 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
                                                 <input type="text" class="form-control" id="fecha" required
-                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"/>
+                                                       pattern="^\d{4}-\d{2}-\d{2}$" th:field="*{fecha}"
+                                                       th:readonly="${fecha_deshabilitado}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -52,28 +53,33 @@
                                             <label for="tarjeta" class="col-2">Número de Tarjeta*:</label>
                                             <input type="text" placeholder="Número de Tarjeta" id="tarjeta"
                                                    class="form-control" required pattern="^0[1-8]\d{4}$"
-                                                   th:field="*{tarjeta}">
+                                                   th:field="*{tarjeta}" th:readonly="${tarjeta_deshabilitado}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaEntrada" class="col-2">Hora de Entrada*</label>
                                             <input type="text" placeholder="Hora de Entrada" id="horaEntrada"
-                                                   class="form-control" th:field="*{horaEntrada}">
+                                                   class="form-control" name="horaEntrada"
+                                                   th:value="*{horaEntrada}"
+                                                   pattern="^([0-2]\d:[0-5]\d|-)$"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="horaSalida" class="col-2">Hora de Salida*</label>
                                             <input type="text" placeholder="Hora de Salida" id="horaSalida"
-                                                   class="form-control" th:field="*{horaSalida}">
+                                                   class="form-control" name="horaSalida"
+                                                   th:value="*{horaSalida}"
+                                                   pattern="^([0-2]\d:[0-5]\d|-)$">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label class="col-2"> </label><br>
                                             <input class="btn btn-white" value="Registrar" type="submit"
-                                                   name="registrar" disabled/>
+                                                   name="registrar" th:disabled="${registrar_deshabilitado}"
+                                                   id="btnRegistrar"/>
 
                                         </div>
                                     </div>
@@ -82,11 +88,39 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"/>
+                                            <input class="btn btn-white" value="Buscar" type="submit" name="buscar"
+                                                   id="btnBuscar" th:disabled="${buscar_deshabilitado}"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p class="lead"><u id="nombre">Nombre de usuario</u></p>
+                                        <p class="lead"><u id="nombre" th:text="${modelo.nombre}">Nombre de usuario</u>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 1}">
+                                        Numero de tarjeta no encontrado
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 2}">
+                                        Asistencia con el numero de tarjeta ya registrado
+                                    </div>
+                                    <div class="alert alert-success" role="alert" th:if="${resultado == 3}">
+                                        Operación exitosa
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 4}">
+                                        Hora de entrada es mayor a la hora de salida
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" th:if="${resultado == 5}">
+                                        Fecha no valida para registrar asistencias
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="alertTarjeta">
+                                        Numero de tarjeta incorrecto
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="alertCampos">
+                                        Complete todos los campos obligatorios
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="alertFormatoHora">
+                                        Hora Incorrecta
                                     </div>
                                 </div>
                             </form>
@@ -120,16 +154,33 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
-    function eliminar_registro() {
-        
+    function eliminar_registro(ev) {
+        console.log("eliminar_registro");
+        let $trEliminar = $(ev.target).parent().parent();
+        if (window.confirm("¿Eliminar registro?")) {
+            $trEliminar.empty();
+        } else
+            ev.preventDefault()
     }
 
-    function modificar_registro() {
+    function modificar_registro(ev) {
+        ev.preventDefault();
+        let $trModificar = $(ev.target).parent().parent();
 
+        document.getElementById("btnRegistrar").disabled = false;
+        document.getElementById("btnBuscar").disabled = true;
+        document.getElementById("fecha").readOnly = true;
+        document.getElementById("tarjeta").readOnly = true;
+
+        document.getElementById("tarjeta").value = $trModificar.children()[1].textContent;
+        document.getElementById("horaEntrada").value = $trModificar.children()[2].textContent;
+        document.getElementById("horaSalida").value = $trModificar.children()[3].textContent;
+        document.getElementById("idAsistencia").value = $(ev.target).attr("data-id");
     }
-    
+
     let $bodyRegistros = $("#bodyTabla");
     let inputDate = $('#data_1 .input-group.date');
+
     inputDate.datepicker({
         todayBtn: false,
         endDate: '+1d',
@@ -139,9 +190,9 @@
         autoclose: true,
         format: "yyyy-mm-dd"
     });
+
     inputDate.on("changeDate", function (ev) {
         ev.preventDefault();
-
         $bodyRegistros.empty();
 
         let $fila = $(document.createElement("tr"));
@@ -150,8 +201,8 @@
         let $tdEntrada = $(document.createElement("td"));
         let $tdSalida = $(document.createElement("td"));
         let $tdEliminar = $(document.createElement("td"));
-        let $tdModificar= $(document.createElement("td"));
-        let $btnEliminar = $(document.createElement("button"));
+        let $tdModificar = $(document.createElement("td"));
+        let $btnEliminar = $(document.createElement("a"));
         let $btnModificar = $(document.createElement("button"));
         let $iconoEliminar = $(document.createElement("i"));
         let $iconoModificar = $(document.createElement("i"));
@@ -159,17 +210,14 @@
         let data = {
             fecha: $('#fecha').val()
         };
-        console.log("CAMBIO LA FECHA");
-
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location.origin + "/api/dch/asistencias/consultar/todas",
+            url: "/api/dch/asistencias/consultar/todas",
             data: JSON.stringify(data),
             dataType: "json",
-            success: function(resultado) {
+            success: function (resultado) {
                 console.log("SUCCESS");
-                debugger;
                 for (let dato of resultado) {
                     $fila = $(document.createElement("tr"));
                     $tdFecha = $(document.createElement("td"));
@@ -177,24 +225,32 @@
                     $tdEntrada = $(document.createElement("td"));
                     $tdSalida = $(document.createElement("td"));
                     $tdEliminar = $(document.createElement("td"));
-                    $tdModificar= $(document.createElement("td"));
-                    $btnEliminar = $(document.createElement("button"));
+                    $tdModificar = $(document.createElement("td"));
+                    $btnEliminar = $(document.createElement("a"));
                     $btnModificar = $(document.createElement("button"));
                     $iconoEliminar = $(document.createElement("i"));
                     $iconoModificar = $(document.createElement("i"));
 
                     $tdFecha.text(dato.fecha);
                     $tdTarjeta.text(dato.tarjeta);
-                    $tdEntrada.text(dato.horaEntrada);
-                    $tdSalida.text(dato.horaSalida);
+                    if (dato.horaEntrada === null)
+                        $tdEntrada.text("-");
+                    else
+                        $tdEntrada.text(dato.horaEntrada.substring(0, 5));
+                    if (dato.horaEntrada === null)
+                        $tdSalida.text("-");
+                    else
+                        $tdSalida.text(dato.horaEntrada.substring(0, 5));
 
                     $btnModificar.addClass("btn btn-white");
                     $iconoModificar.addClass("fa fa-pencil");
                     $btnModificar.append($iconoModificar);
-                    $btnEliminar.on("click", modificar_registro);
+                    $btnModificar.attr("data-id", dato.id);
+                    $btnModificar.on("click", modificar_registro);
                     $tdModificar.append($btnModificar);
 
                     $btnEliminar.addClass("btn btn-white");
+                    $btnEliminar.attr("href", `/dch/asistencias/eliminar/${dato.id}`);
                     $iconoEliminar.addClass("fa fa-times");
                     $btnEliminar.append($iconoEliminar);
                     $btnEliminar.on("click", eliminar_registro);
@@ -210,12 +266,79 @@
                     $bodyRegistros.append($fila);
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log("ERROR " + err);
             }
         });
     });
-    inputDate.datepicker("setDate", new Date());
+    inputDate.trigger("changeDate");
+
+    document.getElementById("tarjeta").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaEntrada").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaSalida").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("fecha").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaEntrada").oninvalid = function(ev) {
+        console.log("input horaEntrada");
+        if (this.validity.patternMismatch) {
+            this.setCustomValidity('Hora incorrecta');
+            $('#alertFormatoHora').removeClass("hidden");
+        } else {
+            console.log("valido")
+        }
+    };
+
+    document.getElementById("horaSalida").oninvalid = function(ev) {
+        console.log("input horaSalida");
+        if (this.validity.patternMismatch) {
+            this.setCustomValidity('Hora incorrecta');
+            $('#alertFormatoHora').removeClass("hidden");
+        } else {
+            console.log("valido")
+        }
+    };
+
+    document.getElementById("tarjeta").oninvalid = function (ev) {
+        console.log("input tarjeta");
+        if (this.validity.patternMismatch) {
+            this.setCustomValidity("Numero de tarjeta incorrecto");
+            $("#alertTarjeta").removeClass("hidden");
+        }else if (!this.validity.valid) {
+            this.setCustomValidity("Complete todos los campos obligatorios");
+            console.log("NO VALIDO");
+            $("#alertCampos").removeClass("hidden");
+        } else {
+            console.log("VALIDO");
+        }
+    };
+    document.getElementById("fecha").oninvalid = function (ev) {
+        console.log("input fecha");
+        this.setCustomValidity("Complete todos los campos obligatorios");
+        $("#alertCampos").removeClass("hidden");
+    };
 </script>
 </body>
 </html>

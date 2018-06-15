@@ -2,6 +2,9 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Justificante de cambio de horario')"></head>
 <body>
+<script>
+    var MSG1_6 = "Complete todos los campos obligatorios";
+</script>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
 
@@ -41,7 +44,11 @@
 
                         </div>
                         <div class="col-sm-8 center">
-                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}" th:text="${justificacion}" required minlength="10"></textarea></div>
+                            <div class="form-group"><textarea class="col-lg-6" style="height: 100px" th:field="*{justificacion}" th:text="${justificacion}"
+                                                              oninvalid="if(this.value.length == 0){this.setCustomValidity(MSG1_6); document.getElementById('MSG').innerHTML = MSG1_6}"
+                                                              oninput="this.setCustomValidity('')"
+                                                              required ></textarea>
+                            </div>
 
                         </div>
                     </div>
@@ -121,7 +128,7 @@
 <script type="text/javascript">
     $('.clockpicker').clockpicker();
 </script>
-
+<p id="MSG" hidden></p>
 </body>
 
 </html>

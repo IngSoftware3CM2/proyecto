@@ -3,11 +3,7 @@ package com.is.controlincidencias.controller;
 import com.is.controlincidencias.constants.Constants;
 import com.is.controlincidencias.converter.PermisoEconomicoConverter;
 import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.PermisoEconomico;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.model.PermisoEconomicoModel;
-import com.is.controlincidencias.repository.QuincenaRepository;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
@@ -19,11 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/personal/justificantes/economico")
@@ -97,9 +94,7 @@ public class PermisoEconomicoController {
         else{//ya ocupo todos los permisos de la quicena
             return "redirect:/personal/incidencias?quincena=1";
         }
-
     }
-
 
     @GetMapping("/cancelar")
     public String cancelarPermisoEconomico(){

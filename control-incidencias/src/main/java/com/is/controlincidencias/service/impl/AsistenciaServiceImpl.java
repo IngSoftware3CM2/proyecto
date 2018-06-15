@@ -1,17 +1,23 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.entity.Asistencia;
+import com.is.controlincidencias.entity.Dia;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.Quincena;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
+import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.repository.AsistenciaRepository;
+import com.is.controlincidencias.repository.PeriodoInhabilRepository;
 import com.is.controlincidencias.repository.PersonalRepository;
+import com.is.controlincidencias.repository.QuincenaRepository;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,56 +28,73 @@ import java.util.List;
 public class AsistenciaServiceImpl implements AsistenciaService {
     private static LocalTime siete = LocalTime.of(7, 0, 0, 0);
     private static LocalTime veintidos = LocalTime.of(22, 0, 0, 0);
-    private static LocalTime seisMedia = LocalTime.of(6, 30, 0);
-    private static LocalTime veintitres = LocalTime.of(23, 0, 0, 0);
+    private static LocalTime seis = LocalTime.of(6, 0, 0);
+
+    private static final int NO_EXISTE_TARJETA = 1;
+    private static final int REGISTRO_DUPLICADO = 2;
+    private static final int FECHA_ASISTENCIA_INVALIDA = 5;
 
     private final AsistenciaRepository asistenciaRepository;
     private final PersonalRepository personalRepository;
+    private final PeriodoInhabilRepository periodoInhabilRepository;
+    private final QuincenaRepository quincenaRepository;
 
     @Autowired
     public AsistenciaServiceImpl(
             @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
-            @Qualifier("personalRepository") PersonalRepository personalRepository) {
+            @Qualifier("personalRepository") PersonalRepository personalRepository,
+            @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository periodoInhabilRepository,
+            QuincenaRepository quincenaRepository) {
         this.asistenciaRepository = asistenciaRepository;
         this.personalRepository = personalRepository;
+        this.periodoInhabilRepository = periodoInhabilRepository;
+        this.quincenaRepository = quincenaRepository;
     }
 
     @Override
-    public boolean buscarAsistencia(LocalDate fecha, String noTarjeta) {
-        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(fecha,
-                noTarjeta);
-    }
-
-    @Override
-    public boolean buscarTarjeta(String noTarjeta) {
-        return personalRepository.existsPersonalByNoTarjeta(noTarjeta);
-    }
-
-    @Override
-    public void agregarAsistencia(AsistenciaJSON asistenciaJSON) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaJSON.getTarjeta());
+    public Asistencia agregarAsistencia(AsistenciaForm form) {
+        Personal p = personalRepository.getPersonalByNoTarjeta(form.getTarjeta());
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
-        asistencia.setFechaRegistro(asistenciaJSON.getFecha());
-        if (asistenciaJSON.getHoraEntrada().compareTo(siete) > 0) asistencia.setHoraEntrada(
-                asistenciaJSON.getHoraEntrada());
-        else asistencia.setHoraEntrada(siete);
-        if (asistenciaJSON.getHoraSalida().compareTo(veintidos) < 0) asistencia.setHoraSalida(
-                asistenciaJSON.getHoraSalida());
-        else asistencia.setHoraSalida(veintidos);
-        Asistencia a = asistenciaRepository.save(asistencia);
-        log.info("Id Asistencia: " + a.getIdAsistencia());
+        if (form.getHoraEntrada() == null || form.getHoraSalida() == null) {
+            log.info("OMISION DE HORARIO");
+        } else {
+            if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
+                return null;
+        }
+        asistencia.setFechaRegistro(form.getFecha());
+        asistencia.setHoraEntrada(form.getHoraEntrada());
+        asistencia.setHoraSalida(form.getHoraSalida());
+
+        return asistenciaRepository.save(asistencia);
     }
 
     @Override
     public int existeAsistencia(AsistenciaForm asistenciaForm) {
-        boolean existeTarjeta = personalRepository.existsPersonalByNoTarjeta(
-                asistenciaForm.getTarjeta());
-        if (!existeTarjeta) return 1; // No existe la tarjeta
+        Personal p = personalRepository.findByNoTarjeta(asistenciaForm.getTarjeta());
+        if (p == null) return NO_EXISTE_TARJETA; // No existe la tarjeta
 
-        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
-                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
-        if (a == null) return 2; // No se encontro registro
+        LocalDate fechaFinal = LocalDate.now();
+        LocalDate fechaIncial = fechaFinal;
+        if (esInhabil(asistenciaForm.getFecha()))
+            return FECHA_ASISTENCIA_INVALIDA;
+        int contador = 0;
+        while (contador < 2) {
+            fechaIncial = fechaIncial.minusDays(1);
+            if (!esInhabil(fechaIncial)) {
+                contador++;
+            }
+        }
+        log.info("existeAsistencia() fechaInicial =" + fechaIncial);
+        log.info("existeAsistencia() fechaFinal =" + fechaFinal);
+        if (asistenciaForm.getFecha().isAfter(fechaFinal) || asistenciaForm.getFecha().isBefore(
+                fechaIncial)) return FECHA_ASISTENCIA_INVALIDA;
+
+        boolean existe = asistenciaRepository
+                .existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(asistenciaForm.getFecha(),
+                        asistenciaForm.getTarjeta());
+
+        if (existe) return REGISTRO_DUPLICADO;
 
         return 0; // Salio chido
     }
@@ -80,33 +103,61 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     public AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm) {
         Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
                 asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
+        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaForm.getTarjeta());
 
-        asistenciaForm.setHoraSalida(a.getHoraSalida());
-        asistenciaForm.setHoraEntrada(a.getHoraEntrada());
         asistenciaForm.setFecha(asistenciaForm.getFecha());
         asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
-        asistenciaForm.setIdAsistencia(asistenciaForm.getIdAsistencia());
-        asistenciaForm.setNombre(a.getPersonal().getNombre() + " "
-                + a.getPersonal().getApellidoPaterno() + " " + " "
-                + a.getPersonal().getApellidoMaterno());
+        asistenciaForm.setId(asistenciaForm.getId());
+        asistenciaForm.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
 
+        if (a != null) {
+            asistenciaForm.setHoraSalida(a.getHoraSalida());
+            asistenciaForm.setHoraEntrada(a.getHoraEntrada());
+        } else {
+            if (p.getHorarioActual() != null) {
+                List<Dia> dias = p.getHorarioActual().getDias();
+                for (Dia d : dias) {
+                    if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
+                        asistenciaForm.setHoraSalida(d.getHoraSalida());
+                        asistenciaForm.setHoraEntrada(d.getHoraEntrada());
+                        log.info("El dia es " + d.getNombre() + " " + asistenciaForm.getHoraEntrada());
+                        break;
+                    }
+                }
+            }
+        }
         return asistenciaForm;
     }
 
+    private String obtenerDia(LocalDate fecha) {
+        switch (fecha.getDayOfWeek()) {
+            case MONDAY:
+                return "LUN";
+            case TUESDAY:
+                return "MAR";
+            case WEDNESDAY:
+                return "MIE";
+            case THURSDAY:
+                return "JUE";
+            case FRIDAY:
+                return "VIE";
+            default:
+                return "LUN";
+        }
+    }
+
     @Override
-    public Asistencia modificarAsistencia(AsistenciaForm asistenciaForm) {
+    public Asistencia modificarAsistencia(AsistenciaForm form) {
+        Personal p = personalRepository.findByNoTarjeta(form.getTarjeta());
+        Asistencia a = asistenciaRepository.findByIdAsistencia(form.getId());
 
-        LocalTime horaEntrada = asistenciaForm.getHoraEntrada();
-        LocalTime horaSalida = asistenciaForm.getHoraSalida();
-        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
-                asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
-        if (a == null) return null;
-        if (!validarHoras(horaEntrada, horaSalida)) return null;
+        if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
+            return null;
+        else
+            log.info("modificarAsistencia() horas validas");
 
-        if (horaEntrada.compareTo(siete) > 0) a.setHoraEntrada(horaEntrada);
-        else a.setHoraEntrada(siete);
-        if (horaSalida.compareTo(veintidos) < 0) a.setHoraSalida(horaSalida);
-        else a.setHoraSalida(veintidos);
+        a.setHoraEntrada(form.getHoraEntrada());
+        a.setHoraSalida(form.getHoraSalida());
 
         return asistenciaRepository.save(a);
     }
@@ -126,9 +177,50 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         return lista;
     }
 
-    private boolean validarHoras(LocalTime horaEntrada, LocalTime horaSalida) {
-        if (horaEntrada.compareTo(seisMedia) < 0 || horaEntrada.compareTo(veintitres) > 0)
-            return false;
-        return horaSalida.compareTo(seisMedia) >= 0 && horaSalida.compareTo(veintitres) <= 0;
+    @Override
+    public void eliminarAsistenciaPorId(Integer id) {
+        if (asistenciaRepository.existsById(id)) asistenciaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<String> obtenerAniosPorTarjeta(String tarjeta) {
+        Personal p = personalRepository.getPersonalByNoTarjeta(tarjeta);
+        return asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado());
+    }
+
+    @Override
+    public List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar) {
+        String expresion = asistenciaMostrar.getAnio() + "-%";
+        List<Quincena> quincenas = quincenaRepository.findAllByQuincenaReportadaIsLike(expresion);
+        List<String> resultado = new ArrayList<>();
+        quincenas.forEach(item -> resultado.add(item.getQuincenaReportada()));
+        return resultado;
+    }
+
+    private boolean horasValidas(LocalTime entrada, LocalTime salida, String rol) {
+        if (rol.equals("ROLE_PAAE")) {
+            if (entrada.isBefore(seis) || salida.isAfter(veintidos) || entrada.isAfter(salida))
+                return false;
+            log.info("ES PAAE");
+        } else {
+            if (entrada.isBefore(siete) || salida.isAfter(veintidos) || entrada.isAfter(salida))
+                return false;
+            log.info("NO ES PAAE");
+        }
+
+        log.info("horasValidas() es true :" + entrada.isBefore(siete) + " " + salida.isAfter
+                (veintidos) + " " + entrada.isAfter(salida));
+        return true;
+    }
+
+    private boolean esInhabil(LocalDate fecha) {
+        boolean inhabil = periodoInhabilRepository
+                .existsByInicioIsLessThanEqualAndFinGreaterThanEqual(fecha, fecha);
+        log.info("esInhabil() 1= " + inhabil);
+        if (fecha.getDayOfWeek() == DayOfWeek.SATURDAY || fecha.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            inhabil = true;
+        }
+        log.info("esInhabil() 2= " + inhabil);
+        return inhabil;
     }
 }

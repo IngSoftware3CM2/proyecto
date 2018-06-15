@@ -21,6 +21,14 @@ public class PeriodoInhabil {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
+    @Column(name = "aplicapaee", nullable = false)  //se deja en false si este tipo de personal no tiene este periodoInhabil.
+    private Boolean permisopaee;
+
+    @Column(name = "aplicadocente", nullable = false)
+    private Boolean permisodocente;
+
+    @Column(name = "justificacionarchivo")
+    private String justificacionarchivo;
    /* private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)        //Quincena en la que será procesada

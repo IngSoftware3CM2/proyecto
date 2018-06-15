@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.converter.StringToLocalDate;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.TipoA;
 import com.is.controlincidencias.model.JustificanteTAModel;
