@@ -34,6 +34,9 @@ public class Personal {
     @Column(name = "activo", nullable = false)  //se deja en false si es docente y se va de año sabático, eg,  para no generarle incidencias, para quien haga el cronos
     private Boolean activo;
 
+    @Column(name = "habierto", nullable = false)  //se deja en false si NO tiene horarioAbierto 
+    private Boolean habierto;
+
     @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
