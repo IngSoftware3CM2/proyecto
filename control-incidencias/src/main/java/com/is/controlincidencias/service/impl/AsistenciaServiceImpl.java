@@ -3,11 +3,14 @@ package com.is.controlincidencias.service.impl;
 import com.is.controlincidencias.entity.Asistencia;
 import com.is.controlincidencias.entity.Dia;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.Quincena;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
+import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.repository.AsistenciaRepository;
 import com.is.controlincidencias.repository.PeriodoInhabilRepository;
 import com.is.controlincidencias.repository.PersonalRepository;
+import com.is.controlincidencias.repository.QuincenaRepository;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,27 +37,18 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     private final AsistenciaRepository asistenciaRepository;
     private final PersonalRepository personalRepository;
     private final PeriodoInhabilRepository periodoInhabilRepository;
+    private final QuincenaRepository quincenaRepository;
 
     @Autowired
     public AsistenciaServiceImpl(
             @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
             @Qualifier("personalRepository") PersonalRepository personalRepository,
-            @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository
-                    periodoInhabilRepository) {
+            @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository periodoInhabilRepository,
+            QuincenaRepository quincenaRepository) {
         this.asistenciaRepository = asistenciaRepository;
         this.personalRepository = personalRepository;
         this.periodoInhabilRepository = periodoInhabilRepository;
-    }
-
-    @Override
-    public boolean buscarAsistencia(LocalDate fecha, String noTarjeta) {
-        return asistenciaRepository.existsAsistenciaByFechaRegistroAndPersonalNoTarjeta(fecha,
-                noTarjeta);
-    }
-
-    @Override
-    public boolean buscarTarjeta(String noTarjeta) {
-        return personalRepository.existsPersonalByNoTarjeta(noTarjeta);
+        this.quincenaRepository = quincenaRepository;
     }
 
     @Override
@@ -186,6 +180,21 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     @Override
     public void eliminarAsistenciaPorId(Integer id) {
         if (asistenciaRepository.existsById(id)) asistenciaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<String> obtenerAniosPorTarjeta(String tarjeta) {
+        Personal p = personalRepository.getPersonalByNoTarjeta(tarjeta);
+        return asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado());
+    }
+
+    @Override
+    public List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar) {
+        String expresion = asistenciaMostrar.getAnio() + "-%";
+        List<Quincena> quincenas = quincenaRepository.findAllByQuincenaReportadaIsLike(expresion);
+        List<String> resultado = new ArrayList<>();
+        quincenas.forEach(item -> resultado.add(item.getQuincenaReportada()));
+        return resultado;
     }
 
     private boolean horasValidas(LocalTime entrada, LocalTime salida, String rol) {

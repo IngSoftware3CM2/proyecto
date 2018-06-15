@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaForm;
+import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,7 +167,16 @@ public class AsistenciasController {
     }
 
     @GetMapping("/mostrar")
-    public String mostrar() {
+    public String mostrar(Model model) {
+        model.addAttribute(MODELO, new AsistenciaMostrar());
+        return MOSTRAR_ASISTENCIAS;
+    }
+
+    @PostMapping("/mostrar")
+    public String mostrarPOST(@ModelAttribute(name = "modelo") AsistenciaMostrar mostrar,
+            Model model) {
+        //model.addAttribute("datos", asistenciaService.obtenerAsistenciasPersonal(mostrar));
+        model.addAttribute(MODELO, new AsistenciaMostrar());
         return MOSTRAR_ASISTENCIAS;
     }
 
