@@ -102,7 +102,7 @@ public class CambioHorarioController {
 
                     chm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                     cambioService.insertaCambioHorario(chm, idIncidencia);
-                    return "redirect:/personal/justificantes";
+                    return "redirect:/personal/justificantes?add=1";
                 }
 
         }
@@ -128,7 +128,7 @@ public class CambioHorarioController {
             chm.setIdJustificante(modCambHorarioJust);
             chm.setJustificacion(modeloCH.getJustificacion());
             cambioService.updateCambioHorario(chm);
-            return "redirect:/personal/justificantes";
+            return "redirect:/personal/justificantes?add=1";
         }
 
     }
