@@ -15,7 +15,7 @@ public class ConstanciaTiempo {
     @Column(name = "licenciaArchivo", nullable = false)
     private String constanciaArchivo;
 
-    @Column(name = "segfecha", nullable = false, unique = true)
+    @Column(name = "segfecha", nullable = true, unique = true)
     private LocalDate segfecha;
 
     @Column(name = "tipo", nullable = false)

@@ -37,4 +37,28 @@ public class    PersonalPeriodoInhabil {
     public int hashCode() {
         return Objects.hash(idpersonalperiodoinhabil, personal, periodoInhabil);
     }
+
+    public Integer getIdpersonalperiodoinhabil() {
+        return idpersonalperiodoinhabil;
+    }
+
+    public void setIdpersonalperiodoinhabil(Integer idpersonalperiodoinhabil) {
+        this.idpersonalperiodoinhabil = idpersonalperiodoinhabil;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public PeriodoInhabil getPeriodoInhabil() {
+        return periodoInhabil;
+    }
+
+    public void setPeriodoInhabil(PeriodoInhabil periodoInhabil) {
+        this.periodoInhabil = periodoInhabil;
+    }
 }

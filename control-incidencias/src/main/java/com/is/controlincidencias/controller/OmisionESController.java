@@ -92,7 +92,7 @@ public class OmisionESController
                 om.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                 om.setTipo(modeloES.isTipo());
                 omisionService.addOmision(om, idIncidencia, fesha);
-                return "redirect:/personal/justificantes";
+                return "redirect:/personal/justificantes?add=1";
         }
 
 
@@ -101,7 +101,7 @@ public class OmisionESController
         public String modOmision(@Valid @ModelAttribute("omisionModel") OmisionModel modeloES)
         {
             omisionService.updateJust(modeloES.getJustificacion(), idJustGlobal);
-            return "redirect:/personal/justificantes";
+            return "redirect:/personal/justificantes?add=1";
         }
 
 
