@@ -18,8 +18,8 @@ public class PeriodoInhabil {
     @Column(name = "fin", nullable = false)
     private LocalDate fin;
 
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+    @Column(name = "descripcion", nullable = false, length = 300)
+    private String descripcion ;
 
     @Column(name = "aplicapaee", nullable = false)  //se deja en false si este tipo de personal no tiene este periodoInhabil.
     private Boolean permisopaee;
@@ -65,6 +65,30 @@ public class PeriodoInhabil {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Boolean getPermisopaee() {
+        return permisopaee;
+    }
+
+    public void setPermisopaee(Boolean permisopaee) {
+        this.permisopaee = permisopaee;
+    }
+
+    public Boolean getPermisodocente() {
+        return permisodocente;
+    }
+
+    public void setPermisodocente(Boolean permisodocente) {
+        this.permisodocente = permisodocente;
+    }
+
+    public String getJustificacionarchivo() {
+        return justificacionarchivo;
+    }
+
+    public void setJustificacionarchivo(String justificacionarchivo) {
+        this.justificacionarchivo = justificacionarchivo;
     }
 
     @Override

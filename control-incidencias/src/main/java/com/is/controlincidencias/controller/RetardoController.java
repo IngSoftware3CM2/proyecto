@@ -91,7 +91,7 @@ public class RetardoController {
             rm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
          //   cambioService.insertaCambioHorario(chm, idIncidencia);
             retardoService.addRetardo(rm, idIncidencia, fesha);
-            return "redirect:/personal/justificantes";
+            return "redirect:/personal/justificantes?add=1";
 
     }
 
@@ -100,7 +100,7 @@ public class RetardoController {
     public String modRetardo(@Valid @ModelAttribute("cambioHorarioModel") RetardoModel modeloR, BindingResult bindings)
     {
         retardoService.updateJust(modeloR.getJustificacion(), idJustGlobal);
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
 
     }
 

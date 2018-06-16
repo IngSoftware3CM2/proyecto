@@ -1,8 +1,11 @@
 package com.is.controlincidencias.component;
 
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -11,6 +14,8 @@ import java.util.regex.Pattern;
 
 @Component("reglasNegocioComponent")
 public class ReglasNegocio {
+
+    private static final Log LOG = LogFactory.getLog(ReglasNegocio.class);
     private ReglasNegocio(){
     }
 
@@ -68,5 +73,16 @@ public class ReglasNegocio {
 
     public boolean rn31(LocalTime horas,Integer tiempoSolicitado){
         return horas.minus(tiempoSolicitado,ChronoUnit.HOURS).equals(LocalTime.parse("00:00:00"));
+    }
+
+    public boolean rn54(DayOfWeek dow){
+        LOG.info("***********************************************************");
+        LOG.info(dow);
+        String compara=dow.toString();
+     if(compara.equals("SUNDAY") || compara.equals("SATURDAY")){
+         LOG.info("Estoy en el if");
+         return true;
+     }
+     return false;
     }
 }

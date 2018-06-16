@@ -19,35 +19,44 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${tipoAndNombre}"></label>
             </div>
         </div>
         <div class=" hidden alert alert-danger" id="fechaInvalida">
             Fecha invalida
+        </div>
+        <div class=" hidden alert alert-danger" id="mensajeArchivoE">
+            No se adjuntaron los archivos correctamente
+        </div>
+        <div class="hidden alert alert-danger" id="MSG">
+            Complete todos los campos obligatorios
+        </div>
+        <div class="hidden alert alert-danger" id="errorRN54">
+            Dato no valido
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
                     <span class="text-navy">Registrar dia no Laborable</span>
                 </h1>
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="formDia" enctype="multipart/form-data" th:object="${diaNoLaborable}" >
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha del dia no laborable:</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" pattern="^\d{4}-\d{2}-\d{2}" >
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="fechaDia" class="form-control" th:field="*{fecha}" pattern="^\d{4}-\d{2}-\d{2}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2"> Tipo de Personal:</label>
-                        <div class="input-group col-sm-4">
-                            <div class="i-checks col-sm-4 "><label> <input type="radio" value="1" name="a"/> <i></i>Personal Docente </label></div>
-                            <div class="i-checks col-sm-4"><label> <input type="radio" value="2" name="a"/> <i></i>PAAE </label></div>
-                            <div class="i-checks col-sm-4"><label> <input type="radio" value="3" name="a"/> <i></i>Personal Docente y PAAE </label></div>
+                        <div class="input-group col-sm-10" id="tiposPersonal">
+                            <div class="i-checks col-sm-2 "><input type="radio" value="1" name="a"/> <i></i><label>Personal Docente </label></div>
+                            <div class="i-checks col-sm-1"><input type="radio" value="2" name="a"/> <i></i><label>PAAE </label></div>
+                            <div class="i-checks col-sm-3"><input type="radio" value="3" name="a"/> <i></i><label>Personal Docente y PAAE </label></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 ">Justificacion:</label>
-                        <div class="col-sm-4"><textarea  style="height: 100%"></textarea> </div>
+                        <div class="col-sm-4"><textarea  id="justificacion" th:field="*{justificacion}" style="height: 100%" required></textarea> </div>
                         <div class="col-sm-6 text-right">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
@@ -57,7 +66,7 @@
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input type="file" name="..."/>
+                                    <input th:field="*{archivo}" type="file" name="file" id="file2" onchange="ValidateSingleInput(this);" accept=".jpg"/>
                                 </span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                             </div>
@@ -68,13 +77,13 @@
                     <div class="form-group" >
                         <div class="input-group date col-sm-6">
                             <label class="col-sm-4 ">Seleccionar Todos:</label>
-                            <div class="i-checks col-sm-2"><label> <input type="checkbox"/><i></i></label></div>
+                            <div class="i-checks col-sm-2"><label> <input id="selectedAll" type="checkbox"/><i></i></label></div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <table class="table">
+                            <table class="table" id="tablePesonal">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -82,40 +91,17 @@
                                     <th>Seleccionar</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Jaime Rabadan</td>
-                                    <td>02200</td>
-                                    <td>
-                                        <div class="form-group" >
-                                            <div class="input-group date col-sm-2">
-                                                <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>otro nombre</td>
-                                    <td>12345</td>
-                                    <td>
-                                        <div class="form-group" >
-                                            <div class="input-group date col-sm-2">
-                                                <div class="i-checks col-lg-6"><label> <input type="checkbox"/><i></i></label></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
+                                <tbody id="tBodyPersonal" ></tbody>
                             </table>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-6"></div>
                         <div class="col-lg-3">
-                            <button class="btn btn-sm btn-white" type="submit">Registrar</button>
+                            <button class="btn btn-sm btn-white" id="buttonRegistrar" type="button">Registrar</button>
                         </div>
                         <div class="col-lg-3">
-                            <button class="btn btn-sm btn-white" type="button">Cancelar</button>
+                            <button class="btn btn-sm btn-white" id="buttonCancelar" type="button">Cancelar</button>
                         </div>
                     </div>
                 </form>
@@ -127,7 +113,6 @@
 
 
 <script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-<script src="#" th:src="@{/js/justificanteTA.js}"></script>
 <script src="#" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
@@ -138,6 +123,9 @@
 <script src="#" th:src="@{/js/dataPicker.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script src="#" th:src="@{/js/jquery.form.js}"></script>
+<script src="#" th:src="@{/js/diaNoLaborable.js}"></script>
+
 
 </body>
 
