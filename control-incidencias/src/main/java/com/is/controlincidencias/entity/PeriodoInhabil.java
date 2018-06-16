@@ -18,8 +18,8 @@ public class PeriodoInhabil {
     @Column(name = "fin", nullable = false)
     private LocalDate fin;
 
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+    @Column(name = "descripcion", nullable = false, length = 300)
+    private String descripcion ;
 
     @Column(name = "aplicapaee", nullable = false)  //se deja en false si este tipo de personal no tiene este periodoInhabil.
     private Boolean permisopaee;
