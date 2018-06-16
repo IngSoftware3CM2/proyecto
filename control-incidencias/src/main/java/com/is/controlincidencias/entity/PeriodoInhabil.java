@@ -27,7 +27,7 @@ public class PeriodoInhabil {
     @Column(name = "aplicadocente", nullable = false)
     private Boolean permisodocente;
 
-    @Column(name = "justificacionarchivo")
+    @Column(name = "justificacionarchivo", nullable = true)
     private String justificacionarchivo;
    /* private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
