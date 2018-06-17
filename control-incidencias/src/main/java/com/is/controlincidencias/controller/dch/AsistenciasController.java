@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaForm;
+import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -171,14 +174,4 @@ public class AsistenciasController {
         model.addAttribute(MODELO, new AsistenciaMostrar());
         return MOSTRAR_ASISTENCIAS;
     }
-
-    @PostMapping("/mostrar")
-    public String mostrarPOST(@ModelAttribute(name = "modelo") AsistenciaMostrar mostrar,
-            Model model) {
-        //model.addAttribute("datos", asistenciaService.obtenerAsistenciasPersonal(mostrar));
-        model.addAttribute(MODELO, new AsistenciaMostrar());
-        return MOSTRAR_ASISTENCIAS;
-    }
-
-
 }

@@ -12,7 +12,7 @@ public class ComisionOficial {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(600)")
+    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(500)")
     private String justificacion;
 
     @Column(name = "fechainicio", nullable = false)

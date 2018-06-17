@@ -24,12 +24,11 @@ public class RestAsistenciasController {
 
     @PostMapping("/consultar/todas")
     public List<AsistenciaJSON> consultarTodas(@RequestBody ConsultaAsistenciaJSON consulta) {
-        log.info(consulta.toString());
         return asistenciaService.obtenerAsistencias(consulta.getFecha());
     }
 
     @PostMapping("/obtener/anios")
-    public List<String> obtenerAnios(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+    public List<AsistenciaMostrar> obtenerAnios(@RequestBody AsistenciaMostrar asistenciaMostrar) {
         log.info("obtenerAnios() tarjeta=" + asistenciaMostrar.toString());
         return asistenciaService.obtenerAniosPorTarjeta(asistenciaMostrar.getTarjeta());
     }
@@ -38,5 +37,10 @@ public class RestAsistenciasController {
     public List<String> obtenerQuincenas(@RequestBody AsistenciaMostrar asistencia) {
         log.info("obtenerQuincenas() asistencia" + asistencia.toString());
         return asistenciaService.obtenerQuincenas(asistencia);
+    }
+
+    @PostMapping("/obtener/todas")
+    public List<AsistenciaJSON> obtenerTodas(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+        return asistenciaService.obtenerAsistenciasParaMostrar(asistenciaMostrar);
     }
 }

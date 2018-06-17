@@ -13,7 +13,7 @@ public class CambioHorario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "justificacion", nullable = false)
+    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(500)")
     private String justificacion;
 
     @Column(name = "fecha", nullable = false)                   //fecha a la que aplicará el cambio de horario
