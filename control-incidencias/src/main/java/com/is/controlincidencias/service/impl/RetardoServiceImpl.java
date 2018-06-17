@@ -1,12 +1,9 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.model.RetardoModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
-import com.is.controlincidencias.repository.OmisionESRepository;
 import com.is.controlincidencias.repository.RetardoRepository;
 import com.is.controlincidencias.service.IncidenciaService;
-import com.is.controlincidencias.service.OmisionESService;
 import com.is.controlincidencias.service.RetardoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
