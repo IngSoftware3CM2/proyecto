@@ -1,16 +1,10 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.entity.Asistencia;
-import com.is.controlincidencias.entity.Dia;
-import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.entity.Quincena;
+import com.is.controlincidencias.entity.*;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.AsistenciaMostrar;
-import com.is.controlincidencias.repository.AsistenciaRepository;
-import com.is.controlincidencias.repository.PeriodoInhabilRepository;
-import com.is.controlincidencias.repository.PersonalRepository;
-import com.is.controlincidencias.repository.QuincenaRepository;
+import com.is.controlincidencias.repository.*;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +32,19 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     private final PersonalRepository personalRepository;
     private final PeriodoInhabilRepository periodoInhabilRepository;
     private final QuincenaRepository quincenaRepository;
+    private final DiaRepository diaRepository;
 
     @Autowired
     public AsistenciaServiceImpl(
             @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
             @Qualifier("personalRepository") PersonalRepository personalRepository,
             @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository periodoInhabilRepository,
-            QuincenaRepository quincenaRepository) {
+            QuincenaRepository quincenaRepository, DiaRepository diaRepository) {
         this.asistenciaRepository = asistenciaRepository;
         this.personalRepository = personalRepository;
         this.periodoInhabilRepository = periodoInhabilRepository;
         this.quincenaRepository = quincenaRepository;
+        this.diaRepository = diaRepository;
     }
 
     @Override
@@ -62,16 +58,21 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
                 return null;
         }
+        Integer idAsistencia = asistenciaRepository.obtenerMaximoIdAsistencia()+1;
+        log.info("EL NUEVO ID =" + idAsistencia);
+
+        asistencia.setIdAsistencia(idAsistencia);
         asistencia.setFechaRegistro(form.getFecha());
         asistencia.setHoraEntrada(form.getHoraEntrada());
         asistencia.setHoraSalida(form.getHoraSalida());
-
-        return asistenciaRepository.save(asistencia);
+        asistenciaRepository.insertarAsistencia(form.getFecha(), form.getHoraEntrada(), form
+                .getHoraSalida(), p.getIdEmpleado(), idAsistencia);
+        return asistencia;
     }
 
     @Override
     public int existeAsistencia(AsistenciaForm asistenciaForm) {
-        Personal p = personalRepository.findByNoTarjeta(asistenciaForm.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(asistenciaForm.getTarjeta());
         if (p == null) return NO_EXISTE_TARJETA; // No existe la tarjeta
 
         LocalDate fechaFinal = LocalDate.now();
@@ -115,7 +116,9 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             asistenciaForm.setHoraEntrada(a.getHoraEntrada());
         } else {
             if (p.getHorarioActual() != null) {
-                List<Dia> dias = p.getHorarioActual().getDias();
+                HorarioActual h = p.getHorarioActual();
+                Integer idHorario = h.getIdHorario();
+                List<Dia> dias = diaRepository.findDiaByHorarioActualIdHorario(idHorario);
                 for (Dia d : dias) {
                     if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
                         asistenciaForm.setHoraSalida(d.getHoraSalida());
