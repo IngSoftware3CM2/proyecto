@@ -45,7 +45,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
-            Date fecha2 = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
+            Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3- antes el LocalDate.now() era "fecha"
             justificanteRepository.altaJustificante("Espera",fecha2,0,cambiohorario.getIdJustificante()); //idJustificante es el noempleado :3
             List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
             LOG.info("--- EL ID ES " + ids.get(ids.size() - 1));
