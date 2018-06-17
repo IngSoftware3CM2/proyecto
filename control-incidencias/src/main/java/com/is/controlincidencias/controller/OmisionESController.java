@@ -149,7 +149,8 @@ public class OmisionESController
 
         public void setTipos(Model model, String horaS, String horaE)
             {
-                boolean tipo;
+                boolean tipo = true;
+                String func = "buena";
                 if(horaE.equals("00:00:00")) //hora entrada omitida, false
                 {
                     tipo = false;
@@ -158,13 +159,24 @@ public class OmisionESController
                     model.addAttribute("tipoes", "Entrada");
                 }
                 else
-                {
-                    tipo = true;
-                    model.addAttribute("horae", horaE);
-                    model.addAttribute("horas", "N/A");
-                    model.addAttribute("tipoes", "Salida");
-                }
+                    {
+                        if(horaS.equals("00:00:00"))
+                            {
+                                tipo = true;
+                                model.addAttribute("horae", horaE);
+                                model.addAttribute("horas", "N/A");
+                                model.addAttribute("tipoes", "Salida");
+                            }
+                        else
+                            {
+                                model.addAttribute("horae", horaE);
+                                model.addAttribute("horas", horaS);
+                                model.addAttribute("tipoes", "No se puede justificar con Omisión de Entrada / Salida");
+                                func = "mala";
+                            }
+                    }
                 model.addAttribute("tipo", tipo);
+                model.addAttribute("funcion", func);
             }
     }
 

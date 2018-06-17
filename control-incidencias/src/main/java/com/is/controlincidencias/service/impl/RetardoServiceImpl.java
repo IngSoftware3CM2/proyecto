@@ -40,7 +40,7 @@ public class RetardoServiceImpl implements RetardoService{
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
         LocalDate fecha = LocalDate.parse(fesha, formatter);
-        Date fecha2 = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
+        Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
         justificanteRepository.altaJustificante("Espera",fecha2,0, om.getIdJustificante()); //idJustificante es el noempleado :3
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         retardoRepository.guardaJustificanteRetardo(om.getJustificacion(),  ids.get(ids.size() - 1));
