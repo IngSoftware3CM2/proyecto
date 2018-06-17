@@ -169,8 +169,8 @@ public class OmisionESController
                             }
                         else
                             {
-                                model.addAttribute("horae", "N/A");
-                                model.addAttribute("horas", "N/A");
+                                model.addAttribute("horae", horaE);
+                                model.addAttribute("horas", horaS);
                                 model.addAttribute("tipoes", "No se puede justificar con Omisión de Entrada / Salida");
                                 func = "mala";
                             }
