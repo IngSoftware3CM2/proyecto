@@ -172,7 +172,6 @@ public class AsistenciasController {
     @GetMapping("/mostrar")
     public String mostrar(Model model) {
         model.addAttribute(MODELO, new AsistenciaMostrar());
-x
         return MOSTRAR_ASISTENCIAS;
     }
 }

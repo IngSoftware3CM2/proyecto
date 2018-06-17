@@ -38,4 +38,9 @@ public class RestAsistenciasController {
         log.info("obtenerQuincenas() asistencia" + asistencia.toString());
         return asistenciaService.obtenerQuincenas(asistencia);
     }
+
+    @PostMapping("/obtener/todas")
+    public List<AsistenciaJSON> obtenerTodas(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+        return asistenciaService.obtenerAsistenciasParaMostrar(asistenciaMostrar);
+    }
 }

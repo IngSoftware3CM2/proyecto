@@ -90,6 +90,34 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
+    $("#btnMostrar").on("click", function(ev) {
+        let data = {
+            tarjeta: "nada",
+            anio: "nada",
+            quincena: "nada",
+            nombre: "nada"
+        };
+        data.tarjeta = $("#tarjeta").val();
+        data.anio = $("#anio").val();
+        data.quincena = $("#quincena").val();
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/api/dch/asistencias/obtener/todas",
+            data: JSON.stringify(data),
+            dataType: "json",
+            success: function (resultado) {
+                for (let dato of resultado) {
+                    console.log(dato);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
     $("#btnBuscar").on("click", function (ev) {
         console.log("btnBuscar()");
         let data = {
