@@ -22,4 +22,7 @@ public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializ
 
     List<Asistencia> findAllByPersonalNoTarjetaAndFechaRegistroBetween(String tarjeta, LocalDate
             inicio, LocalDate termino);
+
+    boolean existsAsistenciasByPersonalNoTarjetaAndFechaRegistroBetween(String tarjeta, LocalDate
+            inicio, LocalDate termino);
 }

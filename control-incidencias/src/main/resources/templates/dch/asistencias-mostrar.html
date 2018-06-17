@@ -63,6 +63,27 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <p class="lead text-center"><u id="nombre"></u></p>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="alert alert-danger hidden" role="alert" id="mensajeA">
+                                        Ingresa el numero de tarjeta
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="mensajeB">
+                                        Numero de tarjeta incorrecto
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="mensajeC">
+                                        Numero de tarjeta no encontrado
+                                    </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="mensajeF">
+                                        No se encontró ningún registro de asistencia
+                                    </div>
+                                </div>
                             </form>
                             <table class="table">
                                 <thead>
@@ -90,7 +111,24 @@
 <script src="#" th:src="@{/js/inspinia.js}"></script>
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script>
-    $("#btnMostrar").on("click", function(ev) {
+    let $fila = $(document.createElement("tr"));
+    let $tdEntrada = $(document.createElement("td"));
+    let $tdSalida = $(document.createElement("td"));
+    let $bodyRegistros = $("#tablaDatos");
+    $("#btnMostrar").on("click", function (ev) {
+        if(document.getElementById("tarjeta").validity.valueMissing) {
+            console.log("Campo requerido Trayectoria A");
+            $("#mensajeA").removeClass("hidden");
+            ev.preventDefault();
+            return;
+        }
+        if (document.getElementById("tarjeta").validity.patternMismatch) {
+            console.log("No formato Trayectoria B");
+            $("#mensajeB").removeClass("hidden");
+            ev.preventDefault();
+            return;
+        }
+        $("#tablaDatos").empty();
         let data = {
             tarjeta: "nada",
             anio: "nada",
@@ -110,6 +148,25 @@
             success: function (resultado) {
                 for (let dato of resultado) {
                     console.log(dato);
+                    $fila = $(document.createElement("tr"));
+                    $tdFecha = $(document.createElement("td"));
+                    $tdEntrada = $(document.createElement("td"));
+                    $tdSalida = $(document.createElement("td"));
+                    $tdFecha.text(dato.fecha);
+
+                    if (dato.horaEntrada === null)
+                        $tdEntrada.text("-");
+                    else
+                        $tdEntrada.text(dato.horaEntrada.substring(0, 5));
+                    if (dato.horaEntrada === null)
+                        $tdSalida.text("-");
+                    else
+                        $tdSalida.text(dato.horaSalida.substring(0, 5));
+
+                    $fila.append($tdFecha);
+                    $fila.append($tdEntrada);
+                    $fila.append($tdSalida);
+                    $bodyRegistros.append($fila);
                 }
             },
             error: function (err) {
@@ -120,6 +177,20 @@
 
     $("#btnBuscar").on("click", function (ev) {
         console.log("btnBuscar()");
+        if (document.getElementById("tarjeta").validity.valueMissing) {
+            console.log("Campo requerido Trayectoria A");
+            $("#mensajeA").removeClass("hidden");
+            ev.preventDefault();
+            return;
+        }
+        if (document.getElementById("tarjeta").validity.patternMismatch) {
+            console.log("No formato Trayectoria B");
+            $("#mensajeB").removeClass("hidden");
+            ev.preventDefault();
+            return;
+        }
+        $("#anio").empty();
+        $("#quincena").empty();
         let data = {
             tarjeta: "nada",
             anio: "nada",
@@ -128,24 +199,32 @@
         };
         data.tarjeta = $("#tarjeta").val();
         $.ajax({
-            type:"POST",
+            type: "POST",
             contentType: "application/json",
             url: "/api/dch/asistencias/obtener/anios",
             data: JSON.stringify(data),
             dataType: "json",
             success: function (resultado) {
                 console.log(resultado);
-                for (let dato of resultado) {
-                    $("#anio").append($("<option>", {
-                        value: dato.anio,
-                        text: dato.anio
-                    }));
-                }
                 if (resultado.length > 0) {
-                    $("#anio").trigger("change");
+                    if (resultado[0].tarjeta === "errorC") {
+                        $("#mensajeC").removeClass("hidden");
+                    } else {
+                        for (let dato of resultado) {
+                            $("#anio").append($("<option>", {
+                                value: dato.anio,
+                                text: dato.anio
+                            }));
+                        }
+                        $("#anio").trigger("change");
+                        $("#nombre").text(resultado[0].nombre);
+                    }
+                } else {
+                    console.log("Trayectoria F");
+                    $("#mensajeF").removeClass("hidden");
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err);
             }
         });
@@ -159,10 +238,12 @@
             quincena: "nada",
             nombre: "nada"
         };
-        data.tarjeta = $("tarjeta").val();
+        data.tarjeta = $("#tarjeta").val();
         data.anio = $(this).val();
+        $("#quincena").empty();
+        $("#tablaDatos").empty();
         $.ajax({
-            type:"POST",
+            type: "POST",
             contentType: "application/json",
             url: "/api/dch/asistencias/obtener/quincenas",
             data: JSON.stringify(data),
@@ -176,11 +257,26 @@
                     }));
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err);
             }
         });
     });
+
+    $("#quincena").change(function (ev) {
+        $("#tablaDatos").empty();
+    });
+
+    document.getElementById("tarjeta").oninput = function (ev) {
+        limpiarErrerores();
+    };
+
+    function limpiarErrerores() {
+        $("#mensajeA").addClass("hidden");
+        $("#mensajeB").addClass("hidden");
+        $("#mensajeC").addClass("hidden");
+        $("#mensajeF").addClass("hidden");
+    }
 </script>
 </body>
 </html>

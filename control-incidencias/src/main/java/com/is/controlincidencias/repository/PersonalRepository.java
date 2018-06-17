@@ -13,7 +13,7 @@ import java.util.List;
 @Repository("personalRepository")
 public interface PersonalRepository extends JpaRepository<Personal, Serializable> {
     boolean existsPersonalByNoTarjeta(String noTarjeta);
-    Personal getPersonalByNoTarjeta(String noTarjeta);
+    Personal findFirstByNoTarjeta(String noTarjeta);
     Personal findByIdEmpleado(int idEmpleado);
     Personal findByLogin_Correo(String email);
     Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);

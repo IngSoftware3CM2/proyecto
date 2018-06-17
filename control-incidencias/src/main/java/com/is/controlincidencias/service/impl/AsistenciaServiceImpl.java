@@ -53,7 +53,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
     @Override
     public Asistencia agregarAsistencia(AsistenciaForm form) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(form.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(form.getTarjeta());
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
         if (form.getHoraEntrada() == null || form.getHoraSalida() == null) {
@@ -103,7 +103,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     public AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm) {
         Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
                 asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
-        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaForm.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(asistenciaForm.getTarjeta());
 
         asistenciaForm.setFecha(asistenciaForm.getFecha());
         asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
@@ -184,14 +184,20 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
     @Override
     public List<AsistenciaMostrar> obtenerAniosPorTarjeta(String tarjeta) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(tarjeta);
+        Personal p = personalRepository.findFirstByNoTarjeta(tarjeta);
         List<AsistenciaMostrar> lista =  new ArrayList<>();
-        asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado()).forEach(item -> {
-            AsistenciaMostrar a = new AsistenciaMostrar();
-            a.setAnio(String.valueOf(item.intValue()));
-            a.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
-            lista.add(a);
-        });
+        if (p == null) {
+            AsistenciaMostrar error = new AsistenciaMostrar();
+            error.setTarjeta("errorC");
+            lista.add(error);
+        } else {
+            asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado()).forEach(item -> {
+                AsistenciaMostrar a = new AsistenciaMostrar();
+                a.setAnio(String.valueOf(item.intValue()));
+                a.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
+                lista.add(a);
+            });
+        }
         return lista;
     }
 
@@ -201,7 +207,17 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         List<Quincena> quincenas = quincenaRepository
                 .findAllByQuincenaReportadaIsLikeOrderByQuincenaReportadaDesc(expresion);
         List<String> resultado = new ArrayList<>();
-        quincenas.forEach(item -> resultado.add(item.getQuincenaReportada()));
+        if (personalRepository.existsPersonalByNoTarjeta(asistenciaMostrar.getTarjeta())) {
+            quincenas.forEach(item -> {
+                // existe asistencia en la quincena que esta entre X & y del personal con tarjeta
+                boolean existe = asistenciaRepository.
+                        existsAsistenciasByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar
+                                .getTarjeta(), item.getInicio(), item.getFin());
+                log.info("obtenerQuincenas() Existe? =" + existe);
+                if (existe)
+                    resultado.add(item.getQuincenaReportada());
+            });
+        }
         return resultado;
     }
 
@@ -209,9 +225,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     public List<AsistenciaJSON> obtenerAsistenciasParaMostrar(AsistenciaMostrar asistenciaMostrar) {
         Quincena quincena = quincenaRepository
                 .findFirstByQuincenaReportadaIs(asistenciaMostrar.getQuincena());
-        List<Asistencia> asistencias = asistenciaRepository
-                .findAllByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar.getTarjeta()
-                        , quincena.getInicio(), quincena.getFin());
+        List<Asistencia> asistencias = new ArrayList<>();
+        if (quincena != null) {
+            asistencias = asistenciaRepository
+                    .findAllByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar.getTarjeta()
+                            , quincena.getInicio(), quincena.getFin());
+        }
         List<AsistenciaJSON> lista = new ArrayList<>();
         asistencias.forEach(item -> {
             AsistenciaJSON a = new AsistenciaJSON();
