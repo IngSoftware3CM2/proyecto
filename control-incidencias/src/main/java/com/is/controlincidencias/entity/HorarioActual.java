@@ -19,15 +19,7 @@ public class HorarioActual {
     @OneToMany(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dia> dias = new ArrayList<>();
 
-    public void addDia(Dia dia) {
-        dias.add(dia);
-        dia.setHorarioActual(this);
-    }
 
-    public void removeDia(Dia dia) {
-        dias.remove(dia);
-        dia.setHorarioActual(null);
-    }
 
     public Integer getIdHorario() {
         return idHorario;
