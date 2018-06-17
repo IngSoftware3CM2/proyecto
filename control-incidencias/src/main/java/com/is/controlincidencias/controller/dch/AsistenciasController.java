@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaForm;
+import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -168,7 +171,10 @@ public class AsistenciasController {
 
     @GetMapping("/mostrar")
     public String mostrar(Model model) {
+        List<AsistenciaJSON> asistencias = new ArrayList<>();
         model.addAttribute(MODELO, new AsistenciaMostrar());
+        model.addAttribute("asistencias", asistencias);
+
         return MOSTRAR_ASISTENCIAS;
     }
 
@@ -176,7 +182,9 @@ public class AsistenciasController {
     public String mostrarPOST(@ModelAttribute(name = "modelo") AsistenciaMostrar mostrar,
             Model model) {
         //model.addAttribute("datos", asistenciaService.obtenerAsistenciasPersonal(mostrar));
+        List<AsistenciaJSON> asistencias = new ArrayList<>();
         model.addAttribute(MODELO, new AsistenciaMostrar());
+        model.addAttribute("asistencias", asistencias);
         return MOSTRAR_ASISTENCIAS;
     }
 

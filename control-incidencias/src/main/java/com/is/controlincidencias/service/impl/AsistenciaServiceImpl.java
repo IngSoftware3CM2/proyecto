@@ -183,15 +183,23 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     }
 
     @Override
-    public List<String> obtenerAniosPorTarjeta(String tarjeta) {
+    public List<AsistenciaMostrar> obtenerAniosPorTarjeta(String tarjeta) {
         Personal p = personalRepository.getPersonalByNoTarjeta(tarjeta);
-        return asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado());
+        List<AsistenciaMostrar> lista =  new ArrayList<>();
+        asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado()).forEach(item -> {
+            AsistenciaMostrar a = new AsistenciaMostrar();
+            a.setAnio(String.valueOf(item.intValue()));
+            a.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
+            lista.add(a);
+        });
+        return lista;
     }
 
     @Override
     public List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar) {
         String expresion = asistenciaMostrar.getAnio() + "-%";
-        List<Quincena> quincenas = quincenaRepository.findAllByQuincenaReportadaIsLike(expresion);
+        List<Quincena> quincenas = quincenaRepository
+                .findAllByQuincenaReportadaIsLikeOrderByQuincenaReportadaDesc(expresion);
         List<String> resultado = new ArrayList<>();
         quincenas.forEach(item -> resultado.add(item.getQuincenaReportada()));
         return resultado;

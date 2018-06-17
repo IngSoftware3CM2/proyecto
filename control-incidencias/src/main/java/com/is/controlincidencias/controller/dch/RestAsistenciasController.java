@@ -24,12 +24,11 @@ public class RestAsistenciasController {
 
     @PostMapping("/consultar/todas")
     public List<AsistenciaJSON> consultarTodas(@RequestBody ConsultaAsistenciaJSON consulta) {
-        log.info(consulta.toString());
         return asistenciaService.obtenerAsistencias(consulta.getFecha());
     }
 
     @PostMapping("/obtener/anios")
-    public List<String> obtenerAnios(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+    public List<AsistenciaMostrar> obtenerAnios(@RequestBody AsistenciaMostrar asistenciaMostrar) {
         log.info("obtenerAnios() tarjeta=" + asistenciaMostrar.toString());
         return asistenciaService.obtenerAniosPorTarjeta(asistenciaMostrar.getTarjeta());
     }

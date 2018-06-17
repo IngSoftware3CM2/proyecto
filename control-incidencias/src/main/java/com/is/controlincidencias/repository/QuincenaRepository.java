@@ -15,6 +15,6 @@ public interface QuincenaRepository extends JpaRepository<Quincena, Serializable
     @Transactional
     Integer obtenerIdQuincena(@Param("fecharegistro") LocalDate fecharegistro);
 
-    List<Quincena> findAllByQuincenaReportadaIsLike(String expresion);
+    List<Quincena> findAllByQuincenaReportadaIsLikeOrderByQuincenaReportadaDesc(String expresion);
 
 }

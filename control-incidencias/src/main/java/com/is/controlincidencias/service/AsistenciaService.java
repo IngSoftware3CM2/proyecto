@@ -15,6 +15,6 @@ public interface AsistenciaService {
     Asistencia modificarAsistencia(AsistenciaForm asistenciaForm);
     List<AsistenciaJSON> obtenerAsistencias(LocalDate fecha);
     void eliminarAsistenciaPorId(Integer id);
-    List<String> obtenerAniosPorTarjeta(String tarjeta);
+    List<AsistenciaMostrar> obtenerAniosPorTarjeta(String tarjeta);
     List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar);
 }
