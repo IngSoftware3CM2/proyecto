@@ -19,4 +19,7 @@ public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializ
     @Query(value = "select distinct(extract(year from fecharegistro)) as anio from asistencia where idempleado=:id order by anio desc", nativeQuery = true)
     @Transactional
     List<Double> obtenerDiferentesAnios(@Param("id") Integer id);
+
+    List<Asistencia> findAllByPersonalNoTarjetaAndFechaRegistroBetween(String tarjeta, LocalDate
+            inicio, LocalDate termino);
 }

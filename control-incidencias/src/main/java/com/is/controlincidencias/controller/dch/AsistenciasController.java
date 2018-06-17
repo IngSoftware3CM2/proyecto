@@ -171,22 +171,8 @@ public class AsistenciasController {
 
     @GetMapping("/mostrar")
     public String mostrar(Model model) {
-        List<AsistenciaJSON> asistencias = new ArrayList<>();
         model.addAttribute(MODELO, new AsistenciaMostrar());
-        model.addAttribute("asistencias", asistencias);
-
+x
         return MOSTRAR_ASISTENCIAS;
     }
-
-    @PostMapping("/mostrar")
-    public String mostrarPOST(@ModelAttribute(name = "modelo") AsistenciaMostrar mostrar,
-            Model model) {
-        //model.addAttribute("datos", asistenciaService.obtenerAsistenciasPersonal(mostrar));
-        List<AsistenciaJSON> asistencias = new ArrayList<>();
-        model.addAttribute(MODELO, new AsistenciaMostrar());
-        model.addAttribute("asistencias", asistencias);
-        return MOSTRAR_ASISTENCIAS;
-    }
-
-
 }

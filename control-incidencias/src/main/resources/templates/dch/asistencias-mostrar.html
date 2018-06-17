@@ -24,8 +24,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form role="form" class="form-inline" th:action="@{/dch/asistencias/mostrar}"
-                                  method="POST" th:object="${modelo}">
+                            <form role="form" class="form-inline" th:object="${modelo}">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
@@ -59,7 +58,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-white" id="btnMostrar"
+                                            <input type="button" class="btn btn-white" id="btnMostrar"
                                                    value="Mostrar Asistencias"/>
                                         </div>
                                     </div>
@@ -74,11 +73,6 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tablaDatos">
-                                    <tr th:each="registro : ${asistencias}">
-                                        <td th:text="${registro.fecha}">dia</td>
-                                        <td th:text="${registro.horaEntrada}">dia</td>
-                                        <td th:text="${registro.horaSalida}">dia</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

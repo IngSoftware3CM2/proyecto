@@ -205,6 +205,24 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         return resultado;
     }
 
+    @Override
+    public List<AsistenciaJSON> obtenerAsistenciasParaMostrar(AsistenciaMostrar asistenciaMostrar) {
+        Quincena quincena = quincenaRepository
+                .findFirstByQuincenaReportadaIs(asistenciaMostrar.getQuincena());
+        List<Asistencia> asistencias = asistenciaRepository
+                .findAllByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar.getTarjeta()
+                        , quincena.getInicio(), quincena.getFin());
+        List<AsistenciaJSON> lista = new ArrayList<>();
+        asistencias.forEach(item -> {
+            AsistenciaJSON a = new AsistenciaJSON();
+            a.setFecha(item.getFechaRegistro());
+            a.setHoraEntrada(item.getHoraEntrada());
+            a.setHoraSalida(item.getHoraSalida());
+            lista.add(a);
+        });
+        return lista;
+    }
+
     private boolean horasValidas(LocalTime entrada, LocalTime salida, String rol) {
         if (rol.equals("ROLE_PAAE")) {
             if (entrada.isBefore(seis) || salida.isAfter(veintidos) || entrada.isAfter(salida))
