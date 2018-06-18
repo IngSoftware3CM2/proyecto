@@ -37,5 +37,6 @@ public interface OmisionESRepository extends JpaRepository<OmisionEntrSal, Seria
     @Query(value = "update omisionentrsal set justificacion = :justificacion where idjustificante = :idjustificante", nativeQuery = true)
     void updateOmision(@Param("justificacion") String justificacion, @Param("idjustificante") int idjustificante);
 
+    boolean existsByJustificante_IdJustificante (int id);
 
 }

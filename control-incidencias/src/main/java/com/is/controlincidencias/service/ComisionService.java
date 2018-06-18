@@ -8,4 +8,6 @@ public interface ComisionService {
     int getLastJustificante();
 
     void addComision(ComisionModel com, int id);
+
+    boolean existsByIdjustificante(int id);
 }

@@ -58,4 +58,9 @@ public class OmisionESServiceImpl implements OmisionESService{
         {
             omisionRepository.updateOmision(just, id);
         }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return omisionRepository.existsByJustificante_IdJustificante(id);
+    }
 }
