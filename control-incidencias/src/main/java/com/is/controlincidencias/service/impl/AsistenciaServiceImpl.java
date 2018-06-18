@@ -58,7 +58,11 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
                 return null;
         }
-        Integer idAsistencia = asistenciaRepository.obtenerMaximoIdAsistencia()+1;
+        Integer idAsistencia = asistenciaRepository.obtenerMaximoIdAsistencia();
+        if (idAsistencia == null)
+            idAsistencia = 1;
+        else
+            idAsistencia += 1;
         log.info("EL NUEVO ID =" + idAsistencia);
 
         asistencia.setIdAsistencia(idAsistencia);

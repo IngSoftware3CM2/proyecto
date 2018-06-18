@@ -38,6 +38,12 @@
                     <span class="nav-label">Ver Justificantes</span>
                 </a>
             </li>
+            <li th:class="${is_active == 5} ? 'active'">
+                <a href="#" th:href="@{/personal/vernotificaciones}">
+                    <i class="fa fa-buil"></i>
+                    <span class="nav-label">Ver notificaciones</span>
+                </a>
+            </li>
             <li>
                 <a href="#" th:href="@{/logout}">
                     <i class="fa fa-sign-out"></i>

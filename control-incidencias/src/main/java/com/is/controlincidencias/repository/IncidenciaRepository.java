@@ -31,10 +31,11 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
     public int getIdEmpleadoByIdJustificante(@Param("idjustificante") int idjustificante);
 
     @Modifying
-    @Query(value = "insert into incidencia (idincidencia, fecharegistro, tipo, idempleado) values (:id, :fecha, :tipo, :empleado)", nativeQuery
-            = true)
+    @Query(value = "insert into incidencia (idincidencia, fecharegistro, tipo, idempleado, horasfaltantes) values (:id, :fecha, :tipo, :empleado, :horas)", nativeQuery = true)
     @Transactional
-    void insertarAsistencia(@Param("id") Integer id, @Param("fecha") LocalDate fecha, @Param("tipo") String tipo, @Param("empleado") Integer empleado);
+    void insertarAsistencia(@Param("id") Integer id, @Param("fecha") LocalDate fecha,
+            @Param("tipo") String tipo, @Param("empleado") Integer empleado,
+            @Param("horas") Integer horas);
 
     @Query(value = "select max(idincidencia) from incidencia", nativeQuery = true)
     @Transactional
