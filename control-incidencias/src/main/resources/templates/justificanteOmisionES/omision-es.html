@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10" th:switch="${funcion}">
                                     <button class="btn btn-sm btn-white" type="submit" id="enviar" th:case="buena">Enviar</button>
-                                    <button class="btn btn-sm btn-white" type="button" id="enviarDisabled" th:case="mala" disabled>Enviar</button>
+                                    <div th:case="mala">No se puede justificar con Omisión de Entrada / Salida</div>
                                 </div>
                             </div>
                         </div>

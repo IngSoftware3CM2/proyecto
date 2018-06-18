@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -121,10 +120,6 @@ public class CambioHorarioController {
             LOGGER.info("MODIFICANDO :3 *3*");
             LOGGER.info(modeloCH);
             CambioHorarioModel chm = new CambioHorarioModel();
-           // chm.setHoraEntrada("7:00"); //esto debería venir desde la base
-          //  chm.setHoraSalida(HORA_QUINCE); //esto igual
-           // chm.setNuevaEntrada(modeloCH.getNuevaEntrada());
-            //chm.setNuevaSalida(modeloCH.getNuevaSalida());
             chm.setIdJustificante(modCambHorarioJust);
             chm.setJustificacion(modeloCH.getJustificacion());
             cambioService.updateCambioHorario(chm);
@@ -153,9 +148,6 @@ public class CambioHorarioController {
         model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
         model.addAttribute("tarjeta", personal.getNoTarjeta());
         model.addAttribute("fecha", fecha);
-        //model.addAttribute("fecha", fecha);
-        //model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
-        //model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
 
         LOGGER.info("**********tengo " + entCH.getHoraEntrada().toString() + " y tambien " + entCH.getHoraSalida() + " Y... " + entCH.getJustificacion());
         model.addAttribute("horae", entCH.getHoraEntrada().toString());
@@ -172,7 +164,7 @@ public class CambioHorarioController {
             }
             catch (ParseException e)
             {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
             return new SimpleDateFormat("EEEE", new Locale("es","ES")).format(date).toUpperCase().substring(0,2);
         }
