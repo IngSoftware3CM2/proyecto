@@ -10,4 +10,6 @@ import java.util.List;
 @Repository("diaRepository")
 public interface DiaRepository extends JpaRepository<Dia, Serializable> {
     List<Dia> findDiaByHorarioActualIdHorario(Integer id);
+
+    Dia findFirstByHorarioActual_IdHorarioAndNombre(Integer id, String nombre);
 }

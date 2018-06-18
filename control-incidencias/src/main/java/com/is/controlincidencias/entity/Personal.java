@@ -99,6 +99,14 @@ public class Personal {
         this.tipo = tipo;
     }
 
+    public Boolean getHabierto() {
+        return habierto;
+    }
+
+    public void setHabierto(Boolean habierto) {
+        this.habierto = habierto;
+    }
+
     public HorarioActual getHorarioActual() {
         return horarioActual;
     }
