@@ -59,4 +59,9 @@ public class RetardoServiceImpl implements RetardoService{
     {
         retardoRepository.updateRetardo(just, id);
     }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return retardoRepository.existsByJustificante_IdJustificante(id);
+    }
 }

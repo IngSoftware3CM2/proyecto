@@ -40,8 +40,8 @@ public class TiempoSuplGenerado {
         return idtiemposuplgenerado;
     }
 
-    public void setIdAsistencia(Integer idAsistencia) {
-        this.idtiemposuplgenerado = idAsistencia;
+    public void setId(Integer id) {
+        this.idtiemposuplgenerado = id;
     }
 
     public LocalDate getFechaRegistro() {

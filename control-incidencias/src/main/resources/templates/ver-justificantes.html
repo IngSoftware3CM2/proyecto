@@ -40,6 +40,7 @@
                                 </tr>
                                 </thead>
                                 <div th:if="${add == 1}" class="alert alert-success" role="alert">Se registró solicitud.</div>
+                                <div th:if="${add == 0}" class="alert alert-success" role="alert">Se registró solicitud.</div>
                                 <div th:if="${modificar == 1}" class="alert alert-success" role="alert">Modificación de justificación exitosa</div>
                                 <div th:if="${modificar == 2}" class="alert alert-danger" role="alert">Modificación de justificación cancelada</div>
 
@@ -52,6 +53,10 @@
                                         <span th:case="3">Cambio de Horario</span>
                                         <span th:case="4">Dias Economicos</span>
                                         <span th:case="5">Tiempo Suplementario</span>
+                                        <span th:case="6">Omision</span>
+                                        <span th:case="7">Retardo</span>
+                                        <span th:case="8">Comision Oficial</span>
+                                        <span th:case="9">Constancia de Tiempo</span>
                                     </td>
 
 
