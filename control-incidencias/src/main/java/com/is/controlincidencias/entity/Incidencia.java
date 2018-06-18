@@ -13,8 +13,11 @@ public class Incidencia {
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
-    @Column(name = "tipo", nullable = false, length = 2)
+    @Column(name = "tipo", nullable = true, length = 2)
     private String tipo;
+
+    @Column(name = "horasFaltantes", nullable = false)
+    private Integer horasFaltantes;
 
     private static final String DEFINITION = "FOREIGN KEY(idQuincena) REFERENCES quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 

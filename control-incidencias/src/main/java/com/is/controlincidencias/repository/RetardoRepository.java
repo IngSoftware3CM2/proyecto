@@ -1,7 +1,6 @@
 package com.is.controlincidencias.repository;
 
 
-import com.is.controlincidencias.entity.OmisionEntrSal;
 import com.is.controlincidencias.entity.Retardo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

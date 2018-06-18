@@ -1,16 +1,10 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.entity.Asistencia;
-import com.is.controlincidencias.entity.Dia;
-import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.entity.Quincena;
+import com.is.controlincidencias.entity.*;
 import com.is.controlincidencias.model.AsistenciaForm;
 import com.is.controlincidencias.model.AsistenciaJSON;
 import com.is.controlincidencias.model.AsistenciaMostrar;
-import com.is.controlincidencias.repository.AsistenciaRepository;
-import com.is.controlincidencias.repository.PeriodoInhabilRepository;
-import com.is.controlincidencias.repository.PersonalRepository;
-import com.is.controlincidencias.repository.QuincenaRepository;
+import com.is.controlincidencias.repository.*;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,22 +32,24 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     private final PersonalRepository personalRepository;
     private final PeriodoInhabilRepository periodoInhabilRepository;
     private final QuincenaRepository quincenaRepository;
+    private final DiaRepository diaRepository;
 
     @Autowired
     public AsistenciaServiceImpl(
             @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
             @Qualifier("personalRepository") PersonalRepository personalRepository,
             @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository periodoInhabilRepository,
-            QuincenaRepository quincenaRepository) {
+            QuincenaRepository quincenaRepository, DiaRepository diaRepository) {
         this.asistenciaRepository = asistenciaRepository;
         this.personalRepository = personalRepository;
         this.periodoInhabilRepository = periodoInhabilRepository;
         this.quincenaRepository = quincenaRepository;
+        this.diaRepository = diaRepository;
     }
 
     @Override
     public Asistencia agregarAsistencia(AsistenciaForm form) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(form.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(form.getTarjeta());
         Asistencia asistencia = new Asistencia();
         asistencia.setPersonal(p);
         if (form.getHoraEntrada() == null || form.getHoraSalida() == null) {
@@ -62,16 +58,21 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             if (!horasValidas(form.getHoraEntrada(), form.getHoraSalida(), p.getTipo()))
                 return null;
         }
+        Integer idAsistencia = asistenciaRepository.obtenerMaximoIdAsistencia()+1;
+        log.info("EL NUEVO ID =" + idAsistencia);
+
+        asistencia.setIdAsistencia(idAsistencia);
         asistencia.setFechaRegistro(form.getFecha());
         asistencia.setHoraEntrada(form.getHoraEntrada());
         asistencia.setHoraSalida(form.getHoraSalida());
-
-        return asistenciaRepository.save(asistencia);
+        asistenciaRepository.insertarAsistencia(form.getFecha(), form.getHoraEntrada(), form
+                .getHoraSalida(), p.getIdEmpleado(), idAsistencia);
+        return asistencia;
     }
 
     @Override
     public int existeAsistencia(AsistenciaForm asistenciaForm) {
-        Personal p = personalRepository.findByNoTarjeta(asistenciaForm.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(asistenciaForm.getTarjeta());
         if (p == null) return NO_EXISTE_TARJETA; // No existe la tarjeta
 
         LocalDate fechaFinal = LocalDate.now();
@@ -103,7 +104,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     public AsistenciaForm buscarAsistencia(AsistenciaForm asistenciaForm) {
         Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta(
                 asistenciaForm.getFecha(), asistenciaForm.getTarjeta());
-        Personal p = personalRepository.getPersonalByNoTarjeta(asistenciaForm.getTarjeta());
+        Personal p = personalRepository.findFirstByNoTarjeta(asistenciaForm.getTarjeta());
 
         asistenciaForm.setFecha(asistenciaForm.getFecha());
         asistenciaForm.setTarjeta(asistenciaForm.getTarjeta());
@@ -115,7 +116,9 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             asistenciaForm.setHoraEntrada(a.getHoraEntrada());
         } else {
             if (p.getHorarioActual() != null) {
-                List<Dia> dias = p.getHorarioActual().getDias();
+                HorarioActual h = p.getHorarioActual();
+                Integer idHorario = h.getIdHorario();
+                List<Dia> dias = diaRepository.findDiaByHorarioActualIdHorario(idHorario);
                 for (Dia d : dias) {
                     if (d.getNombre().equals(obtenerDia(asistenciaForm.getFecha()))) {
                         asistenciaForm.setHoraSalida(d.getHoraSalida());
@@ -183,18 +186,63 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     }
 
     @Override
-    public List<String> obtenerAniosPorTarjeta(String tarjeta) {
-        Personal p = personalRepository.getPersonalByNoTarjeta(tarjeta);
-        return asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado());
+    public List<AsistenciaMostrar> obtenerAniosPorTarjeta(String tarjeta) {
+        Personal p = personalRepository.findFirstByNoTarjeta(tarjeta);
+        List<AsistenciaMostrar> lista =  new ArrayList<>();
+        if (p == null) {
+            AsistenciaMostrar error = new AsistenciaMostrar();
+            error.setTarjeta("errorC");
+            lista.add(error);
+        } else {
+            asistenciaRepository.obtenerDiferentesAnios(p.getIdEmpleado()).forEach(item -> {
+                AsistenciaMostrar a = new AsistenciaMostrar();
+                a.setAnio(String.valueOf(item.intValue()));
+                a.setNombre(p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno());
+                lista.add(a);
+            });
+        }
+        return lista;
     }
 
     @Override
     public List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar) {
         String expresion = asistenciaMostrar.getAnio() + "-%";
-        List<Quincena> quincenas = quincenaRepository.findAllByQuincenaReportadaIsLike(expresion);
+        List<Quincena> quincenas = quincenaRepository
+                .findAllByQuincenaReportadaIsLikeOrderByQuincenaReportadaDesc(expresion);
         List<String> resultado = new ArrayList<>();
-        quincenas.forEach(item -> resultado.add(item.getQuincenaReportada()));
+        if (personalRepository.existsPersonalByNoTarjeta(asistenciaMostrar.getTarjeta())) {
+            quincenas.forEach(item -> {
+                // existe asistencia en la quincena que esta entre X & y del personal con tarjeta
+                boolean existe = asistenciaRepository.
+                        existsAsistenciasByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar
+                                .getTarjeta(), item.getInicio(), item.getFin());
+                log.info("obtenerQuincenas() Existe? =" + existe);
+                if (existe)
+                    resultado.add(item.getQuincenaReportada());
+            });
+        }
         return resultado;
+    }
+
+    @Override
+    public List<AsistenciaJSON> obtenerAsistenciasParaMostrar(AsistenciaMostrar asistenciaMostrar) {
+        Quincena quincena = quincenaRepository
+                .findFirstByQuincenaReportadaIs(asistenciaMostrar.getQuincena());
+        List<Asistencia> asistencias = new ArrayList<>();
+        if (quincena != null) {
+            asistencias = asistenciaRepository
+                    .findAllByPersonalNoTarjetaAndFechaRegistroBetween(asistenciaMostrar.getTarjeta()
+                            , quincena.getInicio(), quincena.getFin());
+        }
+        List<AsistenciaJSON> lista = new ArrayList<>();
+        asistencias.forEach(item -> {
+            AsistenciaJSON a = new AsistenciaJSON();
+            a.setFecha(item.getFechaRegistro());
+            a.setHoraEntrada(item.getHoraEntrada());
+            a.setHoraSalida(item.getHoraSalida());
+            lista.add(a);
+        });
+        return lista;
     }
 
     private boolean horasValidas(LocalTime entrada, LocalTime salida, String rol) {

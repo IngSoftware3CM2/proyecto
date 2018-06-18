@@ -18,4 +18,5 @@ public interface IncidenciaService {
 
     int getIdEmpleadoByIdJustificante(int id);
 
+    int registrarIncidencia();
 }

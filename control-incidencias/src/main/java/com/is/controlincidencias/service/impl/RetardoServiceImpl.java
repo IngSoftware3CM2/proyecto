@@ -1,12 +1,9 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.model.RetardoModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
-import com.is.controlincidencias.repository.OmisionESRepository;
 import com.is.controlincidencias.repository.RetardoRepository;
 import com.is.controlincidencias.service.IncidenciaService;
-import com.is.controlincidencias.service.OmisionESService;
 import com.is.controlincidencias.service.RetardoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -38,9 +34,7 @@ public class RetardoServiceImpl implements RetardoService{
     @Override
     public void addRetardo(RetardoModel om, int idincidencia, String fesha)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-        LocalDate fecha = LocalDate.parse(fesha, formatter);
-        Date fecha2 = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
+        Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3-
         justificanteRepository.altaJustificante("Espera",fecha2,0, om.getIdJustificante()); //idJustificante es el noempleado :3
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         retardoRepository.guardaJustificanteRetardo(om.getJustificacion(),  ids.get(ids.size() - 1));

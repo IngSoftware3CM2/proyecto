@@ -1,7 +1,5 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.entity.PeriodoInhabil;
-import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.entity.PersonalPeriodoInhabil;
 import com.is.controlincidencias.repository.PersonalPeriodoInhabilRepository;
 import com.is.controlincidencias.service.PersonalPeriodoInhabilService;

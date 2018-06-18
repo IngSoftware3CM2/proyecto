@@ -14,7 +14,7 @@ public class TiempoSuplementario {
     @Column(name = "fecha", nullable = false)                   //dia a justificar
     private LocalDate fecha;
 
-    @Column(name = "tiempocubrir", nullable = false)                   //dia a justificar
+    @Column(name = "tiempocubrir", nullable = false)
     private Integer tiempocubrir;
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";

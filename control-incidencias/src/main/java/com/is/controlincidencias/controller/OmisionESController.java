@@ -92,7 +92,7 @@ public class OmisionESController
                 om.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
                 om.setTipo(modeloES.isTipo());
                 omisionService.addOmision(om, idIncidencia, fesha);
-                return "redirect:/personal/justificantes";
+                return "redirect:/personal/justificantes?add=1";
         }
 
 
@@ -101,7 +101,7 @@ public class OmisionESController
         public String modOmision(@Valid @ModelAttribute("omisionModel") OmisionModel modeloES)
         {
             omisionService.updateJust(modeloES.getJustificacion(), idJustGlobal);
-            return "redirect:/personal/justificantes";
+            return "redirect:/personal/justificantes?add=1";
         }
 
 
@@ -149,22 +149,37 @@ public class OmisionESController
 
         public void setTipos(Model model, String horaS, String horaE)
             {
-                boolean tipo;
+                boolean tipo = true;
+                String func = "buena";
+                String entrada = "horae";
+                String salida = "horas";
+                String tipoes = "tipoes";
+
                 if(horaE.equals("00:00:00")) //hora entrada omitida, false
                 {
                     tipo = false;
-                    model.addAttribute("horae", "N/A");
-                    model.addAttribute("horas", horaS);
-                    model.addAttribute("tipoes", "Entrada");
+                    model.addAttribute(entrada, "N/A");
+                    model.addAttribute(salida, horaS);
+                    model.addAttribute(tipoes, "Entrada");
                 }
                 else
-                {
-                    tipo = true;
-                    model.addAttribute("horae", horaE);
-                    model.addAttribute("horas", "N/A");
-                    model.addAttribute("tipoes", "Salida");
-                }
+                    {
+                        if(horaS.equals("00:00:00"))
+                            {
+                                model.addAttribute(entrada, horaE);
+                                model.addAttribute(salida, "N/A");
+                                model.addAttribute(tipoes, "Salida");
+                            }
+                        else
+                            {
+                                model.addAttribute(entrada, horaE);
+                                model.addAttribute(salida, horaS);
+                                model.addAttribute(tipoes, "-");
+                                func = "mala";
+                            }
+                    }
                 model.addAttribute("tipo", tipo);
+                model.addAttribute("funcion", func);
             }
     }
 

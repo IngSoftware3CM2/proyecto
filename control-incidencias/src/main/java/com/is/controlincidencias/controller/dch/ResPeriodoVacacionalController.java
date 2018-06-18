@@ -54,7 +54,7 @@ public class ResPeriodoVacacionalController {
         if(personalJSON.getValorTipo() == 1){
             tipo= "ROLE_DOC";
         }else if(personalJSON.getValorTipo() == 2){
-            tipo="ROLE_PAEE";
+            tipo="ROLE_PAAE";
         }else{
             tipo="AMBOS";
         }
@@ -116,6 +116,11 @@ public class ResPeriodoVacacionalController {
             pih.setPermisodocente(true);
             pih.setPermisopaee(true);
         }
+        Integer idPeriodo = periodoInhabilService.findMaxIdPeriodo();
+        if(idPeriodo==null){
+            idPeriodo=0;
+        }
+        pih.setIdperiodo(idPeriodo + 1);
         PeriodoInhabil ultimo = periodoInhabilService.savePeriodoInhabil(pih);
         if(!personalSin.isEmpty()){
             Integer max = personalPeriodoInhabilService.getMaxId();

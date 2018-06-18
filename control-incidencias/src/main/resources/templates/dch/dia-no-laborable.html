@@ -57,20 +57,6 @@
                     <div class="form-group">
                         <label class="col-sm-2 ">Justificacion:</label>
                         <div class="col-sm-4"><textarea  id="justificacion" th:field="*{justificacion}" style="height: 100%" required></textarea> </div>
-                        <div class="col-sm-6 text-right">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename"></span>
-                                </div>
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new">Seleccionar Archivo</span>
-                                    <span class="fileinput-exists">Cambiar</span>
-                                    <input th:field="*{archivo}" type="file" name="file" id="file2" onchange="ValidateSingleInput(this);" accept=".jpg"/>
-                                </span>
-                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
-                            </div>
-                        </div>
 
                     </div>
 

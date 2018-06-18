@@ -102,7 +102,7 @@ function registrarDia(){
             ids.push($(this).val());
         });
         console.log(ids);
-        console.log(fechaInicio);
+        console.log(fechaIni);
         console.log(fechaFin);
         if(ids.length != 0 && validarFormatoFecha(fechaIni) && validarFormatoFecha(fechaFin)){
             console.log("Entre al if");

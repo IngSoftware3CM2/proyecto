@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 
 @Slf4j
@@ -59,7 +58,7 @@ public class ResDiaNoLaborableController {
         if(personalJSON.getValorTipo() == 1){
             tipo= "ROLE_DOC";
         }else if(personalJSON.getValorTipo() == 2){
-            tipo="ROLE_PAEE";
+            tipo="ROLE_PAAE";
         }else{
             tipo="AMBOS";
         }
@@ -124,6 +123,11 @@ public class ResDiaNoLaborableController {
             pih.setPermisodocente(true);
             pih.setPermisopaee(true);
         }
+        Integer idPeriodo = periodoInhabilService.findMaxIdPeriodo();
+        if(idPeriodo==null){
+            idPeriodo=0;
+        }
+        pih.setIdperiodo(idPeriodo + 1);
         PeriodoInhabil ultimo = periodoInhabilService.savePeriodoInhabil(pih);
         if(!personalSin.isEmpty()){
             Integer max = personalPeriodoInhabilService.getMaxId();
@@ -143,15 +147,4 @@ public class ResDiaNoLaborableController {
         }
         return 1;
     }
-/*
-    @PostMapping("/upload")
-    public String upload(MultipartHttpServletRequest request, HttpServletResponse response) {
-        //0. notice, we have used MultipartHttpServletRequest
-        //1. get the files from the request object
-        Iterator<String> itr =  request.getFileNames();
-        MultipartFile mpf = request.getFile(itr.next());
-        LOG.info("---------UPLOADED------------");
-        String nameArchivo = mpf.getOriginalFilename();
-        return "";
-    }*/
 }

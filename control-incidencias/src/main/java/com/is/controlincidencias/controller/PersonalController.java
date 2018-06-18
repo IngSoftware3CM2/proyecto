@@ -228,6 +228,10 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
         else if(tipo==6)
             redirectURL = "redirect:/personal/justificantes/constanciatiempo/agregar";
+        else if(tipo==7)
+            redirectURL = "redirect:/personal/justificantes/retardo/agregar";
+        else if(tipo==8)
+            redirectURL = "redirect:/personal/justificantes/omision/agregar";
         return redirectURL;
     }
 
