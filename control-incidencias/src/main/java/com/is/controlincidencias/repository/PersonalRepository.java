@@ -2,8 +2,11 @@ package com.is.controlincidencias.repository;
 
 import com.is.controlincidencias.entity.Personal;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,4 +20,9 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     Personal findByNoTarjeta(String tarjeta);
     List<Personal> findByTipoOrderByNoTarjeta(String tipo);
     List<Personal> findByDepartamento_IdDepartamentoOrderByNoTarjeta(Integer id);
+
+    @Query(value = "select sexo from personal where idempleado= :id", nativeQuery = true)
+    @Transactional
+    String sexoDePersonal(@Param("id") int id);
+
 }

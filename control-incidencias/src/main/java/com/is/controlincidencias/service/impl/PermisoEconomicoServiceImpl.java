@@ -95,7 +95,7 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
     @Override
     public void registrarJustificante(int idEmpleado, Incidencia incidencia) {
         Date fecha = new Date();
-        justificanteRepository.altaJustificante("espera",fecha,4,idEmpleado);
+        justificanteRepository.altaJustificante("Espera",fecha,4,idEmpleado);
         Integer idPermisoEconomico = permisoEconomicoRepository.selectMaxIdPermisoEconomico();
         if(idPermisoEconomico!=null){
             permisoEconomicoRepository.insertRegistro(idPermisoEconomico+1,justificanteRepository.selectMaxIdPermisoEconomico());

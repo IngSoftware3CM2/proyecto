@@ -179,8 +179,10 @@ public class PersonalController {
         return new ModelAndView("ver-justificante-docente");
     }
 
+
+
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar, Principal principal) {
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar,@RequestParam(name = "sexo", required = false) Integer sexo, Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
@@ -188,11 +190,12 @@ public class PersonalController {
         Personal personal = personalService.getPersonalByEmail(email);
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
+        model.addAttribute("sexo", sexo);
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
-        Integer motivo = new Integer (-1);
+        Integer motivo = new Integer (1);
         if (notificacionService.existsByPersonal(personal)){
             Notificacion notificacion = notificacionService.findByPersonal(personal);
             motivo = new Integer(notificacion.getMotivo().getIdMotivo());
@@ -250,4 +253,15 @@ public class PersonalController {
 
         return redirectURL;
     }
+
+
+    @GetMapping("/vernotificaciones")
+    public ModelAndView showIncidencias(Model model,Principal principal){
+        String email = "a@gmail.com"; // aqui poner un email por default para que no de error
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        ModelAndView mav = new ModelAndView("notificaciones/ver-notificaciones");
+        return mav;
+    }
+
 }
