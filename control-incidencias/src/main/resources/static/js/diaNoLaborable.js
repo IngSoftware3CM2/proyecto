@@ -155,8 +155,8 @@ function registrarDia(){
             if(resultado==-2){
                 $("#MSG").removeClass("hidden");
             }
-            if(resultado==1){
-                window.location.href="/dch/asistencia/dianolaborable/exito";
+            if(resultado>0){
+                window.location.href="/dch/asistencia/dianolaborable/archivo?id="+resultado.toString();
             }
         },
         error : function (json) {

@@ -145,6 +145,6 @@ public class ResDiaNoLaborableController {
                 personalPeriodoInhabilService.savePersonalSinPeriodo(ppin);
             }
         }
-        return 1;
+        return ultimo.getIdperiodo();
     }
 }
