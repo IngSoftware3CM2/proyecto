@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository("tiempoSuplGeneradoRepository")
@@ -25,7 +26,6 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
     //UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
     @Modifying
     @Transactional
-    @Query(value="update tiemposuplgenerado set usado = :usado where idtiemposuplgenerado= :idtiempo", nativeQuery = true)
-    int updateTiempoSuplGenerado(@Param("idtiempo") int idtiempo, @Param("usado") boolean usado);
-
+    @Query(value="update tiemposuplgenerado set usado = :usado, horas = :horas where idtiemposuplgenerado= :idtiempo", nativeQuery = true)
+    int updateTiempoSuplGenerado(@Param("idtiempo") int idtiempo, @Param("usado") boolean usado, @Param("horas")LocalTime horas);
 }

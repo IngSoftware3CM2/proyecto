@@ -72,7 +72,11 @@ public class ReglasNegocio {
     }
 
     public boolean rn31(LocalTime horas,Integer tiempoSolicitado){
-        return horas.minus(tiempoSolicitado,ChronoUnit.HOURS).equals(LocalTime.parse("00:00:00"));
+        LocalTime hora = horas.minus(tiempoSolicitado,ChronoUnit.HOURS);
+        if(hora.equals(LocalTime.parse("00:00:00"))){
+            return true;
+        }
+        return false;
     }
 
     public boolean rn54(DayOfWeek dow){

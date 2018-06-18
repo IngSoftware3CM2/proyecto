@@ -20,10 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,6 +61,7 @@ public class JustificacionTSController {
     private Incidencia incidencia;
     private int errorRN29=0;
     private int errorRN31=0;
+    private int errorCampos=0;
 
     private static final String REDIRECT = "redirect:/personal/justificantes/tiemposuplementario?id=";
     @GetMapping("/tiemposuplementario")
@@ -86,16 +85,18 @@ public class JustificacionTSController {
 
         ModelAndView mav = new ModelAndView(Constants.JUSTIFICANTE_TS);
         model.addAttribute("sinTiempo",sinTiempoError);
+        model.addAttribute("errorCampos",errorCampos);
         model.addAttribute("errorJustificantes",errorRN29);
         model.addAttribute("errorHorasCubrir",errorRN31);
         model.addAttribute("justTiempoSuplementario",new JustificateTiempoSuplModel());
-        model.addAttribute("selectedValue",new ArrayList<Integer>());
         errorRN29=0;
         errorRN31=0;
+        errorCampos=0;
         mav.addObject("tiempoSuplGenerado",tiemposSuplementarios);
         mav.addObject("tipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("noTarjeta",personal.getNoTarjeta());
         mav.addObject("incidencia",incidencia.getFechaRegistro());
+        mav.addObject("horasCubrir",incidencia.getHorasFaltantes());
         return mav;
     }
 
@@ -107,29 +108,22 @@ public class JustificacionTSController {
 
     @PostMapping("/tiemposuplementario/agregar")
     private String agregarJustificante (@ModelAttribute("justTiempoSuplementario")JustificateTiempoSuplModel justificateTiempoSuplModel){
+        LOG.info("*******************************************");
         LOG.info(justificateTiempoSuplModel.getTiempocubrir());
+        if(justificateTiempoSuplModel.getIdSeleccionados().isEmpty()){
+            errorCampos = 1;
+            return REDIRECT + incidencia.getIdIncidencia();
+        }
         Date input = new Date();
         LocalDate date = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        List<TiempoSuplGenerado> tiemposGenerados = new ArrayList<>();
-        LocalTime horasTotales=LocalTime.parse("00:00:00");
-        for (Integer id:justificateTiempoSuplModel.getIdSeleccionados()
-             ) {
-            LOG.info(id);
-            TiempoSuplGenerado tiempo = tiempoSuplGeneradoService.findById(id);
-            horasTotales=horasTotales.plusHours(tiempo.getHoras().getHour());
-            tiemposGenerados.add(tiempo);
-        }
+        int horasTotales=0;
+        int horasFaltantes = incidencia.getHorasFaltantes();
         LOG.info(horasTotales);
         //Validacion de otra regla de negocio
             int idQuincena = quincenaService.idquincenaConFechaDeIncidencia(date);
             Integer idPersonalQuincena = personalQuincenaService.selectMaxIdPersonalQuincena();
             int idEmpleado = incidencia.getPersonal().getIdEmpleado();
             //Validacion de la regla de negocio 31
-            if(!reglasNegocio.rn31(horasTotales,justificateTiempoSuplModel.getTiempocubrir())){
-                errorRN31=1;
-                LOG.info("ERROR REGLA DE NEGOCIO 31");
-                return REDIRECT + incidencia.getIdIncidencia();
-            }
             if(idPersonalQuincena == null){
                 personalQuincenaService.insertRegistroSupl(1,1,idEmpleado,idQuincena);
             }
@@ -152,13 +146,26 @@ public class JustificacionTSController {
                     }
                 }
             }
-        // Actualizamos los tiempos suplementarios generados guardados
-        for (TiempoSuplGenerado tiemposSupl:tiemposGenerados
-             ) {
-            tiempoSuplGeneradoService.updatetiempoUsados(tiemposSupl.getId());
+        for (Integer id:justificateTiempoSuplModel.getIdSeleccionados()
+                ) {
+            LOG.info(id);
+            TiempoSuplGenerado tiempo = tiempoSuplGeneradoService.findById(id);
+            horasFaltantes = horasFaltantes - tiempo.getHoras().getHour();
+            if(horasFaltantes<0){
+                tiempoSuplGeneradoService.updatetiempoUsados(tiempo.getId(),horasFaltantes*(-1),-1);
+                justificateTiempoSuplModel.setTiempocubrir(incidencia.getHorasFaltantes());
+                break;
+            }else if(horasFaltantes==0){
+                tiempoSuplGeneradoService.updatetiempoUsados(tiempo.getId(),tiempo.getHoras().getHour(),1);
+                justificateTiempoSuplModel.setTiempocubrir(incidencia.getHorasFaltantes());
+                break;
+            }
+            tiempoSuplGeneradoService.updatetiempoUsados(tiempo.getId(),tiempo.getHoras().getHour(),1);
         }
-        //Guardamos el registro
-            tiempoSuplementarioService.saveJustificanteTS(justificateTiempoSuplModel,incidencia);
+        if(horasFaltantes>0){
+            justificateTiempoSuplModel.setTiempocubrir(incidencia.getHorasFaltantes()-horasFaltantes);
+        }
+        tiempoSuplementarioService.saveJustificanteTS(justificateTiempoSuplModel,incidencia);
         return "redirect:/personal/justificantes?add=1";
     }
 }

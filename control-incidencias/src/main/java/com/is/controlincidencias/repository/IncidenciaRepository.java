@@ -22,6 +22,11 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
 
 
     @Modifying
+    @Query(value = "UPDATE incidencia SET idjustificante = :idjustificante, horasfaltantes = :horascubrir where  idincidencia = :idincidencia", nativeQuery = true)
+    @Transactional
+    public void updateIdJustificanteAndHorasCubrir(@Param("idjustificante") int idjustificante, @Param("idincidencia") int idincidencia,@Param("horascubrir") int horascubrir );
+
+    @Modifying
     @Query(value = "UPDATE incidencia SET idjustificante = :idjustificante where  idincidencia = :idincidencia", nativeQuery = true)
     @Transactional
     public void updateIdJustificante(@Param("idjustificante") int idjustificante, @Param("idincidencia") int idincidencia);

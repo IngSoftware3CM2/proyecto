@@ -150,6 +150,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         return 0;
     }
 
+    @Override
+    public void updateIdIncidenciaAndHorasCubrir(int idJustificante, int idIncidencia, int horas) {
+        incidenciaRepository.updateIdJustificanteAndHorasCubrir(idJustificante,idIncidencia,horas);
+    }
+
     private Incidencia esAbierto(Asistencia a, LocalDate fecha) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
