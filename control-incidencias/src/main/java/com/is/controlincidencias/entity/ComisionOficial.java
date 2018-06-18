@@ -12,9 +12,6 @@ public class ComisionOficial {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "justificacion", nullable = false, columnDefinition = "character varying(500)")
-    private String justificacion;
-
     @Column(name = "fechainicio", nullable = false)
     private LocalDate inicio;
 
@@ -23,9 +20,6 @@ public class ComisionOficial {
 
     @Column(name = "invitacionArchivo", nullable = false)
     private String invitacionArchivo;
-
-    @Column(name = "folio", nullable = false)
-    private String folio;
 
     private static final String DEFINITION = "FOREIGN KEY(idJustificante) REFERENCES justificante (idJustificante) ON UPDATE CASCADE ON DELETE CASCADE";
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -38,14 +32,6 @@ public class ComisionOficial {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getJustificacion() {
-        return justificacion;
-    }
-
-    public void setJustificacion(String justificacion) {
-        this.justificacion = justificacion;
     }
 
     public LocalDate getInicio() {
@@ -72,14 +58,6 @@ public class ComisionOficial {
         this.invitacionArchivo = invitacionArchivo;
     }
 
-    public String getFolio() {
-        return folio;
-    }
-
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
-
     public Justificante getJustificante() {
         return justificante;
     }
@@ -94,17 +72,15 @@ public class ComisionOficial {
         if (o == null || getClass() != o.getClass()) return false;
         ComisionOficial that = (ComisionOficial) o;
         return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getJustificacion(), that.getJustificacion()) &&
                 Objects.equals(getInicio(), that.getInicio()) &&
                 Objects.equals(getFin(), that.getFin()) &&
                 Objects.equals(getInvitacionArchivo(), that.getInvitacionArchivo()) &&
-                Objects.equals(getFolio(), that.getFolio()) &&
                 Objects.equals(getJustificante(), that.getJustificante());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getJustificacion(), getInicio(), getFin(), getInvitacionArchivo(), getFolio(), getJustificante());
+        return Objects.hash(getId(), getInicio(), getFin(), getInvitacionArchivo(), getJustificante());
     }
 }
