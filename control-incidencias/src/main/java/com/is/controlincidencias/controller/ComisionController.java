@@ -77,10 +77,9 @@ public class ComisionController {
     }
 
     @PostMapping("/addComision")
-    public void addComision(@Valid @ModelAttribute("comisionModel") ComisionModel Cmodelo, @RequestParam("file") List<MultipartFile> files)
+    public String addComision(@Valid @ModelAttribute("comisionModel") ComisionModel Cmodelo, @RequestParam("file") List<MultipartFile> files)
     {
         ComisionModel com = new ComisionModel();
-        LOGGER.info(Cmodelo);
         com.setIdComision(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
         com.setInicio(Cmodelo.getInicio());
         com.setFin(Cmodelo.getFin());
@@ -90,13 +89,13 @@ public class ComisionController {
             {
                 int idjustificante = comisionService.getLastJustificante();
                 licPaternidadService.subirArchivo(files, idjustificante);
+                comisionService.addComision(com, idIncidencia);
             }
         catch (IOException e)
             {
                 LOGGER.error("ERROR:", e);
-             //   justificanteService.removeJustificanteByIdJustificante(idjustificante);
             }
-//        return "redirect:/personal/justificantes?add=1";
+        return "redirect:/personal/justificantes?add=1";
     }
 
 

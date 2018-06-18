@@ -1,10 +1,11 @@
 package com.is.controlincidencias.service;
 
-import com.is.controlincidencias.model.OmisionModel;
+import com.is.controlincidencias.model.ComisionModel;
+
 
 public interface ComisionService {
 
     int getLastJustificante();
 
-    void addOmision(OmisionModel om, int id);
+    void addComision(ComisionModel com, int id);
 }
