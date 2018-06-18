@@ -8,8 +8,7 @@ import java.util.Objects;
 @Table(name="periodoinhabil")
 public class PeriodoInhabil {
     @Id
-    @Column(name = "idperiodo", columnDefinition = "serial")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idperiodo", length = 8)
     private Integer idperiodo;
 
     @Column(name = "inicio", nullable = false)  //

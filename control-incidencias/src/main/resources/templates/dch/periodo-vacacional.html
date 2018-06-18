@@ -3,61 +3,58 @@
 <head th:replace="dch/head :: head('Sistema de Asistencia')"></head>
 <body>
 <div id="wrapper">
-    <nav th:replace="dch/verticalbar :: verticalnavbar(9)"></nav>
+    <nav th:replace="dch/verticalbar :: verticalnavbar(10)"></nav>
     <div id="page-wrapper" class="gray-bg">
         <div th:replace="dch/navbar :: horizontalnavbar('Sistema de Control de Asistencia')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Registrar dia no laborable</h2>
+                <h2>Registrar periodo vacacional</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">Inicio</a>
                     </li>
                     <li class="active">
-                        <strong>Registrar dia no laborable</strong>
+                        <strong>Registrar periodo vacacional</strong>
                     </li>
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label th:text="${tipoAndNombre}"></label>
+                <label th:text="${tipoAndNombre}">Docente | Jaime Lopez Rabadan</label>
             </div>
-        </div>
-        <div class=" hidden alert alert-danger" id="fechaInvalida">
-            Fecha invalida
-        </div>
-        <div class=" hidden alert alert-danger" id="mensajeArchivoE">
-            No se adjuntaron los archivos correctamente
-        </div>
-        <div class="hidden alert alert-danger" id="MSG">
-            Complete todos los campos obligatorios
         </div>
         <div class="hidden alert alert-danger" id="errorRN54">
             Dato no valido
         </div>
+        <div class="hidden alert alert-danger" id="MSG">
+            Complete todos los campos obligatorios
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="ibox-content">
                 <h1 class="text-center">
-                    <span class="text-navy">Registrar dia no Laborable</span>
+                    <span class="text-navy">Registrar Periodo Vacacional</span>
                 </h1>
-                <form class="form-horizontal" id="formDia" enctype="multipart/form-data" th:object="${diaNoLaborable}" >
+                <form class="form-horizontal">
+
                     <div class="form-group" id="data_1">
-                        <label class="col-sm-2"> Fecha del dia no laborable:</label>
+                        <label class="col-sm-2"> Fecha del inicio:</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="fechaDia" class="form-control" th:field="*{fecha}" pattern="^\d{4}-\d{2}-\d{2}" required>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="fechaInicio" type="text" class="form-control" />
+                        </div>
+
+                    </div>
+                    <div class="form-group" id="data_1">
+                        <label class="col-sm-2"> Fecha de fin:</label>
+                        <div class="input-group date col-sm-2">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="fechaFin" type="text" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2"> Tipo de Personal:</label>
-                        <div class="input-group col-sm-10" id="tiposPersonal">
-                            <div class="i-checks col-sm-2 "><input type="radio" value="1" name="a"/> <i></i><label>Personal Docente </label></div>
-                            <div class="i-checks col-sm-1"><input type="radio" value="2" name="a"/> <i></i><label>PAAE </label></div>
-                            <div class="i-checks col-sm-3"><input type="radio" value="3" name="a"/> <i></i><label>Personal Docente y PAAE </label></div>
+                        <div class="input-group col-sm-4" id="tiposPersonal">
+                            <div class="i-checks col-sm-4 "><label> <input type="radio" value="1" name="a"/> <i></i>Personal Docente </label></div>
+                            <div class="i-checks col-sm-4"><label> <input type="radio" value="2" name="a"/> <i></i>PAAE </label></div>
+                            <div class="i-checks col-sm-4"><label> <input type="radio" value="3" name="a"/> <i></i>Personal Docente y PAAE </label></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 ">Justificacion:</label>
-                        <div class="col-sm-4"><textarea  id="justificacion" th:field="*{justificacion}" style="height: 100%" required></textarea> </div>
-
                     </div>
 
                     <div class="form-group" >
@@ -69,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <table class="table" id="tablePesonal">
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -77,7 +74,8 @@
                                     <th>Seleccionar</th>
                                 </tr>
                                 </thead>
-                                <tbody id="tBodyPersonal" ></tbody>
+                                <tbody id="tBodyPersonal">
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -109,8 +107,7 @@
 <script src="#" th:src="@{/js/dataPicker.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
-<script src="#" th:src="@{/js/jquery.form.js}"></script>
-<script src="#" th:src="@{/js/diaNoLaborable.js}"></script>
+<script src="#" th:src="@{/js/periodoVacacional.js}"></script>
 
 
 </body>

@@ -116,71 +116,86 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta
                     (fecha, per.getNoTarjeta());
             // Coteja las horas de entrada y salida del horario del empleado con las de su asistencia
-
             // En caso de haber inconsistencias identificar el tipo de incidencia, de acuerdo al tipo de personal y las
             // respectivas reglas del negocio
+            Incidencia incidencia = new Incidencia();
             if (per.getTipo().equals("ROLE_DOC") || per.getTipo().equals(ADMON)) {
                 // Trayectoria F
                 if (tieneRegistroAsistencia(a)) {
                     if (per.getTipo().equals(ADMON)) {
                         // Trayectoria G
                         log.info("TRAYECTORIA G DENTRO DE F");
+                        incidencia.setTipo("FD");
                     } else {
                         log.info("TRAYECTORIA F");
+                        incidencia.setTipo("FC");
                     }
+                    // no se si es esta fecha o un dia antes o un dia despues
+                    incidencia.setFechaRegistro(fecha);
+                    // Calcular horas, pero falta ese campo para guardar
                     // Continua en 5 de la principal
                 } else {
                     if (per.getHabierto())
-                        esAbierto(a); // Trayectoria A
+                        incidencia = esAbierto(a, fecha); // Trayectoria A
                     else
-                        noAbierto(dia, a, per);
+                        incidencia = noAbierto(dia, a, per, fecha);
                 }
             } else if (per.getTipo().equals("PAAE")) {
-                esPAAE(a, dia);
+                incidencia = esPAAE(a, dia, fecha);
             }
-            log.info("¿Que chingados haces aqui?");
+            guardarIncidencia(incidencia, per.getIdEmpleado());
+            log.info("-------------------------¿Que chingados?-----------------------------------");
         }
 
         return 0;
     }
 
-    private boolean tieneRegistroAsistencia(Asistencia a) {
-        return a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null;
-    }
-
-    private void esAbierto(Asistencia a) {
+    private Incidencia esAbierto(Asistencia a, LocalDate fecha) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
         float resta = (float) salidaRegistrada - entradaRegistrada;
         resta = resta / 3600f;
+        Incidencia incidencia = new Incidencia();
         if (resta < 8) {
             // Trayectoria I
             log.info("Te faltaron horas " + resta + " Trayectoria I");
+            incidencia.setTipo("FC");
+            incidencia.setFechaRegistro(fecha); // no se si es esta fecha
+            // Calcular horas que faltan y registrar
         } else if (resta > 9) {
             // Trayectoria L
             log.info("Te pasaste de horas " + resta + " Trayectoria L");
+            // Registrar horas suplementarias
+            // No hay inciencia(?
         } else {
             // Trayectoria J
             log.info("TODO CHIDO - Trayectoria J");
         }
+        return incidencia;
     }
 
-    private void noAbierto(Dia dia, Asistencia a, Personal per) {
+    private Incidencia noAbierto(Dia dia, Asistencia a, Personal per, LocalDate fecha) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
         int entradaHorario = dia.getHoraEntrada().toSecondOfDay();
         int salidaHorario = dia.getHoraSalida().toSecondOfDay();
         boolean trayectoriaE = entradaRegistrada >= entradaHorario + ONCE;
         trayectoriaE = trayectoriaE || salidaRegistrada < salidaHorario;
+        Incidencia incidencia = new Incidencia();
         if (trayectoriaE) {
             // Trayectoria E
             if (per.getTipo().equals(ADMON)) {
                 // Trayectoria G
                 log.info("Trayectoria G dentro de E");
+                incidencia.setTipo("FD");
             } else {
                 log.info("Trayectoria E");
+                incidencia.setTipo("FC");
             }
+            // Calcular horas que faltan y guardar
+            incidencia.setFechaRegistro(fecha); // No se si es este dia otra vez
             // Continua en 5 de la principal
+            return incidencia;
         }
         int x = salidaRegistrada-entradaRegistrada;
         int y = salidaHorario - entradaHorario;
@@ -189,18 +204,24 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             //Trayectoria H
             // Continua en 5 principal
             log.info("TRAYECTORIA H");
+            // Calcular suplementario y registrar
         }
+        return incidencia;
     }
 
-    private void esPAAE(Asistencia a, Dia dia) {
+    private Incidencia esPAAE(Asistencia a, Dia dia, LocalDate fecha) {
         int entradaRegistrada;
         int salidaRegistrada;
         int entradaHorario;
         int salidaHorario;
+        Incidencia incidencia = new Incidencia();
         if (tieneRegistroAsistencia(a)) {
             //Trayectoria D
             // Continua 5 principal
             log.info("TRAYECTORIA D");
+            incidencia.setTipo("FI");
+            incidencia.setFechaRegistro(fecha);
+            // Calcular horas que faltan y registrar
         } else {
             entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
             salidaRegistrada = a.getHoraSalida().toSecondOfDay();
@@ -211,17 +232,36 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             esTrayectoriaB = esTrayectoriaB && salidaHorario <= salidaRegistrada;
             if (esTrayectoriaB) {
                 // Trayectoria B
-                // Continua 5 principal
                 log.info("TRAYECTORIA B");
+                incidencia.setFechaRegistro(fecha);
+                incidencia.setTipo("RE");
+                // Aqui son 0 horas
+                // Continua 5 principal
+                return incidencia;
             }
             boolean esTrayectoriaC = entradaRegistrada >= entradaHorario + TREINTA_UNO;
             esTrayectoriaC = esTrayectoriaC || salidaRegistrada < salidaHorario;
             if (esTrayectoriaC) {
                 // Trayectoria C
-                // Continua en 5 de la principal
                 log.info("TRAYECTORIA C");
+                incidencia.setTipo("FI");
+                // Calcular las horas que faltan y registrar
+                // Continua en 5 de la principal
             }
         }
+        return incidencia;
+    }
+
+    private void guardarIncidencia(Incidencia incidencia, Integer idEmpleado) {
+        if (incidencia.getTipo().equals(""))
+            return;
+        Integer id = incidenciaRepository.obtenerMaximoIdAsistencia() + 1;
+        incidenciaRepository.insertarAsistencia(id, incidencia.getFechaRegistro(), incidencia
+                .getTipo(), idEmpleado);
+    }
+
+    private boolean tieneRegistroAsistencia(Asistencia a) {
+        return a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null;
     }
 
     private String obtenerDia(LocalDate fecha) {

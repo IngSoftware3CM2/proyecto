@@ -39,7 +39,7 @@ public class PersonalServiceImpl implements PersonalService {
     @Override
     public List<Personal> getPersonalByTipo(String tipo) {
         if(tipo.equals("AMBOS")){
-            return personalRepository.findAllByAmbosTipos("ROLE_DOC", "ROLE_PAEE");
+            return personalRepository.findAllByAmbosTipos("ROLE_DOC", "ROLE_PAAE");
         }
         return personalRepository.findAllByTipo(tipo);
     }

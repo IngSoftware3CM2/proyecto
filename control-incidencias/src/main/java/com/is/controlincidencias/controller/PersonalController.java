@@ -69,6 +69,19 @@ public class PersonalController {
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
 
+    @Autowired
+    @Qualifier ("comisionServiceImpl")
+    private ComisionServiceImpl comisionService;
+
+    @Autowired
+    @Qualifier("omisionServiceImpl")
+    private OmisionESServiceImpl omisionESService;
+
+    @Autowired
+    @Qualifier("retardoServiceImpl")
+    private  RetardoServiceImpl retardoService;
+
+
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
@@ -162,6 +175,15 @@ public class PersonalController {
                 justificante.setTipo(4);
             } else if(tiempoSuplementarioService.existsByIdjustificante(justificante.getIdJustificante())){
                 justificante.setTipo(5);
+            }
+            else if(omisionESService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(6);
+            }
+            else if(retardoService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(7);
+            }
+            else if(comisionService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(8);
             }
             else {
                 justificante.setTipo(666);

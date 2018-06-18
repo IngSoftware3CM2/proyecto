@@ -18,4 +18,9 @@ public class PeriodoInhabilServiceImpl implements PeriodoInhabilService {
     public PeriodoInhabil savePeriodoInhabil(PeriodoInhabil periodoInhabil) {
         return periodoInhabilRepository.save(periodoInhabil);
     }
+
+    @Override
+    public Integer findMaxIdPeriodo() {
+        return periodoInhabilRepository.selectMaxIdPeriodoInhabil();
+    }
 }

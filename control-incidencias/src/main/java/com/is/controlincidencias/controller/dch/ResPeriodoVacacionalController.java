@@ -5,7 +5,7 @@ import com.is.controlincidencias.entity.PeriodoInhabil;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.entity.PersonalPeriodoInhabil;
 import com.is.controlincidencias.model.ConsultaPersonal;
-import com.is.controlincidencias.model.DiaNoLaborableJSON;
+import com.is.controlincidencias.model.PeriodoVacacionalJSON;
 import com.is.controlincidencias.model.PersonalJSON;
 import com.is.controlincidencias.service.PeriodoInhabilService;
 import com.is.controlincidencias.service.PersonalPeriodoInhabilService;
@@ -19,18 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/dch/asistencias/dianolaborable")
-public class ResDiaNoLaborableController {
-
-    private static final Log LOG = LogFactory.getLog(ResDiaNoLaborableController.class);
+@RequestMapping("/dch/asistencias/periodovacacional")
+public class ResPeriodoVacacionalController {
+    private static final Log LOG = LogFactory.getLog(ResPeriodoVacacionalController.class);
     private int tipoAplica;
     private List<Personal> personal;
     @Autowired
@@ -49,7 +46,6 @@ public class ResDiaNoLaborableController {
     @Autowired
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
-
 
     @PostMapping("/personal")
     public List<ConsultaPersonal> consultaPer(@RequestBody PersonalJSON personalJSON) {
@@ -74,32 +70,29 @@ public class ResDiaNoLaborableController {
         return listPersonal;
     }
 
-
     @PostMapping("/agregar")
-    public int registrarDatos(@RequestBody DiaNoLaborableJSON diaNoLaborableJSON) {
+    public int registrarDatos(@RequestBody PeriodoVacacionalJSON periodoVacacionalJSON) {
         LOG.info("------------------------------------------");
-        LOG.info(diaNoLaborableJSON.getFechaNH());
-        LOG.info(diaNoLaborableJSON.getJustificacionNH());
-        LOG.info(diaNoLaborableJSON.getListId());
-        LocalDate fecha = diaNoLaborableJSON.getFechaNH();
+        LOG.info(periodoVacacionalJSON.getFechaFin());
+        LOG.info(periodoVacacionalJSON.getFechaInicio());
+        LOG.info(periodoVacacionalJSON.getListId());
+
+        LocalDate fechaInicio = periodoVacacionalJSON.getFechaInicio();
+        LocalDate fechaFin = periodoVacacionalJSON.getFechaFin();
         List<Personal> personalSin = new ArrayList<>();
-        if(fecha ==null){
+        if(fechaInicio ==null || fechaFin == null){
             return -2;
         }
-        DayOfWeek dow = fecha.getDayOfWeek();
-        if(diaNoLaborableJSON.getListId().isEmpty()){
+        if(periodoVacacionalJSON.getListId().isEmpty()){
             return -2;
         }
-        if(diaNoLaborableJSON.getJustificacionNH().equals("")){
-            return -2;
-        }
-        if(reglasNegocio.rn54(dow)){
-            LOG.info(dow);
-            return -1; //Fecha invalida
+
+        if(reglasNegocio.rn28(fechaInicio,fechaFin)){
+         return -1;
         }
         for (Personal p:personal) {
             boolean estuvo = false;
-            for(int id: diaNoLaborableJSON.getListId()){
+            for(int id: periodoVacacionalJSON.getListId()){
                 if(p.getIdEmpleado()==id){
                     estuvo=true;
                     break;
@@ -110,9 +103,9 @@ public class ResDiaNoLaborableController {
             }
         }
         PeriodoInhabil pih = new PeriodoInhabil();
-        pih.setInicio(fecha);
-        pih.setFin(fecha);
-        pih.setDescripcion(diaNoLaborableJSON.getJustificacionNH());
+        pih.setInicio(fechaInicio);
+        pih.setFin(fechaFin);
+        pih.setDescripcion("Vacaciones");
         if(tipoAplica==1){
             pih.setPermisodocente(true);
             pih.setPermisopaee(false);

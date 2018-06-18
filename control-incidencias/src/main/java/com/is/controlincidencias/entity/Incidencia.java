@@ -13,10 +13,10 @@ public class Incidencia {
     @Column(name = "fechaRegistro", nullable = false)
     private LocalDate fechaRegistro;
 
-    @Column(name = "tipo", nullable = true, length = 2)
+    @Column(name = "tipo", length = 2)
     private String tipo;
 
-    @Column(name = "horasFaltantes", nullable = false)
+    @Column(name = "horasFaltantes")
     private Integer horasFaltantes;
 
     private static final String DEFINITION = "FOREIGN KEY(idQuincena) REFERENCES quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
@@ -56,6 +56,14 @@ public class Incidencia {
         this.tipo = tipo;
         this.quincena = quincena;
         this.personal = personal;
+    }
+
+    public Integer getHorasFaltantes() {
+        return horasFaltantes;
+    }
+
+    public void setHorasFaltantes(Integer horasFaltantes) {
+        this.horasFaltantes = horasFaltantes;
     }
 
     public Integer getIdIncidencia() {
