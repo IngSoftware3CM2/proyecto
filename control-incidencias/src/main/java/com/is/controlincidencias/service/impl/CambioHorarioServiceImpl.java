@@ -36,6 +36,8 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     @Qualifier("justificanteRepository")
     private JustificanteRepository justificanteRepository;
 
+    String patron = "yyyy-MM-d";
+
     @Override
     public void insertaCambioHorario(CambioHorarioModel cambiohorario, int idincidencia)
         {
@@ -43,7 +45,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
             LOG.info(cambiohorario);
             Time entrada = Time.valueOf(cambiohorario.getNuevaEntrada());
             Time salida =  Time.valueOf(cambiohorario.getNuevaSalida());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(patron);
             LocalDate fecha = LocalDate.parse(cambiohorario.getFechaIncidencia(), formatter);
             Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3- antes el LocalDate.now() era "fecha"
             justificanteRepository.altaJustificante("Espera",fecha2,0,cambiohorario.getIdJustificante()); //idJustificante es el noempleado :3
@@ -87,7 +89,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     @Override
     public String getHoraEntrada(int id, String fecha)
         {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(patron);
             LocalDate fecha2 = LocalDate.parse(fecha, formatter);
             return cambioHorarioRepository.getHoraEntrada(id, fecha2);
         }
@@ -95,7 +97,7 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
     @Override
     public String getHoraSalida(int id, String fecha)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(patron);
         LocalDate fecha2 = LocalDate.parse(fecha, formatter);
         return cambioHorarioRepository.getHoraSalida(id, fecha2);
     }
