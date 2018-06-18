@@ -153,10 +153,10 @@ public class IncidenciaServiceImpl implements IncidenciaService {
                         // Continuar punto 5 trayectoria principal
                         //continue;
                     } else {
-                        boolean trayectoriaE =;
+                        boolean trayectoriaE =true;
                         if (trayectoriaE) {
                             // Trayectoria E
-                            // 
+                            //
                         }
                     }
                 }
