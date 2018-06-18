@@ -5,6 +5,7 @@ import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.ConsultaPersonal;
 import com.is.controlincidencias.model.DiaNoLaborableModel;
 import com.is.controlincidencias.service.LicPaternidadService;
+import com.is.controlincidencias.service.PeriodoInhabilService;
 import com.is.controlincidencias.service.PersonalService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -32,6 +33,11 @@ public class RegDiaNoLaborableController {
     @Autowired
     @Qualifier("personalServiceImpl")
     private PersonalService personalService;
+
+
+    @Autowired
+    @Qualifier("periodoInhabilServiceImpl")
+    private PeriodoInhabilService periodoInhabilService;
 
     @Autowired
     @Qualifier("licPaternidadServiceImpl")
@@ -69,7 +75,8 @@ public class RegDiaNoLaborableController {
         try {
             //Aqui trato de subir el archivo
             //Actualizo la tabla de periodo inhabil con el nombre del archivo
-            licPaternidadService.subirArchivo(files, idPeriodoInhabil);
+            licPaternidadService.subirArchivo(files, idPeriodoInhabil,"PI");
+            periodoInhabilService.updatePeriodoInhabil(files.get(0).getOriginalFilename(),idPeriodoInhabil);
             LOG.info("Aqui trato de subir el archivo");
         } catch (IOException e) {
             LOG.error(e);
