@@ -37,5 +37,5 @@ public interface RetardoRepository extends JpaRepository<Retardo, Serializable> 
     @Query(value = "update retardo set justificacion = :justificacion where idjustificante = :idjustificante", nativeQuery = true)
     void updateRetardo(@Param("justificacion") String justificacion, @Param("idjustificante") int idjustificante);
 
-
+    boolean existsByJustificante_IdJustificante (int id);
 }

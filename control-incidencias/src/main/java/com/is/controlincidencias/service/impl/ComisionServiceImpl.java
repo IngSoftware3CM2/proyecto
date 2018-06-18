@@ -60,4 +60,9 @@ public class ComisionServiceImpl  implements ComisionService{
             comisionRepository.addComision(fechai, fechaf, archivo, ids.get(ids.size() - 1));
             incidenciaService.updateIdJustificante(ids.get(ids.size() - 1), idincidencia);
         }
+
+    @Override
+    public boolean existsByIdjustificante(int id) {
+        return comisionRepository.existsByJustificante_IdJustificante(id);
+    }
 }

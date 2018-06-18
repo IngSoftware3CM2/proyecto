@@ -11,4 +11,8 @@ public interface OmisionESService {
     String getFecha(int id);
 
     void updateJust(String j, int id);
+
+
+
+    boolean existsByIdjustificante (int id);
 }
