@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +41,8 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     private static final int TREINTA_MIN = MINUTO * 30;
     private static final int TREINTA_UNO = MINUTO * 31;
     private static final int ONCE = MINUTO * 11;
+    private static final int HORA = 3600;
+    private static final String ADMON = "ROLE_DCADM";
 
     @Override
     public List<Incidencia> getIncidenciasByPersonal(Personal personal) {
@@ -91,22 +92,16 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         List<Personal> listaPersonal = personalRepository.findAll();
         // Uso localdate porque es como esta mapeada la base
         LocalDate actual = LocalDate.now();
-        LocalDate fecha = actual.minusDays(2); // resta
-        Date date = new Date();
-        Calendar c = Calendar.getInstance();
 
         // Obteniendo la fecha del dia que marca la RN48
+        LocalDate fecha = actual.minusDays(2); // resta
 
-        c.add(Calendar.DATE, -2);
-        date = c.getTime();
         // Validar si esa fecha es un dia inhabil o fin de semana
 
         // Obtener el nombre del dia en el formato que esta en la base de datos (LUN, MAR, MIE, JUE,
         // VIE) para hacer la consulta
         String diaSemana = obtenerDia(fecha);
-        // Obtenemos todas las tuplas de personal
-        int hrEntrada, hrSalida, entradaHorario, salidaHorario;
-        for(Personal per:listaPersonal){
+        for(Personal per : listaPersonal){
             // Obtiene el numero de empleado y tipo de personal
             log.info("Nombre: "+per.getNombre()+" ID: "+per.getIdEmpleado()+ " Tipo: " +
                     ""+per.getTipo());
@@ -124,73 +119,109 @@ public class IncidenciaServiceImpl implements IncidenciaService {
 
             // En caso de haber inconsistencias identificar el tipo de incidencia, de acuerdo al tipo de personal y las
             // respectivas reglas del negocio
-            if (per.getTipo().equals("ROLE_DOC") || per.getTipo().equals("ROLE_DCADM")) {
+            if (per.getTipo().equals("ROLE_DOC") || per.getTipo().equals(ADMON)) {
                 // Trayectoria F
-                if (a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null) {
-
-                    if (per.getTipo().equals("ROLE_DCADM")) {
+                if (tieneRegistroAsistencia(a)) {
+                    if (per.getTipo().equals(ADMON)) {
                         // Trayectoria G
+                        log.info("TRAYECTORIA G DENTRO DE F");
                     } else {
+                        log.info("TRAYECTORIA F");
                     }
                     // Continua en 5 de la principal
-                    // continue;
                 } else {
-                    // Trayectoria A
-                    if (per.getHabierto()) {
-                        float resta = (float) a.getHoraSalida().toSecondOfDay() - a.getHoraEntrada()
-                                .toSecondOfDay();
-                        resta = resta / 3600f;
-                        if (resta < 8) {
-                            // Trayectoria I
-                            log.info("Te faltaron horas " + resta + " Trayectoria I");
-                        } else if (resta > 9) {
-                            // Trayectoria L
-                            log.info("Te pasaste de horas " + resta + " Trayectoria L");
-                        } else {
-                            // Trayectoria J
-                            log.info("TODO CHIDO - Trayectoria J");
-                        }
-                        // Continuar punto 5 trayectoria principal
-                        //continue;
-                    } else {
-                        boolean trayectoriaE =true;
-                        if (trayectoriaE) {
-                            // Trayectoria E
-                            //
-                        }
-                    }
+                    if (per.getHabierto())
+                        esAbierto(a); // Trayectoria A
+                    else
+                        noAbierto(dia, a, per);
                 }
-            } else if (per.getTipo().equals("ROLE_PAAE")) {
-                if (a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null) {
-                    //Trayectoria D
-                } else {
-                    hrEntrada = a.getHoraEntrada().toSecondOfDay();
-                    hrSalida = a.getHoraSalida().toSecondOfDay();
-                    entradaHorario = dia.getHoraEntrada().toSecondOfDay();
-                    salidaHorario = dia.getHoraSalida().toSecondOfDay();
-                    boolean esTrayectoriaB = entradaHorario + MINUTO <= hrEntrada;
-                    esTrayectoriaB = esTrayectoriaB && hrEntrada <= entradaHorario + TREINTA_MIN;
-                    esTrayectoriaB = esTrayectoriaB && salidaHorario <= hrSalida;
-                    if (esTrayectoriaB) {
-                        // Trayectoria B
-                        // Continua 5 principal
-                        // continue;
-                    }
-                    boolean esTrayectoriaC = hrEntrada >= entradaHorario + TREINTA_UNO;
-                    esTrayectoriaC = esTrayectoriaC || hrSalida < salidaHorario;
-                    if (esTrayectoriaC) {
-                        // Trayectoria C
-                        // Continua en 5 de la principal
-                        // continue;
-                    }
-                }
-
+            } else if (per.getTipo().equals("PAAE")) {
+                esPAAE(a, dia);
             }
-
-            break;
+            log.info("¿Que chingados haces aqui?");
         }
 
         return 0;
+    }
+
+    private boolean tieneRegistroAsistencia(Asistencia a) {
+        return a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null;
+    }
+
+    private void esAbierto(Asistencia a) {
+        int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
+        int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
+        float resta = (float) entradaRegistrada - salidaRegistrada;
+        resta = resta / 3600f;
+        if (resta < 8) {
+            // Trayectoria I
+            log.info("Te faltaron horas " + resta + " Trayectoria I");
+        } else if (resta > 9) {
+            // Trayectoria L
+            log.info("Te pasaste de horas " + resta + " Trayectoria L");
+        } else {
+            // Trayectoria J
+            log.info("TODO CHIDO - Trayectoria J");
+        }
+    }
+
+    private void noAbierto(Dia dia, Asistencia a, Personal per) {
+        int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
+        int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
+        int entradaHorario = dia.getHoraEntrada().toSecondOfDay();
+        int salidaHorario = dia.getHoraSalida().toSecondOfDay();
+        boolean trayectoriaE = entradaRegistrada >= entradaHorario + ONCE;
+        trayectoriaE = trayectoriaE || salidaRegistrada < salidaHorario;
+        if (trayectoriaE) {
+            // Trayectoria E
+            if (per.getTipo().equals(ADMON)) {
+                // Trayectoria G
+                log.info("Trayectoria G dentro de E");
+            } else {
+                log.info("Trayectoria E");
+            }
+            // Continua en 5 de la principal
+        }
+        int x = salidaRegistrada-entradaRegistrada;
+        int y = salidaHorario - entradaHorario;
+        boolean trayectoriaH = x >= (y + HORA);
+        if (trayectoriaH) {
+            //Trayectoria H
+            // Continua en 5 principal
+            log.info("TRAYECTORIA H");
+        }
+    }
+
+    private void esPAAE(Asistencia a, Dia dia) {
+        int entradaRegistrada;
+        int salidaRegistrada;
+        int entradaHorario;
+        int salidaHorario;
+        if (tieneRegistroAsistencia(a)) {
+            //Trayectoria D
+            // Continua 5 principal
+            log.info("TRAYECTORIA D");
+        } else {
+            entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
+            salidaRegistrada = a.getHoraSalida().toSecondOfDay();
+            entradaHorario = dia.getHoraEntrada().toSecondOfDay();
+            salidaHorario = dia.getHoraSalida().toSecondOfDay();
+            boolean esTrayectoriaB = entradaHorario + MINUTO <= entradaRegistrada;
+            esTrayectoriaB = esTrayectoriaB && entradaRegistrada <= entradaHorario + TREINTA_MIN;
+            esTrayectoriaB = esTrayectoriaB && salidaHorario <= salidaRegistrada;
+            if (esTrayectoriaB) {
+                // Trayectoria B
+                // Continua 5 principal
+                log.info("TRAYECTORIA B");
+            }
+            boolean esTrayectoriaC = entradaRegistrada >= entradaHorario + TREINTA_UNO;
+            esTrayectoriaC = esTrayectoriaC || salidaRegistrada < salidaHorario;
+            if (esTrayectoriaC) {
+                // Trayectoria C
+                // Continua en 5 de la principal
+                log.info("TRAYECTORIA C");
+            }
+        }
     }
 
     private String obtenerDia(LocalDate fecha) {
