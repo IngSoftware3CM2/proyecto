@@ -16,6 +16,9 @@ public class Incidencia {
     @Column(name = "tipo", nullable = true, length = 2)
     private String tipo;
 
+    @Column(name = "horasFaltantes", nullable = false)
+    private Integer horasFaltantes;
+
     private static final String DEFINITION = "FOREIGN KEY(idQuincena) REFERENCES quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
