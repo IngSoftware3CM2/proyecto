@@ -103,8 +103,8 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         String diaSemana = obtenerDia(fecha);
         for(Personal per : listaPersonal){
             // Obtiene el numero de empleado y tipo de personal
-            log.info("Nombre: "+per.getNombre()+" ID: "+per.getIdEmpleado()+ " Tipo: " +
-                    ""+per.getTipo());
+            log.info("--------------------------------------------------------------------------");
+            log.info("Nombre: "+per.getNombre()+" ID: "+per.getIdEmpleado()+ " Tipo: " + per.getTipo());
             HorarioActual h = per.getHorarioActual();
             Integer idHorario = h.getIdHorario();
             // Obtiene el horario de dicho empleado de acuerdo a la RN48 (del dia previo al anterior)
@@ -151,7 +151,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     private void esAbierto(Asistencia a) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
-        float resta = (float) entradaRegistrada - salidaRegistrada;
+        float resta = (float) salidaRegistrada - entradaRegistrada;
         resta = resta / 3600f;
         if (resta < 8) {
             // Trayectoria I
