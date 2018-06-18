@@ -26,7 +26,7 @@ public class DchController {
         model.addAttribute("succes",succes);
         error=0;
         succes=0;
-        //incidenciaService.registrarIncidencia();
+        incidenciaService.registrarIncidencia();
         return INICIO;
     }
 
