@@ -17,7 +17,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/proyecto_CI
     password: postgres
     username: postgres
-    platform: postgres
+    platform: postgre
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
