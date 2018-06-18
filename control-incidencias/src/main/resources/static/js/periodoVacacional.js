@@ -1,12 +1,10 @@
-var _validFileExtensions = [".jpg",".jpeg"];
-
 $(document).ready(function () {
     $("tbody tr").remove();
     llenarPersonal();
     selectAll();
     registrarDia();
     $("#buttonCancelar").on("click",function(){
-        window.location.href="/dch/asistencia/dianolaborable/cancelar";
+        window.location.href="/dch/asistencia/periodovacacional/cancelar";
     });
 
     document.getElementById("fechaDia").oninvalid = function (ev) {
@@ -23,8 +21,8 @@ $(document).ready(function () {
     };
 
     document.getElementById("justificacion").oninvalid = function (ev) {
-            this.setCustomValidity("Complete todos los campos obligatorios");
-            $("#MSG").removeClass("hidden");
+        this.setCustomValidity("Complete todos los campos obligatorios");
+        $("#MSG").removeClass("hidden");
     };
     document.getElementById("fechaDia").oninput = function (ev) {
         this.setCustomValidity('');
@@ -45,31 +43,6 @@ function selectAll(){
         checkboxes.prop('checked', $(this).is(':checked'));
     });
 }
-function ValidateSingleInput(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-        if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-            if (!blnValid) {
-                $("#mensajeArchivoE").removeClass("hidden");
-                oInput.value = "";
-                return false;
-            }
-            $("#mensajeArchivoE").addClass("hidden");
-        }
-        else{
-            $("#mensajeArchivoE").addClass("hidden");
-        }
-    }
-    return true;
-}
 
 
 function llenarPersonal() {
@@ -87,7 +60,7 @@ function llenarPersonal() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: window.location.origin + "/dch/asistencias/dianolaborable/personal",
+            url: window.location.origin + "/dch/asistencias/periodovacacional/personal",
             data: JSON.stringify(datos),
             dataType: "json",
             success : function (resultado) {
@@ -115,54 +88,54 @@ function llenarPersonal() {
     });
 }
 function registrarDia(){
-    //alert('Que onda chavos');
     $("#buttonRegistrar").on("click",function(){
-
-        var fecha= $("#fechaDia").val();
-        var justificacion = $("#justificacion").val();
-        var archivo = $("#archivo").val();
+        var fechaIni= $("#fechaInicio").val();
+        var fechaFin = $("#fechaFin").val();
         var ids = new Array();
-        if(!validarFormatoFecha(fecha)){
+        if(!validarFormatoFecha(fechaIni)){
+            $("#errorRN54").removeClass("hidden");
+        }
+        if(!validarFormatoFecha(fechaFin)){
             $("#errorRN54").removeClass("hidden");
         }
         $("#checkPersonal:checked").each(function() {
             ids.push($(this).val());
         });
         console.log(ids);
-        console.log(fecha);
-        console.log(justificacion);
-        console.log(archivo);
-        if(ids.length != 0 && validarFormatoFecha(fecha)){
+        console.log(fechaInicio);
+        console.log(fechaFin);
+        if(ids.length != 0 && validarFormatoFecha(fechaIni) && validarFormatoFecha(fechaFin)){
             console.log("Entre al if");
             console.log(ids.length);
             $("#MSG").addClass("hidden");
             $("#errorRN54").addClass("hidden");
-        var datos = {
-            fechaNH: fecha,
-            justificacionNH: justificacion,
-            listId: ids
-        }
-        $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: window.location.origin + "/dch/asistencias/dianolaborable/agregar",
-        data: JSON.stringify(datos),
-        dataType: "json",
-        success : function (resultado) {
-            if(resultado==-1){
-                $("#errorRN54").removeClass('hidden');
+            var datos = {
+                fechaInicio: fechaIni,
+                fechaFin: fechaFin,
+                listId: ids
             }
-            if(resultado==-2){
-                $("#MSG").removeClass("hidden");
-            }
-            if(resultado==1){
-                window.location.href="/dch/asistencia/dianolaborable/exito";
-            }
-        },
-        error : function (json) {
-            console.log("Algo anda mal.")
-        }
-        });
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: window.location.origin + "/dch/asistencias/periodovacacional/agregar",
+                data: JSON.stringify(datos),
+                dataType: "json",
+                success : function (resultado) {
+                    if(resultado==-1){
+                        // Evaluamos formato de fechas
+                        $("#errorRN54").removeClass('hidden');
+                    }
+                    if(resultado==-2){
+                        $("#MSG").removeClass("hidden");
+                    }
+                    if(resultado==1){
+                        window.location.href="/dch/asistencia/periodovacacional/exito";
+                    }
+                },
+                error : function (json) {
+                    console.log("Algo anda mal.")
+                }
+            });
         }else{
             $("#MSG").removeClass("hidden");
         }
