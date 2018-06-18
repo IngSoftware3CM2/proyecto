@@ -69,6 +69,19 @@ public class PersonalController {
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
 
+    @Autowired
+    @Qualifier ("comisionServiceImpl")
+    private ComisionServiceImpl comisionService;
+
+    @Autowired
+    @Qualifier("omisionServiceImpl")
+    private OmisionESServiceImpl omisionESService;
+
+    @Autowired
+    @Qualifier("retardoServiceImpl")
+    private  RetardoServiceImpl retardoService;
+
+
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
         if (principal != null)
@@ -163,6 +176,15 @@ public class PersonalController {
             } else if(tiempoSuplementarioService.existsByIdjustificante(justificante.getIdJustificante())){
                 justificante.setTipo(5);
             }
+            else if(omisionESService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(6);
+            }
+            else if(retardoService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(7);
+            }
+            else if(comisionService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(8);
+            }
             else {
                 justificante.setTipo(666);
             }
@@ -231,6 +253,10 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
         else if(tipo==6)
             redirectURL = "redirect:/personal/justificantes/constanciatiempo/agregar";
+        else if(tipo==7)
+            redirectURL = "redirect:/personal/justificantes/retardo/agregar";
+        else if(tipo==8)
+            redirectURL = "redirect:/personal/justificantes/omision/agregar";
         return redirectURL;
     }
 

@@ -29,4 +29,14 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
     @Query(value="update tiemposuplgenerado set usado = :usado where idtiemposuplgenerado= :idtiempo", nativeQuery = true)
     int updateTiempoSuplGenerado(@Param("idtiempo") int idtiempo, @Param("usado") boolean usado);
 
+    @Modifying
+    @Query(value = "insert into tiemposuplgenerado (idtiemposuplgenerado, fecharegistro, horas, usado, idempleado) values (:id, :fecha, :horas, :usado, :empleado)", nativeQuery = true)
+    @Transactional
+    void registrarSuplementario(@Param("id") Integer id, @Param("fecha") LocalDate fecha,
+            @Param("horas") LocalTime horas, @Param("usado") Boolean usado,
+            @Param("empleado") Integer idEmpleado);
+
+    @Query(value = "select max(idtiemposuplgenerado) from tiemposuplgenerado", nativeQuery = true)
+    @Transactional
+    Integer obtenerMaximoIdIncidencia();
 }

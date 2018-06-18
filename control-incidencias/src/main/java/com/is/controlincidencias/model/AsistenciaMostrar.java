@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class AsistenciaMostrar {
     private String tarjeta;
+    private String nombre;
     private String anio;
     private String quincena;
 }

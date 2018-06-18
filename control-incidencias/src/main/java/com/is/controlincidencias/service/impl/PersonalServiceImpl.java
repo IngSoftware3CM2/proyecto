@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("personalServiceImpl")
 public class PersonalServiceImpl implements PersonalService {
 
@@ -32,5 +34,13 @@ public class PersonalServiceImpl implements PersonalService {
     @Override
     public void actualizarContra(Personal personal) {
         personalRepository.save(personal);
+    }
+
+    @Override
+    public List<Personal> getPersonalByTipo(String tipo) {
+        if(tipo.equals("AMBOS")){
+            return personalRepository.findAllByAmbosTipos("ROLE_DOC", "ROLE_PAAE");
+        }
+        return personalRepository.findAllByTipo(tipo);
     }
 }

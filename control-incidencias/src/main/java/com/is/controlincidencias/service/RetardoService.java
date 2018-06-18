@@ -12,4 +12,6 @@ public interface RetardoService {
 
     void updateJust(String j, int id);
 
+    boolean existsByIdjustificante (int id);
+
 }

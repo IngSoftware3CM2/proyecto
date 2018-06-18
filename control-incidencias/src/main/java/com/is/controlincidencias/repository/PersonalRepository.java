@@ -13,7 +13,7 @@ import java.util.List;
 @Repository("personalRepository")
 public interface PersonalRepository extends JpaRepository<Personal, Serializable> {
     boolean existsPersonalByNoTarjeta(String noTarjeta);
-    Personal getPersonalByNoTarjeta(String noTarjeta);
+    Personal findFirstByNoTarjeta(String noTarjeta);
     Personal findByIdEmpleado(int idEmpleado);
     Personal findByLogin_Correo(String email);
     Personal findByLogin_CorreoAndLogin_Passwordhash(String email, String pwd);
@@ -24,5 +24,12 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     @Query(value = "select sexo from personal where idempleado= :id", nativeQuery = true)
     @Transactional
     String sexoDePersonal(@Param("id") int id);
+
+    List<Personal> findAllByTipo(String tipo);
+
+
+    @Query(value="select * from personal where tipo =:tipo1 or tipo=:tipo2", nativeQuery = true)
+    @Transactional
+    List<Personal> findAllByAmbosTipos(@Param("tipo1") String tipo1,@Param("tipo2") String tipo2);
 
 }

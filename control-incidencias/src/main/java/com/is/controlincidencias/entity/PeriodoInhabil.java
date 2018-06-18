@@ -8,8 +8,7 @@ import java.util.Objects;
 @Table(name="periodoinhabil")
 public class PeriodoInhabil {
     @Id
-    @Column(name = "idperiodo", columnDefinition = "serial")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idperiodo", length = 8)
     private Integer idperiodo;
 
     @Column(name = "inicio", nullable = false)  //
@@ -18,8 +17,8 @@ public class PeriodoInhabil {
     @Column(name = "fin", nullable = false)
     private LocalDate fin;
 
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+    @Column(name = "descripcion", nullable = false, columnDefinition = "character varying(500)")
+    private String descripcion ;
 
     @Column(name = "aplicapaee", nullable = false)  //se deja en false si este tipo de personal no tiene este periodoInhabil.
     private Boolean permisopaee;
@@ -27,7 +26,7 @@ public class PeriodoInhabil {
     @Column(name = "aplicadocente", nullable = false)
     private Boolean permisodocente;
 
-    @Column(name = "justificacionarchivo")
+    @Column(name = "justificacionarchivo", nullable = true)
     private String justificacionarchivo;
    /* private static final String DEFINITION = "FOREIGN KEY (idQuincena) REFERENCES  quincena (idQuincena) ON UPDATE CASCADE ON DELETE CASCADE";
 
@@ -65,6 +64,30 @@ public class PeriodoInhabil {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Boolean getPermisopaee() {
+        return permisopaee;
+    }
+
+    public void setPermisopaee(Boolean permisopaee) {
+        this.permisopaee = permisopaee;
+    }
+
+    public Boolean getPermisodocente() {
+        return permisodocente;
+    }
+
+    public void setPermisodocente(Boolean permisodocente) {
+        this.permisodocente = permisodocente;
+    }
+
+    public String getJustificacionarchivo() {
+        return justificacionarchivo;
+    }
+
+    public void setJustificacionarchivo(String justificacionarchivo) {
+        this.justificacionarchivo = justificacionarchivo;
     }
 
     @Override

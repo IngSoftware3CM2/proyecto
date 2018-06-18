@@ -171,14 +171,4 @@ public class AsistenciasController {
         model.addAttribute(MODELO, new AsistenciaMostrar());
         return MOSTRAR_ASISTENCIAS;
     }
-
-    @PostMapping("/mostrar")
-    public String mostrarPOST(@ModelAttribute(name = "modelo") AsistenciaMostrar mostrar,
-            Model model) {
-        //model.addAttribute("datos", asistenciaService.obtenerAsistenciasPersonal(mostrar));
-        model.addAttribute(MODELO, new AsistenciaMostrar());
-        return MOSTRAR_ASISTENCIAS;
-    }
-
-
 }
