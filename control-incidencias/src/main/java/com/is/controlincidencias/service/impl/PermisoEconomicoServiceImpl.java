@@ -2,11 +2,13 @@ package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.controller.LicenciaPaternidadController;
 import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.PersonalQuincena;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.PermisoEconomicoRepository;
 import com.is.controlincidencias.repository.PersonalQuincenaRepository;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.PermisoEconomicoService;
+import com.is.controlincidencias.service.PersonalQuincenaService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
     @Autowired
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
+
+    @Autowired
+    @Qualifier("personalQuincenaServiceImpl")
+    private PersonalQuincenaService personalQuincenaService;
 
     @Autowired
     @Qualifier("personalQuincenaRepository")
@@ -61,10 +67,16 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
                          //no puedes hacer otro permiso esta quincena
                     }
                 } else {
-                    Integer idpersonalquincena = personalQuincenaRepository.selectMaxIdPersonalQuincena();
-                    personalQuincenaRepository.insertRegistro(idpersonalquincena+1,1, idempleado,idquincena);
+                    PersonalQuincena personalQuincena = personalQuincenaService.findAllByPersonalQuincena(idempleado,idquincena);
+                    if(personalQuincena==null){
+                        Integer idpersonalquincena = personalQuincenaRepository.selectMaxIdPersonalQuincena();
+                        personalQuincenaRepository.insertRegistro(idpersonalquincena+1,1, idempleado,idquincena);
+                        //nuevo registro, primer permiso economico de la quincena
+                    }else{
+                        personalQuincenaRepository.updateQuincena(1, idempleado,idquincena);
+                    }
                     return 1;
-                    //nuevo registro, primer permiso economico de la quincena
+
                 }
             }
             else{
@@ -75,7 +87,13 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
         else{
             Integer idpersonalquincena = personalQuincenaRepository.selectMaxIdPersonalQuincena();
             if (idpersonalquincena!=null){
-                personalQuincenaRepository.insertRegistro(idpersonalquincena,1, idempleado,idquincena);
+                //personalQuincenaRepository.insertRegistro(idpersonalquincena,1, idempleado,idquincena);
+                PersonalQuincena personalQuincena = personalQuincenaService.findAllByPersonalQuincena(idempleado,idquincena);
+                if(personalQuincena==null){
+                    personalQuincenaRepository.insertRegistro(idpersonalquincena+1,1, idempleado,idquincena);
+                }else{
+                    personalQuincenaRepository.updateQuincena(1, idempleado,idquincena);
+                }
             }
             else{
                 personalQuincenaRepository.insertRegistro(1,1, idempleado,idquincena);

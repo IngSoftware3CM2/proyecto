@@ -54,6 +54,18 @@ public class NotificacionesController {
             email = principal.getName();
         }
         Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")||personal.getTipo().equals("ROLE_DCADM")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = "PAAE";
+        }
+        String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
         NotificacionModel notificacionModel = new NotificacionModel();
         idEmpleado = personal.getIdEmpleado();
         model.addAttribute("noTajerta", personal.getNoTarjeta().toString());
