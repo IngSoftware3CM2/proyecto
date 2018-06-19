@@ -28,24 +28,26 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     private static final int REGISTRO_DUPLICADO = 2;
     private static final int FECHA_ASISTENCIA_INVALIDA = 5;
 
-    private final AsistenciaRepository asistenciaRepository;
-    private final PersonalRepository personalRepository;
-    private final PeriodoInhabilRepository periodoInhabilRepository;
-    private final QuincenaRepository quincenaRepository;
-    private final DiaRepository diaRepository;
+    @Autowired
+    @Qualifier("asistenciaRepository")
+    private AsistenciaRepository asistenciaRepository;
 
     @Autowired
-    public AsistenciaServiceImpl(
-            @Qualifier("asistenciaRepository") AsistenciaRepository asistenciaRepository,
-            @Qualifier("personalRepository") PersonalRepository personalRepository,
-            @Qualifier("periodoInhabilRepository") PeriodoInhabilRepository periodoInhabilRepository,
-            QuincenaRepository quincenaRepository, DiaRepository diaRepository) {
-        this.asistenciaRepository = asistenciaRepository;
-        this.personalRepository = personalRepository;
-        this.periodoInhabilRepository = periodoInhabilRepository;
-        this.quincenaRepository = quincenaRepository;
-        this.diaRepository = diaRepository;
-    }
+    @Qualifier("personalRepository")
+    private PersonalRepository personalRepository;
+
+    @Autowired
+    @Qualifier("periodoInhabilRepository")
+    private PeriodoInhabilRepository periodoInhabilRepository;
+
+    @Autowired
+    @Qualifier("quincenaRepository")
+    private QuincenaRepository quincenaRepository;
+
+    @Autowired
+    @Qualifier("diaRepository")
+    private DiaRepository diaRepository;
+
 
     @Override
     public Asistencia agregarAsistencia(AsistenciaForm form) {

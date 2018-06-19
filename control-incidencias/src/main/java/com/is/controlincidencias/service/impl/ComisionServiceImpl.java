@@ -1,7 +1,6 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.model.ComisionModel;
-import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.repository.ComisionRepository;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.service.ComisionService;

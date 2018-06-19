@@ -1,6 +1,5 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.NotificacionModel;
 import com.is.controlincidencias.repository.NotificacionRepository;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 

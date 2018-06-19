@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -88,7 +87,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
     // En el metodo de inicio de DCHController mando a llamar a esto metodo para pruebas
     // El metodo deberia estar comentado o descomentado segun se necesite
-    // @Scheduled(cron = "0 00 23 * * MON-FRI")
+    @Scheduled(cron = "0 00 23 * * MON-FRI")
     @Override
     public int registrarIncidencia() {
         // Uso localdate porque es como esta mapeada la base
@@ -101,11 +100,12 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         // Obteniendo la fecha del dia que marca la RN48
         LocalDate fecha = actual;
         log.info("The time is now: " + fecha.toString());
-        for(int i=0; i<3; i++){
+        int i = 0;
+        while(i<2){
             fecha = fecha.minusDays(1); // resta
             // Validar si esa fecha es un dia inhabil o fin de semana
-            if( !esDiaHabil(fecha) )
-                i--;
+            if(esDiaHabil(fecha))
+                i++;
         }
         log.info("The time rn48 is: " + fecha.toString());
         // Obtener el nombre del dia en el formato que esta en la base de datos (LUN, MAR, MIE, JUE,

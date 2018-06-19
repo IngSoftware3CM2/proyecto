@@ -349,6 +349,8 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/retardo/agregar";
         else if(tipo==8)
             redirectURL = "redirect:/personal/justificantes/omision/agregar";
+        else if (tipo==9)
+            redirectURL = "redirect:/personal/justificantes/comisionOficial/agregar";
 
         //Que comision oficial sea 9 por fa
         return redirectURL;
