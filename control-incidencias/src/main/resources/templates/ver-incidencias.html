@@ -48,13 +48,14 @@
 
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}"
-                                    th:if="${incidencia.getJustificante() == null}">
+                                    th:if="${incidencia.getJustificante() == null or incidencia.getHorasFaltantes() != 0}">
                                     <form action="#" th:action="@{/personal/justificantes/agregar}" method="get">
                                         <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
                                         <td>
                                             <div th:switch="${motivo.intValue()}" class="row">
                                                 <div th:case="1" class="col-sm-8">
-                                                    <select class="form-control m-b" name="tipoJustificante">
+
+                                                    <select  class="form-control m-b" name="tipoJustificante">
                                                         <option th:value="2">Licencia por Paternidad</option>
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
@@ -63,6 +64,7 @@
                                                         <option th:value="7">Retardo</option>
                                                         <option th:value="8">Omision</option>
                                                     </select>
+
                                                 </div>
 
                                                 <div th:case="2" class="col-sm-8">
