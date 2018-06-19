@@ -215,6 +215,10 @@ public class PersonalController {
         model.addAttribute("sexo", sexo);
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
+
+        System.out.println("SEXO: " + personal.getSexo());
+        System.out.println("ROL: " + personal.getTipo());
+
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
         Integer motivo = new Integer (1);
