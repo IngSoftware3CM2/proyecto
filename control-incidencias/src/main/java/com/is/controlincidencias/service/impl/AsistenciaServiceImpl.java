@@ -71,8 +71,19 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         asistencia.setFechaRegistro(form.getFecha());
         asistencia.setHoraEntrada(form.getHoraEntrada());
         asistencia.setHoraSalida(form.getHoraSalida());
-        asistenciaRepository.insertarAsistencia(form.getFecha(), form.getHoraEntrada(), form
-                .getHoraSalida(), p.getIdEmpleado(), idAsistencia);
+        if (form.getHoraSalida() == null && form.getHoraEntrada() == null) {
+            asistenciaRepository.insertarAsistenciaNoHoras(form.getFecha(), p.getIdEmpleado(),
+                    idAsistencia);
+        } else if (form.getHoraSalida() == null) {
+            asistenciaRepository.insertarAsistenciaNoSalida(form.getFecha(), form.getHoraEntrada(),
+                    p.getIdEmpleado(), idAsistencia);
+        } else if (form.getHoraEntrada() == null) {
+            asistenciaRepository.insertarAsistenciaNoEntrada(form.getFecha(), form.getHoraSalida(),
+                    p.getIdEmpleado(), idAsistencia);
+        } else {
+            asistenciaRepository.insertarAsistencia(form.getFecha(), form.getHoraEntrada(), form
+                    .getHoraSalida(), p.getIdEmpleado(), idAsistencia);
+        }
         return asistencia;
     }
 
