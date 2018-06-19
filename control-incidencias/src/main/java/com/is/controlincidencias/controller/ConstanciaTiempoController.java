@@ -111,10 +111,14 @@ public class ConstanciaTiempoController {
         if (constanciaTiempoModel.getSegfecha()==null){
             constanciaTiempoModel.setSegfecha(fecha);
         }
+        LocalDate hoy = LocalDate.now();
         LocalDate dia = constanciaTiempoModel.getSegfecha();
         if (dia.getDayOfWeek()== DayOfWeek.SUNDAY || dia.getDayOfWeek()== DayOfWeek.SATURDAY || periodoInhabilRepository.existsByInicioIsLessThanEqualAndFinGreaterThanEqual(dia,dia)==true){
             LOG.info("NO ENTRA/////////////////////////////////////////////");
-            return "redirect:/personal/incidencias?dia=0";
+            return "redirect:/personal/incidencias?dia=1";
+        }
+        else if(dia.isBefore(hoy) && constanciaTiempoModel.getTipo().equals("CLIDDA")){
+            return "redirect:/personal/incidencias?dia=1";
         }
         else {
             LOG.info("SI ENTRA/////////////////////////////////////////////");
