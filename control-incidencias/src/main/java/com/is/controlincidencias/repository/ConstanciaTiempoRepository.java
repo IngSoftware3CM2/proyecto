@@ -24,4 +24,6 @@ public interface ConstanciaTiempoRepository extends JpaRepository<ConstanciaTiem
     @Transactional
     Integer selectMaxIdConstanciaTiempo();
 
+    boolean existsByJustificante_IdJustificante (int id);
+
 }
