@@ -1,5 +1,6 @@
 package com.is.controlincidencias.repository;
 
+import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +19,11 @@ public interface NotificacionRepository extends JpaRepository<Notificacion, Seri
     boolean existsByPersonal_IdEmpleado(int id);
     Notificacion findByPersonal_IdEmpleado(int id);
     Notificacion findByPersonal (Personal personal);
+
+    @Modifying
+    @Transactional
+    @Query (value="delete from notificacion where idmotivo=:idmotivo and idempleado =:idempleado", nativeQuery = true)
+    void deleteByPersonalAndMotivo(@Param("idmotivo") int idMotivo, @Param("idempleado") int idEmpleado);
 
     @Query(value = "select max(id) from notificacion", nativeQuery = true)
     @Transactional
