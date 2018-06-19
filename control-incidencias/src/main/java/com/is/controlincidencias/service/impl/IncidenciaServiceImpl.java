@@ -6,6 +6,7 @@ import com.is.controlincidencias.service.IncidenciaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,6 +38,10 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     @Autowired
     @Qualifier("tiempoSuplGeneradoRepository")
     private TiempoSuplGeneradoRepository tiempoSuplGeneradoRepository;
+
+    @Autowired
+    @Qualifier("periodoInhabilRepository")
+    private PeriodoInhabilRepository periodoInhabilRepository;
 
     private static final int MINUTO = 60;
     private static final int TREINTA_MIN = MINUTO * 30;
@@ -83,20 +88,26 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
     // En el metodo de inicio de DCHController mando a llamar a esto metodo para pruebas
     // El metodo deberia estar comentado o descomentado segun se necesite
-    //@Scheduled(cron = "0 00 23 * * MON-FRI")
+    // @Scheduled(cron = "0 00 23 * * MON-FRI")
     @Override
     public int registrarIncidencia() {
-        // Si la fecha actual corresponde a un dia habil
-
-        List<Personal> listaPersonal = personalRepository.findAll();
         // Uso localdate porque es como esta mapeada la base
         LocalDate actual = LocalDate.now();
+        log.info("Curren time minus two is valid?  CurrentDate: " + actual + ", IsValid: " + esDiaHabil(actual.minusDays(2)));
+        if( !esDiaHabil(actual) ){ return -1; }
+        // Si la fecha actual corresponde a un dia habil
+        List<Personal> listaPersonal = personalRepository.findAll();
 
         // Obteniendo la fecha del dia que marca la RN48
-        LocalDate fecha = actual.minusDays(3); // resta
-
-        // Validar si esa fecha es un dia inhabil o fin de semana
-
+        LocalDate fecha = actual;
+        log.info("The time is now: " + fecha.toString());
+        for(int i=0; i<3; i++){
+            fecha = fecha.minusDays(1); // resta
+            // Validar si esa fecha es un dia inhabil o fin de semana
+            if( !esDiaHabil(fecha) )
+                i--;
+        }
+        log.info("The time rn48 is: " + fecha.toString());
         // Obtener el nombre del dia en el formato que esta en la base de datos (LUN, MAR, MIE, JUE,
         // VIE) para hacer la consulta
         String diaSemana = obtenerDia(fecha);
@@ -350,7 +361,17 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             case FRIDAY:
                 return "VIE";
             default:
-                return "LUN";
+                return "END";
         }
     }
+
+    private boolean esDiaHabil(LocalDate date){
+        // No debe ser fin de semana
+        if( !obtenerDia(date).equals("END") ){
+            // Realizar una consulta a la tabla periodoinhabil con la fecha, si no retorna tuplas, el dia es habil.
+            return !periodoInhabilRepository.existsByInicioIsLessThanEqualAndFinGreaterThanEqual(date, date);
+        }
+        return false;
+    }
+
 }
