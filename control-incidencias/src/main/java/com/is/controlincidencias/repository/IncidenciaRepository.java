@@ -45,4 +45,7 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
     @Query(value = "select max(idincidencia) from incidencia", nativeQuery = true)
     @Transactional
     Integer obtenerMaximoIdAsistencia();
+
+    boolean existsIncidenciasByFechaRegistroAndPersonal_IdEmpleado(LocalDate fecha,
+            Integer idEmpleado);
 }
