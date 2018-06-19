@@ -16,6 +16,8 @@ import java.util.Date;
 @Repository("notificacionRepository")
 public interface NotificacionRepository extends JpaRepository<Notificacion, Serializable> {
     boolean existsByPersonal (Personal personal);
+    boolean existsByPersonal_IdEmpleado(int id);
+    Notificacion findByPersonal_IdEmpleado(int id);
     Notificacion findByPersonal (Personal personal);
 
     @Query(value = "select max(id) from notificacion", nativeQuery = true)

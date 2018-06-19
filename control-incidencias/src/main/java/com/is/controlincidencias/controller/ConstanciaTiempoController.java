@@ -24,7 +24,7 @@ import java.time.Month;
 import java.util.List;
 
 @Controller
-@RequestMapping("personal/justificantes/constanciatiempo")
+@RequestMapping("/personal/justificantes/constanciatiempo")
 
 public class ConstanciaTiempoController {
 
@@ -74,6 +74,19 @@ public class ConstanciaTiempoController {
             email = principal.getName();
         }
         Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = " PAAE";
+        }
+        String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+
         ConstanciaTiempoModel constanciaTiempoModel = new ConstanciaTiempoModel();
         idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
@@ -101,25 +114,26 @@ public class ConstanciaTiempoController {
         LocalDate dia = constanciaTiempoModel.getSegfecha();
         if (dia.getDayOfWeek()== DayOfWeek.SUNDAY || dia.getDayOfWeek()== DayOfWeek.SATURDAY || periodoInhabilRepository.existsByInicioIsLessThanEqualAndFinGreaterThanEqual(dia,dia)==true){
             LOG.info("NO ENTRA/////////////////////////////////////////////");
+            return "redirect:/personal/incidencias?dia=0";
         }
-        else{
+        else {
             LOG.info("SI ENTRA/////////////////////////////////////////////");
-            constanciaTiempoService.guardarConstanciaTiempo(constanciaTiempoModel,idIncidencia,idEmpleado);
+            constanciaTiempoService.guardarConstanciaTiempo(constanciaTiempoModel, idIncidencia, idEmpleado);
+
+
+            LOG.info("---------------------------------Datos que me llegan " + constanciaTiempoModel.toString());
+            //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
+            try {
+
+                //idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
+                licPaternidadService.subirArchivo(files, idEmpleado);
+                return "redirect:/personal/justificantes?add=1";
+            } catch (IOException e) {
+                LOG.error("ERROR:", e);
+                justificanteService.removeJustificanteByIdJustificante(idEmpleado);
+                return "redirect:/personal/justificantes?add=0"; //Esto debería redirigir a una pantalla de error 500
+            }
         }
-
-        LOG.info("---------------------------------Datos que me llegan "+constanciaTiempoModel.toString());
-        //Necesito crear un justificante, darlo de alte en la base y despues utilizarlo
-        try {
-
-            //idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
-            licPaternidadService.subirArchivo(files, idEmpleado);
-            return "redirect:/personal/justificantes?add=1";
-        } catch (IOException e) {
-            LOG.error("ERROR:", e);
-            justificanteService.removeJustificanteByIdJustificante(idEmpleado);
-            return "redirect:/personal/justificantes?add=0"; //Esto debería redirigir a una pantalla de error 500
-        }
-
     }
 
 }

@@ -24,4 +24,14 @@ public class NotificacionServiceImpl implements NotificacionService {
     public Notificacion findByPersonal(Personal personal) {
         return notificacionRepository.findByPersonal(personal);
     }
+
+    @Override
+    public boolean existsByidempleado(int id) {
+        return notificacionRepository.existsByPersonal_IdEmpleado(id);
+    }
+
+    @Override
+    public Notificacion findByidempleado(int id) {
+        return notificacionRepository.findByPersonal_IdEmpleado(id);
+    }
 }

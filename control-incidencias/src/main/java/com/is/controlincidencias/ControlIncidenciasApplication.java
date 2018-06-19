@@ -6,10 +6,12 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Slf4j
 @SpringBootApplication
+@EnableScheduling
 public class ControlIncidenciasApplication {
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
     public static void main(String[] args) {
