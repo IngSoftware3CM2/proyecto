@@ -50,15 +50,16 @@
                                     <div class="col-sm-3">
                                         <select class="form-control m-b" id="activitySelector" th:field="*{motivo}">
                                             <option th:value="LP">Licencia Paternidad</option>
-                                            <option th:value="LM">Licencia Medica/Cuidados Maternos/Cuidados
-                                                Familiares
-                                            </option>
+                                            <option th:value="LM">Licencia Medica/Cuidados Maternos/Cuidados Familiares</option>
                                             <option th:value="CO">Comision Oficial</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                 <div class="col-sm-6"><label>Selecciona un archivo :</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6"><label id="mensaje">Copia de identificación como trabajador del IPN.</label></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 text-right">
@@ -165,6 +166,28 @@
         }
         return true;
     }
+</script>
+<script th:inline="javascript">
+    function start(){
+        document.getElementById("activitySelector").addEventListener("change", addActivityItem, false);
+    }
+
+    function addActivityItem(){
+        //option is selected
+        var elem = document.getElementById("activitySelector"),
+            selectedNode = elem.options[elem.selectedIndex];
+        if ( selectedNode.value == "LP") {
+            document.getElementById('mensaje').innerHTML = 'Copia de identificación como trabajador del IPN.';
+        }
+        else if ( selectedNode.value == "LM") {
+            document.getElementById('mensaje').innerHTML = 'Licencia Medica/Cuidados Maternos/Cuidados Familiares';
+        }
+        else{
+            document.getElementById('mensaje').innerHTML = 'Documento de Comision oficial';
+        }
+    }
+
+    window.addEventListener("load", start, false);
 </script>
 </body>
 
