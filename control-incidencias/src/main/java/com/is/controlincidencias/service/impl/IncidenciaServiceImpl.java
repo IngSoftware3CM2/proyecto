@@ -86,8 +86,6 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     //@Scheduled(cron = "0 00 23 * * MON-FRI")
     @Override
     public int registrarIncidencia() {
-        log.info("The time is now {}", new Date());
-
         // Si la fecha actual corresponde a un dia habil
 
         List<Personal> listaPersonal = personalRepository.findAll();
@@ -129,7 +127,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
                         log.info("TRAYECTORIA G DENTRO DE F");
                         incidencia.setTipo("FD");
                     } else {
-                        log.info("TRAYECTORIA F");
+                        log.info("TRAYECTORIA F de DOCENTE");
                         incidencia.setTipo("FC");
                     }
                     horas = dia.getHoraSalida().toSecondOfDay() - dia.getHoraEntrada().toSecondOfDay();
@@ -148,7 +146,6 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             guardarIncidencia(incidencia, per.getIdEmpleado());
             log.info("-------------------------¿Que chingados?-----------------------------------");
         }
-
         return 0;
     }
 
@@ -206,7 +203,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
                 log.info("Trayectoria G dentro de E");
                 incidencia.setTipo("FD");
             } else {
-                log.info("Trayectoria E");
+                log.info("Trayectoria E de PAAE");
                 incidencia.setTipo("FC");
             }
             incidencia.setFechaRegistro(fecha);
@@ -214,7 +211,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
             incidencia.setHorasFaltantes(horas);
             return incidencia;
         }
-        int x = salidaRegistrada-entradaRegistrada;
+        int x = salidaRegistrada - entradaRegistrada;
         int y = salidaHorario - entradaHorario;
         boolean trayectoriaH = x >= (y + HORA);
         if (trayectoriaH) {
@@ -302,8 +299,13 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
 
     private void guardarIncidencia(Incidencia incidencia, Integer idEmpleado) {
-        if (incidencia.getTipo().equals(""))
+        if (incidencia.getTipo() == null || incidencia.getTipo().equals(""))
             return;
+        if (incidenciaRepository.existsIncidenciasByFechaRegistroAndPersonal_IdEmpleado
+                (incidencia.getFechaRegistro(), idEmpleado)) {
+            log.info("YA HAY UNA INCIDENCIA ESE DIA");
+            return;
+        }
         Integer id = incidenciaRepository.obtenerMaximoIdAsistencia();
         if (id == null)
             id = 1;
@@ -316,6 +318,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     }
 
     private void guardarSuplGenerado(TiempoSuplGenerado tiempo, Integer idEmpleado) {
+        if (tiempoSuplGeneradoRepository.existsByFechaRegistroAndPersonal_IdEmpleado(tiempo
+                .getFechaRegistro(), idEmpleado)) {
+            log.error("YA EXISTE ESE TIEMPO");
+            return;
+        }
         Integer id = tiempoSuplGeneradoRepository.obtenerMaximoIdIncidencia();
         if (id == null)
             id = 1;

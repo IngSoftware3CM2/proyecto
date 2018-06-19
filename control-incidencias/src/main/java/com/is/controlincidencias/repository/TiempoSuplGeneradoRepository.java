@@ -40,4 +40,6 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
     @Query(value = "select max(idtiemposuplgenerado) from tiemposuplgenerado", nativeQuery = true)
     @Transactional
     Integer obtenerMaximoIdIncidencia();
+
+    boolean existsByFechaRegistroAndPersonal_IdEmpleado(LocalDate fecha, Integer id);
 }
