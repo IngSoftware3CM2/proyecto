@@ -49,7 +49,7 @@
 
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}"
-                                    th:if="${incidencia.getJustificante() == null or incidencia.getHorasFaltantes() != 0}">
+                                    th:if="${incidencia.getJustificante() == null}">
                                     <form action="#" th:action="@{/personal/justificantes/agregar}" method="get">
                                         <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
                                         <td>
