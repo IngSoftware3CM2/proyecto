@@ -204,7 +204,7 @@ public class PersonalController {
 
 
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar,@RequestParam(name = "sexo", required = false) Integer sexo, Principal principal) {
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "dia", required = false) Integer dia,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar,@RequestParam(name = "sexo", required = false) Integer sexo, Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
@@ -213,6 +213,7 @@ public class PersonalController {
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
         model.addAttribute("sexo", sexo);
+        model.addAttribute("dia", dia);
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
