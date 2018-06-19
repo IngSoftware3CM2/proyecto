@@ -208,6 +208,7 @@ public class PersonalController {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
+        System.out.println("MAIL: " + email);
         ModelAndView mav = new ModelAndView("ver-incidencias");
         Personal personal = personalService.getPersonalByEmail(email);
         LOG.info("*****************************************"+cancelar);
@@ -218,15 +219,95 @@ public class PersonalController {
 
         System.out.println("SEXO: " + personal.getSexo());
         System.out.println("ROL: " + personal.getTipo());
-
-        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+        char sexoPersonal = personal.getSexo();
+        String tipoPersonal = personal.getTipo();
+        int opcion = 0;
+        model.addAttribute("sexoPersonal", sexoPersonal);
+        model.addAttribute("tipoPersonal", tipoPersonal);
         Integer motivo = new Integer (1);
         if (notificacionService.existsByPersonal(personal)){
             Notificacion notificacion = notificacionService.findByPersonal(personal);
             motivo = new Integer(notificacion.getMotivo().getIdMotivo());
         }
         mav.addObject("motivo", motivo);
+
+        //Paso a hacer todas las validaciones, son 16. Por fa no muevan nada.
+        if (sexoPersonal == 'H'){
+            if (tipoPersonal.equals("ROLE_DOC")){
+                if (motivo.intValue() == 1){
+                    opcion = 1;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 2;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 3;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 4;
+                }
+            }
+            else if (tipoPersonal.equals("ROLE_PAAE")){
+                if (motivo.intValue() == 1){
+                    opcion = 5;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 6;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 7;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 8;
+                }
+            }
+        }
+        else if (sexoPersonal == 'M'){
+            if (tipoPersonal.equals("ROLE_DOC")){
+                if (motivo.intValue() == 1){
+                    opcion = 9;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 10;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 11;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 12;
+                }
+            }
+            else if (tipoPersonal.equals("ROLE_PAAE")){
+                if (motivo.intValue() == 1){
+                    opcion = 13;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 14;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 15;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 16;
+                }
+            }
+        }
+
+
+
+
+
+
+
+        model.addAttribute("caso", opcion);
+
+
+
+
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
+
         return mav;
     }
 
@@ -261,6 +342,8 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/retardo/agregar";
         else if(tipo==8)
             redirectURL = "redirect:/personal/justificantes/omision/agregar";
+
+        //Que comision oficial sea 9 por fa
         return redirectURL;
     }
 
