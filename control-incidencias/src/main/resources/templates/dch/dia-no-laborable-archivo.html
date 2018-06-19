@@ -43,7 +43,7 @@
                             <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input oninvalid="if(this.value.length==0){this.setCustomValidity(MSG_16);$('#MSG').removeClass('hidden');}" oninput="setCustomValidity(''); $('#MSG').addClass('hidden');" type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg' required/>
+                                    <input oninvalid="if(this.value.length==0){this.setCustomValidity(MSG_16);$('#MSG').removeClass('hidden');}" oninput="setCustomValidity(''); $('#MSG').addClass('hidden');" type="file" name="file" aria-describedby="fileHelp" onchange="ValidateSingleInput(this);" accept='.jpg'/>
                                 </span>
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
                         </div>
@@ -52,9 +52,6 @@
                         <div class="col-lg-6"></div>
                         <div class="col-lg-3">
                             <button class="btn btn-sm btn-white"  type="submit">Generar</button>
-                        </div>
-                        <div class="col-lg-3">
-                            <button class="btn btn-sm btn-white" id="buttonCancelar" type="button">Cancelar</button>
                         </div>
                     </div>
                 </form>

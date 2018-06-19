@@ -6,6 +6,7 @@ import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LicPaternidadModel;
+import com.is.controlincidencias.repository.NotificacionRepository;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.JustificanteService;
 import com.is.controlincidencias.service.LicPaternidadService;
@@ -44,6 +45,10 @@ public class LicenciaPaternidadController {
     @Autowired
     @Qualifier("personalServiceImpl")
     private PersonalService personalService;
+
+    @Autowired
+    @Qualifier("notificacionRepository")
+    private NotificacionRepository notificacionRepository;
 
 
     @Autowired
@@ -135,6 +140,7 @@ public class LicenciaPaternidadController {
 
             idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
+            notificacionRepository.borrarRegistro();
         } catch (IOException e) {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);

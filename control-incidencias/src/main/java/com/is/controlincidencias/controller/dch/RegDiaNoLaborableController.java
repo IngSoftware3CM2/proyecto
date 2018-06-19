@@ -69,7 +69,7 @@ public class RegDiaNoLaborableController {
     @PostMapping("dianolaborable/archivo/subir")
     private String guardarJustificanteTA(@RequestParam("file") List<MultipartFile> files) {
         if (files.isEmpty()) {
-            return "redirect:/dch/asistencia/dianolaborable/archivo?id="+idPeriodoInhabil;
+            return "redirect:/dch?succes=1";
         }
         try {
             //Aqui trato de subir el archivo

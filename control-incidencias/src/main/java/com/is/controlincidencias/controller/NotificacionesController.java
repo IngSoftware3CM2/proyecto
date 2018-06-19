@@ -47,6 +47,7 @@ public class NotificacionesController {
 
     @GetMapping("/crear")
     private String redirectCrearNotificacion(Model model, Principal principal) {
+
         String email = "correo@gmail.com";
         if (principal != null && principal.getName() != null) {
             email = principal.getName();
@@ -75,29 +76,35 @@ public class NotificacionesController {
 
     @PostMapping("/agregar")
     private String guardarConstanciaTiempo(@ModelAttribute("constanciaTiempoModel") NotificacionModel notificacionModel, @RequestParam("file") List<MultipartFile> files) {
-        LOG.info("---------------------------------Datos que me llegan " + notificacionModel.toString() + "------------------" + files.get(0).getOriginalFilename());
-        try {
-            licPaternidadService.subirArchivo(files, idEmpleado);
-        } catch (IOException e) {
-            LOG.error("ERROR:", e);
+        if (notificacionRepository.soloUnaNotificacion()==null){
+            LOG.info("---------------------------------Datos que me llegan " + notificacionModel.toString() + "------------------" + files.get(0).getOriginalFilename());
+            try {
+                licPaternidadService.subirArchivo(files, idEmpleado);
+            } catch (IOException e) {
+                LOG.error("ERROR:", e);
+                return "redirect:/personal/vernotificaciones?add=0";
+            }
+            int idMotivo = 0;
+            if (notificacionModel.getMotivo().equals("LP")) {
+                idMotivo = 1;
+            } else if (notificacionModel.getMotivo().equals("LM")) {
+                idMotivo = 2;
+            } else {//CO
+                idMotivo = 3;
+            }
+            Integer id = notificacionRepository.selectMaxIdPersonalQuincena();
+            Date fecha = new Date();
+            if (id == null) {
+                notificacionRepository.insertNotificacion(1, files.get(0).getOriginalFilename(), fecha, idMotivo, idEmpleado);
+            } else {
+                notificacionRepository.insertNotificacion(id + 1, files.get(0).getOriginalFilename(), fecha, idMotivo, idEmpleado);
+            }
+
+            return "redirect:/personal/vernotificaciones?add=1";
+        }else{
             return "redirect:/personal/vernotificaciones?add=0";
         }
-        int idMotivo = 0;
-        if (notificacionModel.getMotivo().equals("LP")) {
-            idMotivo = 1;
-        } else if (notificacionModel.getMotivo().equals("LM")) {
-            idMotivo = 2;
-        } else {//CO
-            idMotivo = 3;
-        }
-        Integer id = notificacionRepository.selectMaxIdPersonalQuincena();
-        Date fecha = new Date();
-        if (id == null) {
-            notificacionRepository.insertNotificacion(1, files.get(0).getOriginalFilename(), fecha, idMotivo, idEmpleado);
-        } else {
-            notificacionRepository.insertNotificacion(id + 1, files.get(0).getOriginalFilename(), fecha, idMotivo, idEmpleado);
-        }
 
-        return "redirect:/personal/vernotificaciones?add=1";
+
     }
 }
