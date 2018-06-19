@@ -81,6 +81,10 @@ public class PersonalController {
     @Qualifier("retardoServiceImpl")
     private  RetardoServiceImpl retardoService;
 
+    @Autowired
+    @Qualifier("constanciaTiempoServiceImpl")
+    private ConstanciaTiempoServiceImpl constanciaTiempoService;
+
 
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
@@ -184,6 +188,9 @@ public class PersonalController {
             }
             else if(comisionService.existsByIdjustificante(justificante.getIdJustificante())){
                 justificante.setTipo(8);
+            }
+            else if(constanciaTiempoService.existByidjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(9);
             }
             else {
                 justificante.setTipo(666);
