@@ -4,9 +4,13 @@
 </head>
 <body>
 <script>
-
     var MSG1_6 = "Complete todos los campos obligatorios";
     var MSG1_58  = "No puede exceder el limite de caracteres para el llenado de este formato";
+    var MSG1_x = "Le fecha de inicio se muy lejana";
+    var MSG1_21 = "No se adjuntaron los archivos correctamente";
+    var MSG1_23 = "Formato de archivo incorrecto.";
+    var MSG1_57 = "La Comisión Oficial no puede durar más de 15 días";
+    var MSG1_x = "La fecha final no puede ser anterior a la inicial";
 </script>
 <div id="wrapper">
     <nav th:replace="fragments/verticalnavbar :: verticalnavbar(3)"></nav>
@@ -66,14 +70,14 @@
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha de Inicio:</label>
                         <div class="input-group date col-sm-2">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="03/04/2014" th:field="*{inicio}">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="inicio" oninvalid=" if(this.value.length==0){this.setCustomValidity('Completa todos los campos obligatorios');$('#MSG').innerHTML=MSG1_6;}" oninput="setCustomValidity('');" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{inicio}" onchange="ajustaFin();" required>
                         </div>
 
                     </div>
                     <div class="form-group" id="data_1">
                         <label class="col-sm-2"> Fecha Final:</label>
                         <div class="input-group date col-sm-2" >
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="03/04/2014" th:field="*{fin}">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="fin" oninvalid=" if(this.value.length==0){this.setCustomValidity('Completa todos los campos obligatorios');$('#MSG').innerHTML=MSG1_6;}" oninput="setCustomValidity('');" pattern="^\d{4}-\d{2}-\d{2}" class="form-control" th:field="*{fin}" required onchange="ajustaFin();">
                         </div>
 
                     </div>
@@ -123,6 +127,42 @@
 <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
 <script>
+    function ajustaFin()
+        {
+            var inicio = document.getElementById('inicio').value;
+            var fin = document.getElementById('fin');
+            console.log(inicio + " - " + fin);
+
+            if(inicio.length > 0 && fin.value.length > 0) {
+                var dias = datediff(parseDate(inicio), parseDate(fin.value));
+                if (dias > 15) {
+                    fin.setCustomValidity('La Comisión Oficial no puede durar más de 15 días');
+                    $('#MSG').innerHTML = MSG1_57;
+                }
+                if (dias <= 0) {
+                    fin.setCustomValidity('La fecha final no puede ser anterior a la inicial');
+                    $('#MSG').innerHTML = MSG1_x;
+                }
+            }
+        }
+
+
+    function parseDate(str) {
+        var mdy = str.split('-');
+        return new Date(mdy[0], mdy[1]-1, mdy[2]);
+    }
+
+    function datediff(first, second) {
+        // Take the difference between the dates and divide by milliseconds per day.
+        // Round to nearest whole number to deal with DST.
+        return Math.round((second-first)/(1000*60*60*24));
+    }
+
+
+
+
+
+
     $(document).ready(function(){
 
         $('.tagsinput').tagsinput({
@@ -500,7 +540,7 @@
     }
 </script>
 
-
+<p id="MSG" hidden></p>
 </body>
 
 </html>
