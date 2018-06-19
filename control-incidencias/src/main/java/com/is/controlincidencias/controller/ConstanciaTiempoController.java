@@ -112,11 +112,11 @@ public class ConstanciaTiempoController {
         try {
 
             //idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
-            licPaternidadService.subirArchivo(files, 1);
+            licPaternidadService.subirArchivo(files, idEmpleado);
             return "redirect:/personal/justificantes?add=1";
         } catch (IOException e) {
             LOG.error("ERROR:", e);
-            justificanteService.removeJustificanteByIdJustificante(1);
+            justificanteService.removeJustificanteByIdJustificante(idEmpleado);
             return "redirect:/personal/justificantes?add=0"; //Esto debería redirigir a una pantalla de error 500
         }
 
