@@ -229,7 +229,7 @@ public class PersonalController {
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
 
-        Integer motivo = new Integer (1);
+        Integer motivo = new Integer (-1);
         if (notificacionService.existsByPersonal(personal)){
             Notificacion notificacion = notificacionService.findByPersonal(personal);
             motivo = new Integer(notificacion.getMotivo().getIdMotivo());
