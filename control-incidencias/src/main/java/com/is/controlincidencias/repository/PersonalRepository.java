@@ -20,6 +20,11 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     Personal findByNoTarjeta(String tarjeta);
     List<Personal> findByTipoOrderByNoTarjeta(String tipo);
     List<Personal> findByDepartamento_IdDepartamentoOrderByNoTarjeta(Integer id);
+
+    @Query(value = "select sexo from personal where idempleado= :id", nativeQuery = true)
+    @Transactional
+    String sexoDePersonal(@Param("id") int id);
+
     List<Personal> findAllByTipo(String tipo);
 
 

@@ -134,7 +134,6 @@ public class IncidenciaServiceImpl implements IncidenciaService {
                     horas = horas / HORA;
                     incidencia.setHorasFaltantes(horas);
                     incidencia.setFechaRegistro(fecha);
-                    // Continua en 5 de la principal
                 } else {
                     if (per.getHabierto())
                         incidencia = esAbierto(a, fecha); // Trayectoria A
@@ -149,6 +148,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         }
 
         return 0;
+    }
+
+    @Override
+    public void updateIdIncidenciaAndHorasCubrir(int idJustificante, int idIncidencia, int horas) {
+        incidenciaRepository.updateIdJustificanteAndHorasCubrir(idJustificante,idIncidencia,horas);
     }
 
     // Falta trayectoria L

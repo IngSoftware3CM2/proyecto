@@ -9,6 +9,6 @@ public class Constants {
     public static final String JUSTIFICANTE_TS = "justificanteTS/tiempo-suplementario";
     public static final String DIA_NO_LABORABLE = "dch/dia-no-laborable";
     public static final String PERIODO_VACACIONAL = "dch/periodo-vacacional";
-
+    public static final String DIA_NO_LABORABLE_ARCHIVO = "dch/dia-no-laborable-archivo";
     private Constants() { }
 }
