@@ -282,10 +282,9 @@ public class PersonalController {
 
 
     @GetMapping("/vernotificaciones")
-    public ModelAndView showIncidencias(Model model,Principal principal){
-        String email = "a@gmail.com"; // aqui poner un email por default para que no de error
-        if (principal != null && principal.getName() != null)
-            email = principal.getName();
+    public ModelAndView showIncidencias(Model model,Principal principal, @RequestParam(name = "cancelar", required = false) Integer cancelar, @RequestParam(name = "add", required = false) Integer add){
+        model.addAttribute("cancelar", cancelar);
+        model.addAttribute("add", add);
         ModelAndView mav = new ModelAndView("notificaciones/ver-notificaciones");
         return mav;
     }
