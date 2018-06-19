@@ -33,3 +33,6 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\asistencia.csv' DELIMIT
 
 COPY periodoinhabil(idperiodo,inicio,fin,descripcion,aplicadocente,aplicapaee,justificacionarchivo)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
+
+COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\tiemposuplgenerado.csv' DELIMITER ',' CSV HEADER;
