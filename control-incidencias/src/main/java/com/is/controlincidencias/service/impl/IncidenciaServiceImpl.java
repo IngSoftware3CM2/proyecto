@@ -94,7 +94,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         LocalDate actual = LocalDate.now();
 
         // Obteniendo la fecha del dia que marca la RN48
-        LocalDate fecha = actual.minusDays(2); // resta
+        LocalDate fecha = actual.minusDays(3); // resta
 
         // Validar si esa fecha es un dia inhabil o fin de semana
 
@@ -150,23 +150,33 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         return 0;
     }
 
+    @Override
+    public void updateIdIncidenciaAndHorasCubrir(int idJustificante, int idIncidencia, int horas) {
+        incidenciaRepository.updateIdJustificanteAndHorasCubrir(idJustificante,idIncidencia,horas);
+    }
+
     private Incidencia esAbierto(Asistencia a, LocalDate fecha) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
         float resta = (float) salidaRegistrada - entradaRegistrada;
+        Integer horas;
         resta = resta / 3600f;
         Incidencia incidencia = new Incidencia();
+        TiempoSuplGenerado tiempoSuplGenerado = new TiempoSuplGenerado();
         if (resta < 8) {
             // Trayectoria I
             log.info("Te faltaron horas " + resta + " Trayectoria I");
             incidencia.setTipo("FC");
             incidencia.setFechaRegistro(fecha); // no se si es esta fecha
-            // Calcular horas que faltan y registrar
+            horas = (int) Math.ceil(8 - resta);
+            incidencia.setHorasFaltantes(horas);
         } else if (resta > 9) {
             // Trayectoria L
             log.info("Te pasaste de horas " + resta + " Trayectoria L");
             // Registrar horas suplementarias
+            horas = (int) Math.floor(resta - 8);
             // No hay inciencia(?
+            //tiempoSuplGenerado.set
         } else {
             // Trayectoria J
             log.info("TODO CHIDO - Trayectoria J");
@@ -255,9 +265,15 @@ public class IncidenciaServiceImpl implements IncidenciaService {
     private void guardarIncidencia(Incidencia incidencia, Integer idEmpleado) {
         if (incidencia.getTipo().equals(""))
             return;
-        Integer id = incidenciaRepository.obtenerMaximoIdAsistencia() + 1;
+        Integer id = incidenciaRepository.obtenerMaximoIdAsistencia();
+        if (id == null)
+            id = 1;
+        else
+            id += 1;
+        log.info("id:" + id + " fecha:" + incidencia.getFechaRegistro() + " idEmpleado:" +
+                idEmpleado + " horas:" + incidencia.getHorasFaltantes());
         incidenciaRepository.insertarAsistencia(id, incidencia.getFechaRegistro(), incidencia
-                .getTipo(), idEmpleado);
+                .getTipo(), idEmpleado, incidencia.getHorasFaltantes());
     }
 
     private boolean tieneRegistroAsistencia(Asistencia a) {

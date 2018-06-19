@@ -31,6 +31,8 @@
                             <h5>Incidencias Generadas</h5>
                         </div>
                         <div class="ibox-content">
+                            <div th:if="${sexo == 0}" class="alert alert-danger" role="alert">No cumple con los requisitos para realizar la solicitud.
+                            </div>
                             <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operación cancelada</div>
                             <div th:if="${cancelar == 0}" class="alert alert-success" role="alert">Justificante eliminado</div>
                             <div th:if="${cancelar == 2}" class="alert alert-danger" role="alert">Operacion de modificacion cancelada</div>
