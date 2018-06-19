@@ -71,6 +71,19 @@ public class LicenciaPaternidadController {
             email = principal.getName();
         }
         Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = "PAAE ";
+        }
+        String TipoAndNombre = rol + "| "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);

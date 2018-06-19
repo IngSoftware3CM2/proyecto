@@ -217,6 +217,7 @@ public class PersonalController {
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
 
+
         System.out.println("SEXO: " + personal.getSexo());
         System.out.println("ROL: " + personal.getTipo());
         char sexoPersonal = personal.getSexo();
@@ -224,6 +225,10 @@ public class PersonalController {
         int opcion = 0;
         model.addAttribute("sexoPersonal", sexoPersonal);
         model.addAttribute("tipoPersonal", tipoPersonal);
+
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
         Integer motivo = new Integer (1);
         if (notificacionService.existsByPersonal(personal)){
             Notificacion notificacion = notificacionService.findByPersonal(personal);
@@ -369,10 +374,25 @@ public class PersonalController {
 
 
     @GetMapping("/vernotificaciones")
-    public ModelAndView showIncidencias(Model model,Principal principal){
+    public ModelAndView showIncidencias(Model model,Principal principal, @RequestParam(name = "cancelar", required = false) Integer cancelar, @RequestParam(name = "add", required = false) Integer add){
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = "PAAE";
+        }
+        String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+        model.addAttribute("cancelar", cancelar);
+        model.addAttribute("add", add);
         ModelAndView mav = new ModelAndView("notificaciones/ver-notificaciones");
         return mav;
     }
