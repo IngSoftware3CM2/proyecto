@@ -87,7 +87,6 @@ public class PermisoEconomicoServiceImpl implements PermisoEconomicoService {
         else{
             Integer idpersonalquincena = personalQuincenaRepository.selectMaxIdPersonalQuincena();
             if (idpersonalquincena!=null){
-                //personalQuincenaRepository.insertRegistro(idpersonalquincena,1, idempleado,idquincena);
                 PersonalQuincena personalQuincena = personalQuincenaService.findAllByPersonalQuincena(idempleado,idquincena);
                 if(personalQuincena==null){
                     personalQuincenaRepository.insertRegistro(idpersonalquincena+1,1, idempleado,idquincena);

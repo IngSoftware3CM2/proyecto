@@ -45,6 +45,7 @@
                                 </thead>
                                 <div th:if="${ano == 1}" class="alert alert-danger" role="alert">Excede el límite de permisos economicos anuales.</div>
                                 <div th:if="${quincena == 1}" class="alert alert-danger" role="alert">Excede límite de permisos economicos quincenales.</div>
+                                <div th:if="${dia == 1}" class="alert alert-danger" role="alert">Seleccionaste un día no permitido.</div>
 
                                 <tbody>
                                 <tr class="gradeX" th:each="incidencia : ${incidencias}"
