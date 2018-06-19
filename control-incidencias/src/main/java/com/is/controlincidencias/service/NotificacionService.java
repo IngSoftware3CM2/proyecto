@@ -5,5 +5,7 @@ import com.is.controlincidencias.entity.Personal;
 
 public interface NotificacionService {
     boolean existsByPersonal (Personal personal);
+    boolean existsByidempleado (int id);
+    Notificacion findByidempleado (int id);
     Notificacion findByPersonal (Personal personal);
 }

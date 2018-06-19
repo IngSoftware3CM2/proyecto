@@ -223,6 +223,7 @@ public class PersonalController {
         System.out.println("ROL: " + personal.getTipo());
         char sexoPersonal = personal.getSexo();
         String tipoPersonal = personal.getTipo();
+        int idempleado = personal.getIdEmpleado();
         int opcion = 0;
         model.addAttribute("sexoPersonal", sexoPersonal);
         model.addAttribute("tipoPersonal", tipoPersonal);
@@ -231,8 +232,8 @@ public class PersonalController {
         mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
 
         Integer motivo = new Integer (-1);
-        if (notificacionService.existsByPersonal(personal)){
-            Notificacion notificacion = notificacionService.findByPersonal(personal);
+        if (notificacionService.existsByidempleado(idempleado)){
+            Notificacion notificacion = notificacionService.findByidempleado(idempleado);
             motivo = new Integer(notificacion.getMotivo().getIdMotivo());
         }
         mav.addObject("motivo", motivo);
