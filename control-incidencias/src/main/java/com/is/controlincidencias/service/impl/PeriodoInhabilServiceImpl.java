@@ -23,4 +23,9 @@ public class PeriodoInhabilServiceImpl implements PeriodoInhabilService {
     public Integer findMaxIdPeriodo() {
         return periodoInhabilRepository.selectMaxIdPeriodoInhabil();
     }
+
+    @Override
+    public void updatePeriodoInhabil(String nombreArchivo, int idPeriodo) {
+        periodoInhabilRepository.updatePeriodoInhabil(idPeriodo+"_"+nombreArchivo,idPeriodo);
+    }
 }

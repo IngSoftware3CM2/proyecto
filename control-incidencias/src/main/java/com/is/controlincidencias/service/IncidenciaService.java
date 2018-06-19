@@ -7,16 +7,11 @@ import java.util.List;
 
 public interface IncidenciaService {
     List<Incidencia> listAllIncidencia ();
-
     Incidencia consultarIncidencia(int id);
-
     List<Incidencia> getIncidenciasByPersonal (Personal personal);
-
     List<Incidencia> getIncidenciasByJustificanteId(int justificanteId, List<Incidencia> incidencias);
-
     void updateIdJustificante(int idJustificante, int idIncidencia);
-
     int getIdEmpleadoByIdJustificante(int id);
-
     int registrarIncidencia();
+    void updateIdIncidenciaAndHorasCubrir(int idJustificante, int idIncidencia, int horas);
 }

@@ -32,6 +32,7 @@ public class TiempoSuplementarioServiceImpl implements TiempoSuplementarioServic
     @Override
     public int saveJustificanteTS(JustificateTiempoSuplModel justificateTiempoSuplModel, Incidencia incidencia) {
         Date fecha = new Date();
+        int horas=0;
         //Aqui cambia dependiendo el No empleado.
         int idEmpleado=incidencia.getPersonal().getIdEmpleado();
         justificanteRepository.altaJustificante("Espera",fecha,5,idEmpleado);
@@ -40,7 +41,12 @@ public class TiempoSuplementarioServiceImpl implements TiempoSuplementarioServic
         Integer tiempoCubrir = justificateTiempoSuplModel.getTiempocubrir();
         int idJustificante =ids.get(ids.size()-1);
         tiempoSuplRepository.saveJustificanteTS(fechaIncidencia,tiempoCubrir,idJustificante);
-        incidenciaService.updateIdJustificante(ids.get(ids.size()-1),incidencia.getIdIncidencia());
+        if(incidencia.getHorasFaltantes() == tiempoCubrir){
+            horas = 0;
+        }else{
+            horas = incidencia.getHorasFaltantes() - tiempoCubrir;
+        }
+        incidenciaService.updateIdIncidenciaAndHorasCubrir(ids.get(ids.size()-1),incidencia.getIdIncidencia(),horas);
         return idJustificante;
     }
     @Override

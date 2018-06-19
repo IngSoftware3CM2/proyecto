@@ -26,8 +26,9 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
     //UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
     @Modifying
     @Transactional
-    @Query(value="update tiemposuplgenerado set usado = :usado where idtiemposuplgenerado= :idtiempo", nativeQuery = true)
-    int updateTiempoSuplGenerado(@Param("idtiempo") int idtiempo, @Param("usado") boolean usado);
+    @Query(value="update tiemposuplgenerado set usado = :usado, horas = :horas where idtiemposuplgenerado= :idtiempo", nativeQuery = true)
+    int updateTiempoSuplGenerado(@Param("idtiempo") int idtiempo, @Param("usado") boolean usado, @Param("horas")LocalTime horas);
+
 
     @Modifying
     @Query(value = "insert into tiemposuplgenerado (idtiemposuplgenerado, fecharegistro, horas, usado, idempleado) values (:id, :fecha, :horas, :usado, :empleado)", nativeQuery = true)

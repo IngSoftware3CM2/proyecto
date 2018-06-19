@@ -276,4 +276,12 @@ public class Personal {
 
         return Objects.hash(getIdEmpleado(), getNoTarjeta(), getNombre(), getApellidoPaterno(), getApellidoMaterno(), getAsistencias(), getIncidencias(), getJustificantes(), getDepartamento(), getTipo(), login);
     }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
 }

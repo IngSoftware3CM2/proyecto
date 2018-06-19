@@ -22,7 +22,7 @@ public class Notificacion {
     private LocalDate fecha;
 
     @Column(name = "archivo", nullable = false)     //qué archivo será el que suba el usuario dependerá del motivo
-    private LocalDate archivo;
+    private String archivo;
 
     private static final String DEFINITION2 = "FOREIGN KEY(idempleado) REFERENCES personal (idempleado) ON UPDATE CASCADE ON DELETE CASCADE";
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -53,11 +53,11 @@ public class Notificacion {
         this.fecha = fecha;
     }
 
-    public LocalDate getArchivo() {
+    public String getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(LocalDate archivo) {
+    public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
 

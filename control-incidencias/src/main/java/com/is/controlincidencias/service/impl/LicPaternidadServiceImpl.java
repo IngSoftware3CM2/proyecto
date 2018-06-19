@@ -8,6 +8,7 @@ import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.LicPaternidadRepository;
 import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.LicPaternidadService;
+import com.is.controlincidencias.service.PeriodoInhabilService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ import java.util.List;
 public class LicPaternidadServiceImpl implements LicPaternidadService{
 
     private static final Log LOG = LogFactory.getLog(LicenciaPaternidadController.class);
+
+    @Autowired
+    @Qualifier("periodoInhabilServiceImpl")
+    private PeriodoInhabilService periodoInhabilService;
 
     @Autowired
     @Qualifier("licPaternidadRepository")
@@ -78,6 +83,22 @@ public class LicPaternidadServiceImpl implements LicPaternidadService{
             //Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
             //Files.write(path,bytes);
             File convFile = new File(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
+            convFile.createNewFile();
+            try (FileOutputStream fos = new FileOutputStream(convFile)) {
+                fos.write(file.getBytes());
+                fos.close();
+            }
+        }
+    }
+
+    @Override
+    public void subirArchivo(List<MultipartFile> files, int noJustificante, String ruta) throws IOException {
+        for(MultipartFile file: files) {
+            if(file.isEmpty()) continue;
+            //byte[] bytes = file.getBytes();
+            //Path path = Paths.get(rutaArchivos+noJustificante+"_"+file.getOriginalFilename());
+            //Files.write(path,bytes);
+            File convFile = new File(rutaArchivos+ruta+"//"+noJustificante+"_"+file.getOriginalFilename());
             convFile.createNewFile();
             try (FileOutputStream fos = new FileOutputStream(convFile)) {
                 fos.write(file.getBytes());

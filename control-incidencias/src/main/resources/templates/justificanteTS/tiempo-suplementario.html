@@ -33,6 +33,9 @@
         <div class="alert alert-danger" th:if="${errorHorasCubrir == 1}">
             Las horas seleccionadas no coinciden con el campo tiempo a cubrir
         </div>
+        <div class="alert alert-danger" th:if="${errorCampos == 1}">
+            Completa todos los campos obligatorios
+        </div>
         <div class="alert alert-danger" th:if="${errorJustificantes == 1}">
             No cuentas con tiempo suplementario disponible.
         </div>
@@ -47,19 +50,7 @@
                     <div class="form-group"><label class="col-lg-6 ">Tipo de Incidencia : Tiempo Suplementario</label></div>
                     <div class="form-group"><label class="col-lg-6 ">Dia a Justificar por Tiempo Suplementario: <span th:text="${incidencia}" th:value="${incidencia}" th:field="*{fecha}"> 15/05/2018 </span></label></div>
                     <div class="form-group" >
-                        <label class="col-sm-2"> Tiempo a Cubrir:</label>
-                        <div class="input-group date col-sm-2">
-                            <select class="form-control m-b" name="account" th:field="*{tiempocubrir}">
-                                <option value="1">1 hr</option>
-                                <option value="2">2 hrs</option>
-                                <option value="3">3 hrs</option>
-                                <option value="4">4 hrs</option>
-                                <option value="5">5 hrs</option>
-                                <option value="6">6 hrs</option>
-                                <option value="7">7 hrs</option>
-                                <option value="8">8 hrs</option>
-                            </select>
-                        </div>
+                        <label class="col-sm-3"> Tiempo a Cubrir: &nbsp; <span th:text="${horasCubrir}" ></span><span> &nbsp; hrs</span></label>
                     </div>
                     <table class="table">
                         <thead>
@@ -72,7 +63,7 @@
                         <tbody>
                         <tr th:each="tiempo : ${tiempoSuplGenerado}">
                             <td th:text="${tiempo.fechaRegistro}">16 / 04 / 2018</td>
-                            <td th:text="${tiempo.horas}">100 hr</td>
+                            <td th:text="${tiempo.horas}"> </td>
                             <td>
                                 <div class="form-group" >
                                     <div class="input-group date col-sm-2">
@@ -111,5 +102,13 @@
 <script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
 <script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+<script src="#" th:src="@{/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js}"></script>
+<script>
+    $(".touchspin3").TouchSpin({
+        verticalbuttons: true,
+        buttondown_class: 'btn btn-white',
+        buttonup_class: 'btn btn-white'
+    });
+</script>
 </body>
 </html>
