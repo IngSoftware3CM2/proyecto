@@ -76,7 +76,7 @@ public class NotificacionesController {
 
     @PostMapping("/agregar")
     private String guardarConstanciaTiempo(@ModelAttribute("constanciaTiempoModel") NotificacionModel notificacionModel, @RequestParam("file") List<MultipartFile> files) {
-        if (notificacionRepository.soloUnaNotificacion(idEmpleado)==null){
+        if (notificacionRepository.soloUnaNotificacion(idEmpleado)==0){
             LOG.info("---------------------------------Datos que me llegan " + notificacionModel.toString() + "------------------" + files.get(0).getOriginalFilename());
             try {
                 licPaternidadService.subirArchivo(files, idEmpleado);
