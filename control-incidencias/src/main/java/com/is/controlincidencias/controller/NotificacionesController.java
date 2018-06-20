@@ -75,15 +75,23 @@ public class NotificacionesController {
     }
 
     @PostMapping("/agregar")
-    private String guardarConstanciaTiempo(@ModelAttribute("constanciaTiempoModel") NotificacionModel notificacionModel, @RequestParam("file") List<MultipartFile> files) {
+    private String guardarConstanciaTiempo(Principal principal,@ModelAttribute("constanciaTiempoModel") NotificacionModel notificacionModel, @RequestParam("file") List<MultipartFile> files) {
+        String email = "correo@gmail.com";
+        if (principal != null && principal.getName() != null) {
+            email = principal.getName();
+        }
+        Personal personal = personalService.getPersonalByEmail(email);
         if (notificacionRepository.soloUnaNotificacion(idEmpleado)==0){
+            if(notificacionModel.getMotivo().equals("LP") && personal.getSexo()=='M'){
+                return "redirect:/personal/vernotificaciones?add=2";
+            }
             LOG.info("---------------------------------Datos que me llegan " + notificacionModel.toString() + "------------------" + files.get(0).getOriginalFilename());
-            /*try {
+            try {
                 licPaternidadService.subirArchivo(files, idEmpleado);
             } catch (IOException e) {
                 LOG.error("ERROR:", e);
-                return "redirect:/personal/vernotificaciones?add=0";
-            }*/
+                //return "redirect:/personal/vernotificaciones?add=0";
+            }
             int idMotivo = 0;
             if (notificacionModel.getMotivo().equals("LP")) {
                 idMotivo = 1;
