@@ -131,18 +131,24 @@
         {
             var inicio = document.getElementById('inicio').value;
             var fin = document.getElementById('fin');
-            console.log(inicio + " - " + fin);
-
             if(inicio.length > 0 && fin.value.length > 0) {
                 var dias = datediff(parseDate(inicio), parseDate(fin.value));
+
                 if (dias > 15) {
                     fin.setCustomValidity('La Comisión Oficial no puede durar más de 15 días');
                     $('#MSG').innerHTML = MSG1_57;
                 }
-                if (dias <= 0) {
-                    fin.setCustomValidity('La fecha final no puede ser anterior a la inicial');
-                    $('#MSG').innerHTML = MSG1_x;
-                }
+                else
+                    {
+                        if (dias <= 0) {
+                            fin.setCustomValidity('La fecha final no puede ser anterior a la inicial');
+                            $('#MSG').innerHTML = MSG1_x;
+                        }
+                        else {
+                            fin.setCustomValidity('');
+                        }
+                    }
+                console.log(dias);
             }
         }
 
@@ -153,9 +159,23 @@
     }
 
     function datediff(first, second) {
+        var pre = Math.round((second-first)/(1000*60*60*24));
         // Take the difference between the dates and divide by milliseconds per day.
         // Round to nearest whole number to deal with DST.
-        return Math.round((second-first)/(1000*60*60*24));
+        if(first.getTime() > second.getTime()) //inicio después a final
+            {
+                return -1;
+            }
+        var aux = first;
+        while(aux.getTime() != second.getTime())
+            {
+                if(aux.getDay() == 6 || aux.getDay() == 0) //si es fin de semana
+                    {
+                        pre--;
+                    }
+                aux.setDate(aux.getDate() + 1); //aumento un dia
+            }
+        return pre;
     }
 
 

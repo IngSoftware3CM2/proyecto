@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/personal/justificantes/cambiohorario")
@@ -49,14 +51,17 @@ public class CambioHorarioController {
     private PersonalServiceImpl personalService;
 
     @GetMapping("/agregar")
-    public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
-        {
+    public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia) throws ParseException {
             String diaSemana = "";
             Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
             String fecha = incidencia.getFechaRegistro().toString();
             diaSemana = getDiaSemana(fecha);
             LOGGER.info("--------------------------------" + diaSemana);
-
+            int jornada = 0;
+            int trabajado = 0;
+            String horaJornada = "";
+            String horaLlegada = "";
+            String func = "buena";
             ModelAndView mav = new ModelAndView(VISTA_CAMBIO_HORARIO);
             LOGGER.info("Accedí al metodo acceder del controlador");
             idIncidencia = idincidencia;
@@ -72,8 +77,37 @@ public class CambioHorarioController {
             model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
             model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
             model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
+
+            jornada = (int)horasDiferencia(cambioService.getHoraE(idEmpleado, diaSemana), cambioService.getHoraS(idEmpleado, diaSemana));
+            trabajado = (int)horasDiferencia(cambioService.getHoraEntrada(idEmpleado, fecha), cambioService.getHoraSalida(idEmpleado, fecha));
+
+            horaJornada = cambioService.getHoraE(idEmpleado, diaSemana);
+            horaLlegada = cambioService.getHoraEntrada(idEmpleado, fecha);
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Date irnos = format.parse(horaLlegada);
+            Calendar rightNow = Calendar.getInstance();
+            rightNow.setTime(irnos);
+            int hour = rightNow.get(Calendar.MINUTE);
+
+            LOGGER.info("Los tiempos dan " + jornada + " h" + " y un total de " + trabajado + " de trabajo y hay un total de " + hour + " minutos");
+            //trabajado < jornada para ver si cumple sus horas completas, horasDif < 0 para ver si no entró antes de su jornada, y hour != 0 para que no acepte horas por pedacitos
+             if((trabajado < jornada) || (horasDiferencia(horaJornada, horaLlegada) < 0) || hour != 0)
+                {
+                    func = "mala";
+                }
+            model.addAttribute("funcion", func);
+
             return mav;
         }
+
+
+
+    public long horasDiferencia(String entrada, String salida) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date llego = format.parse(entrada);
+        Date meVoy = format.parse(salida);
+        return TimeUnit.MILLISECONDS.toHours(meVoy.getTime() - llego.getTime()); //la diferencia me la da en ms, lo paso a horas
+    }
 
     @PostMapping("/addCambioHorario")
     public String addCambioHorario(@Valid @ModelAttribute("cambioHorarioModel") CambioHorarioModel modeloCH, BindingResult bindings)
