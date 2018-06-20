@@ -5,6 +5,8 @@ import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
+import com.is.controlincidencias.model.NotificacionModel;
+import com.is.controlincidencias.repository.NotificacionRepository;
 import com.is.controlincidencias.service.TiempoSuplementarioService;
 import com.is.controlincidencias.service.impl.*;
 import org.apache.commons.logging.Log;
@@ -32,6 +34,10 @@ public class PersonalController {
     @Autowired
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
+
+    @Autowired
+    @Qualifier("notificacionRepository")
+    private NotificacionRepository notificacionRepository;
 
     @Autowired
     @Qualifier("justificanteServiceImpl")
@@ -400,6 +406,20 @@ public class PersonalController {
         else if(personal.getTipo().equals("ROLE_PAAE")){
             rol = "PAAE";
         }
+        Notificacion notificacion = notificacionRepository.selectNotificacion();
+        NotificacionModel notificacionModel = new NotificacionModel();
+        if (notificacion!=null){
+            notificacionModel.setFecha(notificacion.getFecha());
+            notificacionModel.setMotivo(notificacion.getMotivo().getDescripcion());
+            model.addAttribute("notificacionModel", notificacionModel);
+        }
+        else{
+            notificacionModel.setFecha(null);
+            notificacionModel.setMotivo("");
+            model.addAttribute("notificacionModel", notificacionModel);
+        }
+
+
         String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
         model.addAttribute("TipoAndNombre", TipoAndNombre);
         model.addAttribute("cancelar", cancelar);

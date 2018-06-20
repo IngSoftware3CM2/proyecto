@@ -38,7 +38,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <h1 class="text-center">
-                                <span class="text-navy">Ver Notificaciones</span>
+                                <span class="text-navy">Ver Notificación</span>
                             </h1>
                             <div class="row">
                                 <div class="col-sm-offset-8 col-sm-4 ">
@@ -58,33 +58,13 @@
                                         <tr>
                                             <th>Fecha</th>
                                             <th>Tipo de Justificacion</th>
-                                            <th>Ver</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>16 / 04 / 2018</td>
-                                            <td>Licencia por Paternidad</td>
-                                            <td><button class="btn btn-white" type="button"><i class="fa fa-eye"></i></button></td>
-
-
+                                            <td th:text="${notificacionModel.getFecha()}"></td>
+                                            <td th:text="${notificacionModel.getMotivo()}"></td>
                                         </tr>
-                                        <tr>
-                                            <td>16 / 04 / 2018</td>
-                                            <td>Licencia por Paternidad</td>
-                                            <td><button class="btn btn-white" type="button"><i class="fa fa-eye"></i></button></td>
-
-
-                                        </tr>
-                                        <tr>
-                                            <td>16 / 04 / 2018</td>
-                                            <td>Cuidados Maternos</td>
-                                            <td><button class="btn btn-white" type="button"><i class="fa fa-eye"></i></button></td>
-
-
-                                        </tr>
-
                                         </tbody>
                                     </table>
 
