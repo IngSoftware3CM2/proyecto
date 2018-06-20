@@ -7,6 +7,7 @@ import com.is.controlincidencias.model.ComisionModel;
 import com.is.controlincidencias.service.CambioHorarioService;
 import com.is.controlincidencias.service.ComisionService;
 import com.is.controlincidencias.service.LicPaternidadService;
+import com.is.controlincidencias.service.NotificacionService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
@@ -57,6 +58,10 @@ public class ComisionController {
     @Qualifier("comisionServiceImpl")
     private ComisionService comisionService;
 
+    @Autowired
+    @Qualifier("notificacionServiceImpl")
+    private NotificacionService notificacionService;
+
 
     @GetMapping("/agregar")
     public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
@@ -80,6 +85,7 @@ public class ComisionController {
     {
         ComisionModel com = new ComisionModel();
         com.setIdComision(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
+        Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
         com.setInicio(Cmodelo.getInicio());
         com.setFin(Cmodelo.getFin());
         com.setInvitacionArchivo(files.get(0).getOriginalFilename());
@@ -94,6 +100,7 @@ public class ComisionController {
             {
                 LOGGER.error("ERROR:", e);
             }
+        notificacionService.removeByPersonalAndMotivo(personal.getIdEmpleado(),3);
         return "redirect:/personal/justificantes?add=1";
     }
 
