@@ -350,7 +350,7 @@ public class PersonalController {
 
 
 
-
+        System.out.println("CASO PARA VISTA: " + opcion);
         model.addAttribute("caso", opcion);
 
 
