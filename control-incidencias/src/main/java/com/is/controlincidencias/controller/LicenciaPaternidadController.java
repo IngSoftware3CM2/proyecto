@@ -137,7 +137,7 @@ public class LicenciaPaternidadController {
 
             idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
-            notificacionService.removeByPersonalAndMotivo(idEmpleado,2);
+            notificacionService.removeByPersonalAndMotivo(idEmpleado,1);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);

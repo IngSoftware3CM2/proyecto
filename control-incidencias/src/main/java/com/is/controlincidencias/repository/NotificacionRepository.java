@@ -38,13 +38,8 @@ public interface NotificacionRepository extends JpaRepository<Notificacion, Seri
     @Transactional
     Integer soloUnaNotificacion(@Param("idEmpleado") int idEmpleado);
 
-    @Modifying
-    @Query(value = "DELETE from notificacion", nativeQuery = true)
+    @Query(value = "select * from notificacion where idempleado = :idEmpleado", nativeQuery = true)
     @Transactional
-    void borrarRegistro();
-
-    @Query(value = "select * from notificacion where id = 1", nativeQuery = true)
-    @Transactional
-    Notificacion selectNotificacion();
+    Notificacion selectNotificacion(@Param("idEmpleado") int idEmpleado);
 
 }

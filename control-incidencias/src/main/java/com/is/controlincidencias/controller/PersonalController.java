@@ -438,7 +438,7 @@ public class PersonalController {
         else if(personal.getTipo().equals("ROLE_PAAE")){
             rol = "PAAE";
         }
-        Notificacion notificacion = notificacionRepository.selectNotificacion();
+        Notificacion notificacion = notificacionRepository.selectNotificacion(personal.getIdEmpleado());
         NotificacionModel notificacionModel = new NotificacionModel();
         if (notificacion!=null){
             notificacionModel.setFecha(notificacion.getFecha());
