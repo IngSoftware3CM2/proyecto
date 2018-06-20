@@ -34,9 +34,9 @@ public interface NotificacionRepository extends JpaRepository<Notificacion, Seri
     @Transactional
     void insertNotificacion(@Param("id") int id, @Param("archivo") String archivo, @Param("fecha") Date fecha, @Param("idmotivo") int idmotivo, @Param("idempleado") int idempleado);
 
-    @Query(value = "select max(id) from notificacion", nativeQuery = true)
+    @Query(value = "select count(*) from notificacion where idempleado = :idEmpleado", nativeQuery = true)
     @Transactional
-    Integer soloUnaNotificacion();
+    Integer soloUnaNotificacion(@Param("idEmpleado") int idEmpleado);
 
     @Modifying
     @Query(value = "DELETE from notificacion", nativeQuery = true)
