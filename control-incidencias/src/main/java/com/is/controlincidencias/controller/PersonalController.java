@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.component.ReglasNegocio;
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -233,8 +235,29 @@ public class PersonalController {
 
         //HACIENDO VALIDACIONES FUERA DE LA VISTA VER INCIDENCIAS
 
+        List <Incidencia> incidencias = incidenciaService.getIncidenciasByPersonal(personal);
+        List <Incidencia> newincidencias = new ArrayList<Incidencia>();
+        for (Incidencia incidencia : incidencias){
+            if (incidencia.getJustificante() == null) {
+                newincidencias.add(incidencia);
+            }
+            else {
+                System.out.println("TIPOJUSTIFICANTE DE INCI : " +incidencia.getIdIncidencia() +"ES " + incidencia.getJustificante().getTipo());
+                if (incidencia.getJustificante().getTipo() == 5){
+                    System.out.println("HORASFALTANTES DE INCI : " +incidencia.getIdIncidencia() +"ES " + incidencia.getHorasFaltantes());
+                    if (incidencia.getHorasFaltantes() != 0){
 
+                        newincidencias.add(incidencia);
+                        System.out.println("AGREGANDO INCIDENCIA: " +incidencia.getIdIncidencia() );
+                    }
+                }
+            }
+        }
 
+        for (Incidencia incidencia : newincidencias){
+            System.out.println("INCIDENCIA: "+incidencia.getIdIncidencia()+" CON FECHA: " +incidencia.getFechaAsString() );
+
+        }
 
 
 
@@ -250,7 +273,8 @@ public class PersonalController {
         model.addAttribute("tipoPersonal", tipoPersonal);
 
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
+        mav.addObject("incidencias", newincidencias);
 
         Integer motivo = new Integer (-1);
         if (notificacionService.existsByidempleado(idempleado)){
