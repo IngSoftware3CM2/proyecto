@@ -231,6 +231,14 @@ public class PersonalController {
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
 
+        //HACIENDO VALIDACIONES FUERA DE LA VISTA VER INCIDENCIAS
+
+
+
+
+
+
+
 
         System.out.println("SEXO: " + personal.getSexo());
         System.out.println("ROL: " + personal.getTipo());
