@@ -1,7 +1,6 @@
 package com.is.controlincidencias.model;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class CambioHorarioModel {
     private String horaEntrada;
@@ -9,7 +8,6 @@ public class CambioHorarioModel {
     private String nuevaEntrada;
     private String nuevaSalida;
     @NotNull
-    @Size(min = 10)
     private String justificacion;
     private String fechaIncidencia;
     private int idJustificante;

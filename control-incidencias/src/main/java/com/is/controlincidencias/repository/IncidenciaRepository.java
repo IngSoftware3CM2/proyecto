@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository("incidenciaRepository")
@@ -21,6 +22,11 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
 
 
     @Modifying
+    @Query(value = "UPDATE incidencia SET idjustificante = :idjustificante, horasfaltantes = :horascubrir where  idincidencia = :idincidencia", nativeQuery = true)
+    @Transactional
+    public void updateIdJustificanteAndHorasCubrir(@Param("idjustificante") int idjustificante, @Param("idincidencia") int idincidencia,@Param("horascubrir") int horascubrir );
+
+    @Modifying
     @Query(value = "UPDATE incidencia SET idjustificante = :idjustificante where  idincidencia = :idincidencia", nativeQuery = true)
     @Transactional
     public void updateIdJustificante(@Param("idjustificante") int idjustificante, @Param("idincidencia") int idincidencia);
@@ -28,4 +34,18 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
     @Transactional
     @Query(value = "select idempleado from incidencia where idjustificante = :idjustificante", nativeQuery = true)
     public int getIdEmpleadoByIdJustificante(@Param("idjustificante") int idjustificante);
+
+    @Modifying
+    @Query(value = "insert into incidencia (idincidencia, fecharegistro, tipo, idempleado, horasfaltantes) values (:id, :fecha, :tipo, :empleado, :horas)", nativeQuery = true)
+    @Transactional
+    void insertarAsistencia(@Param("id") Integer id, @Param("fecha") LocalDate fecha,
+            @Param("tipo") String tipo, @Param("empleado") Integer empleado,
+            @Param("horas") Integer horas);
+
+    @Query(value = "select max(idincidencia) from incidencia", nativeQuery = true)
+    @Transactional
+    Integer obtenerMaximoIdAsistencia();
+
+    boolean existsIncidenciasByFechaRegistroAndPersonal_IdEmpleado(LocalDate fecha,
+            Integer idEmpleado);
 }

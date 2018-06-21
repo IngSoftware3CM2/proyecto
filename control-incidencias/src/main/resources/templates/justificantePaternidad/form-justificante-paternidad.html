@@ -22,7 +22,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${TipoAndNombre}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -58,9 +58,13 @@
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Seleccionar Archivo</span>
                                     <span class="fileinput-exists">Cambiar</span>
-                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'  id='fileinput1' onchange="ValidateSingleInput(this);" oninvalid="this.setCustomValidity('Complete todos los campos obligatorios')" oninput="setCustomValidity('')" required/>
+                                    <input type="file" name="file" aria-describedby="fileHelp" accept='.jpg'
+                                           id='fileinput1' onchange="ValidateSingleInput(this);"
+                                           oninvalid="this.setCustomValidity('Complete todos los campos obligatorios')"
+                                           oninput="setCustomValidity('')" required/>
                                 </span>
-                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                   data-dismiss="fileinput">Remover</a>
                             </div>
                         </div>
 

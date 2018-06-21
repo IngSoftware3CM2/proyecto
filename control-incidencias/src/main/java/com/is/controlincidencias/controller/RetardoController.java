@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/personal/justificantes/retardo")
@@ -58,12 +59,13 @@ public class RetardoController {
     private PersonalServiceImpl personalService;
 
     @GetMapping("/agregar")
-    public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
-    {
+    public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia) throws ParseException {
         String diaSemana = "";
+        String func = "buena";
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
         String fecha = incidencia.getFechaRegistro().toString();
         diaSemana = getDiaSemana(fecha);
+        int minutos = 0;
         fesha = fecha;
         ModelAndView mav = new ModelAndView(VISTA_RETARDO);
         idIncidencia = idincidencia;
@@ -74,24 +76,38 @@ public class RetardoController {
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
         model.addAttribute("tarjeta", personal.getNoTarjeta());
         model.addAttribute("fecha", fecha);
-        model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana));
+        model.addAttribute("horarioEntrada", cambioService.getHoraE(idEmpleado, diaSemana)); //la hr de mi entrada en tal diia
         model.addAttribute("horarioSalida", cambioService.getHoraS(idEmpleado, diaSemana));
-        model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha));
+        model.addAttribute("horae", cambioService.getHoraEntrada(idEmpleado, fecha)); //la hora de mi entrada segun mi horario
         model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
+        minutos = (int)minutosDiferencia(cambioService.getHoraE(idEmpleado, diaSemana), cambioService.getHoraEntrada(idEmpleado, fecha));
+        LOGGER.info("Los tiempos dan " + minutos + " m");
+            if(minutos > 31) //el retardo solo es válido su llego de 7:11:00 hasta 7:30:00
+                {
+                    func = "mala";
+                }
+             if(minutos > 11 && minutos <= 20)
+                {
+                    model.addAttribute("tipor", "Retardo Menor");
+                }
+             if(minutos > 20 && minutos <= 31)
+                {
+                    model.addAttribute("tipor", "Retardo Mayor");
+                }
+        model.addAttribute("funcion", func);
         return mav;
     }
 
     @PostMapping("/addRetardo")
-    public String addCambioHorario(@Valid @ModelAttribute("retardoModel") RetardoModel modeloR, BindingResult bindings)
+    public String addCambioRetardo(@Valid @ModelAttribute("retardoModel") RetardoModel modeloR, BindingResult bindings)
     {
 
             LOGGER.info("******************* ID Empleado es *********** " + idEmpleado);
             RetardoModel rm = new RetardoModel();
             rm.setJustificacion(modeloR.getJustificacion());
             rm.setIdJustificante(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
-         //   cambioService.insertaCambioHorario(chm, idIncidencia);
             retardoService.addRetardo(rm, idIncidencia, fesha);
-            return "redirect:/personal/justificantes";
+            return "redirect:/personal/justificantes?add=1";
 
     }
 
@@ -100,7 +116,7 @@ public class RetardoController {
     public String modRetardo(@Valid @ModelAttribute("cambioHorarioModel") RetardoModel modeloR, BindingResult bindings)
     {
         retardoService.updateJust(modeloR.getJustificacion(), idJustGlobal);
-        return "redirect:/personal/justificantes";
+        return "redirect:/personal/justificantes?add=1";
 
     }
 
@@ -137,8 +153,15 @@ public class RetardoController {
         }
         catch (ParseException e)
         {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return new SimpleDateFormat("EEEE", new Locale("es","ES")).format(date).toUpperCase().substring(0,2);
     }
+
+    public long minutosDiferencia(String entrada, String horario) throws ParseException {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Date llego = format.parse(entrada);
+            Date horar = format.parse(horario);
+            return Math.abs(TimeUnit.MILLISECONDS.toMinutes(llego.getTime() - horar.getTime())); //la diferencia me la da en ms, lo paso a minutos
+        }
 }

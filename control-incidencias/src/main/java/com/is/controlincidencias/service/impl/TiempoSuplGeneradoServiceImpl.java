@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service("tiempoSuplGeneradoServiceImpl")
@@ -28,7 +29,12 @@ public class TiempoSuplGeneradoServiceImpl implements TiempoSuplGeneradoService 
     }
 
     @Override
-    public int updatetiempoUsados(int idTiempoSupl) {
-        return tiempoSuplGeneradoRepository.updateTiempoSuplGenerado(idTiempoSupl,true);
+    public int updatetiempoUsados(int idTiempoSupl,int horas, int negativo) {
+        boolean usado=true;
+        LocalTime horasDisponibles= LocalTime.of(horas,0);
+        if(negativo < 0){
+            usado = false;
+        }
+        return tiempoSuplGeneradoRepository.updateTiempoSuplGenerado(idTiempoSupl,usado,horasDisponibles);
     }
 }

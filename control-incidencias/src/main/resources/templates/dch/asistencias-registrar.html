@@ -119,6 +119,9 @@
                                     <div class="alert alert-danger hidden" role="alert" id="alertCampos">
                                         Complete todos los campos obligatorios
                                     </div>
+                                    <div class="alert alert-danger hidden" role="alert" id="alertFormatoHora">
+                                        Hora Incorrecta
+                                    </div>
                                 </div>
                             </form>
                             <table class="table">
@@ -238,7 +241,7 @@
                     if (dato.horaEntrada === null)
                         $tdSalida.text("-");
                     else
-                        $tdSalida.text(dato.horaEntrada.substring(0, 5));
+                        $tdSalida.text(dato.horaSalida.substring(0, 5));
 
                     $btnModificar.addClass("btn btn-white");
                     $iconoModificar.addClass("fa fa-pencil");
@@ -276,12 +279,48 @@
         this.setCustomValidity('');
         $("#alertTarjeta").addClass("hidden");
         $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaEntrada").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaSalida").oninput = function (ev) {
+        this.setCustomValidity('');
+        $("#alertTarjeta").addClass("hidden");
+        $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
     };
 
     document.getElementById("fecha").oninput = function (ev) {
         this.setCustomValidity('');
         $("#alertTarjeta").addClass("hidden");
         $("#alertCampos").addClass("hidden");
+        $('#alertFormatoHora').addClass("hidden");
+    };
+
+    document.getElementById("horaEntrada").oninvalid = function(ev) {
+        console.log("input horaEntrada");
+        if (this.validity.patternMismatch) {
+            this.setCustomValidity('Hora incorrecta');
+            $('#alertFormatoHora').removeClass("hidden");
+        } else {
+            console.log("valido")
+        }
+    };
+
+    document.getElementById("horaSalida").oninvalid = function(ev) {
+        console.log("input horaSalida");
+        if (this.validity.patternMismatch) {
+            this.setCustomValidity('Hora incorrecta');
+            $('#alertFormatoHora').removeClass("hidden");
+        } else {
+            console.log("valido")
+        }
     };
 
     document.getElementById("tarjeta").oninvalid = function (ev) {

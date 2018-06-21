@@ -31,6 +31,8 @@
                             <h5>Incidencias Generadas</h5>
                         </div>
                         <div class="ibox-content">
+                            <div th:if="${sexo == 0}" class="alert alert-danger" role="alert">No cumple con los requisitos para realizar la solicitud.
+                            </div>
                             <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operación cancelada</div>
                             <div th:if="${cancelar == 0}" class="alert alert-success" role="alert">Justificante eliminado</div>
                             <div th:if="${cancelar == 2}" class="alert alert-danger" role="alert">Operacion de modificacion cancelada</div>
@@ -43,42 +45,200 @@
                                 </thead>
                                 <div th:if="${ano == 1}" class="alert alert-danger" role="alert">Excede el límite de permisos economicos anuales.</div>
                                 <div th:if="${quincena == 1}" class="alert alert-danger" role="alert">Excede límite de permisos economicos quincenales.</div>
+                                <div th:if="${dia == 1}" class="alert alert-danger" role="alert">Seleccionaste un día no permitido.</div>
 
                                 <tbody>
-                                <tr class="gradeX" th:each="incidencia : ${incidencias}"
-                                    th:if="${incidencia.getJustificante() == null}">
+                                <tr class="gradeX" th:each="incidencia : ${incidencias}">
                                     <form action="#" th:action="@{/personal/justificantes/agregar}" method="get">
                                         <td th:text="${incidencia.getFechaAsString()}">Fecha</td>
                                         <td>
-                                            <div th:switch="${motivo.intValue()}" class="row">
-                                                <div th:case="1" class="col-sm-8">
-                                                    <select class="form-control m-b" name="tipoJustificante">
+                                            <div th:switch="${caso}"  class="row">
+                                                <!-- <p th:text="${sexoPersonal}"></p>
+                                                <p th:text="${tipoPersonal}"></p>
+                                                <p th:text="${motivo.intValue()}"></p>-->
+
+
+                                                <div  th:case="1" class="col-sm-8">
+                                                        <select  class="form-control m-b" name="tipoJustificante">
+                                                            <option th:value="2">Licencia por Paternidad</option>
+                                                            <option th:value="3">Cambio de Horario</option>
+                                                            <option th:value="4">Dias Economicos</option>
+                                                            <option th:value="5">Tiempo Suplementario</option>
+                                                            <option th:value="6">Constancia de Tiempo</option>
+                                                            <option th:value="8">Omision</option>
+                                                        </select >
+                                                </div>
+
+
+                                                <div  th:case="2" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Maternos/Cuidados Familiares</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="3" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="9">Comision Oficial</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="4" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="5" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
                                                         <option th:value="2">Licencia por Paternidad</option>
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
                                                         <option th:value="6">Constancia de Tiempo</option>
-                                                    </select>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
                                                 </div>
 
-                                                <div th:case="2" class="col-sm-8">
-                                                    <select class="form-control m-b" name="tipoJustificante">
-                                                        <option th:value="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</option>
+                                                <div  th:case="6" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Maternos/Cuidados Familiares</option>
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
                                                         <option th:value="6">Constancia de Tiempo</option>
-                                                    </select>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
                                                 </div>
 
-                                                <div th:case="-1" class="col-sm-8">
-                                                    <select class="form-control m-b" name="tipoJustificante">
+                                                <div  th:case="7" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="9">Comision Oficial</option>
                                                         <option th:value="3">Cambio de Horario</option>
                                                         <option th:value="4">Dias Economicos</option>
                                                         <option th:value="5">Tiempo Suplementario</option>
                                                         <option th:value="6">Constancia de Tiempo</option>
-                                                    </select>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
                                                 </div>
+
+                                                <div  th:case="8" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="9" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+
+                                                <div  th:case="10" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Maternos/Cuidados Familiares</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="11" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="9">Comision Oficial</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="12" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="13" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="14" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="1">Licencia Medica/Cuidados Maternos/Cuidados Familiares</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="15" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="9">Comision Oficial</option>
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
+                                                </div>
+
+                                                <div  th:case="16" class="col-sm-8">
+                                                    <select  class="form-control m-b" name="tipoJustificante">
+                                                        <option th:value="3">Cambio de Horario</option>
+                                                        <option th:value="4">Dias Economicos</option>
+                                                        <option th:value="5">Tiempo Suplementario</option>
+                                                        <option th:value="6">Constancia de Tiempo</option>
+                                                        <option th:value="8">Omision</option>
+                                                        <option th:value="7">Retardo</option>
+                                                    </select >
+                                                </div>
+
 
                                                 <div class="col-sm-4">
                                                     <div class="form-group">

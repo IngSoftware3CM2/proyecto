@@ -1,7 +1,6 @@
 package com.is.controlincidencias.repository;
 
 
-import com.is.controlincidencias.entity.OmisionEntrSal;
 import com.is.controlincidencias.entity.Retardo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -38,5 +37,5 @@ public interface RetardoRepository extends JpaRepository<Retardo, Serializable> 
     @Query(value = "update retardo set justificacion = :justificacion where idjustificante = :idjustificante", nativeQuery = true)
     void updateRetardo(@Param("justificacion") String justificacion, @Param("idjustificante") int idjustificante);
 
-
+    boolean existsByJustificante_IdJustificante (int id);
 }

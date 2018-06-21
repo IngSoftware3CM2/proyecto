@@ -8,10 +8,15 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public interface QuincenaRepository extends JpaRepository<Quincena, Serializable> {
     @Query(value="select idquincena from quincena where :fecharegistro  between inicio and fin;", nativeQuery = true)
     @Transactional
     Integer obtenerIdQuincena(@Param("fecharegistro") LocalDate fecharegistro);
+
+    Quincena findFirstByQuincenaReportadaIs(String quincena);
+
+    List<Quincena> findAllByQuincenaReportadaIsLikeOrderByQuincenaReportadaDesc(String expresion);
 
 }

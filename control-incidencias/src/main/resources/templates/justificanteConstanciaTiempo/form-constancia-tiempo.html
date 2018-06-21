@@ -22,7 +22,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${TipoAndNombre}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -62,7 +62,21 @@
                     </div>
 
                     <div class="form-group"><label class="col-lg-4 ">Fecha de Incidencia : <span th:text="${fecha}"></span></label></div>
-                    <div class="form-group" id="formulario"><label class="col-lg-4 " id="lbltipAddedComment"></div>
+
+                    <br/>
+                    <br/>
+
+                    <div class="form-group">
+                        <div class="row">
+                        <label class="col-lg-4 ">Fecha a justificar :
+                            <input id="fechaCLIDDA" th:field="*{segfecha}" type="date" oninvalid="this.setCustomValidity('Complete todos los campos obligatorios')" disabled>
+                        </label>
+                        </div>
+                        <div class="row">
+                            <h5><font color="#a9a9a9"><label class="col-lg-4 " id="mensaje">Campo necesario unicamente para tipo de constancia CLIDDA</label></font></h5>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-sm-4">
@@ -81,7 +95,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            <a href="#" th:href="@{/personal/justificantes/constanciatiempo/cancel}">
+                            <a href="#" th:href="@{/personal/justificantes/paternidad/cancel}">
                                 <button class="btn btn-sm btn-white" type="submit">Cancelar</button>
                             </a>
                         </div>
@@ -111,26 +125,19 @@
     function addActivityItem(){
         //option is selected
         var elem = document.getElementById("activitySelector"),
+            element = document.getElementById("fechaCLIDDA"),
             selectedNode = elem.options[elem.selectedIndex];
         if ( selectedNode.value === "CLIDDA") {
-            document.getElementById('lbltipAddedComment').remove()
-       // <label class="col-lg-4 " >Fecha a justificar : </label>
-            //th:field="*{justificacion}"
-            var y = document.createElement("LABEL");
-            y.setAttribute("class", "col-lg-4");
-            y.setAttribute("id", "lbltipAddedComment");
-            document.getElementById("formulario").appendChild(y);
-            document.getElementById('lbltipAddedComment').innerHTML = 'fecha a justificar : ';
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "date");
-            x.setAttribute("th:field","*{segfecha}");
-            document.getElementById("lbltipAddedComment").appendChild(x);
+            element.removeAttribute("disabled");
+            document.getElementById('mensaje').innerHTML = ' ';
+            element.required = true;
         }
         else{
-            document.getElementById('lbltipAddedComment').innerHTML = "";
+            element.disabled = true;
+            element.required = false;
+            document.getElementById('mensaje').innerHTML = 'Campo necesario unicamente para tipo de constancia CLIDDA';
         }
     }
-
 
     window.addEventListener("load", start, false);
 </script>

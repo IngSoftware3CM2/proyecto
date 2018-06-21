@@ -16,13 +16,16 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\horarioactual.csv' DELI
 COPY dia(iddia,horaentrada,horasalida,nombre,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\dia.csv' DELIMITER ',' CSV HEADER;
 
-COPY personal(idempleado,noempleado,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
+COPY personal(idempleado,noempleado,habierto,activo,sexo,nombre,apellidopaterno,apellidomaterno,notarjeta,iddepartamento,tipo,idhorario) 
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\personal.csv' DELIMITER ','CSV HEADER;
+
+COPY login(correo,passwordhash,idempleado)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\login.csv' DELIMITER ','CSV HEADER; 
 
 COPY quincena(idquincena,inicio,fin,quincenareportada,quincenaenqueseraprocesada,fechalimite,fechalimpersonal)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\quincena.csv' DELIMITER ',' CSV HEADER;
 
-COPY incidencia(idincidencia,fecharegistro,tipo,idjustificante,idempleado,idquincena)
+COPY incidencia(idincidencia,fecharegistro,tipo,idjustificante,idempleado,idquincena,horasfaltantes)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\incidencia.csv' DELIMITER ',' CSV HEADER;
 
 COPY asistencia(idasistencia,fecharegistro,horaentrada,horasalida,idempleado)
@@ -30,3 +33,9 @@ FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\asistencia.csv' DELIMIT
 
 COPY periodoinhabil(idperiodo,inicio,fin,descripcion,aplicadocente,aplicapaee,justificacionarchivo)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
+
+COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\tiemposuplgenerado.csv' DELIMITER ',' CSV HEADER;
+
+COPY motivo(idmotivo,descripcion)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;

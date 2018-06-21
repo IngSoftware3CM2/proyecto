@@ -9,6 +9,7 @@ public class JustificateTiempoSuplModel {
     private Integer tiempocubrir;
     private Integer idJustificante;
     private List<Integer> idSeleccionados;
+    private List<Integer> horasSeleccionadas;
 
     public List<Integer> getIdSeleccionados() {
         return idSeleccionados;
@@ -18,15 +19,24 @@ public class JustificateTiempoSuplModel {
         this.idSeleccionados = idSeleccionados;
     }
 
-    public JustificateTiempoSuplModel(LocalDate fecha, Integer tiempocubrir, Integer idJustificante, List<Integer> idSeleccionados) {
+    public JustificateTiempoSuplModel(LocalDate fecha, Integer tiempocubrir, Integer idJustificante, List<Integer> idSeleccionados, List<Integer> horasSeleccionadas) {
         super();
         this.fecha = fecha;
         this.tiempocubrir = tiempocubrir;
         this.idJustificante = idJustificante;
         this.idSeleccionados = idSeleccionados;
+        this.horasSeleccionadas = horasSeleccionadas;
     }
 
     public JustificateTiempoSuplModel() {
+    }
+
+    public List<Integer> getHorasSeleccionadas() {
+        return horasSeleccionadas;
+    }
+
+    public void setHorasSeleccionadas(List<Integer> horasSeleccionadas) {
+        this.horasSeleccionadas = horasSeleccionadas;
     }
 
     public LocalDate getFecha() {

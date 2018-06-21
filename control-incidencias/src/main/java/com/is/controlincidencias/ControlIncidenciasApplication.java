@@ -5,10 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /*
 @Slf4j
 @SpringBootApplication
+@EnableScheduling
 public class ControlIncidenciasApplication {
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -22,6 +24,7 @@ public class ControlIncidenciasApplication {
 
 @Slf4j
 @SpringBootApplication
+@EnableScheduling
 public class ControlIncidenciasApplication extends SpringBootServletInitializer {
 
     @Override

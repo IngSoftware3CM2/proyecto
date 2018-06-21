@@ -67,6 +67,19 @@ public class PermisoEconomicoController {
         }
         idIncidencia = idincidencia;
         Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente ";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = " PAAE";
+        }
+        String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+
         personal_chido = personal;
         idEmpleado = personal.getIdEmpleado();
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);

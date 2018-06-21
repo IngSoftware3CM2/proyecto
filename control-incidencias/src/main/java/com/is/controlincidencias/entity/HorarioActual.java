@@ -12,22 +12,13 @@ public class HorarioActual {
     @Column(name = "idHorario")
     private Integer idHorario;
 
-    @OneToOne(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true, fetch
-            = FetchType.LAZY)
+    @OneToOne(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Personal personal;
 
     @OneToMany(mappedBy = "horarioActual", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dia> dias = new ArrayList<>();
 
-    public void addDia(Dia dia) {
-        dias.add(dia);
-        dia.setHorarioActual(this);
-    }
 
-    public void removeDia(Dia dia) {
-        dias.remove(dia);
-        dia.setHorarioActual(null);
-    }
 
     public Integer getIdHorario() {
         return idHorario;

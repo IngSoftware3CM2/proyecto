@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller.dch;
 
 import com.is.controlincidencias.model.AsistenciaJSON;
+import com.is.controlincidencias.model.AsistenciaMostrar;
 import com.is.controlincidencias.model.ConsultaAsistenciaJSON;
 import com.is.controlincidencias.service.AsistenciaService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,20 +18,29 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/dch/asistencias")
 public class RestAsistenciasController {
-    /*
-     * 0 = Solititud
-     * 1 = Bien chido
-     * 2 = El numero de tarjeta no se encuentra en el sistenma
-     * 3 = Campo tarjeta vacio
-     * 4 = Ya hay registro del numero de tarjeta en el sistema en el dia indicado
-     * */
     @Autowired
     @Qualifier("asistenciaServiceImpl")
     private AsistenciaService asistenciaService;
 
     @PostMapping("/consultar/todas")
     public List<AsistenciaJSON> consultarTodas(@RequestBody ConsultaAsistenciaJSON consulta) {
-        log.info(consulta.toString());
         return asistenciaService.obtenerAsistencias(consulta.getFecha());
+    }
+
+    @PostMapping("/obtener/anios")
+    public List<AsistenciaMostrar> obtenerAnios(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+        log.info("obtenerAnios() tarjeta=" + asistenciaMostrar.toString());
+        return asistenciaService.obtenerAniosPorTarjeta(asistenciaMostrar.getTarjeta());
+    }
+
+    @PostMapping("/obtener/quincenas")
+    public List<String> obtenerQuincenas(@RequestBody AsistenciaMostrar asistencia) {
+        log.info("obtenerQuincenas() asistencia" + asistencia.toString());
+        return asistenciaService.obtenerQuincenas(asistencia);
+    }
+
+    @PostMapping("/obtener/todas")
+    public List<AsistenciaJSON> obtenerTodas(@RequestBody AsistenciaMostrar asistenciaMostrar) {
+        return asistenciaService.obtenerAsistenciasParaMostrar(asistenciaMostrar);
     }
 }

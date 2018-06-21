@@ -35,11 +35,12 @@
                                 <tr>
                                     <th>Fecha</th>
                                     <th>Tipo de Justificacion</th>
-                                    <th>Ver</th>
+
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
                                 <div th:if="${add == 1}" class="alert alert-success" role="alert">Se registró solicitud.</div>
+                                <div th:if="${add == 0}" class="alert alert-success" role="alert">No se pudo registrar la solicitud.</div>
                                 <div th:if="${modificar == 1}" class="alert alert-success" role="alert">Modificación de justificación exitosa</div>
                                 <div th:if="${modificar == 2}" class="alert alert-danger" role="alert">Modificación de justificación cancelada</div>
 
@@ -50,16 +51,16 @@
                                         <span th:case="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</span>
                                         <span th:case="2">Licencia por Paternidad</span>
                                         <span th:case="3">Cambio de Horario</span>
-                                        <span th:case="4">Dias Economicos</span>
+                                        <span th:case="4">Días Economicos</span>
                                         <span th:case="5">Tiempo Suplementario</span>
+                                        <span th:case="6">Omision</span>
+                                        <span th:case="7">Retardo</span>
+                                        <span th:case="8">Comision Oficial</span>
+                                        <span th:case="9">Constancia de Tiempo</span>
                                     </td>
 
 
-                                    <td>
-                                        <a href="#" th:href="@{/personal/verjustificante}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </td>
+
                                    <td th:switch="${justificante.getEstado().toLowerCase()}">
                                         <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
                                         <span th:case="'espera'"><i class="fa fa-clock-o"></i></span>

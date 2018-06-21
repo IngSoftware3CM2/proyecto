@@ -41,7 +41,6 @@ function ValidateSingleInput(oInput) {
 }
 
 
-
 function llenarEstado() {
         var estado=$("#getEstado option:selected").html();
         var datos = {

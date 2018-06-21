@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Sistema de Control de Asistencias')"></head>
+<body>
+
+<div id="wrapper">
+
+    <nav th:replace="fragments/verticalnavbar :: verticalnavbar(5)"></nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
+
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>Ver Justificantes</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" th:href="@{/personal}">Inicio</a>
+                    </li>
+
+                    <li class="active">
+                        <strong>Ver Justificantes</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8 text-right">
+                <label th:text="${TipoAndNombre}"></label>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div th:if="${add == 1}" class="alert alert-success" role="alert">Se registro la notificación.</div>
+            <div th:if="${cancelar == 1}" class="alert alert-danger" role="alert">Operacion cancelada</div>
+            <div th:if="${add == 0}" class="alert alert-danger" role="alert">No puedes notificar de nuevo, justifica tu anterior notificacion</div>
+            <div th:if="${add == 2}" class="alert alert-danger" role="alert">No puedes notificar ese motivo</div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <h1 class="text-center">
+                                <span class="text-navy">Ver Notificación</span>
+                            </h1>
+                            <div class="row">
+                                <div class="col-sm-offset-8 col-sm-4 ">
+                                    <a th:href="@{/personal/notificaciones/crear}">
+                                        <button class="btn btn-white" type="button">Crear Notificacion</button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-2">
+
+                                </div>
+                                <div class="col-sm-8">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Tipo de Justificacion</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td th:text="${notificacionModel.getFecha()}"></td>
+                                            <td th:text="${notificacionModel.getMotivo()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="#" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script src="#" th:src="@{/js/justificanteTA.js}"></script>
+<script src="#" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="#" th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script src="#" th:src="@{/js/inspinia.js}"></script>
+<script src="#" th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+<script src="#" th:src="@{/js/dataPicker.js}"></script>
+<script src="#" th:src="@{/js/plugins/cropper/cropper.min.js}"></script>
+<script src="#" th:src="@{/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+
+</body>
+
+</html>

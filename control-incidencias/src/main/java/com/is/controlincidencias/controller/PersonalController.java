@@ -1,10 +1,13 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.component.ReglasNegocio;
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LoginModel;
+import com.is.controlincidencias.model.NotificacionModel;
+import com.is.controlincidencias.repository.NotificacionRepository;
 import com.is.controlincidencias.service.TiempoSuplementarioService;
 import com.is.controlincidencias.service.impl.*;
 import org.apache.commons.logging.Log;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,6 +36,10 @@ public class PersonalController {
     @Autowired
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
+
+    @Autowired
+    @Qualifier("notificacionRepository")
+    private NotificacionRepository notificacionRepository;
 
     @Autowired
     @Qualifier("justificanteServiceImpl")
@@ -68,6 +76,23 @@ public class PersonalController {
     @Autowired
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
+
+    @Autowired
+    @Qualifier ("comisionServiceImpl")
+    private ComisionServiceImpl comisionService;
+
+    @Autowired
+    @Qualifier("omisionServiceImpl")
+    private OmisionESServiceImpl omisionESService;
+
+    @Autowired
+    @Qualifier("retardoServiceImpl")
+    private  RetardoServiceImpl retardoService;
+
+    @Autowired
+    @Qualifier("constanciaTiempoServiceImpl")
+    private ConstanciaTiempoServiceImpl constanciaTiempoService;
+
 
     @GetMapping({"", "/"})
     public String inicio(Model model, Principal principal) {
@@ -163,6 +188,18 @@ public class PersonalController {
             } else if(tiempoSuplementarioService.existsByIdjustificante(justificante.getIdJustificante())){
                 justificante.setTipo(5);
             }
+            else if(omisionESService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(6);
+            }
+            else if(retardoService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(7);
+            }
+            else if(comisionService.existsByIdjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(8);
+            }
+            else if(constanciaTiempoService.existByidjustificante(justificante.getIdJustificante())){
+                justificante.setTipo(9);
+            }
             else {
                 justificante.setTipo(666);
             }
@@ -179,25 +216,150 @@ public class PersonalController {
         return new ModelAndView("ver-justificante-docente");
     }
 
+
+
     @GetMapping("/incidencias")
-    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar, Principal principal) {
+    public ModelAndView showIncidencias(Model model,@RequestParam(name = "ano", required = false) Integer ano,@RequestParam(name = "dia", required = false) Integer dia,@RequestParam(name = "quincena", required = false) Integer quincena,@RequestParam(name = "cancelar", required = false) Integer cancelar,@RequestParam(name = "sexo", required = false) Integer sexo, Principal principal) {
         String email = "a@gmail.com"; // aqui poner un email por default para que no de error
         if (principal != null && principal.getName() != null)
             email = principal.getName();
+        System.out.println("MAIL: " + email);
         ModelAndView mav = new ModelAndView("ver-incidencias");
         Personal personal = personalService.getPersonalByEmail(email);
         LOG.info("*****************************************"+cancelar);
         model.addAttribute("cancelar", cancelar);
+        model.addAttribute("sexo", sexo);
+        model.addAttribute("dia", dia);
         model.addAttribute("ano", ano);
         model.addAttribute("quincena", quincena);
+
+        //HACIENDO VALIDACIONES FUERA DE LA VISTA VER INCIDENCIAS
+
+        List <Incidencia> incidencias = incidenciaService.getIncidenciasByPersonal(personal);
+        List <Incidencia> newincidencias = new ArrayList<Incidencia>();
+        for (Incidencia incidencia : incidencias){
+            if (incidencia.getJustificante() == null) {
+                newincidencias.add(incidencia);
+            }
+            else {
+                System.out.println("TIPOJUSTIFICANTE DE INCI : " +incidencia.getIdIncidencia() +"ES " + incidencia.getJustificante().getTipo());
+                if (incidencia.getJustificante().getTipo() == 5){
+                    System.out.println("HORASFALTANTES DE INCI : " +incidencia.getIdIncidencia() +"ES " + incidencia.getHorasFaltantes());
+                    if (incidencia.getHorasFaltantes() != 0){
+
+                        newincidencias.add(incidencia);
+                        System.out.println("AGREGANDO INCIDENCIA: " +incidencia.getIdIncidencia() );
+                    }
+                }
+            }
+        }
+
+        for (Incidencia incidencia : newincidencias){
+            System.out.println("INCIDENCIA: "+incidencia.getIdIncidencia()+" CON FECHA: " +incidencia.getFechaAsString() );
+
+        }
+
+
+
+
+
+        System.out.println("SEXO: " + personal.getSexo());
+        System.out.println("ROL: " + personal.getTipo());
+        char sexoPersonal = personal.getSexo();
+        String tipoPersonal = personal.getTipo();
+        int idempleado = personal.getIdEmpleado();
+        int opcion = 0;
+        model.addAttribute("sexoPersonal", sexoPersonal);
+        model.addAttribute("tipoPersonal", tipoPersonal);
+
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
+        mav.addObject("incidencias", newincidencias);
+
         Integer motivo = new Integer (-1);
-        if (notificacionService.existsByPersonal(personal)){
-            Notificacion notificacion = notificacionService.findByPersonal(personal);
+        if (notificacionService.existsByidempleado(idempleado)){
+            Notificacion notificacion = notificacionService.findByidempleado(idempleado);
             motivo = new Integer(notificacion.getMotivo().getIdMotivo());
         }
         mav.addObject("motivo", motivo);
+
+        //Paso a hacer todas las validaciones, son 16. Por fa no muevan nada.
+        if (sexoPersonal == 'H'){
+            if (tipoPersonal.equals("ROLE_DOC")){
+                if (motivo.intValue() == 1){
+                    opcion = 1;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 2;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 3;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 4;
+                }
+            }
+            else if (tipoPersonal.equals("ROLE_PAAE")){
+                if (motivo.intValue() == 1){
+                    opcion = 5;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 6;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 7;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 8;
+                }
+            }
+        }
+        else if (sexoPersonal == 'M'){
+            if (tipoPersonal.equals("ROLE_DOC")){
+                if (motivo.intValue() == 1){
+                    opcion = 9;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 10;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 11;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 12;
+                }
+            }
+            else if (tipoPersonal.equals("ROLE_PAAE")){
+                if (motivo.intValue() == 1){
+                    opcion = 13;
+                }
+                else if (motivo.intValue() == 2){
+                    opcion = 14;
+                }
+                else if (motivo.intValue() == 3){
+                    opcion = 15;
+                }
+                else if (motivo.intValue() == -1){
+                    opcion = 16;
+                }
+            }
+        }
+
+
+
+
+
+
+        System.out.println("CASO PARA VISTA: " + opcion);
+        model.addAttribute("caso", opcion);
+
+
+
+
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
+        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
+
         return mav;
     }
 
@@ -228,6 +390,14 @@ public class PersonalController {
             redirectURL = "redirect:/personal/justificantes/tiemposuplementario";
         else if(tipo==6)
             redirectURL = "redirect:/personal/justificantes/constanciatiempo/agregar";
+        else if(tipo==7)
+            redirectURL = "redirect:/personal/justificantes/retardo/agregar";
+        else if(tipo==8)
+            redirectURL = "redirect:/personal/justificantes/omision/agregar";
+        else if (tipo==9)
+            redirectURL = "redirect:/personal/justificantes/comisionOficial/agregar";
+
+        //Que comision oficial sea 9 por fa
         return redirectURL;
     }
 
@@ -250,4 +420,44 @@ public class PersonalController {
 
         return redirectURL;
     }
+
+
+    @GetMapping("/vernotificaciones")
+    public ModelAndView showIncidencias(Model model,Principal principal, @RequestParam(name = "cancelar", required = false) Integer cancelar, @RequestParam(name = "add", required = false) Integer add){
+        String email = "a@gmail.com"; // aqui poner un email por default para que no de error
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = "PAAE";
+        }
+        Notificacion notificacion = notificacionRepository.selectNotificacion(personal.getIdEmpleado());
+        NotificacionModel notificacionModel = new NotificacionModel();
+        if (notificacion!=null){
+            notificacionModel.setFecha(notificacion.getFecha());
+            notificacionModel.setMotivo(notificacion.getMotivo().getDescripcion());
+            model.addAttribute("notificacionModel", notificacionModel);
+        }
+        else{
+            notificacionModel.setFecha(null);
+            notificacionModel.setMotivo("");
+            model.addAttribute("notificacionModel", notificacionModel);
+        }
+
+
+        String TipoAndNombre = rol + " | "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+        model.addAttribute("cancelar", cancelar);
+        model.addAttribute("add", add);
+        ModelAndView mav = new ModelAndView("notificaciones/ver-notificaciones");
+        return mav;
+    }
+
 }

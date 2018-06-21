@@ -57,6 +57,10 @@ public class JustificacionTAController {
     private IncidenciaService incidenciaService;
 
     @Autowired
+    @Qualifier("notificacionServiceImpl")
+    private NotificacionService notificacionService;
+
+    @Autowired
     @Qualifier("reglasNegocioComponent")
     private ReglasNegocio reglasNegocio;
 
@@ -170,6 +174,7 @@ public class JustificacionTAController {
         }
         try {
          //Aqui trato de subir el archivo
+            notificacionService.removeByPersonalAndMotivo(personal.getIdEmpleado(),2);
             idJustificante = justificanteTAService.saveJustificanteTA(justificanteTAModel, justificante,idIncidencia);
             licPaternidadService.subirArchivo(files, idJustificante);
             LOG.info("Aqui trato de subir el archivo");
