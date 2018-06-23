@@ -357,7 +357,7 @@ public class PersonalController {
 
 
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
-        mav.addObject("incidencias", incidenciaService.getIncidenciasByPersonal(personal));
+
 
 
         return mav;
