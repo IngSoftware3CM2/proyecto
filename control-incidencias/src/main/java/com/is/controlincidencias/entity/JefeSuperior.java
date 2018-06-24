@@ -21,6 +21,9 @@ public class JefeSuperior {
     @Column(name = "apellidoMaterno", nullable = false, length = 30)
     private String apellidoMaterno;
 
+    @Column(name = "cargo", nullable = false, length = 4)
+    private String cargo;
+
     @OneToMany(mappedBy = "jefesuperior", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Departamento> departamentos = new ArrayList<>();
 
@@ -36,11 +39,12 @@ public class JefeSuperior {
     public JefeSuperior() {
     }
 
-    public JefeSuperior(Integer idSuperior, String nombre, String apellidoPaterno, String apellidoMaterno, JefeSuperior jefe) {
+    public JefeSuperior(Integer idSuperior, String nombre, String apellidoPaterno, String apellidoMaterno, String cargo, JefeSuperior jefe) {
         this.idSuperior = idSuperior;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
+        this.cargo = cargo;
         this.jefe = jefe;
     }
 
@@ -75,7 +79,7 @@ public class JefeSuperior {
     @Override
     public int hashCode() {
 
-        return Objects.hash(idSuperior, nombre, apellidoPaterno, apellidoMaterno, departamentos, jefe, subordinado);
+        return Objects.hash(idSuperior, nombre, apellidoPaterno, apellidoMaterno, cargo, departamentos, jefe, subordinado);
     }
 
     @Override

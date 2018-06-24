@@ -15,9 +15,11 @@ public class Justificante {
 
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
     private LocalDate fecha;
-    // De momento lo puse true para que no tuvieran problemas
-    @Column(name = "estado", nullable = true, length = 20)
-    private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
+
+    /*De momento lo puse como nullable = true para evitar posibles errores en la base*/
+
+    @Column(name = "estado", nullable = true, length = 8)
+    private Integer estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
     @Column (name="tipo")
     private int tipo;
@@ -90,11 +92,11 @@ public class Justificante {
         this.fecha = fecha;
     }
 
-    public String getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

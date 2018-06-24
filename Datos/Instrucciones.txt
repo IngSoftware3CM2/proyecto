@@ -1,0 +1,10 @@
+Que onda chavos, hay una nueva forma para cargar los datos a la BD.
+Los permisos no los cambien por archivo, sino desde la carpeta padre, en este caso
+es la carpeta datos de esta forma los permisos se heredan a las subcarpetas y solo tienen que hacer este
+proceso 1 sola vez.
+
+Segundo, ya no tendrán que modificar el inserciones.sql, para que le pongan sus rutas, sino que
+simplemente tienen que correr el ejecutable filename.exe, junto como primer argumento el path a remplazar
+por ejemplo: C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\
+para que se ajuste al path
+de su computadora :33
