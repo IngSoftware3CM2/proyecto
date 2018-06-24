@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/fonts/**",
-                "/font-awesome/**").permitAll();
+                "/font-awesome/**", "/justificantes/**").permitAll();
         http.authorizeRequests().antMatchers("/dch/**").hasRole("CH")
                 .antMatchers("/personal/**").hasAnyRole("DOC", "PAAE", "DCADM")
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/logincheck")

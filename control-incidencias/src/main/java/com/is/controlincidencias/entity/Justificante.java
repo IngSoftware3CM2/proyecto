@@ -15,8 +15,8 @@ public class Justificante {
 
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
     private LocalDate fecha;
-
-    @Column(name = "estado", nullable = false, length = 20)
+    // De momento lo puse true para que no tuvieran problemas
+    @Column(name = "estado", nullable = true, length = 20)
     private String estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
 
     @Column (name="tipo")
