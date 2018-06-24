@@ -1,11 +1,5 @@
 package com.is.controlincidencias.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
-
 public class ComisionModel {
 
     private int idComision;

@@ -32,6 +32,7 @@ COPY asistencia(idasistencia,fecharegistro,horaentrada,horasalida,idempleado)
 FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\asistencia.csv' DELIMITER ',' CSV HEADER;
 
 COPY periodoinhabil(idperiodo,inicio,fin,descripcion,aplicadocente,aplicapaee,justificacionarchivo)
+<<<<<<< HEAD
 FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
 
 COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
@@ -39,3 +40,12 @@ FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\tiemposuplgen
 
 COPY motivo(idmotivo,descripcion)
 FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
+=======
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\periodoinhabil.csv' DELIMITER ',' CSV HEADER;
+
+COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\tiemposuplgenerado.csv' DELIMITER ',' CSV HEADER;
+
+COPY motivo(idmotivo,descripcion)
+FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
+>>>>>>> 56c9de6e434af94866c633feabb89796d3c6440c

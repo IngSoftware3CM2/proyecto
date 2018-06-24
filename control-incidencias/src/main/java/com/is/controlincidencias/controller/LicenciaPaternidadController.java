@@ -6,10 +6,8 @@ import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LicPaternidadModel;
-import com.is.controlincidencias.service.IncidenciaService;
-import com.is.controlincidencias.service.JustificanteService;
-import com.is.controlincidencias.service.LicPaternidadService;
-import com.is.controlincidencias.service.PersonalService;
+import com.is.controlincidencias.repository.NotificacionRepository;
+import com.is.controlincidencias.service.*;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +43,10 @@ public class LicenciaPaternidadController {
     @Qualifier("personalServiceImpl")
     private PersonalService personalService;
 
+    @Autowired
+    @Qualifier("notificacionServiceImpl")
+    private NotificacionService notificacionService;
+
 
     @Autowired
     @Qualifier("justificanteServiceImpl")
@@ -71,6 +73,19 @@ public class LicenciaPaternidadController {
             email = principal.getName();
         }
         Personal personal = personalService.getPersonalByEmail(email);
+        String rol = "";
+        if (personal.getTipo().equals("ROLE_DOC")){
+            rol = "Docente";
+        }
+        else if(personal.getTipo().equals("ROLE_CH")){
+            rol = "Capital Humano";
+        }
+        else if(personal.getTipo().equals("ROLE_PAAE")){
+            rol = "PAAE ";
+        }
+        String TipoAndNombre = rol + "| "+ personal.getNombre()+" "+personal.getApellidoPaterno()+" "+personal.getApellidoMaterno();
+        model.addAttribute("TipoAndNombre", TipoAndNombre);
+
         LicPaternidadModel licPaternidadModel = new LicPaternidadModel();
         idIncidencia = idincidencia;
         Incidencia incidencia = incidenciaService.consultarIncidencia(idincidencia);
@@ -122,6 +137,7 @@ public class LicenciaPaternidadController {
 
             idjustificante = licPaternidadService.guardarLicPaternidad(licPaternidadModel, idIncidencia, idEmpleado);
             licPaternidadService.subirArchivo(files, idjustificante);
+            notificacionService.removeByPersonalAndMotivo(idEmpleado,1);
         } catch (IOException e) {
             LOG.error("ERROR:", e);
             justificanteService.removeJustificanteByIdJustificante(idjustificante);

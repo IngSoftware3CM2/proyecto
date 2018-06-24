@@ -3,10 +3,11 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.model.CambioHorarioModel;
 import com.is.controlincidencias.model.ComisionModel;
-import com.is.controlincidencias.model.OmisionModel;
-import com.is.controlincidencias.service.*;
+import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.ComisionService;
+import com.is.controlincidencias.service.LicPaternidadService;
+import com.is.controlincidencias.service.NotificacionService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import org.apache.juli.logging.Log;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,6 +58,10 @@ public class ComisionController {
     @Qualifier("comisionServiceImpl")
     private ComisionService comisionService;
 
+    @Autowired
+    @Qualifier("notificacionServiceImpl")
+    private NotificacionService notificacionService;
+
 
     @GetMapping("/agregar")
     public ModelAndView registrar(Model model, @RequestParam(name="id")Integer idincidencia)
@@ -81,6 +85,7 @@ public class ComisionController {
     {
         ComisionModel com = new ComisionModel();
         com.setIdComision(idEmpleado); //aqui meto el idEmpleado para enviarselo an repository
+        Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
         com.setInicio(Cmodelo.getInicio());
         com.setFin(Cmodelo.getFin());
         com.setInvitacionArchivo(files.get(0).getOriginalFilename());
@@ -95,6 +100,7 @@ public class ComisionController {
             {
                 LOGGER.error("ERROR:", e);
             }
+        notificacionService.removeByPersonalAndMotivo(personal.getIdEmpleado(),3);
         return "redirect:/personal/justificantes?add=1";
     }
 

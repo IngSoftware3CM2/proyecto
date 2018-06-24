@@ -39,4 +39,26 @@ public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializ
     void insertarAsistencia(@Param("fecha") LocalDate fecha, @Param("entrada") LocalTime entrada,
             @Param("salida") LocalTime salida,
             @Param("empleado") Integer empleado, @Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "insert into asistencia (fechaRegistro, horaSalida, idEmpleado, " +
+            "idAsistencia) values (:fecha, :salida, :empleado, :id)", nativeQuery = true)
+    @Transactional
+    void insertarAsistenciaNoEntrada(@Param("fecha") LocalDate fecha,
+            @Param("salida") LocalTime salida, @Param("empleado") Integer empleado,
+            @Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "insert into asistencia (fechaRegistro, horaEntrada, idEmpleado, " +
+            "idAsistencia) values (:fecha, :entrada, :empleado, :id)", nativeQuery = true)
+    @Transactional
+    void insertarAsistenciaNoSalida(@Param("fecha") LocalDate fecha,
+            @Param("entrada") LocalTime entrada, @Param("empleado") Integer empleado,
+            @Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "insert into asistencia (fechaRegistro, idEmpleado, idAsistencia) values (:fecha, :empleado, :id)", nativeQuery = true)
+    @Transactional
+    void insertarAsistenciaNoHoras(@Param("fecha") LocalDate fecha,
+            @Param("empleado") Integer empleado, @Param("id") Integer id);
 }

@@ -82,9 +82,17 @@ public class RetardoController {
         model.addAttribute("horas", cambioService.getHoraSalida(idEmpleado, fecha));
         minutos = (int)minutosDiferencia(cambioService.getHoraE(idEmpleado, diaSemana), cambioService.getHoraEntrada(idEmpleado, fecha));
         LOGGER.info("Los tiempos dan " + minutos + " m");
-            if(minutos > 30) //el retardo solo es válido su llego de 7:11:00 hasta 7:30:00
+            if(minutos > 31) //el retardo solo es válido su llego de 7:11:00 hasta 7:30:00
                 {
                     func = "mala";
+                }
+             if(minutos > 11 && minutos <= 20)
+                {
+                    model.addAttribute("tipor", "Retardo Menor");
+                }
+             if(minutos > 20 && minutos <= 31)
+                {
+                    model.addAttribute("tipor", "Retardo Mayor");
                 }
         model.addAttribute("funcion", func);
         return mav;

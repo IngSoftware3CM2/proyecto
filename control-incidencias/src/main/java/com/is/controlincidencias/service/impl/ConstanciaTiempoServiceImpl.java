@@ -47,4 +47,9 @@ public class ConstanciaTiempoServiceImpl implements ConstanciaTiempoService{
         constanciaTiempoRepository.altaConstanciaTiempo(id,constanciaTiempoModel.getConstanciaArchivo(),constanciaTiempoModel.getSegfecha(),constanciaTiempoModel.getTipo(),ids.get(ids.size()-1));
         incidenciaService.updateIdJustificante(ids.get(ids.size()-1),idIncidencia);
     }
+
+    @Override
+    public boolean existByidjustificante(int id) {
+        return constanciaTiempoRepository.existsByJustificante_IdJustificante(id);
+    }
 }
