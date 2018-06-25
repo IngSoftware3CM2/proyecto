@@ -51,7 +51,7 @@ public class JustificantesController {
             esCH = 2;
 
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
         return "justificantes/paternidad";
     }
@@ -69,7 +69,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
         return "justificantes/tipoa";
@@ -87,10 +87,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
-
-
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
         return "justificantes/omision";
     }
@@ -107,7 +104,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -127,7 +124,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -147,7 +144,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -166,7 +163,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -185,7 +182,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
