@@ -12,4 +12,6 @@ public interface JustificanteService {
     Justificante findJustificanteById(int id);
 
     void removeJustificanteByIdJustificante(int id);
+
+    List <Justificante> getAllJustificante ();
 }
