@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,42 +38,155 @@ public class JustificantesController {
     private PersonalServiceImpl personalService;
 
     @GetMapping("/paternidad")
-    public String verPaternidad(@RequestParam(name = "id") Integer idJustificante) {
+    public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verPaternidad()");
+
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+
+        model.addAttribute("tipo_usuario", esCH);
         return "inicio";
     }
 
     @GetMapping("/tipoa")
-    public String verTipoA(@RequestParam(name = "id") Integer idJustificante) {
+    public String verTipoA(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verTipoA()");
+
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
         return "inicio";
     }
 
     @GetMapping("/omision")
-    public String verOmision(@RequestParam(name = "id") Integer idJustificante) {
+    public String verOmision(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verOmision()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
+
         return "inicio";
     }
 
     @GetMapping("/retardo")
-    public String verRetardo(@RequestParam(name = "id") Integer idJustificante) {
+    public String verRetardo(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verRetardo()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
+
         return "inicio";
     }
 
     @GetMapping("/cambiohorario")
-    public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante) {
+    public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verCambioHorario()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
         return "inicio";
     }
 
     @GetMapping("/economico")
-    public String verEconomico(@RequestParam(name = "id") Integer idJustificante) {
+    public String verEconomico(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verEconomico()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
         return "inicio";
     }
 
     @GetMapping("/suplementario")
-    public String verSuplementario(@RequestParam(name = "id") Integer idJustificante) {
+    public String verSuplementario(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verSuplementario()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
         return "inicio";
     }
 
     @GetMapping("/comision")
-    public String verComisionOficial(@RequestParam(name = "id") Integer idJustificante) {
+    public String verComisionOficial(@RequestParam(name = "id") Integer idJustificante, Principal
+            principal, Model model) {
+        log.info("verComisionOficial()");
+        String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        if (personal.getTipo().equals("ROLE_CH"))
+            esCH = 2;
+        model.addAttribute("tipo_usuario", esCH);
+
+
+
+
         return "inicio";
     }
 
