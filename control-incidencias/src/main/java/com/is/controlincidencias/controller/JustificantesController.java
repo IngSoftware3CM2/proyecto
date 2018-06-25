@@ -1,6 +1,7 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.PermisoEconomico;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -146,8 +147,9 @@ public class JustificantesController {
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
 
+        PermisoEconomico economico = new PermisoEconomico();
 
-
+        model.addAttribute("economico", economico);
 
         return "justificantes/economico";
     }
