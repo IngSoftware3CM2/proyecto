@@ -96,6 +96,7 @@ public class JustificantesController {
     public ModelAndView validarJustificantes (Principal principal) {
         ModelAndView mav = new ModelAndView("validar-justificantes");
         String email = "abhera@yandex.com";
+        Integer esCH = 1; // Uno para mostrar la barra de superior
         if (principal != null && principal.getName() != null)
             email = principal.getName();
 
@@ -106,13 +107,14 @@ public class JustificantesController {
         Personal personal = personalService.getPersonalByEmail(email);
 
         for (Justificante j : allJustificantes) {
-            System.out.println("FECHAJUST: "+j.getFechaAsString());
+            log.info("FECHAJUST: "+j.getFechaAsString());
         }
 
         //CAPITAL HUMANO
         if (personal.getTipo().equals("ROLE_CH")){
+            esCH = 2; // Dos para mostrar la barra de CH
             for (Justificante j : allJustificantes) {
-                if (j.getEstado().intValue() == 2){
+                if (j.getEstado() == 2){
                     showJustificantes.add(j);
                 }
             }
@@ -120,7 +122,7 @@ public class JustificantesController {
         //DIRECTOR
         else if (personal.getTipo().equals("ROLE_DIR")) {
             for (Justificante j : allJustificantes) {
-                if (j.getEstado().intValue() == 3){
+                if (j.getEstado() == 3){
                     showJustificantes.add(j);
                 }
             }
@@ -135,12 +137,12 @@ public class JustificantesController {
             for (Justificante j : allJustificantes) {
                 if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())){
                     if (j.getTipo() == 6 || j.getTipo() == 8){
-                        if (j.getEstado().intValue() == 4){
+                        if (j.getEstado() == 4){
                                 showJustificantes.add(j);
                         }
                     }
                     else{
-                        if (j.getEstado().intValue() == 3){
+                        if (j.getEstado() == 3){
                             showJustificantes.add(j);
                         }
                     }
@@ -158,7 +160,7 @@ public class JustificantesController {
             for (Justificante j : allJustificantes) {
                 if (j.getTipo() == 6 || j.getTipo() == 8){
                     if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())) {
-                        if (j.getEstado().intValue() == 3){
+                        if (j.getEstado() == 3){
                             showJustificantes.add(j);
                         }
                     }
@@ -168,7 +170,7 @@ public class JustificantesController {
         //SUBDIRECTOR ADMINISTRATIVO
         else if (personal.getTipo().equals("ROLE_ADM")) {
             for (Justificante j : allJustificantes) {
-                if (j.getTipo() == 2 && j.getEstado().intValue() == 4){
+                if (j.getTipo() == 2 && j.getEstado() == 4){
                     showJustificantes.add(j);
                 }
             }
@@ -180,7 +182,7 @@ public class JustificantesController {
          * Mandar 2 para capital humano 1 para cualquier otro superior
          * obviamente depende de quien haya iniciado sesion (su ROL)
          */
-        mav.addObject("tipo_usuario", 1);
+        mav.addObject("tipo_usuario", esCH);
 
         return mav;
     }
