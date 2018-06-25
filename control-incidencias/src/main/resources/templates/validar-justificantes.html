@@ -28,7 +28,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Docente | Jaime Lopez Rabadan</label>
+                <label th:text="${TipoAndNombre}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="justificante : ${justificantes}">
-                                    <td>Jaime Lopez</td>
+                                    <td th:text="${justificante.getPersonal().getNombre()}"></td>
                                     <td th:text="${justificante.getFechaAsString()}"></td>
                                     <td th:switch="${justificante.getTipo()}">
                                         <span th:case="1">Licencia Medica/Cuidados Familiares/Cuidados Maternos</span>
