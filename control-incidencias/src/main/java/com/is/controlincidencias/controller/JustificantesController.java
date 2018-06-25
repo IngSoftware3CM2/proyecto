@@ -306,6 +306,12 @@ public class JustificantesController {
         mav.addObject("justificantes", showJustificantes);
         mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
 
+        //PRINTS PARA PRUEBAS
+        System.out.println("JUSTIFICANTES A MANDAR: \n\n");
+        for (Justificante j: showJustificantes) {
+            System.out.println("tipo: " +j.getTipo() +" estado: " + j.getEstado().intValue());
+        }
+
         /* Para mostrar la barra vertical correcta
          * Mandar 2 para capital humano 1 para cualquier otro superior
          * obviamente depende de quien haya iniciado sesion (su ROL)
