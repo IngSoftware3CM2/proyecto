@@ -84,9 +84,21 @@ public class JustificantesController {
         String redirectURL = "redirect:/personal";
         // Faltan los demás pero no se los numeros
         if (tipo == 1)
-            redirectURL = "redirect:/justifiantes/tipoa";
+            redirectURL = "redirect:/justifiantes/paternidad";
         else if (tipo == 2)
-            redirectURL = "";
+            redirectURL = "redirect:/justifiantes/tipoa";
+        else if (tipo == 3)
+            redirectURL = "redirect:/justifiantes/omision";
+        else if (tipo == 4)
+            redirectURL = "redirect:/justifiantes/retardo";
+        else if (tipo == 5)
+            redirectURL = "redirect:/justifiantes/cambiohorario";
+        else if (tipo == 6)
+            redirectURL = "redirect:/justifiantes/economico";
+        else if (tipo == 7)
+            redirectURL = "redirect:/justifiantes/suplementario";
+        else if (tipo == 8)
+            redirectURL = "redirect:/justifiantes/comision";
 
         return redirectURL;
     }
