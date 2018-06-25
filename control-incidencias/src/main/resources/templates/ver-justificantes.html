@@ -61,10 +61,10 @@
 
 
 
-                                   <td th:switch="${justificante.getEstado().toLowerCase()}">
-                                        <span th:case="'aceptado'"><i class="fa fa-check-circle"></i></span>
-                                        <span th:case="'espera'"><i class="fa fa-clock-o"></i></span>
-                                        <span th:case="'rechazado'"><i class="fa fa-times"></i></span>
+                                   <td th:switch="${justificante.getEstado().intValue()}">
+                                        <span th:case="1"><i class="fa fa-check-circle"></i></span>
+                                        <span th:case="2"><i class="fa fa-clock-o"></i></span>
+                                        <span th:case="3"><i class="fa fa-times"></i></span>
                                     </td>
                                 </tr>
                                 </tbody>

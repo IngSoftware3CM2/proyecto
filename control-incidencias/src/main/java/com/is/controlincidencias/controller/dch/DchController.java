@@ -31,6 +31,13 @@ public class DchController {
         return INICIO;
     }
 
+    /*Este metodo debe de tener la logica para ver justificantes para capital humano de acuerdo
+    * a los estados */
+    @GetMapping("/justificantes")
+    public String verJustificantes() {
+        return "inicio";
+    }
+
     @GetMapping("/perfil")
     public String perfil() {
         return PERFIL;

@@ -16,6 +16,7 @@ public class Justificante {
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
     private LocalDate fecha;
 
+<<<<<<< HEAD
     @Column(name = "valid_direc")
     private Integer valid_direc;
 
@@ -27,6 +28,12 @@ public class Justificante {
 
     @Column(name = "valid_superior")
     private Integer valid_superior;
+=======
+    /*De momento lo puse como nullable = true para evitar posibles errores en la base*/
+
+    @Column(name = "estado", nullable = true, length = 8)
+    private Integer estado;               //this attrib  can be "Aceptado", "En proceso", "Rechazado"
+>>>>>>> 1593ee7380d30b38faceb20d5d871d9af3b659da
 
     @Column (name="tipo")
     private int tipo;
