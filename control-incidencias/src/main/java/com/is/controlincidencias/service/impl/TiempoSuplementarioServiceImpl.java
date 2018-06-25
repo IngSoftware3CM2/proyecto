@@ -35,7 +35,7 @@ public class TiempoSuplementarioServiceImpl implements TiempoSuplementarioServic
         int horas=0;
         //Aqui cambia dependiendo el No empleado.
         int idEmpleado=incidencia.getPersonal().getIdEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,5,idEmpleado);
+        justificanteRepository.altaJustificante(3,fecha,5,idEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaIncidencia = incidencia.getFechaRegistro();
         Integer tiempoCubrir = justificateTiempoSuplModel.getTiempocubrir();
