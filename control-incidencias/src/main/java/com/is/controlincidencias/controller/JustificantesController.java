@@ -148,9 +148,10 @@ public class JustificantesController {
         model.addAttribute("tipo_usuario", esCH);
 
         PermisoEconomico economico = new PermisoEconomico();
+        Personal personalJustificante = new Personal();
 
         model.addAttribute("economico", economico);
-
+        model.addAttribute("personal", personalJustificante);
         return "justificantes/economico";
     }
 
