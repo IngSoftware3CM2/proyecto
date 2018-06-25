@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SuperiorController {
     /*Este metodo debe de tener la logica para ver justificantes para cualquier tipo de superior
     * pero considerando todas las posibilidades de acuerdo a los estados */
-    @GetMapping("/justificantes")
+    @GetMapping({"", "/"})
     public String verJustificantes() {
-        return "inicio";
+        return "inicio-superior";
     }
 }

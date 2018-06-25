@@ -54,6 +54,12 @@
                     <span class="nav-label">Ver Perfil</span>
                 </a>
             </li>
+            <li th:class="${is_active == 9} ? 'active'">
+                <a href="#" th:href="@{/justificantes/validar}">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="nav-label">Validar Justificantes</span>
+                </a>
+            </li>
             <li>
                 <a href="#" th:href="@{/logout}">
                     <i class="fa fa-sign-out"></i>

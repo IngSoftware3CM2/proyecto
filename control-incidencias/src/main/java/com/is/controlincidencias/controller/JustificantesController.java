@@ -89,7 +89,11 @@ public class JustificantesController {
 
         mav.addObject("justificantes", allJustificantes);
 
-
+        /* Para mostrar la barra vertical correcta
+         * Mandar 2 para capital humano 1 para cualquier otro superior
+         * obviamente depende de quien haya iniciado sesion (su ROL)
+         */
+        mav.addObject("tipo_usuario", 1);
 
         return mav;
     }
