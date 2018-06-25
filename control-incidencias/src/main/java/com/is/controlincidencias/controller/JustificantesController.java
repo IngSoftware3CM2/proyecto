@@ -51,6 +51,8 @@ public class JustificantesController {
             esCH = 2;
 
         model.addAttribute("tipo_usuario", esCH);
+
+
         return "justificantes/paternidad";
     }
 
