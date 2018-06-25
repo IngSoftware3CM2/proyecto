@@ -40,9 +40,9 @@ FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\tiemposuplgen
 COPY motivo(idmotivo,descripcion)
 FROM 'C:\Users\HeadHunters\Desktop\Documents\GitHub\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
 
-
 COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\tiemposuplgenerado.csv' DELIMITER ',' CSV HEADER;
 
 COPY motivo(idmotivo,descripcion)
 FROM 'C:\Users\jonat\Documents\GitHub\iso\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
+
