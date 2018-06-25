@@ -16,17 +16,8 @@ public class Justificante {
     @Column(name = "fecha", nullable = false, columnDefinition = "date")
     private LocalDate fecha;
 
-    @Column(name = "valid_direc")
-    private Integer valid_direc;
-
-    @Column(name = "valid_admon")
-    private Integer valid_admon;
-
-    @Column(name = "valid_subdir")
-    private Integer valid_subdir;
-
-    @Column(name = "valid_superior")
-    private Integer valid_superior;
+    @Column(name = "estado")
+    private Integer estado;
 
     @Column (name="tipo")
     private int tipo;
@@ -99,37 +90,9 @@ public class Justificante {
         this.fecha = fecha;
     }
 
-    public Integer getValid_direc() {
-        return valid_direc;
-    }
+    public Integer getEstado() { return estado; }
 
-    public void setValid_direc(Integer valid_direc) {
-        this.valid_direc = valid_direc;
-    }
-
-    public Integer getValid_admon() {
-        return valid_admon;
-    }
-
-    public void setValid_admon(Integer valid_admon) {
-        this.valid_admon = valid_admon;
-    }
-
-    public Integer getValid_subdir() {
-        return valid_subdir;
-    }
-
-    public void setValid_subdir(Integer valid_subdir) {
-        this.valid_subdir = valid_subdir;
-    }
-
-    public Integer getValid_superior() {
-        return valid_superior;
-    }
-
-    public void setValid_superior(Integer valid_superior) {
-        this.valid_superior = valid_superior;
-    }
+    public void setEstado(Integer estado) { this.estado = estado; }
 
     public Personal getPersonal() {
         return personal;
