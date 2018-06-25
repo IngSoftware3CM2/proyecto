@@ -106,8 +106,18 @@ public class JustificantesController {
         Personal personal = personalService.getPersonalByEmail(email);
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
+        Personal personalJustificante = new Personal();
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
+        model.addAttribute("personal", personalJustificante);
+        model.addAttribute("entradaRegistrada", 1);
+        model.addAttribute("salidaRegistrada", 1);
+        model.addAttribute("entradaHorario", 1);
+        model.addAttribute("salidaHorario", 1);
+        model.addAttribute("idJustificante", idJustificante);
+        model.addAttribute("departamento", "Justificacion");
+        model.addAttribute("fecha", "Justificacion");
+        model.addAttribute("justificacion", "Justificacion");
 
 
 
