@@ -176,7 +176,9 @@ public class JustificantesController {
             }
         }
 
-        mav.addObject("justificantes", allJustificantes);
+        //MANDANDO JUSTIFICANTES DE ACUERDO A ROL Y NOMBRE Y TIPO DEL USUARIO
+        mav.addObject("justificantes", showJustificantes);
+        mav.addObject("TipoAndNombre", personal.nombreAndTipoToString());
 
         /* Para mostrar la barra vertical correcta
          * Mandar 2 para capital humano 1 para cualquier otro superior

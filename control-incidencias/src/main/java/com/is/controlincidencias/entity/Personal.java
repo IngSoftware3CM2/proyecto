@@ -206,9 +206,28 @@ public class Personal {
         {
             tempTipo = "PAAE";
         }
-        else
+        else if (this.getTipo().equals("ROLE_DIR"))
         {
-            tempTipo = "Capital Humano";
+            tempTipo = "DIRECTOR";
+        }
+        else if (this.getTipo().equals("ROLE_SUB"))
+        {
+            tempTipo = "SUBDIRECTOR";
+        }
+        else if (this.getTipo().equals("ROLE_CH"))
+        {
+            tempTipo = "CAPITAL HUMANO";
+        }
+        else if (this.getTipo().equals("ROLE_SUP"))
+        {
+            tempTipo = "JEFE DE DEPARTAMENTO";
+        }
+        else if (this.getTipo().equals("ROLE_ADM"))
+        {
+            tempTipo = "SUBDIRECTOR ADMINISTRATIVO";
+        }
+        else {
+            tempTipo = "TIPO DESCONOCIDO";
         }
         nombreCompleto = this.getNombre()+  " " + this.getApellidoPaterno() + " " + this.getApellidoMaterno() + "";
         nombreAndTipo = tempTipo + " | " + nombreCompleto;
