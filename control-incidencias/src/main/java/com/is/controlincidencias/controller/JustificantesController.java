@@ -78,6 +78,8 @@ public class JustificantesController {
         String email = "abhera@yandex.com";
         if (principal != null && principal.getName() != null)
             email = principal.getName();
+
+
         List<Justificante> allJustificantes = new ArrayList<>();
         List<Justificante> showJustificantes = new ArrayList<>();
         allJustificantes = justificanteService.getAllJustificante();
@@ -85,6 +87,71 @@ public class JustificantesController {
 
         for (Justificante j : allJustificantes) {
             System.out.println("FECHAJUST: "+j.getFechaAsString());
+        }
+
+        //CAPITAL HUMANO
+        if (personal.getTipo().equals("ROLE_CH")){
+            for (Justificante j : allJustificantes) {
+                if (j.getEstado().intValue() == 2){
+                    showJustificantes.add(j);
+                }
+            }
+        }
+        //DIRECTOR
+        else if (personal.getTipo().equals("ROLE_DIR")) {
+            for (Justificante j : allJustificantes) {
+                if (j.getEstado().intValue() == 3){
+                    showJustificantes.add(j);
+                }
+            }
+            for (Justificante j : showJustificantes) {
+                if (j.getTipo() == 6 || j.getTipo() == 8){
+                    showJustificantes.remove(j);
+                }
+            }
+        }
+        //JEFE DE DEPARTAMENTO
+        else if (personal.getTipo().equals("ROLE_SUP")) {
+            for (Justificante j : allJustificantes) {
+                if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())){
+                    if (j.getTipo() == 6 || j.getTipo() == 8){
+                        if (j.getEstado().intValue() == 4){
+                                showJustificantes.add(j);
+                        }
+                    }
+                    else{
+                        if (j.getEstado().intValue() == 3){
+                            showJustificantes.add(j);
+                        }
+                    }
+
+                }
+            }
+            for (Justificante j : showJustificantes) {
+                if (j.getTipo() == 2){
+                    showJustificantes.remove(j);
+                }
+            }
+        }
+        //SUBDIRECTOR
+        else if (personal.getTipo().equals("ROLE_SUB")) {
+            for (Justificante j : allJustificantes) {
+                if (j.getTipo() == 6 || j.getTipo() == 8){
+                    if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())) {
+                        if (j.getEstado().intValue() == 3){
+                            showJustificantes.add(j);
+                        }
+                    }
+                }
+            }
+        }
+        //SUBDIRECTOR ADMINISTRATIVO
+        else if (personal.getTipo().equals("ROLE_ADM")) {
+            for (Justificante j : allJustificantes) {
+                if (j.getTipo() == 2 && j.getEstado().intValue() == 4){
+                    showJustificantes.add(j);
+                }
+            }
         }
 
         mav.addObject("justificantes", allJustificantes);
