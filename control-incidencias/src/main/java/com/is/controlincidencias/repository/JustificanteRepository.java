@@ -43,5 +43,5 @@ public interface JustificanteRepository extends JpaRepository <Justificante, Ser
     @Modifying
     @Query(value = "insert into justificante (estado,fecha,tipo,idempleado) VALUES (:estado,:fecha,:tipo,:idempleado)", nativeQuery = true)
     @Transactional
-    void altaJustificante(@Param("estado") String estado, @Param("fecha") Date fecha, @Param("tipo") int tipo, @Param("idempleado") int idempleado);
+    void altaJustificante(@Param("estado") int estado, @Param("fecha") Date fecha, @Param("tipo") int tipo, @Param("idempleado") int idempleado);
 }

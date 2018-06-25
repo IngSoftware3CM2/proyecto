@@ -40,7 +40,7 @@ public class JustificanteTAServiceImpl implements JustificanteTAService{
         Date fecha = new Date();
         //Aqui cambia dependiendo el No empleado.
         int idEmpleado=justificante.getPersonal().getIdEmpleado();
-        justificanteRepository.altaJustificante("Espera",fecha,1,idEmpleado);
+        justificanteRepository.altaJustificante(2,fecha,1,idEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         LocalDate fechaFin = justificanteTAModel.getFin();
         LocalDate fechaInicio = justificanteTAModel.getInicio();
