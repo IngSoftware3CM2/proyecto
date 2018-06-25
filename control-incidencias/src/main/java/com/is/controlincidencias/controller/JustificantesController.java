@@ -51,6 +51,8 @@ public class JustificantesController {
             esCH = 2;
 
         model.addAttribute("tipo_usuario", esCH);
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
+
         return "justificantes/paternidad";
     }
 
@@ -67,7 +69,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
         return "justificantes/tipoa";
@@ -85,10 +87,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
-
-
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
         return "justificantes/omision";
     }
@@ -105,7 +104,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -125,7 +124,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -145,7 +144,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -164,7 +163,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -183,7 +182,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -198,21 +197,21 @@ public class JustificantesController {
         String redirectURL = "redirect:/personal";
         // Faltan los demás pero no se los numeros
         if (tipo == 1)
-            redirectURL = "redirect:/justifiantes/paternidad";
+            redirectURL = "redirect:/justificantes/tipoa";
         else if (tipo == 2)
-            redirectURL = "redirect:/justifiantes/tipoa";
+            redirectURL = "redirect:/justificantes/paternidad";
         else if (tipo == 3)
-            redirectURL = "redirect:/justifiantes/omision";
+            redirectURL = "redirect:/justificantes/cambiohorario";
         else if (tipo == 4)
-            redirectURL = "redirect:/justifiantes/retardo";
+            redirectURL = "redirect:/justificantes/economico";
         else if (tipo == 5)
-            redirectURL = "redirect:/justifiantes/cambiohorario";
+            redirectURL = "redirect:/justificantes/suplementario";
         else if (tipo == 6)
-            redirectURL = "redirect:/justifiantes/economico";
+            redirectURL = "redirect:/justificantes/omision";
         else if (tipo == 7)
-            redirectURL = "redirect:/justifiantes/suplementario";
+            redirectURL = "redirect:/justificantes/retardo";
         else if (tipo == 8)
-            redirectURL = "redirect:/justifiantes/comision";
+            redirectURL = "redirect:/justificantes/comision";
 
         return redirectURL;
     }

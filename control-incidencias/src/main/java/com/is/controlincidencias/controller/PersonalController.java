@@ -259,10 +259,6 @@ public class PersonalController {
 
         }
 
-
-
-
-
         System.out.println("SEXO: " + personal.getSexo());
         System.out.println("ROL: " + personal.getTipo());
         char sexoPersonal = personal.getSexo();
