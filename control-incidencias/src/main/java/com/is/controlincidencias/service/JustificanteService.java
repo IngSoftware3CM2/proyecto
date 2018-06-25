@@ -14,4 +14,6 @@ public interface JustificanteService {
     void removeJustificanteByIdJustificante(int id);
 
     List <Justificante> getAllJustificante ();
+
+    void cambiarEstadoJustificante(Integer id, Integer estado);
 }

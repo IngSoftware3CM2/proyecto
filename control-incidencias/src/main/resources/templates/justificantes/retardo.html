@@ -27,7 +27,7 @@
                 </ol>
             </div>
             <div class="col-sm-8 text-right">
-                <label>Dummy data</label>
+                <label th:text="${nombreYtipo}"></label>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -42,7 +42,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>02-002</label>
+                        <label th:text="${personal.tarjeta}">02-002</label>
                     </div>
                 </div>
                 <div class="row">
@@ -52,7 +52,9 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>Jaime Lopez Rabadan</label>
+                        <label th:text="${personal.nombre} + ' ' + ${personal.apellidoPaterno} + ' ' + ${personal.apellidoMaterno}">
+                            Jaime Lopez Rabadan
+                        </label>
                     </div>
                 </div>
                 <div class="row">
@@ -62,7 +64,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>XXXXXXX</label>
+                        <label th:text="${departamento}">XXXXXXX</label>
                     </div>
                 </div>
                 <div class="row">
@@ -72,7 +74,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>Docente</label>
+                        <label th:text="${personal.tipo}">Docente</label>
                     </div>
                 </div>
                 <div class="row">
@@ -92,7 +94,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>6 / Abril /2018</label>
+                        <label th:text="${fecha}">6 / Abril /2018</label>
                     </div>
                 </div>
                 <div class="row">
@@ -102,7 +104,8 @@
 
                     </div>
                     <div class="col-md-4">
-                        <textarea disabled> Le informo que.....aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
+                        <textarea disabled th:text="${justificacion}"> Le informo
+                            que.....aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
                     </div>
                 </div>
                 <br><br>
@@ -119,12 +122,11 @@
                 <div class="row">
 
                     <div class="col-md-2 col-md-offset-4 text-right">
-                        <label>Hora de Entrada: 08:00</label>
-
+                        <label>Hora de Entrada: <label th:text="${entradaHorario}"> 08:00</label></label>
                     </div>
 
                     <div class="col-md-2">
-                        <label>Hora de Entrada: 10:00</label>
+                        <label>Hora de Entrada: <label th:text="${entradaRegistrada}">10:00</label></label>
 
                     </div>
 
@@ -132,12 +134,12 @@
                 <div class="row">
 
                     <div class="col-md-2 col-md-offset-4 ">
-                        <label>Hora de Salida: 08:00</label>
+                        <label>Hora de Salida: <label th:text="${salidaHorario}">08:00</label></label>
 
                     </div>
 
                     <div class="col-md-2">
-                        <label>Hora de Salida: 02:00</label>
+                        <label>Hora de Salida: <label th:text="${salidaRegistrada}">02:00</label></label>
 
                     </div>
 
@@ -145,14 +147,20 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 text-center">
                         <label> Confirmar :</label>
-                        <button class="btn btn-white" type="button"><i class="fa fa-check"></i></button>
-                        <button class="btn btn-white" type="button"><i class="fa fa-times"></i></button>
+                        <a class="btn btn-white" type="submit"
+                           th:href="@{/justificantes/retardo/aceptar(id=${idJustificante})}">
+                            <i class="fa fa-check"></i>
+                        </a>
+                        <a class="btn btn-white" type="submit"
+                           th:href="@{/justificantes/todos/rechazar(id=${idJustificante})}">
+                            <i class="fa fa-times"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
-                        <button class="btn btn-white" type="button"> Regresar</button>
+                        <a th:href="@{/justificantes/validar}" class="btn btn-white">Regresar</a>
                     </div>
                 </div>
             </div>

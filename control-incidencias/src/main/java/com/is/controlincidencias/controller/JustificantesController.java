@@ -1,5 +1,6 @@
 package com.is.controlincidencias.controller;
 
+import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.PermisoEconomico;
 import com.is.controlincidencias.entity.Personal;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,7 +54,7 @@ public class JustificantesController {
             esCH = 2;
 
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
         return "justificantes/paternidad";
     }
@@ -70,7 +72,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
         return "justificantes/tipoa";
@@ -88,10 +90,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
-
-
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
         return "justificantes/omision";
     }
@@ -108,13 +107,27 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
 
         return "justificantes/retardo";
     }
+
+    @GetMapping("/retardo/aceptar")
+    public String aceptarRetardo(@RequestParam(name = "id") Integer id, Principal principal) {
+        log.info("aceptarRetardo() id=" + id);
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+        Personal personal = personalService.getPersonalByEmail(email);
+        aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
+        return "redirect:/justificantes/validar";
+    }
+
+
 
     @GetMapping("/cambiohorario")
     public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante, Principal
@@ -128,7 +141,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -149,12 +162,51 @@ public class JustificantesController {
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
 
-        PermisoEconomico economico = new PermisoEconomico();
         Personal personalJustificante = new Personal();
+        Incidencia incidencia = new Incidencia();
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
-        model.addAttribute("economico", economico);
+        if (personal.getTipo().equals("ROLE_DOC"))
+            personal.setTipo("Docente");
+        else if (personal.getTipo().equals("ROLE_DCADM"))
+            personal.setTipo("Docente Administrativo");
+        else if (personal.getTipo().equals("PAAE"))
+            personal.setTipo("PAAE");
+
         model.addAttribute("personal", personalJustificante);
+        model.addAttribute("departamento", personal.getDepartamento().getNombre());
+        model.addAttribute("fecha", incidencia.getFechaRegistro());
+        model.addAttribute("idJustificante", idJustificante);
         return "justificantes/economico";
+    }
+
+    @GetMapping("/economico/aceptar")
+    public String aceptarEconomico(@RequestParam(name = "id") Integer id, Principal principal) {
+        log.info("aceptarEconomico() id=" + id);
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+        Personal personal = personalService.getPersonalByEmail(email);
+        aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
+        return "redirect:/justificantes/validar";
+    }
+
+    private void aceptarEconomicoRetardoCambioHorarioSuplementario(Personal personal, Integer id) {
+        if (personal.getTipo().equals("ROLE_CH"))
+            justificanteService.cambiarEstadoJustificante(id, 1); // Aceptado CH
+        else
+            justificanteService.cambiarEstadoJustificante(id, 2); // Aceptado por jefe y director
+    }
+    /*
+    * Este metodo puede ser usado por cualquier justificante pero pregunten para ver como se va a
+     * manejar
+    * */
+    @GetMapping("/todos/rechazar")
+    public String rechazarEconomico(@RequestParam(name = "id") Integer id) {
+        log.info("rechazarEconomico() id=" + id);
+        justificanteService.cambiarEstadoJustificante(id, 0);
+        return "redirect:/justificantes/validar";
     }
 
     @GetMapping("/suplementario")
@@ -169,7 +221,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -188,7 +240,7 @@ public class JustificantesController {
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
-
+        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
 
 
@@ -201,7 +253,6 @@ public class JustificantesController {
         log.info("redirectJustificante() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
         String redirectURL = "redirect:/personal";
-        // Faltan los demás pero no se los numeros
         if (tipo == 1)
             redirectURL = "redirect:/justificantes/tipoa";
         else if (tipo == 2)
