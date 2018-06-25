@@ -51,7 +51,7 @@ public class JustificantesController {
             esCH = 2;
 
         model.addAttribute("tipo_usuario", esCH);
-        return "inicio";
+        return "justificantes/paternidad";
     }
 
     @GetMapping("/tipoa")
@@ -70,7 +70,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/tipoa";
     }
 
     @GetMapping("/omision")
@@ -90,7 +90,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/omision";
     }
 
     @GetMapping("/retardo")
@@ -110,7 +110,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/retardo";
     }
 
     @GetMapping("/cambiohorario")
@@ -129,7 +129,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/chorario";
     }
 
     @GetMapping("/economico")
@@ -149,7 +149,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/economico";
     }
 
     @GetMapping("/suplementario")
@@ -168,7 +168,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/suplementario";
     }
 
     @GetMapping("/comision")
@@ -187,7 +187,7 @@ public class JustificantesController {
 
 
 
-        return "inicio";
+        return "justificantes/coficial";
     }
 
     @GetMapping("/redirect}")
