@@ -36,4 +36,9 @@ public class JustificanteServiceImpl implements JustificanteService {
     public List<Justificante> getAllJustificante() {
         return justificanteRepository.selectAllJustificante();
     }
+
+    @Override
+    public void cambiarEstadoJustificante(Integer id, Integer estado) {
+        justificanteRepository.cambiarEstadoJustificante(id, estado);
+    }
 }

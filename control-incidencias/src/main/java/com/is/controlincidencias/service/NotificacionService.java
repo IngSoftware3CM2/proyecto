@@ -1,6 +1,5 @@
 package com.is.controlincidencias.service;
 
-import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 

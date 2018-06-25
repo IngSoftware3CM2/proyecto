@@ -6,7 +6,6 @@ import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.LicPaternidad;
 import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.model.LicPaternidadModel;
-import com.is.controlincidencias.repository.NotificacionRepository;
 import com.is.controlincidencias.service.*;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
