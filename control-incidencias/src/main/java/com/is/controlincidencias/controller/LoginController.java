@@ -39,12 +39,19 @@ public class LoginController {
 
         log.info("loginSuccess() principal = " + principal.getName() + " ROLE = " + auths.get(0));
         log.info("loginSuccess() es ROLE_DOC? " + request.isUserInRole("DOC"));
-        log.info("loginSuccess() es ROLE_DCH? " + request.isUserInRole("CH"));
+        log.info("loginSuccess() es ROLE_CH? " + request.isUserInRole("CH"));
         log.info("loginSuccess() es ROLE_PAAE? " + request.isUserInRole("PAAE"));
-        log.info("loginSuccess() es ROLE_PAAE? " + request.isUserInRole("DCADM"));
+        log.info("loginSuccess() es ROLE_DCADM? " + request.isUserInRole("DCADM"));
+        log.info("loginSuccess() es ROLE_DIR? " + request.isUserInRole("DIR"));
+        log.info("loginSuccess() es ROLE_SUB? " + request.isUserInRole("SUB"));
+        log.info("loginSuccess() es ROLE_SUP? " + request.isUserInRole("SUP"));
+        log.info("loginSuccess() es ROLE_ADM? " + request.isUserInRole("ADM"));
 
         if (request.isUserInRole("DOC") || request.isUserInRole("PAAE") || request.isUserInRole("DCADM"))
             redirect = "redirect:/personal";
+        else if (request.isUserInRole("DIR") || request.isUserInRole("SUB")
+                || request.isUserInRole("SUP") || request.isUserInRole("ADM"))
+            redirect = "redirect:/superior";
 
         return redirect;
     }

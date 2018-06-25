@@ -1,58 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="fragments/head :: head('Sistema de Control de Asistencias')"></head>
-
-
 <body>
-
 <div id="wrapper">
-
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element" style=" "> <span>
-                            <img alt="image" class="img-responsive" src="img/escom.png"  />
-                             </span>
-                    </div>
-                    <div class="logo-element">
-                        <span><img alt="image" class="img-responsive" src="img/escom.png"  /></span>
-
-                    </div>
-                </li>
-                <li ><a href="#"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a></li>
-                <li ><a href="#"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Ver Perfil</span></a></li>
-
-
-                <li class="active"><a href="#"><i class="fa fa-folder-o"></i> <span class="nav-label">Validar Justificantes</span></a></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i> <span class="nav-label">Cerrar Sesion</span></a></li>
-            </ul>
-
+    <div th:switch="${tipo_usuario}">
+        <!--Barra vertical de cualquier superior-->
+        <div th:case="1">
+            <nav th:replace="fragments/verticalbar :: verticalnavbar(9)"></nav>
         </div>
-    </nav>
-
+        <!--Barra vertical de CH-->
+        <div th:case="2">
+            <nav th:replace="dch/verticalbar :: verticalnavbar(9)"></nav>
+        </div>
+    </div>
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-center">
-
-                    <li>
-                        <h2>Sistema de Control de Asistencia</h2>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <div th:replace="fragments/horizontalnavbar :: horizontalnavbar('Control de Justificantes')"></div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
                 <h2>Control de Justificantes</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#">Inicio</a>
                     </li>
                     <li class="active">
                         <strong>Validar Justificantes</strong>
@@ -64,8 +32,6 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -73,8 +39,6 @@
                             <h1 class="text-center">
                                 <span class="text-navy">Aceptar Justificacion de Incidencias</span>
                             </h1>
-
-
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -82,7 +46,6 @@
                                     <th>Fecha</th>
                                     <th>Tipo de Justificacion</th>
                                     <th>Ver</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -100,63 +63,44 @@
                                         <span th:case="8">Comision Oficial</span>
                                         <span th:case="9">Constancia de Tiempo</span>
                                     </td>
-                                    <td><button class="btn btn-white" type="button"><i class="fa fa-eye"></i></button></td>
-
-
+                                    <td>
+                                        <button class="btn btn-white" type="button">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </td>
                                 </tr>
-
-
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
-        </div>
-
     </div>
 </div>
-
-
-
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-
-
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
-
 <!-- Page-Level Scripts -->
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('.footable').footable();
         $('.footable2').footable();
 
     });
-
 </script>
-
 <!--****************NECESARIO PARA EL DATEPICKER********************-->
 <!-- Data picker -->
 <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         $('.tagsinput').tagsinput({
             tagClass: 'label label-primary'
@@ -166,14 +110,14 @@
         $($image).cropper({
             aspectRatio: 1.618,
             preview: ".img-preview",
-            done: function(data) {
+            done: function (data) {
                 // Output the result data for cropping image.
             }
         });
 
         var $inputImage = $("#inputImage");
         if (window.FileReader) {
-            $inputImage.change(function() {
+            $inputImage.change(function () {
                 var fileReader = new FileReader(),
                     files = this.files,
                     file;
@@ -198,27 +142,27 @@
             $inputImage.addClass("hide");
         }
 
-        $("#download").click(function() {
+        $("#download").click(function () {
             window.open($image.cropper("getDataURL"));
         });
 
-        $("#zoomIn").click(function() {
+        $("#zoomIn").click(function () {
             $image.cropper("zoom", 0.1);
         });
 
-        $("#zoomOut").click(function() {
+        $("#zoomOut").click(function () {
             $image.cropper("zoom", -0.1);
         });
 
-        $("#rotateLeft").click(function() {
+        $("#rotateLeft").click(function () {
             $image.cropper("rotate", 45);
         });
 
-        $("#rotateRight").click(function() {
+        $("#rotateRight").click(function () {
             $image.cropper("rotate", -45);
         });
 
-        $("#setDrag").click(function() {
+        $("#setDrag").click(function () {
             $image.cropper("setDragMode", "crop");
         });
 
@@ -263,16 +207,16 @@
         });
 
         var elem = document.querySelector('.js-switch');
-        var switchery = new Switchery(elem, { color: '#1AB394' });
+        var switchery = new Switchery(elem, {color: '#1AB394'});
 
         var elem_2 = document.querySelector('.js-switch_2');
-        var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
+        var switchery_2 = new Switchery(elem_2, {color: '#ED5565'});
 
         var elem_3 = document.querySelector('.js-switch_3');
-        var switchery_3 = new Switchery(elem_3, { color: '#1AB394' });
+        var switchery_3 = new Switchery(elem_3, {color: '#1AB394'});
 
         var elem_4 = document.querySelector('.js-switch_4');
-        var switchery_4 = new Switchery(elem_4, { color: '#f8ac59' });
+        var switchery_4 = new Switchery(elem_4, {color: '#f8ac59'});
         switchery_4.disable();
 
         $('.i-checks').iCheck({
@@ -285,7 +229,7 @@
         var divStyle = $('.back-change')[0].style;
         $('#demo_apidemo').colorpicker({
             color: divStyle.backgroundColor
-        }).on('changeColor', function(ev) {
+        }).on('changeColor', function (ev) {
             divStyle.backgroundColor = ev.color.toHex();
         });
 
@@ -301,7 +245,7 @@
             endDate: moment(),
             minDate: '01/01/2012',
             maxDate: '12/31/2015',
-            dateLimit: { days: 60 },
+            dateLimit: {days: 60},
             showDropdowns: true,
             showWeekNumbers: true,
             timePicker: false,
@@ -327,11 +271,11 @@
                 fromLabel: 'From',
                 toLabel: 'To',
                 customRangeLabel: 'Custom',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                 monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 firstDay: 1
             }
-        }, function(start, end, label) {
+        }, function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
@@ -435,45 +379,40 @@
         behaviour: 'tap',
         connect: 'upper',
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
     var range_slider = document.getElementById('range_slider');
 
     noUiSlider.create(range_slider, {
-        start: [ 40, 60 ],
+        start: [40, 60],
         behaviour: 'drag',
         connect: true,
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
     var drag_fixed = document.getElementById('drag-fixed');
 
     noUiSlider.create(drag_fixed, {
-        start: [ 40, 60 ],
+        start: [40, 60],
         behaviour: 'drag-fixed',
         connect: true,
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
 
 </script>
-
 <!-- Image cropper -->
 <script src="js/plugins/cropper/cropper.min.js"></script>
-
-
 <!-- Tags Input -->
 <script src="js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-
 </body>
-
 </html>

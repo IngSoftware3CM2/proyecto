@@ -1,0 +1,46 @@
+<!--Esta es la barra para todos los usuarios que no sean CH-->
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="verticalnavbar(is_active)">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <a href="http://www.escom.ipn.mx/">
+                    <span>
+                        <img alt="image" class="img-square img-responsive" src="#" th:src="@{/img/escom.png}"/>
+                    </span>
+                    </a>
+                </div>
+                <div class="logo-element">ESCOM</div>
+            </li>
+            <li th:class="${is_active == 1} ? 'active'">
+                <a href="" th:href="@{/superior}">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">Inicio</span>
+                </a>
+            </li>
+            <li th:class="${is_active == 2} ? 'active'">
+                <a href="#">
+                    <i class="fa fa-user-circle-o"></i>
+                    <span class="nav-label">Ver Perfil</span>
+                </a>
+            </li>
+            <li th:class="${is_active == 9} ? 'active'">
+                <a href="#" th:href="@{/justificantes/validar}">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="nav-label">Validar Justificantes</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" th:href="@{/logout}">
+                    <i class="fa fa-sign-out"></i>
+                    <span class="nav-label">Cerrar Sesion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
