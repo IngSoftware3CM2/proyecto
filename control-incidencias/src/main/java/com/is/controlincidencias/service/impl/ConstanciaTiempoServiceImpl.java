@@ -35,7 +35,7 @@ public class ConstanciaTiempoServiceImpl implements ConstanciaTiempoService{
     public void guardarConstanciaTiempo(ConstanciaTiempoModel constanciaTiempoModel,int idIncidencia, int noEmpleado) {
         Date fecha = new Date();
         //Esta cosa deberia de cambiar dependiendo el empleado que esta en el sistema
-        justificanteRepository.altaJustificante("Espera",fecha,9,noEmpleado);
+        justificanteRepository.altaJustificante(2,fecha,9,noEmpleado);
         List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
         Integer id = constanciaTiempoRepository.selectMaxIdConstanciaTiempo();
         if (id==null){
