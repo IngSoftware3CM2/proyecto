@@ -83,6 +83,10 @@ public class JustificantesController {
     @Qualifier("licPaternidadServiceImpl")
     private LicPaternidadService licPaternidadService;
 
+    @Autowired
+    @Qualifier("tiempoSuplementarioServiceImpl")
+    private TiempoSuplementarioService tiempoSuplementarioService;
+
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
             principal, Model model) {
@@ -399,7 +403,19 @@ public class JustificantesController {
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
+        TiempoSuplementario tiempoSuplementario = tiempoSuplementarioService.getTiempoSuplementarioByIdJustificante(idJustificante);
 
+        personalJustificante.setTipo(obtenerTipoPersonal(personalJustificante.getTipo()));
+
+        model.addAttribute("personal", personalJustificante);
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
+        model.addAttribute("fecha", incidencia.getFechaRegistro());
+
+        // Aqui tendriamos que pasar un ArrayList quiza
+
+        model.addAttribute("idJustificante", idJustificante);
 
         return "justificantes/suplementario";
     }
@@ -629,6 +645,25 @@ public class JustificantesController {
             // Vamos al estado 2
             justificanteService.cambiarEstadoJustificante(id, 2);
 
+        } else if(rol.equals("ROLE_CH")) { // CAPITAL HUMANO.
+            // Vamos al estado 1
+            justificanteService.cambiarEstadoJustificante(id, 1);
+        }
+
+        return "redirect:/justificantes/validar?resultado=1";
+    }
+
+    @GetMapping("/suplementario/aceptar")
+    public String aceptarSuplementario(@RequestParam(name = "id") Integer id, Principal principal) {
+        log.info("aceptarSuplementario() id=" + id);
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        String rol = personal.getTipo();
+        if(rol.equals("ROLE_DIR") || rol.equals("ROLE_SUP")){ //DIRECTOR O JEFE DE DPTO.
+            // Vamos al estado 2
+            justificanteService.cambiarEstadoJustificante(id, 2);
         } else if(rol.equals("ROLE_CH")) { // CAPITAL HUMANO.
             // Vamos al estado 1
             justificanteService.cambiarEstadoJustificante(id, 1);
