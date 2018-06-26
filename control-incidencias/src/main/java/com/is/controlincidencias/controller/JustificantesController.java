@@ -141,6 +141,13 @@ public class JustificantesController {
         Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario,
                 diaSemana);
 
+        if (personalJustificante.getTipo().equals("ROLE_DOC"))
+            personalJustificante.setTipo("Docente");
+        else if (personalJustificante.getTipo().equals("ROLE_DCADM"))
+            personalJustificante.setTipo("Docente Administrativo");
+        else if (personalJustificante.getTipo().equals("PAAE"))
+            personalJustificante.setTipo("PAAE");
+
         model.addAttribute("personal", personalJustificante);
         model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
         model.addAttribute("fecha", incidencia.getFechaRegistro());
