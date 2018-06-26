@@ -50,7 +50,7 @@ public class ComisionServiceImpl  implements ComisionService{
             fin = com.getFin();
             archivo = com.getInvitacionArchivo();
             Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el jsutificante lo quiere -3- antes el LocalDate.now() era "fecha"
-            justificanteRepository.altaJustificante(3,fecha2,0,com.getIdComision()); //idJustificante es el noempleado :3
+            justificanteRepository.altaJustificante(3,fecha2,8,com.getIdComision()); //idJustificante es el noempleado :3
             List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
