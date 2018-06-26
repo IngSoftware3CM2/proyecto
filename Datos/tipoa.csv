@@ -1,0 +1,4 @@
+﻿id,fechafin,folio,fechainicio,licenciaarchivo,tipo,idjustificante,idunidad
+1,04/05/2018,010LM2036145,02/05/2018,archivo1.jpg,Licencia médica,1,MXP-004
+2,04/05/2018,010LM2036146,02/05/2018,archivo2.jpg,Cuidados maternos,10,MXP-005
+3,04/05/2018,010LM2036147,02/05/2018,archivo3.jpg,Cuidados familiares,19,MXP-006

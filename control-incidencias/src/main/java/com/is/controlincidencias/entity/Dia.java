@@ -29,5 +29,45 @@ public class Dia {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idHorario", foreignKey = @ForeignKey(name = "horarioactual_fk", foreignKeyDefinition = DEFINITION))
     private HorarioActual horarioActual;                //a que horario pertenece el objeto Dia
+
+    public Integer getIdDia() {
+        return idDia;
+    }
+
+    public void setIdDia(Integer idDia) {
+        this.idDia = idDia;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public LocalTime getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(LocalTime horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public LocalTime getHoraSalida() {
+        return horaSalida;
+    }
+
+    public void setHoraSalida(LocalTime horaSalida) {
+        this.horaSalida = horaSalida;
+    }
+
+    public HorarioActual getHorarioActual() {
+        return horarioActual;
+    }
+
+    public void setHorarioActual(HorarioActual horarioActual) {
+        this.horarioActual = horarioActual;
+    }
 }
 
