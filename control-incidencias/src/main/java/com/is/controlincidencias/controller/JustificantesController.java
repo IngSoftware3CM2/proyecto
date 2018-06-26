@@ -331,7 +331,7 @@ public class JustificantesController {
         //JEFE DE DEPARTAMENTO
         else if (personal.getTipo().equals("ROLE_SUP")) {
             for (Justificante j : allJustificantes) {
-                if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())){
+                if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()){
                     if (j.getTipo() == 6 || j.getTipo() == 8){
                         if (j.getEstado() == 4){
                                 showJustificantes.add(j);
@@ -345,7 +345,7 @@ public class JustificantesController {
 
                 }
             }
-            
+
             for (Iterator<Justificante> it = showJustificantes.iterator(); it.hasNext();) {
                 Justificante j = it.next();
                 if (j.getTipo() == 2){
@@ -358,7 +358,7 @@ public class JustificantesController {
         else if (personal.getTipo().equals("ROLE_SUB")) {
             for (Justificante j : allJustificantes) {
                 if (j.getTipo() == 6 || j.getTipo() == 8){
-                    if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())) {
+                    if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()) {
                         if (j.getEstado() == 3){
                             showJustificantes.add(j);
                         }
