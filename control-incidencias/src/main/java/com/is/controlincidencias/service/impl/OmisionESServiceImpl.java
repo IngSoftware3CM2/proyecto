@@ -1,5 +1,6 @@
 package com.is.controlincidencias.service.impl;
 
+import com.is.controlincidencias.entity.OmisionEntrSal;
 import com.is.controlincidencias.model.OmisionModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.OmisionESRepository;
@@ -62,5 +63,10 @@ public class OmisionESServiceImpl implements OmisionESService{
     @Override
     public boolean existsByIdjustificante(int id) {
         return omisionRepository.existsByJustificante_IdJustificante(id);
+    }
+
+    @Override
+    public OmisionEntrSal getOmisionByIdJustificante(Integer idJustificante) {
+        return omisionRepository.findFirstByJustificante_IdJustificante(idJustificante);
     }
 }
