@@ -23,4 +23,6 @@ public interface CambioHorarioService {
     String getHoraS(int id, String dia);
 
     String getHoraE(int id, String dia);
+
+    String getDepto(int id);
 }

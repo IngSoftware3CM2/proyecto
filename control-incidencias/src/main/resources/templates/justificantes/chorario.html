@@ -44,7 +44,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>02-002</label>
+                        <label th:text="${tarjeta}"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -54,7 +54,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>Jaime Lopez Rabadan</label>
+                        <labe th:text="${nombre}"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>XXXXXXX</label>
+                        <label th:text="${depto}"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -74,7 +74,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>Docente</label>
+                        <label th:text="${tipoP}"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -94,7 +94,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label>6 / Abril /2018</label>
+                        <label th:text="${fecha}"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -104,7 +104,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <textarea disabled> Le informo que.....aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
+                        <label th:text="${just}"></label>
                     </div>
                 </div>
                 <br><br>
@@ -119,27 +119,24 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-md-2 col-md-offset-4 text-right">
-                        <label>Hora de Entrada: 08:00</label>
-
+                        <label>Hora de Entrada: <label th:text="${jornadaE}"></label></label>
                     </div>
 
                     <div class="col-md-2">
-                        <label>Hora de Entrada: 10:00</label>
-
+                        <label>Hora de Entrada: <label th:text="${llegadaE}"></label></label>
                     </div>
 
                 </div>
                 <div class="row">
 
                     <div class="col-md-2 col-md-offset-4 ">
-                        <label>Hora de Salida: 08:00</label>
+                        <label>Hora de Salida: <label th:text="${jornadaS}"></label></label>
 
                     </div>
 
                     <div class="col-md-2">
-                        <label>Hora de Salida: 10:00</label>
+                        <label>Hora de Salida: <label th:text="${llegadaS}"></label></label>
 
                     </div>
 
