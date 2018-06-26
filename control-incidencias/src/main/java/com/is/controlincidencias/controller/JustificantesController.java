@@ -527,7 +527,21 @@ public class JustificantesController {
             email = principal.getName();
 
         Personal personal = personalService.getPersonalByEmail(email);
-        aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
+
+        String rol = personal.getTipo();
+
+        if(rol.equals("ROLE_SUB")){ //SUBDIRECTOR
+            // Vamos al estado 4
+            justificanteService.cambiarEstadoJustificante(id, 4);
+        } else if(rol.equals("ROLE_SUP")) { // JEFE DE DEPTO.
+            // Vamos al estado 2
+            justificanteService.cambiarEstadoJustificante(id, 2);
+
+        } else if(rol.equals("ROLE_CH")) { // CAPITAL HUMANO.
+            // Vamos al estado 1
+            justificanteService.cambiarEstadoJustificante(id, 1);
+        }
+
         return "redirect:/justificantes/validar";
     }
 
