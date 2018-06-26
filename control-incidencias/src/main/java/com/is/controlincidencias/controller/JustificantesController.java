@@ -3,12 +3,8 @@ package com.is.controlincidencias.controller;
 import com.is.controlincidencias.entity.*;
 import com.is.controlincidencias.repository.DiaRepository;
 import com.is.controlincidencias.service.AsistenciaService;
-import com.is.controlincidencias.service.RetardoService;
-import com.is.controlincidencias.entity.CambioHorario;
-import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.Personal;
 import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.RetardoService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -27,8 +23,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.is.controlincidencias.controller.CambioHorarioController.VISTA_MOD_CAMBIO_HORARIO;
 
 /*
 * Para no tener un desmadre con las redirecciones la vizualizacion y la validacion se
@@ -141,9 +135,14 @@ public class JustificantesController {
         Integer idHorario = h.getIdHorario();
         String diaNombre = IncidenciaServiceImpl.obtenerDia(incidencia.getFechaRegistro());
         Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario, diaNombre);
+        if (dia == null)
+            dia = new Dia();
         Asistencia asistencia = asistenciaService
                 .buscarAsistenciaPorFechaTarjeta(personalJustificante.getNoTarjeta(),
                         incidencia.getFechaRegistro());
+
+        if (asistencia == null)
+            asistencia = new Asistencia();
 
         String justificacion = retardoService.getJust(idJustificante);
 
@@ -167,9 +166,6 @@ public class JustificantesController {
         model.addAttribute("fecha", incidencia.getFechaRegistro());
         model.addAttribute("justificacion", justificacion);
 
-
-
-
         return "justificantes/retardo";
     }
 
@@ -182,7 +178,7 @@ public class JustificantesController {
 
         Personal personal = personalService.getPersonalByEmail(email);
         aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=1";
     }
 
 
@@ -275,7 +271,7 @@ public class JustificantesController {
 
         Personal personal = personalService.getPersonalByEmail(email);
         aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=1";
     }
 
     private void aceptarEconomicoRetardoCambioHorarioSuplementario(Personal personal, Integer id) {
@@ -292,7 +288,7 @@ public class JustificantesController {
     public String rechazarEconomico(@RequestParam(name = "id") Integer id) {
         log.info("rechazarEconomico() id=" + id);
         justificanteService.cambiarEstadoJustificante(id, 0);
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=2";
     }
 
     @GetMapping("/suplementario")
@@ -361,7 +357,8 @@ public class JustificantesController {
 
 
     @GetMapping("/validar")
-    public ModelAndView validarJustificantes (Principal principal) {
+    public ModelAndView validarJustificantes (Principal principal, @RequestParam(name =
+            "resultado", required = false) Integer resultado) {
         ModelAndView mav = new ModelAndView("validar-justificantes");
         String email = "abhera@yandex.com";
         Integer esCH = 1; // Uno para mostrar la barra de superior
@@ -467,7 +464,7 @@ public class JustificantesController {
          * obviamente depende de quien haya iniciado sesion (su ROL)
          */
         mav.addObject("tipo_usuario", esCH);
-
+        mav.addObject("resultado", resultado);
         return mav;
     }
 

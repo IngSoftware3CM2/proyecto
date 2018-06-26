@@ -37,8 +37,14 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <h1 class="text-center">
-                                <span class="text-navy">Aceptar Justificacion de Incidencias</span>
+                                <span class="text-navy">Aceptar Justificación de Incidencias</span>
                             </h1>
+                            <div th:if="${resultado == 1}" class="alert alert-success" role="alert">
+                                Justificante Aceptado
+                            </div>
+                            <div th:if="${resultado == 2}" class="alert alert-danger" role="alert">
+                                Justificante Rechazado
+                            </div>
                             <table class="table">
                                 <thead>
                                 <tr>
