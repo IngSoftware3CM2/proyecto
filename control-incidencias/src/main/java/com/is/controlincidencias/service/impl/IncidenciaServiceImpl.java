@@ -353,7 +353,7 @@ public class IncidenciaServiceImpl implements IncidenciaService {
         return a == null || a.getHoraEntrada() == null || a.getHoraSalida() == null;
     }
 
-    private String obtenerDia(LocalDate fecha) {
+    public static String obtenerDia(LocalDate fecha) {
         switch (fecha.getDayOfWeek()) {
             case MONDAY:
                 return "LUN";

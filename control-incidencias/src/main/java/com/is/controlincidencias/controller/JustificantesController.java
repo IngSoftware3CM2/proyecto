@@ -1,9 +1,11 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.*;
+import com.is.controlincidencias.repository.DiaRepository;
+import com.is.controlincidencias.service.AsistenciaService;
 import com.is.controlincidencias.service.IncidenciaService;
+import com.is.controlincidencias.service.RetardoService;
+import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,18 @@ public class JustificantesController {
     @Autowired
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
+
+    @Autowired
+    @Qualifier("diaRepository")
+    private DiaRepository diaRepository;
+
+    @Autowired
+    @Qualifier("asistenciaServiceImpl")
+    private AsistenciaService asistenciaService;
+
+    @Autowired
+    @Qualifier("retardoServiceImpl")
+    private RetardoService retardoService;
 
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
@@ -110,18 +124,37 @@ public class JustificantesController {
         Personal personal = personalService.getPersonalByEmail(email);
         if (personal.getTipo().equals("ROLE_CH"))
             esCH = 2;
-        Personal personalJustificante = new Personal();
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
+        HorarioActual h = personalJustificante.getHorarioActual();
+        Integer idHorario = h.getIdHorario();
+        String diaNombre = IncidenciaServiceImpl.obtenerDia(incidencia.getFechaRegistro());
+        Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario, diaNombre);
+        Asistencia asistencia = asistenciaService
+                .buscarAsistenciaPorFechaTarjeta(personalJustificante.getNoTarjeta(),
+                        incidencia.getFechaRegistro());
+
+        String justificacion = retardoService.getJust(idJustificante);
+
+        if (personalJustificante.getTipo().equals("ROLE_DOC")) {
+            personalJustificante.setTipo("Docente");
+        } else if (personalJustificante.getTipo().equals("ROLE_DCADM"))
+            personalJustificante.setTipo("Docente Administrativo");
+        else if (personalJustificante.getTipo().equals("ROLE_PAAE"))
+            personalJustificante.setTipo("PAAE");
+
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
         model.addAttribute("personal", personalJustificante);
-        model.addAttribute("entradaRegistrada", 1);
-        model.addAttribute("salidaRegistrada", 1);
-        model.addAttribute("entradaHorario", 1);
-        model.addAttribute("salidaHorario", 1);
+        model.addAttribute("entradaRegistrada", asistencia.getHoraEntrada());
+        model.addAttribute("salidaRegistrada", asistencia.getHoraSalida());
+        model.addAttribute("entradaHorario", dia.getHoraEntrada());
+        model.addAttribute("salidaHorario", dia.getHoraSalida());
+
         model.addAttribute("idJustificante", idJustificante);
-        model.addAttribute("departamento", "Justificacion");
-        model.addAttribute("fecha", "Justificacion");
-        model.addAttribute("justificacion", "Justificacion");
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
+        model.addAttribute("fecha", incidencia.getFechaRegistro());
+        model.addAttribute("justificacion", justificacion);
 
 
 

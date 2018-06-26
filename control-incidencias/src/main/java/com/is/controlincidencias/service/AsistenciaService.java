@@ -18,4 +18,5 @@ public interface AsistenciaService {
     List<AsistenciaMostrar> obtenerAniosPorTarjeta(String tarjeta);
     List<String> obtenerQuincenas(AsistenciaMostrar asistenciaMostrar);
     List<AsistenciaJSON> obtenerAsistenciasParaMostrar(AsistenciaMostrar asistenciaMostrar);
+    Asistencia buscarAsistenciaPorFechaTarjeta(String tarjeta, LocalDate fecha);
 }
