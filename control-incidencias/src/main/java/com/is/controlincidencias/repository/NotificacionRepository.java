@@ -1,6 +1,5 @@
 package com.is.controlincidencias.repository;
 
-import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,9 +1,7 @@
 package com.is.controlincidencias.service.impl;
 
-import com.is.controlincidencias.entity.Motivo;
 import com.is.controlincidencias.entity.Notificacion;
 import com.is.controlincidencias.entity.Personal;
-import com.is.controlincidencias.repository.MotivoRepository;
 import com.is.controlincidencias.repository.NotificacionRepository;
 import com.is.controlincidencias.service.NotificacionService;
 import org.apache.juli.logging.Log;
