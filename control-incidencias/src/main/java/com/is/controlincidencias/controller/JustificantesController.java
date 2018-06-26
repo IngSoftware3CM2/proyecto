@@ -11,6 +11,8 @@ import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/justificantes")
 public class JustificantesController {
+    //private static final Log log = LogFactory.getLog(CambioHorarioController.class);
 
     @Autowired
     @Qualifier("incidenciaServiceImpl")

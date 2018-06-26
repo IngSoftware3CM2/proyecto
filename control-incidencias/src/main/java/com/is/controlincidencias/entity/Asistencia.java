@@ -62,4 +62,36 @@ public class Asistencia {
         if (!(obj instanceof Asistencia)) return false;
         return idAsistencia != null && idAsistencia.equals(((Asistencia) obj).idAsistencia);
     }
+
+    public Integer getIdAsistencia() {
+        return idAsistencia;
+    }
+
+    public void setIdAsistencia(Integer idAsistencia) {
+        this.idAsistencia = idAsistencia;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public LocalTime getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(LocalTime horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public LocalTime getHoraSalida() {
+        return horaSalida;
+    }
+
+    public void setHoraSalida(LocalTime horaSalida) {
+        this.horaSalida = horaSalida;
+    }
 }
