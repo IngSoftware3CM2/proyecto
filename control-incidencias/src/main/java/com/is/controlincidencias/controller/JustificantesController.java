@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /*
@@ -314,11 +315,16 @@ public class JustificantesController {
             for (Justificante j : allJustificantes) {
                 if (j.getEstado() == 3){
                     showJustificantes.add(j);
+                    System.out.println("Justificante " + j.getTipo());
                 }
             }
-            for (Justificante j : showJustificantes) {
+
+
+            for (Iterator<Justificante> it = showJustificantes.iterator(); it.hasNext();) {
+                Justificante j = it.next();
                 if (j.getTipo() == 6 || j.getTipo() == 8){
-                    showJustificantes.remove(j);
+                    System.out.println("Justificante " + j.getTipo());
+                    it.remove();
                 }
             }
         }
