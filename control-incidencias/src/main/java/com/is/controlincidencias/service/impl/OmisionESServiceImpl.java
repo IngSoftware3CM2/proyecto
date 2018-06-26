@@ -35,7 +35,8 @@ public class OmisionESServiceImpl implements OmisionESService{
     public void addOmision(OmisionModel om, int idincidencia, String fesha)
         {
             Date fecha2 = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()); //enn el formato que el justificante lo quiere -3-
-            justificanteRepository.altaJustificante(3,fecha2,0, om.getIdJustificante()); //idJustificante es el noempleado :3
+            justificanteRepository.altaJustificante(3,fecha2,6, om.getIdJustificante());
+            //idJustificante es el noempleado :3
             List<Integer> ids = justificanteRepository.ultimoJustificanteAnadido();
             omisionRepository.guardaJustificanteOmision(om.getJustificacion(), om.isTipo(),  ids.get(ids.size() - 1));
             incidenciaService.updateIdJustificante(ids.get(ids.size() - 1), idincidencia);
