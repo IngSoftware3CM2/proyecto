@@ -3,6 +3,7 @@ package com.is.controlincidencias.controller;
 import com.is.controlincidencias.entity.Incidencia;
 import com.is.controlincidencias.entity.Justificante;
 import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,10 @@ public class JustificantesController {
     @Autowired
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
+
+    @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaService incidenciaService;
 
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
@@ -170,19 +175,19 @@ public class JustificantesController {
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
 
-        Personal personalJustificante = new Personal();
-        Incidencia incidencia = new Incidencia();
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
-        if (personal.getTipo().equals("ROLE_DOC"))
-            personal.setTipo("Docente");
-        else if (personal.getTipo().equals("ROLE_DCADM"))
-            personal.setTipo("Docente Administrativo");
-        else if (personal.getTipo().equals("PAAE"))
-            personal.setTipo("PAAE");
+        if (personalJustificante.getTipo().equals("ROLE_DOC"))
+            personalJustificante.setTipo("Docente");
+        else if (personalJustificante.getTipo().equals("ROLE_DCADM"))
+            personalJustificante.setTipo("Docente Administrativo");
+        else if (personalJustificante.getTipo().equals("PAAE"))
+            personalJustificante.setTipo("PAAE");
 
         model.addAttribute("personal", personalJustificante);
-        model.addAttribute("departamento", personal.getDepartamento().getNombre());
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
         model.addAttribute("fecha", incidencia.getFechaRegistro());
         model.addAttribute("idJustificante", idJustificante);
         return "justificantes/economico";
@@ -255,7 +260,7 @@ public class JustificantesController {
         return "justificantes/coficial";
     }
 
-    @GetMapping("/redirect}")
+    @GetMapping("/redirect")
     public String redirectJustificante(@RequestParam(name = "id") Integer id,
             @RequestParam(name = "tipo") Integer tipo, RedirectAttributes attributes) {
         log.info("redirectJustificante() id = " + id + " tipoJustificante = " + tipo);
