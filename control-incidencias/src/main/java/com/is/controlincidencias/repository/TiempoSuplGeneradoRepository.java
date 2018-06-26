@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository("tiempoSuplGeneradoRepository")
@@ -42,4 +43,9 @@ public interface TiempoSuplGeneradoRepository extends JpaRepository<TiempoSuplGe
     Integer obtenerMaximoIdIncidencia();
 
     boolean existsByFechaRegistroAndPersonal_IdEmpleado(LocalDate fecha, Integer id);
+
+    @Modifying
+    @Transactional
+    @Query(value="select * from tiemposuplgenerado where idEmpleado= :noempleado and usado=true order by fechaRegistro ASC ", nativeQuery = true)
+    ArrayList<TiempoSuplGenerado> getHorasUtilizadasPorIdEmpleado(@Param("noempleado") int idEmpleado);
 }

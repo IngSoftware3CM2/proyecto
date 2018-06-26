@@ -2,12 +2,9 @@ package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.*;
 import com.is.controlincidencias.service.*;
-import com.is.controlincidencias.service.impl.ComisionServiceImpl;
+import com.is.controlincidencias.service.impl.*;
 import com.is.controlincidencias.repository.AsistenciaRepository;
 import com.is.controlincidencias.repository.DiaRepository;
-import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
-import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
-import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -21,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.lang.reflect.Array;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -86,6 +84,10 @@ public class JustificantesController {
     @Autowired
     @Qualifier("tiempoSuplementarioServiceImpl")
     private TiempoSuplementarioService tiempoSuplementarioService;
+
+    @Autowired
+    @Qualifier("tiempoSuplGeneradoServiceImpl")
+    private TiempoSuplGeneradoService tiempoSuplGeneradoService;
 
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
@@ -426,6 +428,10 @@ public class JustificantesController {
 
 
         model.addAttribute("tiempoCubrir", tiempoSuplementario.getTiempocubrir() );
+
+        // Para la tablita
+        ArrayList<TiempoSuplGenerado> horasUtilizadas = tiempoSuplGeneradoService.obtenerHorasUtilizadasPorIdEmpleado(personalJustificante.getIdEmpleado());
+
         // Aqui tendriamos que pasar un ArrayList quiza
 
         model.addAttribute("idJustificante", idJustificante);
