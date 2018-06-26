@@ -144,7 +144,7 @@ public class JustificantesController {
 
         // Obtiene el horario de dicho empleado del dia con la fecha registrada en la incidencia
         String diaSemana = obtenerDia(incidencia.getFechaRegistro());
-        HorarioActual h = personal.getHorarioActual();
+        HorarioActual h = personalJustificante.getHorarioActual();
         Integer idHorario = h.getIdHorario();
         Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario,
                 diaSemana);
@@ -248,7 +248,7 @@ public class JustificantesController {
 
         Personal personal = personalService.getPersonalByEmail(email);
         aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=1";
     }
 
     @GetMapping("/comision/aceptar")
@@ -259,7 +259,7 @@ public class JustificantesController {
             email = principal.getName();
 
       /*  Algo habrá de ir aqui*/
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=1";
     }
 
     @GetMapping("/cambiohorario")
@@ -397,7 +397,7 @@ public class JustificantesController {
         int idEmpleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
         Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
 
-        log.info("verCambioHorario()");
+        log.info("verComisionOficial()");
         String email = "abhera@yandex.com";
         String tipeishon  = "";
         Integer esCH = 1; // Uno para mostrar la barra de superior
@@ -461,8 +461,8 @@ public class JustificantesController {
 
 
     @GetMapping("/validar")
-    public ModelAndView validarJustificantes (Principal principal, @RequestParam(name =
-            "resultado", required = false) Integer resultado) {
+    public ModelAndView validarJustificantes (Principal principal,
+            @RequestParam(name = "resultado", required = false) Integer resultado) {
         ModelAndView mav = new ModelAndView("validar-justificantes");
         String email = "abhera@yandex.com";
         Integer esCH = 1; // Uno para mostrar la barra de superior
@@ -597,7 +597,7 @@ public class JustificantesController {
             justificanteService.cambiarEstadoJustificante(id, 1);
         }
 
-        return "redirect:/justificantes/validar";
+        return "redirect:/justificantes/validar?resultado=1";
     }
 
     private String obtenerDia(LocalDate fecha) {
