@@ -1,9 +1,10 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.*;
+import com.is.controlincidencias.repository.AsistenciaRepository;
+import com.is.controlincidencias.repository.DiaRepository;
 import com.is.controlincidencias.service.IncidenciaService;
+import com.is.controlincidencias.service.OmisionESService;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /*
-* Para no tener un desmadre con las redirecciones la vizualizacion y la validacion se
-* trabajaran en este controlador al cual redireccionaran los respectivas vistas de ver
-* justificantes */
+ * Para no tener un desmadre con las redirecciones la vizualizacion y la validacion se
+ * trabajaran en este controlador al cual redireccionaran los respectivas vistas de ver
+ * justificantes */
 
 @Slf4j
 @Controller
@@ -43,6 +45,18 @@ public class JustificantesController {
     @Autowired
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaService incidenciaService;
+
+    @Autowired
+    @Qualifier("omisionServiceImpl")
+    private OmisionESService omisionESService;
+
+    @Autowired
+    @Qualifier("asistenciaRepository")
+    private AsistenciaRepository asistenciaRepository;
+
+    @Autowired
+    @Qualifier("diaRepository")
+    private DiaRepository diaRepository;
 
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
@@ -95,6 +109,38 @@ public class JustificantesController {
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
+
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
+        OmisionEntrSal omisionEntrSal = omisionESService.getOmisionByIdJustificante(idJustificante);
+
+        Asistencia a = asistenciaRepository.findAsistenciaByFechaRegistroAndPersonalNoTarjeta
+                (incidencia.getFechaRegistro(), personalJustificante.getNoTarjeta());
+
+
+        // Obtiene el horario de dicho empleado del dia con la fecha registrada en la incidencia
+        String diaSemana = obtenerDia(incidencia.getFechaRegistro());
+        HorarioActual h = personal.getHorarioActual();
+        Integer idHorario = h.getIdHorario();
+        Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario,
+                diaSemana);
+
+        model.addAttribute("personal", personalJustificante);
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
+        model.addAttribute("fecha", incidencia.getFechaRegistro());
+        model.addAttribute("justificacion", omisionEntrSal.getJustificacion());
+
+        // A partir del idempleado del justificante obtener los siguintes datos para mostrarlos en la pantalla
+        model.addAttribute("horarioEntrada", dia.getHoraEntrada() );
+        model.addAttribute("horarioSalida", dia.getHoraSalida() );
+        model.addAttribute("horaEntrada", a.getHoraEntrada() );
+        model.addAttribute("horaSalida",a.getHoraSalida() );
+
+        // El tipo de omision
+        String tipoOmision = omisionEntrSal.getTipo() == true ? "Salida" :"Entrada";
+        model.addAttribute("tipoOmision", tipoOmision);
+
+        model.addAttribute("idJustificante", idJustificante);
 
         return "justificantes/omision";
     }
@@ -213,9 +259,9 @@ public class JustificantesController {
             justificanteService.cambiarEstadoJustificante(id, 2); // Aceptado por jefe y director
     }
     /*
-    * Este metodo puede ser usado por cualquier justificante pero pregunten para ver como se va a
+     * Este metodo puede ser usado por cualquier justificante pero pregunten para ver como se va a
      * manejar
-    * */
+     * */
     @GetMapping("/todos/rechazar")
     public String rechazarEconomico(@RequestParam(name = "id") Integer id) {
         log.info("rechazarEconomico() id=" + id);
@@ -263,7 +309,7 @@ public class JustificantesController {
 
     @GetMapping("/redirect")
     public String redirectJustificante(@RequestParam(name = "id") Integer id,
-            @RequestParam(name = "tipo") Integer tipo, RedirectAttributes attributes) {
+                                       @RequestParam(name = "tipo") Integer tipo, RedirectAttributes attributes) {
         log.info("redirectJustificante() id = " + id + " tipoJustificante = " + tipo);
         attributes.addAttribute("id", id);
         String redirectURL = "redirect:/personal";
@@ -339,7 +385,7 @@ public class JustificantesController {
                 if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()){
                     if (j.getTipo() == 6 || j.getTipo() == 8){
                         if (j.getEstado() == 4){
-                                showJustificantes.add(j);
+                            showJustificantes.add(j);
                         }
                     }
                     else{
@@ -399,5 +445,34 @@ public class JustificantesController {
         return mav;
     }
 
+
+    @GetMapping("/omision/aceptar")
+    public String aceptarOmision(@RequestParam(name = "id") Integer id, Principal principal) {
+        log.info("aceptarOmision() id=" + id);
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+        Personal personal = personalService.getPersonalByEmail(email);
+        aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
+        return "redirect:/justificantes/validar";
+    }
+
+    private String obtenerDia(LocalDate fecha) {
+        switch (fecha.getDayOfWeek()) {
+            case MONDAY:
+                return "LUN";
+            case TUESDAY:
+                return "MAR";
+            case WEDNESDAY:
+                return "MIE";
+            case THURSDAY:
+                return "JUE";
+            case FRIDAY:
+                return "VIE";
+            default:
+                return "END";
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.is.controlincidencias.service;
 
+import com.is.controlincidencias.entity.OmisionEntrSal;
 import com.is.controlincidencias.model.OmisionModel;
 
 public interface OmisionESService {
@@ -15,4 +16,6 @@ public interface OmisionESService {
 
 
     boolean existsByIdjustificante (int id);
+
+    OmisionEntrSal getOmisionByIdJustificante(Integer idJustificante);
 }

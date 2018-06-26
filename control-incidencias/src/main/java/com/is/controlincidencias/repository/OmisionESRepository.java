@@ -39,4 +39,5 @@ public interface OmisionESRepository extends JpaRepository<OmisionEntrSal, Seria
 
     boolean existsByJustificante_IdJustificante (int id);
 
+    OmisionEntrSal findFirstByJustificante_IdJustificante(Integer id);
 }
