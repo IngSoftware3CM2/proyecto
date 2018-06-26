@@ -144,7 +144,7 @@ public class JustificantesController {
 
         // Obtiene el horario de dicho empleado del dia con la fecha registrada en la incidencia
         String diaSemana = obtenerDia(incidencia.getFechaRegistro());
-        HorarioActual h = personal.getHorarioActual();
+        HorarioActual h = personalJustificante.getHorarioActual();
         Integer idHorario = h.getIdHorario();
         Dia dia = diaRepository.findFirstByHorarioActual_IdHorarioAndNombre(idHorario,
                 diaSemana);
