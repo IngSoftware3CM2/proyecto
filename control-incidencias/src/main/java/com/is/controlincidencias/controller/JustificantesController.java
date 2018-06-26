@@ -424,6 +424,8 @@ public class JustificantesController {
         model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
         model.addAttribute("fecha", incidencia.getFechaRegistro());
 
+
+        model.addAttribute("tiempoCubrir", tiempoSuplementario.getTiempocubrir() );
         // Aqui tendriamos que pasar un ArrayList quiza
 
         model.addAttribute("idJustificante", idJustificante);
