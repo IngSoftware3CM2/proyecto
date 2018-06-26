@@ -188,6 +188,7 @@ public class CambioHorarioController {
         model.addAttribute("horae", entCH.getHoraEntrada().toString());
         model.addAttribute("horas", entCH.getHoraSalida());
         model.addAttribute("justificacion", entCH.getJustificacion());
+        model.addAttribute("idjustificante", idJustificante);
         return mav;
     }
     public String getDiaSemana(String fechaCompleta)
