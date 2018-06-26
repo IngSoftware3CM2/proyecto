@@ -52,6 +52,7 @@ public class JustificantesController {
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
 
+
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
             principal, Model model) {
@@ -212,19 +213,19 @@ public class JustificantesController {
             esCH = 2;
         model.addAttribute("tipo_usuario", esCH);
 
-        Personal personalJustificante = new Personal();
-        Incidencia incidencia = new Incidencia();
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
 
-        if (personal.getTipo().equals("ROLE_DOC"))
-            personal.setTipo("Docente");
-        else if (personal.getTipo().equals("ROLE_DCADM"))
-            personal.setTipo("Docente Administrativo");
-        else if (personal.getTipo().equals("PAAE"))
-            personal.setTipo("PAAE");
+        if (personalJustificante.getTipo().equals("ROLE_DOC"))
+            personalJustificante.setTipo("Docente");
+        else if (personalJustificante.getTipo().equals("ROLE_DCADM"))
+            personalJustificante.setTipo("Docente Administrativo");
+        else if (personalJustificante.getTipo().equals("PAAE"))
+            personalJustificante.setTipo("PAAE");
 
         model.addAttribute("personal", personalJustificante);
-        model.addAttribute("departamento", personal.getDepartamento().getNombre());
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
         model.addAttribute("fecha", incidencia.getFechaRegistro());
         model.addAttribute("idJustificante", idJustificante);
         return "justificantes/economico";
@@ -372,7 +373,7 @@ public class JustificantesController {
         //JEFE DE DEPARTAMENTO
         else if (personal.getTipo().equals("ROLE_SUP")) {
             for (Justificante j : allJustificantes) {
-                if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())){
+                if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()){
                     if (j.getTipo() == 6 || j.getTipo() == 8){
                         if (j.getEstado() == 4){
                                 showJustificantes.add(j);
@@ -386,7 +387,7 @@ public class JustificantesController {
 
                 }
             }
-            
+
             for (Iterator<Justificante> it = showJustificantes.iterator(); it.hasNext();) {
                 Justificante j = it.next();
                 if (j.getTipo() == 2){
@@ -399,7 +400,7 @@ public class JustificantesController {
         else if (personal.getTipo().equals("ROLE_SUB")) {
             for (Justificante j : allJustificantes) {
                 if (j.getTipo() == 6 || j.getTipo() == 8){
-                    if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())) {
+                    if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()) {
                         if (j.getEstado() == 3){
                             showJustificantes.add(j);
                         }

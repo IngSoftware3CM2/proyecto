@@ -10,4 +10,6 @@ public interface PersonalService {
     Personal getPersonalByEmailAndPwd(String email, String pwd);
     void actualizarContra(Personal personal);
     List<Personal> getPersonalByTipo(String tipo);
+
+    Personal getPersonalByIdJustificante(Integer id);
 }
