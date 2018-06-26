@@ -40,4 +40,13 @@ FROM 'C:\Users\Maku\Desktop\Repositorio\proyecto\Datos\tiemposuplgenerado.csv' D
 COPY motivo(idmotivo,descripcion)
 FROM 'C:\Users\Maku\Desktop\Repositorio\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
 
+<<<<<<< HEAD
 
+
+=======
+COPY tiemposuplgenerado(idtiemposuplgenerado,fecharegistro,horas,usado,idempleado)
+FROM 'C:\Users\Maku\Desktop\Repositorio\proyecto\Datos\tiemposuplgenerado.csv' DELIMITER ',' CSV HEADER;
+
+COPY motivo(idmotivo,descripcion)
+FROM 'C:\Users\Maku\Desktop\Repositorio\proyecto\Datos\motivo.csv' DELIMITER ',' CSV HEADER;
+>>>>>>> 842cd61ac1a77c339a6af71f943b57bd45e7036a
