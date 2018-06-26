@@ -43,4 +43,9 @@ public class PersonalServiceImpl implements PersonalService {
         }
         return personalRepository.findAllByTipo(tipo);
     }
+
+    @Override
+    public Personal getPersonalByIdJustificante(Integer id) {
+        return personalRepository.findFirstByJustificantes_IdJustificante(id);
+    }
 }

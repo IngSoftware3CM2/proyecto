@@ -32,4 +32,5 @@ public interface PersonalRepository extends JpaRepository<Personal, Serializable
     @Transactional
     List<Personal> findAllByAmbosTipos(@Param("tipo1") String tipo1,@Param("tipo2") String tipo2);
 
+    Personal findFirstByJustificantes_IdJustificante(Integer id);
 }

@@ -14,4 +14,6 @@ public interface IncidenciaService {
     int getIdEmpleadoByIdJustificante(int id);
     int registrarIncidencia();
     void updateIdIncidenciaAndHorasCubrir(int idJustificante, int idIncidencia, int horas);
+
+    Incidencia obtenerIncidenciaPorJustificanteId(Integer id);
 }

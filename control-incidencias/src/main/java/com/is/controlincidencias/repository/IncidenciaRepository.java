@@ -48,4 +48,6 @@ public interface IncidenciaRepository extends JpaRepository<Incidencia, Serializ
 
     boolean existsIncidenciasByFechaRegistroAndPersonal_IdEmpleado(LocalDate fecha,
             Integer idEmpleado);
+
+    Incidencia findFirstByJustificante_IdJustificante(Integer id);
 }

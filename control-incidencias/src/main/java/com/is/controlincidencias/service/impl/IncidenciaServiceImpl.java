@@ -166,6 +166,11 @@ public class IncidenciaServiceImpl implements IncidenciaService {
                 horas);
     }
 
+    @Override
+    public Incidencia obtenerIncidenciaPorJustificanteId(Integer id) {
+        return incidenciaRepository.findFirstByJustificante_IdJustificante(id);
+    }
+
     private Incidencia esAbierto(Asistencia a, LocalDate fecha, Personal per) {
         int entradaRegistrada = a.getHoraEntrada().toSecondOfDay();
         int salidaRegistrada = a.getHoraSalida().toSecondOfDay();
