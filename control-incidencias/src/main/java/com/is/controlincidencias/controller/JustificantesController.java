@@ -145,9 +145,9 @@ public class JustificantesController {
             personalJustificante.setTipo("Docente");
         else if (personalJustificante.getTipo().equals("ROLE_DCADM"))
             personalJustificante.setTipo("Docente Administrativo");
-        else if (personalJustificante.getTipo().equals("PAAE"))
+        else if (personalJustificante.getTipo().equals("PAAE")) {
             personalJustificante.setTipo("PAAE");
-
+        }
         model.addAttribute("personal", personalJustificante);
         model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
         model.addAttribute("fecha", incidencia.getFechaRegistro());
@@ -160,7 +160,7 @@ public class JustificantesController {
         model.addAttribute("horaSalida",a.getHoraSalida() );
 
         // El tipo de omision
-        String tipoOmision = omisionEntrSal.getTipo() == true ? "Salida" :"Entrada";
+        String tipoOmision = omisionEntrSal.getTipo() ? "Salida" :"Entrada";
         model.addAttribute("tipoOmision", tipoOmision);
 
         model.addAttribute("idJustificante", idJustificante);
