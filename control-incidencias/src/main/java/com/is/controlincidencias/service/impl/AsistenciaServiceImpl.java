@@ -262,6 +262,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
         return lista;
     }
 
+    @Override
+    public Asistencia buscarAsistenciaPorFechaTarjeta(String tarjeta, LocalDate fecha) {
+        return asistenciaRepository
+                .findAsistenciaByFechaRegistroAndPersonalNoTarjeta(fecha, tarjeta);
+    }
+
     private boolean horasValidas(LocalTime entrada, LocalTime salida, String rol) {
         if (rol.equals("ROLE_PAAE")) {
             if (entrada.isBefore(seis) || salida.isAfter(veintidos) || entrada.isAfter(salida))

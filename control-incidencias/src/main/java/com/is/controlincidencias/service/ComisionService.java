@@ -10,4 +10,5 @@ public interface ComisionService {
     void addComision(ComisionModel com, int id);
 
     boolean existsByIdjustificante(int id);
+
 }
