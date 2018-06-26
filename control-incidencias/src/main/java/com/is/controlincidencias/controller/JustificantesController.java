@@ -276,7 +276,7 @@ public class JustificantesController {
         Integer esCH = 1; // Uno para mostrar la barra de superior
         if (principal != null && principal.getName() != null)
             email = principal.getName();
-       // Personal personal = personalService.getPersonalByEmail(email);
+        Personal personal2 = personalService.getPersonalByEmail(email);
         if (personal.getTipo().equals("ROLE_CH"))
             {
                 esCH = 2;
@@ -291,7 +291,7 @@ public class JustificantesController {
                 tipeishon = "PAAE";
             }
         model.addAttribute("tipo_usuario", esCH);
-        model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
+        model.addAttribute("nombreYtipo", personal2.nombreAndTipoToString());
         model.addAttribute("tipoP", tipeishon);
         model.addAttribute("depto",cambioService.getDepto(personal.getDepartamento().getIdDepartamento()));
         model.addAttribute("nombre",personal.getNombre() + " " + personal.getApellidoPaterno() + " " + personal.getApellidoPaterno());
