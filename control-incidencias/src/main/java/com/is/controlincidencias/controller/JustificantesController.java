@@ -345,9 +345,12 @@ public class JustificantesController {
 
                 }
             }
-            for (Justificante j : showJustificantes) {
+            
+            for (Iterator<Justificante> it = showJustificantes.iterator(); it.hasNext();) {
+                Justificante j = it.next();
                 if (j.getTipo() == 2){
-                    showJustificantes.remove(j);
+                    System.out.println("Justificante " + j.getTipo());
+                    it.remove();
                 }
             }
         }
