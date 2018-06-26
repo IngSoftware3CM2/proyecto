@@ -1,13 +1,10 @@
 package com.is.controlincidencias.controller;
 
 import com.is.controlincidencias.entity.*;
-import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.*;
 import com.is.controlincidencias.service.impl.ComisionServiceImpl;
 import com.is.controlincidencias.repository.AsistenciaRepository;
 import com.is.controlincidencias.repository.DiaRepository;
-import com.is.controlincidencias.service.OmisionESService;
-import com.is.controlincidencias.service.AsistenciaService;
-import com.is.controlincidencias.service.RetardoService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -82,6 +79,10 @@ public class JustificantesController {
     @Qualifier("asistenciaRepository")
     private AsistenciaRepository asistenciaRepository;
 
+    @Autowired
+    @Qualifier("licPaternidadServiceImpl")
+    private LicPaternidadService licPaternidadService;
+
     @GetMapping("/paternidad")
     public String verPaternidad(@RequestParam(name = "id") Integer idJustificante, Principal
             principal, Model model) {
@@ -97,6 +98,19 @@ public class JustificantesController {
 
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
+
+        Personal personalJustificante = personalService.getPersonalByIdJustificante(idJustificante);
+        Incidencia incidencia = incidenciaService.obtenerIncidenciaPorJustificanteId(idJustificante);
+        LicPaternidad licPaternidad = licPaternidadService.buscarLicPaternidadPorIdjustificante(idJustificante);
+
+        personalJustificante.setTipo(obtenerTipoPersonal(personalJustificante.getTipo()));
+
+        model.addAttribute("personal", personalJustificante);
+        model.addAttribute("departamento", personalJustificante.getDepartamento().getNombre());
+        model.addAttribute("fecha", incidencia.getFechaRegistro());
+        model.addAttribute("justificacion", licPaternidad.getJustificacion());
+
+        model.addAttribute("idJustificante", idJustificante);
 
         return "justificantes/paternidad";
     }
@@ -600,6 +614,29 @@ public class JustificantesController {
         return "redirect:/justificantes/validar?resultado=1";
     }
 
+    @GetMapping("/paternidad/aceptar")
+    public String aceptarPaternidad(@RequestParam(name = "id") Integer id, Principal principal) {
+        log.info("aceptarPaternidad() id=" + id);
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        String rol = personal.getTipo();
+        if(rol.equals("ROLE_DIR")){ //DIRECTOR
+            // Vamos al estado 4
+            justificanteService.cambiarEstadoJustificante(id, 4);
+        } else if(rol.equals("ROLE_ADM")) { // SUBDIRECTOR ADMINISTRATIVO
+            // Vamos al estado 2
+            justificanteService.cambiarEstadoJustificante(id, 2);
+
+        } else if(rol.equals("ROLE_CH")) { // CAPITAL HUMANO.
+            // Vamos al estado 1
+            justificanteService.cambiarEstadoJustificante(id, 1);
+        }
+
+        return "redirect:/justificantes/validar?resultado=1";
+    }
+
     private String obtenerDia(LocalDate fecha) {
         switch (fecha.getDayOfWeek()) {
             case MONDAY:
@@ -614,6 +651,19 @@ public class JustificantesController {
                 return "VIE";
             default:
                 return "END";
+        }
+    }
+
+    private String obtenerTipoPersonal(String tipo){
+        switch (tipo){
+            case "ROLE_DOC":
+                return "Docente";
+            case "ROLE_DCADM":
+                return "Docente Administrativo";
+            case "PAAE":
+                return "PAAE";
+            default:
+                return "Desconocido"
         }
     }
 
