@@ -113,5 +113,8 @@ public class CambioHorarioServiceImpl implements CambioHorarioService{
         {
             return cambioHorarioRepository.getHoraE(id, dia);
         }
+
+    @Override
+    public String getDepto(int id){return  cambioHorarioRepository.getDepto(id);}
 }
 

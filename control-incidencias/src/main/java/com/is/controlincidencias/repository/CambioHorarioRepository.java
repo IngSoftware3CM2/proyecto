@@ -61,4 +61,8 @@ public interface CambioHorarioRepository extends JpaRepository<CambioHorario, Se
     @Query(value = "select horasalida from dia where idhorario =  (select idhorario from personal where idempleado = :idempleado) and nombre = :dia",nativeQuery = true)
     String getHoraS(@Param("idempleado") int idempleado, @Param("dia") String dia);
 
+    @Transactional
+    @Query(value = "select nombre from departamento where iddepartamento = :idd", nativeQuery = true)
+    String getDepto(@Param("idd") int idd);
+
 }

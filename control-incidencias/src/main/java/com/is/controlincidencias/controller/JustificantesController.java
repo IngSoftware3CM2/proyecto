@@ -3,8 +3,12 @@ package com.is.controlincidencias.controller;
 import com.is.controlincidencias.entity.*;
 import com.is.controlincidencias.repository.DiaRepository;
 import com.is.controlincidencias.service.AsistenciaService;
-import com.is.controlincidencias.service.IncidenciaService;
 import com.is.controlincidencias.service.RetardoService;
+import com.is.controlincidencias.entity.CambioHorario;
+import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.Justificante;
+import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.service.CambioHorarioService;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -24,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.is.controlincidencias.controller.CambioHorarioController.VISTA_MOD_CAMBIO_HORARIO;
+
 /*
 * Para no tener un desmadre con las redirecciones la vizualizacion y la validacion se
 * trabajaran en este controlador al cual redireccionaran los respectivas vistas de ver
@@ -35,6 +41,14 @@ import java.util.List;
 public class JustificantesController {
 
     @Autowired
+    @Qualifier("incidenciaServiceImpl")
+    private IncidenciaServiceImpl incidenciaService;
+
+    @Autowired
+    @Qualifier("cambioHorarioServiceImpl")
+    private CambioHorarioService cambioService;
+
+    @Autowired
     @Qualifier("justificanteServiceImpl")
     private JustificanteServiceImpl justificanteService;
 
@@ -42,9 +56,6 @@ public class JustificantesController {
     @Qualifier("personalServiceImpl")
     private PersonalServiceImpl personalService;
 
-    @Autowired
-    @Qualifier("incidenciaServiceImpl")
-    private IncidenciaService incidenciaService;
 
     @Autowired
     @Qualifier("diaRepository")
@@ -177,20 +188,48 @@ public class JustificantesController {
 
 
     @GetMapping("/cambiohorario")
-    public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante, Principal
-            principal, Model model) {
+    public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante, Principal principal, Model model) {
+
+        int idEmpleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
+        CambioHorario entCH = cambioService.getIdCambioHorario(idJustificante);
+        String fecha = entCH.getFecha().toString();
+        Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
+        String diaSemana = "";
+        diaSemana = (new CambioHorarioController()).getDiaSemana(fecha);
+        CambioHorario entidadCH = cambioService.getIdCambioHorario(idJustificante);
+
         log.info("verCambioHorario()");
         String email = "abhera@yandex.com";
+        String tipeishon  = "";
         Integer esCH = 1; // Uno para mostrar la barra de superior
         if (principal != null && principal.getName() != null)
             email = principal.getName();
-        Personal personal = personalService.getPersonalByEmail(email);
+       // Personal personal = personalService.getPersonalByEmail(email);
         if (personal.getTipo().equals("ROLE_CH"))
-            esCH = 2;
+            {
+                esCH = 2;
+                tipeishon = "Capital Humano";
+            }
+         if(personal.getTipo().equals("ROLE_DOC"))
+            {
+                tipeishon = "Docente";
+            }
+        if(personal.getTipo().equals("ROLE_PAAE"))
+            {
+                tipeishon = "PAAE";
+            }
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
-
-
+        model.addAttribute("tipoP", tipeishon);
+        model.addAttribute("depto",cambioService.getDepto(personal.getDepartamento().getIdDepartamento()));
+        model.addAttribute("nombre",personal.getNombre() + " " + personal.getApellidoPaterno() + " " + personal.getApellidoPaterno());
+        model.addAttribute("tarjeta", personal.getNoTarjeta());
+        model.addAttribute("fecha", fecha);
+        model.addAttribute("jornadaE", cambioService.getHoraE(idEmpleado, diaSemana));
+        model.addAttribute("jornadaS", cambioService.getHoraS(idEmpleado, diaSemana));
+        model.addAttribute("llegadaE", cambioService.getHoraEntrada(idEmpleado, fecha));
+        model.addAttribute("llegadaS", cambioService.getHoraSalida(idEmpleado, fecha));
+        model.addAttribute("just", entidadCH.getJustificacion());
 
         return "justificantes/chorario";
     }
@@ -369,7 +408,7 @@ public class JustificantesController {
         //JEFE DE DEPARTAMENTO
         else if (personal.getTipo().equals("ROLE_SUP")) {
             for (Justificante j : allJustificantes) {
-                if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())){
+                if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()){
                     if (j.getTipo() == 6 || j.getTipo() == 8){
                         if (j.getEstado() == 4){
                                 showJustificantes.add(j);
@@ -383,7 +422,7 @@ public class JustificantesController {
 
                 }
             }
-            
+
             for (Iterator<Justificante> it = showJustificantes.iterator(); it.hasNext();) {
                 Justificante j = it.next();
                 if (j.getTipo() == 2){
@@ -396,7 +435,7 @@ public class JustificantesController {
         else if (personal.getTipo().equals("ROLE_SUB")) {
             for (Justificante j : allJustificantes) {
                 if (j.getTipo() == 6 || j.getTipo() == 8){
-                    if (j.getPersonal().getDepartamento().equals(personal.getDepartamento())) {
+                    if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()) {
                         if (j.getEstado() == 3){
                             showJustificantes.add(j);
                         }
