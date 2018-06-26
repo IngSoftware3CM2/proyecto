@@ -19,4 +19,9 @@ public interface TiempoSuplRepository extends JpaRepository <TiempoSuplementario
     void saveJustificanteTS(@Param("fecha") LocalDate fecha, @Param("tiempocubrir") Integer tiempocubrir,@Param("idjustificante") int idjustificante);
 
     boolean existsByJustificante_IdJustificante (int id);
+
+
+    @Query(value = "select * from tiemposuplementario where idjustificante=:idjustificante", nativeQuery = true)
+    @Transactional
+    TiempoSuplementario selectByIdjustificante(@Param("idjustificante") int idjustificante);
 }

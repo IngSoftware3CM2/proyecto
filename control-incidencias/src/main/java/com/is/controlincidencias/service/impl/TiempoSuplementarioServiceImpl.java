@@ -1,6 +1,7 @@
 package com.is.controlincidencias.service.impl;
 
 import com.is.controlincidencias.entity.Incidencia;
+import com.is.controlincidencias.entity.TiempoSuplementario;
 import com.is.controlincidencias.model.JustificateTiempoSuplModel;
 import com.is.controlincidencias.repository.JustificanteRepository;
 import com.is.controlincidencias.repository.TiempoSuplRepository;
@@ -49,6 +50,12 @@ public class TiempoSuplementarioServiceImpl implements TiempoSuplementarioServic
         incidenciaService.updateIdIncidenciaAndHorasCubrir(ids.get(ids.size()-1),incidencia.getIdIncidencia(),horas);
         return idJustificante;
     }
+
+    @Override
+    public TiempoSuplementario getTiempoSuplementarioByIdJustificante(int idJustificante) {
+        return tiempoSuplRepository.selectByIdjustificante(idJustificante);
+    }
+
     @Override
     public boolean existsByIdjustificante(int id) {
         return tiempoSuplRepository.existsByJustificante_IdJustificante(id);

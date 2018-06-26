@@ -51,14 +51,14 @@
                     <div class="col-md-2 col-md-offset-4">
                         <label>Nombre:</label>
                     </div>
-                    <div class="col-md-4">
-                        <label>Jaime Lopez Rabadan</label>
-                    </div>
+                    <label th:text="${personal.nombre} + ' ' + ${personal.apellidoPaterno} + ' ' + ${personal.apellidoMaterno}">
+                        Jaime Lopez Rabadan
+                    </label>
                 </div>
 
                 <div class="row">
                     <div class="col-md-2 col-md-offset-4">
-                        <label>Departamento:</label>
+                        <label th:text="${departamento}">XXXXXXX</label>
                     </div>
                     <div class="col-md-4">
                         <label>XXXXXXX</label>
@@ -70,7 +70,7 @@
                         <label>Tipo de Personal:</label>
                     </div>
                     <div class="col-md-4">
-                        <label>Docente</label>
+                        <label th:text="${personal.tipo}">Docente</label>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                         <label>Fecha de Incidencia:</label>
                     </div>
                     <div class="col-md-4">
-                        <label>6 / Abril /2018</label>
+                        <label th:text="${fecha}">6 / Abril /2018</label>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
                         <label>Tiempo a cubrir:</label>
                     </div>
                     <div class="col-md-4">
-                        <label> 3 horas</label>
+                        <label>3 horas</label>
                     </div>
                 </div>
 
@@ -137,14 +137,20 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 text-center">
                         <label> Confirmar :</label>
-                        <button class="btn btn-white" type="button"><i class="fa fa-check"></i></button>
-                        <button class="btn btn-white" type="button"><i class="fa fa-times"></i></button>
+                        <a class="btn btn-white" type="submit"
+                           th:href="@{/justificantes/suplementario/aceptar(id=${idJustificante})}">
+                            <i class="fa fa-check"></i>
+                        </a>
+                        <a class="btn btn-white" type="submit"
+                           th:href="@{/justificantes/todos/rechazar(id=${idJustificante})}">
+                            <i class="fa fa-times"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
-                        <button class="btn btn-white" type="button"> Regresar</button>
+                        <a th:href="@{/justificantes/validar}" class="btn btn-white">Regresar</a>
                     </div>
                 </div>
 
