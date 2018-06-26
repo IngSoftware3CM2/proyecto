@@ -1,5 +1,6 @@
 package com.is.controlincidencias.service.impl;
 
+import com.is.controlincidencias.entity.ComisionOficial;
 import com.is.controlincidencias.model.ComisionModel;
 import com.is.controlincidencias.repository.ComisionRepository;
 import com.is.controlincidencias.repository.JustificanteRepository;
@@ -64,4 +65,8 @@ public class ComisionServiceImpl  implements ComisionService{
     public boolean existsByIdjustificante(int id) {
         return comisionRepository.existsByJustificante_IdJustificante(id);
     }
+
+    @Override
+    public ComisionOficial getCO(int id){return  comisionRepository.getCO(id);}
+
 }

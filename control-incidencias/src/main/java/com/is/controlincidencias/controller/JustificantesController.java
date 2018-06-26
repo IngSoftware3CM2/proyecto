@@ -1,10 +1,10 @@
 package com.is.controlincidencias.controller;
 
-import com.is.controlincidencias.entity.CambioHorario;
-import com.is.controlincidencias.entity.Incidencia;
-import com.is.controlincidencias.entity.Justificante;
-import com.is.controlincidencias.entity.Personal;
+import com.is.controlincidencias.entity.*;
+import com.is.controlincidencias.model.ComisionModel;
 import com.is.controlincidencias.service.CambioHorarioService;
+import com.is.controlincidencias.service.ComisionService;
+import com.is.controlincidencias.service.impl.ComisionServiceImpl;
 import com.is.controlincidencias.service.impl.IncidenciaServiceImpl;
 import com.is.controlincidencias.service.impl.JustificanteServiceImpl;
 import com.is.controlincidencias.service.impl.PersonalServiceImpl;
@@ -39,6 +39,10 @@ public class JustificantesController {
     @Autowired
     @Qualifier("incidenciaServiceImpl")
     private IncidenciaServiceImpl incidenciaService;
+
+    @Autowired
+    @Qualifier("comisionServiceImpl")
+    private ComisionServiceImpl comisionService;
 
     @Autowired
     @Qualifier("cambioHorarioServiceImpl")
@@ -150,7 +154,28 @@ public class JustificantesController {
         return "redirect:/justificantes/validar";
     }
 
+    @GetMapping("/cambiohorario/aceptar")
+    public String aceptarCambioHorario(@RequestParam(name = "id") Integer id, Principal principal) {
 
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+        Personal personal = personalService.getPersonalByEmail(email);
+        aceptarEconomicoRetardoCambioHorarioSuplementario(personal, id);
+        return "redirect:/justificantes/validar";
+    }
+
+    @GetMapping("/comision/aceptar")
+    public String aceptaComision(@RequestParam(name = "id") Integer id, Principal principal) {
+
+        String email = "abhera@yandex.com";
+        if (principal != null && principal.getName() != null)
+            email = principal.getName();
+
+      /*  Algo habrá de ir aqui*/
+        return "redirect:/justificantes/validar";
+    }
 
     @GetMapping("/cambiohorario")
     public String verCambioHorario(@RequestParam(name = "id") Integer idJustificante, Principal principal, Model model) {
@@ -195,6 +220,7 @@ public class JustificantesController {
         model.addAttribute("llegadaE", cambioService.getHoraEntrada(idEmpleado, fecha));
         model.addAttribute("llegadaS", cambioService.getHoraSalida(idEmpleado, fecha));
         model.addAttribute("just", entidadCH.getJustificacion());
+        model.addAttribute("idJustificante", idJustificante);
 
         return "justificantes/chorario";
     }
@@ -282,18 +308,42 @@ public class JustificantesController {
     @GetMapping("/comision")
     public String verComisionOficial(@RequestParam(name = "id") Integer idJustificante, Principal
             principal, Model model) {
-        log.info("verComisionOficial()");
+
+        int idEmpleado = incidenciaService.getIdEmpleadoByIdJustificante(idJustificante);
+        Personal personal = personalService.getPersonalByIdEmpleado(idEmpleado);
+
+        log.info("verCambioHorario()");
         String email = "abhera@yandex.com";
+        String tipeishon  = "";
         Integer esCH = 1; // Uno para mostrar la barra de superior
         if (principal != null && principal.getName() != null)
             email = principal.getName();
-        Personal personal = personalService.getPersonalByEmail(email);
+        // Personal personal = personalService.getPersonalByEmail(email);
         if (personal.getTipo().equals("ROLE_CH"))
+        {
             esCH = 2;
+            tipeishon = "Capital Humano";
+        }
+        if(personal.getTipo().equals("ROLE_DOC"))
+        {
+            tipeishon = "Docente";
+        }
+        if(personal.getTipo().equals("ROLE_PAAE"))
+        {
+            tipeishon = "PAAE";
+        }
+        ComisionOficial cm;
+        cm = comisionService.getCO(idJustificante);
         model.addAttribute("tipo_usuario", esCH);
         model.addAttribute("nombreYtipo", personal.nombreAndTipoToString());
-
-
+        model.addAttribute("tipoP", tipeishon);
+        model.addAttribute("depto",cambioService.getDepto(personal.getDepartamento().getIdDepartamento()));
+        model.addAttribute("nombre",personal.getNombre() + " " + personal.getApellidoPaterno() + " " + personal.getApellidoPaterno());
+        model.addAttribute("tarjeta", personal.getNoTarjeta());
+        model.addAttribute("inicio",cm.getInicio());
+        model.addAttribute("fin", cm.getFin());
+        model.addAttribute("foto",cm.getInvitacionArchivo());
+        model.addAttribute("idJustificante", idJustificante);
 
         return "justificantes/coficial";
     }
@@ -400,6 +450,7 @@ public class JustificantesController {
         else if (personal.getTipo().equals("ROLE_SUB")) {
             for (Justificante j : allJustificantes) {
                 if (j.getTipo() == 6 || j.getTipo() == 8){
+                    System.out.println(j.getPersonal().getDepartamento().getIdDepartamento() + " --- VS --- " + personal.getDepartamento().getIdDepartamento());
                     if (j.getPersonal().getDepartamento().getIdDepartamento() == personal.getDepartamento().getIdDepartamento()) {
                         if (j.getEstado() == 3){
                             showJustificantes.add(j);
