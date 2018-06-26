@@ -271,8 +271,19 @@ public class JustificantesController {
         String email = "abhera@yandex.com";
         if (principal != null && principal.getName() != null)
             email = principal.getName();
+        Personal personal = personalService.getPersonalByEmail(email);
+        String rol = personal.getTipo();
+        if(rol.equals("ROLE_SUB")){ //SUBDIRECTOR
+            justificanteService.cambiarEstadoJustificante(id, 4);
+        }
+        else if(rol.equals("ROLE_SUP")) { // JEFE DE DEPTO.
+            justificanteService.cambiarEstadoJustificante(id, 2);
+        }
+        else if(rol.equals("ROLE_CH")) { // CAPITAL HUMANO.
+            justificanteService.cambiarEstadoJustificante(id, 1);
+        }
 
-      /*  Algo habrá de ir aqui*/
+
         return "redirect:/justificantes/validar?resultado=1";
     }
 
